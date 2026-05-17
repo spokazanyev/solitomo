@@ -1,6 +1,7 @@
 import { Phone } from "lucide-react";
 import Link from "next/link";
 
+import { HeaderMobileMenu } from "@/components/site/HeaderMobileMenu";
 import { RfqCartLink } from "@/components/rfq/RfqCart";
 import { getPrimaryPhone } from "@/lib/company/get-company-contacts";
 import { SITE_NAME } from "@/lib/seo/seo-registry";
@@ -17,11 +18,11 @@ export function SiteHeader() {
   const phone = getPrimaryPhone();
 
   return (
-    <header className="border-b border-slate-200 bg-white">
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-6 py-4 md:px-10 lg:px-12">
+    <header className="sticky top-0 z-30 border-b border-slate-200 bg-white">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-3 px-4 py-3 md:px-10 md:py-4 lg:px-12">
         <Link
           href="/"
-          className="text-2xl font-bold uppercase tracking-[0.14em] text-sky-700"
+          className="text-xl font-bold uppercase tracking-[0.14em] text-sky-700 md:text-2xl"
         >
           {SITE_NAME}
         </Link>
@@ -35,29 +36,32 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 md:gap-2">
           {phone ? (
-            <a
-              className="hidden items-center gap-2 text-sm font-semibold text-slate-700 hover:text-sky-800 md:inline-flex"
-              href={`tel:${phone.tel}`}
-            >
-              <Phone className="h-4 w-4" />
-              {phone.value}
-            </a>
+            <>
+              <a
+                aria-label={`Позвонить: ${phone.value}`}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-md text-slate-700 hover:bg-slate-100 hover:text-sky-800 md:hidden"
+                href={`tel:${phone.tel}`}
+              >
+                <Phone className="h-5 w-5" />
+              </a>
+              <a
+                className="hidden items-center gap-2 text-sm font-semibold text-slate-700 hover:text-sky-800 md:inline-flex"
+                href={`tel:${phone.tel}`}
+              >
+                <Phone className="h-4 w-4" />
+                {phone.value}
+              </a>
+            </>
           ) : null}
           <RfqCartLink />
+          <HeaderMobileMenu
+            navItems={navItems}
+            phone={phone ? { tel: phone.tel, value: phone.value } : null}
+          />
         </div>
       </div>
-      <nav
-        aria-label="Главная навигация (компактная)"
-        className="mx-auto flex w-full max-w-7xl gap-4 overflow-x-auto px-6 pb-3 text-sm text-slate-600 md:px-10 lg:hidden lg:px-12"
-      >
-        {navItems.map((item) => (
-          <Link className="whitespace-nowrap hover:text-sky-800" href={item.href} key={item.href}>
-            {item.label}
-          </Link>
-        ))}
-      </nav>
     </header>
   );
 }

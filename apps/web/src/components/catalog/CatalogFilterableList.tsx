@@ -4,9 +4,10 @@ import { ChevronDown, SlidersHorizontal, X } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
+import { MobileDrawer } from "@/components/site/MobileDrawer";
 import { AddToRfqButton } from "@/components/rfq/RfqCart";
 import { getListingAttributeRows } from "@/lib/products/product-attributes";
-import type { Product } from "@/lib/products/source-products";
+import type { Product } from "@/lib/products/catalog";
 
 type FacetOption = {
   count: number;
@@ -199,7 +200,7 @@ function ProductCard({ product }: { product: Product }) {
           }}
         />
         <Link
-          className="inline-flex w-full items-center justify-center rounded-md border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:border-sky-700 hover:text-sky-800"
+          className="inline-flex h-11 w-full items-center justify-center rounded-md border border-slate-300 px-4 text-sm font-semibold text-slate-700 hover:border-sky-700 hover:text-sky-800"
           href={`/product/${product.slug}/`}
         >
           Открыть
@@ -235,10 +236,8 @@ function CatalogProductList({ products }: { products: Product[] }) {
 }
 
 export function CatalogFilterableList({
-  description,
   facetGroups,
   products,
-  title,
   total,
 }: CatalogFilterableListProps) {
   const initialSelectedPaths = useMemo(
@@ -289,14 +288,119 @@ export function CatalogFilterableList({
     );
   }
 
+  const filtersContent = (
+    <div className="grid gap-5">
+      {facetGroups.map((group) => {
+        const selectedInGroup = group.options.filter((option) =>
+          selectedPathSet.has(option.path),
+        );
+        const collapsed = collapsedGroups.includes(group.label);
+
+        return (
+          <fieldset
+            className="border-t border-slate-100 pt-4 first:border-t-0 first:pt-0"
+            key={group.label}
+          >
+            <legend className="sr-only">{group.label}</legend>
+            <button
+              aria-expanded={!collapsed}
+              className="flex w-full items-start justify-between gap-3 text-left"
+              onClick={() => toggleGroup(group.label)}
+              type="button"
+            >
+              <span className="min-w-0">
+                <span className="flex items-center gap-2 text-sm font-semibold text-slate-800">
+                  {group.label}
+                  {selectedInGroup.length > 0 ? (
+                    <span
+                      aria-label="Фильтр задействован"
+                      className="h-2 w-2 rounded-full bg-sky-600"
+                    />
+                  ) : null}
+                </span>
+                {selectedInGroup.length > 0 ? (
+                  <span className="mt-1 block truncate text-xs leading-5 text-sky-800">
+                    {selectedInGroup.map((option) => option.label).join(", ")}
+                  </span>
+                ) : null}
+              </span>
+              <ChevronDown
+                className={`mt-0.5 h-4 w-4 shrink-0 text-slate-400 transition ${collapsed ? "-rotate-90" : "rotate-0"}`}
+              />
+            </button>
+            {collapsed ? null : (
+              <div className="mt-2 grid gap-1">
+                {group.options.map((option) => {
+                  const checked = selectedPathSet.has(option.path);
+                  const count = countProductsForOption(
+                    products,
+                    facetGroups,
+                    selectedPathSet,
+                    group,
+                    option.path,
+                  );
+                  const disabled = count === 0 && !checked;
+
+                  return (
+                    <label
+                      className={`flex min-h-11 cursor-pointer items-center justify-between gap-2 rounded-md px-2 py-2 text-sm ${
+                        checked
+                          ? "bg-sky-50 font-semibold text-sky-800"
+                          : disabled
+                            ? "cursor-not-allowed text-slate-300"
+                            : "text-slate-700 hover:bg-slate-50 hover:text-slate-950"
+                      }`}
+                      key={option.path}
+                    >
+                      <span className="flex min-w-0 items-center gap-3">
+                        <input
+                          checked={checked}
+                          className="h-5 w-5 rounded border-slate-300 text-sky-700 focus:ring-sky-600 disabled:border-slate-200"
+                          disabled={disabled}
+                          onChange={() => togglePath(option.path)}
+                          type="checkbox"
+                        />
+                        <span className="min-w-0">{option.label}</span>
+                      </span>
+                      <span className="text-xs text-slate-400">{count}</span>
+                    </label>
+                  );
+                })}
+              </div>
+            )}
+          </fieldset>
+        );
+      })}
+    </div>
+  );
+
+  const filterHeader = (
+    <div className="flex items-start justify-between gap-3">
+      <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
+        <SlidersHorizontal className="h-4 w-4" />
+        Фильтры для каталога
+      </div>
+      <button
+        className="inline-flex items-center gap-1 rounded-md border border-slate-200 px-2 py-1 text-xs font-semibold text-slate-600 hover:border-sky-500 hover:text-sky-800 disabled:cursor-not-allowed disabled:border-slate-100 disabled:text-slate-300"
+        disabled={selectedPaths.length === 0}
+        onClick={clearFilters}
+        type="button"
+      >
+        <X className="h-3.5 w-3.5" />
+        Сбросить
+      </button>
+    </div>
+  );
+
   return (
     <section className="grid gap-6 lg:grid-cols-[280px_1fr]">
+      {/* Mobile/tablet trigger button (≤lg) */}
       <div className="lg:hidden">
         <button
+          aria-controls="catalog-filters-drawer"
           aria-expanded={mobileFiltersOpen}
-          aria-controls="catalog-filters"
-          className="inline-flex w-full items-center justify-between gap-2 rounded-md border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 hover:border-sky-500"
-          onClick={() => setMobileFiltersOpen((value) => !value)}
+          className="inline-flex h-12 w-full items-center justify-between gap-2 rounded-md border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700 hover:border-sky-500"
+          onClick={() => setMobileFiltersOpen(true)}
           type="button"
         >
           <span className="flex items-center gap-2">
@@ -309,125 +413,61 @@ export function CatalogFilterableList({
             ) : null}
           </span>
           <span className="text-xs uppercase tracking-wide text-slate-400">
-            {mobileFiltersOpen ? "Скрыть" : "Показать"}
+            Открыть
           </span>
         </button>
       </div>
+
+      {/* Desktop sidebar (≥lg) */}
       <aside
         id="catalog-filters"
-        className={`max-h-[calc(100vh-2rem)] overflow-y-auto rounded-lg border border-slate-200 bg-white p-5 overscroll-contain lg:sticky lg:top-4 lg:block ${mobileFiltersOpen ? "block" : "hidden"}`}
+        className="hidden max-h-[calc(100vh-2rem)] overflow-y-auto rounded-lg border border-slate-200 bg-white p-5 overscroll-contain lg:sticky lg:top-20 lg:block"
       >
-        <div className="flex items-start justify-between gap-3">
-          <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
-            <SlidersHorizontal className="h-4 w-4" />
-            Фильтры для каталога
-          </div>
-          <button
-            className="inline-flex items-center gap-1 rounded-md border border-slate-200 px-2 py-1 text-xs font-semibold text-slate-600 hover:border-sky-500 hover:text-sky-800 disabled:cursor-not-allowed disabled:border-slate-100 disabled:text-slate-300"
-            disabled={selectedPaths.length === 0}
-            onClick={clearFilters}
-            type="button"
-          >
-            <X className="h-3.5 w-3.5" />
-            Сбросить все
-          </button>
-        </div>
-        <div className="mt-5 grid gap-5">
-          {facetGroups.map((group) => {
-            const selectedInGroup = group.options.filter((option) =>
-              selectedPathSet.has(option.path),
-            );
-            const collapsed = collapsedGroups.includes(group.label);
-
-            return (
-              <fieldset className="border-t border-slate-100 pt-4 first:border-t-0 first:pt-0" key={group.label}>
-                <legend className="sr-only">{group.label}</legend>
-                <button
-                  aria-expanded={!collapsed}
-                  className="flex w-full items-start justify-between gap-3 text-left"
-                  onClick={() => toggleGroup(group.label)}
-                  type="button"
-                >
-                  <span className="min-w-0">
-                    <span className="flex items-center gap-2 text-sm font-semibold text-slate-800">
-                      {group.label}
-                      {selectedInGroup.length > 0 ? (
-                        <span
-                          aria-label="Фильтр задействован"
-                          className="h-2 w-2 rounded-full bg-sky-600"
-                        />
-                      ) : null}
-                    </span>
-                    {selectedInGroup.length > 0 ? (
-                      <span className="mt-1 block truncate text-xs leading-5 text-sky-800">
-                        {selectedInGroup.map((option) => option.label).join(", ")}
-                      </span>
-                    ) : null}
-                  </span>
-                  <ChevronDown
-                    className={`mt-0.5 h-4 w-4 shrink-0 text-slate-400 transition ${collapsed ? "-rotate-90" : "rotate-0"}`}
-                  />
-                </button>
-                {collapsed ? null : (
-                  <div className="mt-2 grid gap-2">
-                    {group.options.map((option) => {
-                      const checked = selectedPathSet.has(option.path);
-                      const count = countProductsForOption(
-                        products,
-                        facetGroups,
-                        selectedPathSet,
-                        group,
-                        option.path,
-                      );
-                      const disabled = count === 0 && !checked;
-
-                      return (
-                        <label
-                          className={`flex cursor-pointer items-center justify-between gap-2 rounded-md px-2 py-1 text-sm ${
-                            checked
-                              ? "bg-sky-50 font-semibold text-sky-800"
-                              : disabled
-                                ? "cursor-not-allowed text-slate-300"
-                              : "text-slate-600 hover:bg-slate-50 hover:text-slate-950"
-                          }`}
-                          key={option.path}
-                        >
-                          <span className="flex min-w-0 items-center gap-2">
-                            <input
-                              checked={checked}
-                              className="h-4 w-4 rounded border-slate-300 text-sky-700 focus:ring-sky-600 disabled:border-slate-200"
-                              disabled={disabled}
-                              onChange={() => togglePath(option.path)}
-                              type="checkbox"
-                            />
-                            <span className="min-w-0">{option.label}</span>
-                          </span>
-                          <span className="text-xs text-slate-400">{count}</span>
-                        </label>
-                      );
-                    })}
-                  </div>
-                )}
-              </fieldset>
-            );
-          })}
-        </div>
+        {filterHeader}
+        <div className="mt-5">{filtersContent}</div>
       </aside>
+
+      {/* Mobile/tablet drawer */}
+      <div id="catalog-filters-drawer" className="lg:hidden">
+        <MobileDrawer
+          footer={
+            <div className="flex gap-3">
+              <button
+                className="inline-flex h-12 flex-1 items-center justify-center gap-1 rounded-md border border-slate-300 px-3 text-sm font-semibold text-slate-700 hover:border-sky-500 hover:text-sky-800 disabled:cursor-not-allowed disabled:border-slate-200 disabled:text-slate-300"
+                disabled={selectedPaths.length === 0}
+                onClick={clearFilters}
+                type="button"
+              >
+                <X className="h-4 w-4" />
+                Сбросить
+              </button>
+              <button
+                className="inline-flex h-12 flex-1 items-center justify-center rounded-md bg-sky-700 px-3 text-sm font-semibold text-white hover:bg-sky-800"
+                onClick={() => setMobileFiltersOpen(false)}
+                type="button"
+              >
+                Показать ({filteredProducts.length})
+              </button>
+            </div>
+          }
+          onClose={() => setMobileFiltersOpen(false)}
+          open={mobileFiltersOpen}
+          side="right"
+          title="Фильтры"
+        >
+          {filtersContent}
+        </MobileDrawer>
+      </div>
+
       <div>
         <div className="flex flex-col gap-4 border-b border-slate-200 pb-4 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="text-sm text-slate-500">
-              Показано моделей: {filteredProducts.length} из {total}
-            </p>
-            <h2 className="text-xl font-semibold text-slate-950">{title}</h2>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
-              {description}
-            </p>
-          </div>
+          <p className="text-sm text-slate-500">
+            Показано моделей: {filteredProducts.length} из {total}
+          </p>
           <label className="grid gap-1 text-xs font-medium text-slate-500 md:min-w-52">
             Сортировка
             <select
-              className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-100"
+              className="h-11 rounded-md border border-slate-300 bg-white px-3 text-sm font-semibold text-slate-700 outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-100"
               onChange={(event) => setSortMode(event.target.value as SortMode)}
               value={sortMode}
             >
@@ -442,7 +482,7 @@ export function CatalogFilterableList({
           <div className="mt-4 flex flex-wrap gap-2">
             {selectedOptions.map((option) => (
               <button
-                className="inline-flex items-center gap-1 rounded-md bg-sky-50 px-2 py-1 text-xs font-semibold text-sky-800 hover:bg-sky-100"
+                className="inline-flex items-center gap-1 rounded-md bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-800 hover:bg-sky-100"
                 key={`${option.group}-${option.path}`}
                 onClick={() => togglePath(option.path)}
                 type="button"

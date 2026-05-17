@@ -1,51 +1,38 @@
-import fs from "node:fs";
-import path from "node:path";
+import { cache } from "react";
 
+import { getPayload } from "payload";
+
+import config from "@/payload.config";
+import { rewriteLegacyAssetUrl } from "@/lib/legacy-assets/url";
 import {
   getProductAttributeRows,
   normalizeProductAttributes,
   type ProductAttributes,
 } from "@/lib/products/product-attributes";
-import { rewriteLegacyAssetUrl } from "@/lib/legacy-assets/url";
 import { getSiteUrl } from "@/lib/seo/seo-registry";
+import type {
+  Category as PayloadCategory,
+  Document as PayloadDocument,
+  Product as PayloadProduct,
+} from "@/payload-types";
 
-type RawCategory = {
+type CategoryLink = {
   name: string;
   url: string;
 };
 
-type RawDocument = {
+type DocumentLink = {
   title: string;
   url: string;
-};
-
-type RawProduct = {
-  additional?: string[];
-  breadcrumbs?: string;
-  categories?: RawCategory[];
-  clusters?: string[];
-  descriptionText?: string;
-  documents?: RawDocument[];
-  images?: string[];
-  priceRub?: string;
-  shortDesc?: string;
-  sku: string;
-  specs?: string[];
-  title: string;
-  url: string;
-};
-
-type RawAssortment = {
-  products: RawProduct[];
 };
 
 export type Product = {
   attributes: ProductAttributes;
   badges: string[];
   breadcrumbs?: string;
-  categories: RawCategory[];
+  categories: CategoryLink[];
   description: string;
-  documents: RawDocument[];
+  documents: DocumentLink[];
   h1: string;
   images: string[];
   legacyUrl: string;
@@ -77,7 +64,17 @@ type CatalogFacetDefinition = {
   }[];
 };
 
-type CatalogAttributeStatsGroup = {
+export type CatalogFacetGroup = {
+  label: string;
+  options: {
+    count: number;
+    current: boolean;
+    label: string;
+    path: string;
+  }[];
+};
+
+export type CatalogAttributeStatsGroup = {
   label: string;
   options: {
     count: number;
@@ -85,79 +82,9 @@ type CatalogAttributeStatsGroup = {
   }[];
 };
 
-const assortmentPath = path.join(
-  process.cwd(),
-  "..",
-  "..",
-  "00-source-data",
-  "assortment",
-  "soliton1_assortment_raw.json",
-);
-
-const translit: Record<string, string> = {
-  а: "a",
-  б: "b",
-  в: "v",
-  г: "g",
-  д: "d",
-  е: "e",
-  ё: "e",
-  ж: "zh",
-  з: "z",
-  и: "i",
-  й: "y",
-  к: "k",
-  л: "l",
-  м: "m",
-  н: "n",
-  о: "o",
-  п: "p",
-  р: "r",
-  с: "s",
-  т: "t",
-  у: "u",
-  ф: "f",
-  х: "h",
-  ц: "c",
-  ч: "ch",
-  ш: "sh",
-  щ: "sch",
-  ъ: "",
-  ы: "y",
-  ь: "",
-  э: "e",
-  ю: "yu",
-  я: "ya",
-};
-
-function slugify(value: string) {
-  return value
-    .trim()
-    .toLowerCase()
-    .split("")
-    .map((char) => translit[char] ?? char)
-    .join("")
-    .replace(/&/g, "-and-")
-    .replace(/\+/g, "-")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .replace(/-{2,}/g, "-");
-}
-
-function parsePrice(priceRub?: string) {
-  if (!priceRub) {
-    return null;
-  }
-
-  const normalized = priceRub.replace(/\s/g, "").replace(/,/g, "");
-  const amount = Number.parseFloat(normalized);
-
-  return Number.isFinite(amount) ? amount : null;
-}
-
-function formatPrice(amount: number | null, source?: string) {
+function formatPrice(amount: number | null) {
   if (amount === null) {
-    return source ? `${source} руб.` : "Цена по запросу";
+    return "Цена по запросу";
   }
 
   return new Intl.NumberFormat("ru-RU", {
@@ -173,21 +100,6 @@ function derivePriceValidUntil(updatedAt?: string): string | undefined {
   if (Number.isNaN(base.getTime())) return undefined;
   base.setDate(base.getDate() + 90);
   return base.toISOString().slice(0, 10);
-}
-
-function buildBadges(product: RawProduct) {
-  const clusters = product.clusters ?? [];
-  const specs = product.specs ?? [];
-  const badges = [...clusters];
-
-  for (const spec of specs) {
-    const match = spec.match(/(\d+)\s*(розет|schuko|c13|c19)/i);
-    if (match) {
-      badges.push(spec.replace(/\s+/g, " ").slice(0, 36));
-    }
-  }
-
-  return Array.from(new Set(badges)).slice(0, 8);
 }
 
 function uniqueText(parts: string[]) {
@@ -228,7 +140,10 @@ function getProductBaseName(attributes: ProductAttributes) {
   return "PDU / блок розеток";
 }
 
-function buildProductDisplayName(raw: RawProduct, attributes: ProductAttributes) {
+function buildProductDisplayName(
+  raw: { sku: string; title: string; shortDesc?: string; specs?: string[] },
+  attributes: ProductAttributes,
+) {
   const sourceText = [raw.sku, raw.title, raw.shortDesc, raw.specs?.join(" ")]
     .filter(Boolean)
     .join(" ")
@@ -249,53 +164,169 @@ function buildProductDisplayName(raw: RawProduct, attributes: ProductAttributes)
   ];
 
   const displayName = uniqueText(parts).join(", ");
-
   return displayName || raw.title.replace(/\s+/g, " ").trim();
 }
 
-function normalizeProduct(raw: RawProduct): Product {
-  const priceAmount = parsePrice(raw.priceRub);
-  const slug = slugify(raw.sku || raw.title);
-  const categoryNames = (raw.categories ?? []).map((category) => category.name);
-  const attributes = normalizeProductAttributes(raw);
-  const h1 = buildProductDisplayName(raw, attributes);
+function buildBadges(doc: PayloadProduct, categories: CategoryLink[]) {
+  const clusters = categories.map((category) => category.name);
+  const badges: string[] = [...clusters];
+  const text = `${doc.title ?? ""} ${doc.shortDescription ?? ""}`;
+
+  const specMatch = text.match(
+    /(\d+)\s*(розет|schuko|c13|c19)/i,
+  );
+  if (specMatch) {
+    badges.push(specMatch[0].slice(0, 36));
+  }
+
+  return Array.from(new Set(badges)).slice(0, 8);
+}
+
+function categoryLinksFromPayload(
+  raw: PayloadProduct["categories"],
+): CategoryLink[] {
+  if (!raw) return [];
+  const links: CategoryLink[] = [];
+  for (const entry of raw) {
+    if (typeof entry === "number") continue;
+    const slug = entry.slug;
+    const name = entry.title;
+    if (!slug || !name) continue;
+    links.push({ name, url: `/catalog/${slug}/` });
+  }
+  return links;
+}
+
+function documentLinksFromPayload(
+  raw: PayloadProduct["documents"],
+): DocumentLink[] {
+  if (!raw) return [];
+  const links: DocumentLink[] = [];
+  for (const entry of raw) {
+    if (typeof entry === "number") continue;
+    if (entry.status && entry.status !== "published") continue;
+    const url = rewriteLegacyAssetUrl(entry.externalUrl);
+    if (!url) continue;
+    links.push({ title: entry.title || "Документ", url });
+  }
+  return links;
+}
+
+function imageLinksFromPayload(doc: PayloadProduct): string[] {
+  const links = (doc.imageLinks ?? [])
+    .slice()
+    .sort((a, b) => {
+      const aPrimary = a.role === "primary" ? 0 : 1;
+      const bPrimary = b.role === "primary" ? 0 : 1;
+      return aPrimary - bPrimary;
+    })
+    .map((entry) => rewriteLegacyAssetUrl(entry.url ?? ""))
+    .filter(Boolean);
+  return Array.from(new Set(links));
+}
+
+function mapPayloadProductToProduct(doc: PayloadProduct): Product {
+  const categories = categoryLinksFromPayload(doc.categories);
+  const priceAmount =
+    doc.price?.status === "published" && typeof doc.price.amount === "number"
+      ? doc.price.amount
+      : null;
+  const attributeInput = {
+    categories: categories.map((category) => ({ name: category.name })),
+    clusters: categories.map((category) => category.name),
+    descriptionText: doc.description ?? doc.sourceRawDescription ?? "",
+    documents: doc.documents
+      ? doc.documents
+          .filter((entry): entry is PayloadDocument => typeof entry !== "number")
+          .map((entry) => ({
+            title: entry.title || "",
+            url: entry.externalUrl ?? "",
+          }))
+      : undefined,
+    shortDesc: doc.shortDescription ?? "",
+    sku: doc.sku,
+    specs: [],
+    title: doc.sourceRawTitle ?? doc.title,
+  };
+  const attributes = normalizeProductAttributes(attributeInput);
+  const h1 = buildProductDisplayName(
+    { sku: doc.sku, title: doc.title, shortDesc: doc.shortDescription ?? "" },
+    attributes,
+  );
 
   return {
     attributes,
-    badges: buildBadges(raw),
-    breadcrumbs: raw.breadcrumbs,
-    categories: raw.categories ?? [],
-    description: raw.descriptionText ?? raw.shortDesc ?? "",
-    documents: (raw.documents ?? []).map((doc) => ({
-      ...doc,
-      url: rewriteLegacyAssetUrl(doc.url),
-    })),
+    badges: buildBadges(doc, categories),
+    breadcrumbs: categories[0]?.name,
+    categories,
+    description: doc.description ?? doc.shortDescription ?? "",
+    documents: documentLinksFromPayload(doc.documents),
     h1,
-    images: (raw.images ?? []).map(rewriteLegacyAssetUrl).filter(Boolean),
-    legacyUrl: raw.url,
+    images: imageLinksFromPayload(doc),
+    legacyUrl: doc.sourceUrl ?? "",
     price: {
       amount: priceAmount,
-      display: formatPrice(priceAmount, raw.priceRub),
+      display: formatPrice(priceAmount),
       currency: "RUB",
+      updatedAt: doc.updatedAt,
     },
     shortDescription:
-      raw.shortDesc ||
-      `PDU Солитон ${raw.sku}${categoryNames.length ? `: ${categoryNames.join(", ")}` : ""}.`,
-    sku: raw.sku,
-    slug,
-    specs: raw.specs ?? [],
-    title: raw.title,
+      doc.shortDescription ||
+      `PDU Солитон ${doc.sku}${categories.length ? `: ${categories.map((category) => category.name).join(", ")}` : ""}.`,
+    sku: doc.sku,
+    slug: doc.slug,
+    specs: [],
+    title: doc.title,
   };
 }
 
-function readProducts() {
-  const file = fs.readFileSync(assortmentPath, "utf8");
-  const raw = JSON.parse(file) as RawAssortment;
-  return raw.products.map(normalizeProduct);
-}
+type CatalogData = {
+  products: Product[];
+  productsBySlug: Map<string, Product>;
+  categoriesBySlug: Map<string, PayloadCategory>;
+};
 
-const products = readProducts();
-const productsBySlug = new Map(products.map((product) => [product.slug, product]));
+const loadCatalog = cache(async (): Promise<CatalogData> => {
+  try {
+    const payload = await getPayload({ config });
+    const result = await payload.find({
+      collection: "products",
+      depth: 1,
+      limit: 1000,
+      overrideAccess: true,
+      where: {
+        status: { equals: "published" },
+      },
+    });
+    const products = result.docs.map(mapPayloadProductToProduct);
+    const productsBySlug = new Map(products.map((product) => [product.slug, product]));
+
+    const categoriesResult = await payload.find({
+      collection: "categories",
+      depth: 0,
+      limit: 200,
+      overrideAccess: true,
+      where: {
+        status: { equals: "published" },
+      },
+    });
+    const categoriesBySlug = new Map(
+      categoriesResult.docs.map((doc) => [doc.slug, doc]),
+    );
+
+    return { products, productsBySlug, categoriesBySlug };
+  } catch (error) {
+    console.warn(
+      "[catalog] Payload load failed; rendering empty catalog. Reason:",
+      error instanceof Error ? error.message : error,
+    );
+    return {
+      products: [],
+      productsBySlug: new Map(),
+      categoriesBySlug: new Map(),
+    };
+  }
+});
 
 function searchableText(product: Product) {
   return [
@@ -321,9 +352,9 @@ function matchesAny(product: Product, patterns: RegExp[]) {
 const catalogRules: CatalogRule[] = [
   {
     path: "/catalog/pdu/",
-    title: "Все PDU и блоки розеток",
+    title: "Весь ассортимент",
     description:
-      "Весь собранный ассортимент Солитон: горизонтальные, вертикальные, IEC, Schuko, 16A, 32A и проектные исполнения.",
+      "Горизонтальные и вертикальные модели, Schuko и IEC C13/C19, 16A и 32A, проектные исполнения.",
     matcher: () => true,
   },
   {
@@ -524,21 +555,6 @@ const catalogFacetDefinitions: CatalogFacetDefinition[] = [
     ],
   },
   {
-    label: "Кол-во розеток",
-    options: Array.from(
-      new Set(
-        products
-          .map((product) => product.attributes.outletCount.value)
-          .filter((value): value is number => typeof value === "number"),
-      ),
-    )
-      .sort((a, b) => a - b)
-      .map((count) => ({
-        label: `${count}`,
-        path: `/catalog/outlet-count-${count}/`,
-      })),
-  },
-  {
     label: "Функции",
     options: [
       { label: "Мониторинг / измерение", path: "/catalog/metered-pdu/" },
@@ -552,7 +568,7 @@ function getCatalogRule(path: string) {
   return catalogRules.find((rule) => rule.path === path) ?? catalogRules[0];
 }
 
-function getProductsByCatalogPath(path: string) {
+function getProductsByCatalogPath(products: Product[], path: string) {
   const outletCountMatch = path.match(/^\/catalog\/outlet-count-(\d+)\/$/);
 
   if (outletCountMatch) {
@@ -578,15 +594,18 @@ function countAttributeValues(values: string[]) {
     .slice(0, 8);
 }
 
-export function getProducts() {
+export async function getProducts(): Promise<Product[]> {
+  const { products } = await loadCatalog();
   return products;
 }
 
-export function getProductBySlug(slug: string) {
+export async function getProductBySlug(slug: string): Promise<Product | undefined> {
+  const { productsBySlug } = await loadCatalog();
   return productsBySlug.get(slug);
 }
 
-export function getRelatedProducts(product: Product) {
+export async function getRelatedProducts(product: Product): Promise<Product[]> {
+  const { products } = await loadCatalog();
   const category = product.categories[0]?.name;
 
   return products
@@ -595,39 +614,68 @@ export function getRelatedProducts(product: Product) {
       if (!category) {
         return true;
       }
-
       return candidate.categories.some((item) => item.name === category);
     })
     .slice(0, 4);
 }
 
-export function getCatalogProducts(routePath: string) {
+export async function getCatalogProducts(routePath: string) {
+  const { products, categoriesBySlug } = await loadCatalog();
   const rule = getCatalogRule(routePath);
-  const matchedProducts = getProductsByCatalogPath(routePath);
+  const matchedProducts = getProductsByCatalogPath(products, routePath);
+
+  const slug = routePath.replace(/^\/catalog\//, "").replace(/\/$/, "");
+  const category = categoriesBySlug.get(slug);
+  const title = category?.title ?? rule.title;
+  const description = category?.intro ?? rule.description;
 
   return {
-    description: rule.description,
+    description,
     products: matchedProducts,
-    title: rule.title,
+    title,
     total: matchedProducts.length,
   };
 }
 
-export function getCatalogFacetGroups(currentPath: string) {
-  return catalogFacetDefinitions.map((group) => ({
+export async function getCatalogFacetGroups(currentPath: string): Promise<CatalogFacetGroup[]> {
+  const { products } = await loadCatalog();
+  const outletCountOptions = Array.from(
+    new Set(
+      products
+        .map((product) => product.attributes.outletCount.value)
+        .filter((value): value is number => typeof value === "number"),
+    ),
+  )
+    .sort((a, b) => a - b)
+    .map((count) => ({
+      label: `${count}`,
+      path: `/catalog/outlet-count-${count}/`,
+    }));
+
+  const groupsWithOutlets: CatalogFacetDefinition[] = [
+    ...catalogFacetDefinitions.slice(0, 3),
+    {
+      label: "Кол-во розеток",
+      options: outletCountOptions,
+    },
+    ...catalogFacetDefinitions.slice(3),
+  ];
+
+  return groupsWithOutlets.map((group) => ({
     label: group.label,
     options: group.options.map((option) => ({
       ...option,
-      count: getProductsByCatalogPath(option.path).length,
+      count: getProductsByCatalogPath(products, option.path).length,
       current: option.path === currentPath,
     })),
   }));
 }
 
-export function getCatalogAttributeStats(
+export async function getCatalogAttributeStats(
   routePath: string,
-): CatalogAttributeStatsGroup[] {
-  const listing = getProductsByCatalogPath(routePath);
+): Promise<CatalogAttributeStatsGroup[]> {
+  const { products } = await loadCatalog();
+  const listing = getProductsByCatalogPath(products, routePath);
   const groups: CatalogAttributeStatsGroup[] = [
     {
       label: "Тип изделия",

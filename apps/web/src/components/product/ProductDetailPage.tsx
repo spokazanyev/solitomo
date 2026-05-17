@@ -10,13 +10,14 @@ import {
 import Link from "next/link";
 
 import { ProductInfoTabs } from "@/components/product/ProductInfoTabs";
+import { ProductStickyCta } from "@/components/product/ProductStickyCta";
 import { AddToRfqButton } from "@/components/rfq/RfqCart";
 import {
   createProductBreadcrumbJsonLd,
   createProductJsonLd,
   getRelatedProducts,
   type Product,
-} from "@/lib/products/source-products";
+} from "@/lib/products/catalog";
 
 type ProductDetailPageProps = {
   product: Product;
@@ -70,14 +71,15 @@ function ProductAttributeSummary({ product }: { product: Product }) {
   );
 }
 
-export function ProductDetailPage({ product }: ProductDetailPageProps) {
-  const relatedProducts = getRelatedProducts(product);
+export async function ProductDetailPage({ product }: ProductDetailPageProps) {
+  const relatedProducts = await getRelatedProducts(product);
   const rfqHref = `/b2b/request-quote/?sku=${encodeURIComponent(product.sku)}&product=${encodeURIComponent(product.h1)}#rfq-form`;
 
   return (
-    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+    <div className="min-h-screen bg-[var(--background)] pb-24 text-[var(--foreground)] lg:pb-0">
       <JsonLd data={createProductBreadcrumbJsonLd(product)} />
       <JsonLd data={createProductJsonLd(product)} />
+      <ProductStickyCta product={product} rfqHref={rfqHref} />
 
       <section className="mx-auto w-full max-w-7xl px-6 py-8 md:px-10 lg:px-12">
         <nav className="mt-2 flex flex-wrap gap-2 text-sm text-slate-500">

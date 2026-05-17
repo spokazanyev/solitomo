@@ -2,7 +2,7 @@ import { Boxes } from "lucide-react";
 import Link from "next/link";
 
 import { TemplateBody } from "@/components/page-templates";
-import { getCatalogProducts } from "@/lib/products/source-products";
+import { getCatalogProducts } from "@/lib/products/catalog";
 import {
   b2bFaqsFor,
   catalogFaqsFor,
@@ -118,11 +118,13 @@ function routeEyebrow(route: SeoRoute) {
   return labelsByType[route.type];
 }
 
-export function SeoLandingPage({ route }: SeoLandingPageProps) {
+export async function SeoLandingPage({ route }: SeoLandingPageProps) {
   const isHome = route.path === "/";
   const isRequestQuote = route.path === "/b2b/request-quote/";
   const catalogProducts =
-    route.type === "catalog" ? getCatalogProducts(route.path).products : [];
+    route.type === "catalog"
+      ? (await getCatalogProducts(route.path)).products
+      : [];
   const faqItems =
     route.type === "catalog"
       ? catalogFaqsFor(route.path)

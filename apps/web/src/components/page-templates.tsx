@@ -25,7 +25,7 @@ import {
   getCatalogProducts,
   getProducts,
   type Product,
-} from "@/lib/products/source-products";
+} from "@/lib/products/catalog";
 import { getListingAttributeRows } from "@/lib/products/product-attributes";
 import { RfqForm } from "@/components/RfqForm";
 import { AddToRfqButton } from "@/components/rfq/RfqCart";
@@ -182,7 +182,7 @@ function ManufacturingShowcase() {
   );
 }
 
-function FeaturedProducts() {
+async function FeaturedProducts() {
   const seen = new Set<string>();
   const products: Product[] = [];
   const sources = [
@@ -191,21 +191,22 @@ function FeaturedProducts() {
     "/catalog/pdu-uzip/",
   ];
   for (const path of sources) {
-    for (const product of getCatalogProducts(path).products) {
+    const listing = await getCatalogProducts(path);
+    for (const product of listing.products) {
       if (seen.has(product.slug)) continue;
       seen.add(product.slug);
       products.push(product);
       break;
     }
   }
-  while (products.length < 3) {
-    for (const product of getCatalogProducts("/catalog/pdu/").products) {
+  if (products.length < 3) {
+    const fallback = await getCatalogProducts("/catalog/pdu/");
+    for (const product of fallback.products) {
       if (seen.has(product.slug)) continue;
       seen.add(product.slug);
       products.push(product);
       if (products.length >= 3) break;
     }
-    break;
   }
 
   return (
@@ -409,9 +410,9 @@ export function HomeTemplate({ route }: TemplateProps) {
   );
 }
 
-export function CatalogTemplate({ route }: TemplateProps) {
-  const listing = getCatalogProducts(route.path);
-  const facetGroups = getCatalogFacetGroups(route.path);
+export async function CatalogTemplate({ route }: TemplateProps) {
+  const listing = await getCatalogProducts(route.path);
+  const facetGroups = await getCatalogFacetGroups(route.path);
   const faqs = catalogFaqsFor(route.path);
 
   return (
@@ -964,7 +965,7 @@ export function B2BTemplate({ route }: TemplateProps) {
   );
 }
 
-function getDocumentRegistry() {
+async function getDocumentRegistry() {
   const registry = new Map<
     string,
     {
@@ -974,7 +975,8 @@ function getDocumentRegistry() {
     }
   >();
 
-  getProducts().forEach((product) => {
+  const products = await getProducts();
+  products.forEach((product) => {
     product.documents.forEach((document) => {
       if (!registry.has(document.url)) {
         registry.set(document.url, {
@@ -989,8 +991,8 @@ function getDocumentRegistry() {
   return Array.from(registry.values()).slice(0, 12);
 }
 
-export function DocumentTemplate({ route }: TemplateProps) {
-  const documents = getDocumentRegistry();
+export async function DocumentTemplate({ route }: TemplateProps) {
+  const documents = await getDocumentRegistry();
 
   return (
     <div className="grid gap-12">

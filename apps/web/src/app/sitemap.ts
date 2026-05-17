@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next";
 
-import { getProducts } from "@/lib/products/source-products";
+import { getProducts } from "@/lib/products/catalog";
 import { getSiteUrl, seoRoutes } from "@/lib/seo/seo-registry";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl = getSiteUrl();
   const lastModified = new Date();
 
@@ -16,7 +16,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: route.priority,
     }));
 
-  const productRoutes = getProducts().map((product) => ({
+  const products = await getProducts();
+  const productRoutes = products.map((product) => ({
     url: `${siteUrl}/product/${product.slug}/`,
     lastModified,
     changeFrequency: "weekly" as const,

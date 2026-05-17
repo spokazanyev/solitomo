@@ -36,12 +36,7 @@
 - начальный слой Payload collections для товаров, категорий, атрибутов, фильтров, документов, медиа и audit log.
 - seed текущего ассортимента в Payload: 66 товаров, 11 категорий, 7 полей фильтров, 18 опций фильтров, 91 media-запись, 21 уникальный документ.
 
-Текущий публичный каталог пока читает товары из:
-
-- `00-source-data/assortment/soliton1_assortment_raw.json`
-- `apps/web/src/lib/products/source-products.ts`
-
-Payload catalog collections заполнены текущим ассортиментом, но публичный сайт еще не переключен на них.
+Публичный каталог читает товары и категории из Payload через `apps/web/src/lib/products/catalog.ts` (spec 045). JSON-файл `00-source-data/assortment/soliton1_assortment_raw.json` остаётся как input для seed-скрипта `apps/web/scripts/seed-catalog-payload.mjs`; редактирование товаров — только через Payload admin или MCP-канал.
 
 ## Ключевые Документы
 

@@ -16,7 +16,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { getProductAttributeRows } from "@/lib/products/product-attributes";
-import type { Product } from "@/lib/products/source-products";
+import type { Product } from "@/lib/products/catalog";
 
 const specGroupOrder = [
   "Электропитание",

@@ -1,0 +1,52 @@
+services:
+  soliton-postgres:
+    image: postgres:16-alpine
+    container_name: soliton-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: soliton
+      POSTGRES_USER: soliton
+      POSTGRES_PASSWORD: ${SOLITON_DB_PASSWORD}
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U soliton -d soliton"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - soliton-internal
+
+  soliton-web:
+    build:
+      context: ./source
+      dockerfile: Dockerfile
+    image: soliton-web:latest
+    container_name: soliton-web
+    restart: unless-stopped
+    depends_on:
+      soliton-postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URI: postgres://soliton:${SOLITON_DB_PASSWORD}@soliton-postgres:5432/soliton
+      PAYLOAD_SECRET: ${SOLITON_PAYLOAD_SECRET}
+      NEXT_PUBLIC_SITE_URL: https://soliton.${DOMAIN}
+      NEXT_TELEMETRY_DISABLED: "1"
+      NODE_ENV: production
+      PORT: "3000"
+      HOSTNAME: "0.0.0.0"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.soliton.rule=Host(`soliton.${DOMAIN}`)"
+      - "traefik.http.routers.soliton.entrypoints=websecure"
+      - "traefik.http.routers.soliton.tls.certresolver=letsencrypt"
+      - "traefik.http.services.soliton.loadbalancer.server.port=3000"
+    networks:
+      - proxy
+      - soliton-internal
+
+networks:
+  proxy:
+    external: true
+  soliton-internal:
+    driver: bridge

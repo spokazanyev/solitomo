@@ -82,6 +82,7 @@ Codex должен использовать эти документы как о�
 | Article schema on knowledge | `specs/042-article-schema-on-knowledge/spec.md` | отложено | Спека готова, реализация отложена. См. `deferred-content-track.md` п.20. |
 | llms.txt + agent entry points | `specs/043-llms-txt-and-agent-entry/spec.md` | отложено | Спека готова, реализация отложена. См. `deferred-content-track.md` п.21. |
 | MCP server for Solton catalog | `specs/044-mcp-server-soliton/spec.md` | отложено | Спека готова, реализация отложена. См. `deferred-content-track.md` п.22. |
+| Public catalog from Payload | `specs/045-public-catalog-from-payload/spec.md` | готово | Публичный сайт читает товары и категории из Payload (`lib/products/catalog.ts`); JSON-файл остаётся только как input для seed-скрипта. |
 
 ## 4. Контент И SEO
 

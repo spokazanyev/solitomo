@@ -213,7 +213,7 @@ export function AddToRfqButton({
     <button
       className={
         className ??
-        "inline-flex w-full items-center justify-center gap-2 rounded-md bg-sky-700 px-4 py-2 text-sm font-semibold text-white hover:bg-sky-800"
+        "inline-flex h-11 w-full items-center justify-center gap-2 rounded-md bg-sky-700 px-4 text-sm font-semibold text-white hover:bg-sky-800"
       }
       onClick={handleClick}
       type="button"
@@ -240,12 +240,12 @@ export function RfqCartLink({ className }: { className?: string }) {
       aria-label={count > 0 ? `Корзина — ${count} позиций` : "Корзина"}
       className={
         className ??
-        "relative inline-flex h-10 w-10 items-center justify-center rounded-md border border-slate-200 text-slate-700 transition hover:border-sky-500 hover:text-sky-800"
+        "relative inline-flex h-11 w-11 items-center justify-center rounded-md border border-slate-200 text-slate-700 transition hover:border-sky-500 hover:text-sky-800"
       }
       href="/cart/"
       title="Корзина"
     >
-      <ShoppingCart className="h-4 w-4" />
+      <ShoppingCart className="h-5 w-5" />
       {count > 0 ? (
         <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-sky-700 px-1 text-[10px] font-semibold text-white">
           {count}
