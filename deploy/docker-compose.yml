@@ -37,6 +37,7 @@ services:
       HOSTNAME: "0.0.0.0"
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
       - "traefik.http.routers.soliton.rule=Host(`soliton.${DOMAIN}`)"
       - "traefik.http.routers.soliton.entrypoints=websecure"
       - "traefik.http.routers.soliton.tls.certresolver=letsencrypt"
