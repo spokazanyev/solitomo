@@ -182,44 +182,55 @@ export function useRfqCartItems() {
 }
 
 export function AddToRfqButton({
+  addedClassName,
   className,
   item,
 }: {
+  addedClassName?: string;
   className?: string;
   item: RfqCartItem;
 }) {
-  const [added, setAdded] = useState(false);
+  const cartItems = useRfqCartItems();
+  const [justAdded, setJustAdded] = useState(false);
+  const cleanButtonItem = cleanItem(item);
+  const isInCart = cartItems.some((cartItem) => itemKey(cartItem) === itemKey(cleanButtonItem));
+  const isAddedState = isInCart || justAdded;
+  const defaultClassName =
+    "inline-flex h-11 w-full items-center justify-center gap-2 rounded-md bg-sky-700 px-4 text-sm font-semibold text-white hover:bg-sky-800";
+  const defaultAddedClassName =
+    "inline-flex h-11 w-full items-center justify-center gap-2 rounded-md border border-sky-300 bg-sky-50 px-4 text-sm font-semibold text-sky-900 hover:bg-sky-100";
 
   function handleClick() {
-    addRfqCartItem(item);
+    addRfqCartItem(cleanButtonItem);
     trackAnalyticsEvent("add_to_cart", {
       brand: "Солитон",
       form_type: "rfq",
-      product_id: item.sku,
-      product_name: item.name,
-      quantity: Number.parseInt(item.quantity, 10) || 1,
-      sku: item.sku,
+      product_id: cleanButtonItem.sku,
+      product_name: cleanButtonItem.name,
+      quantity: Number.parseInt(cleanButtonItem.quantity, 10) || 1,
+      sku: cleanButtonItem.sku,
     });
     trackAddToRfq({
-      sku: item.sku,
-      name: item.name,
-      quantity: item.quantity,
+      sku: cleanButtonItem.sku,
+      name: cleanButtonItem.name,
+      quantity: cleanButtonItem.quantity,
     });
-    setAdded(true);
-    window.setTimeout(() => setAdded(false), 1800);
+    setJustAdded(true);
+    window.setTimeout(() => setJustAdded(false), 1800);
   }
 
   return (
     <button
       className={
-        className ??
-        "inline-flex h-11 w-full items-center justify-center gap-2 rounded-md bg-sky-700 px-4 text-sm font-semibold text-white hover:bg-sky-800"
+        isAddedState
+          ? (addedClassName ?? defaultAddedClassName)
+          : (className ?? defaultClassName)
       }
       onClick={handleClick}
       type="button"
     >
-      {added ? <Check className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
-      {added ? "В корзине" : "В корзину"}
+      {isAddedState ? <Check className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+      {isAddedState ? "В корзине" : "В корзину"}
     </button>
   );
 }

@@ -120,6 +120,7 @@ function routeEyebrow(route: SeoRoute) {
 
 export async function SeoLandingPage({ route }: SeoLandingPageProps) {
   const isHome = route.path === "/";
+  const isCatalog = route.type === "catalog";
   const isRequestQuote = route.path === "/b2b/request-quote/";
   const catalogProducts =
     route.type === "catalog"
@@ -204,20 +205,22 @@ export async function SeoLandingPage({ route }: SeoLandingPageProps) {
             >
               {route.summary}
             </p>
-            <div className={isRequestQuote ? "mt-5 flex flex-wrap gap-3" : "mt-8 flex flex-wrap gap-3"}>
-              <Link
-                className="rounded-md bg-sky-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-sky-800"
-                href={isRequestQuote ? "#rfq-form" : "/b2b/request-quote/"}
-              >
-                {route.cta}
-              </Link>
-              <Link
-                className="rounded-md border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-sky-700 hover:text-sky-800"
-                href="/catalog/pdu/"
-              >
-                В каталог
-              </Link>
-            </div>
+            {!isCatalog ? (
+              <div className={isRequestQuote ? "mt-5 flex flex-wrap gap-3" : "mt-8 flex flex-wrap gap-3"}>
+                <Link
+                  className="rounded-md bg-sky-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-sky-800"
+                  href={isRequestQuote ? "#rfq-form" : "/b2b/request-quote/"}
+                >
+                  {route.cta}
+                </Link>
+                <Link
+                  className="rounded-md border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-sky-700 hover:text-sky-800"
+                  href="/catalog/pdu/"
+                >
+                  В каталог
+                </Link>
+              </div>
+            ) : null}
           </div>
         )}
 

@@ -26,6 +26,7 @@ export function ProductStickyCta({ product, rfqHref }: ProductStickyCtaProps) {
         </div>
         <div className="flex shrink-0 items-center gap-2">
           <AddToRfqButton
+            addedClassName="inline-flex h-11 items-center justify-center gap-1 rounded-md border border-sky-300 bg-sky-50 px-3 text-sm font-semibold text-sky-900 hover:bg-sky-100"
             className="inline-flex h-11 items-center justify-center gap-1 rounded-md bg-sky-700 px-3 text-sm font-semibold text-white hover:bg-sky-800"
             item={{
               name: product.h1,
