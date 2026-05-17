@@ -313,7 +313,7 @@ export function CatalogFilterableList({
   }
 
   const filtersContent = (
-    <div className="grid gap-5">
+    <div className="grid gap-4 lg:gap-2">
       {facetGroups.map((group) => {
         const selectedInGroup = group.options.filter((option) =>
           selectedPathSet.has(option.path),
@@ -322,7 +322,7 @@ export function CatalogFilterableList({
 
         return (
           <fieldset
-            className="border-t border-slate-100 pt-4 first:border-t-0 first:pt-0"
+            className="border-t border-slate-100 pt-3 first:border-t-0 first:pt-0 lg:pt-2"
             key={group.label}
           >
             <legend className="sr-only">{group.label}</legend>
@@ -353,7 +353,7 @@ export function CatalogFilterableList({
               />
             </button>
             {collapsed ? null : (
-              <div className="mt-2 grid gap-1">
+              <div className="mt-2 grid gap-1 lg:mt-1 lg:gap-0">
                 {group.options.map((option) => {
                   const checked = selectedPathSet.has(option.path);
                   const count = countProductsForOption(
@@ -367,7 +367,7 @@ export function CatalogFilterableList({
 
                   return (
                     <label
-                      className={`flex min-h-11 cursor-pointer items-center justify-between gap-2 rounded-md px-2 py-2 text-sm ${
+                      className={`flex min-h-11 cursor-pointer items-center justify-between gap-2 rounded-md px-2 py-2 text-sm lg:min-h-7 lg:py-0.5 lg:text-[13px] ${
                         checked
                           ? "bg-sky-50 font-semibold text-sky-800"
                           : disabled
@@ -376,10 +376,10 @@ export function CatalogFilterableList({
                       }`}
                       key={option.path}
                     >
-                      <span className="flex min-w-0 items-center gap-3">
+                      <span className="flex min-w-0 items-center gap-3 lg:gap-2">
                         <input
                           checked={checked}
-                          className="h-5 w-5 rounded border-slate-300 text-sky-700 focus:ring-sky-600 disabled:border-slate-200"
+                          className="h-5 w-5 rounded border-slate-300 text-sky-700 focus:ring-sky-600 disabled:border-slate-200 lg:h-3.5 lg:w-3.5"
                           disabled={disabled}
                           onChange={() => togglePath(option.path)}
                           type="checkbox"
@@ -448,7 +448,7 @@ export function CatalogFilterableList({
         className="hidden self-start lg:block lg:pr-2"
       >
         {filterHeader}
-        <div className="mt-5">{filtersContent}</div>
+        <div className="mt-3">{filtersContent}</div>
       </aside>
 
       {/* Mobile/tablet drawer */}
