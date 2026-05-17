@@ -445,7 +445,7 @@ export function CatalogFilterableList({
       {/* Desktop sidebar (≥lg) */}
       <aside
         id="catalog-filters"
-        className="hidden max-h-[calc(100vh-2rem)] overflow-y-auto rounded-lg border border-slate-200 bg-white p-5 overscroll-contain lg:sticky lg:top-20 lg:block"
+        className="hidden self-start rounded-lg border border-slate-200 bg-white p-5 lg:block"
       >
         {filterHeader}
         <div className="mt-5">{filtersContent}</div>

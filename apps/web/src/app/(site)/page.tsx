@@ -7,6 +7,8 @@ const route = getSeoRoute("/");
 
 export const metadata: Metadata = createMetadata(route!);
 
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return <SeoLandingPage route={route!} />;
 }
