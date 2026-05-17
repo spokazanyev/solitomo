@@ -1,0 +1,748 @@
+{
+  "market_signals": {
+    "market_signal_score": 65.0,
+    "market_signal_status": "mixed_market_signal",
+    "source_count": 5,
+    "recent_source_count": 5,
+    "tier_counts": {
+      "tier1": 5
+    },
+    "repeated_needs": [
+      {
+        "need": "распределение электропитания в серверных шкафах и локальных цод",
+        "mentions": 1
+      },
+      {
+        "need": "надежное распределение питания и мониторинг нагрузки на уровне стойки",
+        "mentions": 1
+      },
+      {
+        "need": "устойчивое питание высокоплотного it оборудования",
+        "mentions": 1
+      },
+      {
+        "need": "наращивание мощностей и электропитания для обработки данных",
+        "mentions": 1
+      },
+      {
+        "need": "питание серверного оборудования в 10 и 19 дюймовых стойках",
+        "mentions": 1
+      }
+    ],
+    "product_classes": [
+      {
+        "product_class": "rack pdu и блоки распределения питания для серверных шкафов",
+        "mentions": 1
+      },
+      {
+        "product_class": "data center rack pdu",
+        "mentions": 1
+      },
+      {
+        "product_class": "rack power distribution unit",
+        "mentions": 1
+      },
+      {
+        "product_class": "инженерная инфраструктура цод",
+        "mentions": 1
+      },
+      {
+        "product_class": "блоки розеток pdu для 19-дюймовых шкафов",
+        "mentions": 1
+      }
+    ],
+    "market_context_summary": {
+      "source_count": 5,
+      "recent_source_count": 5,
+      "tier_counts": {
+        "tier1": 5
+      },
+      "product_classes": [
+        {
+          "product_class": "rack pdu и блоки распределения питания для серверных шкафов",
+          "mentions": 1
+        },
+        {
+          "product_class": "data center rack pdu",
+          "mentions": 1
+        },
+        {
+          "product_class": "rack power distribution unit",
+          "mentions": 1
+        },
+        {
+          "product_class": "инженерная инфраструктура цод",
+          "mentions": 1
+        },
+        {
+          "product_class": "блоки розеток pdu для 19-дюймовых шкафов",
+          "mentions": 1
+        }
+      ],
+      "repeated_needs": [
+        {
+          "need": "распределение электропитания в серверных шкафах и локальных цод",
+          "mentions": 1
+        },
+        {
+          "need": "надежное распределение питания и мониторинг нагрузки на уровне стойки",
+          "mentions": 1
+        },
+        {
+          "need": "устойчивое питание высокоплотного it оборудования",
+          "mentions": 1
+        },
+        {
+          "need": "наращивание мощностей и электропитания для обработки данных",
+          "mentions": 1
+        },
+        {
+          "need": "питание серверного оборудования в 10 и 19 дюймовых стойках",
+          "mentions": 1
+        }
+      ],
+      "substitutes": [],
+      "adjacent_categories": [
+        {
+          "adjacent_category": "модульные цод и edge цод",
+          "mentions": 1
+        },
+        {
+          "adjacent_category": "интеллектуальные pdu для цод",
+          "mentions": 1
+        },
+        {
+          "adjacent_category": "metered pdu и switched pdu",
+          "mentions": 1
+        },
+        {
+          "adjacent_category": "коммерческие цод и облачная инфраструктура",
+          "mentions": 1
+        },
+        {
+          "adjacent_category": "серверные шкафы стойки ибп и электропитание цод",
+          "mentions": 1
+        }
+      ],
+      "emerging_wording": [
+        {
+          "phrase": "российский рынок модульных цод вырос в 2025 году",
+          "mentions": 1
+        },
+        {
+          "phrase": "высокоплотные стойки 25 квт на шкаф",
+          "mentions": 1
+        },
+        {
+          "phrase": "smart pdu metered pdu monitored pdu three phase pdu",
+          "mentions": 1
+        },
+        {
+          "phrase": "data center rack power distribution unit market",
+          "mentions": 1
+        },
+        {
+          "phrase": "intelligent rack pdu input metering network connectivity output metering",
+          "mentions": 1
+        },
+        {
+          "phrase": "data center rack power distribution unit market summary",
+          "mentions": 1
+        },
+        {
+          "phrase": "анализ состояния отрасли цод",
+          "mentions": 1
+        },
+        {
+          "phrase": "мощность цод стойко-места электроснабжение",
+          "mentions": 1
+        },
+        {
+          "phrase": "ассортимент soliton1",
+          "mentions": 1
+        },
+        {
+          "phrase": "блок розеток 19 1u schuko iec320 c13 c19 вертикальный 32а трехфазный",
+          "mentions": 1
+        }
+      ],
+      "contradictions": [],
+      "hint_axes": {
+        "outcome": 4,
+        "adjacent": 5,
+        "problem": 2,
+        "feature": 9
+      }
+    },
+    "need_to_category_map": [
+      {
+        "need": "надежное распределение питания и мониторинг нагрузки на уровне стойки",
+        "product_classes": [
+          {
+            "product_class": "data center rack pdu",
+            "mentions": 1
+          }
+        ],
+        "adjacent_categories": [
+          {
+            "adjacent_category": "интеллектуальные pdu для цод",
+            "mentions": 1
+          }
+        ],
+        "signal_types": [
+          {
+            "signal_type": "trend",
+            "mentions": 1
+          }
+        ],
+        "source_names": [
+          "Mordor Intelligence, Data Center Rack PDU Market 2026-2031"
+        ]
+      },
+      {
+        "need": "наращивание мощностей и электропитания для обработки данных",
+        "product_classes": [
+          {
+            "product_class": "инженерная инфраструктура цод",
+            "mentions": 1
+          }
+        ],
+        "adjacent_categories": [
+          {
+            "adjacent_category": "коммерческие цод и облачная инфраструктура",
+            "mentions": 1
+          }
+        ],
+        "signal_types": [
+          {
+            "signal_type": "category",
+            "mentions": 1
+          }
+        ],
+        "source_names": [
+          "ICT.Moscow / отраслевой обзор ЦОД, 2025"
+        ]
+      },
+      {
+        "need": "питание серверного оборудования в 10 и 19 дюймовых стойках",
+        "product_classes": [
+          {
+            "product_class": "блоки розеток pdu для 19-дюймовых шкафов",
+            "mentions": 1
+          }
+        ],
+        "adjacent_categories": [
+          {
+            "adjacent_category": "серверные шкафы стойки ибп и электропитание цод",
+            "mentions": 1
+          }
+        ],
+        "signal_types": [
+          {
+            "signal_type": "category",
+            "mentions": 1
+          }
+        ],
+        "source_names": [
+          "Soliton assortment map, 12.05.2026"
+        ]
+      },
+      {
+        "need": "распределение электропитания в серверных шкафах и локальных цод",
+        "product_classes": [
+          {
+            "product_class": "rack pdu и блоки распределения питания для серверных шкафов",
+            "mentions": 1
+          }
+        ],
+        "adjacent_categories": [
+          {
+            "adjacent_category": "модульные цод и edge цод",
+            "mentions": 1
+          }
+        ],
+        "signal_types": [
+          {
+            "signal_type": "need",
+            "mentions": 1
+          }
+        ],
+        "source_names": [
+          "ComNews / GreenMDC / ICL, 25.02.2026"
+        ]
+      },
+      {
+        "need": "устойчивое питание высокоплотного it оборудования",
+        "product_classes": [
+          {
+            "product_class": "rack power distribution unit",
+            "mentions": 1
+          }
+        ],
+        "adjacent_categories": [
+          {
+            "adjacent_category": "metered pdu и switched pdu",
+            "mentions": 1
+          }
+        ],
+        "signal_types": [
+          {
+            "signal_type": "trend",
+            "mentions": 1
+          }
+        ],
+        "source_names": [
+          "Grand View Research, Data Center Rack PDU Market 2033"
+        ]
+      }
+    ],
+    "cluster_market_hints": [
+      {
+        "hint_id": "outcome-устойчивое-питание-высокоплотного",
+        "hint_text": "устойчивое питание высокоплотного it оборудования",
+        "cluster_key": "устойчивое питание высокоплотного",
+        "axis": "outcome",
+        "product_class": "rack power distribution unit",
+        "need": "устойчивое питание высокоплотного it оборудования",
+        "adjacent_category": "metered pdu и switched pdu",
+        "source_tiers": {
+          "tier1": 1
+        },
+        "signal_types": {
+          "trend": 1
+        },
+        "source_names": [
+          "Grand View Research, Data Center Rack PDU Market 2033"
+        ],
+        "evidence_strength": 1
+      },
+      {
+        "hint_id": "adjacent-серверные-шкафы-стойки",
+        "hint_text": "серверные шкафы стойки ибп и электропитание цод",
+        "cluster_key": "серверные шкафы стойки",
+        "axis": "adjacent",
+        "product_class": "блоки розеток pdu для 19-дюймовых шкафов",
+        "need": "питание серверного оборудования в 10 и 19 дюймовых стойках",
+        "adjacent_category": "серверные шкафы стойки ибп и электропитание цод",
+        "source_tiers": {
+          "tier1": 1
+        },
+        "signal_types": {
+          "category": 1
+        },
+        "source_names": [
+          "Soliton assortment map, 12.05.2026"
+        ],
+        "evidence_strength": 1
+      },
+      {
+        "hint_id": "problem-распределение-электропитания-серверных",
+        "hint_text": "распределение электропитания в серверных шкафах и локальных цод",
+        "cluster_key": "распределение электропитания серверных",
+        "axis": "problem",
+        "product_class": "rack pdu и блоки распределения питания для серверных шкафов",
+        "need": "распределение электропитания в серверных шкафах и локальных цод",
+        "adjacent_category": "модульные цод и edge цод",
+        "source_tiers": {
+          "tier1": 1
+        },
+        "signal_types": {
+          "need": 1
+        },
+        "source_names": [
+          "ComNews / GreenMDC / ICL, 25.02.2026"
+        ],
+        "evidence_strength": 1
+      },
+      {
+        "hint_id": "feature-питание-серверного-оборудования",
+        "hint_text": "питание серверного оборудования в 10 и 19 дюймовых стойках",
+        "cluster_key": "питание серверного оборудования",
+        "axis": "feature",
+        "product_class": "блоки розеток pdu для 19-дюймовых шкафов",
+        "need": "питание серверного оборудования в 10 и 19 дюймовых стойках",
+        "adjacent_category": "серверные шкафы стойки ибп и электропитание цод",
+        "source_tiers": {
+          "tier1": 1
+        },
+        "signal_types": {
+          "category": 1
+        },
+        "source_names": [
+          "Soliton assortment map, 12.05.2026"
+        ],
+        "evidence_strength": 1
+      },
+      {
+        "hint_id": "feature-наращивание-мощностей-электропитания",
+        "hint_text": "наращивание мощностей и электропитания для обработки данных",
+        "cluster_key": "наращивание мощностей электропитания",
+        "axis": "feature",
+        "product_class": "инженерная инфраструктура цод",
+        "need": "наращивание мощностей и электропитания для обработки данных",
+        "adjacent_category": "коммерческие цод и облачная инфраструктура",
+        "source_tiers": {
+          "tier1": 1
+        },
+        "signal_types": {
+          "category": 1
+        },
+        "source_names": [
+          "ICT.Moscow / отраслевой обзор ЦОД, 2025"
+        ],
+        "evidence_strength": 1
+      },
+      {
+        "hint_id": "outcome-надежное-распределение-питания",
+        "hint_text": "надежное распределение питания и мониторинг нагрузки на уровне стойки",
+        "cluster_key": "надежное распределение питания",
+        "axis": "outcome",
+        "product_class": "data center rack pdu",
+        "need": "надежное распределение питания и мониторинг нагрузки на уровне стойки",
+        "adjacent_category": "интеллектуальные pdu для цод",
+        "source_tiers": {
+          "tier1": 1
+        },
+        "signal_types": {
+          "trend": 1
+        },
+        "source_names": [
+          "Mordor Intelligence, Data Center Rack PDU Market 2026-2031"
+        ],
+        "evidence_strength": 1
+      },
+      {
+        "hint_id": "feature-мощность-цод-стойко",
+        "hint_text": "мощность цод стойко-места электроснабжение",
+        "cluster_key": "мощность цод стойко",
+        "axis": "feature",
+        "product_class": "инженерная инфраструктура цод",
+        "need": "наращивание мощностей и электропитания для обработки данных",
+        "adjacent_category": "коммерческие цод и облачная инфраструктура",
+        "source_tiers": {
+          "tier1": 1
+        },
+        "signal_types": {
+          "category": 1
+        },
+        "source_names": [
+          "ICT.Moscow / отраслевой обзор ЦОД, 2025"
+        ],
+        "evidence_strength": 1
+      },
+      {
+        "hint_id": "adjacent-модульные-цод-edge",
+        "hint_text": "модульные цод и edge цод",
+        "cluster_key": "модульные цод edge",
+        "axis": "adjacent",
+        "product_class": "rack pdu и блоки распределения питания для серверных шкафов",
+        "need": "распределение электропитания в серверных шкафах и локальных цод",
+        "adjacent_category": "модульные цод и edge цод",
+        "source_tiers": {
+          "tier1": 1
+        },
+        "signal_types": {
+          "need": 1
+        },
+        "source_names": [
+          "ComNews / GreenMDC / ICL, 25.02.2026"
+        ],
+        "evidence_strength": 1
+      },
+      {
+        "hint_id": "adjacent-коммерческие-цод-облачная",
+        "hint_text": "коммерческие цод и облачная инфраструктура",
+        "cluster_key": "коммерческие цод облачная",
+        "axis": "adjacent",
+        "product_class": "инженерная инфраструктура цод",
+        "need": "наращивание мощностей и электропитания для обработки данных",
+        "adjacent_category": "коммерческие цод и облачная инфраструктура",
+        "source_tiers": {
+          "tier1": 1
+        },
+        "signal_types": {
+          "category": 1
+        },
+        "source_names": [
+          "ICT.Moscow / отраслевой обзор ЦОД, 2025"
+        ],
+        "evidence_strength": 1
+      },
+      {
+        "hint_id": "adjacent-интеллектуальные-pdu-цод",
+        "hint_text": "интеллектуальные pdu для цод",
+        "cluster_key": "интеллектуальные pdu цод",
+        "axis": "adjacent",
+        "product_class": "data center rack pdu",
+        "need": "надежное распределение питания и мониторинг нагрузки на уровне стойки",
+        "adjacent_category": "интеллектуальные pdu для цод",
+        "source_tiers": {
+          "tier1": 1
+        },
+        "signal_types": {
+          "trend": 1
+        },
+        "source_names": [
+          "Mordor Intelligence, Data Center Rack PDU Market 2026-2031"
+        ],
+        "evidence_strength": 1
+      },
+      {
+        "hint_id": "feature-инженерная-инфраструктура-цод",
+        "hint_text": "инженерная инфраструктура цод",
+        "cluster_key": "инженерная инфраструктура цод",
+        "axis": "feature",
+        "product_class": "инженерная инфраструктура цод",
+        "need": "наращивание мощностей и электропитания для обработки данных",
+        "adjacent_category": "коммерческие цод и облачная инфраструктура",
+        "source_tiers": {
+          "tier1": 1
+        },
+        "signal_types": {
+          "category": 1
+        },
+        "source_names": [
+          "ICT.Moscow / отраслевой обзор ЦОД, 2025"
+        ],
+        "evidence_strength": 1
+      },
+      {
+        "hint_id": "problem-высокоплотные-стойки-25",
+        "hint_text": "высокоплотные стойки 25 квт на шкаф",
+        "cluster_key": "высокоплотные стойки 25",
+        "axis": "problem",
+        "product_class": "rack pdu и блоки распределения питания для серверных шкафов",
+        "need": "распределение электропитания в серверных шкафах и локальных цод",
+        "adjacent_category": "модульные цод и edge цод",
+        "source_tiers": {
+          "tier1": 1
+        },
+        "signal_types": {
+          "need": 1
+        },
+        "source_names": [
+          "ComNews / GreenMDC / ICL, 25.02.2026"
+        ],
+        "evidence_strength": 1
+      },
+      {
+        "hint_id": "feature-блоки-розеток-pdu",
+        "hint_text": "блоки розеток pdu для 19-дюймовых шкафов",
+        "cluster_key": "блоки розеток pdu",
+        "axis": "feature",
+        "product_class": "блоки розеток pdu для 19-дюймовых шкафов",
+        "need": "питание серверного оборудования в 10 и 19 дюймовых стойках",
+        "adjacent_category": "серверные шкафы стойки ибп и электропитание цод",
+        "source_tiers": {
+          "tier1": 1
+        },
+        "signal_types": {
+          "category": 1
+        },
+        "source_names": [
+          "Soliton assortment map, 12.05.2026"
+        ],
+        "evidence_strength": 1
+      },
+      {
+        "hint_id": "feature-блок-розеток-19",
+        "hint_text": "блок розеток 19 1u schuko iec320 c13 c19 вертикальный 32а трехфазный",
+        "cluster_key": "блок розеток 19",
+        "axis": "feature",
+        "product_class": "блоки розеток pdu для 19-дюймовых шкафов",
+        "need": "питание серверного оборудования в 10 и 19 дюймовых стойках",
+        "adjacent_category": "серверные шкафы стойки ибп и электропитание цод",
+        "source_tiers": {
+          "tier1": 1
+        },
+        "signal_types": {
+          "category": 1
+        },
+        "source_names": [
+          "Soliton assortment map, 12.05.2026"
+        ],
+        "evidence_strength": 1
+      },
+      {
+        "hint_id": "outcome-smart-pdu-metered",
+        "hint_text": "smart pdu metered pdu monitored pdu three phase pdu",
+        "cluster_key": "smart pdu metered",
+        "axis": "outcome",
+        "product_class": "data center rack pdu",
+        "need": "надежное распределение питания и мониторинг нагрузки на уровне стойки",
+        "adjacent_category": "интеллектуальные pdu для цод",
+        "source_tiers": {
+          "tier1": 1
+        },
+        "signal_types": {
+          "trend": 1
+        },
+        "source_names": [
+          "Mordor Intelligence, Data Center Rack PDU Market 2026-2031"
+        ],
+        "evidence_strength": 1
+      },
+      {
+        "hint_id": "feature-rack-power-distribution",
+        "hint_text": "rack power distribution unit",
+        "cluster_key": "rack power distribution",
+        "axis": "feature",
+        "product_class": "rack power distribution unit",
+        "need": "устойчивое питание высокоплотного it оборудования",
+        "adjacent_category": "metered pdu и switched pdu",
+        "source_tiers": {
+          "tier1": 1
+        },
+        "signal_types": {
+          "trend": 1
+        },
+        "source_names": [
+          "Grand View Research, Data Center Rack PDU Market 2033"
+        ],
+        "evidence_strength": 1
+      },
+      {
+        "hint_id": "feature-rack-pdu-блоки",
+        "hint_text": "rack pdu и блоки распределения питания для серверных шкафов",
+        "cluster_key": "rack pdu блоки",
+        "axis": "feature",
+        "product_class": "rack pdu и блоки распределения питания для серверных шкафов",
+        "need": "распределение электропитания в серверных шкафах и локальных цод",
+        "adjacent_category": "модульные цод и edge цод",
+        "source_tiers": {
+          "tier1": 1
+        },
+        "signal_types": {
+          "need": 1
+        },
+        "source_names": [
+          "ComNews / GreenMDC / ICL, 25.02.2026"
+        ],
+        "evidence_strength": 1
+      },
+      {
+        "hint_id": "adjacent-metered-pdu-switched",
+        "hint_text": "metered pdu и switched pdu",
+        "cluster_key": "metered pdu switched",
+        "axis": "adjacent",
+        "product_class": "rack power distribution unit",
+        "need": "устойчивое питание высокоплотного it оборудования",
+        "adjacent_category": "metered pdu и switched pdu",
+        "source_tiers": {
+          "tier1": 1
+        },
+        "signal_types": {
+          "trend": 1
+        },
+        "source_names": [
+          "Grand View Research, Data Center Rack PDU Market 2033"
+        ],
+        "evidence_strength": 1
+      },
+      {
+        "hint_id": "outcome-intelligent-rack-pdu",
+        "hint_text": "intelligent rack pdu input metering network connectivity output metering",
+        "cluster_key": "intelligent rack pdu",
+        "axis": "outcome",
+        "product_class": "rack power distribution unit",
+        "need": "устойчивое питание высокоплотного it оборудования",
+        "adjacent_category": "metered pdu и switched pdu",
+        "source_tiers": {
+          "tier1": 1
+        },
+        "signal_types": {
+          "trend": 1
+        },
+        "source_names": [
+          "Grand View Research, Data Center Rack PDU Market 2033"
+        ],
+        "evidence_strength": 1
+      },
+      {
+        "hint_id": "feature-data-center-rack",
+        "hint_text": "data center rack pdu",
+        "cluster_key": "data center rack",
+        "axis": "feature",
+        "product_class": "data center rack pdu",
+        "need": "надежное распределение питания и мониторинг нагрузки на уровне стойки",
+        "adjacent_category": "интеллектуальные pdu для цод",
+        "source_tiers": {
+          "tier1": 1
+        },
+        "signal_types": {
+          "trend": 1
+        },
+        "source_names": [
+          "Mordor Intelligence, Data Center Rack PDU Market 2026-2031"
+        ],
+        "evidence_strength": 1
+      }
+    ],
+    "substitutes": [],
+    "adjacent_categories": [
+      {
+        "adjacent_category": "модульные цод и edge цод",
+        "mentions": 1
+      },
+      {
+        "adjacent_category": "интеллектуальные pdu для цод",
+        "mentions": 1
+      },
+      {
+        "adjacent_category": "metered pdu и switched pdu",
+        "mentions": 1
+      },
+      {
+        "adjacent_category": "коммерческие цод и облачная инфраструктура",
+        "mentions": 1
+      },
+      {
+        "adjacent_category": "серверные шкафы стойки ибп и электропитание цод",
+        "mentions": 1
+      }
+    ],
+    "emerging_wording": [
+      {
+        "phrase": "российский рынок модульных цод вырос в 2025 году",
+        "mentions": 1
+      },
+      {
+        "phrase": "высокоплотные стойки 25 квт на шкаф",
+        "mentions": 1
+      },
+      {
+        "phrase": "smart pdu metered pdu monitored pdu three phase pdu",
+        "mentions": 1
+      },
+      {
+        "phrase": "data center rack power distribution unit market",
+        "mentions": 1
+      },
+      {
+        "phrase": "intelligent rack pdu input metering network connectivity output metering",
+        "mentions": 1
+      },
+      {
+        "phrase": "data center rack power distribution unit market summary",
+        "mentions": 1
+      },
+      {
+        "phrase": "анализ состояния отрасли цод",
+        "mentions": 1
+      },
+      {
+        "phrase": "мощность цод стойко-места электроснабжение",
+        "mentions": 1
+      },
+      {
+        "phrase": "ассортимент soliton1",
+        "mentions": 1
+      },
+      {
+        "phrase": "блок розеток 19 1u schuko iec320 c13 c19 вертикальный 32а трехфазный",
+        "mentions": 1
+      }
+    ],
+    "contradictions": []
+  }
+}

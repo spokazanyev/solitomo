@@ -1,0 +1,218 @@
+- main:
+  - link "Soliton":
+    - /url: /
+  - navigation:
+    - link "Каталог":
+      - /url: /catalog/pdu/
+    - link "Подбор PDU":
+      - /url: /solutions/pdu-dlya-servernogo-shkafa/
+    - link "Запрос КП 1":
+      - /url: /b2b/request-quote/
+      - text: Запрос КП
+      - generic: "1"
+  - navigation:
+    - link "Главная":
+      - /url: /
+    - generic: /
+    - link "Каталог":
+      - /url: /catalog/pdu/
+    - generic: /
+    - generic: SP-8
+  - paragraph: БЛОКИ РОЗЕТОК 19” 1U 16A/250B~
+  - heading "Блок розеток 19” 1U, SP-8, 8 Schuko, 16A, ввод Schuko, с УЗИП" [level=1]
+  - paragraph: Блок на 8 розеток Schuko c модулем УЗИП Класс II, Класс III, шнур питания 1.8м, евровилка (Shuko), горизонтальный. С индикацией работоспособности модуля защиты
+  - generic: SP-8
+  - generic: УЗИП
+  - generic: Мониторинг / измерение
+  - term: Тип
+  - definition: PDU / блок розеток
+  - term: Монтаж
+  - definition: 19 дюймов 1U
+  - term: Розетки
+  - definition: Schuko
+  - term: Кол-во
+  - definition: "8"
+  - term: Ток
+  - definition: 16A
+  - term: Документы
+  - definition: 3 док.
+  - complementary:
+    - paragraph: Ориентировочная цена
+    - paragraph: 5 985,00 ₽
+    - paragraph: Итоговая стоимость, наличие и срок поставки подтверждаются в КП.
+    - text: Наличие и срок подтверждаются при КП
+    - text: Поставка по России по согласованию
+    - text: 3 док.
+    - button "Добавить в заявку":
+      - text: Добавить в заявку
+    - link "Перейти к заявке":
+      - /url: /b2b/request-quote/?sku=SP-8&product=%D0%91%D0%BB%D0%BE%D0%BA%20%D1%80%D0%BE%D0%B7%D0%B5%D1%82%D0%BE%D0%BA%2019%E2%80%9D%201U%2C%20SP-8%2C%208%20Schuko%2C%2016A%2C%20%D0%B2%D0%B2%D0%BE%D0%B4%20Schuko%2C%20%D1%81%20%D0%A3%D0%97%D0%98%D0%9F#rfq-form
+      - text: Перейти к заявке
+    - text: Для заказа юрлицом лучше указать количество, город и срок.
+    - text: Документы и реестр показываются только после подтверждения.
+  - img "Блок розеток 19” 1U, SP-8, 8 Schuko, 16A, ввод Schuko, с УЗИП, SP-8"
+  - img "Блок розеток 19” 1U, SP-8, 8 Schuko, 16A, ввод Schuko, с УЗИП, дополнительное фото"
+  - img "Блок розеток 19” 1U, SP-8, 8 Schuko, 16A, ввод Schuko, с УЗИП, дополнительное фото"
+  - text: Характеристики и параметры выбора
+  - generic: Ключевые параметры для подбора
+  - generic: Тип изделия
+  - generic: PDU / блок розеток
+  - generic: Монтаж
+  - generic: 19 дюймов 1U
+  - generic: Тип розеток
+  - generic: Schuko
+  - generic: Количество розеток
+  - generic: "8"
+  - generic: Максимальный ток
+  - generic: 16A
+  - generic: Напряжение
+  - generic: 250В
+  - generic: Фаза
+  - generic: 1 фаза
+  - generic: Тип входа
+  - generic: Schuko
+  - generic: Длина кабеля
+  - generic: 1.8 м
+  - generic: Функции
+  - generic: УЗИП, Мониторинг / измерение
+  - generic: Детальные характеристики из карточки
+  - heading "Электропитание" [level=3]
+  - list:
+    - generic: 16А/250В~
+    - generic: Максимальное длительное рабочее напряжение U c - 275В~ 50Гц
+    - generic: Максимальный ток нагрузки I L - 16А
+  - heading "Розетки" [level=3]
+  - list:
+    - generic: 8 розеток SCHUKO (CEE7/4)
+    - generic: "Индикация состояния модуля защиты: зеленый индикатор горит - модуль защиты от перенапряжений функционирует; оранжевый индикатор горит , зеленый не горит - модуль защиты от перенапряжений дефектный; оба индикатора не горят - на розетках нет напряжения."
+    - generic: Кабель питания 3х1,5 кв.мм, длина 1,8м или 3,0м. Вилка SCHUKO (CEE7/4)
+  - heading "Защита и индикация" [level=3]
+  - list:
+    - generic: Без выключателя
+    - generic: Встроенный модуль УЗИП Класс II, Класс III
+    - generic: Максимальный суммарный разрядный ток I Total - 14кА
+    - generic: Напряжение импульса комбинированной волны U oc - 1,0 кВ
+    - generic: Напряжение импульса на выходе УЗИП U p - 0,7 кВ
+    - generic: Максимальный разрядный ток I max не менее 7кА.
+    - generic: Номинальный разрядный ток I n =2,5 кА
+  - heading "Монтаж и размеры" [level=3]
+  - list:
+    - generic: Высота 50 мм. максимум
+    - generic: Ширина 44,45 мм., 1U
+    - generic: Длина 440 мм., 19"
+    - generic: Длина по центрам крепления монтажных скоб 465 мм.
+  - text: Что уточнить перед заказом
+  - text: Ток, ввод и допустимая нагрузка
+  - text: Тип и количество розеток
+  - text: "Монтаж: 19 дюймов 1U или вертикальный"
+  - text: Документы, срок поставки и город доставки
+  - heading "Описание" [level=2]
+  - heading "Назначение" [level=3]
+  - paragraph: Блок на 8 розеток Schuko c модулем УЗИП Класс II, Класс III, шнур питания 1.8м, евровилка (Shuko), горизонтальный. С индикацией работоспособности модуля защиты
+  - heading "Что проверить перед КП" [level=3]
+  - paragraph: При подборе этой позиции стоит проверить ток 16A, розетки Schuko, ввод Schuko, монтаж 19 дюймов 1U и требования к документам. Для КП укажите количество, город поставки и срок.
+  - heading "Описание конструкции" [level=3]
+  - paragraph: Техническая документация
+  - heading "Дополнительные сведения" [level=3]
+  - paragraph: Штатные кронштейны в стойку 19d
+  - heading "Дополнительные сведения" [level=3]
+  - paragraph: Вертикально в стойку 19d вар.Б
+  - heading "Дополнительные сведения" [level=3]
+  - paragraph: Вертикально в лоток
+  - heading "Документы" [level=2]
+  - link "Штатные кронштейны в стойку 19d":
+    - /url: https://soliton1.ru/wp-content/uploads/2016/05/Штатные-кронштейны-в-стойку-19d.pdf
+    - text: Штатные кронштейны в стойку 19d
+  - link "Вертикально в стойку 19d вар.Б":
+    - /url: https://soliton1.ru/wp-content/uploads/2016/05/Вертикально-в-стойку-19d-вар.Б.pdf
+    - text: Вертикально в стойку 19d вар.Б
+  - link "Вертикально в лоток":
+    - /url: https://soliton1.ru/wp-content/uploads/2016/05/Вертикально-в-лоток.pdf
+    - text: Вертикально в лоток
+  - text: Доставка
+  - paragraph: Поставка по России согласуется в КП. Для проекта укажите город, желаемый срок и требования к транспортной компании.
+  - text: Оплата
+  - paragraph: Для юридических лиц подготовим коммерческое предложение и счет. Онлайн-оплата будет подключена отдельным этапом.
+  - text: Для юрлиц
+  - paragraph: В заявке можно указать количество, ИНН, срок, документы для закупки и приложить описание стойки или техническое задание.
+  - heading "Не уверены, что модель подходит?" [level=2]
+  - text: Проверим ток, ввод и запас нагрузки.
+  - text: Подберем Schuko, C13, C19 или смешанную конфигурацию.
+  - text: Согласуем документы, срок и поставку.
+  - text: Подготовим КП по SKU или свободному ТЗ.
+  - link "Запросить подбор":
+    - /url: /b2b/request-quote/?sku=SP-8&product=%D0%91%D0%BB%D0%BE%D0%BA%20%D1%80%D0%BE%D0%B7%D0%B5%D1%82%D0%BE%D0%BA%2019%E2%80%9D%201U%2C%20SP-8%2C%208%20Schuko%2C%2016A%2C%20%D0%B2%D0%B2%D0%BE%D0%B4%20Schuko%2C%20%D1%81%20%D0%A3%D0%97%D0%98%D0%9F#rfq-form
+    - text: Запросить подбор
+  - heading "Похожие товары" [level=2]
+  - link "S-8 IEC320C19 16A Блок розеток 19” 1U, S-8 IEC320C19 16A, 8 IEC C19, 16A, ввод IEC C20 10 530,00 ₽":
+    - /url: /product/s-8-iec320c19-16a/
+    - paragraph: S-8 IEC320C19 16A
+    - heading "Блок розеток 19” 1U, S-8 IEC320C19 16A, 8 IEC C19, 16A, ввод IEC C20" [level=3]
+    - paragraph: 10 530,00 ₽
+  - link "S-PDU-1x5-20A-DC Блок розеток 19” 1U, S-PDU-1x5-20A-DC, 16A 4 334,00 ₽":
+    - /url: /product/s-pdu-1x5-20a-dc/
+    - paragraph: S-PDU-1x5-20A-DC
+    - heading "Блок розеток 19” 1U, S-PDU-1x5-20A-DC, 16A" [level=3]
+    - paragraph: 4 334,00 ₽
+  - link "S-6 (AB) Блок розеток 19” 1U, S-6 (AB), 6 Schuko, 16A, ввод Schuko 5 010,00 ₽":
+    - /url: /product/s-6-ab/
+    - paragraph: S-6 (AB)
+    - heading "Блок розеток 19” 1U, S-6 (AB), 6 Schuko, 16A, ввод Schuko" [level=3]
+    - paragraph: 5 010,00 ₽
+  - link "S-6 Amp Блок розеток 19” 1U, S-6 Amp, 6 Schuko, 16A, ввод Schuko 9 187,50 ₽":
+    - /url: /product/s-6-amp/
+    - paragraph: S-6 Amp
+    - heading "Блок розеток 19” 1U, S-6 Amp, 6 Schuko, 16A, ввод Schuko" [level=3]
+    - paragraph: 9 187,50 ₽
+- contentinfo:
+  - link "Soliton":
+    - /url: /
+  - paragraph: Российские PDU, блоки розеток 19 дюймов и сетевые фильтры с УЗИП для серверных шкафов, ЦОД и корпоративных закупок.
+  - text: КП, счет и документы для закупки подтверждаются по конкретной модели.
+  - text: Поставка по России согласуется в коммерческом предложении.
+  - text: Для подбора достаточно отправить артикулы или техническое задание.
+  - link "Запросить КП":
+    - /url: /b2b/request-quote/
+    - text: Запросить КП
+  - heading "Каталог" [level=2]
+  - navigation:
+    - link "PDU и блоки распределения питания":
+      - /url: /catalog/pdu/
+    - link "Сетевые фильтры 19 дюймов и PDU с УЗИП":
+      - /url: /catalog/pdu-uzip/
+    - link "Блоки розеток 19 дюймов 1U":
+      - /url: /catalog/bloki-rozetok-19-1u/
+    - link "PDU и блоки розеток IEC C13 / C19":
+      - /url: /catalog/iec-c13-c19/
+    - link "Блоки розеток Schuko":
+      - /url: /catalog/schuko/
+    - link "Блоки розеток и PDU 16A":
+      - /url: /catalog/16a/
+    - link "Блоки розеток и PDU 32A":
+      - /url: /catalog/32a/
+  - heading "Подбор" [level=2]
+  - navigation:
+    - link "PDU для серверного шкафа 19 дюймов":
+      - /url: /solutions/pdu-dlya-servernogo-shkafa/
+    - link "Питание серверной стойки 42U":
+      - /url: /solutions/pitanie-stojki-42u/
+    - link "PDU для ЦОД":
+      - /url: /solutions/pdu-dlya-cod/
+    - link "PDU для телекоммуникационного шкафа":
+      - /url: /solutions/pdu-dlya-telekommunikacionnogo-shkafa/
+  - heading "Закупка" [level=2]
+  - navigation:
+    - link "PDU и блоки розеток для корпоративных поставок":
+      - /url: /b2b/
+    - link "Запросить коммерческое предложение":
+      - /url: /b2b/request-quote/
+    - link "Документы Soliton":
+      - /url: /documents/
+    - link "О компании Soliton":
+      - /url: /company/about/
+    - link "Контакты Soliton":
+      - /url: /company/contacts/
+  - generic: © 2026 Soliton
+  - generic: Заявки принимаются через КП; онлайн-оплата и доставка согласуются отдельно.
+- button "Open Next.js Dev Tools":
+- alert

@@ -1,0 +1,923 @@
+{
+  "hypothesis": {
+    "idea": "блоки розеток PDU Soliton для серверных шкафов и стоек",
+    "target_user": "инженеры ЦОД, системные интеграторы, администраторы серверных, закупщики IT-инфраструктуры",
+    "problem": "нужно надежно распределить электропитание в серверном шкафу, стойке или ЦОД",
+    "outcome": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку",
+    "region": "Россия",
+    "language": "ru",
+    "category_guess": "PDU блоки розеток для 19 дюймовых серверных шкафов",
+    "alternatives": [
+      "apc pdu",
+      "vertiv pdu",
+      "eaton pdu",
+      "rittal pdu",
+      "hyperline блок розеток",
+      "обычный сетевой фильтр",
+      "розеточный блок 19"
+    ]
+  },
+  "queries": [
+    {
+      "phrase": "блоки розеток pdu soliton для серверных шкафов и стоек",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блоки розеток pdu soliton для серверных шкафов и стоек",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "блоки розеток pdu soliton для серверных шкафов и стоек онлайн",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блоки розеток pdu soliton для серверных шкафов и стоек",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "блоки розеток pdu soliton для серверных шкафов и стоек сервис",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блоки розеток pdu soliton для серверных шкафов и стоек",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "блоки розеток pdu soliton для серверных шкафов и стоек программа",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блоки розеток pdu soliton для серверных шкафов и стоек",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "блоки розеток pdu soliton для серверных шкафов и стоек платформа",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блоки розеток pdu soliton для серверных шкафов и стоек",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "блоки розеток pdu soliton для серверных шкафов и стоек автоматизация",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блоки розеток pdu soliton для серверных шкафов и стоек",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "pdu блоки розеток для 19 дюймовых серверных шкафов",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu блоки розеток для 19 дюймовых серверных шкафов",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "pdu блоки розеток для 19 дюймовых серверных шкафов онлайн",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu блоки розеток для 19 дюймовых серверных шкафов",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "pdu блоки розеток для 19 дюймовых серверных шкафов сервис",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu блоки розеток для 19 дюймовых серверных шкафов",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "pdu блоки розеток для 19 дюймовых серверных шкафов программа",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu блоки розеток для 19 дюймовых серверных шкафов",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "pdu блоки розеток для 19 дюймовых серверных шкафов платформа",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu блоки розеток для 19 дюймовых серверных шкафов",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "pdu блоки розеток для 19 дюймовых серверных шкафов автоматизация",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu блоки розеток для 19 дюймовых серверных шкафов",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод",
+      "axis": "problem",
+      "confidence": "medium",
+      "seed": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод как",
+      "axis": "problem",
+      "confidence": "medium",
+      "seed": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод решение",
+      "axis": "problem",
+      "confidence": "medium",
+      "seed": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод ошибка",
+      "axis": "problem",
+      "confidence": "medium",
+      "seed": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод сложно",
+      "axis": "problem",
+      "confidence": "medium",
+      "seed": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод без",
+      "axis": "problem",
+      "confidence": "medium",
+      "seed": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "как нужно надежно распределить электропитание в серверном шкафу, стойке или цод",
+      "axis": "problem",
+      "confidence": "medium",
+      "seed": "как нужно надежно распределить электропитание в серверном шкафу, стойке или цод",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "как нужно надежно распределить электропитание в серверном шкафу, стойке или цод как",
+      "axis": "problem",
+      "confidence": "medium",
+      "seed": "как нужно надежно распределить электропитание в серверном шкафу, стойке или цод",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "как нужно надежно распределить электропитание в серверном шкафу, стойке или цод решение",
+      "axis": "problem",
+      "confidence": "medium",
+      "seed": "как нужно надежно распределить электропитание в серверном шкафу, стойке или цод",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "как нужно надежно распределить электропитание в серверном шкафу, стойке или цод ошибка",
+      "axis": "problem",
+      "confidence": "medium",
+      "seed": "как нужно надежно распределить электропитание в серверном шкафу, стойке или цод",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "как нужно надежно распределить электропитание в серверном шкафу, стойке или цод сложно",
+      "axis": "problem",
+      "confidence": "medium",
+      "seed": "как нужно надежно распределить электропитание в серверном шкафу, стойке или цод",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "как нужно надежно распределить электропитание в серверном шкафу, стойке или цод без",
+      "axis": "problem",
+      "confidence": "medium",
+      "seed": "как нужно надежно распределить электропитание в серверном шкафу, стойке или цод",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку",
+      "axis": "outcome",
+      "confidence": "medium",
+      "seed": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку быстро",
+      "axis": "outcome",
+      "confidence": "medium",
+      "seed": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку автоматически",
+      "axis": "outcome",
+      "confidence": "medium",
+      "seed": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку сократить время",
+      "axis": "outcome",
+      "confidence": "medium",
+      "seed": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку контроль",
+      "axis": "outcome",
+      "confidence": "medium",
+      "seed": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку рост",
+      "axis": "outcome",
+      "confidence": "medium",
+      "seed": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры",
+      "axis": "outcome",
+      "confidence": "medium",
+      "seed": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры быстро",
+      "axis": "outcome",
+      "confidence": "medium",
+      "seed": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры автоматически",
+      "axis": "outcome",
+      "confidence": "medium",
+      "seed": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры сократить время",
+      "axis": "outcome",
+      "confidence": "medium",
+      "seed": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры контроль",
+      "axis": "outcome",
+      "confidence": "medium",
+      "seed": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры рост",
+      "axis": "outcome",
+      "confidence": "medium",
+      "seed": "безопасное питание серверного оборудования, контроль нагрузки, защита и удобный монтаж в стойку инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "apc pdu",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "apc pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "apc pdu альтернатива",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "apc pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "apc pdu аналог",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "apc pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "apc pdu сравнение",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "apc pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "apc pdu вместо excel",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "apc pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "apc pdu без ручной работы",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "apc pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "vertiv pdu",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "vertiv pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "vertiv pdu альтернатива",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "vertiv pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "vertiv pdu аналог",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "vertiv pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "vertiv pdu сравнение",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "vertiv pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "vertiv pdu вместо excel",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "vertiv pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "vertiv pdu без ручной работы",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "vertiv pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "eaton pdu",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "eaton pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "eaton pdu альтернатива",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "eaton pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "eaton pdu аналог",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "eaton pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "eaton pdu сравнение",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "eaton pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "eaton pdu вместо excel",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "eaton pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "eaton pdu без ручной работы",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "eaton pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "rittal pdu",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "rittal pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "rittal pdu альтернатива",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "rittal pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "rittal pdu аналог",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "rittal pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "rittal pdu сравнение",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "rittal pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "rittal pdu вместо excel",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "rittal pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "rittal pdu без ручной работы",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "rittal pdu",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "hyperline блок розеток",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "hyperline блок розеток альтернатива",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "hyperline блок розеток",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "hyperline блок розеток аналог",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "hyperline блок розеток",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "hyperline блок розеток сравнение",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "hyperline блок розеток",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "hyperline блок розеток вместо excel",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "hyperline блок розеток",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "hyperline блок розеток без ручной работы",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "hyperline блок розеток",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "обычный сетевой фильтр",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "обычный сетевой фильтр",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "обычный сетевой фильтр альтернатива",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "обычный сетевой фильтр",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "обычный сетевой фильтр аналог",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "обычный сетевой фильтр",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "обычный сетевой фильтр сравнение",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "обычный сетевой фильтр",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "обычный сетевой фильтр вместо excel",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "обычный сетевой фильтр",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "обычный сетевой фильтр без ручной работы",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "обычный сетевой фильтр",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "розеточный блок 19",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "розеточный блок 19",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "розеточный блок 19 альтернатива",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "розеточный блок 19",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "розеточный блок 19 аналог",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "розеточный блок 19",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "розеточный блок 19 сравнение",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "розеточный блок 19",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "розеточный блок 19 вместо excel",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "розеточный блок 19",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "розеточный блок 19 без ручной работы",
+      "axis": "alternative",
+      "confidence": "low",
+      "seed": "розеточный блок 19",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "блоки розеток pdu soliton для серверных шкафов и стоек инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "блоки розеток pdu soliton для серверных шкафов и стоек инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "блоки розеток pdu soliton для серверных шкафов и стоек инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры учет",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "блоки розеток pdu soliton для серверных шкафов и стоек инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "блоки розеток pdu soliton для серверных шкафов и стоек инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры аналитика",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "блоки розеток pdu soliton для серверных шкафов и стоек инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "блоки розеток pdu soliton для серверных шкафов и стоек инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры отчетность",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "блоки розеток pdu soliton для серверных шкафов и стоек инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "блоки розеток pdu soliton для серверных шкафов и стоек инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры шаблон",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "блоки розеток pdu soliton для серверных шкафов и стоек инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "блоки розеток pdu soliton для серверных шкафов и стоек инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры калькулятор",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "блоки розеток pdu soliton для серверных шкафов и стоек инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры учет",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры аналитика",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры отчетность",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры шаблон",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    },
+    {
+      "phrase": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры калькулятор",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "нужно надежно распределить электропитание в серверном шкафу, стойке или цод инженеры цод, системные интеграторы, администраторы серверных, закупщики it-инфраструктуры",
+      "provenance": [
+        "initial_hypothesis"
+      ],
+      "generation_mode": "suffix_expansion"
+    }
+  ],
+  "market_context_used": false
+}

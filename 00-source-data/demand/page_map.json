@@ -1,0 +1,137 @@
+{
+  "page_map": [
+    {
+      "cluster_id": "pdu_generic",
+      "page_slug": "category-pdu-блоки-распределения-питания",
+      "page_type": "category",
+      "target_cluster": "PDU / блоки распределения питания",
+      "primary_intent": "commercial",
+      "core_promise": "pdu",
+      "supporting_keywords": [
+        "pdu",
+        "блок pdu",
+        "pdu розетки",
+        "блок розеток pdu",
+        "pdu 19"
+      ]
+    },
+    {
+      "cluster_id": "core_19_1u",
+      "page_slug": "category-блоки-розеток-19-1u-в-стойку",
+      "page_type": "category",
+      "target_cluster": "Блоки розеток 19” / 1U / в стойку",
+      "primary_intent": "commercial",
+      "core_promise": "блок розеток",
+      "supporting_keywords": [
+        "блок розеток",
+        "блок розеток 19",
+        "блок розеток 8",
+        "блок розеток 19 8 розеток",
+        "блок розеток 1u"
+      ]
+    },
+    {
+      "cluster_id": "vertical_mount",
+      "page_slug": "category-вертикальные-pdu-0u-42u",
+      "page_type": "category",
+      "target_cluster": "Вертикальные PDU / 0U / 42U",
+      "primary_intent": "commercial",
+      "core_promise": "вертикальный блок розеток",
+      "supporting_keywords": [
+        "вертикальный блок розеток",
+        "вертикальный pdu",
+        "блок розеток pdu вертикальный",
+        "блок розеток вертикальный 32а",
+        "pdu вертикальный 32а"
+      ]
+    },
+    {
+      "cluster_id": "managed_metered",
+      "page_slug": "category-измерительные-управляемые-и-мониторинговые-pdu",
+      "page_type": "category",
+      "target_cluster": "Измерительные, управляемые и мониторинговые PDU",
+      "primary_intent": "commercial",
+      "core_promise": "pdu с мониторингом",
+      "supporting_keywords": [
+        "pdu с мониторингом",
+        "switched pdu",
+        "metered pdu",
+        "switched rack pdu",
+        "блок розеток с мониторингом"
+      ]
+    },
+    {
+      "cluster_id": "socket_type",
+      "page_slug": "category-типы-розеток-schuko-iec-c13-c19",
+      "page_type": "category",
+      "target_cluster": "Типы розеток Schuko / IEC C13 / C19",
+      "primary_intent": "commercial",
+      "core_promise": "блок розеток schuko",
+      "supporting_keywords": [
+        "блок розеток schuko",
+        "розетка c13",
+        "блок розеток schuko 19",
+        "блок розеток schuko 8",
+        "блок розеток 19 8 розеток schuko"
+      ]
+    },
+    {
+      "cluster_id": "amperage",
+      "page_slug": "category-ток-и-мощность-16a-32a",
+      "page_type": "category",
+      "target_cluster": "Ток и мощность 16A / 32A",
+      "primary_intent": "commercial",
+      "core_promise": "блок розеток 16а",
+      "supporting_keywords": [
+        "блок розеток 16а",
+        "блок розеток 19 16а",
+        "блок розеток 8 розеток 16а",
+        "блок розеток 19 8 розеток 16а",
+        "pdu 16a"
+      ]
+    },
+    {
+      "cluster_id": "three_phase",
+      "page_slug": "category-трехфазные-pdu",
+      "page_type": "category",
+      "target_cluster": "Трехфазные PDU",
+      "primary_intent": "commercial",
+      "core_promise": "pdu 3 фазы",
+      "supporting_keywords": [
+        "pdu 3 фазы",
+        "трехфазные блоки розеток",
+        "pdu трехфазный"
+      ]
+    },
+    {
+      "cluster_id": "brand_competitors",
+      "page_slug": "comparison-брендовые-и-конкурентные-запросы",
+      "page_type": "comparison",
+      "target_cluster": "Брендовые и конкурентные запросы",
+      "primary_intent": "comparison",
+      "core_promise": "apc rack pdu",
+      "supporting_keywords": [
+        "apc rack pdu",
+        "hyperline блок розеток для 19 шкафов",
+        "apc switched pdu",
+        "apc switched rack pdu",
+        "eaton pdu"
+      ]
+    },
+    {
+      "cluster_id": "server_rack_adjacent",
+      "page_slug": "use-case-серверные-шкафы-19-стойки-и-телеком-шкафы",
+      "page_type": "use-case",
+      "target_cluster": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "primary_intent": "commercial",
+      "core_promise": "шкаф 19",
+      "supporting_keywords": [
+        "шкаф 19",
+        "стойка 19",
+        "серверный шкаф",
+        "телекоммуникационный шкаф 19",
+        "шкаф напольный 19"
+      ]
+    }
+  ]
+}

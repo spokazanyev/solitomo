@@ -1,0 +1,198 @@
+{
+  "scores": [
+    {
+      "cluster_id": "server_rack_adjacent",
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "demand_score": 100.0,
+      "trend_score": 44.41,
+      "channel_fit_score": 83.0,
+      "market_signal_score": 65.0,
+      "cluster_market_relevance": 56.62,
+      "market_supporting_hints": [
+        "серверные шкафы стойки ибп и электропитание цод",
+        "блоки розеток pdu для 19-дюймовых шкафов"
+      ],
+      "pivot_potential_score": 75.5,
+      "seo_feasibility_score": 86.0,
+      "seo_feasibility_status": "strong",
+      "product_opportunity_score": 73.75
+    },
+    {
+      "cluster_id": "pdu_generic",
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "demand_score": 100.0,
+      "trend_score": 44.07,
+      "channel_fit_score": 95.0,
+      "market_signal_score": 65.0,
+      "cluster_market_relevance": 77.25,
+      "market_supporting_hints": [
+        "rack power distribution unit",
+        "rack pdu и блоки распределения питания для серверных шкафов",
+        "intelligent rack pdu input metering network connectivity output metering"
+      ],
+      "pivot_potential_score": 20.0,
+      "seo_feasibility_score": 86.0,
+      "seo_feasibility_status": "strong",
+      "product_opportunity_score": 73.61
+    },
+    {
+      "cluster_id": "socket_type",
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "demand_score": 100.0,
+      "trend_score": 47.35,
+      "channel_fit_score": 95.0,
+      "market_signal_score": 65.0,
+      "cluster_market_relevance": 56.0,
+      "market_supporting_hints": [
+        "блок розеток 19 1u schuko iec320 c13 c19 вертикальный 32а трехфазный",
+        "data center rack pdu"
+      ],
+      "pivot_potential_score": 20.0,
+      "seo_feasibility_score": 86.0,
+      "seo_feasibility_status": "strong",
+      "product_opportunity_score": 71.24
+    },
+    {
+      "cluster_id": "core_19_1u",
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "demand_score": 100.0,
+      "trend_score": 45.1,
+      "channel_fit_score": 95.0,
+      "market_signal_score": 65.0,
+      "cluster_market_relevance": 59.57,
+      "market_supporting_hints": [
+        "блоки розеток pdu для 19-дюймовых шкафов",
+        "блок розеток 19 1u schuko iec320 c13 c19 вертикальный 32а трехфазный"
+      ],
+      "pivot_potential_score": 20.0,
+      "seo_feasibility_score": 86.0,
+      "seo_feasibility_status": "strong",
+      "product_opportunity_score": 71.21
+    },
+    {
+      "cluster_id": "amperage",
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "cluster_type": "feature",
+      "demand_score": 100.0,
+      "trend_score": 43.95,
+      "channel_fit_score": 95.0,
+      "market_signal_score": 65.0,
+      "cluster_market_relevance": 54.33,
+      "market_supporting_hints": [
+        "блок розеток 19 1u schuko iec320 c13 c19 вертикальный 32а трехфазный",
+        "rack pdu и блоки распределения питания для серверных шкафов",
+        "data center rack pdu"
+      ],
+      "pivot_potential_score": 20.0,
+      "seo_feasibility_score": 86.0,
+      "seo_feasibility_status": "strong",
+      "product_opportunity_score": 70.14
+    },
+    {
+      "cluster_id": "vertical_mount",
+      "cluster_key": "Вертикальные PDU / 0U / 42U",
+      "cluster_type": "feature",
+      "demand_score": 100.0,
+      "trend_score": 37.74,
+      "channel_fit_score": 90.0,
+      "market_signal_score": 65.0,
+      "cluster_market_relevance": 56.0,
+      "market_supporting_hints": [
+        "блок розеток 19 1u schuko iec320 c13 c19 вертикальный 32а трехфазный",
+        "data center rack pdu"
+      ],
+      "pivot_potential_score": 20.0,
+      "seo_feasibility_score": 80.0,
+      "seo_feasibility_status": "strong",
+      "product_opportunity_score": 67.84
+    },
+    {
+      "cluster_id": "managed_metered",
+      "cluster_key": "Измерительные, управляемые и мониторинговые PDU",
+      "cluster_type": "feature",
+      "demand_score": 93.22,
+      "trend_score": 47.71,
+      "channel_fit_score": 85.0,
+      "market_signal_score": 65.0,
+      "cluster_market_relevance": 58.67,
+      "market_supporting_hints": [
+        "интеллектуальные pdu для цод",
+        "блок розеток 19 1u schuko iec320 c13 c19 вертикальный 32а трехфазный",
+        "smart pdu metered pdu monitored pdu three phase pdu"
+      ],
+      "pivot_potential_score": 20.0,
+      "seo_feasibility_score": 80.0,
+      "seo_feasibility_status": "strong",
+      "product_opportunity_score": 67.69
+    },
+    {
+      "cluster_id": "brand_competitors",
+      "cluster_key": "Брендовые и конкурентные запросы",
+      "cluster_type": "alternative",
+      "demand_score": 87.12,
+      "trend_score": 25.58,
+      "channel_fit_score": 75.0,
+      "market_signal_score": 65.0,
+      "cluster_market_relevance": 49.5,
+      "market_supporting_hints": [
+        "metered pdu и switched pdu",
+        "data center rack pdu"
+      ],
+      "pivot_potential_score": 20.0,
+      "seo_feasibility_score": 69.0,
+      "seo_feasibility_status": "feasible",
+      "product_opportunity_score": 56.96
+    },
+    {
+      "cluster_id": "surge_filter",
+      "cluster_key": "УЗИП и стоечные сетевые фильтры",
+      "cluster_type": "adjacent",
+      "demand_score": 83.51,
+      "trend_score": 30.0,
+      "channel_fit_score": 68.0,
+      "market_signal_score": 65.0,
+      "cluster_market_relevance": 34.22,
+      "market_supporting_hints": [
+        "блоки розеток pdu для 19-дюймовых шкафов"
+      ],
+      "pivot_potential_score": 20.0,
+      "seo_feasibility_score": 73.0,
+      "seo_feasibility_status": "feasible",
+      "product_opportunity_score": 53.29
+    },
+    {
+      "cluster_id": "three_phase",
+      "cluster_key": "Трехфазные PDU",
+      "cluster_type": "feature",
+      "demand_score": 62.18,
+      "trend_score": 38.08,
+      "channel_fit_score": 70.0,
+      "market_signal_score": 65.0,
+      "cluster_market_relevance": 47.71,
+      "market_supporting_hints": [
+        "блоки розеток pdu для 19-дюймовых шкафов",
+        "data center rack pdu"
+      ],
+      "pivot_potential_score": 20.0,
+      "seo_feasibility_score": 67.0,
+      "seo_feasibility_status": "feasible",
+      "product_opportunity_score": 51.33
+    }
+  ],
+  "summary": {
+    "overall_product_opportunity_score": 65.71,
+    "confidence": "high",
+    "evidence_quality_score": 88.0,
+    "top_cluster": "Серверные шкафы, 19” стойки и телеком-шкафы",
+    "top_cluster_id": "server_rack_adjacent",
+    "market_signal_score": 65.0,
+    "market_signal_status": "mixed_market_signal",
+    "avg_cluster_market_relevance": 54.99,
+    "contradiction_count": 0,
+    "adjacent_clusters_considered": 3
+  }
+}

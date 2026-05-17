@@ -1,0 +1,3645 @@
+{
+  "queries": [
+    {
+      "phrase": "блок розеток",
+      "confirmed_count": 41398,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф 19",
+      "confirmed_count": 25013,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "шкаф 19"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu",
+      "confirmed_count": 14646,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "стойка 19",
+      "confirmed_count": 12272,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "стойка 19"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "серверный шкаф",
+      "confirmed_count": 9967,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "серверный шкаф"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "телекоммуникационный шкаф 19",
+      "confirmed_count": 7819,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "шкаф 19",
+        "шкаф телекоммуникационный 19"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19",
+      "confirmed_count": 6213,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток",
+        "блок розеток 19"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф напольный 19",
+      "confirmed_count": 5319,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "шкаф 19"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф настенный 19",
+      "confirmed_count": 5086,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "шкаф 19"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 8",
+      "confirmed_count": 3868,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок pdu",
+      "confirmed_count": 3431,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu розетки",
+      "confirmed_count": 3222,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu",
+        "pdu розетки"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф 19 дюймов",
+      "confirmed_count": 2910,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "шкаф 19"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф телекоммуникационный 19 настенный",
+      "confirmed_count": 2810,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "шкаф 19"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "стойка 19 дюймов",
+      "confirmed_count": 2686,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "стойка 19"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "confirmed_count": 2617,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток",
+        "pdu",
+        "pdu розетки",
+        "блок розеток pdu"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток",
+      "confirmed_count": 2594,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток",
+        "блок розеток 19",
+        "блок розеток 19 8 розеток"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф телекоммуникационный 19 напольный",
+      "confirmed_count": 2441,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "шкаф 19"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф 19 42u",
+      "confirmed_count": 2204,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "шкаф 19"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "confirmed_count": 2037,
+      "cluster_id": "socket_type",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток",
+        "блок розеток schuko"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 1u",
+      "confirmed_count": 2008,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток",
+        "блок розеток 1u"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 16",
+      "confirmed_count": 1956,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф напольный 19 42u",
+      "confirmed_count": 1615,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "шкаф 19"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "confirmed_count": 1559,
+      "cluster_id": "amperage",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 16а"
+      ],
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 19",
+      "confirmed_count": 1511,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu",
+        "pdu 19"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "confirmed_count": 1469,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19",
+        "блок розеток 19 1u",
+        "блок розеток 1u"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "розетка c13",
+      "confirmed_count": 1315,
+      "cluster_id": "socket_type",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "розетка c13"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток schuko 19",
+      "confirmed_count": 1305,
+      "cluster_id": "socket_type",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19",
+        "блок розеток schuko"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "серверный шкаф 19",
+      "confirmed_count": 1299,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "серверный шкаф"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "cabeus pdu",
+      "confirmed_count": 1263,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 8p",
+      "confirmed_count": 1216,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "комплект 19 стойки",
+      "confirmed_count": 1138,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "стойка 19"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu питание",
+      "confirmed_count": 1133,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu 19",
+      "confirmed_count": 1107,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19",
+        "pdu",
+        "pdu розетки",
+        "блок розеток pdu",
+        "pdu 19"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 1u",
+      "confirmed_count": 1092,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu 1u"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 8",
+      "confirmed_count": 1092,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток для 19 шкафов",
+      "confirmed_count": 1089,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "установка в стойку 19",
+      "confirmed_count": 1024,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "стойка 19"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток schuko 8",
+      "confirmed_count": 976,
+      "cluster_id": "socket_type",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток schuko"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 1u 8 розеток",
+      "confirmed_count": 961,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 1u"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блоки 19 стоек",
+      "confirmed_count": 949,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "стойка 19"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 8 розеток",
+      "confirmed_count": 873,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu розетки"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "серверный шкаф 42u",
+      "confirmed_count": 870,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "серверный шкаф"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкафа стойка 19",
+      "confirmed_count": 868,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "стойка 19"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 горизонтальный",
+      "confirmed_count": 861,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "стойка 19 1u",
+      "confirmed_count": 825,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "стойка 19"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "монтаж стоек 19",
+      "confirmed_count": 813,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "стойка 19"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 16а",
+      "confirmed_count": 803,
+      "cluster_id": "amperage",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19",
+        "блок розеток 16а"
+      ],
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток schuko",
+      "confirmed_count": 772,
+      "cluster_id": "socket_type",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19",
+        "блок розеток 19 8 розеток",
+        "блок розеток schuko"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "дверь серверного шкафа",
+      "confirmed_count": 771,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "серверный шкаф"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток в стойку",
+      "confirmed_count": 752,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток в стойку"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "розетка iec c13",
+      "confirmed_count": 744,
+      "cluster_id": "socket_type",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "розетка c13"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "19 дюймовая стойка",
+      "confirmed_count": 737,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "стойка 19"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "confirmed_count": 734,
+      "cluster_id": "vertical_mount",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "вертикальный блок розеток",
+        "блок розеток вертикальный"
+      ],
+      "cluster_key": "Вертикальные PDU / 0U / 42U",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 iec",
+      "confirmed_count": 715,
+      "cluster_id": "socket_type",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 1u 8 розеток",
+      "confirmed_count": 701,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19 1u",
+        "блок розеток 19 8 розеток",
+        "блок розеток 1u"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "телекоммуникационный шкаф 19 6u",
+      "confirmed_count": 695,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "шкаф телекоммуникационный 19"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "19 стойка ибп",
+      "confirmed_count": 681,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "стойка 19"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток для 19 шкафов 8 розеток",
+      "confirmed_count": 606,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19 8 розеток"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф серверный напольный 19",
+      "confirmed_count": 572,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "серверный шкаф"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 8 розеток 16а",
+      "confirmed_count": 551,
+      "cluster_id": "amperage",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 16а"
+      ],
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток горизонтальный",
+      "confirmed_count": 539,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19 8 розеток"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 19 1u",
+      "confirmed_count": 507,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu 19",
+        "pdu 1u"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu 8p",
+      "confirmed_count": 506,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu розетки",
+        "блок розеток pdu"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток в стойку 19",
+      "confirmed_count": 488,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток в стойку"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "купить серверный шкаф",
+      "confirmed_count": 471,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "серверный шкаф"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток 16а",
+      "confirmed_count": 465,
+      "cluster_id": "amperage",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19 8 розеток",
+        "блок розеток 16а"
+      ],
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu c13",
+      "confirmed_count": 452,
+      "cluster_id": "socket_type",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu c13"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток c13",
+      "confirmed_count": 437,
+      "cluster_id": "socket_type",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "розетка c13"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 8 гнезд 19",
+      "confirmed_count": 427,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19 8 розеток"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "горизонтальный блок розеток pdu",
+      "confirmed_count": 427,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu розетки",
+        "блок розеток pdu"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 16a",
+      "confirmed_count": 390,
+      "cluster_id": "amperage",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu 16a"
+      ],
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 pdu 8p",
+      "confirmed_count": 389,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu розетки",
+        "блок розеток pdu",
+        "pdu 19"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток hyperline",
+      "confirmed_count": 378,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "alternative"
+      ],
+      "requested_phrases": [
+        "hyperline блок розеток"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок евророзеток 19 8 розеток",
+      "confirmed_count": 376,
+      "cluster_id": "socket_type",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19 8 розеток"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 1u с выключателем",
+      "confirmed_count": 367,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 1u"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 9 розеток",
+      "confirmed_count": 360,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu розетки"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток cabeus pdu 8p",
+      "confirmed_count": 345,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu розетки",
+        "блок розеток pdu"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu apc",
+      "confirmed_count": 339,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "alternative"
+      ],
+      "requested_phrases": [
+        "apc pdu"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "розетка iec 320 c13",
+      "confirmed_count": 326,
+      "cluster_id": "socket_type",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "розетка c13"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "rack pdu",
+      "confirmed_count": 308,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "rack pdu"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 7 schuko",
+      "confirmed_count": 289,
+      "cluster_id": "socket_type",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток schuko"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 9 schuko",
+      "confirmed_count": 287,
+      "cluster_id": "socket_type",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток schuko"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "cabeus pdu 8p 8 розеток",
+      "confirmed_count": 287,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu розетки"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток c14 schuko",
+      "confirmed_count": 285,
+      "cluster_id": "socket_type",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток schuko"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "вертикальный pdu",
+      "confirmed_count": 285,
+      "cluster_id": "vertical_mount",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "вертикальный pdu"
+      ],
+      "cluster_key": "Вертикальные PDU / 0U / 42U",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок распределения питания pdu 19",
+      "confirmed_count": 276,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu 19"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 cabeus pdu 8p",
+      "confirmed_count": 266,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток pdu",
+        "pdu 19"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu 9 розеток",
+      "confirmed_count": 253,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток pdu"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 1u 16а",
+      "confirmed_count": 251,
+      "cluster_id": "amperage",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19 1u",
+        "блок розеток 1u",
+        "блок розеток 16а"
+      ],
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток iec c13",
+      "confirmed_count": 245,
+      "cluster_id": "socket_type",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "розетка c13"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "8 розеток c13",
+      "confirmed_count": 236,
+      "cluster_id": "socket_type",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "розетка c13"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu c19",
+      "confirmed_count": 236,
+      "cluster_id": "socket_type",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu c19"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "c13 c19 розетки",
+      "confirmed_count": 233,
+      "cluster_id": "socket_type",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "розетка c13"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "confirmed_count": 232,
+      "cluster_id": "amperage",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 32а"
+      ],
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок силовых розеток 19 8 розеток",
+      "confirmed_count": 232,
+      "cluster_id": "socket_type",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19 8 розеток"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "розетка 60320 c13",
+      "confirmed_count": 229,
+      "cluster_id": "socket_type",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "розетка c13"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu 8p 2eu",
+      "confirmed_count": 226,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток pdu"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "розетка iec 60320 c13",
+      "confirmed_count": 222,
+      "cluster_id": "socket_type",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "розетка c13"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розетка выключатель вертикальный",
+      "confirmed_count": 212,
+      "cluster_id": "vertical_mount",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "вертикальный блок розеток",
+        "блок розеток вертикальный"
+      ],
+      "cluster_key": "Вертикальные PDU / 0U / 42U",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 1u с выключателем",
+      "confirmed_count": 212,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19 1u",
+        "блок розеток 1u"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 9 розеток schuko",
+      "confirmed_count": 205,
+      "cluster_id": "socket_type",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток schuko"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 9 розеток 1u",
+      "confirmed_count": 188,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu 1u"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 220в 16а",
+      "confirmed_count": 183,
+      "cluster_id": "amperage",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 16а"
+      ],
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 c13",
+      "confirmed_count": 182,
+      "cluster_id": "socket_type",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "розетка c13"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "сетевой фильтр 19",
+      "confirmed_count": 181,
+      "cluster_id": "surge_filter",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "сетевой фильтр 19"
+      ],
+      "cluster_key": "УЗИП и стоечные сетевые фильтры",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 1u 8 розеток 16а",
+      "confirmed_count": 179,
+      "cluster_id": "amperage",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 1u",
+        "блок розеток 16а"
+      ],
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок распределения питания 8 розеток 19",
+      "confirmed_count": 178,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19 8 розеток"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 hyperline",
+      "confirmed_count": 176,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "alternative"
+      ],
+      "requested_phrases": [
+        "hyperline блок розеток"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "панель розеток 19",
+      "confirmed_count": 168,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "панель розеток 19"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 pdu 8p 2eu",
+      "confirmed_count": 165,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток pdu",
+        "pdu 19"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 1u 8 гнезд",
+      "confirmed_count": 164,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 1u"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu c13 c19",
+      "confirmed_count": 160,
+      "cluster_id": "socket_type",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu c13",
+        "pdu c19"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 220в 19 1u",
+      "confirmed_count": 159,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19 1u",
+        "блок розеток 1u"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "confirmed_count": 157,
+      "cluster_id": "managed_metered",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu с мониторингом"
+      ],
+      "cluster_key": "Измерительные, управляемые и мониторинговые PDU",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 8 розеток schuko 16а",
+      "confirmed_count": 154,
+      "cluster_id": "amperage",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток schuko",
+        "блок розеток 16а"
+      ],
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок евророзеток 19 cabeus pdu 8p",
+      "confirmed_count": 141,
+      "cluster_id": "socket_type",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu 19"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 32a",
+      "confirmed_count": 141,
+      "cluster_id": "amperage",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu 32a"
+      ],
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "19 cabeus pdu 8p 2eu",
+      "confirmed_count": 139,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu 19"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок 6 розеток schuko",
+      "confirmed_count": 138,
+      "cluster_id": "socket_type",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток schuko"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 1u 8 гнезд",
+      "confirmed_count": 135,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19 1u"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "apc rack pdu",
+      "confirmed_count": 129,
+      "cluster_id": "brand_competitors",
+      "axes": [
+        "feature",
+        "alternative"
+      ],
+      "requested_phrases": [
+        "rack pdu",
+        "apc pdu"
+      ],
+      "cluster_key": "Брендовые и конкурентные запросы",
+      "cluster_type": "alternative",
+      "intent": "comparison",
+      "page_type": "comparison",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок распределения питания pdu 16a",
+      "confirmed_count": 124,
+      "cluster_id": "amperage",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu 16a"
+      ],
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "switched pdu",
+      "confirmed_count": 123,
+      "cluster_id": "managed_metered",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "switched pdu"
+      ],
+      "cluster_key": "Измерительные, управляемые и мониторинговые PDU",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "metered pdu",
+      "confirmed_count": 119,
+      "cluster_id": "managed_metered",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "metered pdu"
+      ],
+      "cluster_key": "Измерительные, управляемые и мониторинговые PDU",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu 9 розеток 1u",
+      "confirmed_count": 107,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu 1u"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 pdu 8p 2iec",
+      "confirmed_count": 102,
+      "cluster_id": "socket_type",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu 19"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток шкаф hyperline",
+      "confirmed_count": 99,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "alternative"
+      ],
+      "requested_phrases": [
+        "hyperline блок розеток"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок электрических розеток 19 1u",
+      "confirmed_count": 99,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19 1u"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "itk pdu 8 розеток 1u",
+      "confirmed_count": 98,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu 1u"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 250в 16а",
+      "confirmed_count": 97,
+      "cluster_id": "amperage",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 16а"
+      ],
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок силовых розеток 19 1u",
+      "confirmed_count": 96,
+      "cluster_id": "socket_type",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19 1u"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "power distribution unit",
+      "confirmed_count": 94,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "power distribution unit"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 1u 9 розеток",
+      "confirmed_count": 93,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19 1u"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "розетки iec320 c13",
+      "confirmed_count": 91,
+      "cluster_id": "socket_type",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "розетка iec320 c13"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток с авт 16а",
+      "confirmed_count": 89,
+      "cluster_id": "amperage",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 16а"
+      ],
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "hyperline блок розеток для 19 шкафов",
+      "confirmed_count": 88,
+      "cluster_id": "brand_competitors",
+      "axes": [
+        "alternative"
+      ],
+      "requested_phrases": [
+        "hyperline блок розеток"
+      ],
+      "cluster_key": "Брендовые и конкурентные запросы",
+      "cluster_type": "alternative",
+      "intent": "comparison",
+      "page_type": "comparison",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток ntss 19 1u",
+      "confirmed_count": 86,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 19 1u"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu c13 c14",
+      "confirmed_count": 84,
+      "cluster_id": "socket_type",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu c13"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток в стойку 8 розеток",
+      "confirmed_count": 83,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток в стойку"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu вертикальный",
+      "confirmed_count": 83,
+      "cluster_id": "vertical_mount",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "вертикальный блок розеток",
+        "блок розеток вертикальный",
+        "вертикальный pdu"
+      ],
+      "cluster_key": "Вертикальные PDU / 0U / 42U",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "розеточный блок 19",
+      "confirmed_count": 83,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "розеточный блок 19"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "switched rack pdu",
+      "confirmed_count": 83,
+      "cluster_id": "managed_metered",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "rack pdu",
+        "switched pdu"
+      ],
+      "cluster_key": "Измерительные, управляемые и мониторинговые PDU",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток вертикальный 32а",
+      "confirmed_count": 78,
+      "cluster_id": "vertical_mount",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток 32а",
+        "вертикальный блок розеток",
+        "блок розеток вертикальный"
+      ],
+      "cluster_key": "Вертикальные PDU / 0U / 42U",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток hyperline 19 8 розеток",
+      "confirmed_count": 75,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "alternative"
+      ],
+      "requested_phrases": [
+        "hyperline блок розеток"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu вертикальный 32а",
+      "confirmed_count": 74,
+      "cluster_id": "vertical_mount",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "вертикальный pdu"
+      ],
+      "cluster_key": "Вертикальные PDU / 0U / 42U",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток с мониторингом",
+      "confirmed_count": 70,
+      "cluster_id": "managed_metered",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток с мониторингом"
+      ],
+      "cluster_key": "Измерительные, управляемые и мониторинговые PDU",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок pdu с мониторингом",
+      "confirmed_count": 70,
+      "cluster_id": "managed_metered",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu с мониторингом"
+      ],
+      "cluster_key": "Измерительные, управляемые и мониторинговые PDU",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 вертикальный",
+      "confirmed_count": 69,
+      "cluster_id": "vertical_mount",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "вертикальный блок розеток",
+        "блок розеток вертикальный"
+      ],
+      "cluster_key": "Вертикальные PDU / 0U / 42U",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 6 c19",
+      "confirmed_count": 69,
+      "cluster_id": "socket_type",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu c19"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток в стойку 19 8",
+      "confirmed_count": 67,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток в стойку"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "вертикальный блок розеток rem",
+      "confirmed_count": 66,
+      "cluster_id": "vertical_mount",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "вертикальный блок розеток",
+        "блок розеток вертикальный"
+      ],
+      "cluster_key": "Вертикальные PDU / 0U / 42U",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "apc switched pdu",
+      "confirmed_count": 63,
+      "cluster_id": "brand_competitors",
+      "axes": [
+        "feature",
+        "alternative"
+      ],
+      "requested_phrases": [
+        "switched pdu",
+        "apc pdu"
+      ],
+      "cluster_key": "Брендовые и конкурентные запросы",
+      "cluster_type": "alternative",
+      "intent": "comparison",
+      "page_type": "comparison",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 3 фазы",
+      "confirmed_count": 61,
+      "cluster_id": "three_phase",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu 3 фазы"
+      ],
+      "cluster_key": "Трехфазные PDU",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "apc switched rack pdu",
+      "confirmed_count": 57,
+      "cluster_id": "brand_competitors",
+      "axes": [
+        "feature",
+        "alternative"
+      ],
+      "requested_phrases": [
+        "rack pdu",
+        "switched pdu",
+        "apc pdu"
+      ],
+      "cluster_key": "Брендовые и конкурентные запросы",
+      "cluster_type": "alternative",
+      "intent": "comparison",
+      "page_type": "comparison",
+      "confirmed": true
+    },
+    {
+      "phrase": "snmp pdu",
+      "confirmed_count": 56,
+      "cluster_id": "managed_metered",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu snmp"
+      ],
+      "cluster_key": "Измерительные, управляемые и мониторинговые PDU",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток hyperline she19 8sh iec",
+      "confirmed_count": 53,
+      "cluster_id": "socket_type",
+      "axes": [
+        "alternative"
+      ],
+      "requested_phrases": [
+        "hyperline блок розеток"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток в стойку 19 16а",
+      "confirmed_count": 50,
+      "cluster_id": "amperage",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток в стойку"
+      ],
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток hyperline she19 8sh s iec",
+      "confirmed_count": 50,
+      "cluster_id": "socket_type",
+      "axes": [
+        "alternative"
+      ],
+      "requested_phrases": [
+        "hyperline блок розеток"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "metered rack pdu",
+      "confirmed_count": 45,
+      "cluster_id": "managed_metered",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "rack pdu",
+        "metered pdu"
+      ],
+      "cluster_key": "Измерительные, управляемые и мониторинговые PDU",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu apc ap8981",
+      "confirmed_count": 45,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "alternative"
+      ],
+      "requested_phrases": [
+        "apc pdu"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu hyperline",
+      "confirmed_count": 45,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "alternative"
+      ],
+      "requested_phrases": [
+        "hyperline pdu"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "трехфазные блоки розеток",
+      "confirmed_count": 43,
+      "cluster_id": "three_phase",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "трехфазный блок розеток"
+      ],
+      "cluster_key": "Трехфазные PDU",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток hyperline sht19 8sh s",
+      "confirmed_count": 42,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "alternative"
+      ],
+      "requested_phrases": [
+        "hyperline блок розеток"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 9 розеток hyperline",
+      "confirmed_count": 39,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "alternative"
+      ],
+      "requested_phrases": [
+        "hyperline блок розеток"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "ибп для серверного шкафа",
+      "confirmed_count": 39,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "ибп для серверного шкафа"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "сетевой фильтр 19 дюймов",
+      "confirmed_count": 39,
+      "cluster_id": "surge_filter",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "сетевой фильтр 19"
+      ],
+      "cluster_key": "УЗИП и стоечные сетевые фильтры",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 32a c13",
+      "confirmed_count": 39,
+      "cluster_id": "amperage",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu c13",
+        "pdu 32a"
+      ],
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 1u в стойку",
+      "confirmed_count": 38,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток в стойку"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток выдвижной вертикальный",
+      "confirmed_count": 37,
+      "cluster_id": "vertical_mount",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "вертикальный блок розеток",
+        "блок розеток вертикальный"
+      ],
+      "cluster_key": "Вертикальные PDU / 0U / 42U",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "basic rack pdu",
+      "confirmed_count": 37,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "rack pdu"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 8 розеток c13",
+      "confirmed_count": 37,
+      "cluster_id": "socket_type",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu c13"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu с разъемом c13",
+      "confirmed_count": 37,
+      "cluster_id": "socket_type",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu c13"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток в стойку 19 1u",
+      "confirmed_count": 36,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток в стойку"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "розеточный блок в стойку 19",
+      "confirmed_count": 36,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "розеточный блок 19"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 дюймов в стойку",
+      "confirmed_count": 34,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток в стойку"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток для серверного шкафа",
+      "confirmed_count": 33,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток для серверного шкафа"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "интеллектуальные pdu",
+      "confirmed_count": 33,
+      "cluster_id": "managed_metered",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "интеллектуальный pdu"
+      ],
+      "cluster_key": "Измерительные, управляемые и мониторинговые PDU",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "управляемая pdu",
+      "confirmed_count": 33,
+      "cluster_id": "managed_metered",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "управляемый pdu"
+      ],
+      "cluster_key": "Измерительные, управляемые и мониторинговые PDU",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "сетевой фильтр в стойку 19",
+      "confirmed_count": 31,
+      "cluster_id": "surge_filter",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "сетевой фильтр 19"
+      ],
+      "cluster_key": "УЗИП и стоечные сетевые фильтры",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "установка блока розеток в стойку",
+      "confirmed_count": 31,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток в стойку"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "mdx pdu 8e 16a",
+      "confirmed_count": 31,
+      "cluster_id": "amperage",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu 16a"
+      ],
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu с управлением",
+      "confirmed_count": 30,
+      "cluster_id": "managed_metered",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu с управлением"
+      ],
+      "cluster_key": "Измерительные, управляемые и мониторинговые PDU",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu basic 1u",
+      "confirmed_count": 30,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu 1u"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розетка выключатель вертикальный черный",
+      "confirmed_count": 29,
+      "cluster_id": "vertical_mount",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "вертикальный блок розеток",
+        "блок розеток вертикальный"
+      ],
+      "cluster_key": "Вертикальные PDU / 0U / 42U",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "eaton pdu",
+      "confirmed_count": 29,
+      "cluster_id": "brand_competitors",
+      "axes": [
+        "alternative"
+      ],
+      "requested_phrases": [
+        "eaton pdu"
+      ],
+      "cluster_key": "Брендовые и конкурентные запросы",
+      "cluster_type": "alternative",
+      "intent": "comparison",
+      "page_type": "comparison",
+      "confirmed": true
+    },
+    {
+      "phrase": "hyperline блок розеток 1u",
+      "confirmed_count": 29,
+      "cluster_id": "brand_competitors",
+      "axes": [
+        "alternative"
+      ],
+      "requested_phrases": [
+        "hyperline блок розеток"
+      ],
+      "cluster_key": "Брендовые и конкурентные запросы",
+      "cluster_type": "alternative",
+      "intent": "comparison",
+      "page_type": "comparison",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu трехфазный",
+      "confirmed_count": 29,
+      "cluster_id": "three_phase",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu трехфазный"
+      ],
+      "cluster_key": "Трехфазные PDU",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток вертикальный в стойку",
+      "confirmed_count": 27,
+      "cluster_id": "vertical_mount",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "блок розеток в стойку",
+        "вертикальный блок розеток",
+        "блок розеток вертикальный"
+      ],
+      "cluster_key": "Вертикальные PDU / 0U / 42U",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "вертикальный блок розеток rem 32",
+      "confirmed_count": 26,
+      "cluster_id": "vertical_mount",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "вертикальный блок розеток",
+        "блок розеток вертикальный"
+      ],
+      "cluster_key": "Вертикальные PDU / 0U / 42U",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "apc metered pdu",
+      "confirmed_count": 26,
+      "cluster_id": "brand_competitors",
+      "axes": [
+        "feature",
+        "alternative"
+      ],
+      "requested_phrases": [
+        "metered pdu",
+        "apc pdu"
+      ],
+      "cluster_key": "Брендовые и конкурентные запросы",
+      "cluster_type": "alternative",
+      "intent": "comparison",
+      "page_type": "comparison",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 16a type 2",
+      "confirmed_count": 23,
+      "cluster_id": "amperage",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu 16a"
+      ],
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 1u g8",
+      "confirmed_count": 23,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu 1u"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 8 розеток 1u ph12 8d3",
+      "confirmed_count": 23,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu 1u"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "19 шкаф сетевой фильтр",
+      "confirmed_count": 22,
+      "cluster_id": "surge_filter",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "сетевой фильтр 19"
+      ],
+      "cluster_key": "УЗИП и стоечные сетевые фильтры",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "фильтр сетевой premium line 19 1156057128 brennenstuhl",
+      "confirmed_count": 22,
+      "cluster_id": "surge_filter",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "сетевой фильтр 19"
+      ],
+      "cluster_key": "УЗИП и стоечные сетевые фильтры",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "mdx pdu 8e 16a term",
+      "confirmed_count": 21,
+      "cluster_id": "amperage",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu 16a"
+      ],
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu power distribution unit",
+      "confirmed_count": 19,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "power distribution unit"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "панель розеток в стойку 19",
+      "confirmed_count": 16,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "панель розеток 19"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "сетевой фильтр 19 1u",
+      "confirmed_count": 16,
+      "cluster_id": "surge_filter",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "сетевой фильтр 19"
+      ],
+      "cluster_key": "УЗИП и стоечные сетевые фильтры",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "сетевой фильтр 19 дюймов в стойку",
+      "confirmed_count": 16,
+      "cluster_id": "surge_filter",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "сетевой фильтр 19"
+      ],
+      "cluster_key": "УЗИП и стоечные сетевые фильтры",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "vertiv pdu",
+      "confirmed_count": 16,
+      "cluster_id": "brand_competitors",
+      "axes": [
+        "alternative"
+      ],
+      "requested_phrases": [
+        "vertiv pdu"
+      ],
+      "cluster_key": "Брендовые и конкурентные запросы",
+      "cluster_type": "alternative",
+      "intent": "comparison",
+      "page_type": "comparison",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu с мониторингом и управлением",
+      "confirmed_count": 15,
+      "cluster_id": "managed_metered",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu с мониторингом",
+        "pdu с управлением"
+      ],
+      "cluster_key": "Измерительные, управляемые и мониторинговые PDU",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu apc ap8886",
+      "confirmed_count": 15,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "alternative"
+      ],
+      "requested_phrases": [
+        "apc pdu"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "rack pdu 2g",
+      "confirmed_count": 15,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "rack pdu"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "cab pdu c14 3m c13 rus",
+      "confirmed_count": 14,
+      "cluster_id": "socket_type",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu c13"
+      ],
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "apc basic rack pdu",
+      "confirmed_count": 13,
+      "cluster_id": "brand_competitors",
+      "axes": [
+        "feature",
+        "alternative"
+      ],
+      "requested_phrases": [
+        "rack pdu",
+        "apc pdu"
+      ],
+      "cluster_key": "Брендовые и конкурентные запросы",
+      "cluster_type": "alternative",
+      "intent": "comparison",
+      "page_type": "comparison",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu rittal",
+      "confirmed_count": 13,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "alternative"
+      ],
+      "requested_phrases": [
+        "rittal pdu"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "apc rack pdu 2g",
+      "confirmed_count": 11,
+      "cluster_id": "brand_competitors",
+      "axes": [
+        "feature",
+        "alternative"
+      ],
+      "requested_phrases": [
+        "rack pdu",
+        "apc pdu"
+      ],
+      "cluster_key": "Брендовые и конкурентные запросы",
+      "cluster_type": "alternative",
+      "intent": "comparison",
+      "page_type": "comparison",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu ippon basic 1u",
+      "confirmed_count": 11,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu 1u"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок распределения питания pdu 16a type 2",
+      "confirmed_count": 9,
+      "cluster_id": "amperage",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu 16a"
+      ],
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "eaton in line metered rack pdu",
+      "confirmed_count": 9,
+      "cluster_id": "brand_competitors",
+      "axes": [
+        "feature",
+        "alternative"
+      ],
+      "requested_phrases": [
+        "rack pdu",
+        "metered pdu",
+        "eaton pdu"
+      ],
+      "cluster_key": "Брендовые и конкурентные запросы",
+      "cluster_type": "alternative",
+      "intent": "comparison",
+      "page_type": "comparison",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 1u g8 k",
+      "confirmed_count": 9,
+      "cluster_id": "pdu_generic",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu 1u"
+      ],
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu switched panel c13",
+      "confirmed_count": 9,
+      "cluster_id": "managed_metered",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu c13",
+        "switched pdu"
+      ],
+      "cluster_key": "Измерительные, управляемые и мониторинговые PDU",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "apc rack pdu 9000",
+      "confirmed_count": 8,
+      "cluster_id": "brand_competitors",
+      "axes": [
+        "alternative"
+      ],
+      "requested_phrases": [
+        "apc pdu"
+      ],
+      "cluster_key": "Брендовые и конкурентные запросы",
+      "cluster_type": "alternative",
+      "intent": "comparison",
+      "page_type": "comparison",
+      "confirmed": true
+    },
+    {
+      "phrase": "сетевой фильтр 19 8 розеток",
+      "confirmed_count": 7,
+      "cluster_id": "surge_filter",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "сетевой фильтр 19"
+      ],
+      "cluster_key": "УЗИП и стоечные сетевые фильтры",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "лучшие сетевые фильтры с дугогашением afci узип",
+      "confirmed_count": 6,
+      "cluster_id": "surge_filter",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "сетевой фильтр с узип"
+      ],
+      "cluster_key": "УЗИП и стоечные сетевые фильтры",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "панель питания 19 на 8 розеток",
+      "confirmed_count": 6,
+      "cluster_id": "core_19_1u",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "панель розеток 19"
+      ],
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "фильтр сетевой стоечный 19",
+      "confirmed_count": 6,
+      "cluster_id": "surge_filter",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "сетевой фильтр 19"
+      ],
+      "cluster_key": "УЗИП и стоечные сетевые фильтры",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "powercom pdu 16a type 2",
+      "confirmed_count": 6,
+      "cluster_id": "amperage",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu 16a"
+      ],
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "лабораторная работа набор услуг pdu протокола snmp",
+      "confirmed_count": 5,
+      "cluster_id": "managed_metered",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "pdu snmp"
+      ],
+      "cluster_key": "Измерительные, управляемые и мониторинговые PDU",
+      "cluster_type": "feature",
+      "intent": "commercial",
+      "page_type": "category",
+      "confirmed": true
+    },
+    {
+      "phrase": "сетевой фильтр в шкаф 19 дюймов",
+      "confirmed_count": 5,
+      "cluster_id": "server_rack_adjacent",
+      "axes": [
+        "adjacent"
+      ],
+      "requested_phrases": [
+        "сетевой фильтр 19"
+      ],
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "intent": "commercial",
+      "page_type": "use-case",
+      "confirmed": true
+    },
+    {
+      "phrase": "apc switched a rack pdu ap8981 прошивка",
+      "confirmed_count": 5,
+      "cluster_id": "brand_competitors",
+      "axes": [
+        "feature"
+      ],
+      "requested_phrases": [
+        "switched pdu"
+      ],
+      "cluster_key": "Брендовые и конкурентные запросы",
+      "cluster_type": "alternative",
+      "intent": "comparison",
+      "page_type": "comparison",
+      "confirmed": true
+    }
+  ]
+}

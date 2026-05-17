@@ -1,0 +1,220 @@
+{
+  "traffic_scenarios": [
+    {
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "scenario": "conservative",
+      "estimated_visits": 721,
+      "ctr_assumption": 0.03,
+      "coverage_assumption": 0.35,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "scenario": "base",
+      "estimated_visits": 3021,
+      "ctr_assumption": 0.08,
+      "coverage_assumption": 0.55,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "scenario": "aggressive",
+      "estimated_visits": 7723,
+      "ctr_assumption": 0.15,
+      "coverage_assumption": 0.75,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "scenario": "conservative",
+      "estimated_visits": 965,
+      "ctr_assumption": 0.03,
+      "coverage_assumption": 0.35,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "scenario": "base",
+      "estimated_visits": 4045,
+      "ctr_assumption": 0.08,
+      "coverage_assumption": 0.55,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "scenario": "aggressive",
+      "estimated_visits": 10342,
+      "ctr_assumption": 0.15,
+      "coverage_assumption": 0.75,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "PDU / блоки распределения питания",
+      "scenario": "conservative",
+      "estimated_visits": 409,
+      "ctr_assumption": 0.03,
+      "coverage_assumption": 0.35,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "PDU / блоки распределения питания",
+      "scenario": "base",
+      "estimated_visits": 1714,
+      "ctr_assumption": 0.08,
+      "coverage_assumption": 0.55,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "PDU / блоки распределения питания",
+      "scenario": "aggressive",
+      "estimated_visits": 4381,
+      "ctr_assumption": 0.15,
+      "coverage_assumption": 0.75,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "scenario": "conservative",
+      "estimated_visits": 141,
+      "ctr_assumption": 0.03,
+      "coverage_assumption": 0.35,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "scenario": "base",
+      "estimated_visits": 590,
+      "ctr_assumption": 0.08,
+      "coverage_assumption": 0.55,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "scenario": "aggressive",
+      "estimated_visits": 1508,
+      "ctr_assumption": 0.15,
+      "coverage_assumption": 0.75,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "scenario": "conservative",
+      "estimated_visits": 57,
+      "ctr_assumption": 0.03,
+      "coverage_assumption": 0.35,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "scenario": "base",
+      "estimated_visits": 237,
+      "ctr_assumption": 0.08,
+      "coverage_assumption": 0.55,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "scenario": "aggressive",
+      "estimated_visits": 607,
+      "ctr_assumption": 0.15,
+      "coverage_assumption": 0.75,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "Вертикальные PDU / 0U / 42U",
+      "scenario": "conservative",
+      "estimated_visits": 16,
+      "ctr_assumption": 0.03,
+      "coverage_assumption": 0.35,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "Вертикальные PDU / 0U / 42U",
+      "scenario": "base",
+      "estimated_visits": 65,
+      "ctr_assumption": 0.08,
+      "coverage_assumption": 0.55,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "Вертикальные PDU / 0U / 42U",
+      "scenario": "aggressive",
+      "estimated_visits": 166,
+      "ctr_assumption": 0.15,
+      "coverage_assumption": 0.75,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "Измерительные, управляемые и мониторинговые PDU",
+      "scenario": "conservative",
+      "estimated_visits": 9,
+      "ctr_assumption": 0.03,
+      "coverage_assumption": 0.35,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "Измерительные, управляемые и мониторинговые PDU",
+      "scenario": "base",
+      "estimated_visits": 37,
+      "ctr_assumption": 0.08,
+      "coverage_assumption": 0.55,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "Измерительные, управляемые и мониторинговые PDU",
+      "scenario": "aggressive",
+      "estimated_visits": 95,
+      "ctr_assumption": 0.15,
+      "coverage_assumption": 0.75,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "Брендовые и конкурентные запросы",
+      "scenario": "conservative",
+      "estimated_visits": 5,
+      "ctr_assumption": 0.03,
+      "coverage_assumption": 0.35,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "Брендовые и конкурентные запросы",
+      "scenario": "base",
+      "estimated_visits": 21,
+      "ctr_assumption": 0.08,
+      "coverage_assumption": 0.55,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "Брендовые и конкурентные запросы",
+      "scenario": "aggressive",
+      "estimated_visits": 54,
+      "ctr_assumption": 0.15,
+      "coverage_assumption": 0.75,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "Трехфазные PDU",
+      "scenario": "conservative",
+      "estimated_visits": 1,
+      "ctr_assumption": 0.03,
+      "coverage_assumption": 0.35,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "Трехфазные PDU",
+      "scenario": "base",
+      "estimated_visits": 6,
+      "ctr_assumption": 0.08,
+      "coverage_assumption": 0.55,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    },
+    {
+      "cluster_key": "Трехфазные PDU",
+      "scenario": "aggressive",
+      "estimated_visits": 15,
+      "ctr_assumption": 0.15,
+      "coverage_assumption": 0.75,
+      "notes": "Heuristic forecast; validate with real SERP and ranking data."
+    }
+  ]
+}

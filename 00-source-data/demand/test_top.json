@@ -1,0 +1,83 @@
+{
+  "endpoint": "topRequests",
+  "results": [
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "блок розеток",
+      "axis": null,
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "блок розеток",
+        "totalCount": 41398,
+        "topRequests": [
+          {
+            "phrase": "блок розеток",
+            "count": 41398
+          },
+          {
+            "phrase": "блок розеток 19",
+            "count": 6213
+          },
+          {
+            "phrase": "блок выключателей с розеткой",
+            "count": 4293
+          },
+          {
+            "phrase": "блок розеток 8",
+            "count": 3868
+          },
+          {
+            "phrase": "блок 2 розетки",
+            "count": 3018
+          },
+          {
+            "phrase": "блок розеток pdu",
+            "count": 2617
+          },
+          {
+            "phrase": "блок розеток 19 8 розеток",
+            "count": 2594
+          },
+          {
+            "phrase": "блок розеток schuko",
+            "count": 2037
+          },
+          {
+            "phrase": "блок розеток 1u",
+            "count": 2008
+          },
+          {
+            "phrase": "блок розеток 16",
+            "count": 1956
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "радиорозетка",
+            "count": 2159
+          },
+          {
+            "phrase": "выключатель с розеткой",
+            "count": 31501
+          },
+          {
+            "phrase": "блок коммутации",
+            "count": 4897
+          },
+          {
+            "phrase": "розеточный блок",
+            "count": 2490
+          },
+          {
+            "phrase": "таймер розеточный",
+            "count": 3356
+          }
+        ]
+      }
+    }
+  ]
+}

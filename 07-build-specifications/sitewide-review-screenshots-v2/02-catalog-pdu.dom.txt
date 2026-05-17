@@ -1,0 +1,571 @@
+- main:
+  - link "Soliton":
+    - /url: /
+  - navigation:
+    - link "Каталог":
+      - /url: /catalog/pdu/
+    - link "Фильтры с УЗИП":
+      - /url: /catalog/pdu-uzip/
+    - link "Подбор":
+      - /url: /solutions/pdu-dlya-servernogo-shkafa/
+    - link "Документы":
+      - /url: /documents/
+    - link "Запрос КП 1":
+      - /url: /b2b/request-quote/
+      - text: Запрос КП
+      - generic: "1"
+  - navigation:
+    - link "Главная":
+      - /url: /
+    - generic: /
+    - link "Каталог":
+      - /url: /catalog/pdu/
+    - generic: /
+    - link "PDU и блоки распределения питания":
+      - /url: /catalog/pdu/
+  - paragraph: PDU / блоки распределения питания
+  - heading "PDU и блоки распределения питания" [level=1]
+  - paragraph: "Каталог PDU Soliton: блоки распределения питания для стоек 19 дюймов, серверных шкафов, ЦОД и телеком-инфраструктуры."
+  - link "Подобрать PDU":
+    - /url: /b2b/request-quote/
+  - link "В каталог":
+    - /url: /catalog/pdu/
+  - complementary:
+    - heading "Коротко" [level=2]
+    - paragraph: Каталог PDU с подбором по монтажу, току, типу розеток и функциям для стоек и серверных шкафов.
+    - generic: pdu
+    - generic: блок pdu
+    - generic: pdu розетки
+    - generic: блок розеток pdu
+  - complementary:
+    - text: Фильтры для каталога
+    - paragraph: Монтаж
+    - link "19 дюймов 1U 25":
+      - /url: /catalog/bloki-rozetok-19-1u/
+      - generic: 19 дюймов 1U
+      - generic: "25"
+    - link "Вертикальный 0U / 42U 43":
+      - /url: /catalog/vertical-pdu/
+      - generic: Вертикальный 0U / 42U
+      - generic: "43"
+    - paragraph: Ток
+    - link "16A 46":
+      - /url: /catalog/16a/
+      - generic: 16A
+      - generic: "46"
+    - link "32A 22":
+      - /url: /catalog/32a/
+      - generic: 32A
+      - generic: "22"
+    - link "Трехфазные 13":
+      - /url: /catalog/three-phase-pdu/
+      - generic: Трехфазные
+      - generic: "13"
+    - paragraph: Розетки
+    - link "Schuko 36":
+      - /url: /catalog/schuko/
+      - generic: Schuko
+      - generic: "36"
+    - link "IEC C13 / C19 38":
+      - /url: /catalog/iec-c13-c19/
+      - generic: IEC C13 / C19
+      - generic: "38"
+    - paragraph: Функции
+    - link "Мониторинг / измерение 26":
+      - /url: /catalog/metered-pdu/
+      - generic: Мониторинг / измерение
+      - generic: "26"
+    - link "Управление 7":
+      - /url: /catalog/managed-pdu/
+      - generic: Управление
+      - generic: "7"
+    - link "УЗИП / защита 7":
+      - /url: /catalog/pdu-uzip/
+      - generic: УЗИП / защита
+      - generic: "7"
+  - paragraph: "Найдено моделей: 66"
+  - heading "Все PDU и блоки розеток" [level=2]
+  - paragraph: "Весь собранный ассортимент Soliton: горизонтальные, вертикальные, IEC, Schuko, 16A, 32A и проектные исполнения."
+  - link "Запрос КП 1":
+    - /url: /b2b/request-quote/
+    - text: Запрос КП
+    - generic: "1"
+  - article:
+    - img "Вертикальный PDU, S-AB_M, 7 Schuko, 32A, ввод IEC60309, с мониторингом, с управлением, S-AB_M"
+    - paragraph: S-AB_M
+    - link "Вертикальный PDU, S-AB_M, 7 Schuko, 32A, ввод IEC60309, с мониторингом, с управлением":
+      - /url: /product/s-ab-m/
+      - heading "Вертикальный PDU, S-AB_M, 7 Schuko, 32A, ввод IEC60309, с мониторингом, с управлением" [level=3]
+    - generic: Автоматическая защита
+    - generic: Мониторинг / измерение
+    - generic: Управление
+    - term: Тип
+    - definition: PDU / блок розеток
+    - term: Монтаж
+    - definition: Вертикальный
+    - term: Розетки
+    - definition: Schuko
+    - term: Кол-во
+    - definition: "7"
+    - term: Ток
+    - definition: 32A
+    - term: Вход
+    - definition: IEC60309
+    - paragraph: Блоки розеток со встроенным модулем мониторинга напряжения U, тока I, мощности P
+    - paragraph: 11 055,00 ₽
+    - paragraph: Наличие и срок подтверждаются при КП
+    - button "Добавить в заявку":
+      - text: Добавить в заявку
+    - link "Открыть":
+      - /url: /product/s-ab-m/
+  - article:
+    - img "Вертикальный PDU, S-16C13+2C19, 16 IEC C13, IEC C19, 16A, ввод IEC C20, S-16C13+2C19"
+    - paragraph: S-16C13+2C19
+    - link "Вертикальный PDU, S-16C13+2C19, 16 IEC C13, IEC C19, 16A, ввод IEC C20":
+      - /url: /product/s-16c13-2c19/
+      - heading "Вертикальный PDU, S-16C13+2C19, 16 IEC C13, IEC C19, 16A, ввод IEC C20" [level=3]
+    - generic: Базовая конфигурация
+    - term: Тип
+    - definition: PDU / блок розеток
+    - term: Монтаж
+    - definition: Вертикальный
+    - term: Розетки
+    - definition: IEC C13, IEC C19
+    - term: Кол-во
+    - definition: "16"
+    - term: Ток
+    - definition: 16A
+    - term: Вход
+    - definition: IEC C20
+    - paragraph: PDU Блок розеток для 19″ шкафов, вертикальный, 16 розеток С13 и 2 розетки С19, 16А, алюминиевый корпус, шнур с вилкой С20 3 м
+    - paragraph: 18 510,00 ₽
+    - paragraph: Наличие и срок подтверждаются при КП
+    - button "Добавить в заявку":
+      - text: Добавить в заявку
+    - link "Открыть":
+      - /url: /product/s-16c13-2c19/
+  - article:
+    - img "Вертикальный PDU, S-18 IEC320C13, 18 IEC C13, 16A, ввод IEC C20, S-18 IEC320C13"
+    - paragraph: S-18 IEC320C13
+    - link "Вертикальный PDU, S-18 IEC320C13, 18 IEC C13, 16A, ввод IEC C20":
+      - /url: /product/s-18-iec320c13/
+      - heading "Вертикальный PDU, S-18 IEC320C13, 18 IEC C13, 16A, ввод IEC C20" [level=3]
+    - generic: Базовая конфигурация
+    - term: Тип
+    - definition: PDU / блок розеток
+    - term: Монтаж
+    - definition: Вертикальный
+    - term: Розетки
+    - definition: IEC C13
+    - term: Кол-во
+    - definition: "18"
+    - term: Ток
+    - definition: 16A
+    - term: Вход
+    - definition: IEC C20
+    - paragraph: Блок на 18 розеток IEC320C13 с выключателем и шнуром питания 3.0м, вилка IEC320C20, вертикальный
+    - paragraph: 17 010,00 ₽
+    - paragraph: Наличие и срок подтверждаются при КП
+    - button "Добавить в заявку":
+      - text: Добавить в заявку
+    - link "Открыть":
+      - /url: /product/s-18-iec320c13/
+  - article:
+    - img "Вертикальный PDU, S-36C13+6C19 AB, 36 IEC C13, IEC C19, 32A, ввод IEC60309, S-36C13+6C19 AB"
+    - paragraph: S-36C13+6C19 AB
+    - link "Вертикальный PDU, S-36C13+6C19 AB, 36 IEC C13, IEC C19, 32A, ввод IEC60309":
+      - /url: /product/s-36c13-6c19-ab/
+      - heading "Вертикальный PDU, S-36C13+6C19 AB, 36 IEC C13, IEC C19, 32A, ввод IEC60309" [level=3]
+    - generic: УЗО
+    - generic: Автоматическая защита
+    - term: Тип
+    - definition: PDU / блок розеток
+    - term: Монтаж
+    - definition: Вертикальный
+    - term: Розетки
+    - definition: IEC C13, IEC C19
+    - term: Кол-во
+    - definition: "36"
+    - term: Ток
+    - definition: 32A
+    - term: Вход
+    - definition: IEC60309
+    - paragraph: Блок розеток вертикальный, 32А/250В~, 36 розеток IEC320 C13, 6 розеток IEC320 C19, автомат защиты от перегрузок
+    - paragraph: 43 612,50 ₽
+    - paragraph: Наличие и срок подтверждаются при КП
+    - button "Добавить в заявку":
+      - text: Добавить в заявку
+    - link "Открыть":
+      - /url: /product/s-36c13-6c19-ab/
+  - article:
+    - img "PDU / блок розеток, S-36C13+6C19 M 3Ф, 32 IEC C13, IEC C19, 32A, с мониторингом, с управлением, S-36C13+6C19 M 3Ф"
+    - paragraph: S-36C13+6C19 M 3Ф
+    - link "PDU / блок розеток, S-36C13+6C19 M 3Ф, 32 IEC C13, IEC C19, 32A, с мониторингом, с управлением":
+      - /url: /product/s-36c13-6c19-m-3f/
+      - heading "PDU / блок розеток, S-36C13+6C19 M 3Ф, 32 IEC C13, IEC C19, 32A, с мониторингом, с управлением" [level=3]
+    - generic: Мониторинг / измерение
+    - generic: Управление
+    - term: Тип
+    - definition: PDU / блок розеток
+    - term: Монтаж
+    - definition: Уточнить
+    - term: Розетки
+    - definition: IEC C13, IEC C19
+    - term: Кол-во
+    - definition: "32"
+    - term: Ток
+    - definition: 32A
+    - term: Вход
+    - definition: Уточнить
+    - paragraph: БЛОК РОЗЕТОК С КОНТРОЛЕМ ПАРАМЕТРОВ ЭЛЕКТРОПИТАНИЯ И ОКРУЖАЮЩЕЙ СРЕДЫ 32А/400В~(трех фазный) 32 РОЗЕТКИ С13 И 6 РОЗЕТОК с19 Арт. S-36C13+6C19 M 3Ф
+    - paragraph: 108 856,80 ₽
+    - paragraph: Наличие и срок подтверждаются при КП
+    - button "Добавить в заявку":
+      - text: Добавить в заявку
+    - link "Открыть":
+      - /url: /product/s-36c13-6c19-m-3f/
+  - article:
+    - img "PDU / блок розеток, S-36C13+6C19 M, 32 IEC C13, IEC C19, 32A, с мониторингом, с управлением, S-36C13+6C19 M"
+    - paragraph: S-36C13+6C19 M
+    - link "PDU / блок розеток, S-36C13+6C19 M, 32 IEC C13, IEC C19, 32A, с мониторингом, с управлением":
+      - /url: /product/s-36c13-6c19-m/
+      - heading "PDU / блок розеток, S-36C13+6C19 M, 32 IEC C13, IEC C19, 32A, с мониторингом, с управлением" [level=3]
+    - generic: Мониторинг / измерение
+    - generic: Управление
+    - term: Тип
+    - definition: PDU / блок розеток
+    - term: Монтаж
+    - definition: Уточнить
+    - term: Розетки
+    - definition: IEC C13, IEC C19
+    - term: Кол-во
+    - definition: "32"
+    - term: Ток
+    - definition: 32A
+    - term: Вход
+    - definition: Уточнить
+    - paragraph: БЛОК РОЗЕТОК С КОНТРОЛЕМ ПАРАМЕТРОВ ЭЛЕКТРОПИТАНИЯ И ОКРУЖАЮЩЕЙ СРЕДЫ 32А/250В~ 32 РОЗЕТКИ С13 И 6 РОЗЕТОК с19 Арт. S-36C13+6C19 M
+    - paragraph: 102 858,00 ₽
+    - paragraph: Наличие и срок подтверждаются при КП
+    - button "Добавить в заявку":
+      - text: Добавить в заявку
+    - link "Открыть":
+      - /url: /product/s-36c13-6c19-m/
+  - article:
+    - img "Блок розеток 19” 1U, S-8 IEC320C19 16A, 8 IEC C19, 16A, ввод IEC C20, S-8 IEC320C19 16A"
+    - paragraph: S-8 IEC320C19 16A
+    - link "Блок розеток 19” 1U, S-8 IEC320C19 16A, 8 IEC C19, 16A, ввод IEC C20":
+      - /url: /product/s-8-iec320c19-16a/
+      - heading "Блок розеток 19” 1U, S-8 IEC320C19 16A, 8 IEC C19, 16A, ввод IEC C20" [level=3]
+    - generic: Мониторинг / измерение
+    - term: Тип
+    - definition: PDU / блок розеток
+    - term: Монтаж
+    - definition: 19 дюймов 1U
+    - term: Розетки
+    - definition: IEC C19
+    - term: Кол-во
+    - definition: "8"
+    - term: Ток
+    - definition: 16A
+    - term: Вход
+    - definition: IEC C20
+    - paragraph: Розетки объединены токовыми шинами. Электрическое соединение с токовыми шинами по IDC (Insulation Displacement Crimping) технологии
+    - paragraph: 10 530,00 ₽
+    - paragraph: Наличие и срок подтверждаются при КП
+    - button "Добавить в заявку":
+      - text: Добавить в заявку
+    - link "Открыть":
+      - /url: /product/s-8-iec320c19-16a/
+  - article:
+    - img "Контроллер мониторинга PDU, Контроллер Soliton М-БРП, 32A, с мониторингом, с управлением, Контроллер Soliton М-БРП"
+    - paragraph: Контроллер Soliton М-БРП
+    - link "Контроллер мониторинга PDU, Контроллер Soliton М-БРП, 32A, с мониторингом, с управлением":
+      - /url: /product/kontroller-soliton-m-brp/
+      - heading "Контроллер мониторинга PDU, Контроллер Soliton М-БРП, 32A, с мониторингом, с управлением" [level=3]
+    - generic: Автоматическая защита
+    - generic: Мониторинг / измерение
+    - generic: Управление
+    - term: Тип
+    - definition: Контроллер мониторинга
+    - term: Монтаж
+    - definition: Уточнить
+    - term: Розетки
+    - definition: Уточнить
+    - term: Кол-во
+    - definition: Уточнить
+    - term: Ток
+    - definition: 32A
+    - term: Вход
+    - definition: Уточнить
+    - paragraph: Контроль рабочего напряжения U, потребляемого тока I и мощности P БРП по 8 линиям электропитания (возможно подключение восьми однофазных БРП или двух трех-фазных БРП, оснащенных датчиками мониторинга),
+    - paragraph: 45 100,00 ₽
+    - paragraph: Наличие и срок подтверждаются при КП
+    - button "Добавить в заявку":
+      - text: Добавить в заявку
+    - link "Открыть":
+      - /url: /product/kontroller-soliton-m-brp/
+  - article:
+    - img "Вертикальный PDU, S-9IEC320C13-3phase, S-9IEC320C13-3phase"
+    - paragraph: S-9IEC320C13-3phase
+    - link "Вертикальный PDU, S-9IEC320C13-3phase":
+      - /url: /product/s-9iec320c13-3phase/
+      - heading "Вертикальный PDU, S-9IEC320C13-3phase" [level=3]
+    - generic: Мониторинг / измерение
+    - term: Тип
+    - definition: PDU / блок розеток
+    - term: Монтаж
+    - definition: Вертикальный
+    - term: Розетки
+    - definition: IEC C13
+    - term: Кол-во
+    - definition: Уточнить
+    - term: Ток
+    - definition: Уточнить
+    - term: Вход
+    - definition: Уточнить
+    - paragraph: Панель электропитания 3-х фазная (3Р+N+PE), 16,5 кВт, с индикацией, 1U, вертикальная, кабель питания 5х2,5 кв.мм, вилка IEC309(3P+N+PE)
+    - paragraph: 16 485,00 ₽
+    - paragraph: Наличие и срок подтверждаются при КП
+    - button "Добавить в заявку":
+      - text: Добавить в заявку
+    - link "Открыть":
+      - /url: /product/s-9iec320c13-3phase/
+  - article:
+    - img "Блок розеток 19” 1U, S-3, 3 Schuko, 16A, ввод Schuko, S-3"
+    - paragraph: S-3
+    - link "Блок розеток 19” 1U, S-3, 3 Schuko, 16A, ввод Schuko":
+      - /url: /product/s-3/
+      - heading "Блок розеток 19” 1U, S-3, 3 Schuko, 16A, ввод Schuko" [level=3]
+    - generic: Базовая конфигурация
+    - term: Тип
+    - definition: PDU / блок розеток
+    - term: Монтаж
+    - definition: 19 дюймов 1U
+    - term: Розетки
+    - definition: Schuko
+    - term: Кол-во
+    - definition: "3"
+    - term: Ток
+    - definition: 16A
+    - term: Вход
+    - definition: Schuko
+    - paragraph: Блок на 3 розетки Schuko с выключателем и шнуром питания 1.8м, евровилка (Shuko), горизонтальный
+    - paragraph: 3 000,00 ₽
+    - paragraph: Наличие и срок подтверждаются при КП
+    - button "Добавить в заявку":
+      - text: Добавить в заявку
+    - link "Открыть":
+      - /url: /product/s-3/
+  - article:
+    - img "Блок розеток 19” 1U, S-3 IEC320c13, 3 Schuko, IEC C13, 16A, ввод Schuko, S-3 IEC320c13"
+    - paragraph: S-3 IEC320c13
+    - link "Блок розеток 19” 1U, S-3 IEC320c13, 3 Schuko, IEC C13, 16A, ввод Schuko":
+      - /url: /product/s-3-iec320c13/
+      - heading "Блок розеток 19” 1U, S-3 IEC320c13, 3 Schuko, IEC C13, 16A, ввод Schuko" [level=3]
+    - generic: Базовая конфигурация
+    - term: Тип
+    - definition: PDU / блок розеток
+    - term: Монтаж
+    - definition: 19 дюймов 1U
+    - term: Розетки
+    - definition: Schuko, IEC C13
+    - term: Кол-во
+    - definition: "3"
+    - term: Ток
+    - definition: 16A
+    - term: Вход
+    - definition: Schuko
+    - paragraph: Блок розеток на 3 розетки IEC320С13 с выключателем и шнуром питания 1.8м, евровилка (Shuko), горизонтальный. Розетки IEC320 C13
+    - paragraph: 4 800,00 ₽
+    - paragraph: Наличие и срок подтверждаются при КП
+    - button "Добавить в заявку":
+      - text: Добавить в заявку
+    - link "Открыть":
+      - /url: /product/s-3-iec320c13/
+  - article:
+    - img "Блок розеток 19” 1U, S-4, 4 Schuko, 16A, ввод Schuko, S-4"
+    - paragraph: S-4
+    - link "Блок розеток 19” 1U, S-4, 4 Schuko, 16A, ввод Schuko":
+      - /url: /product/s-4/
+      - heading "Блок розеток 19” 1U, S-4, 4 Schuko, 16A, ввод Schuko" [level=3]
+    - generic: Базовая конфигурация
+    - term: Тип
+    - definition: PDU / блок розеток
+    - term: Монтаж
+    - definition: 19 дюймов 1U
+    - term: Розетки
+    - definition: Schuko
+    - term: Кол-во
+    - definition: "4"
+    - term: Ток
+    - definition: 16A
+    - term: Вход
+    - definition: Schuko
+    - paragraph: Блок на 4 розетки Schuko и шнуром питания 1.8м, евровилка (Shuko), горизонтальный
+    - paragraph: 3 000,00 ₽
+    - paragraph: Наличие и срок подтверждаются при КП
+    - button "Добавить в заявку":
+      - text: Добавить в заявку
+    - link "Открыть":
+      - /url: /product/s-4/
+  - text: Параметры в этой категории
+  - paragraph: Сводка показывает, какие характеристики реально встречаются в товарах этой выдачи. Это помогает быстро оценить ассортимент без создания лишних индексируемых URL.
+  - paragraph: Тип изделия
+  - generic: PDU / блок розеток
+  - generic: "61"
+  - generic: Контроллер мониторинга
+  - generic: "1"
+  - paragraph: Монтаж
+  - generic: Вертикальный
+  - generic: "34"
+  - generic: 19 дюймов 1U
+  - generic: "23"
+  - paragraph: Розетки
+  - generic: Schuko
+  - generic: "35"
+  - generic: IEC C13
+  - generic: "33"
+  - generic: IEC C19
+  - generic: "9"
+  - paragraph: Ток
+  - generic: 16A
+  - generic: "35"
+  - generic: 32A
+  - generic: "20"
+  - generic: 10A
+  - generic: "1"
+  - paragraph: Функции
+  - generic: Мониторинг / измерение
+  - generic: "26"
+  - generic: Базовая конфигурация
+  - generic: "19"
+  - generic: Автоматическая защита
+  - generic: "17"
+  - generic: УЗИП
+  - generic: "7"
+  - generic: УЗО
+  - generic: "7"
+  - generic: Управление
+  - generic: "7"
+  - generic: Фильтр радиопомех
+  - generic: "1"
+  - paragraph: Как выбрать
+  - heading "Критерии выбора перед запросом КП" [level=2]
+  - paragraph: Проверьте ток, розетки, монтаж, ввод и защиту. Если параметров стойки не хватает, отправьте задачу на подбор.
+  - text: Тип розеток и совместимость с оборудованием
+  - text: Ток, ввод и запас по нагрузке
+  - text: Монтаж в 1U или вертикально в стойке
+  - text: Документы, срок поставки и возможность исполнения под проект
+  - text: Сравнение параметров
+  - table:
+    - rowgroup:
+      - row "Параметр Что уточнить":
+        - columnheader "Параметр"
+        - columnheader "Что уточнить"
+    - rowgroup:
+      - row "Розетки Schuko, IEC C13, IEC C19, смешанные":
+        - cell "Розетки"
+        - cell "Schuko, IEC C13, IEC C19, смешанные"
+      - row "Ток 16A, 32A, трехфазный ввод":
+        - cell "Ток"
+        - cell "16A, 32A, трехфазный ввод"
+      - row "Монтаж 19 дюймов 1U или вертикальный 0U":
+        - cell "Монтаж"
+        - cell "19 дюймов 1U или вертикальный 0U"
+      - row "Функции Защита, мониторинг, управление":
+        - cell "Функции"
+        - cell "Защита, мониторинг, управление"
+  - paragraph: Смежные разделы
+  - heading "Смежные страницы для выбора" [level=2]
+  - paragraph: Перейдите к близким категориям, сценариям применения и материалам по выбору PDU.
+  - link "Блоки розеток 19 дюймов 1U Блоки розеток 19 / 1U / в стойку":
+    - /url: /catalog/bloki-rozetok-19-1u/
+    - text: Блоки розеток 19 дюймов 1U
+    - generic: Блоки розеток 19 / 1U / в стойку
+  - link "Вертикальные PDU и блоки розеток 0U / 42U Вертикальные PDU / 0U / 42U":
+    - /url: /catalog/vertical-pdu/
+    - text: Вертикальные PDU и блоки розеток 0U / 42U
+    - generic: Вертикальные PDU / 0U / 42U
+  - link "Блоки розеток Schuko Типы розеток Schuko / IEC C13 / C19":
+    - /url: /catalog/schuko/
+    - text: Блоки розеток Schuko
+    - generic: Типы розеток Schuko / IEC C13 / C19
+  - link "PDU и блоки розеток IEC C13 / C19 Типы розеток Schuko / IEC C13 / C19":
+    - /url: /catalog/iec-c13-c19/
+    - text: PDU и блоки розеток IEC C13 / C19
+    - generic: Типы розеток Schuko / IEC C13 / C19
+  - link "Блоки розеток и PDU 16A Ток и мощность 16A / 32A":
+    - /url: /catalog/16a/
+    - text: Блоки розеток и PDU 16A
+    - generic: Ток и мощность 16A / 32A
+  - link "Блоки розеток и PDU 32A Ток и мощность 16A / 32A":
+    - /url: /catalog/32a/
+    - text: Блоки розеток и PDU 32A
+    - generic: Ток и мощность 16A / 32A
+  - paragraph: FAQ
+  - heading "Вопросы перед заказом" [level=2]
+  - paragraph: Короткие ответы помогают закрыть базовые сомнения до перехода в карточку товара или запрос КП.
+  - heading "Как выбрать PDU для серверной стойки?" [level=3]
+  - paragraph: Сначала определяют монтаж, суммарную нагрузку, ток ввода, тип розеток и требования к защите или мониторингу. Если параметры стойки неизвестны, лучше отправить список оборудования на подбор.
+  - heading "Можно ли получить коммерческое предложение для юрлица?" [level=3]
+  - paragraph: Да. Для КП нужно указать артикулы или параметры PDU, количество, город поставки, сроки и требования к документам.
+  - heading "Какие документы нужны для закупки?" [level=3]
+  - paragraph: Обычно запрашивают паспорт изделия, сертификаты, реквизиты, сведения о реестре и техническое описание. Состав документов нужно подтверждать по конкретной модели.
+- contentinfo:
+  - link "Soliton":
+    - /url: /
+  - paragraph: Российские PDU, блоки розеток 19 дюймов и сетевые фильтры с УЗИП для серверных шкафов, ЦОД и корпоративных закупок.
+  - text: КП, счет и документы для закупки подтверждаются по конкретной модели.
+  - text: Поставка по России согласуется в коммерческом предложении.
+  - text: Для подбора достаточно отправить артикулы или техническое задание.
+  - link "Запросить КП":
+    - /url: /b2b/request-quote/
+    - text: Запросить КП
+  - heading "Каталог" [level=2]
+  - navigation:
+    - link "PDU и блоки распределения питания":
+      - /url: /catalog/pdu/
+    - link "Сетевые фильтры 19 дюймов и PDU с УЗИП":
+      - /url: /catalog/pdu-uzip/
+    - link "Блоки розеток 19 дюймов 1U":
+      - /url: /catalog/bloki-rozetok-19-1u/
+    - link "PDU и блоки розеток IEC C13 / C19":
+      - /url: /catalog/iec-c13-c19/
+    - link "Блоки розеток Schuko":
+      - /url: /catalog/schuko/
+    - link "Блоки розеток и PDU 16A":
+      - /url: /catalog/16a/
+    - link "Блоки розеток и PDU 32A":
+      - /url: /catalog/32a/
+  - heading "Подбор" [level=2]
+  - navigation:
+    - link "PDU для серверного шкафа 19 дюймов":
+      - /url: /solutions/pdu-dlya-servernogo-shkafa/
+    - link "Питание серверной стойки 42U":
+      - /url: /solutions/pitanie-stojki-42u/
+    - link "PDU для ЦОД":
+      - /url: /solutions/pdu-dlya-cod/
+    - link "PDU для телекоммуникационного шкафа":
+      - /url: /solutions/pdu-dlya-telekommunikacionnogo-shkafa/
+  - heading "Закупка" [level=2]
+  - navigation:
+    - link "PDU и блоки розеток для корпоративных поставок":
+      - /url: /b2b/
+    - link "Запросить коммерческое предложение":
+      - /url: /b2b/request-quote/
+    - link "Документы Soliton":
+      - /url: /documents/
+    - link "О компании Soliton":
+      - /url: /company/about/
+    - link "Контакты Soliton":
+      - /url: /company/contacts/
+  - generic: © 2026 Soliton
+  - generic: Заявки принимаются через КП; онлайн-оплата и доставка согласуются отдельно.
+- button "Open Next.js Dev Tools":
+- button "Open issues overlay":
+  - generic: "0"
+  - generic: "1"
+  - generic: Issue
+- button "Collapse issues badge":
+- alert

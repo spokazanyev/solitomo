@@ -1,0 +1,136 @@
+- main:
+  - link "Soliton":
+    - /url: /
+  - navigation:
+    - link "Каталог":
+      - /url: /catalog/pdu/
+    - link "Фильтры с УЗИП":
+      - /url: /catalog/pdu-uzip/
+    - link "Подбор":
+      - /url: /solutions/pdu-dlya-servernogo-shkafa/
+    - link "Документы":
+      - /url: /documents/
+    - link "Запрос КП 1":
+      - /url: /b2b/request-quote/
+      - text: Запрос КП
+      - generic: "1"
+  - navigation:
+    - link "Главная":
+      - /url: /
+    - generic: /
+    - link "Подбор":
+      - /url: /solutions/pdu-dlya-servernogo-shkafa/
+    - generic: /
+    - link "PDU для ЦОД":
+      - /url: /solutions/pdu-dlya-cod/
+  - paragraph: B2B use-case
+  - heading "PDU для ЦОД" [level=1]
+  - paragraph: "PDU Soliton для ЦОД: проектные поставки, мониторинг, 32A, трехфазные конфигурации и документы для закупки."
+  - link "Запросить КП для проекта":
+    - /url: /b2b/request-quote/
+  - link "В каталог":
+    - /url: /catalog/pdu/
+  - complementary:
+    - heading "Коротко" [level=2]
+    - paragraph: Решения для инфраструктурных проектов, где важны документы, сроки, надежность и параметры под ТЗ.
+    - generic: pdu для цод
+    - generic: pdu для дата центра
+    - generic: pdu 32a
+  - paragraph: Сценарий применения
+  - heading "От задачи инфраструктуры к параметрам PDU" [level=2]
+  - paragraph: Опишите стойку, оборудование и требования к питанию, чтобы перейти к монтажу, току, розеткам и нужным документам.
+  - generic: "Где устанавливается PDU: шкаф 19 дюймов, стойка 42U, ЦОД или телеком-шкаф."
+  - generic: "Какой монтаж нужен: горизонтальный 1U или вертикальный 0U."
+  - generic: "Какая нагрузка и ввод: 16A, 32A, трехфазный или проектный."
+  - generic: "Какие розетки: Schuko, IEC C13, IEC C19 или смешанная конфигурация."
+  - text: Мини-подбор PDU
+  - list:
+    - generic: "1"
+    - text: "Где устанавливается PDU: шкаф 19 дюймов, стойка 42U, ЦОД или телеком-шкаф."
+    - generic: "2"
+    - text: "Какой монтаж нужен: горизонтальный 1U или вертикальный 0U."
+    - generic: "3"
+    - text: "Какая нагрузка и ввод: 16A, 32A, трехфазный или проектный."
+    - generic: "4"
+    - text: "Какие розетки: Schuko, IEC C13, IEC C19 или смешанная конфигурация."
+    - generic: "5"
+    - text: Нужны ли мониторинг, управление, УЗИП, документы или индивидуальное исполнение.
+  - paragraph: Подходящие направления
+  - heading "Следующий шаг после подбора" [level=2]
+  - paragraph: Откройте подходящую категорию, сравните форм-факторы или отправьте параметры стойки на КП.
+  - link "PDU и блоки распределения питания PDU / блоки распределения питания":
+    - /url: /catalog/pdu/
+    - text: PDU и блоки распределения питания
+    - generic: PDU / блоки распределения питания
+  - link "Блоки розеток 19 дюймов 1U Блоки розеток 19 / 1U / в стойку":
+    - /url: /catalog/bloki-rozetok-19-1u/
+    - text: Блоки розеток 19 дюймов 1U
+    - generic: Блоки розеток 19 / 1U / в стойку
+  - link "Вертикальные PDU и блоки розеток 0U / 42U Вертикальные PDU / 0U / 42U":
+    - /url: /catalog/vertical-pdu/
+    - text: Вертикальные PDU и блоки розеток 0U / 42U
+    - generic: Вертикальные PDU / 0U / 42U
+  - link "Блоки розеток Schuko Типы розеток Schuko / IEC C13 / C19":
+    - /url: /catalog/schuko/
+    - text: Блоки розеток Schuko
+    - generic: Типы розеток Schuko / IEC C13 / C19
+  - link "PDU и блоки розеток IEC C13 / C19 Типы розеток Schuko / IEC C13 / C19":
+    - /url: /catalog/iec-c13-c19/
+    - text: PDU и блоки розеток IEC C13 / C19
+    - generic: Типы розеток Schuko / IEC C13 / C19
+  - link "Блоки розеток и PDU 16A Ток и мощность 16A / 32A":
+    - /url: /catalog/16a/
+    - text: Блоки розеток и PDU 16A
+    - generic: Ток и мощность 16A / 32A
+- contentinfo:
+  - link "Soliton":
+    - /url: /
+  - paragraph: Российские PDU, блоки розеток 19 дюймов и сетевые фильтры с УЗИП для серверных шкафов, ЦОД и корпоративных закупок.
+  - text: КП, счет и документы для закупки подтверждаются по конкретной модели.
+  - text: Поставка по России согласуется в коммерческом предложении.
+  - text: Для подбора достаточно отправить артикулы или техническое задание.
+  - link "Запросить КП":
+    - /url: /b2b/request-quote/
+    - text: Запросить КП
+  - heading "Каталог" [level=2]
+  - navigation:
+    - link "PDU и блоки распределения питания":
+      - /url: /catalog/pdu/
+    - link "Сетевые фильтры 19 дюймов и PDU с УЗИП":
+      - /url: /catalog/pdu-uzip/
+    - link "Блоки розеток 19 дюймов 1U":
+      - /url: /catalog/bloki-rozetok-19-1u/
+    - link "PDU и блоки розеток IEC C13 / C19":
+      - /url: /catalog/iec-c13-c19/
+    - link "Блоки розеток Schuko":
+      - /url: /catalog/schuko/
+    - link "Блоки розеток и PDU 16A":
+      - /url: /catalog/16a/
+    - link "Блоки розеток и PDU 32A":
+      - /url: /catalog/32a/
+  - heading "Подбор" [level=2]
+  - navigation:
+    - link "PDU для серверного шкафа 19 дюймов":
+      - /url: /solutions/pdu-dlya-servernogo-shkafa/
+    - link "Питание серверной стойки 42U":
+      - /url: /solutions/pitanie-stojki-42u/
+    - link "PDU для ЦОД":
+      - /url: /solutions/pdu-dlya-cod/
+    - link "PDU для телекоммуникационного шкафа":
+      - /url: /solutions/pdu-dlya-telekommunikacionnogo-shkafa/
+  - heading "Закупка" [level=2]
+  - navigation:
+    - link "PDU и блоки розеток для корпоративных поставок":
+      - /url: /b2b/
+    - link "Запросить коммерческое предложение":
+      - /url: /b2b/request-quote/
+    - link "Документы Soliton":
+      - /url: /documents/
+    - link "О компании Soliton":
+      - /url: /company/about/
+    - link "Контакты Soliton":
+      - /url: /company/contacts/
+  - generic: © 2026 Soliton
+  - generic: Заявки принимаются через КП; онлайн-оплата и доставка согласуются отдельно.
+- button "Open Next.js Dev Tools":
+- alert

@@ -1,0 +1,3785 @@
+{
+  "queries": [
+    {
+      "phrase": "блок розеток",
+      "axis": "feature",
+      "confirmed_count": 41398,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19",
+      "axis": "feature",
+      "confirmed_count": 6213,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок выключателей с розеткой",
+      "axis": "feature",
+      "confirmed_count": 4293,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 8",
+      "axis": "feature",
+      "confirmed_count": 3868,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок 2 розетки",
+      "axis": "feature",
+      "confirmed_count": 3018,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "axis": "feature",
+      "confirmed_count": 2617,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 2594,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "axis": "feature",
+      "confirmed_count": 2037,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 1u",
+      "axis": "feature",
+      "confirmed_count": 2008,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 16",
+      "axis": "feature",
+      "confirmed_count": 1956,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19",
+      "axis": "feature",
+      "confirmed_count": 6213,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 2594,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "axis": "feature",
+      "confirmed_count": 1469,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток schuko 19",
+      "axis": "feature",
+      "confirmed_count": 1305,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu 19",
+      "axis": "feature",
+      "confirmed_count": 1107,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток для 19 шкафов",
+      "axis": "feature",
+      "confirmed_count": 1089,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 горизонтальный",
+      "axis": "feature",
+      "confirmed_count": 861,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 16а",
+      "axis": "feature",
+      "confirmed_count": 803,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток schuko",
+      "axis": "feature",
+      "confirmed_count": 772,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 iec",
+      "axis": "feature",
+      "confirmed_count": 715,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "axis": "feature",
+      "confirmed_count": 1469,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 1u 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 701,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 1u 16а",
+      "axis": "feature",
+      "confirmed_count": 251,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 1u с выключателем",
+      "axis": "feature",
+      "confirmed_count": 212,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 220в 19 1u",
+      "axis": "feature",
+      "confirmed_count": 159,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 1u 8 гнезд",
+      "axis": "feature",
+      "confirmed_count": 135,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок электрических розеток 19 1u",
+      "axis": "feature",
+      "confirmed_count": 99,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок силовых розеток 19 1u",
+      "axis": "feature",
+      "confirmed_count": 96,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 1u 9 розеток",
+      "axis": "feature",
+      "confirmed_count": 93,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток ntss 19 1u",
+      "axis": "feature",
+      "confirmed_count": 86,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 2594,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 8 розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток schuko",
+      "axis": "feature",
+      "confirmed_count": 772,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 8 розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 1u 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 701,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 8 розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток для 19 шкафов 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 606,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 8 розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток горизонтальный",
+      "axis": "feature",
+      "confirmed_count": 539,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 8 розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток 16а",
+      "axis": "feature",
+      "confirmed_count": 465,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 8 розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 8 гнезд 19",
+      "axis": "feature",
+      "confirmed_count": 427,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 8 розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок евророзеток 19 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 376,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 8 розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок силовых розеток 19 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 232,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 8 розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок распределения питания 8 розеток 19",
+      "axis": "feature",
+      "confirmed_count": 178,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 8 розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 1u",
+      "axis": "feature",
+      "confirmed_count": 2008,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "axis": "feature",
+      "confirmed_count": 1469,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 1u 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 961,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 1u 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 701,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 1u с выключателем",
+      "axis": "feature",
+      "confirmed_count": 367,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 1u 16а",
+      "axis": "feature",
+      "confirmed_count": 251,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 1u с выключателем",
+      "axis": "feature",
+      "confirmed_count": 212,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 1u 8 розеток 16а",
+      "axis": "feature",
+      "confirmed_count": 179,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 1u 8 гнезд",
+      "axis": "feature",
+      "confirmed_count": 164,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 220в 19 1u",
+      "axis": "feature",
+      "confirmed_count": 159,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток в стойку",
+      "axis": "feature",
+      "confirmed_count": 752,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток в стойку",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток в стойку 19",
+      "axis": "feature",
+      "confirmed_count": 488,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток в стойку",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток в стойку 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 83,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток в стойку",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток в стойку 19 8",
+      "axis": "feature",
+      "confirmed_count": 67,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток в стойку",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток в стойку 19 16а",
+      "axis": "feature",
+      "confirmed_count": 50,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток в стойку",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 1u в стойку",
+      "axis": "feature",
+      "confirmed_count": 38,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток в стойку",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток в стойку 19 1u",
+      "axis": "feature",
+      "confirmed_count": 36,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток в стойку",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 дюймов в стойку",
+      "axis": "feature",
+      "confirmed_count": 34,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток в стойку",
+      "confirmed": true
+    },
+    {
+      "phrase": "установка блока розеток в стойку",
+      "axis": "feature",
+      "confirmed_count": 31,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток в стойку",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток вертикальный в стойку",
+      "axis": "feature",
+      "confirmed_count": 27,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток в стойку",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток для серверного шкафа",
+      "axis": "feature",
+      "confirmed_count": 33,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток для серверного шкафа",
+      "confirmed": true
+    },
+    {
+      "phrase": "розеточный блок 19",
+      "axis": "feature",
+      "confirmed_count": 83,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розеточный блок 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "розеточный блок в стойку 19",
+      "axis": "feature",
+      "confirmed_count": 36,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розеточный блок 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "панель розеток 19",
+      "axis": "feature",
+      "confirmed_count": 168,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "панель розеток 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "панель розеток в стойку 19",
+      "axis": "feature",
+      "confirmed_count": 16,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "панель розеток 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "панель питания 19 на 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 6,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "панель розеток 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu",
+      "axis": "feature",
+      "confirmed_count": 14646,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок pdu",
+      "axis": "feature",
+      "confirmed_count": 3431,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu розетки",
+      "axis": "feature",
+      "confirmed_count": 3222,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "axis": "feature",
+      "confirmed_count": 2617,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 19",
+      "axis": "feature",
+      "confirmed_count": 1511,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "cabeus pdu",
+      "axis": "feature",
+      "confirmed_count": 1263,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 8p",
+      "axis": "feature",
+      "confirmed_count": 1216,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu питание",
+      "axis": "feature",
+      "confirmed_count": 1133,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu 19",
+      "axis": "feature",
+      "confirmed_count": 1107,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 8",
+      "axis": "feature",
+      "confirmed_count": 1092,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu розетки",
+      "axis": "feature",
+      "confirmed_count": 3222,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu розетки",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "axis": "feature",
+      "confirmed_count": 2617,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu розетки",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu 19",
+      "axis": "feature",
+      "confirmed_count": 1107,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu розетки",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 873,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu розетки",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu 8p",
+      "axis": "feature",
+      "confirmed_count": 506,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu розетки",
+      "confirmed": true
+    },
+    {
+      "phrase": "горизонтальный блок розеток pdu",
+      "axis": "feature",
+      "confirmed_count": 427,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu розетки",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 pdu 8p",
+      "axis": "feature",
+      "confirmed_count": 389,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu розетки",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 9 розеток",
+      "axis": "feature",
+      "confirmed_count": 360,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu розетки",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток cabeus pdu 8p",
+      "axis": "feature",
+      "confirmed_count": 345,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu розетки",
+      "confirmed": true
+    },
+    {
+      "phrase": "cabeus pdu 8p 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 287,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu розетки",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "axis": "feature",
+      "confirmed_count": 2617,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu 19",
+      "axis": "feature",
+      "confirmed_count": 1107,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu 8p",
+      "axis": "feature",
+      "confirmed_count": 506,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "горизонтальный блок розеток pdu",
+      "axis": "feature",
+      "confirmed_count": 427,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 pdu 8p",
+      "axis": "feature",
+      "confirmed_count": 389,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток cabeus pdu 8p",
+      "axis": "feature",
+      "confirmed_count": 345,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 cabeus pdu 8p",
+      "axis": "feature",
+      "confirmed_count": 266,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu 9 розеток",
+      "axis": "feature",
+      "confirmed_count": 253,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu 8p 2eu",
+      "axis": "feature",
+      "confirmed_count": 226,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 pdu 8p 2eu",
+      "axis": "feature",
+      "confirmed_count": 165,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 19",
+      "axis": "feature",
+      "confirmed_count": 1511,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu 19",
+      "axis": "feature",
+      "confirmed_count": 1107,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 19 1u",
+      "axis": "feature",
+      "confirmed_count": 507,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 pdu 8p",
+      "axis": "feature",
+      "confirmed_count": 389,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок распределения питания pdu 19",
+      "axis": "feature",
+      "confirmed_count": 276,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 cabeus pdu 8p",
+      "axis": "feature",
+      "confirmed_count": 266,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 pdu 8p 2eu",
+      "axis": "feature",
+      "confirmed_count": 165,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок евророзеток 19 cabeus pdu 8p",
+      "axis": "feature",
+      "confirmed_count": 141,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "19 cabeus pdu 8p 2eu",
+      "axis": "feature",
+      "confirmed_count": 139,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 pdu 8p 2iec",
+      "axis": "feature",
+      "confirmed_count": 102,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 1u",
+      "axis": "feature",
+      "confirmed_count": 1092,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 19 1u",
+      "axis": "feature",
+      "confirmed_count": 507,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 9 розеток 1u",
+      "axis": "feature",
+      "confirmed_count": 188,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu 9 розеток 1u",
+      "axis": "feature",
+      "confirmed_count": 107,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "itk pdu 8 розеток 1u",
+      "axis": "feature",
+      "confirmed_count": 98,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu basic 1u",
+      "axis": "feature",
+      "confirmed_count": 30,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 8 розеток 1u ph12 8d3",
+      "axis": "feature",
+      "confirmed_count": 23,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 1u g8",
+      "axis": "feature",
+      "confirmed_count": 23,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu ippon basic 1u",
+      "axis": "feature",
+      "confirmed_count": 11,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 1u g8 k",
+      "axis": "feature",
+      "confirmed_count": 9,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "rack pdu",
+      "axis": "feature",
+      "confirmed_count": 308,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "rack pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "apc rack pdu",
+      "axis": "feature",
+      "confirmed_count": 129,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "rack pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "switched rack pdu",
+      "axis": "feature",
+      "confirmed_count": 83,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "rack pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "apc switched rack pdu",
+      "axis": "feature",
+      "confirmed_count": 57,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "rack pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "metered rack pdu",
+      "axis": "feature",
+      "confirmed_count": 45,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "rack pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "basic rack pdu",
+      "axis": "feature",
+      "confirmed_count": 37,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "rack pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "rack pdu 2g",
+      "axis": "feature",
+      "confirmed_count": 15,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "rack pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "apc basic rack pdu",
+      "axis": "feature",
+      "confirmed_count": 13,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "rack pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "apc rack pdu 2g",
+      "axis": "feature",
+      "confirmed_count": 11,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "rack pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "eaton in line metered rack pdu",
+      "axis": "feature",
+      "confirmed_count": 9,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "rack pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "power distribution unit",
+      "axis": "feature",
+      "confirmed_count": 94,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "power distribution unit",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu power distribution unit",
+      "axis": "feature",
+      "confirmed_count": 19,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "power distribution unit",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "axis": "feature",
+      "confirmed_count": 2037,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток schuko",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток schuko 19",
+      "axis": "feature",
+      "confirmed_count": 1305,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток schuko",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток schuko 8",
+      "axis": "feature",
+      "confirmed_count": 976,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток schuko",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток schuko",
+      "axis": "feature",
+      "confirmed_count": 772,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток schuko",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 7 schuko",
+      "axis": "feature",
+      "confirmed_count": 289,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток schuko",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 9 schuko",
+      "axis": "feature",
+      "confirmed_count": 287,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток schuko",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток c14 schuko",
+      "axis": "feature",
+      "confirmed_count": 285,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток schuko",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 9 розеток schuko",
+      "axis": "feature",
+      "confirmed_count": 205,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток schuko",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 8 розеток schuko 16а",
+      "axis": "feature",
+      "confirmed_count": 154,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток schuko",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок 6 розеток schuko",
+      "axis": "feature",
+      "confirmed_count": 138,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток schuko",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "axis": "feature",
+      "confirmed_count": 28,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток iec320 c13",
+      "confirmed": true
+    },
+    {
+      "phrase": "розетки iec320 c13",
+      "axis": "adjacent",
+      "confirmed_count": 91,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розетка iec320 c13",
+      "confirmed": true
+    },
+    {
+      "phrase": "розетка c13",
+      "axis": "adjacent",
+      "confirmed_count": 1315,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розетка c13",
+      "confirmed": true
+    },
+    {
+      "phrase": "розетка iec c13",
+      "axis": "adjacent",
+      "confirmed_count": 744,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розетка c13",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток c13",
+      "axis": "adjacent",
+      "confirmed_count": 437,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розетка c13",
+      "confirmed": true
+    },
+    {
+      "phrase": "розетка iec 320 c13",
+      "axis": "adjacent",
+      "confirmed_count": 326,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розетка c13",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток iec c13",
+      "axis": "adjacent",
+      "confirmed_count": 245,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розетка c13",
+      "confirmed": true
+    },
+    {
+      "phrase": "8 розеток c13",
+      "axis": "adjacent",
+      "confirmed_count": 236,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розетка c13",
+      "confirmed": true
+    },
+    {
+      "phrase": "c13 c19 розетки",
+      "axis": "adjacent",
+      "confirmed_count": 233,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розетка c13",
+      "confirmed": true
+    },
+    {
+      "phrase": "розетка 60320 c13",
+      "axis": "adjacent",
+      "confirmed_count": 229,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розетка c13",
+      "confirmed": true
+    },
+    {
+      "phrase": "розетка iec 60320 c13",
+      "axis": "adjacent",
+      "confirmed_count": 222,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розетка c13",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 c13",
+      "axis": "adjacent",
+      "confirmed_count": 182,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розетка c13",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu c13",
+      "axis": "feature",
+      "confirmed_count": 452,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu c13",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu c13 c19",
+      "axis": "feature",
+      "confirmed_count": 160,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu c13",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu c13 c14",
+      "axis": "feature",
+      "confirmed_count": 84,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu c13",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 32a c13",
+      "axis": "feature",
+      "confirmed_count": 39,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu c13",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 8 розеток c13",
+      "axis": "feature",
+      "confirmed_count": 37,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu c13",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu с разъемом c13",
+      "axis": "feature",
+      "confirmed_count": 37,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu c13",
+      "confirmed": true
+    },
+    {
+      "phrase": "cab pdu c14 3m c13 rus",
+      "axis": "feature",
+      "confirmed_count": 14,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu c13",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu switched panel c13",
+      "axis": "feature",
+      "confirmed_count": 9,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu c13",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu c19",
+      "axis": "feature",
+      "confirmed_count": 236,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu c19",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu c13 c19",
+      "axis": "feature",
+      "confirmed_count": 160,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu c19",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 6 c19",
+      "axis": "feature",
+      "confirmed_count": 69,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu c19",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 10 1u",
+      "axis": "feature",
+      "confirmed_count": 88,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 10 1u",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "axis": "feature",
+      "confirmed_count": 1559,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 16а",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 16а",
+      "axis": "feature",
+      "confirmed_count": 803,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 16а",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 8 розеток 16а",
+      "axis": "feature",
+      "confirmed_count": 551,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 16а",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток 16а",
+      "axis": "feature",
+      "confirmed_count": 465,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 16а",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 1u 16а",
+      "axis": "feature",
+      "confirmed_count": 251,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 16а",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 220в 16а",
+      "axis": "feature",
+      "confirmed_count": 183,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 16а",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 1u 8 розеток 16а",
+      "axis": "feature",
+      "confirmed_count": 179,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 16а",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 8 розеток schuko 16а",
+      "axis": "feature",
+      "confirmed_count": 154,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 16а",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 250в 16а",
+      "axis": "feature",
+      "confirmed_count": 97,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 16а",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток с авт 16а",
+      "axis": "feature",
+      "confirmed_count": 89,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 16а",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "axis": "feature",
+      "confirmed_count": 232,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 32а",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток вертикальный 32а",
+      "axis": "feature",
+      "confirmed_count": 78,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 32а",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 16a",
+      "axis": "feature",
+      "confirmed_count": 390,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 16a",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок распределения питания pdu 16a",
+      "axis": "feature",
+      "confirmed_count": 124,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 16a",
+      "confirmed": true
+    },
+    {
+      "phrase": "mdx pdu 8e 16a",
+      "axis": "feature",
+      "confirmed_count": 31,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 16a",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 16a type 2",
+      "axis": "feature",
+      "confirmed_count": 23,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 16a",
+      "confirmed": true
+    },
+    {
+      "phrase": "mdx pdu 8e 16a term",
+      "axis": "feature",
+      "confirmed_count": 21,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 16a",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок распределения питания pdu 16a type 2",
+      "axis": "feature",
+      "confirmed_count": 9,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 16a",
+      "confirmed": true
+    },
+    {
+      "phrase": "powercom pdu 16a type 2",
+      "axis": "feature",
+      "confirmed_count": 6,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 16a",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 32a",
+      "axis": "feature",
+      "confirmed_count": 141,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 32a",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 32a c13",
+      "axis": "feature",
+      "confirmed_count": 39,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 32a",
+      "confirmed": true
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "axis": "feature",
+      "confirmed_count": 734,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розетка выключатель вертикальный",
+      "axis": "feature",
+      "confirmed_count": 212,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu вертикальный",
+      "axis": "feature",
+      "confirmed_count": 83,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток вертикальный 32а",
+      "axis": "feature",
+      "confirmed_count": 78,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 вертикальный",
+      "axis": "feature",
+      "confirmed_count": 69,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "вертикальный блок розеток rem",
+      "axis": "feature",
+      "confirmed_count": 66,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток выдвижной вертикальный",
+      "axis": "feature",
+      "confirmed_count": 37,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розетка выключатель вертикальный черный",
+      "axis": "feature",
+      "confirmed_count": 29,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток вертикальный в стойку",
+      "axis": "feature",
+      "confirmed_count": 27,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "вертикальный блок розеток rem 32",
+      "axis": "feature",
+      "confirmed_count": 26,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "axis": "feature",
+      "confirmed_count": 734,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток вертикальный",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розетка выключатель вертикальный",
+      "axis": "feature",
+      "confirmed_count": 212,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток вертикальный",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu вертикальный",
+      "axis": "feature",
+      "confirmed_count": 83,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток вертикальный",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток вертикальный 32а",
+      "axis": "feature",
+      "confirmed_count": 78,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток вертикальный",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 вертикальный",
+      "axis": "feature",
+      "confirmed_count": 69,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток вертикальный",
+      "confirmed": true
+    },
+    {
+      "phrase": "вертикальный блок розеток rem",
+      "axis": "feature",
+      "confirmed_count": 66,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток вертикальный",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток выдвижной вертикальный",
+      "axis": "feature",
+      "confirmed_count": 37,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток вертикальный",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розетка выключатель вертикальный черный",
+      "axis": "feature",
+      "confirmed_count": 29,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток вертикальный",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток вертикальный в стойку",
+      "axis": "feature",
+      "confirmed_count": 27,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток вертикальный",
+      "confirmed": true
+    },
+    {
+      "phrase": "вертикальный блок розеток rem 32",
+      "axis": "feature",
+      "confirmed_count": 26,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток вертикальный",
+      "confirmed": true
+    },
+    {
+      "phrase": "вертикальный pdu",
+      "axis": "feature",
+      "confirmed_count": 285,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток pdu вертикальный",
+      "axis": "feature",
+      "confirmed_count": 83,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu вертикальный 32а",
+      "axis": "feature",
+      "confirmed_count": 74,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "трехфазные блоки розеток",
+      "axis": "feature",
+      "confirmed_count": 43,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "трехфазный блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu трехфазный",
+      "axis": "feature",
+      "confirmed_count": 29,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu трехфазный",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu 3 фазы",
+      "axis": "feature",
+      "confirmed_count": 61,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 3 фазы",
+      "confirmed": true
+    },
+    {
+      "phrase": "управляемая pdu",
+      "axis": "feature",
+      "confirmed_count": 33,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "управляемый pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "интеллектуальные pdu",
+      "axis": "feature",
+      "confirmed_count": 33,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "интеллектуальный pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "axis": "feature",
+      "confirmed_count": 157,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu с мониторингом",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок pdu с мониторингом",
+      "axis": "feature",
+      "confirmed_count": 70,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu с мониторингом",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu с мониторингом и управлением",
+      "axis": "feature",
+      "confirmed_count": 15,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu с мониторингом",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu с управлением",
+      "axis": "feature",
+      "confirmed_count": 30,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu с управлением",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu с мониторингом и управлением",
+      "axis": "feature",
+      "confirmed_count": 15,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu с управлением",
+      "confirmed": true
+    },
+    {
+      "phrase": "metered pdu",
+      "axis": "feature",
+      "confirmed_count": 119,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "metered pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "metered rack pdu",
+      "axis": "feature",
+      "confirmed_count": 45,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "metered pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "apc metered pdu",
+      "axis": "feature",
+      "confirmed_count": 26,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "metered pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "eaton in line metered rack pdu",
+      "axis": "feature",
+      "confirmed_count": 9,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "metered pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "monitored pdu",
+      "axis": "feature",
+      "confirmed_count": 16,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "monitored pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "switched pdu",
+      "axis": "feature",
+      "confirmed_count": 123,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "switched pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "switched rack pdu",
+      "axis": "feature",
+      "confirmed_count": 83,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "switched pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "apc switched pdu",
+      "axis": "feature",
+      "confirmed_count": 63,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "switched pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "apc switched rack pdu",
+      "axis": "feature",
+      "confirmed_count": 57,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "switched pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu switched panel c13",
+      "axis": "feature",
+      "confirmed_count": 9,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "switched pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "apc switched a rack pdu ap8981 прошивка",
+      "axis": "feature",
+      "confirmed_count": 5,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "switched pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "snmp pdu",
+      "axis": "feature",
+      "confirmed_count": 56,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu snmp",
+      "confirmed": true
+    },
+    {
+      "phrase": "лабораторная работа набор услуг pdu протокола snmp",
+      "axis": "feature",
+      "confirmed_count": 5,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu snmp",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток с мониторингом",
+      "axis": "feature",
+      "confirmed_count": 70,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток с мониторингом",
+      "confirmed": true
+    },
+    {
+      "phrase": "измерительный блок розеток",
+      "axis": "feature",
+      "confirmed_count": 9,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "измерительный блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "лучшие сетевые фильтры с дугогашением afci узип",
+      "axis": "adjacent",
+      "confirmed_count": 6,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "сетевой фильтр с узип",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "axis": "feature",
+      "confirmed_count": 0,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток с узип",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu с узип",
+      "axis": "feature",
+      "confirmed_count": 0,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu с узип",
+      "confirmed": true
+    },
+    {
+      "phrase": "сетевой фильтр 19",
+      "axis": "adjacent",
+      "confirmed_count": 181,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "сетевой фильтр 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "сетевой фильтр 19 дюймов",
+      "axis": "adjacent",
+      "confirmed_count": 39,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "сетевой фильтр 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "сетевой фильтр в стойку 19",
+      "axis": "adjacent",
+      "confirmed_count": 31,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "сетевой фильтр 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "фильтр сетевой premium line 19 1156057128 brennenstuhl",
+      "axis": "adjacent",
+      "confirmed_count": 22,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "сетевой фильтр 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "19 шкаф сетевой фильтр",
+      "axis": "adjacent",
+      "confirmed_count": 22,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "сетевой фильтр 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "сетевой фильтр 19 1u",
+      "axis": "adjacent",
+      "confirmed_count": 16,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "сетевой фильтр 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "сетевой фильтр 19 дюймов в стойку",
+      "axis": "adjacent",
+      "confirmed_count": 16,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "сетевой фильтр 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "сетевой фильтр 19 8 розеток",
+      "axis": "adjacent",
+      "confirmed_count": 7,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "сетевой фильтр 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "фильтр сетевой стоечный 19",
+      "axis": "adjacent",
+      "confirmed_count": 6,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "сетевой фильтр 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "сетевой фильтр в шкаф 19 дюймов",
+      "axis": "adjacent",
+      "confirmed_count": 5,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "сетевой фильтр 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "серверный шкаф",
+      "axis": "adjacent",
+      "confirmed_count": 9967,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "серверный шкаф",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф серверный напольный",
+      "axis": "adjacent",
+      "confirmed_count": 1564,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "серверный шкаф",
+      "confirmed": true
+    },
+    {
+      "phrase": "серверный шкаф 19",
+      "axis": "adjacent",
+      "confirmed_count": 1299,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "серверный шкаф",
+      "confirmed": true
+    },
+    {
+      "phrase": "серверный шкаф 42u",
+      "axis": "adjacent",
+      "confirmed_count": 870,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "серверный шкаф",
+      "confirmed": true
+    },
+    {
+      "phrase": "дверь серверного шкафа",
+      "axis": "adjacent",
+      "confirmed_count": 771,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "серверный шкаф",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф серверный телекоммуникационный",
+      "axis": "adjacent",
+      "confirmed_count": 601,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "серверный шкаф",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф серверный напольный 19",
+      "axis": "adjacent",
+      "confirmed_count": 572,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "серверный шкаф",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф серверный напольный 42u",
+      "axis": "adjacent",
+      "confirmed_count": 538,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "серверный шкаф",
+      "confirmed": true
+    },
+    {
+      "phrase": "купить серверный шкаф",
+      "axis": "adjacent",
+      "confirmed_count": 471,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "серверный шкаф",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф серверный черный",
+      "axis": "adjacent",
+      "confirmed_count": 460,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "серверный шкаф",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф 19",
+      "axis": "adjacent",
+      "confirmed_count": 25013,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "телекоммуникационный шкаф 19",
+      "axis": "adjacent",
+      "confirmed_count": 7819,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф напольный 19",
+      "axis": "adjacent",
+      "confirmed_count": 5319,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф настенный 19",
+      "axis": "adjacent",
+      "confirmed_count": 5086,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф 19 дюймов",
+      "axis": "adjacent",
+      "confirmed_count": 2910,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф телекоммуникационный 19 настенный",
+      "axis": "adjacent",
+      "confirmed_count": 2810,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф телекоммуникационный 19 напольный",
+      "axis": "adjacent",
+      "confirmed_count": 2441,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф 19 42u",
+      "axis": "adjacent",
+      "confirmed_count": 2204,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф 19 cabeus",
+      "axis": "adjacent",
+      "confirmed_count": 1922,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф напольный 19 42u",
+      "axis": "adjacent",
+      "confirmed_count": 1615,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "стойка 19",
+      "axis": "adjacent",
+      "confirmed_count": 12272,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "стойка 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "стойка 19 дюймов",
+      "axis": "adjacent",
+      "confirmed_count": 2686,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "стойка 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "комплект 19 стойки",
+      "axis": "adjacent",
+      "confirmed_count": 1138,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "стойка 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "установка в стойку 19",
+      "axis": "adjacent",
+      "confirmed_count": 1024,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "стойка 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "блоки 19 стоек",
+      "axis": "adjacent",
+      "confirmed_count": 949,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "стойка 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкафа стойка 19",
+      "axis": "adjacent",
+      "confirmed_count": 868,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "стойка 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "стойка 19 1u",
+      "axis": "adjacent",
+      "confirmed_count": 825,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "стойка 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "монтаж стоек 19",
+      "axis": "adjacent",
+      "confirmed_count": 813,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "стойка 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "19 дюймовая стойка",
+      "axis": "adjacent",
+      "confirmed_count": 737,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "стойка 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "19 стойка ибп",
+      "axis": "adjacent",
+      "confirmed_count": 681,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "стойка 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "телекоммуникационный шкаф 19",
+      "axis": "adjacent",
+      "confirmed_count": 7819,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф телекоммуникационный 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф телекоммуникационный 19 настенный",
+      "axis": "adjacent",
+      "confirmed_count": 2810,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф телекоммуникационный 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф телекоммуникационный 19 напольный",
+      "axis": "adjacent",
+      "confirmed_count": 2441,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф телекоммуникационный 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф телекоммуникационный cabeus 19",
+      "axis": "adjacent",
+      "confirmed_count": 1087,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф телекоммуникационный 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф телекоммуникационный 19 12u",
+      "axis": "adjacent",
+      "confirmed_count": 880,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф телекоммуникационный 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф телекоммуникационный 19 42u",
+      "axis": "adjacent",
+      "confirmed_count": 860,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф телекоммуникационный 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф телекоммуникационный 19 дверь стекло",
+      "axis": "adjacent",
+      "confirmed_count": 755,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф телекоммуникационный 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкаф телекоммуникационный напольный 19 42u",
+      "axis": "adjacent",
+      "confirmed_count": 702,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф телекоммуникационный 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "телекоммуникационный шкаф 19 6u",
+      "axis": "adjacent",
+      "confirmed_count": 695,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф телекоммуникационный 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "шкафа телекоммуникационного 19 9u",
+      "axis": "adjacent",
+      "confirmed_count": 693,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф телекоммуникационный 19",
+      "confirmed": true
+    },
+    {
+      "phrase": "ibp для серверного шкафа",
+      "axis": "adjacent",
+      "confirmed_count": 0,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "ibp для серверного шкафа",
+      "confirmed": true
+    },
+    {
+      "phrase": "ибп для серверного шкафа",
+      "axis": "adjacent",
+      "confirmed_count": 39,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "ибп для серверного шкафа",
+      "confirmed": true
+    },
+    {
+      "phrase": "soliton pdu",
+      "axis": "alternative",
+      "confirmed_count": 7,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "soliton pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "soliton блок розеток",
+      "axis": "alternative",
+      "confirmed_count": 2,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "soliton блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "axis": "alternative",
+      "confirmed_count": 17,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "солитон блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu apc",
+      "axis": "alternative",
+      "confirmed_count": 339,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "apc pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "apc rack pdu",
+      "axis": "alternative",
+      "confirmed_count": 129,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "apc pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "apc switched pdu",
+      "axis": "alternative",
+      "confirmed_count": 63,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "apc pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "apc switched rack pdu",
+      "axis": "alternative",
+      "confirmed_count": 57,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "apc pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu apc ap8981",
+      "axis": "alternative",
+      "confirmed_count": 45,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "apc pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "apc metered pdu",
+      "axis": "alternative",
+      "confirmed_count": 26,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "apc pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu apc ap8886",
+      "axis": "alternative",
+      "confirmed_count": 15,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "apc pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "apc basic rack pdu",
+      "axis": "alternative",
+      "confirmed_count": 13,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "apc pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "apc rack pdu 2g",
+      "axis": "alternative",
+      "confirmed_count": 11,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "apc pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "apc rack pdu 9000",
+      "axis": "alternative",
+      "confirmed_count": 8,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "apc pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "schneider pdu",
+      "axis": "alternative",
+      "confirmed_count": 3,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "schneider pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu hyperline",
+      "axis": "alternative",
+      "confirmed_count": 45,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "hyperline pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток hyperline",
+      "axis": "alternative",
+      "confirmed_count": 378,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "hyperline блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 hyperline",
+      "axis": "alternative",
+      "confirmed_count": 176,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "hyperline блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток шкаф hyperline",
+      "axis": "alternative",
+      "confirmed_count": 99,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "hyperline блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "hyperline блок розеток для 19 шкафов",
+      "axis": "alternative",
+      "confirmed_count": 88,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "hyperline блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток hyperline 19 8 розеток",
+      "axis": "alternative",
+      "confirmed_count": 75,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "hyperline блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток hyperline she19 8sh iec",
+      "axis": "alternative",
+      "confirmed_count": 53,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "hyperline блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток hyperline she19 8sh s iec",
+      "axis": "alternative",
+      "confirmed_count": 50,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "hyperline блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток hyperline sht19 8sh s",
+      "axis": "alternative",
+      "confirmed_count": 42,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "hyperline блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "блок розеток 19 9 розеток hyperline",
+      "axis": "alternative",
+      "confirmed_count": 39,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "hyperline блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "hyperline блок розеток 1u",
+      "axis": "alternative",
+      "confirmed_count": 29,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "hyperline блок розеток",
+      "confirmed": true
+    },
+    {
+      "phrase": "pdu rittal",
+      "axis": "alternative",
+      "confirmed_count": 13,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "rittal pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "vertiv pdu",
+      "axis": "alternative",
+      "confirmed_count": 16,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "vertiv pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "eaton pdu",
+      "axis": "alternative",
+      "confirmed_count": 29,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "eaton pdu",
+      "confirmed": true
+    },
+    {
+      "phrase": "eaton in line metered rack pdu",
+      "axis": "alternative",
+      "confirmed_count": 9,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "eaton pdu",
+      "confirmed": true
+    }
+  ],
+  "dynamics": []
+}

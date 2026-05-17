@@ -1,0 +1,2432 @@
+{
+  "clusters": [
+    {
+      "cluster_id": "server_rack_adjacent",
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "primary_intent": "commercial",
+      "page_type": "use-case",
+      "query_count": 29,
+      "confirmed_query_count": 29,
+      "known_frequency_total": 91932,
+      "representative_seed_phrase": "шкаф 19",
+      "representative_seed_count": 25013,
+      "member_phrases": [
+        "шкаф 19",
+        "стойка 19",
+        "серверный шкаф",
+        "телекоммуникационный шкаф 19",
+        "шкаф напольный 19",
+        "шкаф настенный 19",
+        "шкаф 19 дюймов",
+        "шкаф телекоммуникационный 19 настенный",
+        "стойка 19 дюймов",
+        "шкаф телекоммуникационный 19 напольный",
+        "шкаф 19 42u",
+        "шкаф напольный 19 42u",
+        "серверный шкаф 19",
+        "комплект 19 стойки",
+        "установка в стойку 19",
+        "блоки 19 стоек",
+        "серверный шкаф 42u",
+        "шкафа стойка 19",
+        "стойка 19 1u",
+        "монтаж стоек 19",
+        "дверь серверного шкафа",
+        "19 дюймовая стойка",
+        "телекоммуникационный шкаф 19 6u",
+        "19 стойка ибп",
+        "шкаф серверный напольный 19",
+        "купить серверный шкаф",
+        "ибп для серверного шкафа",
+        "блок розеток для серверного шкафа",
+        "сетевой фильтр в шкаф 19 дюймов"
+      ],
+      "top_queries": [
+        {
+          "phrase": "шкаф 19",
+          "confirmed_count": 25013,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "шкаф 19"
+          ]
+        },
+        {
+          "phrase": "стойка 19",
+          "confirmed_count": 12272,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "стойка 19"
+          ]
+        },
+        {
+          "phrase": "серверный шкаф",
+          "confirmed_count": 9967,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "серверный шкаф"
+          ]
+        },
+        {
+          "phrase": "телекоммуникационный шкаф 19",
+          "confirmed_count": 7819,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "шкаф 19",
+            "шкаф телекоммуникационный 19"
+          ]
+        },
+        {
+          "phrase": "шкаф напольный 19",
+          "confirmed_count": 5319,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "шкаф 19"
+          ]
+        },
+        {
+          "phrase": "шкаф настенный 19",
+          "confirmed_count": 5086,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "шкаф 19"
+          ]
+        },
+        {
+          "phrase": "шкаф 19 дюймов",
+          "confirmed_count": 2910,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "шкаф 19"
+          ]
+        },
+        {
+          "phrase": "шкаф телекоммуникационный 19 настенный",
+          "confirmed_count": 2810,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "шкаф 19"
+          ]
+        },
+        {
+          "phrase": "стойка 19 дюймов",
+          "confirmed_count": 2686,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "стойка 19"
+          ]
+        },
+        {
+          "phrase": "шкаф телекоммуникационный 19 напольный",
+          "confirmed_count": 2441,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "шкаф 19"
+          ]
+        },
+        {
+          "phrase": "шкаф 19 42u",
+          "confirmed_count": 2204,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "шкаф 19"
+          ]
+        },
+        {
+          "phrase": "шкаф напольный 19 42u",
+          "confirmed_count": 1615,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "шкаф 19"
+          ]
+        },
+        {
+          "phrase": "серверный шкаф 19",
+          "confirmed_count": 1299,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "серверный шкаф"
+          ]
+        },
+        {
+          "phrase": "комплект 19 стойки",
+          "confirmed_count": 1138,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "стойка 19"
+          ]
+        },
+        {
+          "phrase": "установка в стойку 19",
+          "confirmed_count": 1024,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "стойка 19"
+          ]
+        },
+        {
+          "phrase": "блоки 19 стоек",
+          "confirmed_count": 949,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "стойка 19"
+          ]
+        },
+        {
+          "phrase": "серверный шкаф 42u",
+          "confirmed_count": 870,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "серверный шкаф"
+          ]
+        },
+        {
+          "phrase": "шкафа стойка 19",
+          "confirmed_count": 868,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "стойка 19"
+          ]
+        },
+        {
+          "phrase": "стойка 19 1u",
+          "confirmed_count": 825,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "стойка 19"
+          ]
+        },
+        {
+          "phrase": "монтаж стоек 19",
+          "confirmed_count": 813,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "стойка 19"
+          ]
+        },
+        {
+          "phrase": "дверь серверного шкафа",
+          "confirmed_count": 771,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "серверный шкаф"
+          ]
+        },
+        {
+          "phrase": "19 дюймовая стойка",
+          "confirmed_count": 737,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "стойка 19"
+          ]
+        },
+        {
+          "phrase": "телекоммуникационный шкаф 19 6u",
+          "confirmed_count": 695,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "шкаф телекоммуникационный 19"
+          ]
+        },
+        {
+          "phrase": "19 стойка ибп",
+          "confirmed_count": 681,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "стойка 19"
+          ]
+        },
+        {
+          "phrase": "шкаф серверный напольный 19",
+          "confirmed_count": 572,
+          "cluster_id": "server_rack_adjacent",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "серверный шкаф"
+          ]
+        }
+      ],
+      "first_6m_avg": 15438.22,
+      "last_6m_avg": 15247.5,
+      "change_pct": -2.26,
+      "trend_label": "стабильный",
+      "dynamics_points": 72,
+      "volatility": 0.1398,
+      "seasonality_index": 1.2494
+    },
+    {
+      "cluster_id": "core_19_1u",
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "cluster_type": "feature",
+      "primary_intent": "commercial",
+      "page_type": "category",
+      "query_count": 41,
+      "confirmed_query_count": 41,
+      "known_frequency_total": 68652,
+      "representative_seed_phrase": "блок розеток 19",
+      "representative_seed_count": 6213,
+      "member_phrases": [
+        "блок розеток",
+        "блок розеток 19",
+        "блок розеток 8",
+        "блок розеток 19 8 розеток",
+        "блок розеток 1u",
+        "блок розеток 16",
+        "блок розеток 19 1u",
+        "блок розеток для 19 шкафов",
+        "блок розеток 1u 8 розеток",
+        "блок розеток 19 горизонтальный",
+        "блок розеток в стойку",
+        "блок розеток 19 1u 8 розеток",
+        "блок розеток для 19 шкафов 8 розеток",
+        "блок розеток 19 8 розеток горизонтальный",
+        "блок розеток в стойку 19",
+        "блок розеток 8 гнезд 19",
+        "блок розеток hyperline",
+        "блок розеток 1u с выключателем",
+        "блок розеток 19 1u с выключателем",
+        "блок розеток 19 hyperline",
+        "панель розеток 19",
+        "блок розеток 1u 8 гнезд",
+        "блок розеток 220в 19 1u",
+        "блок розеток 19 1u 8 гнезд",
+        "блок розеток шкаф hyperline",
+        "блок электрических розеток 19 1u",
+        "блок розеток 19 1u 9 розеток",
+        "блок розеток ntss 19 1u",
+        "блок розеток в стойку 8 розеток",
+        "розеточный блок 19",
+        "блок розеток hyperline 19 8 розеток",
+        "блок розеток в стойку 19 8",
+        "блок розеток hyperline sht19 8sh s",
+        "блок розеток 19 9 розеток hyperline",
+        "блок розеток 1u в стойку",
+        "блок розеток в стойку 19 1u",
+        "розеточный блок в стойку 19",
+        "блок розеток 19 дюймов в стойку",
+        "установка блока розеток в стойку",
+        "панель розеток в стойку 19",
+        "панель питания 19 на 8 розеток"
+      ],
+      "top_queries": [
+        {
+          "phrase": "блок розеток",
+          "confirmed_count": 41398,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток"
+          ]
+        },
+        {
+          "phrase": "блок розеток 19",
+          "confirmed_count": 6213,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток",
+            "блок розеток 19"
+          ]
+        },
+        {
+          "phrase": "блок розеток 8",
+          "confirmed_count": 3868,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток"
+          ]
+        },
+        {
+          "phrase": "блок розеток 19 8 розеток",
+          "confirmed_count": 2594,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток",
+            "блок розеток 19",
+            "блок розеток 19 8 розеток"
+          ]
+        },
+        {
+          "phrase": "блок розеток 1u",
+          "confirmed_count": 2008,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток",
+            "блок розеток 1u"
+          ]
+        },
+        {
+          "phrase": "блок розеток 16",
+          "confirmed_count": 1956,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток"
+          ]
+        },
+        {
+          "phrase": "блок розеток 19 1u",
+          "confirmed_count": 1469,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 19",
+            "блок розеток 19 1u",
+            "блок розеток 1u"
+          ]
+        },
+        {
+          "phrase": "блок розеток для 19 шкафов",
+          "confirmed_count": 1089,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 19"
+          ]
+        },
+        {
+          "phrase": "блок розеток 1u 8 розеток",
+          "confirmed_count": 961,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 1u"
+          ]
+        },
+        {
+          "phrase": "блок розеток 19 горизонтальный",
+          "confirmed_count": 861,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 19"
+          ]
+        },
+        {
+          "phrase": "блок розеток в стойку",
+          "confirmed_count": 752,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток в стойку"
+          ]
+        },
+        {
+          "phrase": "блок розеток 19 1u 8 розеток",
+          "confirmed_count": 701,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 19 1u",
+            "блок розеток 19 8 розеток",
+            "блок розеток 1u"
+          ]
+        },
+        {
+          "phrase": "блок розеток для 19 шкафов 8 розеток",
+          "confirmed_count": 606,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 19 8 розеток"
+          ]
+        },
+        {
+          "phrase": "блок розеток 19 8 розеток горизонтальный",
+          "confirmed_count": 539,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 19 8 розеток"
+          ]
+        },
+        {
+          "phrase": "блок розеток в стойку 19",
+          "confirmed_count": 488,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток в стойку"
+          ]
+        },
+        {
+          "phrase": "блок розеток 8 гнезд 19",
+          "confirmed_count": 427,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 19 8 розеток"
+          ]
+        },
+        {
+          "phrase": "блок розеток hyperline",
+          "confirmed_count": 378,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "alternative"
+          ],
+          "requested_phrases": [
+            "hyperline блок розеток"
+          ]
+        },
+        {
+          "phrase": "блок розеток 1u с выключателем",
+          "confirmed_count": 367,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 1u"
+          ]
+        },
+        {
+          "phrase": "блок розеток 19 1u с выключателем",
+          "confirmed_count": 212,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 19 1u",
+            "блок розеток 1u"
+          ]
+        },
+        {
+          "phrase": "блок розеток 19 hyperline",
+          "confirmed_count": 176,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "alternative"
+          ],
+          "requested_phrases": [
+            "hyperline блок розеток"
+          ]
+        },
+        {
+          "phrase": "панель розеток 19",
+          "confirmed_count": 168,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "панель розеток 19"
+          ]
+        },
+        {
+          "phrase": "блок розеток 1u 8 гнезд",
+          "confirmed_count": 164,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 1u"
+          ]
+        },
+        {
+          "phrase": "блок розеток 220в 19 1u",
+          "confirmed_count": 159,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 19 1u",
+            "блок розеток 1u"
+          ]
+        },
+        {
+          "phrase": "блок розеток 19 1u 8 гнезд",
+          "confirmed_count": 135,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 19 1u"
+          ]
+        },
+        {
+          "phrase": "блок розеток шкаф hyperline",
+          "confirmed_count": 99,
+          "cluster_id": "core_19_1u",
+          "axes": [
+            "alternative"
+          ],
+          "requested_phrases": [
+            "hyperline блок розеток"
+          ]
+        }
+      ],
+      "first_6m_avg": 4048.92,
+      "last_6m_avg": 3732.75,
+      "change_pct": -7.79,
+      "trend_label": "стабильный",
+      "dynamics_points": 48,
+      "volatility": 0.1224,
+      "seasonality_index": 1.1882
+    },
+    {
+      "cluster_id": "pdu_generic",
+      "cluster_key": "PDU / блоки распределения питания",
+      "cluster_type": "feature",
+      "primary_intent": "commercial",
+      "page_type": "category",
+      "query_count": 44,
+      "confirmed_query_count": 44,
+      "known_frequency_total": 38946,
+      "representative_seed_phrase": "pdu",
+      "representative_seed_count": 14646,
+      "member_phrases": [
+        "pdu",
+        "блок pdu",
+        "pdu розетки",
+        "блок розеток pdu",
+        "pdu 19",
+        "cabeus pdu",
+        "pdu 8p",
+        "pdu питание",
+        "блок розеток pdu 19",
+        "pdu 1u",
+        "pdu 8",
+        "pdu 8 розеток",
+        "pdu 19 1u",
+        "блок розеток pdu 8p",
+        "горизонтальный блок розеток pdu",
+        "блок розеток 19 pdu 8p",
+        "pdu 9 розеток",
+        "блок розеток cabeus pdu 8p",
+        "pdu apc",
+        "rack pdu",
+        "cabeus pdu 8p 8 розеток",
+        "блок распределения питания pdu 19",
+        "блок розеток 19 cabeus pdu 8p",
+        "блок розеток pdu 9 розеток",
+        "блок розеток pdu 8p 2eu",
+        "pdu 9 розеток 1u",
+        "блок распределения питания 8 розеток 19",
+        "блок розеток 19 pdu 8p 2eu",
+        "19 cabeus pdu 8p 2eu",
+        "блок розеток pdu 9 розеток 1u",
+        "itk pdu 8 розеток 1u",
+        "power distribution unit",
+        "pdu apc ap8981",
+        "pdu hyperline",
+        "basic rack pdu",
+        "pdu basic 1u",
+        "pdu 1u g8",
+        "pdu 8 розеток 1u ph12 8d3",
+        "pdu power distribution unit",
+        "pdu apc ap8886",
+        "rack pdu 2g",
+        "pdu rittal",
+        "pdu ippon basic 1u",
+        "pdu 1u g8 k"
+      ],
+      "top_queries": [
+        {
+          "phrase": "pdu",
+          "confirmed_count": 14646,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu"
+          ]
+        },
+        {
+          "phrase": "блок pdu",
+          "confirmed_count": 3431,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu"
+          ]
+        },
+        {
+          "phrase": "pdu розетки",
+          "confirmed_count": 3222,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu",
+            "pdu розетки"
+          ]
+        },
+        {
+          "phrase": "блок розеток pdu",
+          "confirmed_count": 2617,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток",
+            "pdu",
+            "pdu розетки",
+            "блок розеток pdu"
+          ]
+        },
+        {
+          "phrase": "pdu 19",
+          "confirmed_count": 1511,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu",
+            "pdu 19"
+          ]
+        },
+        {
+          "phrase": "cabeus pdu",
+          "confirmed_count": 1263,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu"
+          ]
+        },
+        {
+          "phrase": "pdu 8p",
+          "confirmed_count": 1216,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu"
+          ]
+        },
+        {
+          "phrase": "pdu питание",
+          "confirmed_count": 1133,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu"
+          ]
+        },
+        {
+          "phrase": "блок розеток pdu 19",
+          "confirmed_count": 1107,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 19",
+            "pdu",
+            "pdu розетки",
+            "блок розеток pdu",
+            "pdu 19"
+          ]
+        },
+        {
+          "phrase": "pdu 1u",
+          "confirmed_count": 1092,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu 1u"
+          ]
+        },
+        {
+          "phrase": "pdu 8",
+          "confirmed_count": 1092,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu"
+          ]
+        },
+        {
+          "phrase": "pdu 8 розеток",
+          "confirmed_count": 873,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu розетки"
+          ]
+        },
+        {
+          "phrase": "pdu 19 1u",
+          "confirmed_count": 507,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu 19",
+            "pdu 1u"
+          ]
+        },
+        {
+          "phrase": "блок розеток pdu 8p",
+          "confirmed_count": 506,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu розетки",
+            "блок розеток pdu"
+          ]
+        },
+        {
+          "phrase": "горизонтальный блок розеток pdu",
+          "confirmed_count": 427,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu розетки",
+            "блок розеток pdu"
+          ]
+        },
+        {
+          "phrase": "блок розеток 19 pdu 8p",
+          "confirmed_count": 389,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu розетки",
+            "блок розеток pdu",
+            "pdu 19"
+          ]
+        },
+        {
+          "phrase": "pdu 9 розеток",
+          "confirmed_count": 360,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu розетки"
+          ]
+        },
+        {
+          "phrase": "блок розеток cabeus pdu 8p",
+          "confirmed_count": 345,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu розетки",
+            "блок розеток pdu"
+          ]
+        },
+        {
+          "phrase": "pdu apc",
+          "confirmed_count": 339,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "alternative"
+          ],
+          "requested_phrases": [
+            "apc pdu"
+          ]
+        },
+        {
+          "phrase": "rack pdu",
+          "confirmed_count": 308,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "rack pdu"
+          ]
+        },
+        {
+          "phrase": "cabeus pdu 8p 8 розеток",
+          "confirmed_count": 287,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu розетки"
+          ]
+        },
+        {
+          "phrase": "блок распределения питания pdu 19",
+          "confirmed_count": 276,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu 19"
+          ]
+        },
+        {
+          "phrase": "блок розеток 19 cabeus pdu 8p",
+          "confirmed_count": 266,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток pdu",
+            "pdu 19"
+          ]
+        },
+        {
+          "phrase": "блок розеток pdu 9 розеток",
+          "confirmed_count": 253,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток pdu"
+          ]
+        },
+        {
+          "phrase": "блок розеток pdu 8p 2eu",
+          "confirmed_count": 226,
+          "cluster_id": "pdu_generic",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток pdu"
+          ]
+        }
+      ],
+      "first_6m_avg": 5664,
+      "last_6m_avg": 6127.34,
+      "change_pct": 14.82,
+      "trend_label": "стабильный",
+      "dynamics_points": 72,
+      "volatility": 0.1482,
+      "seasonality_index": 1.3285
+    },
+    {
+      "cluster_id": "socket_type",
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "cluster_type": "feature",
+      "primary_intent": "commercial",
+      "page_type": "category",
+      "query_count": 36,
+      "confirmed_query_count": 36,
+      "known_frequency_total": 13408,
+      "representative_seed_phrase": "блок розеток schuko",
+      "representative_seed_count": 2037,
+      "member_phrases": [
+        "блок розеток schuko",
+        "розетка c13",
+        "блок розеток schuko 19",
+        "блок розеток schuko 8",
+        "блок розеток 19 8 розеток schuko",
+        "розетка iec c13",
+        "блок розеток 19 iec",
+        "pdu c13",
+        "блок розеток c13",
+        "блок евророзеток 19 8 розеток",
+        "розетка iec 320 c13",
+        "блок розеток 7 schuko",
+        "блок розеток 9 schuko",
+        "блок розеток c14 schuko",
+        "блок розеток iec c13",
+        "8 розеток c13",
+        "pdu c19",
+        "c13 c19 розетки",
+        "блок силовых розеток 19 8 розеток",
+        "розетка 60320 c13",
+        "розетка iec 60320 c13",
+        "блок розеток 19 9 розеток schuko",
+        "блок розеток 19 c13",
+        "pdu c13 c19",
+        "блок евророзеток 19 cabeus pdu 8p",
+        "блок 6 розеток schuko",
+        "блок розеток 19 pdu 8p 2iec",
+        "блок силовых розеток 19 1u",
+        "розетки iec320 c13",
+        "pdu c13 c14",
+        "pdu 6 c19",
+        "блок розеток hyperline she19 8sh iec",
+        "блок розеток hyperline she19 8sh s iec",
+        "pdu 8 розеток c13",
+        "pdu с разъемом c13",
+        "cab pdu c14 3m c13 rus"
+      ],
+      "top_queries": [
+        {
+          "phrase": "блок розеток schuko",
+          "confirmed_count": 2037,
+          "cluster_id": "socket_type",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток",
+            "блок розеток schuko"
+          ]
+        },
+        {
+          "phrase": "розетка c13",
+          "confirmed_count": 1315,
+          "cluster_id": "socket_type",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "розетка c13"
+          ]
+        },
+        {
+          "phrase": "блок розеток schuko 19",
+          "confirmed_count": 1305,
+          "cluster_id": "socket_type",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 19",
+            "блок розеток schuko"
+          ]
+        },
+        {
+          "phrase": "блок розеток schuko 8",
+          "confirmed_count": 976,
+          "cluster_id": "socket_type",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток schuko"
+          ]
+        },
+        {
+          "phrase": "блок розеток 19 8 розеток schuko",
+          "confirmed_count": 772,
+          "cluster_id": "socket_type",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 19",
+            "блок розеток 19 8 розеток",
+            "блок розеток schuko"
+          ]
+        },
+        {
+          "phrase": "розетка iec c13",
+          "confirmed_count": 744,
+          "cluster_id": "socket_type",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "розетка c13"
+          ]
+        },
+        {
+          "phrase": "блок розеток 19 iec",
+          "confirmed_count": 715,
+          "cluster_id": "socket_type",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 19"
+          ]
+        },
+        {
+          "phrase": "pdu c13",
+          "confirmed_count": 452,
+          "cluster_id": "socket_type",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu c13"
+          ]
+        },
+        {
+          "phrase": "блок розеток c13",
+          "confirmed_count": 437,
+          "cluster_id": "socket_type",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "розетка c13"
+          ]
+        },
+        {
+          "phrase": "блок евророзеток 19 8 розеток",
+          "confirmed_count": 376,
+          "cluster_id": "socket_type",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 19 8 розеток"
+          ]
+        },
+        {
+          "phrase": "розетка iec 320 c13",
+          "confirmed_count": 326,
+          "cluster_id": "socket_type",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "розетка c13"
+          ]
+        },
+        {
+          "phrase": "блок розеток 7 schuko",
+          "confirmed_count": 289,
+          "cluster_id": "socket_type",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток schuko"
+          ]
+        },
+        {
+          "phrase": "блок розеток 9 schuko",
+          "confirmed_count": 287,
+          "cluster_id": "socket_type",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток schuko"
+          ]
+        },
+        {
+          "phrase": "блок розеток c14 schuko",
+          "confirmed_count": 285,
+          "cluster_id": "socket_type",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток schuko"
+          ]
+        },
+        {
+          "phrase": "блок розеток iec c13",
+          "confirmed_count": 245,
+          "cluster_id": "socket_type",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "розетка c13"
+          ]
+        },
+        {
+          "phrase": "8 розеток c13",
+          "confirmed_count": 236,
+          "cluster_id": "socket_type",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "розетка c13"
+          ]
+        },
+        {
+          "phrase": "pdu c19",
+          "confirmed_count": 236,
+          "cluster_id": "socket_type",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu c19"
+          ]
+        },
+        {
+          "phrase": "c13 c19 розетки",
+          "confirmed_count": 233,
+          "cluster_id": "socket_type",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "розетка c13"
+          ]
+        },
+        {
+          "phrase": "блок силовых розеток 19 8 розеток",
+          "confirmed_count": 232,
+          "cluster_id": "socket_type",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 19 8 розеток"
+          ]
+        },
+        {
+          "phrase": "розетка 60320 c13",
+          "confirmed_count": 229,
+          "cluster_id": "socket_type",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "розетка c13"
+          ]
+        },
+        {
+          "phrase": "розетка iec 60320 c13",
+          "confirmed_count": 222,
+          "cluster_id": "socket_type",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "розетка c13"
+          ]
+        },
+        {
+          "phrase": "блок розеток 19 9 розеток schuko",
+          "confirmed_count": 205,
+          "cluster_id": "socket_type",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток schuko"
+          ]
+        },
+        {
+          "phrase": "блок розеток 19 c13",
+          "confirmed_count": 182,
+          "cluster_id": "socket_type",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "розетка c13"
+          ]
+        },
+        {
+          "phrase": "pdu c13 c19",
+          "confirmed_count": 160,
+          "cluster_id": "socket_type",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu c13",
+            "pdu c19"
+          ]
+        },
+        {
+          "phrase": "блок евророзеток 19 cabeus pdu 8p",
+          "confirmed_count": 141,
+          "cluster_id": "socket_type",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu 19"
+          ]
+        }
+      ],
+      "first_6m_avg": 1006.5,
+      "last_6m_avg": 959.75,
+      "change_pct": -2.32,
+      "trend_label": "стабильный",
+      "dynamics_points": 48,
+      "volatility": 0.0663,
+      "seasonality_index": 0.6162
+    },
+    {
+      "cluster_id": "amperage",
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "cluster_type": "feature",
+      "primary_intent": "commercial",
+      "page_type": "category",
+      "query_count": 21,
+      "confirmed_query_count": 21,
+      "known_frequency_total": 5397,
+      "representative_seed_phrase": "блок розеток 16а",
+      "representative_seed_count": 1559,
+      "member_phrases": [
+        "блок розеток 16а",
+        "блок розеток 19 16а",
+        "блок розеток 8 розеток 16а",
+        "блок розеток 19 8 розеток 16а",
+        "pdu 16a",
+        "блок розеток 19 1u 16а",
+        "блок розеток 32а",
+        "блок розеток 220в 16а",
+        "блок розеток 1u 8 розеток 16а",
+        "блок розеток 8 розеток schuko 16а",
+        "pdu 32a",
+        "блок распределения питания pdu 16a",
+        "блок розеток 19 250в 16а",
+        "блок розеток с авт 16а",
+        "блок розеток в стойку 19 16а",
+        "pdu 32a c13",
+        "mdx pdu 8e 16a",
+        "pdu 16a type 2",
+        "mdx pdu 8e 16a term",
+        "блок распределения питания pdu 16a type 2",
+        "powercom pdu 16a type 2"
+      ],
+      "top_queries": [
+        {
+          "phrase": "блок розеток 16а",
+          "confirmed_count": 1559,
+          "cluster_id": "amperage",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 16а"
+          ]
+        },
+        {
+          "phrase": "блок розеток 19 16а",
+          "confirmed_count": 803,
+          "cluster_id": "amperage",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 19",
+            "блок розеток 16а"
+          ]
+        },
+        {
+          "phrase": "блок розеток 8 розеток 16а",
+          "confirmed_count": 551,
+          "cluster_id": "amperage",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 16а"
+          ]
+        },
+        {
+          "phrase": "блок розеток 19 8 розеток 16а",
+          "confirmed_count": 465,
+          "cluster_id": "amperage",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 19 8 розеток",
+            "блок розеток 16а"
+          ]
+        },
+        {
+          "phrase": "pdu 16a",
+          "confirmed_count": 390,
+          "cluster_id": "amperage",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu 16a"
+          ]
+        },
+        {
+          "phrase": "блок розеток 19 1u 16а",
+          "confirmed_count": 251,
+          "cluster_id": "amperage",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 19 1u",
+            "блок розеток 1u",
+            "блок розеток 16а"
+          ]
+        },
+        {
+          "phrase": "блок розеток 32а",
+          "confirmed_count": 232,
+          "cluster_id": "amperage",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 32а"
+          ]
+        },
+        {
+          "phrase": "блок розеток 220в 16а",
+          "confirmed_count": 183,
+          "cluster_id": "amperage",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 16а"
+          ]
+        },
+        {
+          "phrase": "блок розеток 1u 8 розеток 16а",
+          "confirmed_count": 179,
+          "cluster_id": "amperage",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 1u",
+            "блок розеток 16а"
+          ]
+        },
+        {
+          "phrase": "блок розеток 8 розеток schuko 16а",
+          "confirmed_count": 154,
+          "cluster_id": "amperage",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток schuko",
+            "блок розеток 16а"
+          ]
+        },
+        {
+          "phrase": "pdu 32a",
+          "confirmed_count": 141,
+          "cluster_id": "amperage",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu 32a"
+          ]
+        },
+        {
+          "phrase": "блок распределения питания pdu 16a",
+          "confirmed_count": 124,
+          "cluster_id": "amperage",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu 16a"
+          ]
+        },
+        {
+          "phrase": "блок розеток 19 250в 16а",
+          "confirmed_count": 97,
+          "cluster_id": "amperage",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 16а"
+          ]
+        },
+        {
+          "phrase": "блок розеток с авт 16а",
+          "confirmed_count": 89,
+          "cluster_id": "amperage",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 16а"
+          ]
+        },
+        {
+          "phrase": "блок розеток в стойку 19 16а",
+          "confirmed_count": 50,
+          "cluster_id": "amperage",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток в стойку"
+          ]
+        },
+        {
+          "phrase": "pdu 32a c13",
+          "confirmed_count": 39,
+          "cluster_id": "amperage",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu c13",
+            "pdu 32a"
+          ]
+        },
+        {
+          "phrase": "mdx pdu 8e 16a",
+          "confirmed_count": 31,
+          "cluster_id": "amperage",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu 16a"
+          ]
+        },
+        {
+          "phrase": "pdu 16a type 2",
+          "confirmed_count": 23,
+          "cluster_id": "amperage",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu 16a"
+          ]
+        },
+        {
+          "phrase": "mdx pdu 8e 16a term",
+          "confirmed_count": 21,
+          "cluster_id": "amperage",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu 16a"
+          ]
+        },
+        {
+          "phrase": "блок распределения питания pdu 16a type 2",
+          "confirmed_count": 9,
+          "cluster_id": "amperage",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu 16a"
+          ]
+        },
+        {
+          "phrase": "powercom pdu 16a type 2",
+          "confirmed_count": 6,
+          "cluster_id": "amperage",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu 16a"
+          ]
+        }
+      ],
+      "first_6m_avg": 903.34,
+      "last_6m_avg": 819.34,
+      "change_pct": -0.92,
+      "trend_label": "стабильный",
+      "dynamics_points": 48,
+      "volatility": 0.1512,
+      "seasonality_index": 1.2299
+    },
+    {
+      "cluster_id": "vertical_mount",
+      "cluster_key": "Вертикальные PDU / 0U / 42U",
+      "cluster_type": "feature",
+      "primary_intent": "commercial",
+      "page_type": "category",
+      "query_count": 12,
+      "confirmed_query_count": 12,
+      "known_frequency_total": 1720,
+      "representative_seed_phrase": "вертикальный блок розеток",
+      "representative_seed_count": 734,
+      "member_phrases": [
+        "вертикальный блок розеток",
+        "вертикальный pdu",
+        "блок розетка выключатель вертикальный",
+        "блок розеток pdu вертикальный",
+        "блок розеток вертикальный 32а",
+        "pdu вертикальный 32а",
+        "блок розеток 19 вертикальный",
+        "вертикальный блок розеток rem",
+        "блок розеток выдвижной вертикальный",
+        "блок розетка выключатель вертикальный черный",
+        "блок розеток вертикальный в стойку",
+        "вертикальный блок розеток rem 32"
+      ],
+      "top_queries": [
+        {
+          "phrase": "вертикальный блок розеток",
+          "confirmed_count": 734,
+          "cluster_id": "vertical_mount",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "вертикальный блок розеток",
+            "блок розеток вертикальный"
+          ]
+        },
+        {
+          "phrase": "вертикальный pdu",
+          "confirmed_count": 285,
+          "cluster_id": "vertical_mount",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "вертикальный pdu"
+          ]
+        },
+        {
+          "phrase": "блок розетка выключатель вертикальный",
+          "confirmed_count": 212,
+          "cluster_id": "vertical_mount",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "вертикальный блок розеток",
+            "блок розеток вертикальный"
+          ]
+        },
+        {
+          "phrase": "блок розеток pdu вертикальный",
+          "confirmed_count": 83,
+          "cluster_id": "vertical_mount",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "вертикальный блок розеток",
+            "блок розеток вертикальный",
+            "вертикальный pdu"
+          ]
+        },
+        {
+          "phrase": "блок розеток вертикальный 32а",
+          "confirmed_count": 78,
+          "cluster_id": "vertical_mount",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток 32а",
+            "вертикальный блок розеток",
+            "блок розеток вертикальный"
+          ]
+        },
+        {
+          "phrase": "pdu вертикальный 32а",
+          "confirmed_count": 74,
+          "cluster_id": "vertical_mount",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "вертикальный pdu"
+          ]
+        },
+        {
+          "phrase": "блок розеток 19 вертикальный",
+          "confirmed_count": 69,
+          "cluster_id": "vertical_mount",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "вертикальный блок розеток",
+            "блок розеток вертикальный"
+          ]
+        },
+        {
+          "phrase": "вертикальный блок розеток rem",
+          "confirmed_count": 66,
+          "cluster_id": "vertical_mount",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "вертикальный блок розеток",
+            "блок розеток вертикальный"
+          ]
+        },
+        {
+          "phrase": "блок розеток выдвижной вертикальный",
+          "confirmed_count": 37,
+          "cluster_id": "vertical_mount",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "вертикальный блок розеток",
+            "блок розеток вертикальный"
+          ]
+        },
+        {
+          "phrase": "блок розетка выключатель вертикальный черный",
+          "confirmed_count": 29,
+          "cluster_id": "vertical_mount",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "вертикальный блок розеток",
+            "блок розеток вертикальный"
+          ]
+        },
+        {
+          "phrase": "блок розеток вертикальный в стойку",
+          "confirmed_count": 27,
+          "cluster_id": "vertical_mount",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток в стойку",
+            "вертикальный блок розеток",
+            "блок розеток вертикальный"
+          ]
+        },
+        {
+          "phrase": "вертикальный блок розеток rem 32",
+          "confirmed_count": 26,
+          "cluster_id": "vertical_mount",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "вертикальный блок розеток",
+            "блок розеток вертикальный"
+          ]
+        }
+      ],
+      "first_6m_avg": 825.83,
+      "last_6m_avg": 686.5,
+      "change_pct": -16.87,
+      "trend_label": "снижающийся",
+      "dynamics_points": 24,
+      "volatility": 0.1377,
+      "seasonality_index": 1.2414
+    },
+    {
+      "cluster_id": "managed_metered",
+      "cluster_key": "Измерительные, управляемые и мониторинговые PDU",
+      "cluster_type": "feature",
+      "primary_intent": "commercial",
+      "page_type": "category",
+      "query_count": 14,
+      "confirmed_query_count": 14,
+      "known_frequency_total": 848,
+      "representative_seed_phrase": "pdu с мониторингом",
+      "representative_seed_count": 157,
+      "member_phrases": [
+        "pdu с мониторингом",
+        "switched pdu",
+        "metered pdu",
+        "switched rack pdu",
+        "блок розеток с мониторингом",
+        "блок pdu с мониторингом",
+        "snmp pdu",
+        "metered rack pdu",
+        "интеллектуальные pdu",
+        "управляемая pdu",
+        "pdu с управлением",
+        "pdu с мониторингом и управлением",
+        "pdu switched panel c13",
+        "лабораторная работа набор услуг pdu протокола snmp"
+      ],
+      "top_queries": [
+        {
+          "phrase": "pdu с мониторингом",
+          "confirmed_count": 157,
+          "cluster_id": "managed_metered",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu с мониторингом"
+          ]
+        },
+        {
+          "phrase": "switched pdu",
+          "confirmed_count": 123,
+          "cluster_id": "managed_metered",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "switched pdu"
+          ]
+        },
+        {
+          "phrase": "metered pdu",
+          "confirmed_count": 119,
+          "cluster_id": "managed_metered",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "metered pdu"
+          ]
+        },
+        {
+          "phrase": "switched rack pdu",
+          "confirmed_count": 83,
+          "cluster_id": "managed_metered",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "rack pdu",
+            "switched pdu"
+          ]
+        },
+        {
+          "phrase": "блок розеток с мониторингом",
+          "confirmed_count": 70,
+          "cluster_id": "managed_metered",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "блок розеток с мониторингом"
+          ]
+        },
+        {
+          "phrase": "блок pdu с мониторингом",
+          "confirmed_count": 70,
+          "cluster_id": "managed_metered",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu с мониторингом"
+          ]
+        },
+        {
+          "phrase": "snmp pdu",
+          "confirmed_count": 56,
+          "cluster_id": "managed_metered",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu snmp"
+          ]
+        },
+        {
+          "phrase": "metered rack pdu",
+          "confirmed_count": 45,
+          "cluster_id": "managed_metered",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "rack pdu",
+            "metered pdu"
+          ]
+        },
+        {
+          "phrase": "интеллектуальные pdu",
+          "confirmed_count": 33,
+          "cluster_id": "managed_metered",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "интеллектуальный pdu"
+          ]
+        },
+        {
+          "phrase": "управляемая pdu",
+          "confirmed_count": 33,
+          "cluster_id": "managed_metered",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "управляемый pdu"
+          ]
+        },
+        {
+          "phrase": "pdu с управлением",
+          "confirmed_count": 30,
+          "cluster_id": "managed_metered",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu с управлением"
+          ]
+        },
+        {
+          "phrase": "pdu с мониторингом и управлением",
+          "confirmed_count": 15,
+          "cluster_id": "managed_metered",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu с мониторингом",
+            "pdu с управлением"
+          ]
+        },
+        {
+          "phrase": "pdu switched panel c13",
+          "confirmed_count": 9,
+          "cluster_id": "managed_metered",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu c13",
+            "switched pdu"
+          ]
+        },
+        {
+          "phrase": "лабораторная работа набор услуг pdu протокола snmp",
+          "confirmed_count": 5,
+          "cluster_id": "managed_metered",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu snmp"
+          ]
+        }
+      ],
+      "first_6m_avg": 80.06,
+      "last_6m_avg": 93.33,
+      "change_pct": 24.91,
+      "trend_label": "растущий",
+      "dynamics_points": 72,
+      "volatility": 0.2648,
+      "seasonality_index": 1.5791
+    },
+    {
+      "cluster_id": "brand_competitors",
+      "cluster_key": "Брендовые и конкурентные запросы",
+      "cluster_type": "alternative",
+      "primary_intent": "comparison",
+      "page_type": "comparison",
+      "query_count": 13,
+      "confirmed_query_count": 13,
+      "known_frequency_total": 483,
+      "representative_seed_phrase": "hyperline блок розеток",
+      "representative_seed_count": 378,
+      "member_phrases": [
+        "apc rack pdu",
+        "hyperline блок розеток для 19 шкафов",
+        "apc switched pdu",
+        "apc switched rack pdu",
+        "eaton pdu",
+        "hyperline блок розеток 1u",
+        "apc metered pdu",
+        "vertiv pdu",
+        "apc basic rack pdu",
+        "apc rack pdu 2g",
+        "eaton in line metered rack pdu",
+        "apc rack pdu 9000",
+        "apc switched a rack pdu ap8981 прошивка"
+      ],
+      "top_queries": [
+        {
+          "phrase": "apc rack pdu",
+          "confirmed_count": 129,
+          "cluster_id": "brand_competitors",
+          "axes": [
+            "feature",
+            "alternative"
+          ],
+          "requested_phrases": [
+            "rack pdu",
+            "apc pdu"
+          ]
+        },
+        {
+          "phrase": "hyperline блок розеток для 19 шкафов",
+          "confirmed_count": 88,
+          "cluster_id": "brand_competitors",
+          "axes": [
+            "alternative"
+          ],
+          "requested_phrases": [
+            "hyperline блок розеток"
+          ]
+        },
+        {
+          "phrase": "apc switched pdu",
+          "confirmed_count": 63,
+          "cluster_id": "brand_competitors",
+          "axes": [
+            "feature",
+            "alternative"
+          ],
+          "requested_phrases": [
+            "switched pdu",
+            "apc pdu"
+          ]
+        },
+        {
+          "phrase": "apc switched rack pdu",
+          "confirmed_count": 57,
+          "cluster_id": "brand_competitors",
+          "axes": [
+            "feature",
+            "alternative"
+          ],
+          "requested_phrases": [
+            "rack pdu",
+            "switched pdu",
+            "apc pdu"
+          ]
+        },
+        {
+          "phrase": "eaton pdu",
+          "confirmed_count": 29,
+          "cluster_id": "brand_competitors",
+          "axes": [
+            "alternative"
+          ],
+          "requested_phrases": [
+            "eaton pdu"
+          ]
+        },
+        {
+          "phrase": "hyperline блок розеток 1u",
+          "confirmed_count": 29,
+          "cluster_id": "brand_competitors",
+          "axes": [
+            "alternative"
+          ],
+          "requested_phrases": [
+            "hyperline блок розеток"
+          ]
+        },
+        {
+          "phrase": "apc metered pdu",
+          "confirmed_count": 26,
+          "cluster_id": "brand_competitors",
+          "axes": [
+            "feature",
+            "alternative"
+          ],
+          "requested_phrases": [
+            "metered pdu",
+            "apc pdu"
+          ]
+        },
+        {
+          "phrase": "vertiv pdu",
+          "confirmed_count": 16,
+          "cluster_id": "brand_competitors",
+          "axes": [
+            "alternative"
+          ],
+          "requested_phrases": [
+            "vertiv pdu"
+          ]
+        },
+        {
+          "phrase": "apc basic rack pdu",
+          "confirmed_count": 13,
+          "cluster_id": "brand_competitors",
+          "axes": [
+            "feature",
+            "alternative"
+          ],
+          "requested_phrases": [
+            "rack pdu",
+            "apc pdu"
+          ]
+        },
+        {
+          "phrase": "apc rack pdu 2g",
+          "confirmed_count": 11,
+          "cluster_id": "brand_competitors",
+          "axes": [
+            "feature",
+            "alternative"
+          ],
+          "requested_phrases": [
+            "rack pdu",
+            "apc pdu"
+          ]
+        },
+        {
+          "phrase": "eaton in line metered rack pdu",
+          "confirmed_count": 9,
+          "cluster_id": "brand_competitors",
+          "axes": [
+            "feature",
+            "alternative"
+          ],
+          "requested_phrases": [
+            "rack pdu",
+            "metered pdu",
+            "eaton pdu"
+          ]
+        },
+        {
+          "phrase": "apc rack pdu 9000",
+          "confirmed_count": 8,
+          "cluster_id": "brand_competitors",
+          "axes": [
+            "alternative"
+          ],
+          "requested_phrases": [
+            "apc pdu"
+          ]
+        },
+        {
+          "phrase": "apc switched a rack pdu ap8981 прошивка",
+          "confirmed_count": 5,
+          "cluster_id": "brand_competitors",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "switched pdu"
+          ]
+        }
+      ],
+      "first_6m_avg": 576,
+      "last_6m_avg": 343.75,
+      "change_pct": -37.12,
+      "trend_label": "снижающийся",
+      "dynamics_points": 48,
+      "volatility": 0.2393,
+      "seasonality_index": 1.3635
+    },
+    {
+      "cluster_id": "surge_filter",
+      "cluster_key": "УЗИП и стоечные сетевые фильтры",
+      "cluster_type": "adjacent",
+      "primary_intent": "commercial",
+      "page_type": "category",
+      "query_count": 10,
+      "confirmed_query_count": 10,
+      "known_frequency_total": 346,
+      "representative_seed_phrase": "сетевой фильтр 19",
+      "representative_seed_count": 181,
+      "member_phrases": [
+        "сетевой фильтр 19",
+        "сетевой фильтр 19 дюймов",
+        "сетевой фильтр в стойку 19",
+        "19 шкаф сетевой фильтр",
+        "фильтр сетевой premium line 19 1156057128 brennenstuhl",
+        "сетевой фильтр 19 1u",
+        "сетевой фильтр 19 дюймов в стойку",
+        "сетевой фильтр 19 8 розеток",
+        "лучшие сетевые фильтры с дугогашением afci узип",
+        "фильтр сетевой стоечный 19"
+      ],
+      "top_queries": [
+        {
+          "phrase": "сетевой фильтр 19",
+          "confirmed_count": 181,
+          "cluster_id": "surge_filter",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "сетевой фильтр 19"
+          ]
+        },
+        {
+          "phrase": "сетевой фильтр 19 дюймов",
+          "confirmed_count": 39,
+          "cluster_id": "surge_filter",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "сетевой фильтр 19"
+          ]
+        },
+        {
+          "phrase": "сетевой фильтр в стойку 19",
+          "confirmed_count": 31,
+          "cluster_id": "surge_filter",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "сетевой фильтр 19"
+          ]
+        },
+        {
+          "phrase": "19 шкаф сетевой фильтр",
+          "confirmed_count": 22,
+          "cluster_id": "surge_filter",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "сетевой фильтр 19"
+          ]
+        },
+        {
+          "phrase": "фильтр сетевой premium line 19 1156057128 brennenstuhl",
+          "confirmed_count": 22,
+          "cluster_id": "surge_filter",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "сетевой фильтр 19"
+          ]
+        },
+        {
+          "phrase": "сетевой фильтр 19 1u",
+          "confirmed_count": 16,
+          "cluster_id": "surge_filter",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "сетевой фильтр 19"
+          ]
+        },
+        {
+          "phrase": "сетевой фильтр 19 дюймов в стойку",
+          "confirmed_count": 16,
+          "cluster_id": "surge_filter",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "сетевой фильтр 19"
+          ]
+        },
+        {
+          "phrase": "сетевой фильтр 19 8 розеток",
+          "confirmed_count": 7,
+          "cluster_id": "surge_filter",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "сетевой фильтр 19"
+          ]
+        },
+        {
+          "phrase": "лучшие сетевые фильтры с дугогашением afci узип",
+          "confirmed_count": 6,
+          "cluster_id": "surge_filter",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "сетевой фильтр с узип"
+          ]
+        },
+        {
+          "phrase": "фильтр сетевой стоечный 19",
+          "confirmed_count": 6,
+          "cluster_id": "surge_filter",
+          "axes": [
+            "adjacent"
+          ],
+          "requested_phrases": [
+            "сетевой фильтр 19"
+          ]
+        }
+      ],
+      "first_6m_avg": 9.91,
+      "last_6m_avg": 0.83,
+      "change_pct": 0,
+      "trend_label": "стабильный",
+      "dynamics_points": 48,
+      "volatility": 3.0299,
+      "seasonality_index": 14.3606
+    },
+    {
+      "cluster_id": "three_phase",
+      "cluster_key": "Трехфазные PDU",
+      "cluster_type": "feature",
+      "primary_intent": "commercial",
+      "page_type": "category",
+      "query_count": 3,
+      "confirmed_query_count": 3,
+      "known_frequency_total": 133,
+      "representative_seed_phrase": "pdu 3 фазы",
+      "representative_seed_count": 61,
+      "member_phrases": [
+        "pdu 3 фазы",
+        "трехфазные блоки розеток",
+        "pdu трехфазный"
+      ],
+      "top_queries": [
+        {
+          "phrase": "pdu 3 фазы",
+          "confirmed_count": 61,
+          "cluster_id": "three_phase",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu 3 фазы"
+          ]
+        },
+        {
+          "phrase": "трехфазные блоки розеток",
+          "confirmed_count": 43,
+          "cluster_id": "three_phase",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "трехфазный блок розеток"
+          ]
+        },
+        {
+          "phrase": "pdu трехфазный",
+          "confirmed_count": 29,
+          "cluster_id": "three_phase",
+          "axes": [
+            "feature"
+          ],
+          "requested_phrases": [
+            "pdu трехфазный"
+          ]
+        }
+      ],
+      "first_6m_avg": 27.5,
+      "last_6m_avg": 34.17,
+      "change_pct": 24.24,
+      "trend_label": "растущий",
+      "dynamics_points": 24,
+      "volatility": 0.5369,
+      "seasonality_index": 2.5075
+    }
+  ]
+}

@@ -1,0 +1,3217 @@
+{
+  "endpoint": "topRequests",
+  "results": [
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "блок розеток",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "блок розеток",
+        "totalCount": 41398,
+        "topRequests": [
+          {
+            "phrase": "блок розеток",
+            "count": 41398
+          },
+          {
+            "phrase": "блок розеток 19",
+            "count": 6213
+          },
+          {
+            "phrase": "блок выключателей с розеткой",
+            "count": 4293
+          },
+          {
+            "phrase": "блок розеток 8",
+            "count": 3868
+          },
+          {
+            "phrase": "блок 2 розетки",
+            "count": 3018
+          },
+          {
+            "phrase": "блок розеток pdu",
+            "count": 2617
+          },
+          {
+            "phrase": "блок розеток 19 8 розеток",
+            "count": 2594
+          },
+          {
+            "phrase": "блок розеток schuko",
+            "count": 2037
+          },
+          {
+            "phrase": "блок розеток 1u",
+            "count": 2008
+          },
+          {
+            "phrase": "блок розеток 16",
+            "count": 1956
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "радиорозетка",
+            "count": 2159
+          },
+          {
+            "phrase": "выключатель с розеткой",
+            "count": 31501
+          },
+          {
+            "phrase": "блок коммутации",
+            "count": 4897
+          },
+          {
+            "phrase": "розеточный блок",
+            "count": 2490
+          },
+          {
+            "phrase": "таймер розеточный",
+            "count": 3356
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "блок розеток 19",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "блок розеток 19",
+        "totalCount": 6213,
+        "topRequests": [
+          {
+            "phrase": "блок розеток 19",
+            "count": 6213
+          },
+          {
+            "phrase": "блок розеток 19 8 розеток",
+            "count": 2594
+          },
+          {
+            "phrase": "блок розеток 19 1u",
+            "count": 1469
+          },
+          {
+            "phrase": "блок розеток schuko 19",
+            "count": 1305
+          },
+          {
+            "phrase": "блок розеток pdu 19",
+            "count": 1107
+          },
+          {
+            "phrase": "блок розеток для 19 шкафов",
+            "count": 1089
+          },
+          {
+            "phrase": "блок розеток 19 горизонтальный",
+            "count": 861
+          },
+          {
+            "phrase": "блок розеток 19 16а",
+            "count": 803
+          },
+          {
+            "phrase": "блок розеток 19 8 розеток schuko",
+            "count": 772
+          },
+          {
+            "phrase": "блок розеток 19 iec",
+            "count": 715
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "pon розетка",
+            "count": 2391
+          },
+          {
+            "phrase": "какое напряжение в розетке",
+            "count": 3804
+          },
+          {
+            "phrase": "вай фай розетка",
+            "count": 3175
+          },
+          {
+            "phrase": "разветвитель для розеток",
+            "count": 1423
+          },
+          {
+            "phrase": "таймер розеточный",
+            "count": 3356
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "блок розеток 19 1u",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "блок розеток 19 1u",
+        "totalCount": 1469,
+        "topRequests": [
+          {
+            "phrase": "блок розеток 19 1u",
+            "count": 1469
+          },
+          {
+            "phrase": "блок розеток 19 1u 8 розеток",
+            "count": 701
+          },
+          {
+            "phrase": "блок розеток 19 1u 16а",
+            "count": 251
+          },
+          {
+            "phrase": "блок розеток 19 1u с выключателем",
+            "count": 212
+          },
+          {
+            "phrase": "блок розеток 220в 19 1u",
+            "count": 159
+          },
+          {
+            "phrase": "блок розеток 19 1u 8 гнезд",
+            "count": 135
+          },
+          {
+            "phrase": "блок электрических розеток 19 1u",
+            "count": 99
+          },
+          {
+            "phrase": "блок силовых розеток 19 1u",
+            "count": 96
+          },
+          {
+            "phrase": "блок розеток 19 1u 9 розеток",
+            "count": 93
+          },
+          {
+            "phrase": "блок розеток ntss 19 1u",
+            "count": 86
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "все коды в блокс фрутс",
+            "count": 675
+          },
+          {
+            "phrase": "нолик роблокс укради брейнрот новые серии",
+            "count": 339
+          },
+          {
+            "phrase": "как настроить таймер розеточный электронный",
+            "count": 393
+          },
+          {
+            "phrase": "таймер розеточный электронный",
+            "count": 1229
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "блок розеток 19 8 розеток",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "блок розеток 19 8 розеток",
+        "totalCount": 2594,
+        "topRequests": [
+          {
+            "phrase": "блок розеток 19 8 розеток",
+            "count": 2594
+          },
+          {
+            "phrase": "блок розеток 19 8 розеток schuko",
+            "count": 772
+          },
+          {
+            "phrase": "блок розеток 19 1u 8 розеток",
+            "count": 701
+          },
+          {
+            "phrase": "блок розеток для 19 шкафов 8 розеток",
+            "count": 606
+          },
+          {
+            "phrase": "блок розеток 19 8 розеток горизонтальный",
+            "count": 539
+          },
+          {
+            "phrase": "блок розеток 19 8 розеток 16а",
+            "count": 465
+          },
+          {
+            "phrase": "блок розеток 8 гнезд 19",
+            "count": 427
+          },
+          {
+            "phrase": "блок евророзеток 19 8 розеток",
+            "count": 376
+          },
+          {
+            "phrase": "блок силовых розеток 19 8 розеток",
+            "count": 232
+          },
+          {
+            "phrase": "блок распределения питания 8 розеток 19",
+            "count": 178
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "donel r98 розетки и выключатели",
+            "count": 462
+          },
+          {
+            "phrase": "сетевой фильтр 6 розеток",
+            "count": 3638
+          },
+          {
+            "phrase": "розетка rg45",
+            "count": 1107
+          },
+          {
+            "phrase": "таймер розеточный",
+            "count": 3356
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "блок розеток 1u",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "блок розеток 1u",
+        "totalCount": 2008,
+        "topRequests": [
+          {
+            "phrase": "блок розеток 1u",
+            "count": 2008
+          },
+          {
+            "phrase": "блок розеток 19 1u",
+            "count": 1469
+          },
+          {
+            "phrase": "блок розеток 1u 8 розеток",
+            "count": 961
+          },
+          {
+            "phrase": "блок розеток 19 1u 8 розеток",
+            "count": 701
+          },
+          {
+            "phrase": "блок розеток 1u с выключателем",
+            "count": 367
+          },
+          {
+            "phrase": "блок розеток 19 1u 16а",
+            "count": 251
+          },
+          {
+            "phrase": "блок розеток 19 1u с выключателем",
+            "count": 212
+          },
+          {
+            "phrase": "блок розеток 1u 8 розеток 16а",
+            "count": 179
+          },
+          {
+            "phrase": "блок розеток 1u 8 гнезд",
+            "count": 164
+          },
+          {
+            "phrase": "блок розеток 220в 19 1u",
+            "count": 159
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "двойная розетка в один подрозетник",
+            "count": 3382
+          },
+          {
+            "phrase": "бктп расшифровка в электрике",
+            "count": 367
+          },
+          {
+            "phrase": "подрозетники под рпв 1",
+            "count": 147
+          },
+          {
+            "phrase": "розеточный блок",
+            "count": 2490
+          },
+          {
+            "phrase": "block esp 1.21 4",
+            "count": 65
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "блок розеток в стойку",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "блок розеток в стойку",
+        "totalCount": 752,
+        "topRequests": [
+          {
+            "phrase": "блок розеток в стойку",
+            "count": 752
+          },
+          {
+            "phrase": "блок розеток в стойку 19",
+            "count": 488
+          },
+          {
+            "phrase": "блок розеток в стойку 8 розеток",
+            "count": 83
+          },
+          {
+            "phrase": "блок розеток в стойку 19 8",
+            "count": 67
+          },
+          {
+            "phrase": "блок розеток в стойку 19 16а",
+            "count": 50
+          },
+          {
+            "phrase": "блок розеток 1u в стойку",
+            "count": 38
+          },
+          {
+            "phrase": "блок розеток в стойку 19 1u",
+            "count": 36
+          },
+          {
+            "phrase": "блок розеток 19 дюймов в стойку",
+            "count": 34
+          },
+          {
+            "phrase": "установка блока розеток в стойку",
+            "count": 31
+          },
+          {
+            "phrase": "блок розеток вертикальный в стойку",
+            "count": 27
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "lth7 контроллер зарядки схема",
+            "count": 148
+          },
+          {
+            "phrase": "ибп со стабилизатором напряжения",
+            "count": 207
+          },
+          {
+            "phrase": "как разобрать выключатель света двухклавишный на стене",
+            "count": 153
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "блок розеток для серверного шкафа",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "блок розеток для серверного шкафа",
+        "totalCount": 33,
+        "topRequests": [
+          {
+            "phrase": "блок розеток для серверного шкафа",
+            "count": 33
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "бест раст сервера",
+            "count": 634
+          },
+          {
+            "phrase": "404 раст сервер",
+            "count": 410
+          },
+          {
+            "phrase": "сервер видеонаблюдения",
+            "count": 2965
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "розеточный блок 19",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "розеточный блок 19",
+        "totalCount": 83,
+        "topRequests": [
+          {
+            "phrase": "розеточный блок 19",
+            "count": 83
+          },
+          {
+            "phrase": "розеточный блок в стойку 19",
+            "count": 36
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "двойная розетка в один подрозетник",
+            "count": 3382
+          },
+          {
+            "phrase": "бктп",
+            "count": 5770
+          },
+          {
+            "phrase": "какой ток в розетке",
+            "count": 5347
+          },
+          {
+            "phrase": "виды розеток",
+            "count": 5595
+          },
+          {
+            "phrase": "бктп расшифровка в электрике",
+            "count": 367
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "панель розеток 19",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "панель розеток 19",
+        "totalCount": 168,
+        "topRequests": [
+          {
+            "phrase": "панель розеток 19",
+            "count": 168
+          },
+          {
+            "phrase": "панель розеток в стойку 19",
+            "count": 16
+          },
+          {
+            "phrase": "панель питания 19 на 8 розеток",
+            "count": 6
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "donel r98 розетки и выключатели",
+            "count": 462
+          },
+          {
+            "phrase": "розетка rg45",
+            "count": 1107
+          },
+          {
+            "phrase": "розетка панельная",
+            "count": 3307
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "pdu",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "pdu",
+        "totalCount": 14646,
+        "topRequests": [
+          {
+            "phrase": "pdu",
+            "count": 14646
+          },
+          {
+            "phrase": "блок pdu",
+            "count": 3431
+          },
+          {
+            "phrase": "pdu розетки",
+            "count": 3222
+          },
+          {
+            "phrase": "блок розеток pdu",
+            "count": 2617
+          },
+          {
+            "phrase": "pdu 19",
+            "count": 1511
+          },
+          {
+            "phrase": "cabeus pdu",
+            "count": 1263
+          },
+          {
+            "phrase": "pdu 8p",
+            "count": 1216
+          },
+          {
+            "phrase": "pdu питание",
+            "count": 1133
+          },
+          {
+            "phrase": "блок розеток pdu 19",
+            "count": 1107
+          },
+          {
+            "phrase": "pdu 8",
+            "count": 1092
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "rtu",
+            "count": 31200
+          },
+          {
+            "phrase": "еспд",
+            "count": 18367
+          },
+          {
+            "phrase": "wps",
+            "count": 206416
+          },
+          {
+            "phrase": "upd",
+            "count": 27598
+          },
+          {
+            "phrase": "upd что это",
+            "count": 2388
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "pdu розетки",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "pdu розетки",
+        "totalCount": 3222,
+        "topRequests": [
+          {
+            "phrase": "pdu розетки",
+            "count": 3222
+          },
+          {
+            "phrase": "блок розеток pdu",
+            "count": 2617
+          },
+          {
+            "phrase": "блок розеток pdu 19",
+            "count": 1107
+          },
+          {
+            "phrase": "pdu 8 розеток",
+            "count": 873
+          },
+          {
+            "phrase": "блок розеток pdu 8p",
+            "count": 506
+          },
+          {
+            "phrase": "горизонтальный блок розеток pdu",
+            "count": 427
+          },
+          {
+            "phrase": "блок розеток 19 pdu 8p",
+            "count": 389
+          },
+          {
+            "phrase": "pdu 9 розеток",
+            "count": 360
+          },
+          {
+            "phrase": "блок розеток cabeus pdu 8p",
+            "count": 345
+          },
+          {
+            "phrase": "cabeus pdu 8p 8 розеток",
+            "count": 287
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "умная розетка",
+            "count": 34875
+          },
+          {
+            "phrase": "радиорозетка",
+            "count": 2159
+          },
+          {
+            "phrase": "переходник для евророзетки",
+            "count": 291
+          },
+          {
+            "phrase": "радиорозетка рпв 2",
+            "count": 418
+          },
+          {
+            "phrase": "таймер розеточный",
+            "count": 3356
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "блок розеток pdu",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "блок розеток pdu",
+        "totalCount": 2617,
+        "topRequests": [
+          {
+            "phrase": "блок розеток pdu",
+            "count": 2617
+          },
+          {
+            "phrase": "блок розеток pdu 19",
+            "count": 1107
+          },
+          {
+            "phrase": "блок розеток pdu 8p",
+            "count": 506
+          },
+          {
+            "phrase": "горизонтальный блок розеток pdu",
+            "count": 427
+          },
+          {
+            "phrase": "блок розеток 19 pdu 8p",
+            "count": 389
+          },
+          {
+            "phrase": "блок розеток cabeus pdu 8p",
+            "count": 345
+          },
+          {
+            "phrase": "блок розеток 19 cabeus pdu 8p",
+            "count": 266
+          },
+          {
+            "phrase": "блок розеток pdu 9 розеток",
+            "count": 253
+          },
+          {
+            "phrase": "блок розеток pdu 8p 2eu",
+            "count": 226
+          },
+          {
+            "phrase": "блок розеток 19 pdu 8p 2eu",
+            "count": 165
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "радиорозетка",
+            "count": 2159
+          },
+          {
+            "phrase": "lth7 контроллер зарядки схема",
+            "count": 148
+          },
+          {
+            "phrase": "переходник для евророзетки",
+            "count": 291
+          },
+          {
+            "phrase": "радиорозетка рпв 2",
+            "count": 418
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "pdu 19",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "pdu 19",
+        "totalCount": 1511,
+        "topRequests": [
+          {
+            "phrase": "pdu 19",
+            "count": 1511
+          },
+          {
+            "phrase": "блок розеток pdu 19",
+            "count": 1107
+          },
+          {
+            "phrase": "pdu 19 1u",
+            "count": 507
+          },
+          {
+            "phrase": "блок розеток 19 pdu 8p",
+            "count": 389
+          },
+          {
+            "phrase": "блок распределения питания pdu 19",
+            "count": 276
+          },
+          {
+            "phrase": "блок розеток 19 cabeus pdu 8p",
+            "count": 266
+          },
+          {
+            "phrase": "блок розеток 19 pdu 8p 2eu",
+            "count": 165
+          },
+          {
+            "phrase": "блок евророзеток 19 cabeus pdu 8p",
+            "count": 141
+          },
+          {
+            "phrase": "19 cabeus pdu 8p 2eu",
+            "count": 139
+          },
+          {
+            "phrase": "блок розеток 19 pdu 8p 2iec",
+            "count": 102
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "епд что это",
+            "count": 6077
+          },
+          {
+            "phrase": "цсп это",
+            "count": 4372
+          },
+          {
+            "phrase": "wps что это",
+            "count": 9829
+          },
+          {
+            "phrase": "епд это",
+            "count": 7078
+          },
+          {
+            "phrase": "тс пиот это",
+            "count": 3116
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "pdu 1u",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "pdu 1u",
+        "totalCount": 1092,
+        "topRequests": [
+          {
+            "phrase": "pdu 1u",
+            "count": 1092
+          },
+          {
+            "phrase": "pdu 19 1u",
+            "count": 507
+          },
+          {
+            "phrase": "pdu 9 розеток 1u",
+            "count": 188
+          },
+          {
+            "phrase": "блок розеток pdu 9 розеток 1u",
+            "count": 107
+          },
+          {
+            "phrase": "itk pdu 8 розеток 1u",
+            "count": 98
+          },
+          {
+            "phrase": "pdu basic 1u",
+            "count": 30
+          },
+          {
+            "phrase": "pdu 8 розеток 1u ph12 8d3",
+            "count": 23
+          },
+          {
+            "phrase": "pdu 1u g8",
+            "count": 23
+          },
+          {
+            "phrase": "pdu ippon basic 1u",
+            "count": 11
+          },
+          {
+            "phrase": "pdu 1u g8 k",
+            "count": 9
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "av4 us",
+            "count": 26415
+          },
+          {
+            "phrase": "uni s",
+            "count": 98953
+          },
+          {
+            "phrase": "wlw что это",
+            "count": 3538
+          },
+          {
+            "phrase": "епд что это",
+            "count": 6077
+          },
+          {
+            "phrase": "cos 1",
+            "count": 710648
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "rack pdu",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "rack pdu",
+        "totalCount": 308,
+        "topRequests": [
+          {
+            "phrase": "rack pdu",
+            "count": 308
+          },
+          {
+            "phrase": "apc rack pdu",
+            "count": 129
+          },
+          {
+            "phrase": "switched rack pdu",
+            "count": 83
+          },
+          {
+            "phrase": "apc switched rack pdu",
+            "count": 57
+          },
+          {
+            "phrase": "metered rack pdu",
+            "count": 45
+          },
+          {
+            "phrase": "basic rack pdu",
+            "count": 37
+          },
+          {
+            "phrase": "rack pdu 2g",
+            "count": 15
+          },
+          {
+            "phrase": "apc basic rack pdu",
+            "count": 13
+          },
+          {
+            "phrase": "apc rack pdu 2g",
+            "count": 11
+          },
+          {
+            "phrase": "eaton in line metered rack pdu",
+            "count": 9
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "rackspace",
+            "count": 106
+          },
+          {
+            "phrase": "stk rackmnt 704ka",
+            "count": 123
+          },
+          {
+            "phrase": "aap server что это",
+            "count": 54
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "power distribution unit",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "power distribution unit",
+        "totalCount": 94,
+        "topRequests": [
+          {
+            "phrase": "power distribution unit",
+            "count": 94
+          },
+          {
+            "phrase": "pdu power distribution unit",
+            "count": 19
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "universal media creation tool",
+            "count": 2100
+          },
+          {
+            "phrase": "this hurts mindless self indulgence",
+            "count": 1328
+          },
+          {
+            "phrase": "nero s day at disneyland",
+            "count": 11765
+          },
+          {
+            "phrase": "mpower",
+            "count": 2039
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "блок розеток schuko",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "блок розеток schuko",
+        "totalCount": 2037,
+        "topRequests": [
+          {
+            "phrase": "блок розеток schuko",
+            "count": 2037
+          },
+          {
+            "phrase": "блок розеток schuko 19",
+            "count": 1305
+          },
+          {
+            "phrase": "блок розеток schuko 8",
+            "count": 976
+          },
+          {
+            "phrase": "блок розеток 19 8 розеток schuko",
+            "count": 772
+          },
+          {
+            "phrase": "блок розеток 7 schuko",
+            "count": 289
+          },
+          {
+            "phrase": "блок розеток 9 schuko",
+            "count": 287
+          },
+          {
+            "phrase": "блок розеток c14 schuko",
+            "count": 285
+          },
+          {
+            "phrase": "блок розеток 19 9 розеток schuko",
+            "count": 205
+          },
+          {
+            "phrase": "блок розеток 8 розеток schuko 16а",
+            "count": 154
+          },
+          {
+            "phrase": "блок 6 розеток schuko",
+            "count": 138
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "стеклоблоки для перегородок",
+            "count": 1522
+          },
+          {
+            "phrase": "перегородка из стеклоблоков",
+            "count": 1103
+          },
+          {
+            "phrase": "переходник для евророзетки",
+            "count": 291
+          },
+          {
+            "phrase": "таймер розеточный",
+            "count": 3356
+          },
+          {
+            "phrase": "удлинитель электрический с выключателем",
+            "count": 557
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "блок розеток iec320 c13",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "блок розеток iec320 c13",
+        "totalCount": 28,
+        "topRequests": [],
+        "associations": []
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "розетка iec320 c13",
+      "axis": "adjacent",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "розетка iec320 c13",
+        "totalCount": 91,
+        "topRequests": [
+          {
+            "phrase": "розетки iec320 c13",
+            "count": 91
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "штепсель это",
+            "count": 1866
+          },
+          {
+            "phrase": "устройство коммутационное ук вк исп 14",
+            "count": 618
+          },
+          {
+            "phrase": "usb vid 10c4 pid ea60 rev 0100",
+            "count": 307
+          },
+          {
+            "phrase": "ec220 g5",
+            "count": 4461
+          },
+          {
+            "phrase": "pp3 19 24 8p8c c5e 110d",
+            "count": 584
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "розетка c13",
+      "axis": "adjacent",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "розетка c13",
+        "totalCount": 1315,
+        "topRequests": [
+          {
+            "phrase": "розетка c13",
+            "count": 1315
+          },
+          {
+            "phrase": "розетка iec c13",
+            "count": 744
+          },
+          {
+            "phrase": "блок розеток c13",
+            "count": 437
+          },
+          {
+            "phrase": "розетка iec 320 c13",
+            "count": 326
+          },
+          {
+            "phrase": "блок розеток iec c13",
+            "count": 245
+          },
+          {
+            "phrase": "8 розеток c13",
+            "count": 236
+          },
+          {
+            "phrase": "c13 c19 розетки",
+            "count": 233
+          },
+          {
+            "phrase": "розетка 60320 c13",
+            "count": 229
+          },
+          {
+            "phrase": "розетка iec 60320 c13",
+            "count": 222
+          },
+          {
+            "phrase": "блок розеток 19 c13",
+            "count": 182
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "розетка",
+            "count": 2015442
+          },
+          {
+            "phrase": "радиорозетка",
+            "count": 2159
+          },
+          {
+            "phrase": "rozetka ua",
+            "count": 201
+          },
+          {
+            "phrase": "радиорозетка рпв 2",
+            "count": 418
+          },
+          {
+            "phrase": "таймер розеточный",
+            "count": 3356
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "pdu c13",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "pdu c13",
+        "totalCount": 452,
+        "topRequests": [
+          {
+            "phrase": "pdu c13",
+            "count": 452
+          },
+          {
+            "phrase": "pdu c13 c19",
+            "count": 160
+          },
+          {
+            "phrase": "pdu c13 c14",
+            "count": 84
+          },
+          {
+            "phrase": "pdu 32a c13",
+            "count": 39
+          },
+          {
+            "phrase": "pdu 8 розеток c13",
+            "count": 37
+          },
+          {
+            "phrase": "pdu с разъемом c13",
+            "count": 37
+          },
+          {
+            "phrase": "cab pdu c14 3m c13 rus",
+            "count": 14
+          },
+          {
+            "phrase": "pdu switched panel c13",
+            "count": 9
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "епд что это",
+            "count": 6077
+          },
+          {
+            "phrase": "pm это",
+            "count": 32027
+          },
+          {
+            "phrase": "pq hosting",
+            "count": 901
+          },
+          {
+            "phrase": "wps что это",
+            "count": 9829
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "pdu c19",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "pdu c19",
+        "totalCount": 236,
+        "topRequests": [
+          {
+            "phrase": "pdu c19",
+            "count": 236
+          },
+          {
+            "phrase": "pdu c13 c19",
+            "count": 160
+          },
+          {
+            "phrase": "pdu 6 c19",
+            "count": 69
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "епд что это",
+            "count": 6077
+          },
+          {
+            "phrase": "pm это",
+            "count": 32027
+          },
+          {
+            "phrase": "atc around the world",
+            "count": 4453
+          },
+          {
+            "phrase": "впс это",
+            "count": 5459
+          },
+          {
+            "phrase": "wps что это",
+            "count": 9829
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "блок розеток 10 1u",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "блок розеток 10 1u",
+        "totalCount": 88,
+        "topRequests": [],
+        "associations": []
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "блок розеток 16а",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "блок розеток 16а",
+        "totalCount": 1559,
+        "topRequests": [
+          {
+            "phrase": "блок розеток 16а",
+            "count": 1559
+          },
+          {
+            "phrase": "блок розеток 19 16а",
+            "count": 803
+          },
+          {
+            "phrase": "блок розеток 8 розеток 16а",
+            "count": 551
+          },
+          {
+            "phrase": "блок розеток 19 8 розеток 16а",
+            "count": 465
+          },
+          {
+            "phrase": "блок розеток 19 1u 16а",
+            "count": 251
+          },
+          {
+            "phrase": "блок розеток 220в 16а",
+            "count": 183
+          },
+          {
+            "phrase": "блок розеток 1u 8 розеток 16а",
+            "count": 179
+          },
+          {
+            "phrase": "блок розеток 8 розеток schuko 16а",
+            "count": 154
+          },
+          {
+            "phrase": "блок розеток 19 250в 16а",
+            "count": 97
+          },
+          {
+            "phrase": "блок розеток с авт 16а",
+            "count": 89
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "узо 16 ампер",
+            "count": 841
+          },
+          {
+            "phrase": "таймер розеточный",
+            "count": 3356
+          },
+          {
+            "phrase": "вилка электрическая 220в с заземлением",
+            "count": 537
+          },
+          {
+            "phrase": "удлинитель электрический с выключателем",
+            "count": 557
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "блок розеток 32а",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "блок розеток 32а",
+        "totalCount": 232,
+        "topRequests": [
+          {
+            "phrase": "блок розеток 32а",
+            "count": 232
+          },
+          {
+            "phrase": "блок розеток вертикальный 32а",
+            "count": 78
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "розетка с крышкой",
+            "count": 16873
+          },
+          {
+            "phrase": "какое напряжение в розетке",
+            "count": 3804
+          },
+          {
+            "phrase": "переходник для евророзетки",
+            "count": 291
+          },
+          {
+            "phrase": "черные розетки",
+            "count": 19392
+          },
+          {
+            "phrase": "таймер розеточный",
+            "count": 3356
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "pdu 16a",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "pdu 16a",
+        "totalCount": 390,
+        "topRequests": [
+          {
+            "phrase": "pdu 16a",
+            "count": 390
+          },
+          {
+            "phrase": "блок распределения питания pdu 16a",
+            "count": 124
+          },
+          {
+            "phrase": "mdx pdu 8e 16a",
+            "count": 31
+          },
+          {
+            "phrase": "pdu 16a type 2",
+            "count": 23
+          },
+          {
+            "phrase": "mdx pdu 8e 16a term",
+            "count": 21
+          },
+          {
+            "phrase": "блок распределения питания pdu 16a type 2",
+            "count": 9
+          },
+          {
+            "phrase": "powercom pdu 16a type 2",
+            "count": 6
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "пдн это",
+            "count": 16364
+          },
+          {
+            "phrase": "атс это",
+            "count": 5197
+          },
+          {
+            "phrase": "епд что это",
+            "count": 6077
+          },
+          {
+            "phrase": "лпу это",
+            "count": 4249
+          },
+          {
+            "phrase": "па это",
+            "count": 61668
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "pdu 32a",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "pdu 32a",
+        "totalCount": 141,
+        "topRequests": [
+          {
+            "phrase": "pdu 32a",
+            "count": 141
+          },
+          {
+            "phrase": "pdu 32a c13",
+            "count": 39
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "wps что это",
+            "count": 9829
+          },
+          {
+            "phrase": "ан 32",
+            "count": 10375
+          },
+          {
+            "phrase": "5091731",
+            "count": 182
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "вертикальный блок розеток",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "вертикальный блок розеток",
+        "totalCount": 734,
+        "topRequests": [
+          {
+            "phrase": "вертикальный блок розеток",
+            "count": 734
+          },
+          {
+            "phrase": "блок розетка выключатель вертикальный",
+            "count": 212
+          },
+          {
+            "phrase": "блок розеток pdu вертикальный",
+            "count": 83
+          },
+          {
+            "phrase": "блок розеток вертикальный 32а",
+            "count": 78
+          },
+          {
+            "phrase": "блок розеток 19 вертикальный",
+            "count": 69
+          },
+          {
+            "phrase": "вертикальный блок розеток rem",
+            "count": 66
+          },
+          {
+            "phrase": "блок розеток выдвижной вертикальный",
+            "count": 37
+          },
+          {
+            "phrase": "блок розетка выключатель вертикальный черный",
+            "count": 29
+          },
+          {
+            "phrase": "блок розеток вертикальный в стойку",
+            "count": 27
+          },
+          {
+            "phrase": "вертикальный блок розеток rem 32",
+            "count": 26
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "перегородка из стеклоблоков",
+            "count": 1103
+          },
+          {
+            "phrase": "прозрачная перегородка головного мозга",
+            "count": 1552
+          },
+          {
+            "phrase": "белый фон вертикально",
+            "count": 2368
+          },
+          {
+            "phrase": "кровь на прозрачном фоне",
+            "count": 278
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "блок розеток вертикальный",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "блок розеток вертикальный",
+        "totalCount": 734,
+        "topRequests": [
+          {
+            "phrase": "вертикальный блок розеток",
+            "count": 734
+          },
+          {
+            "phrase": "блок розетка выключатель вертикальный",
+            "count": 212
+          },
+          {
+            "phrase": "блок розеток pdu вертикальный",
+            "count": 83
+          },
+          {
+            "phrase": "блок розеток вертикальный 32а",
+            "count": 78
+          },
+          {
+            "phrase": "блок розеток 19 вертикальный",
+            "count": 69
+          },
+          {
+            "phrase": "вертикальный блок розеток rem",
+            "count": 66
+          },
+          {
+            "phrase": "блок розеток выдвижной вертикальный",
+            "count": 37
+          },
+          {
+            "phrase": "блок розетка выключатель вертикальный черный",
+            "count": 29
+          },
+          {
+            "phrase": "блок розеток вертикальный в стойку",
+            "count": 27
+          },
+          {
+            "phrase": "вертикальный блок розеток rem 32",
+            "count": 26
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "перегородка из стеклоблоков",
+            "count": 1103
+          },
+          {
+            "phrase": "прозрачная перегородка головного мозга",
+            "count": 1552
+          },
+          {
+            "phrase": "белый фон вертикально",
+            "count": 2368
+          },
+          {
+            "phrase": "кровь на прозрачном фоне",
+            "count": 278
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "вертикальный pdu",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "вертикальный pdu",
+        "totalCount": 285,
+        "topRequests": [
+          {
+            "phrase": "вертикальный pdu",
+            "count": 285
+          },
+          {
+            "phrase": "блок розеток pdu вертикальный",
+            "count": 83
+          },
+          {
+            "phrase": "pdu вертикальный 32а",
+            "count": 74
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "вертикаль власти это",
+            "count": 1645
+          },
+          {
+            "phrase": "размер шрифта по вертикали кроссворд",
+            "count": 505
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "трехфазный блок розеток",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "трехфазный блок розеток",
+        "totalCount": 43,
+        "topRequests": [
+          {
+            "phrase": "трехфазные блоки розеток",
+            "count": 43
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "реле напряжения 3 фазное",
+            "count": 2221
+          },
+          {
+            "phrase": "реле напряжения abb",
+            "count": 699
+          },
+          {
+            "phrase": "подключение узо к однофазной сети без заземления",
+            "count": 131
+          },
+          {
+            "phrase": "стабилизатор напряжения 3 фазный",
+            "count": 725
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "pdu трехфазный",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "pdu трехфазный",
+        "totalCount": 29,
+        "topRequests": [
+          {
+            "phrase": "pdu трехфазный",
+            "count": 29
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "al2 so4 3",
+            "count": 31803
+          },
+          {
+            "phrase": "ра 3",
+            "count": 489640
+          },
+          {
+            "phrase": "30 3",
+            "count": 1924804
+          },
+          {
+            "phrase": "реле контроля фаз 3 фазное",
+            "count": 730
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "pdu 3 фазы",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "pdu 3 фазы",
+        "totalCount": 61,
+        "topRequests": [
+          {
+            "phrase": "pdu 3 фазы",
+            "count": 61
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "реле напряжения трехфазное",
+            "count": 7377
+          },
+          {
+            "phrase": "сто газпром 15 1.3 004 2023",
+            "count": 413
+          },
+          {
+            "phrase": "пароочиститель tc sc 003 инструкция",
+            "count": 433
+          },
+          {
+            "phrase": "эом расшифровка электрика",
+            "count": 248
+          },
+          {
+            "phrase": "опр с 003.1",
+            "count": 298
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "управляемый pdu",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "управляемый pdu",
+        "totalCount": 33,
+        "topRequests": [
+          {
+            "phrase": "управляемая pdu",
+            "count": 33
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "перехват управления последний выпуск",
+            "count": 4150
+          },
+          {
+            "phrase": "управление",
+            "count": 9075970
+          },
+          {
+            "phrase": "управление это",
+            "count": 329628
+          },
+          {
+            "phrase": "канал перехват управления",
+            "count": 4621
+          },
+          {
+            "phrase": "функции управления",
+            "count": 102646
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "интеллектуальный pdu",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "интеллектуальный pdu",
+        "totalCount": 33,
+        "topRequests": [
+          {
+            "phrase": "интеллектуальные pdu",
+            "count": 33
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "умный интеллект",
+            "count": 9583
+          },
+          {
+            "phrase": "умная раковина",
+            "count": 662
+          },
+          {
+            "phrase": "smart connect что это в роутере",
+            "count": 98
+          },
+          {
+            "phrase": "smart аббревиатура",
+            "count": 803
+          },
+          {
+            "phrase": "что такое умная розетка",
+            "count": 405
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "pdu с мониторингом",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "pdu с мониторингом",
+        "totalCount": 157,
+        "topRequests": [
+          {
+            "phrase": "pdu с мониторингом",
+            "count": 157
+          },
+          {
+            "phrase": "блок pdu с мониторингом",
+            "count": 70
+          },
+          {
+            "phrase": "pdu с мониторингом и управлением",
+            "count": 15
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "трекер гг",
+            "count": 5296
+          },
+          {
+            "phrase": "https cifrium ru monitoring",
+            "count": 355
+          },
+          {
+            "phrase": "https monitoring cemon ru opros",
+            "count": 2169
+          },
+          {
+            "phrase": "р6 трекер",
+            "count": 347
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "pdu с управлением",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "pdu с управлением",
+        "totalCount": 30,
+        "topRequests": [
+          {
+            "phrase": "pdu с управлением",
+            "count": 30
+          },
+          {
+            "phrase": "pdu с мониторингом и управлением",
+            "count": 15
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "диспетчер устройств через командную строку",
+            "count": 562
+          },
+          {
+            "phrase": "пду это",
+            "count": 1600
+          },
+          {
+            "phrase": "пду 5",
+            "count": 1565
+          },
+          {
+            "phrase": "iqrew management",
+            "count": 395
+          },
+          {
+            "phrase": "как управлять эмоциями",
+            "count": 2969
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "metered pdu",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "metered pdu",
+        "totalCount": 119,
+        "topRequests": [
+          {
+            "phrase": "metered pdu",
+            "count": 119
+          },
+          {
+            "phrase": "metered rack pdu",
+            "count": 45
+          },
+          {
+            "phrase": "apc metered pdu",
+            "count": 26
+          },
+          {
+            "phrase": "eaton in line metered rack pdu",
+            "count": 9
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "кмч на счетчике воды что это",
+            "count": 204
+          },
+          {
+            "phrase": "пересадка с метро на мцд по тройке",
+            "count": 441
+          },
+          {
+            "phrase": "проверить поверку счетчика воды в системе аршин",
+            "count": 144
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "monitored pdu",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "monitored pdu",
+        "totalCount": 16,
+        "topRequests": [],
+        "associations": []
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "switched pdu",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "switched pdu",
+        "totalCount": 123,
+        "topRequests": [
+          {
+            "phrase": "switched pdu",
+            "count": 123
+          },
+          {
+            "phrase": "switched rack pdu",
+            "count": 83
+          },
+          {
+            "phrase": "apc switched pdu",
+            "count": 63
+          },
+          {
+            "phrase": "apc switched rack pdu",
+            "count": 57
+          },
+          {
+            "phrase": "pdu switched panel c13",
+            "count": 9
+          },
+          {
+            "phrase": "apc switched a rack pdu ap8981 прошивка",
+            "count": 5
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "как достать свитч из клавиатуры",
+            "count": 428
+          },
+          {
+            "phrase": "желтые свитчи",
+            "count": 577
+          },
+          {
+            "phrase": "kvm свитч",
+            "count": 191
+          },
+          {
+            "phrase": "свитч 8 портов",
+            "count": 565
+          },
+          {
+            "phrase": "прокси сервер для нинтендо свитч бесплатно",
+            "count": 233
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "pdu snmp",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "pdu snmp",
+        "totalCount": 56,
+        "topRequests": [
+          {
+            "phrase": "snmp pdu",
+            "count": 56
+          },
+          {
+            "phrase": "лабораторная работа набор услуг pdu протокола snmp",
+            "count": 5
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "snmpwalk",
+            "count": 782
+          },
+          {
+            "phrase": "hypervisor bypass",
+            "count": 331
+          },
+          {
+            "phrase": "snmpsm2",
+            "count": 193
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "блок розеток с мониторингом",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "блок розеток с мониторингом",
+        "totalCount": 70,
+        "topRequests": [
+          {
+            "phrase": "блок розеток с мониторингом",
+            "count": 70
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "реле контроля напряжения",
+            "count": 24575
+          },
+          {
+            "phrase": "сенсор трекер",
+            "count": 1784
+          },
+          {
+            "phrase": "бктп расшифровка в электрике",
+            "count": 367
+          },
+          {
+            "phrase": "реле контроля напряжения для чего предназначено",
+            "count": 280
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "измерительный блок розеток",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "измерительный блок розеток",
+        "totalCount": 9,
+        "topRequests": [],
+        "associations": []
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "сетевой фильтр с узип",
+      "axis": "adjacent",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "сетевой фильтр с узип",
+        "totalCount": 12,
+        "topRequests": [
+          {
+            "phrase": "лучшие сетевые фильтры с дугогашением afci узип",
+            "count": 6
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "rutor org зеркало 2025 рабочая на сегодня",
+            "count": 1639
+          },
+          {
+            "phrase": "epd qms ru проверка скорости интернета ростелеком",
+            "count": 939
+          },
+          {
+            "phrase": "как включить счетчик фпс в кс2",
+            "count": 826
+          },
+          {
+            "phrase": "сечение кабеля по мощности таблица 220в",
+            "count": 1545
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "блок розеток с узип",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "блок розеток с узип",
+        "totalCount": 0,
+        "topRequests": [],
+        "associations": []
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "pdu с узип",
+      "axis": "feature",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "pdu с узип",
+        "totalCount": 0,
+        "topRequests": [],
+        "associations": []
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "сетевой фильтр 19",
+      "axis": "adjacent",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "сетевой фильтр 19",
+        "totalCount": 181,
+        "topRequests": [
+          {
+            "phrase": "сетевой фильтр 19",
+            "count": 181
+          },
+          {
+            "phrase": "сетевой фильтр 19 дюймов",
+            "count": 39
+          },
+          {
+            "phrase": "сетевой фильтр в стойку 19",
+            "count": 31
+          },
+          {
+            "phrase": "фильтр сетевой premium line 19 1156057128 brennenstuhl",
+            "count": 22
+          },
+          {
+            "phrase": "19 шкаф сетевой фильтр",
+            "count": 22
+          },
+          {
+            "phrase": "сетевой фильтр 19 1u",
+            "count": 16
+          },
+          {
+            "phrase": "сетевой фильтр 19 дюймов в стойку",
+            "count": 16
+          },
+          {
+            "phrase": "сетевой фильтр 19 8 розеток",
+            "count": 7
+          },
+          {
+            "phrase": "фильтр сетевой стоечный 19",
+            "count": 6
+          },
+          {
+            "phrase": "сетевой фильтр в шкаф 19 дюймов",
+            "count": 5
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "скорость клубочковой фильтрации что это",
+            "count": 11419
+          },
+          {
+            "phrase": "маршрутизатор и роутер в чем разница",
+            "count": 740
+          },
+          {
+            "phrase": "скорость клубочковой фильтрации что это такое",
+            "count": 3928
+          },
+          {
+            "phrase": "коммутатор и маршрутизатор в чем разница",
+            "count": 580
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "серверный шкаф",
+      "axis": "adjacent",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "серверный шкаф",
+        "totalCount": 9967,
+        "topRequests": [
+          {
+            "phrase": "серверный шкаф",
+            "count": 9967
+          },
+          {
+            "phrase": "шкаф серверный напольный",
+            "count": 1564
+          },
+          {
+            "phrase": "серверный шкаф 19",
+            "count": 1299
+          },
+          {
+            "phrase": "серверный шкаф 42u",
+            "count": 870
+          },
+          {
+            "phrase": "дверь серверного шкафа",
+            "count": 771
+          },
+          {
+            "phrase": "шкаф серверный телекоммуникационный",
+            "count": 601
+          },
+          {
+            "phrase": "шкаф серверный напольный 19",
+            "count": 572
+          },
+          {
+            "phrase": "шкаф серверный напольный 42u",
+            "count": 538
+          },
+          {
+            "phrase": "купить серверный шкаф",
+            "count": 471
+          },
+          {
+            "phrase": "шкаф серверный черный",
+            "count": 460
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "сервер видеонаблюдения",
+            "count": 2965
+          },
+          {
+            "phrase": "сервер видеонаблюдения server port it",
+            "count": 140
+          },
+          {
+            "phrase": "бесперебойник для сервера",
+            "count": 147
+          },
+          {
+            "phrase": "кс2ред сервера",
+            "count": 85
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "шкаф 19",
+      "axis": "adjacent",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "шкаф 19",
+        "totalCount": 25013,
+        "topRequests": [
+          {
+            "phrase": "шкаф 19",
+            "count": 25013
+          },
+          {
+            "phrase": "телекоммуникационный шкаф 19",
+            "count": 7819
+          },
+          {
+            "phrase": "шкаф напольный 19",
+            "count": 5319
+          },
+          {
+            "phrase": "шкаф настенный 19",
+            "count": 5086
+          },
+          {
+            "phrase": "шкаф 19 дюймов",
+            "count": 2910
+          },
+          {
+            "phrase": "шкаф телекоммуникационный 19 настенный",
+            "count": 2810
+          },
+          {
+            "phrase": "шкаф телекоммуникационный 19 напольный",
+            "count": 2441
+          },
+          {
+            "phrase": "шкаф 19 42u",
+            "count": 2204
+          },
+          {
+            "phrase": "шкаф 19 cabeus",
+            "count": 1922
+          },
+          {
+            "phrase": "шкаф напольный 19 42u",
+            "count": 1615
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "буфет мебель",
+            "count": 1564
+          },
+          {
+            "phrase": "шкафчик в ванную комнату",
+            "count": 1642
+          },
+          {
+            "phrase": "шкафчики для раздевалок",
+            "count": 3684
+          },
+          {
+            "phrase": "сервант",
+            "count": 33598
+          },
+          {
+            "phrase": "шкафчик как пишется",
+            "count": 271
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "стойка 19",
+      "axis": "adjacent",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "стойка 19",
+        "totalCount": 12272,
+        "topRequests": [
+          {
+            "phrase": "стойка 19",
+            "count": 12272
+          },
+          {
+            "phrase": "стойка 19 дюймов",
+            "count": 2686
+          },
+          {
+            "phrase": "комплект 19 стойки",
+            "count": 1138
+          },
+          {
+            "phrase": "установка в стойку 19",
+            "count": 1024
+          },
+          {
+            "phrase": "блоки 19 стоек",
+            "count": 949
+          },
+          {
+            "phrase": "шкафа стойка 19",
+            "count": 868
+          },
+          {
+            "phrase": "стойка 19 1u",
+            "count": 825
+          },
+          {
+            "phrase": "монтаж стоек 19",
+            "count": 813
+          },
+          {
+            "phrase": "19 дюймовая стойка",
+            "count": 737
+          },
+          {
+            "phrase": "19 стойка ибп",
+            "count": 681
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "планка",
+            "count": 732774
+          },
+          {
+            "phrase": "подставка",
+            "count": 1000490
+          },
+          {
+            "phrase": "станина",
+            "count": 45126
+          },
+          {
+            "phrase": "постамент это",
+            "count": 2668
+          },
+          {
+            "phrase": "трубостойка",
+            "count": 13363
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "шкаф телекоммуникационный 19",
+      "axis": "adjacent",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "шкаф телекоммуникационный 19",
+        "totalCount": 7819,
+        "topRequests": [
+          {
+            "phrase": "телекоммуникационный шкаф 19",
+            "count": 7819
+          },
+          {
+            "phrase": "шкаф телекоммуникационный 19 настенный",
+            "count": 2810
+          },
+          {
+            "phrase": "шкаф телекоммуникационный 19 напольный",
+            "count": 2441
+          },
+          {
+            "phrase": "шкаф телекоммуникационный cabeus 19",
+            "count": 1087
+          },
+          {
+            "phrase": "шкаф телекоммуникационный 19 12u",
+            "count": 880
+          },
+          {
+            "phrase": "шкаф телекоммуникационный 19 42u",
+            "count": 860
+          },
+          {
+            "phrase": "шкаф телекоммуникационный 19 дверь стекло",
+            "count": 755
+          },
+          {
+            "phrase": "шкаф телекоммуникационный напольный 19 42u",
+            "count": 702
+          },
+          {
+            "phrase": "телекоммуникационный шкаф 19 6u",
+            "count": 695
+          },
+          {
+            "phrase": "шкафа телекоммуникационного 19 9u",
+            "count": 693
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "как подключить роутер к роутеру через кабель",
+            "count": 7474
+          },
+          {
+            "phrase": "wps на роутере что это за кнопка",
+            "count": 130
+          },
+          {
+            "phrase": "серверный корпус",
+            "count": 2215
+          },
+          {
+            "phrase": "ящик для роутера на стену",
+            "count": 165
+          },
+          {
+            "phrase": "роутер ai",
+            "count": 329
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "ibp для серверного шкафа",
+      "axis": "adjacent",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "ibp для серверного шкафа",
+        "totalCount": 0,
+        "topRequests": [],
+        "associations": []
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "ибп для серверного шкафа",
+      "axis": "adjacent",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "ибп для серверного шкафа",
+        "totalCount": 39,
+        "topRequests": [
+          {
+            "phrase": "ибп для серверного шкафа",
+            "count": 39
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "бесперебойник для роутера",
+            "count": 379
+          },
+          {
+            "phrase": "бесперебойный источник питания",
+            "count": 54005
+          },
+          {
+            "phrase": "бесперебойник для сервера",
+            "count": 147
+          },
+          {
+            "phrase": "бесперебойник для видеонаблюдения",
+            "count": 417
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "soliton pdu",
+      "axis": "alternative",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "soliton pdu",
+        "totalCount": 7,
+        "topRequests": [],
+        "associations": []
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "soliton блок розеток",
+      "axis": "alternative",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "soliton блок розеток",
+        "totalCount": 2,
+        "topRequests": [],
+        "associations": []
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "солитон блок розеток",
+      "axis": "alternative",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "солитон блок розеток",
+        "totalCount": 17,
+        "topRequests": [],
+        "associations": []
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "apc pdu",
+      "axis": "alternative",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "apc pdu",
+        "totalCount": 339,
+        "topRequests": [
+          {
+            "phrase": "pdu apc",
+            "count": 339
+          },
+          {
+            "phrase": "apc rack pdu",
+            "count": 129
+          },
+          {
+            "phrase": "apc switched pdu",
+            "count": 63
+          },
+          {
+            "phrase": "apc switched rack pdu",
+            "count": 57
+          },
+          {
+            "phrase": "pdu apc ap8981",
+            "count": 45
+          },
+          {
+            "phrase": "apc metered pdu",
+            "count": 26
+          },
+          {
+            "phrase": "pdu apc ap8886",
+            "count": 15
+          },
+          {
+            "phrase": "apc basic rack pdu",
+            "count": 13
+          },
+          {
+            "phrase": "apc rack pdu 2g",
+            "count": 11
+          },
+          {
+            "phrase": "apc rack pdu 9000",
+            "count": 8
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "ups",
+            "count": 128704
+          },
+          {
+            "phrase": "ибп это",
+            "count": 7363
+          },
+          {
+            "phrase": "апс это",
+            "count": 4882
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "schneider pdu",
+      "axis": "alternative",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "schneider pdu",
+        "totalCount": 3,
+        "topRequests": [],
+        "associations": []
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "hyperline pdu",
+      "axis": "alternative",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "hyperline pdu",
+        "totalCount": 45,
+        "topRequests": [
+          {
+            "phrase": "pdu hyperline",
+            "count": 45
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "гиперлайн",
+            "count": 1128
+          },
+          {
+            "phrase": "logitech g435 как переключить на радиоканал",
+            "count": 389
+          },
+          {
+            "phrase": "hiperline",
+            "count": 198
+          },
+          {
+            "phrase": "tp link archer tx20u plus",
+            "count": 409
+          },
+          {
+            "phrase": "beer happens ул сретенка 26 1 меню",
+            "count": 80
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "hyperline блок розеток",
+      "axis": "alternative",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "hyperline блок розеток",
+        "totalCount": 378,
+        "topRequests": [
+          {
+            "phrase": "блок розеток hyperline",
+            "count": 378
+          },
+          {
+            "phrase": "блок розеток 19 hyperline",
+            "count": 176
+          },
+          {
+            "phrase": "блок розеток шкаф hyperline",
+            "count": 99
+          },
+          {
+            "phrase": "hyperline блок розеток для 19 шкафов",
+            "count": 88
+          },
+          {
+            "phrase": "блок розеток hyperline 19 8 розеток",
+            "count": 75
+          },
+          {
+            "phrase": "блок розеток hyperline she19 8sh iec",
+            "count": 53
+          },
+          {
+            "phrase": "блок розеток hyperline she19 8sh s iec",
+            "count": 50
+          },
+          {
+            "phrase": "блок розеток hyperline sht19 8sh s",
+            "count": 42
+          },
+          {
+            "phrase": "блок розеток 19 9 розеток hyperline",
+            "count": 39
+          },
+          {
+            "phrase": "hyperline блок розеток 1u",
+            "count": 29
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "впн для роблокса на пк 2026",
+            "count": 1126
+          },
+          {
+            "phrase": "переходник для евророзетки",
+            "count": 291
+          },
+          {
+            "phrase": "распиновка кабеля ethernet rj 45",
+            "count": 87
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "rittal pdu",
+      "axis": "alternative",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "rittal pdu",
+        "totalCount": 13,
+        "topRequests": [
+          {
+            "phrase": "pdu rittal",
+            "count": 13
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "ритал",
+            "count": 1398
+          },
+          {
+            "phrase": "skat ups 1000 rack 2x9ah",
+            "count": 181
+          },
+          {
+            "phrase": "powercase mistral x4 mesh led",
+            "count": 97
+          },
+          {
+            "phrase": "iec 61850",
+            "count": 520
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "vertiv pdu",
+      "axis": "alternative",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "vertiv pdu",
+        "totalCount": 16,
+        "topRequests": [
+          {
+            "phrase": "vertiv pdu",
+            "count": 16
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "раздел 3.1 рсв 2026",
+            "count": 9950
+          },
+          {
+            "phrase": "plc адаптер ростелеком что это",
+            "count": 84
+          },
+          {
+            "phrase": "powercase mistral x4 mesh led",
+            "count": 97
+          },
+          {
+            "phrase": "mtoc hypervisor b 5.3 0xzeon rar",
+            "count": 68
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "topRequests",
+      "queried_at": "2026-05-12",
+      "requested_phrase": "eaton pdu",
+      "axis": "alternative",
+      "regions": [
+        225
+      ],
+      "num_phrases": 10,
+      "response": {
+        "requestPhrase": "eaton pdu",
+        "totalCount": 29,
+        "topRequests": [
+          {
+            "phrase": "eaton pdu",
+            "count": 29
+          },
+          {
+            "phrase": "eaton in line metered rack pdu",
+            "count": 9
+          }
+        ],
+        "associations": [
+          {
+            "phrase": "промокоды на иви 2026 на подписку",
+            "count": 8053
+          },
+          {
+            "phrase": "как поделиться подпиской впн happ",
+            "count": 905
+          },
+          {
+            "phrase": "пробная подписка впн хапп",
+            "count": 540
+          },
+          {
+            "phrase": "какой днс сервер у витал шарка",
+            "count": 72
+          },
+          {
+            "phrase": "как отключить амедиатеку на иви",
+            "count": 484
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+node_modules/
+.next/
+dist/
+coverage/
+*.log
+00-source-data/rfq-submissions/*.jsonl
+
+# Legacy assets cached from soliton1.ru during media migration (spec 017).
+# Tracked separately by `06-reports/06-asset-inventory.json` manifest.
+apps/web/public/legacy/
+
+# Agent folders can contain local/session data. Keep only deliberate project docs.
+.agents/**/.cache/
+.agents/**/tmp/

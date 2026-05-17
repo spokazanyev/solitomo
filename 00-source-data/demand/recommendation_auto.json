@@ -1,0 +1,25 @@
+{
+  "recommendation": {
+    "decision": "go and scale via SEO",
+    "confidence": "high",
+    "reason": "Market signal is `mixed_market_signal` with score `65.0`; chosen cluster has market relevance `56.62` and is supported by classes `блоки розеток pdu для 19-дюймовых шкафов` and needs `питание серверного оборудования в 10 и 19 дюймовых стойках`. Chosen cluster `Серверные шкафы, 19” стойки и телеком-шкафы` has demand score `100.0` and trend score `44.41`. Search channel status is `search_as_acquisition_channel` and SEO feasibility is `strong`. No stronger neighboring cluster displaced the main direction.",
+    "market_reason": "Market signal is `mixed_market_signal` with score `65.0`; chosen cluster has market relevance `56.62` and is supported by classes `блоки розеток pdu для 19-дюймовых шкафов` and needs `питание серверного оборудования в 10 и 19 дюймовых стойках`.",
+    "search_reason": "Chosen cluster `Серверные шкафы, 19” стойки и телеком-шкафы` has demand score `100.0` and trend score `44.41`.",
+    "channel_reason": "Search channel status is `search_as_acquisition_channel` and SEO feasibility is `strong`.",
+    "pivot_reason": "No stronger neighboring cluster displaced the main direction.",
+    "main_cluster_id": "server_rack_adjacent",
+    "main_cluster": "Серверные шкафы, 19” стойки и телеком-шкафы",
+    "pivot_cluster_id": "server_rack_adjacent",
+    "pivot_cluster": "Серверные шкафы, 19” стойки и телеком-шкафы",
+    "search_channel_fit": "search_as_acquisition_channel",
+    "seo_feasibility_status": "strong",
+    "seo_cluster_ids": [
+      "server_rack_adjacent",
+      "core_19_1u"
+    ],
+    "chosen_direction": "Серверные шкафы, 19” стойки и телеком-шкафы",
+    "rejected_original_direction": null,
+    "next_step": "Prioritize the strongest validated cluster and build the keyword matrix and landing map.",
+    "original_idea": "блоки розеток PDU Soliton для серверных шкафов и стоек"
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "dynamics": [
+    {
+      "phrase": "блок розеток",
+      "cluster_id": "core_blocks",
+      "first_6m_avg": 40086,
+      "last_6m_avg": 43563.83,
+      "change_pct": 8.68,
+      "trend_label": "стабильный",
+      "dynamics_points": 24,
+      "volatility": 0.0967,
+      "seasonality_index": 1.1915
+    },
+    {
+      "phrase": "шкаф 19",
+      "cluster_id": "server_rack_adjacent",
+      "first_6m_avg": 23301,
+      "last_6m_avg": 23856.17,
+      "change_pct": 2.38,
+      "trend_label": "стабильный",
+      "dynamics_points": 24,
+      "volatility": 0.1396,
+      "seasonality_index": 1.2324
+    },
+    {
+      "phrase": "pdu",
+      "cluster_id": "pdu_generic",
+      "first_6m_avg": 13780.5,
+      "last_6m_avg": 14504.17,
+      "change_pct": 5.25,
+      "trend_label": "стабильный",
+      "dynamics_points": 24,
+      "volatility": 0.1281,
+      "seasonality_index": 1.2725
+    },
+    {
+      "phrase": "стойка 19",
+      "cluster_id": "server_rack_adjacent",
+      "first_6m_avg": 12700.17,
+      "last_6m_avg": 11731.5,
+      "change_pct": -7.63,
+      "trend_label": "стабильный",
+      "dynamics_points": 24,
+      "volatility": 0.1147,
+      "seasonality_index": 1.1678
+    },
+    {
+      "phrase": "серверный шкаф",
+      "cluster_id": "server_rack_adjacent",
+      "first_6m_avg": 10313.5,
+      "last_6m_avg": 10154.83,
+      "change_pct": -1.54,
+      "trend_label": "стабильный",
+      "dynamics_points": 24,
+      "volatility": 0.165,
+      "seasonality_index": 1.3481
+    },
+    {
+      "phrase": "блок розеток 19",
+      "cluster_id": "core_19_1u",
+      "first_6m_avg": 6645.67,
+      "last_6m_avg": 6125.83,
+      "change_pct": -7.82,
+      "trend_label": "стабильный",
+      "dynamics_points": 24,
+      "volatility": 0.1187,
+      "seasonality_index": 1.1761
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "cluster_id": "pdu_generic",
+      "first_6m_avg": 1977.33,
+      "last_6m_avg": 2462.67,
+      "change_pct": 24.54,
+      "trend_label": "растущий",
+      "dynamics_points": 24,
+      "volatility": 0.1699,
+      "seasonality_index": 1.3832
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "cluster_id": "socket_type",
+      "first_6m_avg": 2013,
+      "last_6m_avg": 1919.5,
+      "change_pct": -4.64,
+      "trend_label": "стабильный",
+      "dynamics_points": 24,
+      "volatility": 0.1326,
+      "seasonality_index": 1.2324
+    },
+    {
+      "phrase": "pdu 19",
+      "cluster_id": "pdu_generic",
+      "first_6m_avg": 1234.17,
+      "last_6m_avg": 1415.17,
+      "change_pct": 14.67,
+      "trend_label": "стабильный",
+      "dynamics_points": 24,
+      "volatility": 0.1466,
+      "seasonality_index": 1.3298
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "cluster_id": "amperage",
+      "first_6m_avg": 1602,
+      "last_6m_avg": 1413.67,
+      "change_pct": -11.76,
+      "trend_label": "стабильный",
+      "dynamics_points": 24,
+      "volatility": 0.1313,
+      "seasonality_index": 1.1648
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "cluster_id": "core_19_1u",
+      "first_6m_avg": 1452.17,
+      "last_6m_avg": 1339.67,
+      "change_pct": -7.75,
+      "trend_label": "стабильный",
+      "dynamics_points": 24,
+      "volatility": 0.1261,
+      "seasonality_index": 1.2003
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "cluster_id": "vertical_mount",
+      "first_6m_avg": 825.83,
+      "last_6m_avg": 686.5,
+      "change_pct": -16.87,
+      "trend_label": "снижающийся",
+      "dynamics_points": 24,
+      "volatility": 0.1377,
+      "seasonality_index": 1.2414
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "cluster_id": "brand_competitors",
+      "first_6m_avg": 769.17,
+      "last_6m_avg": 410.17,
+      "change_pct": -46.67,
+      "trend_label": "снижающийся",
+      "dynamics_points": 24,
+      "volatility": 0.2631,
+      "seasonality_index": 1.35
+    },
+    {
+      "phrase": "apc pdu",
+      "cluster_id": "brand_competitors",
+      "first_6m_avg": 382.83,
+      "last_6m_avg": 277.33,
+      "change_pct": -27.56,
+      "trend_label": "снижающийся",
+      "dynamics_points": 24,
+      "volatility": 0.2154,
+      "seasonality_index": 1.3769
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "cluster_id": "amperage",
+      "first_6m_avg": 204.67,
+      "last_6m_avg": 225,
+      "change_pct": 9.93,
+      "trend_label": "стабильный",
+      "dynamics_points": 24,
+      "volatility": 0.1712,
+      "seasonality_index": 1.295
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "cluster_id": "managed_metered",
+      "first_6m_avg": 70.83,
+      "last_6m_avg": 109.83,
+      "change_pct": 55.06,
+      "trend_label": "растущий",
+      "dynamics_points": 24,
+      "volatility": 0.3192,
+      "seasonality_index": 1.7889
+    },
+    {
+      "phrase": "metered pdu",
+      "cluster_id": "managed_metered",
+      "first_6m_avg": 117.17,
+      "last_6m_avg": 100.17,
+      "change_pct": -14.51,
+      "trend_label": "стабильный",
+      "dynamics_points": 24,
+      "volatility": 0.2153,
+      "seasonality_index": 1.3338
+    },
+    {
+      "phrase": "управляемый pdu",
+      "cluster_id": "managed_metered",
+      "first_6m_avg": 52.17,
+      "last_6m_avg": 70,
+      "change_pct": 34.19,
+      "trend_label": "растущий",
+      "dynamics_points": 24,
+      "volatility": 0.2598,
+      "seasonality_index": 1.6147
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "cluster_id": "three_phase",
+      "first_6m_avg": 27.5,
+      "last_6m_avg": 34.17,
+      "change_pct": 24.24,
+      "trend_label": "растущий",
+      "dynamics_points": 24,
+      "volatility": 0.5369,
+      "seasonality_index": 2.5075
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "cluster_id": "surge_filter",
+      "first_6m_avg": 0,
+      "last_6m_avg": 1.67,
+      "change_pct": 100,
+      "trend_label": "растущий",
+      "dynamics_points": 24,
+      "volatility": 4.7958,
+      "seasonality_index": 24
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "cluster_id": "socket_type",
+      "first_6m_avg": 0,
+      "last_6m_avg": 0,
+      "change_pct": 0,
+      "trend_label": "стабильный",
+      "dynamics_points": 24,
+      "volatility": 0,
+      "seasonality_index": 0
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "cluster_id": "surge_filter",
+      "first_6m_avg": 19.83,
+      "last_6m_avg": 0,
+      "change_pct": -100,
+      "trend_label": "снижающийся",
+      "dynamics_points": 24,
+      "volatility": 1.2641,
+      "seasonality_index": 4.7213
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "cluster_id": "brand_soliton",
+      "first_6m_avg": 0,
+      "last_6m_avg": 0,
+      "change_pct": 0,
+      "trend_label": "стабильный",
+      "dynamics_points": 24,
+      "volatility": 2.6945,
+      "seasonality_index": 10.0299
+    }
+  ]
+}

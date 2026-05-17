@@ -1,0 +1,189 @@
+- main:
+  - link "Soliton":
+    - /url: /
+  - navigation:
+    - link "Каталог":
+      - /url: /catalog/pdu/
+    - link "Фильтры с УЗИП":
+      - /url: /catalog/pdu-uzip/
+    - link "Подбор":
+      - /url: /solutions/pdu-dlya-servernogo-shkafa/
+    - link "Документы":
+      - /url: /documents/
+    - link "Запрос КП 1":
+      - /url: /b2b/request-quote/
+      - text: Запрос КП
+      - generic: "1"
+  - navigation:
+    - link "Главная":
+      - /url: /
+    - generic: /
+    - link "Документы Soliton":
+      - /url: /documents/
+  - paragraph: Документы для закупки
+  - heading "Документы Soliton" [level=1]
+  - paragraph: "Документы по PDU и блокам розеток Soliton: паспорта изделий, инструкции, сертификаты, реквизиты и материалы для закупки."
+  - link "Запросить документ":
+    - /url: /b2b/request-quote/
+  - link "В каталог":
+    - /url: /catalog/pdu/
+  - complementary:
+    - heading "Коротко" [level=2]
+    - paragraph: Паспорта, инструкции, сертификаты и материалы, которые помогают согласовать закупку PDU.
+    - generic: документы soliton
+    - generic: сертификаты pdu
+    - generic: паспорта изделий pdu
+  - paragraph: Доступные файлы
+  - heading "Документы из карточек товаров" [level=2]
+  - paragraph: Ниже показаны файлы, уже привязанные к товарам Soliton. Недостающие паспорта, сертификаты или сведения по реестру можно запросить вместе с КП.
+  - link "Описание блока розеток c мониторингом Вертикальный PDU, S-AB_M, 7 Schuko, 32A, ввод IEC60309, с мониторингом, с управлением S-AB_M":
+    - /url: https://soliton1.ru/wp-content/uploads/2019/04/Описание-блока-розеток-c-мониторингом.pdf
+    - text: Описание блока розеток c мониторингом
+    - generic: Вертикальный PDU, S-AB_M, 7 Schuko, 32A, ввод IEC60309, с мониторингом, с управлением
+    - generic: S-AB_M
+  - link "Руководство БРП S AB M 2019 Вертикальный PDU, S-AB_M, 7 Schuko, 32A, ввод IEC60309, с мониторингом, с управлением S-AB_M":
+    - /url: https://soliton1.ru/wp-content/uploads/2019/04/Руководство-БРП-S-AB_M_2019.pdf
+    - text: Руководство БРП S AB M 2019
+    - generic: Вертикальный PDU, S-AB_M, 7 Schuko, 32A, ввод IEC60309, с мониторингом, с управлением
+    - generic: S-AB_M
+  - link "Вертикально в лоток Вертикальный PDU, S-AB_M, 7 Schuko, 32A, ввод IEC60309, с мониторингом, с управлением S-AB_M":
+    - /url: https://soliton1.ru/wp-content/uploads/2016/05/Вертикально-в-лоток.pdf
+    - text: Вертикально в лоток
+    - generic: Вертикальный PDU, S-AB_M, 7 Schuko, 32A, ввод IEC60309, с мониторингом, с управлением
+    - generic: S-AB_M
+  - link "Штатные кронштейны в стойку 19d Вертикальный PDU, S-16C13+2C19, 16 IEC C13, IEC C19, 16A, ввод IEC C20 S-16C13+2C19":
+    - /url: https://soliton1.ru/wp-content/uploads/2016/05/Штатные-кронштейны-в-стойку-19d.pdf
+    - text: Штатные кронштейны в стойку 19d
+    - generic: Вертикальный PDU, S-16C13+2C19, 16 IEC C13, IEC C19, 16A, ввод IEC C20
+    - generic: S-16C13+2C19
+  - link "Вертикально в стойку 19d вар.Б Вертикальный PDU, S-16C13+2C19, 16 IEC C13, IEC C19, 16A, ввод IEC C20 S-16C13+2C19":
+    - /url: https://soliton1.ru/wp-content/uploads/2016/05/Вертикально-в-стойку-19d-вар.Б.pdf
+    - text: Вертикально в стойку 19d вар.Б
+    - generic: Вертикальный PDU, S-16C13+2C19, 16 IEC C13, IEC C19, 16A, ввод IEC C20
+    - generic: S-16C13+2C19
+  - link "S 18IEC320C13 Вертикальный PDU, S-16C13+2C19, 16 IEC C13, IEC C19, 16A, ввод IEC C20 S-16C13+2C19":
+    - /url: https://soliton1.ru/wp-content/uploads/2017/06/S-18IEC320C13-.pdf
+    - text: S 18IEC320C13
+    - generic: Вертикальный PDU, S-16C13+2C19, 16 IEC C13, IEC C19, 16A, ввод IEC C20
+    - generic: S-16C13+2C19
+  - link "S 36C136C19 AB Вертикальный PDU, S-36C13+6C19 AB, 36 IEC C13, IEC C19, 32A, ввод IEC60309 S-36C13+6C19 AB":
+    - /url: https://soliton1.ru/wp-content/uploads/2025/02/S-36C136C19_AB.pdf
+    - text: S 36C136C19 AB
+    - generic: Вертикальный PDU, S-36C13+6C19 AB, 36 IEC C13, IEC C19, 32A, ввод IEC60309
+    - generic: S-36C13+6C19 AB
+  - link "Чертеж S 36C136C19 M 3Ph PDU / блок розеток, S-36C13+6C19 M 3Ф, 32 IEC C13, IEC C19, 32A, с мониторингом, с управлением S-36C13+6C19 M 3Ф":
+    - /url: https://soliton1.ru/wp-content/uploads/2025/02/Чертеж-S-36C136C19_M_3Ph.pdf
+    - text: Чертеж S 36C136C19 M 3Ph
+    - generic: PDU / блок розеток, S-36C13+6C19 M 3Ф, 32 IEC C13, IEC C19, 32A, с мониторингом, с управлением
+    - generic: S-36C13+6C19 M 3Ф
+  - link "Солитон инструкция S 36С136С19 M 3Ф PDU / блок розеток, S-36C13+6C19 M 3Ф, 32 IEC C13, IEC C19, 32A, с мониторингом, с управлением S-36C13+6C19 M 3Ф":
+    - /url: https://soliton1.ru/wp-content/uploads/2025/02/Солитон-инструкция-S-36С136С19-M-3Ф.pdf
+    - text: Солитон инструкция S 36С136С19 M 3Ф
+    - generic: PDU / блок розеток, S-36C13+6C19 M 3Ф, 32 IEC C13, IEC C19, 32A, с мониторингом, с управлением
+    - generic: S-36C13+6C19 M 3Ф
+  - link "Блоки розеток с мониторингом параметров электропитания PDU / блок розеток, S-36C13+6C19 M 3Ф, 32 IEC C13, IEC C19, 32A, с мониторингом, с управлением S-36C13+6C19 M 3Ф":
+    - /url: https://soliton1.ru/wp-content/uploads/2025/02/Блоки-розеток-с-мониторингом-параметров-электропитания.pdf
+    - text: Блоки розеток с мониторингом параметров электропитания
+    - generic: PDU / блок розеток, S-36C13+6C19 M 3Ф, 32 IEC C13, IEC C19, 32A, с мониторингом, с управлением
+    - generic: S-36C13+6C19 M 3Ф
+  - link "Описание блока розеток c мониторингом 1 Контроллер мониторинга PDU, Контроллер Soliton М-БРП, 32A, с мониторингом, с управлением Контроллер Soliton М-БРП":
+    - /url: https://soliton1.ru/wp-content/uploads/2019/04/Описание-блока-розеток-c-мониторингом-1.pdf
+    - text: Описание блока розеток c мониторингом 1
+    - generic: Контроллер мониторинга PDU, Контроллер Soliton М-БРП, 32A, с мониторингом, с управлением
+    - generic: Контроллер Soliton М-БРП
+  - link "Руководство М БРП 2019 Контроллер мониторинга PDU, Контроллер Soliton М-БРП, 32A, с мониторингом, с управлением Контроллер Soliton М-БРП":
+    - /url: https://soliton1.ru/wp-content/uploads/2019/04/Руководство-М-БРП_2019.pdf
+    - text: Руководство М БРП 2019
+    - generic: Контроллер мониторинга PDU, Контроллер Soliton М-БРП, 32A, с мониторингом, с управлением
+    - generic: Контроллер Soliton М-БРП
+  - paragraph: Паспорта изделий
+  - paragraph: Сертификаты и сведения о реестре
+  - paragraph: Реквизиты и документы для закупки
+  - paragraph: PDF-каталог и чертежи
+  - paragraph: Инструкции по монтажу и эксплуатации
+  - paragraph: Документы
+  - heading "Материалы для инженера и закупщика" [level=2]
+  - paragraph: Для PDU под проекты и закупки важны паспорта, инструкции, реквизиты, сведения о реестре и PDF-материалы по конкретным моделям.
+  - text: Проверка утверждений
+  - paragraph: Утверждения о реестре, российском производстве и сопоставимости с зарубежными аналогами публикуются только после привязки к конкретным документам или отзывам.
+  - heading "Не нашли нужный документ?" [level=2]
+  - paragraph: Укажите модель, артикул или задачу закупки. Менеджер подготовит доступные документы вместе с коммерческим предложением.
+  - link "Запросить документы":
+    - /url: /b2b/request-quote/
+    - text: Запросить документы
+  - link "PDU и блоки распределения питания PDU / блоки распределения питания":
+    - /url: /catalog/pdu/
+    - text: PDU и блоки распределения питания
+    - generic: PDU / блоки распределения питания
+  - link "Блоки розеток 19 дюймов 1U Блоки розеток 19 / 1U / в стойку":
+    - /url: /catalog/bloki-rozetok-19-1u/
+    - text: Блоки розеток 19 дюймов 1U
+    - generic: Блоки розеток 19 / 1U / в стойку
+  - link "Вертикальные PDU и блоки розеток 0U / 42U Вертикальные PDU / 0U / 42U":
+    - /url: /catalog/vertical-pdu/
+    - text: Вертикальные PDU и блоки розеток 0U / 42U
+    - generic: Вертикальные PDU / 0U / 42U
+  - link "Блоки розеток Schuko Типы розеток Schuko / IEC C13 / C19":
+    - /url: /catalog/schuko/
+    - text: Блоки розеток Schuko
+    - generic: Типы розеток Schuko / IEC C13 / C19
+  - link "PDU и блоки розеток IEC C13 / C19 Типы розеток Schuko / IEC C13 / C19":
+    - /url: /catalog/iec-c13-c19/
+    - text: PDU и блоки розеток IEC C13 / C19
+    - generic: Типы розеток Schuko / IEC C13 / C19
+  - link "Блоки розеток и PDU 16A Ток и мощность 16A / 32A":
+    - /url: /catalog/16a/
+    - text: Блоки розеток и PDU 16A
+    - generic: Ток и мощность 16A / 32A
+- contentinfo:
+  - link "Soliton":
+    - /url: /
+  - paragraph: Российские PDU, блоки розеток 19 дюймов и сетевые фильтры с УЗИП для серверных шкафов, ЦОД и корпоративных закупок.
+  - text: КП, счет и документы для закупки подтверждаются по конкретной модели.
+  - text: Поставка по России согласуется в коммерческом предложении.
+  - text: Для подбора достаточно отправить артикулы или техническое задание.
+  - link "Запросить КП":
+    - /url: /b2b/request-quote/
+    - text: Запросить КП
+  - heading "Каталог" [level=2]
+  - navigation:
+    - link "PDU и блоки распределения питания":
+      - /url: /catalog/pdu/
+    - link "Сетевые фильтры 19 дюймов и PDU с УЗИП":
+      - /url: /catalog/pdu-uzip/
+    - link "Блоки розеток 19 дюймов 1U":
+      - /url: /catalog/bloki-rozetok-19-1u/
+    - link "PDU и блоки розеток IEC C13 / C19":
+      - /url: /catalog/iec-c13-c19/
+    - link "Блоки розеток Schuko":
+      - /url: /catalog/schuko/
+    - link "Блоки розеток и PDU 16A":
+      - /url: /catalog/16a/
+    - link "Блоки розеток и PDU 32A":
+      - /url: /catalog/32a/
+  - heading "Подбор" [level=2]
+  - navigation:
+    - link "PDU для серверного шкафа 19 дюймов":
+      - /url: /solutions/pdu-dlya-servernogo-shkafa/
+    - link "Питание серверной стойки 42U":
+      - /url: /solutions/pitanie-stojki-42u/
+    - link "PDU для ЦОД":
+      - /url: /solutions/pdu-dlya-cod/
+    - link "PDU для телекоммуникационного шкафа":
+      - /url: /solutions/pdu-dlya-telekommunikacionnogo-shkafa/
+  - heading "Закупка" [level=2]
+  - navigation:
+    - link "PDU и блоки розеток для корпоративных поставок":
+      - /url: /b2b/
+    - link "Запросить коммерческое предложение":
+      - /url: /b2b/request-quote/
+    - link "Документы Soliton":
+      - /url: /documents/
+    - link "О компании Soliton":
+      - /url: /company/about/
+    - link "Контакты Soliton":
+      - /url: /company/contacts/
+  - generic: © 2026 Soliton
+  - generic: Заявки принимаются через КП; онлайн-оплата и доставка согласуются отдельно.
+- button "Open Next.js Dev Tools":
+- alert

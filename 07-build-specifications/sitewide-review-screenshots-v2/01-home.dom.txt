@@ -1,0 +1,261 @@
+- main:
+  - link "Soliton":
+    - /url: /
+  - navigation:
+    - link "Каталог":
+      - /url: /catalog/pdu/
+    - link "Фильтры с УЗИП":
+      - /url: /catalog/pdu-uzip/
+    - link "Подбор":
+      - /url: /solutions/pdu-dlya-servernogo-shkafa/
+    - link "Документы":
+      - /url: /documents/
+    - link "Запрос КП 1":
+      - /url: /b2b/request-quote/
+      - text: Запрос КП
+      - generic: "1"
+  - text: Российские PDU, блоки розеток и сетевые фильтры
+  - heading "Подберите питание стойки и получите КП без лишней переписки" [level=1]
+  - paragraph: Soliton производит стоечные PDU, блоки розеток 19 дюймов и сетевые фильтры с УЗИП для серверных шкафов, ЦОД и корпоративных закупок. Выберите модель из каталога или отправьте ТЗ на инженерный подбор.
+  - link "Отправить заявку на КП":
+    - /url: /b2b/request-quote/
+    - text: Отправить заявку на КП
+  - link "Смотреть каталог":
+    - /url: /catalog/pdu/
+  - link "Сетевые фильтры с УЗИП":
+    - /url: /catalog/pdu-uzip/
+  - link "Блоки 19 дюймов 1U":
+    - /url: /catalog/bloki-rozetok-19-1u/
+  - link "IEC C13 / C19":
+    - /url: /catalog/iec-c13-c19/
+  - link "Заявка по ТЗ":
+    - /url: /b2b/request-quote/
+  - text: Российское производство
+  - text: КП и документы для юрлиц
+  - text: 15-летняя история
+  - link "Реальная модель Soliton SP-8 5 985,00 ₽ Блок розеток 19” 1U, SP-8, 8 Schuko, 16A, ввод Schuko, с УЗИП, SP-8 Блок розеток 19” 1U, SP-8, 8 Schuko, 16A, ввод Schuko, с УЗИП Открыть карточку товара":
+    - /url: /product/sp-8/
+    - paragraph: Реальная модель Soliton
+    - paragraph: SP-8
+    - generic: 5 985,00 ₽
+    - img "Блок розеток 19” 1U, SP-8, 8 Schuko, 16A, ввод Schuko, с УЗИП, SP-8"
+    - heading "Блок розеток 19” 1U, SP-8, 8 Schuko, 16A, ввод Schuko, с УЗИП" [level=2]
+    - paragraph: Открыть карточку товара
+  - paragraph: PDU
+  - paragraph: 19 дюймов, 1U, вертикальные
+  - paragraph: Фильтры
+  - paragraph: УЗИП, Schuko, защита
+  - paragraph: Закупки
+  - paragraph: КП, счет, документы
+  - paragraph: "66"
+  - paragraph: моделей в каталоге
+  - paragraph: "11"
+  - paragraph: разделов для подбора
+  - paragraph: 15+
+  - paragraph: лет истории производителя
+  - paragraph: RFQ
+  - paragraph: заявки на КП по товару или ТЗ
+  - 'link "Каталог PDU и фильтров Листинги по монтажу, току, розеткам и функциям: от базовых блоков до УЗИП."':
+    - /url: /catalog/pdu/
+    - heading "Каталог PDU и фильтров" [level=2]
+    - paragraph: "Листинги по монтажу, току, розеткам и функциям: от базовых блоков до УЗИП."
+  - 'link "Инженерный подбор Подбор конфигурации под стойку: ввод, нагрузка, розетки, монтаж и требования к документам."':
+    - /url: /solutions/pdu-dlya-servernogo-shkafa/
+    - heading "Инженерный подбор" [level=2]
+    - paragraph: "Подбор конфигурации под стойку: ввод, нагрузка, розетки, монтаж и требования к документам."
+  - link "Корпоративная закупка Коммерческое предложение, документы, проектные партии и работа с юридическими лицами.":
+    - /url: /b2b/
+    - heading "Корпоративная закупка" [level=2]
+    - paragraph: Коммерческое предложение, документы, проектные партии и работа с юридическими лицами.
+  - paragraph: Ассортимент
+  - heading "Фильтры, PDU и блоки розеток для первого запроса" [level=2]
+  - paragraph: Популярные модели помогают быстро оценить розетки, ток, монтаж, защиту и перейти к карточке или заявке на КП.
+  - article:
+    - img "Блок розеток 19” 1U, SP-8, 8 Schuko, 16A, ввод Schuko, с УЗИП, SP-8"
+    - paragraph: SP-8
+    - link "Блок розеток 19” 1U, SP-8, 8 Schuko, 16A, ввод Schuko, с УЗИП":
+      - /url: /product/sp-8/
+      - heading "Блок розеток 19” 1U, SP-8, 8 Schuko, 16A, ввод Schuko, с УЗИП" [level=3]
+    - generic: УЗИП
+    - generic: Мониторинг / измерение
+    - term: Тип
+    - definition: PDU / блок розеток
+    - term: Монтаж
+    - definition: 19 дюймов 1U
+    - term: Розетки
+    - definition: Schuko
+    - term: Кол-во
+    - definition: "8"
+    - term: Ток
+    - definition: 16A
+    - term: Вход
+    - definition: Schuko
+    - paragraph: Блок на 8 розеток Schuko c модулем УЗИП Класс II, Класс III, шнур питания 1.8м, евровилка (Shuko), горизонтальный. С индикацией работоспособности модуля защиты
+    - paragraph: 5 985,00 ₽
+    - paragraph: Наличие и срок подтверждаются при КП
+    - button "Добавить в заявку":
+      - text: Добавить в заявку
+    - link "Открыть":
+      - /url: /product/sp-8/
+  - article:
+    - img "Блок розеток 19” 1U, SPF-6, 6 Schuko, 16A, ввод Schuko, с УЗИП, SPF-6"
+    - paragraph: SPF-6
+    - link "Блок розеток 19” 1U, SPF-6, 6 Schuko, 16A, ввод Schuko, с УЗИП":
+      - /url: /product/spf-6/
+      - heading "Блок розеток 19” 1U, SPF-6, 6 Schuko, 16A, ввод Schuko, с УЗИП" [level=3]
+    - generic: УЗИП
+    - generic: Фильтр радиопомех
+    - generic: Мониторинг / измерение
+    - term: Тип
+    - definition: PDU / блок розеток
+    - term: Монтаж
+    - definition: 19 дюймов 1U
+    - term: Розетки
+    - definition: Schuko
+    - term: Кол-во
+    - definition: "6"
+    - term: Ток
+    - definition: 16A
+    - term: Вход
+    - definition: Schuko
+    - paragraph: Блок на 6 розеток Schuko с модулем УЗИП Класс II Класс III и с фильтром радиопомех, шнур питания 1.8м, евровилка (Shuko), выключатель питания, горизонтальный. С индикацией работоспособности модуля защиты
+    - paragraph: 6 495,00 ₽
+    - paragraph: Наличие и срок подтверждаются при КП
+    - button "Добавить в заявку":
+      - text: Добавить в заявку
+    - link "Открыть":
+      - /url: /product/spf-6/
+  - article:
+    - img "Вертикальный PDU, S-AB_M, 7 Schuko, 32A, ввод IEC60309, с мониторингом, с управлением, S-AB_M"
+    - paragraph: S-AB_M
+    - link "Вертикальный PDU, S-AB_M, 7 Schuko, 32A, ввод IEC60309, с мониторингом, с управлением":
+      - /url: /product/s-ab-m/
+      - heading "Вертикальный PDU, S-AB_M, 7 Schuko, 32A, ввод IEC60309, с мониторингом, с управлением" [level=3]
+    - generic: Автоматическая защита
+    - generic: Мониторинг / измерение
+    - generic: Управление
+    - term: Тип
+    - definition: PDU / блок розеток
+    - term: Монтаж
+    - definition: Вертикальный
+    - term: Розетки
+    - definition: Schuko
+    - term: Кол-во
+    - definition: "7"
+    - term: Ток
+    - definition: 32A
+    - term: Вход
+    - definition: IEC60309
+    - paragraph: Блоки розеток со встроенным модулем мониторинга напряжения U, тока I, мощности P
+    - paragraph: 11 055,00 ₽
+    - paragraph: Наличие и срок подтверждаются при КП
+    - button "Добавить в заявку":
+      - text: Добавить в заявку
+    - link "Открыть":
+      - /url: /product/s-ab-m/
+  - paragraph: Сценарии
+  - heading "Кому подходит Soliton" [level=2]
+  - paragraph: Для быстрых покупок, инженерного подбора, корпоративных закупок и проектных поставок есть отдельные маршруты.
+  - link "Сетевые фильтры с УЗИП Стоечные фильтры, защита от перенапряжений, Schuko и варианты для серверных шкафов.":
+    - /url: /catalog/pdu-uzip/
+    - heading "Сетевые фильтры с УЗИП" [level=3]
+    - paragraph: Стоечные фильтры, защита от перенапряжений, Schuko и варианты для серверных шкафов.
+  - link "Серверные шкафы 19 дюймов Горизонтальные 1U и вертикальные PDU под стойки, шкафы и телеком-инфраструктуру.":
+    - /url: /solutions/pdu-dlya-servernogo-shkafa/
+    - heading "Серверные шкафы 19 дюймов" [level=3]
+    - paragraph: Горизонтальные 1U и вертикальные PDU под стойки, шкафы и телеком-инфраструктуру.
+  - link "ЦОД и проектные поставки 32A, трехфазные конфигурации, мониторинг, документы и подбор по техническому заданию.":
+    - /url: /solutions/pdu-dlya-cod/
+    - heading "ЦОД и проектные поставки" [level=3]
+    - paragraph: 32A, трехфазные конфигурации, мониторинг, документы и подбор по техническому заданию.
+  - link "Закупки и интеграторы Коммерческие предложения, реквизиты, паспорта изделий и материалы для корпоративной закупки.":
+    - /url: /b2b/
+    - heading "Закупки и интеграторы" [level=3]
+    - paragraph: Коммерческие предложения, реквизиты, паспорта изделий и материалы для корпоративной закупки.
+  - text: 15-летняя история
+  - paragraph: "Soliton работает в нише стоечного питания много лет: это видно по ассортименту, документации и проектному подходу к поставкам."
+  - text: Российское производство
+  - paragraph: Фильтры и PDU российского производства важны для закупок, импортозамещения и стабильных корпоративных поставок.
+  - text: Внесение в реестр
+  - paragraph: Сведения о реестре и подтверждающие документы предоставляются по конкретным моделям при подготовке КП.
+  - text: Проверенная надежность
+  - paragraph: Для серверных шкафов и ЦОД важна повторяемая конструкция, аккуратная сборка и понятная техническая документация.
+  - paragraph: Популярные входы
+  - heading "Страницы, с которых начнется органический трафик" [level=2]
+  - paragraph: Главная направляет пользователя в спросовые категории, подбор и заявку на КП по фильтрам, PDU или техническому заданию.
+  - link "PDU и блоки распределения питания PDU / блоки распределения питания":
+    - /url: /catalog/pdu/
+    - text: PDU и блоки распределения питания
+    - generic: PDU / блоки распределения питания
+  - link "Блоки розеток 19 дюймов 1U Блоки розеток 19 / 1U / в стойку":
+    - /url: /catalog/bloki-rozetok-19-1u/
+    - text: Блоки розеток 19 дюймов 1U
+    - generic: Блоки розеток 19 / 1U / в стойку
+  - link "Вертикальные PDU и блоки розеток 0U / 42U Вертикальные PDU / 0U / 42U":
+    - /url: /catalog/vertical-pdu/
+    - text: Вертикальные PDU и блоки розеток 0U / 42U
+    - generic: Вертикальные PDU / 0U / 42U
+  - link "Блоки розеток Schuko Типы розеток Schuko / IEC C13 / C19":
+    - /url: /catalog/schuko/
+    - text: Блоки розеток Schuko
+    - generic: Типы розеток Schuko / IEC C13 / C19
+  - link "PDU и блоки розеток IEC C13 / C19 Типы розеток Schuko / IEC C13 / C19":
+    - /url: /catalog/iec-c13-c19/
+    - text: PDU и блоки розеток IEC C13 / C19
+    - generic: Типы розеток Schuko / IEC C13 / C19
+  - link "Блоки розеток и PDU 16A Ток и мощность 16A / 32A":
+    - /url: /catalog/16a/
+    - text: Блоки розеток и PDU 16A
+    - generic: Ток и мощность 16A / 32A
+- contentinfo:
+  - link "Soliton":
+    - /url: /
+  - paragraph: Российские PDU, блоки розеток 19 дюймов и сетевые фильтры с УЗИП для серверных шкафов, ЦОД и корпоративных закупок.
+  - text: КП, счет и документы для закупки подтверждаются по конкретной модели.
+  - text: Поставка по России согласуется в коммерческом предложении.
+  - text: Для подбора достаточно отправить артикулы или техническое задание.
+  - link "Запросить КП":
+    - /url: /b2b/request-quote/
+    - text: Запросить КП
+  - heading "Каталог" [level=2]
+  - navigation:
+    - link "PDU и блоки распределения питания":
+      - /url: /catalog/pdu/
+    - link "Сетевые фильтры 19 дюймов и PDU с УЗИП":
+      - /url: /catalog/pdu-uzip/
+    - link "Блоки розеток 19 дюймов 1U":
+      - /url: /catalog/bloki-rozetok-19-1u/
+    - link "PDU и блоки розеток IEC C13 / C19":
+      - /url: /catalog/iec-c13-c19/
+    - link "Блоки розеток Schuko":
+      - /url: /catalog/schuko/
+    - link "Блоки розеток и PDU 16A":
+      - /url: /catalog/16a/
+    - link "Блоки розеток и PDU 32A":
+      - /url: /catalog/32a/
+  - heading "Подбор" [level=2]
+  - navigation:
+    - link "PDU для серверного шкафа 19 дюймов":
+      - /url: /solutions/pdu-dlya-servernogo-shkafa/
+    - link "Питание серверной стойки 42U":
+      - /url: /solutions/pitanie-stojki-42u/
+    - link "PDU для ЦОД":
+      - /url: /solutions/pdu-dlya-cod/
+    - link "PDU для телекоммуникационного шкафа":
+      - /url: /solutions/pdu-dlya-telekommunikacionnogo-shkafa/
+  - heading "Закупка" [level=2]
+  - navigation:
+    - link "PDU и блоки розеток для корпоративных поставок":
+      - /url: /b2b/
+    - link "Запросить коммерческое предложение":
+      - /url: /b2b/request-quote/
+    - link "Документы Soliton":
+      - /url: /documents/
+    - link "О компании Soliton":
+      - /url: /company/about/
+    - link "Контакты Soliton":
+      - /url: /company/contacts/
+  - generic: © 2026 Soliton
+  - generic: Заявки принимаются через КП; онлайн-оплата и доставка согласуются отдельно.
+- button "Open Next.js Dev Tools":
+- alert

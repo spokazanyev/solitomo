@@ -1,0 +1,69 @@
+{
+  "source_findings": [
+    {
+      "source_name": "ComNews / GreenMDC / ICL, 25.02.2026",
+      "source_url": "https://www.comnews.ru/content/243942/2026-02-25/2026-w09/1008/data-centry-uvelichili-moschnost-i-poshli-regionam",
+      "source_type": "tier1",
+      "published_at": "2026-02-25",
+      "title": "Российский рынок модульных ЦОД вырос в 2025 году",
+      "product_class": "rack pdu и блоки распределения питания для серверных шкафов",
+      "need": "распределение электропитания в серверных шкафах и локальных цод",
+      "adjacent_category": "модульные цод и edge цод",
+      "signal_type": "need",
+      "emerging_wording": "высокоплотные стойки 25 квт на шкаф",
+      "evidence_note": "В 2025 году рынок модульных ЦОД в России вырос на 20%, спрос со стороны заказчиков примерно на 30%, растет нагрузка на стойку и интерес к локальным ЦОД."
+    },
+    {
+      "source_name": "Mordor Intelligence, Data Center Rack PDU Market 2026-2031",
+      "source_url": "https://www.mordorintelligence.com/industry-reports/data-center-rack-pdu-market",
+      "source_type": "tier1",
+      "published_at": "2026-03",
+      "title": "Data Center Rack Power Distribution Unit Market",
+      "product_class": "data center rack pdu",
+      "need": "надежное распределение питания и мониторинг нагрузки на уровне стойки",
+      "adjacent_category": "интеллектуальные pdu для цод",
+      "signal_type": "trend",
+      "emerging_wording": "smart pdu metered pdu monitored pdu three phase pdu",
+      "evidence_note": "Прогноз роста рынка rack PDU с USD 3.01 млрд в 2026 до USD 4.62 млрд в 2031; драйверы: hyperscale, AI-нагрузки, высокая плотность стоек, мониторинг и удаленное управление."
+    },
+    {
+      "source_name": "Grand View Research, Data Center Rack PDU Market 2033",
+      "source_url": "https://www.grandviewresearch.com/industry-analysis/data-center-rack-power-distribution-unit-pdu-market",
+      "source_type": "tier1",
+      "published_at": "2026",
+      "title": "Data Center Rack Power Distribution Unit Market Summary",
+      "product_class": "rack power distribution unit",
+      "need": "устойчивое питание высокоплотного it оборудования",
+      "adjacent_category": "metered pdu и switched pdu",
+      "signal_type": "trend",
+      "emerging_wording": "intelligent rack pdu input metering network connectivity output metering",
+      "evidence_note": "Глобальный рынок rack PDU оценен в USD 2.81 млрд в 2025 и прогнозируется до USD 5.87 млрд к 2033; спрос поддерживают AI/HPC, edge, мониторинг, энергоэффективность."
+    },
+    {
+      "source_name": "ICT.Moscow / отраслевой обзор ЦОД, 2025",
+      "source_url": "https://ict.moscow/static/e4e4e856-582b-51d9-a6de-744954262d83.pdf",
+      "source_type": "tier1",
+      "published_at": "2025",
+      "title": "Анализ состояния отрасли ЦОД",
+      "product_class": "инженерная инфраструктура цод",
+      "need": "наращивание мощностей и электропитания для обработки данных",
+      "adjacent_category": "коммерческие цод и облачная инфраструктура",
+      "signal_type": "category",
+      "emerging_wording": "мощность цод стойко-места электроснабжение",
+      "evidence_note": "Российские обзоры ЦОД фиксируют сохранение платежеспособного спроса на услуги ЦОД и значимость инженерной инфраструктуры."
+    },
+    {
+      "source_name": "Soliton assortment map, 12.05.2026",
+      "source_url": "https://soliton1.ru/shop/",
+      "source_type": "tier1",
+      "published_at": "2026-05-12",
+      "title": "Ассортимент Soliton1",
+      "product_class": "блоки розеток pdu для 19-дюймовых шкафов",
+      "need": "питание серверного оборудования в 10 и 19 дюймовых стойках",
+      "adjacent_category": "серверные шкафы стойки ибп и электропитание цод",
+      "signal_type": "category",
+      "emerging_wording": "блок розеток 19 1u schuko iec320 c13 c19 вертикальный 32а трехфазный",
+      "evidence_note": "Ассортимент включает 66 товаров: 10/19 дюймов, вертикальные 16A/32A, трехфазные, управляемые, измерительные PDU, УЗИП."
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "pivot_candidates": [
+    {
+      "cluster_id": "server_rack_adjacent",
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "cluster_type": "adjacent",
+      "strength_ratio_vs_core": 1.42,
+      "known_frequency_total": 91932,
+      "trend_label": "стабильный",
+      "change_pct": -2.26,
+      "pivot_candidate": true
+    },
+    {
+      "cluster_id": "surge_filter",
+      "cluster_key": "УЗИП и стоечные сетевые фильтры",
+      "cluster_type": "adjacent",
+      "strength_ratio_vs_core": 0.01,
+      "known_frequency_total": 346,
+      "trend_label": "стабильный",
+      "change_pct": 0,
+      "pivot_candidate": false
+    },
+    {
+      "cluster_id": "brand_competitors",
+      "cluster_key": "Брендовые и конкурентные запросы",
+      "cluster_type": "alternative",
+      "strength_ratio_vs_core": 0.0,
+      "known_frequency_total": 483,
+      "trend_label": "снижающийся",
+      "change_pct": -37.12,
+      "pivot_candidate": false
+    }
+  ]
+}

@@ -1,0 +1,897 @@
+{
+  "runAt": "2026-05-15T18:41:44.930Z",
+  "total": 112,
+  "downloaded": 109,
+  "skipped": 2,
+  "failed": 1,
+  "items": [
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2019/04/S-8C13_M_V4_web.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2019/04/S-8C13_M_V4_web.jpg",
+      "rel": "wp/2019/04/S-8C13_M_V4_web.jpg",
+      "size": 32491,
+      "sha": "98acec48d2f05649dee371546a3926e26ec96cdf4ba0362eb36f774d26a6621d",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2019/04/S-8Sh_M-V3-1.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2019/04/S-8Sh_M-V3-1.jpg",
+      "rel": "wp/2019/04/S-8Sh_M-V3-1.jpg",
+      "size": 298205,
+      "sha": "7d9938c695916a51dc238341351cbfa167cdd3ace8af7785764367071bd7c7b0",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2019/04/S-8C13_M_V4-1.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2019/04/S-8C13_M_V4-1.jpg",
+      "rel": "wp/2019/04/S-8C13_M_V4-1.jpg",
+      "size": 308026,
+      "sha": "3ee59eb4619ba7e703862f121d6525991564736c8428436670b3bf3488035ad0",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2019/04/БРП-3-фазы-3-1.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2019/04/%D0%91%D0%A0%D0%9F-3-%D1%84%D0%B0%D0%B7%D1%8B-3-1.jpg",
+      "rel": "wp/2019/04/%D0%91%D0%A0%D0%9F-3-%D1%84%D0%B0%D0%B7%D1%8B-3-1.jpg",
+      "size": 282561,
+      "sha": "90b4cba7b7cf2c236f9f84bd5f419d792f669cef11a2a314f1bf22a0bf2416f2",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2019/04/Описание-блока-розеток-c-мониторингом.pdf",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2019/04/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B1%D0%BB%D0%BE%D0%BA%D0%B0-%D1%80%D0%BE%D0%B7%D0%B5%D1%82%D0%BE%D0%BA-c-%D0%BC%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3%D0%BE%D0%BC.pdf",
+      "rel": "wp/2019/04/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B1%D0%BB%D0%BE%D0%BA%D0%B0-%D1%80%D0%BE%D0%B7%D0%B5%D1%82%D0%BE%D0%BA-c-%D0%BC%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3%D0%BE%D0%BC.pdf",
+      "size": 1718484,
+      "sha": "e12c02798637d9b7e8d7198ef3ac36bddd7a868514ff0c512adf4fcb911558b5",
+      "contentType": "application/pdf"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2019/04/Руководство-БРП-S-AB_M_2019.pdf",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2019/04/%D0%A0%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%BE-%D0%91%D0%A0%D0%9F-S-AB_M_2019.pdf",
+      "rel": "wp/2019/04/%D0%A0%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%BE-%D0%91%D0%A0%D0%9F-S-AB_M_2019.pdf",
+      "size": 1833249,
+      "sha": "7314d07a204562b6e5c327255ec1e5c43570aa247f88a0c05d188e7c70690c63",
+      "contentType": "application/pdf"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/Вертикально-в-лоток.pdf",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/%D0%92%D0%B5%D1%80%D1%82%D0%B8%D0%BA%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE-%D0%B2-%D0%BB%D0%BE%D1%82%D0%BE%D0%BA.pdf",
+      "rel": "wp/2016/05/%D0%92%D0%B5%D1%80%D1%82%D0%B8%D0%BA%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE-%D0%B2-%D0%BB%D0%BE%D1%82%D0%BE%D0%BA.pdf",
+      "size": 181115,
+      "sha": "7ba88df8125125f9fd5a2134537f8371d8bb65ffbe541d10c0bce152d10a4f4a",
+      "contentType": "application/pdf"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2019/04/S-16C132C19_web-1.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2019/04/S-16C132C19_web-1.jpg",
+      "rel": "wp/2019/04/S-16C132C19_web-1.jpg",
+      "size": 25265,
+      "sha": "d0392c7de8047d400a12ac076df7fd83b639cb2cc61f087cb9afa31a51b429bd",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2019/04/S-16C132C19.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2019/04/S-16C132C19.jpg",
+      "rel": "wp/2019/04/S-16C132C19.jpg",
+      "size": 229578,
+      "sha": "2c1e1a00016718ccc8f7876028f22c35c28955daf2cb58af6a20701f0f45255e",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/Штатные-кронштейны-в-стойку-19d.pdf",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/%D0%A8%D1%82%D0%B0%D1%82%D0%BD%D1%8B%D0%B5-%D0%BA%D1%80%D0%BE%D0%BD%D1%88%D1%82%D0%B5%D0%B9%D0%BD%D1%8B-%D0%B2-%D1%81%D1%82%D0%BE%D0%B9%D0%BA%D1%83-19d.pdf",
+      "rel": "wp/2016/05/%D0%A8%D1%82%D0%B0%D1%82%D0%BD%D1%8B%D0%B5-%D0%BA%D1%80%D0%BE%D0%BD%D1%88%D1%82%D0%B5%D0%B9%D0%BD%D1%8B-%D0%B2-%D1%81%D1%82%D0%BE%D0%B9%D0%BA%D1%83-19d.pdf",
+      "size": 292629,
+      "sha": "c42b60ad9f81014a278683eaa82c3f6bf6fb3da605c5b4baf94971e466a4f077",
+      "contentType": "application/pdf"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/Вертикально-в-стойку-19d-вар.Б.pdf",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/%D0%92%D0%B5%D1%80%D1%82%D0%B8%D0%BA%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE-%D0%B2-%D1%81%D1%82%D0%BE%D0%B9%D0%BA%D1%83-19d-%D0%B2%D0%B0%D1%80.%D0%91.pdf",
+      "rel": "wp/2016/05/%D0%92%D0%B5%D1%80%D1%82%D0%B8%D0%BA%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE-%D0%B2-%D1%81%D1%82%D0%BE%D0%B9%D0%BA%D1%83-19d-%D0%B2%D0%B0%D1%80.%D0%91.pdf",
+      "size": 284158,
+      "sha": "1f1f8fccfb5e312a3b822fad47fb8f61e1b76be6488945629ee01e094ca02b7d",
+      "contentType": "application/pdf"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2017/06/S-18IEC320C13-.pdf",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2017/06/S-18IEC320C13-.pdf",
+      "rel": "wp/2017/06/S-18IEC320C13-.pdf",
+      "size": 104149,
+      "sha": "ff7511baa5a341b5608629d6083f435299969d86354a62f76ea0d49958a47c65",
+      "contentType": "application/pdf"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2017/06/S-18IEC320C13_2.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2017/06/S-18IEC320C13_2.jpg",
+      "rel": "wp/2017/06/S-18IEC320C13_2.jpg",
+      "size": 20605,
+      "sha": "8a3ad79719438b174eeca3378eeca7753d1cba024261011546249a41f4fe5a40",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2017/06/S-18IEC320C13_1.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2017/06/S-18IEC320C13_1.jpg",
+      "rel": "wp/2017/06/S-18IEC320C13_1.jpg",
+      "size": 169843,
+      "sha": "3492e005c7c414cd84061a5be6e2e4a632be9a88a351a52191b02cfbdabf5049",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2025/02/S-36C136C19-I_Web.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2025/02/S-36C136C19-I_Web.jpg",
+      "rel": "wp/2025/02/S-36C136C19-I_Web.jpg",
+      "size": 17804,
+      "sha": "80ba3d071b6ce1433123fa48e8d219b7fc465e6ac22670984d4e2d1b4f225ec4",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2025/02/S-36C136C19-I-scaled.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2025/02/S-36C136C19-I-scaled.jpg",
+      "rel": "wp/2025/02/S-36C136C19-I-scaled.jpg",
+      "size": 44691,
+      "sha": "747b472f2aa7d53c3a79b8be1f41eae2f6d52a48bced4bb1ede5482a4305a489",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2025/02/S-36C136C19AB_back-scaled.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2025/02/S-36C136C19AB_back-scaled.jpg",
+      "rel": "wp/2025/02/S-36C136C19AB_back-scaled.jpg",
+      "size": 17982,
+      "sha": "f46506fd1a7cc04f2712e0e6cd08fe96bddfbc69762498b058093d8adde2b8cf",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2025/02/S-36C136C19_AB.pdf",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2025/02/S-36C136C19_AB.pdf",
+      "rel": "wp/2025/02/S-36C136C19_AB.pdf",
+      "size": 251527,
+      "sha": "e6472bc7070f9f31cb45b354eb7655cf7e00024a3c165dfce69d97103d19c9a2",
+      "contentType": "application/pdf"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2025/02/S-36C136C19_кор_Web.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2025/02/S-36C136C19_%D0%BA%D0%BE%D1%80_Web.jpg",
+      "rel": "wp/2025/02/S-36C136C19_%D0%BA%D0%BE%D1%80_Web.jpg",
+      "size": 18519,
+      "sha": "44366080f840c24d979213fc6c8929fee3c9d440719834539b759aefeca1ce94",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2025/02/S-36C136C19-scaled.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2025/02/S-36C136C19-scaled.jpg",
+      "rel": "wp/2025/02/S-36C136C19-scaled.jpg",
+      "size": 47703,
+      "sha": "5c14e465d943fee43c520ef9074e40dc2e98b87cefa72e848c013f70178980c6",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2025/02/Контроллер-БРП_midl-scaled.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2025/02/%D0%9A%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80-%D0%91%D0%A0%D0%9F_midl-scaled.jpg",
+      "rel": "wp/2025/02/%D0%9A%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80-%D0%91%D0%A0%D0%9F_midl-scaled.jpg",
+      "size": 192381,
+      "sha": "364a22ed11c8e6b0db37e9a09e9f1d54932c1132990f0934c881da5cea5efb9b",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2025/02/Чертеж-S-36C136C19_M_3Ph.pdf",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2025/02/%D0%A7%D0%B5%D1%80%D1%82%D0%B5%D0%B6-S-36C136C19_M_3Ph.pdf",
+      "rel": "wp/2025/02/%D0%A7%D0%B5%D1%80%D1%82%D0%B5%D0%B6-S-36C136C19_M_3Ph.pdf",
+      "size": 214949,
+      "sha": "0eeefe79159fbb939fe4dc1b49a37d78bd03d6dd381a29aa762d86620a0945b3",
+      "contentType": "application/pdf"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2025/02/Солитон-инструкция-S-36С136С19-M-3Ф.pdf",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2025/02/%D0%A1%D0%BE%D0%BB%D0%B8%D1%82%D0%BE%D0%BD-%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F-S-36%D0%A1136%D0%A119-M-3%D0%A4.pdf",
+      "rel": "wp/2025/02/%D0%A1%D0%BE%D0%BB%D0%B8%D1%82%D0%BE%D0%BD-%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F-S-36%D0%A1136%D0%A119-M-3%D0%A4.pdf",
+      "size": 655547,
+      "sha": "76e0faeca2279ff4b064faafc8f77f434be8018defd1088bfc4b5e01713f84f3",
+      "contentType": "application/pdf"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2025/02/Блоки-розеток-с-мониторингом-параметров-электропитания.pdf",
+      "error": "ENAMETOOLONG: name too long, open '/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2025/02/%D0%91%D0%BB%D0%BE%D0%BA%D0%B8-%D1%80%D0%BE%D0%B7%D0%B5%D1%82%D0%BE%D0%BA-%D1%81-%D0%BC%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3%D0%BE%D0%BC-%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D0%BE%D0%B2-%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%BF%D0%B8%D1%82%D0%B0%D0%BD%D0%B8%D1%8F.pdf'"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2025/02/S-36C136C19-вертик-scaled.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2025/02/S-36C136C19-%D0%B2%D0%B5%D1%80%D1%82%D0%B8%D0%BA-scaled.jpg",
+      "rel": "wp/2025/02/S-36C136C19-%D0%B2%D0%B5%D1%80%D1%82%D0%B8%D0%BA-scaled.jpg",
+      "size": 48293,
+      "sha": "f27af0a5a6fe4d2b06c73ce0ff34a42748d50d1f5b98a436568361c10ba7219e",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2019/04/S-8C19_web.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2019/04/S-8C19_web.jpg",
+      "rel": "wp/2019/04/S-8C19_web.jpg",
+      "size": 27899,
+      "sha": "fe5ad3dd78f73177b10b334d3a96ea79e0e42637d13adb0a74219ab67c2ed009",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2019/04/S-8C19.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2019/04/S-8C19.jpg",
+      "rel": "wp/2019/04/S-8C19.jpg",
+      "size": 304238,
+      "sha": "c44152bb88c0971524a4635bbd51bd5335420c4ec6434a3211bed978d0b21459",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2019/04/Контроллер-М-БРП_web.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2019/04/%D0%9A%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80-%D0%9C-%D0%91%D0%A0%D0%9F_web.jpg",
+      "rel": "wp/2019/04/%D0%9A%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80-%D0%9C-%D0%91%D0%A0%D0%9F_web.jpg",
+      "size": 27930,
+      "sha": "9ac1fcf9898ab0327d90db8922b5f3376108f84c87a0b8e1478fd2172b1e9489",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2019/04/Контроллер-М-БРП-1.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2019/04/%D0%9A%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80-%D0%9C-%D0%91%D0%A0%D0%9F-1.jpg",
+      "rel": "wp/2019/04/%D0%9A%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80-%D0%9C-%D0%91%D0%A0%D0%9F-1.jpg",
+      "size": 505090,
+      "sha": "e53e19fefb6971fc2f257fb925185bdae0c313fb1a02728ee9a30f04dfeccffb",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2019/04/Описание-блока-розеток-c-мониторингом-1.pdf",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2019/04/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B1%D0%BB%D0%BE%D0%BA%D0%B0-%D1%80%D0%BE%D0%B7%D0%B5%D1%82%D0%BE%D0%BA-c-%D0%BC%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3%D0%BE%D0%BC-1.pdf",
+      "rel": "wp/2019/04/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B1%D0%BB%D0%BE%D0%BA%D0%B0-%D1%80%D0%BE%D0%B7%D0%B5%D1%82%D0%BE%D0%BA-c-%D0%BC%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3%D0%BE%D0%BC-1.pdf",
+      "size": 1718484,
+      "sha": "e12c02798637d9b7e8d7198ef3ac36bddd7a868514ff0c512adf4fcb911558b5",
+      "contentType": "application/pdf"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2019/04/Руководство-М-БРП_2019.pdf",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2019/04/%D0%A0%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%BE-%D0%9C-%D0%91%D0%A0%D0%9F_2019.pdf",
+      "rel": "wp/2019/04/%D0%A0%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%BE-%D0%9C-%D0%91%D0%A0%D0%9F_2019.pdf",
+      "size": 4468580,
+      "sha": "a6019067557ef928e584370e27724a6cedf0feaac0b2d9e5f08c12082a315067",
+      "contentType": "application/pdf"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/07/s-9iec320c13-3phase.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/07/s-9iec320c13-3phase.jpg",
+      "rel": "wp/2016/07/s-9iec320c13-3phase.jpg",
+      "size": 8821,
+      "sha": "5e3e912b5545d061aeefe2bb10e839688dde222ce456733519d4d727f5ac0553",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-3.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-3.jpg",
+      "rel": "wp/2016/05/s-3.jpg",
+      "size": 10515,
+      "sha": "650bb08a75ce84d0876008d8b87cc58ca034650dc92141b45d10988b4d924133",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/no-photo.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/no-photo.jpg",
+      "rel": "wp/2016/05/no-photo.jpg",
+      "size": 6375,
+      "sha": "08e6834ece174a4092f662bc912bef0a2237048299b5c9a0f205257e7726e358",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-4.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-4.jpg",
+      "rel": "wp/2016/05/s-4.jpg",
+      "size": 10673,
+      "sha": "b1df9944b63a61cd2927d8bdaef8dacd49be6625d859bc3401f9b1ea53537da9",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-4iec.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-4iec.jpg",
+      "rel": "wp/2016/05/s-4iec.jpg",
+      "size": 11849,
+      "sha": "8ba8855c5fed75ef6ecac5157b943dafe7645502507a317b11b828c402df3929",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-1x5-20a-dc.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-1x5-20a-dc.jpg",
+      "rel": "wp/2016/05/s-1x5-20a-dc.jpg",
+      "size": 9330,
+      "sha": "abae01031822169ff04b04b2e94fc050b10f572f20c22d9e4d1c6b2a814ff101",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-6-ab.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-6-ab.jpg",
+      "rel": "wp/2016/05/s-6-ab.jpg",
+      "size": 7409,
+      "sha": "3934d65625fc6734dbf97bf3eb93cd7bda73f5f851d4e2ff86ff76f6453326bd",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/S-6-BA47.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/S-6-BA47.jpg",
+      "rel": "wp/2016/05/S-6-BA47.jpg",
+      "size": 298217,
+      "sha": "5f499485dc28c62117d29d2c07eb0a54ac0fed0a59022c7e519596414ec6af2d",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/S-6-BA47-с-упаковкой.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/S-6-BA47-%D1%81-%D1%83%D0%BF%D0%B0%D0%BA%D0%BE%D0%B2%D0%BA%D0%BE%D0%B9.jpg",
+      "rel": "wp/2016/05/S-6-BA47-%D1%81-%D1%83%D0%BF%D0%B0%D0%BA%D0%BE%D0%B2%D0%BA%D0%BE%D0%B9.jpg",
+      "size": 678486,
+      "sha": "00ab805cd663678592744e8256e2a08bae80ce6247c74d2bc55e2c075726d81b",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/Soliton-S-6-ВА47.pdf",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/Soliton-S-6-%D0%92%D0%9047.pdf",
+      "rel": "wp/2016/05/Soliton-S-6-%D0%92%D0%9047.pdf",
+      "size": 242116,
+      "sha": "a299ad19fd884c6896fb90098f333142392543b3482745489b2b461e62a95e53",
+      "contentType": "application/pdf"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-6amp.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-6amp.jpg",
+      "rel": "wp/2016/05/s-6amp.jpg",
+      "size": 7656,
+      "sha": "6d6c67db78ad6e0cb258be6143fbaa684fd31b5e67eacb182802b221d50e100e",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-6epm.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-6epm.jpg",
+      "rel": "wp/2016/05/s-6epm.jpg",
+      "size": 8811,
+      "sha": "dfe04b04e103ffc291801a2653c24b9d16c67367c9bdff2c4f9d49566d960435",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-6iec320c13-ab.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-6iec320c13-ab.jpg",
+      "rel": "wp/2016/05/s-6iec320c13-ab.jpg",
+      "size": 7776,
+      "sha": "9199b40e2ff335d61fd7a251890b8f64a2a52df220ec78653aa3e7376a8a9005",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-6iec320c13-uzo.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-6iec320c13-uzo.jpg",
+      "rel": "wp/2016/05/s-6iec320c13-uzo.jpg",
+      "size": 7776,
+      "sha": "9199b40e2ff335d61fd7a251890b8f64a2a52df220ec78653aa3e7376a8a9005",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-6uzo.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-6uzo.jpg",
+      "rel": "wp/2016/05/s-6uzo.jpg",
+      "size": 7369,
+      "sha": "7bd344a3988ace45b95ad350e2615d2e3155817cefb1ce31ac8b73c1bfe85677",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-7.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-7.jpg",
+      "rel": "wp/2016/05/s-7.jpg",
+      "size": 7121,
+      "sha": "047c856d20cda7e8cda9bbba96f9fa1748c9a355f35751dec947c01bff2f0657",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/S-7GR.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/S-7GR.jpg",
+      "rel": "wp/2016/05/S-7GR.jpg",
+      "size": 1386421,
+      "sha": "ad28b330e3d7cb1f8131976734bc0f3553df9e46ca3f1d7d48403c4cdafe7fe9",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/S-7-black-copy.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/S-7-black-copy.jpg",
+      "rel": "wp/2016/05/S-7-black-copy.jpg",
+      "size": 2460336,
+      "sha": "35bd2a7fa65c107ed555191d512c5838d796dc8fcfb0693de309d7068b2455da",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/S-8-вход-с14-фронт.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/S-8-%D0%B2%D1%85%D0%BE%D0%B4-%D1%8114-%D1%84%D1%80%D0%BE%D0%BD%D1%82.jpg",
+      "rel": "wp/2016/05/S-8-%D0%B2%D1%85%D0%BE%D0%B4-%D1%8114-%D1%84%D1%80%D0%BE%D0%BD%D1%82.jpg",
+      "size": 521386,
+      "sha": "9abbacbe59ca98d2ee28024cb00460cd4c9edd95d6d5ea21c6987b2ed69c5f0b",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/S-8-вход-С14-фронт-с-каб-copy.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/S-8-%D0%B2%D1%85%D0%BE%D0%B4-%D0%A114-%D1%84%D1%80%D0%BE%D0%BD%D1%82-%D1%81-%D0%BA%D0%B0%D0%B1-copy.jpg",
+      "rel": "wp/2016/05/S-8-%D0%B2%D1%85%D0%BE%D0%B4-%D0%A114-%D1%84%D1%80%D0%BE%D0%BD%D1%82-%D1%81-%D0%BA%D0%B0%D0%B1-copy.jpg",
+      "size": 645830,
+      "sha": "24e8b90751b49d5202416e604143fcac085240f88ce1dea2ba0936cae6253c8c",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/Вход-С14-фронт-copy.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/%D0%92%D1%85%D0%BE%D0%B4-%D0%A114-%D1%84%D1%80%D0%BE%D0%BD%D1%82-copy.jpg",
+      "rel": "wp/2016/05/%D0%92%D1%85%D0%BE%D0%B4-%D0%A114-%D1%84%D1%80%D0%BE%D0%BD%D1%82-copy.jpg",
+      "size": 193270,
+      "sha": "4d45bb5423d2d1f07d2a43e93cf9bfc5b85dba9f1e69ffa1f94ae132163269c0",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/Вход-С14-фронт-с-каб-copy.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/%D0%92%D1%85%D0%BE%D0%B4-%D0%A114-%D1%84%D1%80%D0%BE%D0%BD%D1%82-%D1%81-%D0%BA%D0%B0%D0%B1-copy.jpg",
+      "rel": "wp/2016/05/%D0%92%D1%85%D0%BE%D0%B4-%D0%A114-%D1%84%D1%80%D0%BE%D0%BD%D1%82-%D1%81-%D0%BA%D0%B0%D0%B1-copy.jpg",
+      "size": 221016,
+      "sha": "4aa4d26b8beae798514bde71360cc65b839a12418e6d64cdb85a594726384f98",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/S-7-back-C14.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/S-7-back-C14.jpg",
+      "rel": "wp/2016/05/S-7-back-C14.jpg",
+      "size": 441987,
+      "sha": "76a11b7c9dd701763f05b4d8e465458e77f9b16ee7d9190cd552d433af51f91a",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/07/tech4.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/07/tech4.jpg",
+      "rel": "wp/2016/07/tech4.jpg",
+      "size": 6086,
+      "sha": "974d93e5826b07b146b09a4249810c6b2f4be85bf7cc8e381e74f503e76e4ae1",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/S-7-с-коробкой-copy.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/S-7-%D1%81-%D0%BA%D0%BE%D1%80%D0%BE%D0%B1%D0%BA%D0%BE%D0%B9-copy.jpg",
+      "rel": "wp/2016/05/S-7-%D1%81-%D0%BA%D0%BE%D1%80%D0%BE%D0%B1%D0%BA%D0%BE%D0%B9-copy.jpg",
+      "size": 285762,
+      "sha": "8c5a2c4795e230cc4b57aefd3c2f72c9bd43cfc87de8f2e14b54e9cad19d96c1",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/S-7.pdf",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/S-7.pdf",
+      "rel": "wp/2016/05/S-7.pdf",
+      "size": 311924,
+      "sha": "d9cf0d626b3ecc517c845a78cab025049a4b6efd6ce9c770a8581fe33e4e373f",
+      "contentType": "application/pdf"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-8.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-8.jpg",
+      "rel": "wp/2016/05/s-8.jpg",
+      "size": 1485379,
+      "sha": "b0ed4e4900ce5d5bf5f22ad39253896a4694351306dc462edc8231fd07c1516d",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/S-8.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/S-8.jpg",
+      "skipped": true,
+      "reason": "exists"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/S-8-black-copy.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/S-8-black-copy.jpg",
+      "rel": "wp/2016/05/S-8-black-copy.jpg",
+      "size": 2390255,
+      "sha": "41d0360090128b1d4a96bd75173aa75da66b624301f65e971d9c7f5268fb0fb5",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/S-8-с-коробкой-copy.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/S-8-%D1%81-%D0%BA%D0%BE%D1%80%D0%BE%D0%B1%D0%BA%D0%BE%D0%B9-copy.jpg",
+      "rel": "wp/2016/05/S-8-%D1%81-%D0%BA%D0%BE%D1%80%D0%BE%D0%B1%D0%BA%D0%BE%D0%B9-copy.jpg",
+      "size": 431639,
+      "sha": "7a2cd810e3f80a444b7543d9e81603c66912a197a41079ed796edecd514bc71a",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/S-8.pdf",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/S-8.pdf",
+      "rel": "wp/2016/05/S-8.pdf",
+      "size": 328691,
+      "sha": "d7d77509dd801fdb799bdfb2e18fa9f3da6aa24e410b2e17363602e1b9726780",
+      "contentType": "application/pdf"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-8sh-44kWt.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-8sh-44kWt.jpg",
+      "rel": "wp/2016/05/s-8sh-44kWt.jpg",
+      "size": 8936,
+      "sha": "e41cee2da60e215f1200244217470a2ca7fb78e956afb8187148ff13fe13739c",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/S-8-IEC320C13_web.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/S-8-IEC320C13_web.jpg",
+      "rel": "wp/2016/05/S-8-IEC320C13_web.jpg",
+      "size": 19249,
+      "sha": "191568a87a3c4ab042424b7d5c4101c7fdcfd74bebea131b1a90d8fba5e10d09",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/S-8IEC320C13.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/S-8IEC320C13.jpg",
+      "rel": "wp/2016/05/S-8IEC320C13.jpg",
+      "size": 1311864,
+      "sha": "f0360cb3b2215ee43a6dfd4f5c74ed80b98761d9a11a0a9c7d2d73ec35147f85",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/S-8IEC320C13-black.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/S-8IEC320C13-black.jpg",
+      "rel": "wp/2016/05/S-8IEC320C13-black.jpg",
+      "size": 510511,
+      "sha": "bca64d5e5d4a82d59d49b2215e6e26e9bfe261a606ef1a739fd75046be32cee1",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/S-8-IEC320-выкл.pdf",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/S-8-IEC320-%D0%B2%D1%8B%D0%BA%D0%BB.pdf",
+      "rel": "wp/2016/05/S-8-IEC320-%D0%B2%D1%8B%D0%BA%D0%BB.pdf",
+      "size": 185497,
+      "sha": "ec5cb4b6414235e1d35e670605d66bd9a30a27cc2d618fcc36694caf02ca44dc",
+      "contentType": "application/pdf"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-8iec-44kWt.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-8iec-44kWt.jpg",
+      "rel": "wp/2016/05/s-8iec-44kWt.jpg",
+      "size": 7538,
+      "sha": "9f7bbba83b5eb56f5064943eeb42742428480165bcfcacf58447bf8741f677c0",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-9.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-9.jpg",
+      "rel": "wp/2016/05/s-9.jpg",
+      "size": 8049,
+      "sha": "84008cbe124bd48dc56724301314534017d0869aa882cc97cec4290d5fb39fd4",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/S-9GR-copy.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/S-9GR-copy.jpg",
+      "rel": "wp/2016/05/S-9GR-copy.jpg",
+      "size": 1361690,
+      "sha": "948563c37e6f68f8a8962e3206efcb6ed0799b63b2d1b76cd3516ce9c177e5e9",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/S-9-GR-с-коробкой-copy.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/S-9-GR-%D1%81-%D0%BA%D0%BE%D1%80%D0%BE%D0%B1%D0%BA%D0%BE%D0%B9-copy.jpg",
+      "rel": "wp/2016/05/S-9-GR-%D1%81-%D0%BA%D0%BE%D1%80%D0%BE%D0%B1%D0%BA%D0%BE%D0%B9-copy.jpg",
+      "size": 2904039,
+      "sha": "3410e0c0d90ca2d2edcaf60aa6fdf6e05a8ac36d1da50dc129abf621d4fbcfd9",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/S-9.pdf",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/S-9.pdf",
+      "rel": "wp/2016/05/S-9.pdf",
+      "size": 326379,
+      "sha": "ff7c40f517c7707fe72614c4345f068ff39b7510a6753ec0c824f1b9c124981e",
+      "contentType": "application/pdf"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/sp-8.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/sp-8.jpg",
+      "rel": "wp/2016/05/sp-8.jpg",
+      "size": 7423,
+      "sha": "9de2ae2d9ff7f9a28f55f804e257d71815d5a568295bb2cac4ea23a06274b57b",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/SP-8GR.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/SP-8GR.jpg",
+      "rel": "wp/2016/05/SP-8GR.jpg",
+      "size": 1450911,
+      "sha": "a327abaa5cea889b94cfc50df9652e0cfa13e9261cd95dd6b35c6e4f74a77e7b",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/SP-8-black-copy.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/SP-8-black-copy.jpg",
+      "rel": "wp/2016/05/SP-8-black-copy.jpg",
+      "size": 2537223,
+      "sha": "375fcb9fbf596ba6c820e84c5d2df521041b4e2984ed3f29a181777f96ea663f",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/spf-6.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/spf-6.jpg",
+      "rel": "wp/2016/05/spf-6.jpg",
+      "size": 1312807,
+      "sha": "abf136eb6956c12193ec34b5cdf40623951a68ac50a9ce73485dc8e35ce94756",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/SPF-6.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/SPF-6.jpg",
+      "skipped": true,
+      "reason": "exists"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/SPF-схема.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/SPF-%D1%81%D1%85%D0%B5%D0%BC%D0%B0.jpg",
+      "rel": "wp/2016/05/SPF-%D1%81%D1%85%D0%B5%D0%BC%D0%B0.jpg",
+      "size": 114438,
+      "sha": "05654e675b98c0177b4d1bdfe3d6b2a4fe2665bf6f915e21f81773f246345a8f",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/График-к-SPF-3.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/%D0%93%D1%80%D0%B0%D1%84%D0%B8%D0%BA-%D0%BA-SPF-3.jpg",
+      "rel": "wp/2016/05/%D0%93%D1%80%D0%B0%D1%84%D0%B8%D0%BA-%D0%BA-SPF-3.jpg",
+      "size": 40756,
+      "sha": "fb481be6335fcd3c877748ff3e1e1f2532641f9b009bb79f4dc2d820f0ea5784",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/SPF-6.pdf",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/SPF-6.pdf",
+      "rel": "wp/2016/05/SPF-6.pdf",
+      "size": 304637,
+      "sha": "007dd1c52954b2c4e9db6c568a80eecff7d1c898eede6585c6327050407cf686",
+      "contentType": "application/pdf"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-4x2-32a.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-4x2-32a.jpg",
+      "rel": "wp/2016/05/s-4x2-32a.jpg",
+      "size": 10920,
+      "sha": "9270a97727b25a309583c3fe6a2eef34a36eb21f079dee7cf2ff7859cb2df254",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-4x2iec320c13.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-4x2iec320c13.jpg",
+      "rel": "wp/2016/05/s-4x2iec320c13.jpg",
+      "size": 8602,
+      "sha": "3b24fb69bf655d16d72168a9507f1703027729034227fc1f3d3f5efddfdff696",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-8iec320c19.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-8iec320c19.jpg",
+      "rel": "wp/2016/05/s-8iec320c19.jpg",
+      "size": 8284,
+      "sha": "c861b8bb418f950ae24baad0b81f2f47cbd6d7e59821bdd3e5a73be6a06ef95e",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/07/s-20c134c19-3phase.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/07/s-20c134c19-3phase.jpg",
+      "rel": "wp/2016/07/s-20c134c19-3phase.jpg",
+      "size": 14647,
+      "sha": "bc6d546325e3988d2f5eba0d721a2e9499523c16046f93824bc2322eb2c6e698",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/07/block-control-S24mc.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/07/block-control-S24mc.jpg",
+      "rel": "wp/2016/07/block-control-S24mc.jpg",
+      "size": 4797,
+      "sha": "77e16216762e8d4160d2e34f9449b2a5a420a9d2cdc851ea898313831057caed",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/07/S-24C13-MC_V1-web.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/07/S-24C13-MC_V1-web.jpg",
+      "rel": "wp/2016/07/S-24C13-MC_V1-web.jpg",
+      "size": 21222,
+      "sha": "28a09ac103530951630f3a76c3401a3e23728acf32c8b2e9da9ac67ee62d52d0",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/07/S-24C13-MC_V1.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/07/S-24C13-MC_V1.jpg",
+      "rel": "wp/2016/07/S-24C13-MC_V1.jpg",
+      "size": 294209,
+      "sha": "75e0a967ec92b9dd37d2f03ecdb8024dc3b669d99d155e77fdcc357278a1c10a",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2019/06/S-8MC_web.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2019/06/S-8MC_web.jpg",
+      "rel": "wp/2019/06/S-8MC_web.jpg",
+      "size": 28709,
+      "sha": "e10419233b5c99879e0a0d6c61e6b4f64e144c2233bba59ce27419e2dfae8c44",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/07/S-8MC-front.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/07/S-8MC-front.jpg",
+      "rel": "wp/2016/07/S-8MC-front.jpg",
+      "size": 263814,
+      "sha": "79a652a28c1bb90d55e9c040af35a03a567924dbd425b18fd9bfddc50f52cb68",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/07/S-8MC-rear.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/07/S-8MC-rear.jpg",
+      "rel": "wp/2016/07/S-8MC-rear.jpg",
+      "size": 260678,
+      "sha": "b3b21cb84f90ef24da0918d96161b583e31b0f2e46d4c2e1accbf27bb8eda373",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/07/БРПиКС-руководство-_2019.pdf",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/07/%D0%91%D0%A0%D0%9F%D0%B8%D0%9A%D0%A1-%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%BE-_2019.pdf",
+      "rel": "wp/2016/07/%D0%91%D0%A0%D0%9F%D0%B8%D0%9A%D0%A1-%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%BE-_2019.pdf",
+      "size": 4102626,
+      "sha": "21bc09f539961aa8293857aed03b0f61293ec460e358c83c2518b824555799d7",
+      "contentType": "application/pdf"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/coral-gr-b.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/coral-gr-b.jpg",
+      "rel": "wp/2016/05/coral-gr-b.jpg",
+      "size": 13101,
+      "sha": "eca22185a3dc2071e31a99be2f1105e65bcd7da5776f72dae55851f08a79c64a",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/a-20-b.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/a-20-b.jpg",
+      "rel": "wp/2016/05/a-20-b.jpg",
+      "size": 9531,
+      "sha": "72617c347fd5fe4f85a1cf6a9fa9a360ab122f9fc1417d76958ddd8a67cc8a09",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2025/03/S-7-C20_web.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2025/03/S-7-C20_web.jpg",
+      "rel": "wp/2025/03/S-7-C20_web.jpg",
+      "size": 21449,
+      "sha": "de4d0214e3a2a4ee35d193574f3ce44c66d9458049755d80de1933b660e4c5c4",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2025/03/S-7-C20-scaled.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2025/03/S-7-C20-scaled.jpg",
+      "rel": "wp/2025/03/S-7-C20-scaled.jpg",
+      "size": 100763,
+      "sha": "85221b271dee54acdb541fe55cf3a02f1d8076a800f24beb9b118c27e77cf6d4",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2025/03/S-7-C20.pdf",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2025/03/S-7-C20.pdf",
+      "rel": "wp/2025/03/S-7-C20.pdf",
+      "size": 180130,
+      "sha": "4f84712fd2285c622be300c4f137ceb432b8603f651f68bf9f94e193e9d5d2bf",
+      "contentType": "application/pdf"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-12.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-12.jpg",
+      "rel": "wp/2016/05/s-12.jpg",
+      "size": 7738,
+      "sha": "8f1f92f6c9c5cfaf780f18e71674a99a830a77da019e91e574126deeeb8bbc6a",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-126c13.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-126c13.jpg",
+      "rel": "wp/2016/05/s-126c13.jpg",
+      "size": 7280,
+      "sha": "ae447a663e61fa1ac03429cc785d3ebc39fa8e5179b391e2b880ba3282db8cf3",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-126c13-ab-1.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-126c13-ab-1.jpg",
+      "rel": "wp/2016/05/s-126c13-ab-1.jpg",
+      "size": 7061,
+      "sha": "24d79a615c27d5dec8e3144f105eb1561d23962eca8fec2e13790a034862150b",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-12-ab.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-12-ab.jpg",
+      "rel": "wp/2016/05/s-12-ab.jpg",
+      "size": 7333,
+      "sha": "bff5f99751e9089eb4df4c78bc64f553f649c394e14f9a6b22082564910eb6f7",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-18.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-18.jpg",
+      "rel": "wp/2016/05/s-18.jpg",
+      "size": 7039,
+      "sha": "65383520d1d08381fdc48703c169f08d4483a723bd4a6ebd6fdc22194259e7a2",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/S-18-copy.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/S-18-copy.jpg",
+      "rel": "wp/2016/05/S-18-copy.jpg",
+      "size": 340167,
+      "sha": "dfef32624d7b2ef97dc4b894fe49eebe1ea57ebd2be1ca9ad3932e345a8ec04c",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/S-18-copy-1.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/S-18-copy-1.jpg",
+      "rel": "wp/2016/05/S-18-copy-1.jpg",
+      "size": 200288,
+      "sha": "8205164ee26171ad4c2afa83b85a073f2b39c5f13c334809d036c4911123b5d3",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/S-18-Model-1.pdf",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/S-18-Model-1.pdf",
+      "rel": "wp/2016/05/S-18-Model-1.pdf",
+      "size": 157563,
+      "sha": "5c80f05116297431b729c0547bcac1f19075fa2a6c24aee1cb8f4074eebd0a2f",
+      "contentType": "application/pdf"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-18-ab.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-18-ab.jpg",
+      "rel": "wp/2016/05/s-18-ab.jpg",
+      "size": 6901,
+      "sha": "5161a38d50f3352ebb904b1824088bfd45d9782111bd574267d71f39d9e80345",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-84c13.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-84c13.jpg",
+      "rel": "wp/2016/05/s-84c13.jpg",
+      "size": 7708,
+      "sha": "cacdb3d45c42ae33aa05cc117bcb9909be16799ceed9c72c97d93fd609a538a9",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-84c13-ab.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-84c13-ab.jpg",
+      "rel": "wp/2016/05/s-84c13-ab.jpg",
+      "size": 7322,
+      "sha": "99c0aa58542fe25802a5712ed8f16101f3e3db90f0b864f9f9fb9b90caf8bcd2",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/spf-84c13-ab.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/spf-84c13-ab.jpg",
+      "rel": "wp/2016/05/spf-84c13-ab.jpg",
+      "size": 7356,
+      "sha": "21287dce49a02e547f45da21772443aadc666f9533c218cf2450a102ea9f7d14",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-20c134c19-ab.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-20c134c19-ab.jpg",
+      "rel": "wp/2016/05/s-20c134c19-ab.jpg",
+      "size": 6545,
+      "sha": "1634001b82d7cf7bc043cfa65f30d102b35e37339c84a10984bfea072c1d34af",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-32-2x10sh-6c13.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-32-2x10sh-6c13.jpg",
+      "rel": "wp/2016/05/s-32-2x10sh-6c13.jpg",
+      "size": 5466,
+      "sha": "ac3e3ada9d8b4f614e12f59572721cd9da8bf204f84228cb637e564c19702aa5",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-3242u16x2.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-3242u16x2.jpg",
+      "rel": "wp/2016/05/s-3242u16x2.jpg",
+      "size": 5237,
+      "sha": "69141c0a1d05ec1f65c75249bc7cd8f4220b16577f0ee06996b64bf420946abb",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://soliton1.ru/wp-content/uploads/2016/05/s-3242uiec320c13-ab.jpg",
+      "outPath": "/Users/svp/Documents/GitHub/SMB/projects/solitomo-organic-site/apps/web/public/legacy/wp/2016/05/s-3242uiec320c13-ab.jpg",
+      "rel": "wp/2016/05/s-3242uiec320c13-ab.jpg",
+      "size": 5600,
+      "sha": "b4c906184650ffec4ec5264ac0cfd243a158e752a570dd558bd4b92843a8eb5d",
+      "contentType": "image/jpeg"
+    }
+  ]
+}

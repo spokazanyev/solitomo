@@ -1,0 +1,27 @@
+{
+  "queries": [
+    {"phrase": "блок розеток", "axis": "feature", "cluster": "core_blocks"},
+    {"phrase": "блок розеток 19", "axis": "feature", "cluster": "core_19_1u"},
+    {"phrase": "блок розеток 19 1u", "axis": "feature", "cluster": "core_19_1u"},
+    {"phrase": "блок розеток pdu", "axis": "feature", "cluster": "pdu_generic"},
+    {"phrase": "pdu", "axis": "feature", "cluster": "pdu_generic"},
+    {"phrase": "pdu 19", "axis": "feature", "cluster": "pdu_generic"},
+    {"phrase": "блок розеток schuko", "axis": "feature", "cluster": "socket_type"},
+    {"phrase": "блок розеток iec320 c13", "axis": "feature", "cluster": "socket_type"},
+    {"phrase": "блок розеток 16а", "axis": "feature", "cluster": "amperage"},
+    {"phrase": "блок розеток 32а", "axis": "feature", "cluster": "amperage"},
+    {"phrase": "вертикальный блок розеток", "axis": "feature", "cluster": "vertical_mount"},
+    {"phrase": "трехфазный блок розеток", "axis": "feature", "cluster": "three_phase"},
+    {"phrase": "pdu с мониторингом", "axis": "feature", "cluster": "managed_metered"},
+    {"phrase": "управляемый pdu", "axis": "feature", "cluster": "managed_metered"},
+    {"phrase": "metered pdu", "axis": "feature", "cluster": "managed_metered"},
+    {"phrase": "сетевой фильтр с узип", "axis": "adjacent", "cluster": "surge_filter"},
+    {"phrase": "блок розеток с узип", "axis": "feature", "cluster": "surge_filter"},
+    {"phrase": "серверный шкаф", "axis": "adjacent", "cluster": "server_rack_adjacent"},
+    {"phrase": "шкаф 19", "axis": "adjacent", "cluster": "server_rack_adjacent"},
+    {"phrase": "стойка 19", "axis": "adjacent", "cluster": "server_rack_adjacent"},
+    {"phrase": "apc pdu", "axis": "alternative", "cluster": "brand_competitors"},
+    {"phrase": "hyperline блок розеток", "axis": "alternative", "cluster": "brand_competitors"},
+    {"phrase": "солитон блок розеток", "axis": "alternative", "cluster": "brand_soliton"}
+  ]
+}

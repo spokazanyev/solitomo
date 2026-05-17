@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: soliton-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: soliton
+      POSTGRES_USER: soliton
+      POSTGRES_PASSWORD: soliton_dev_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - soliton_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U soliton -d soliton"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  soliton_postgres_data:

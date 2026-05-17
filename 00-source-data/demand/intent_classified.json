@@ -1,0 +1,5359 @@
+{
+  "queries": [
+    {
+      "phrase": "блок розеток",
+      "axis": "feature",
+      "confirmed_count": 41398,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток",
+      "cluster_id": "блок-розеток::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "axis": "feature",
+      "confirmed_count": 6213,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок выключателей с розеткой",
+      "axis": "feature",
+      "confirmed_count": 4293,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок выключателей розеткой",
+      "cluster_id": "блок-выключателей-розеткой::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 8",
+      "axis": "feature",
+      "confirmed_count": 3868,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 8",
+      "cluster_id": "блок-розеток-8::feature::commercial"
+    },
+    {
+      "phrase": "блок 2 розетки",
+      "axis": "feature",
+      "confirmed_count": 3018,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок 2 розетки",
+      "cluster_id": "блок-2-розетки::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "axis": "feature",
+      "confirmed_count": 2617,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток pdu",
+      "cluster_id": "блок-розеток-pdu::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 2594,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "axis": "feature",
+      "confirmed_count": 2037,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток schuko",
+      "cluster_id": "блок-розеток-schuko::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 1u",
+      "axis": "feature",
+      "confirmed_count": 2008,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 1u",
+      "cluster_id": "блок-розеток-1u::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 16",
+      "axis": "feature",
+      "confirmed_count": 1956,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 16",
+      "cluster_id": "блок-розеток-16::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "axis": "feature",
+      "confirmed_count": 6213,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 2594,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "axis": "feature",
+      "confirmed_count": 1469,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток schuko 19",
+      "axis": "feature",
+      "confirmed_count": 1305,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток schuko",
+      "cluster_id": "блок-розеток-schuko::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток pdu 19",
+      "axis": "feature",
+      "confirmed_count": 1107,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток pdu",
+      "cluster_id": "блок-розеток-pdu::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток для 19 шкафов",
+      "axis": "feature",
+      "confirmed_count": 1089,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 горизонтальный",
+      "axis": "feature",
+      "confirmed_count": 861,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 16а",
+      "axis": "feature",
+      "confirmed_count": 803,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток schuko",
+      "axis": "feature",
+      "confirmed_count": 772,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 iec",
+      "axis": "feature",
+      "confirmed_count": 715,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "axis": "feature",
+      "confirmed_count": 1469,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 1u 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 701,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 1u 16а",
+      "axis": "feature",
+      "confirmed_count": 251,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 1u с выключателем",
+      "axis": "feature",
+      "confirmed_count": 212,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 220в 19 1u",
+      "axis": "feature",
+      "confirmed_count": 159,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 220в",
+      "cluster_id": "блок-розеток-220в::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 1u 8 гнезд",
+      "axis": "feature",
+      "confirmed_count": 135,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок электрических розеток 19 1u",
+      "axis": "feature",
+      "confirmed_count": 99,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок электрических розеток",
+      "cluster_id": "блок-электрических-розеток::feature::commercial"
+    },
+    {
+      "phrase": "блок силовых розеток 19 1u",
+      "axis": "feature",
+      "confirmed_count": 96,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок силовых розеток",
+      "cluster_id": "блок-силовых-розеток::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 1u 9 розеток",
+      "axis": "feature",
+      "confirmed_count": 93,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток ntss 19 1u",
+      "axis": "feature",
+      "confirmed_count": 86,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток ntss",
+      "cluster_id": "блок-розеток-ntss::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 2594,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 8 розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток schuko",
+      "axis": "feature",
+      "confirmed_count": 772,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 8 розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 1u 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 701,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 8 розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток для 19 шкафов 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 606,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 8 розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток горизонтальный",
+      "axis": "feature",
+      "confirmed_count": 539,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 8 розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток 16а",
+      "axis": "feature",
+      "confirmed_count": 465,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 8 розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 8 гнезд 19",
+      "axis": "feature",
+      "confirmed_count": 427,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 8 розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 8",
+      "cluster_id": "блок-розеток-8::feature::commercial"
+    },
+    {
+      "phrase": "блок евророзеток 19 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 376,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 8 розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок евророзеток 19",
+      "cluster_id": "блок-евророзеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок силовых розеток 19 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 232,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 8 розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок силовых розеток",
+      "cluster_id": "блок-силовых-розеток::feature::commercial"
+    },
+    {
+      "phrase": "блок распределения питания 8 розеток 19",
+      "axis": "feature",
+      "confirmed_count": 178,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 19 8 розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок распределения питания",
+      "cluster_id": "блок-распределения-питания::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 1u",
+      "axis": "feature",
+      "confirmed_count": 2008,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 1u",
+      "cluster_id": "блок-розеток-1u::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "axis": "feature",
+      "confirmed_count": 1469,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 1u 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 961,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 1u",
+      "cluster_id": "блок-розеток-1u::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 1u 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 701,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 1u с выключателем",
+      "axis": "feature",
+      "confirmed_count": 367,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 1u",
+      "cluster_id": "блок-розеток-1u::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 1u 16а",
+      "axis": "feature",
+      "confirmed_count": 251,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 1u с выключателем",
+      "axis": "feature",
+      "confirmed_count": 212,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 1u 8 розеток 16а",
+      "axis": "feature",
+      "confirmed_count": 179,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 1u",
+      "cluster_id": "блок-розеток-1u::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 1u 8 гнезд",
+      "axis": "feature",
+      "confirmed_count": 164,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 1u",
+      "cluster_id": "блок-розеток-1u::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 220в 19 1u",
+      "axis": "feature",
+      "confirmed_count": 159,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 220в",
+      "cluster_id": "блок-розеток-220в::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток в стойку",
+      "axis": "feature",
+      "confirmed_count": 752,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток в стойку",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток стойку",
+      "cluster_id": "блок-розеток-стойку::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток в стойку 19",
+      "axis": "feature",
+      "confirmed_count": 488,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток в стойку",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток стойку",
+      "cluster_id": "блок-розеток-стойку::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток в стойку 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 83,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток в стойку",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток стойку",
+      "cluster_id": "блок-розеток-стойку::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток в стойку 19 8",
+      "axis": "feature",
+      "confirmed_count": 67,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток в стойку",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток стойку",
+      "cluster_id": "блок-розеток-стойку::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток в стойку 19 16а",
+      "axis": "feature",
+      "confirmed_count": 50,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток в стойку",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток стойку",
+      "cluster_id": "блок-розеток-стойку::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 1u в стойку",
+      "axis": "feature",
+      "confirmed_count": 38,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток в стойку",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 1u",
+      "cluster_id": "блок-розеток-1u::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток в стойку 19 1u",
+      "axis": "feature",
+      "confirmed_count": 36,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток в стойку",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток стойку",
+      "cluster_id": "блок-розеток-стойку::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 дюймов в стойку",
+      "axis": "feature",
+      "confirmed_count": 34,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток в стойку",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "установка блока розеток в стойку",
+      "axis": "feature",
+      "confirmed_count": 31,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток в стойку",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "установка блока розеток",
+      "cluster_id": "установка-блока-розеток::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток вертикальный в стойку",
+      "axis": "feature",
+      "confirmed_count": 27,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток в стойку",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток вертикальный",
+      "cluster_id": "блок-розеток-вертикальный::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток для серверного шкафа",
+      "axis": "feature",
+      "confirmed_count": 33,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток для серверного шкафа",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток серверного",
+      "cluster_id": "блок-розеток-серверного::feature::commercial"
+    },
+    {
+      "phrase": "розеточный блок 19",
+      "axis": "feature",
+      "confirmed_count": 83,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розеточный блок 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "розеточный блок 19",
+      "cluster_id": "розеточный-блок-19::feature::commercial"
+    },
+    {
+      "phrase": "розеточный блок в стойку 19",
+      "axis": "feature",
+      "confirmed_count": 36,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розеточный блок 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "розеточный блок стойку",
+      "cluster_id": "розеточный-блок-стойку::feature::commercial"
+    },
+    {
+      "phrase": "панель розеток 19",
+      "axis": "feature",
+      "confirmed_count": 168,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "панель розеток 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "панель розеток 19",
+      "cluster_id": "панель-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "панель розеток в стойку 19",
+      "axis": "feature",
+      "confirmed_count": 16,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "панель розеток 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "панель розеток стойку",
+      "cluster_id": "панель-розеток-стойку::feature::commercial"
+    },
+    {
+      "phrase": "панель питания 19 на 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 6,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "панель розеток 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "панель питания 19",
+      "cluster_id": "панель-питания-19::feature::commercial"
+    },
+    {
+      "phrase": "pdu",
+      "axis": "feature",
+      "confirmed_count": 14646,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu",
+      "cluster_id": "pdu::feature::commercial"
+    },
+    {
+      "phrase": "блок pdu",
+      "axis": "feature",
+      "confirmed_count": 3431,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок pdu",
+      "cluster_id": "блок-pdu::feature::commercial"
+    },
+    {
+      "phrase": "pdu розетки",
+      "axis": "feature",
+      "confirmed_count": 3222,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu розетки",
+      "cluster_id": "pdu-розетки::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "axis": "feature",
+      "confirmed_count": 2617,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток pdu",
+      "cluster_id": "блок-розеток-pdu::feature::commercial"
+    },
+    {
+      "phrase": "pdu 19",
+      "axis": "feature",
+      "confirmed_count": 1511,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu 19",
+      "cluster_id": "pdu-19::feature::commercial"
+    },
+    {
+      "phrase": "cabeus pdu",
+      "axis": "feature",
+      "confirmed_count": 1263,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "cabeus pdu",
+      "cluster_id": "cabeus-pdu::feature::commercial"
+    },
+    {
+      "phrase": "pdu 8p",
+      "axis": "feature",
+      "confirmed_count": 1216,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu 8p",
+      "cluster_id": "pdu-8p::feature::commercial"
+    },
+    {
+      "phrase": "pdu питание",
+      "axis": "feature",
+      "confirmed_count": 1133,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu питание",
+      "cluster_id": "pdu-питание::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток pdu 19",
+      "axis": "feature",
+      "confirmed_count": 1107,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток pdu",
+      "cluster_id": "блок-розеток-pdu::feature::commercial"
+    },
+    {
+      "phrase": "pdu 8",
+      "axis": "feature",
+      "confirmed_count": 1092,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu 8",
+      "cluster_id": "pdu-8::feature::commercial"
+    },
+    {
+      "phrase": "pdu розетки",
+      "axis": "feature",
+      "confirmed_count": 3222,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu розетки",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu розетки",
+      "cluster_id": "pdu-розетки::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "axis": "feature",
+      "confirmed_count": 2617,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu розетки",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток pdu",
+      "cluster_id": "блок-розеток-pdu::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток pdu 19",
+      "axis": "feature",
+      "confirmed_count": 1107,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu розетки",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток pdu",
+      "cluster_id": "блок-розеток-pdu::feature::commercial"
+    },
+    {
+      "phrase": "pdu 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 873,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu розетки",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu 8 розеток",
+      "cluster_id": "pdu-8-розеток::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток pdu 8p",
+      "axis": "feature",
+      "confirmed_count": 506,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu розетки",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток pdu",
+      "cluster_id": "блок-розеток-pdu::feature::commercial"
+    },
+    {
+      "phrase": "горизонтальный блок розеток pdu",
+      "axis": "feature",
+      "confirmed_count": 427,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu розетки",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "горизонтальный блок розеток",
+      "cluster_id": "горизонтальный-блок-розеток::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 pdu 8p",
+      "axis": "feature",
+      "confirmed_count": 389,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu розетки",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "pdu 9 розеток",
+      "axis": "feature",
+      "confirmed_count": 360,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu розетки",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu 9 розеток",
+      "cluster_id": "pdu-9-розеток::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток cabeus pdu 8p",
+      "axis": "feature",
+      "confirmed_count": 345,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu розетки",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток cabeus",
+      "cluster_id": "блок-розеток-cabeus::feature::commercial"
+    },
+    {
+      "phrase": "cabeus pdu 8p 8 розеток",
+      "axis": "feature",
+      "confirmed_count": 287,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu розетки",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "cabeus pdu 8p",
+      "cluster_id": "cabeus-pdu-8p::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "axis": "feature",
+      "confirmed_count": 2617,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток pdu",
+      "cluster_id": "блок-розеток-pdu::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток pdu 19",
+      "axis": "feature",
+      "confirmed_count": 1107,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток pdu",
+      "cluster_id": "блок-розеток-pdu::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток pdu 8p",
+      "axis": "feature",
+      "confirmed_count": 506,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток pdu",
+      "cluster_id": "блок-розеток-pdu::feature::commercial"
+    },
+    {
+      "phrase": "горизонтальный блок розеток pdu",
+      "axis": "feature",
+      "confirmed_count": 427,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "горизонтальный блок розеток",
+      "cluster_id": "горизонтальный-блок-розеток::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 pdu 8p",
+      "axis": "feature",
+      "confirmed_count": 389,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток cabeus pdu 8p",
+      "axis": "feature",
+      "confirmed_count": 345,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток cabeus",
+      "cluster_id": "блок-розеток-cabeus::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 cabeus pdu 8p",
+      "axis": "feature",
+      "confirmed_count": 266,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток pdu 9 розеток",
+      "axis": "feature",
+      "confirmed_count": 253,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток pdu",
+      "cluster_id": "блок-розеток-pdu::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток pdu 8p 2eu",
+      "axis": "feature",
+      "confirmed_count": 226,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток pdu",
+      "cluster_id": "блок-розеток-pdu::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 pdu 8p 2eu",
+      "axis": "feature",
+      "confirmed_count": 165,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "pdu 19",
+      "axis": "feature",
+      "confirmed_count": 1511,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu 19",
+      "cluster_id": "pdu-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток pdu 19",
+      "axis": "feature",
+      "confirmed_count": 1107,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток pdu",
+      "cluster_id": "блок-розеток-pdu::feature::commercial"
+    },
+    {
+      "phrase": "pdu 19 1u",
+      "axis": "feature",
+      "confirmed_count": 507,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu 19 1u",
+      "cluster_id": "pdu-19-1u::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 pdu 8p",
+      "axis": "feature",
+      "confirmed_count": 389,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок распределения питания pdu 19",
+      "axis": "feature",
+      "confirmed_count": 276,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок распределения питания",
+      "cluster_id": "блок-распределения-питания::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 cabeus pdu 8p",
+      "axis": "feature",
+      "confirmed_count": 266,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 pdu 8p 2eu",
+      "axis": "feature",
+      "confirmed_count": 165,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок евророзеток 19 cabeus pdu 8p",
+      "axis": "feature",
+      "confirmed_count": 141,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок евророзеток 19",
+      "cluster_id": "блок-евророзеток-19::feature::commercial"
+    },
+    {
+      "phrase": "19 cabeus pdu 8p 2eu",
+      "axis": "feature",
+      "confirmed_count": 139,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "19 cabeus pdu",
+      "cluster_id": "19-cabeus-pdu::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 pdu 8p 2iec",
+      "axis": "feature",
+      "confirmed_count": 102,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "pdu 1u",
+      "axis": "feature",
+      "confirmed_count": 1092,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu 1u",
+      "cluster_id": "pdu-1u::feature::commercial"
+    },
+    {
+      "phrase": "pdu 19 1u",
+      "axis": "feature",
+      "confirmed_count": 507,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu 19 1u",
+      "cluster_id": "pdu-19-1u::feature::commercial"
+    },
+    {
+      "phrase": "pdu 9 розеток 1u",
+      "axis": "feature",
+      "confirmed_count": 188,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu 9 розеток",
+      "cluster_id": "pdu-9-розеток::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток pdu 9 розеток 1u",
+      "axis": "feature",
+      "confirmed_count": 107,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток pdu",
+      "cluster_id": "блок-розеток-pdu::feature::commercial"
+    },
+    {
+      "phrase": "itk pdu 8 розеток 1u",
+      "axis": "feature",
+      "confirmed_count": 98,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "itk pdu 8",
+      "cluster_id": "itk-pdu-8::feature::commercial"
+    },
+    {
+      "phrase": "pdu basic 1u",
+      "axis": "feature",
+      "confirmed_count": 30,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu basic 1u",
+      "cluster_id": "pdu-basic-1u::feature::commercial"
+    },
+    {
+      "phrase": "pdu 8 розеток 1u ph12 8d3",
+      "axis": "feature",
+      "confirmed_count": 23,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu 8 розеток",
+      "cluster_id": "pdu-8-розеток::feature::commercial"
+    },
+    {
+      "phrase": "pdu 1u g8",
+      "axis": "feature",
+      "confirmed_count": 23,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu 1u g8",
+      "cluster_id": "pdu-1u-g8::feature::commercial"
+    },
+    {
+      "phrase": "pdu ippon basic 1u",
+      "axis": "feature",
+      "confirmed_count": 11,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu ippon basic",
+      "cluster_id": "pdu-ippon-basic::feature::commercial"
+    },
+    {
+      "phrase": "pdu 1u g8 k",
+      "axis": "feature",
+      "confirmed_count": 9,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu 1u g8",
+      "cluster_id": "pdu-1u-g8::feature::commercial"
+    },
+    {
+      "phrase": "rack pdu",
+      "axis": "feature",
+      "confirmed_count": 308,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "rack pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "rack pdu",
+      "cluster_id": "rack-pdu::feature::commercial"
+    },
+    {
+      "phrase": "apc rack pdu",
+      "axis": "feature",
+      "confirmed_count": 129,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "rack pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "apc rack pdu",
+      "cluster_id": "apc-rack-pdu::feature::commercial"
+    },
+    {
+      "phrase": "switched rack pdu",
+      "axis": "feature",
+      "confirmed_count": 83,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "rack pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "switched rack pdu",
+      "cluster_id": "switched-rack-pdu::feature::commercial"
+    },
+    {
+      "phrase": "apc switched rack pdu",
+      "axis": "feature",
+      "confirmed_count": 57,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "rack pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "apc switched rack",
+      "cluster_id": "apc-switched-rack::feature::commercial"
+    },
+    {
+      "phrase": "metered rack pdu",
+      "axis": "feature",
+      "confirmed_count": 45,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "rack pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "metered rack pdu",
+      "cluster_id": "metered-rack-pdu::feature::commercial"
+    },
+    {
+      "phrase": "basic rack pdu",
+      "axis": "feature",
+      "confirmed_count": 37,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "rack pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "basic rack pdu",
+      "cluster_id": "basic-rack-pdu::feature::commercial"
+    },
+    {
+      "phrase": "rack pdu 2g",
+      "axis": "feature",
+      "confirmed_count": 15,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "rack pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "rack pdu 2g",
+      "cluster_id": "rack-pdu-2g::feature::commercial"
+    },
+    {
+      "phrase": "apc basic rack pdu",
+      "axis": "feature",
+      "confirmed_count": 13,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "rack pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "apc basic rack",
+      "cluster_id": "apc-basic-rack::feature::commercial"
+    },
+    {
+      "phrase": "apc rack pdu 2g",
+      "axis": "feature",
+      "confirmed_count": 11,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "rack pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "apc rack pdu",
+      "cluster_id": "apc-rack-pdu::feature::commercial"
+    },
+    {
+      "phrase": "eaton in line metered rack pdu",
+      "axis": "feature",
+      "confirmed_count": 9,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "rack pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "eaton line metered",
+      "cluster_id": "eaton-line-metered::feature::commercial"
+    },
+    {
+      "phrase": "power distribution unit",
+      "axis": "feature",
+      "confirmed_count": 94,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "power distribution unit",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "power distribution unit",
+      "cluster_id": "power-distribution-unit::feature::commercial"
+    },
+    {
+      "phrase": "pdu power distribution unit",
+      "axis": "feature",
+      "confirmed_count": 19,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "power distribution unit",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu power distribution",
+      "cluster_id": "pdu-power-distribution::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "axis": "feature",
+      "confirmed_count": 2037,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток schuko",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток schuko",
+      "cluster_id": "блок-розеток-schuko::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток schuko 19",
+      "axis": "feature",
+      "confirmed_count": 1305,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток schuko",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток schuko",
+      "cluster_id": "блок-розеток-schuko::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток schuko 8",
+      "axis": "feature",
+      "confirmed_count": 976,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток schuko",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток schuko",
+      "cluster_id": "блок-розеток-schuko::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток schuko",
+      "axis": "feature",
+      "confirmed_count": 772,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток schuko",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 7 schuko",
+      "axis": "feature",
+      "confirmed_count": 289,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток schuko",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 7",
+      "cluster_id": "блок-розеток-7::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 9 schuko",
+      "axis": "feature",
+      "confirmed_count": 287,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток schuko",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 9",
+      "cluster_id": "блок-розеток-9::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток c14 schuko",
+      "axis": "feature",
+      "confirmed_count": 285,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток schuko",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток c14",
+      "cluster_id": "блок-розеток-c14::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 9 розеток schuko",
+      "axis": "feature",
+      "confirmed_count": 205,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток schuko",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 8 розеток schuko 16а",
+      "axis": "feature",
+      "confirmed_count": 154,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток schuko",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 8",
+      "cluster_id": "блок-розеток-8::feature::commercial"
+    },
+    {
+      "phrase": "блок 6 розеток schuko",
+      "axis": "feature",
+      "confirmed_count": 138,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток schuko",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок 6 розеток",
+      "cluster_id": "блок-6-розеток::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "axis": "feature",
+      "confirmed_count": 28,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток iec320 c13",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток iec320",
+      "cluster_id": "блок-розеток-iec320::feature::commercial"
+    },
+    {
+      "phrase": "розетки iec320 c13",
+      "axis": "adjacent",
+      "confirmed_count": 91,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розетка iec320 c13",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "розетки iec320 c13",
+      "cluster_id": "розетки-iec320-c13::adjacent::commercial"
+    },
+    {
+      "phrase": "розетка c13",
+      "axis": "adjacent",
+      "confirmed_count": 1315,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розетка c13",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "розетка c13",
+      "cluster_id": "розетка-c13::adjacent::commercial"
+    },
+    {
+      "phrase": "розетка iec c13",
+      "axis": "adjacent",
+      "confirmed_count": 744,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розетка c13",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "розетка iec c13",
+      "cluster_id": "розетка-iec-c13::adjacent::commercial"
+    },
+    {
+      "phrase": "блок розеток c13",
+      "axis": "adjacent",
+      "confirmed_count": 437,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розетка c13",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "блок розеток c13",
+      "cluster_id": "блок-розеток-c13::adjacent::commercial"
+    },
+    {
+      "phrase": "розетка iec 320 c13",
+      "axis": "adjacent",
+      "confirmed_count": 326,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розетка c13",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "розетка iec 320",
+      "cluster_id": "розетка-iec-320::adjacent::commercial"
+    },
+    {
+      "phrase": "блок розеток iec c13",
+      "axis": "adjacent",
+      "confirmed_count": 245,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розетка c13",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "блок розеток iec",
+      "cluster_id": "блок-розеток-iec::adjacent::commercial"
+    },
+    {
+      "phrase": "8 розеток c13",
+      "axis": "adjacent",
+      "confirmed_count": 236,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розетка c13",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "8 розеток c13",
+      "cluster_id": "8-розеток-c13::adjacent::commercial"
+    },
+    {
+      "phrase": "c13 c19 розетки",
+      "axis": "adjacent",
+      "confirmed_count": 233,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розетка c13",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "c13 c19 розетки",
+      "cluster_id": "c13-c19-розетки::adjacent::commercial"
+    },
+    {
+      "phrase": "розетка 60320 c13",
+      "axis": "adjacent",
+      "confirmed_count": 229,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розетка c13",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "розетка 60320 c13",
+      "cluster_id": "розетка-60320-c13::adjacent::commercial"
+    },
+    {
+      "phrase": "розетка iec 60320 c13",
+      "axis": "adjacent",
+      "confirmed_count": 222,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розетка c13",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "розетка iec 60320",
+      "cluster_id": "розетка-iec-60320::adjacent::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 c13",
+      "axis": "adjacent",
+      "confirmed_count": 182,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "розетка c13",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::adjacent::commercial"
+    },
+    {
+      "phrase": "pdu c13",
+      "axis": "feature",
+      "confirmed_count": 452,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu c13",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu c13",
+      "cluster_id": "pdu-c13::feature::commercial"
+    },
+    {
+      "phrase": "pdu c13 c19",
+      "axis": "feature",
+      "confirmed_count": 160,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu c13",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu c13 c19",
+      "cluster_id": "pdu-c13-c19::feature::commercial"
+    },
+    {
+      "phrase": "pdu c13 c14",
+      "axis": "feature",
+      "confirmed_count": 84,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu c13",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu c13 c14",
+      "cluster_id": "pdu-c13-c14::feature::commercial"
+    },
+    {
+      "phrase": "pdu 32a c13",
+      "axis": "feature",
+      "confirmed_count": 39,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu c13",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu 32a c13",
+      "cluster_id": "pdu-32a-c13::feature::commercial"
+    },
+    {
+      "phrase": "pdu 8 розеток c13",
+      "axis": "feature",
+      "confirmed_count": 37,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu c13",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu 8 розеток",
+      "cluster_id": "pdu-8-розеток::feature::commercial"
+    },
+    {
+      "phrase": "pdu с разъемом c13",
+      "axis": "feature",
+      "confirmed_count": 37,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu c13",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu разъемом c13",
+      "cluster_id": "pdu-разъемом-c13::feature::commercial"
+    },
+    {
+      "phrase": "cab pdu c14 3m c13 rus",
+      "axis": "feature",
+      "confirmed_count": 14,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu c13",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "cab pdu c14",
+      "cluster_id": "cab-pdu-c14::feature::commercial"
+    },
+    {
+      "phrase": "pdu switched panel c13",
+      "axis": "feature",
+      "confirmed_count": 9,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu c13",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu switched panel",
+      "cluster_id": "pdu-switched-panel::feature::commercial"
+    },
+    {
+      "phrase": "pdu c19",
+      "axis": "feature",
+      "confirmed_count": 236,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu c19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu c19",
+      "cluster_id": "pdu-c19::feature::commercial"
+    },
+    {
+      "phrase": "pdu c13 c19",
+      "axis": "feature",
+      "confirmed_count": 160,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu c19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu c13 c19",
+      "cluster_id": "pdu-c13-c19::feature::commercial"
+    },
+    {
+      "phrase": "pdu 6 c19",
+      "axis": "feature",
+      "confirmed_count": 69,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu c19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu 6 c19",
+      "cluster_id": "pdu-6-c19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 10 1u",
+      "axis": "feature",
+      "confirmed_count": 88,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 10 1u",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 10",
+      "cluster_id": "блок-розеток-10::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "axis": "feature",
+      "confirmed_count": 1559,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 16а",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 16а",
+      "cluster_id": "блок-розеток-16а::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 16а",
+      "axis": "feature",
+      "confirmed_count": 803,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 16а",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 8 розеток 16а",
+      "axis": "feature",
+      "confirmed_count": 551,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 16а",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 8",
+      "cluster_id": "блок-розеток-8::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток 16а",
+      "axis": "feature",
+      "confirmed_count": 465,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 16а",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 1u 16а",
+      "axis": "feature",
+      "confirmed_count": 251,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 16а",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 220в 16а",
+      "axis": "feature",
+      "confirmed_count": 183,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 16а",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 220в",
+      "cluster_id": "блок-розеток-220в::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 1u 8 розеток 16а",
+      "axis": "feature",
+      "confirmed_count": 179,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 16а",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 1u",
+      "cluster_id": "блок-розеток-1u::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 8 розеток schuko 16а",
+      "axis": "feature",
+      "confirmed_count": 154,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 16а",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 8",
+      "cluster_id": "блок-розеток-8::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 250в 16а",
+      "axis": "feature",
+      "confirmed_count": 97,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 16а",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток с авт 16а",
+      "axis": "feature",
+      "confirmed_count": 89,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 16а",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток авт",
+      "cluster_id": "блок-розеток-авт::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "axis": "feature",
+      "confirmed_count": 232,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 32а",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 32а",
+      "cluster_id": "блок-розеток-32а::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток вертикальный 32а",
+      "axis": "feature",
+      "confirmed_count": 78,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток 32а",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток вертикальный",
+      "cluster_id": "блок-розеток-вертикальный::feature::commercial"
+    },
+    {
+      "phrase": "pdu 16a",
+      "axis": "feature",
+      "confirmed_count": 390,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 16a",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu 16a",
+      "cluster_id": "pdu-16a::feature::commercial"
+    },
+    {
+      "phrase": "блок распределения питания pdu 16a",
+      "axis": "feature",
+      "confirmed_count": 124,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 16a",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок распределения питания",
+      "cluster_id": "блок-распределения-питания::feature::commercial"
+    },
+    {
+      "phrase": "mdx pdu 8e 16a",
+      "axis": "feature",
+      "confirmed_count": 31,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 16a",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "mdx pdu 8e",
+      "cluster_id": "mdx-pdu-8e::feature::commercial"
+    },
+    {
+      "phrase": "pdu 16a type 2",
+      "axis": "feature",
+      "confirmed_count": 23,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 16a",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu 16a type",
+      "cluster_id": "pdu-16a-type::feature::commercial"
+    },
+    {
+      "phrase": "mdx pdu 8e 16a term",
+      "axis": "feature",
+      "confirmed_count": 21,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 16a",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "mdx pdu 8e",
+      "cluster_id": "mdx-pdu-8e::feature::commercial"
+    },
+    {
+      "phrase": "блок распределения питания pdu 16a type 2",
+      "axis": "feature",
+      "confirmed_count": 9,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 16a",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок распределения питания",
+      "cluster_id": "блок-распределения-питания::feature::commercial"
+    },
+    {
+      "phrase": "powercom pdu 16a type 2",
+      "axis": "feature",
+      "confirmed_count": 6,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 16a",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "powercom pdu 16a",
+      "cluster_id": "powercom-pdu-16a::feature::commercial"
+    },
+    {
+      "phrase": "pdu 32a",
+      "axis": "feature",
+      "confirmed_count": 141,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 32a",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu 32a",
+      "cluster_id": "pdu-32a::feature::commercial"
+    },
+    {
+      "phrase": "pdu 32a c13",
+      "axis": "feature",
+      "confirmed_count": 39,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 32a",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu 32a c13",
+      "cluster_id": "pdu-32a-c13::feature::commercial"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "axis": "feature",
+      "confirmed_count": 734,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный блок розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "вертикальный блок розеток",
+      "cluster_id": "вертикальный-блок-розеток::feature::commercial"
+    },
+    {
+      "phrase": "блок розетка выключатель вертикальный",
+      "axis": "feature",
+      "confirmed_count": 212,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный блок розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розетка выключатель",
+      "cluster_id": "блок-розетка-выключатель::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток pdu вертикальный",
+      "axis": "feature",
+      "confirmed_count": 83,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный блок розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток pdu",
+      "cluster_id": "блок-розеток-pdu::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток вертикальный 32а",
+      "axis": "feature",
+      "confirmed_count": 78,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный блок розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток вертикальный",
+      "cluster_id": "блок-розеток-вертикальный::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 вертикальный",
+      "axis": "feature",
+      "confirmed_count": 69,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный блок розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "вертикальный блок розеток rem",
+      "axis": "feature",
+      "confirmed_count": 66,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный блок розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "вертикальный блок розеток",
+      "cluster_id": "вертикальный-блок-розеток::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток выдвижной вертикальный",
+      "axis": "feature",
+      "confirmed_count": 37,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный блок розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток выдвижной",
+      "cluster_id": "блок-розеток-выдвижной::feature::commercial"
+    },
+    {
+      "phrase": "блок розетка выключатель вертикальный черный",
+      "axis": "feature",
+      "confirmed_count": 29,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный блок розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розетка выключатель",
+      "cluster_id": "блок-розетка-выключатель::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток вертикальный в стойку",
+      "axis": "feature",
+      "confirmed_count": 27,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный блок розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток вертикальный",
+      "cluster_id": "блок-розеток-вертикальный::feature::commercial"
+    },
+    {
+      "phrase": "вертикальный блок розеток rem 32",
+      "axis": "feature",
+      "confirmed_count": 26,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный блок розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "вертикальный блок розеток",
+      "cluster_id": "вертикальный-блок-розеток::feature::commercial"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "axis": "feature",
+      "confirmed_count": 734,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток вертикальный",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "вертикальный блок розеток",
+      "cluster_id": "вертикальный-блок-розеток::feature::commercial"
+    },
+    {
+      "phrase": "блок розетка выключатель вертикальный",
+      "axis": "feature",
+      "confirmed_count": 212,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток вертикальный",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розетка выключатель",
+      "cluster_id": "блок-розетка-выключатель::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток pdu вертикальный",
+      "axis": "feature",
+      "confirmed_count": 83,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток вертикальный",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток pdu",
+      "cluster_id": "блок-розеток-pdu::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток вертикальный 32а",
+      "axis": "feature",
+      "confirmed_count": 78,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток вертикальный",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток вертикальный",
+      "cluster_id": "блок-розеток-вертикальный::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток 19 вертикальный",
+      "axis": "feature",
+      "confirmed_count": 69,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток вертикальный",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::feature::commercial"
+    },
+    {
+      "phrase": "вертикальный блок розеток rem",
+      "axis": "feature",
+      "confirmed_count": 66,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток вертикальный",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "вертикальный блок розеток",
+      "cluster_id": "вертикальный-блок-розеток::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток выдвижной вертикальный",
+      "axis": "feature",
+      "confirmed_count": 37,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток вертикальный",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток выдвижной",
+      "cluster_id": "блок-розеток-выдвижной::feature::commercial"
+    },
+    {
+      "phrase": "блок розетка выключатель вертикальный черный",
+      "axis": "feature",
+      "confirmed_count": 29,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток вертикальный",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розетка выключатель",
+      "cluster_id": "блок-розетка-выключатель::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток вертикальный в стойку",
+      "axis": "feature",
+      "confirmed_count": 27,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток вертикальный",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток вертикальный",
+      "cluster_id": "блок-розеток-вертикальный::feature::commercial"
+    },
+    {
+      "phrase": "вертикальный блок розеток rem 32",
+      "axis": "feature",
+      "confirmed_count": 26,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток вертикальный",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "вертикальный блок розеток",
+      "cluster_id": "вертикальный-блок-розеток::feature::commercial"
+    },
+    {
+      "phrase": "вертикальный pdu",
+      "axis": "feature",
+      "confirmed_count": 285,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "вертикальный pdu",
+      "cluster_id": "вертикальный-pdu::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток pdu вертикальный",
+      "axis": "feature",
+      "confirmed_count": 83,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток pdu",
+      "cluster_id": "блок-розеток-pdu::feature::commercial"
+    },
+    {
+      "phrase": "pdu вертикальный 32а",
+      "axis": "feature",
+      "confirmed_count": 74,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "вертикальный pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu вертикальный 32а",
+      "cluster_id": "pdu-вертикальный-32а::feature::commercial"
+    },
+    {
+      "phrase": "трехфазные блоки розеток",
+      "axis": "feature",
+      "confirmed_count": 43,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "трехфазный блок розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "трехфазные блоки розеток",
+      "cluster_id": "трехфазные-блоки-розеток::feature::commercial"
+    },
+    {
+      "phrase": "pdu трехфазный",
+      "axis": "feature",
+      "confirmed_count": 29,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu трехфазный",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu трехфазный",
+      "cluster_id": "pdu-трехфазный::feature::commercial"
+    },
+    {
+      "phrase": "pdu 3 фазы",
+      "axis": "feature",
+      "confirmed_count": 61,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu 3 фазы",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu 3 фазы",
+      "cluster_id": "pdu-3-фазы::feature::commercial"
+    },
+    {
+      "phrase": "управляемая pdu",
+      "axis": "feature",
+      "confirmed_count": 33,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "управляемый pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "управляемая pdu",
+      "cluster_id": "управляемая-pdu::feature::commercial"
+    },
+    {
+      "phrase": "интеллектуальные pdu",
+      "axis": "feature",
+      "confirmed_count": 33,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "интеллектуальный pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "интеллектуальные pdu",
+      "cluster_id": "интеллектуальные-pdu::feature::commercial"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "axis": "feature",
+      "confirmed_count": 157,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu с мониторингом",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu мониторингом",
+      "cluster_id": "pdu-мониторингом::feature::commercial"
+    },
+    {
+      "phrase": "блок pdu с мониторингом",
+      "axis": "feature",
+      "confirmed_count": 70,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu с мониторингом",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок pdu мониторингом",
+      "cluster_id": "блок-pdu-мониторингом::feature::commercial"
+    },
+    {
+      "phrase": "pdu с мониторингом и управлением",
+      "axis": "feature",
+      "confirmed_count": 15,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu с мониторингом",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu мониторингом управлением",
+      "cluster_id": "pdu-мониторингом-управлением::feature::commercial"
+    },
+    {
+      "phrase": "pdu с управлением",
+      "axis": "feature",
+      "confirmed_count": 30,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu с управлением",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu управлением",
+      "cluster_id": "pdu-управлением::feature::commercial"
+    },
+    {
+      "phrase": "pdu с мониторингом и управлением",
+      "axis": "feature",
+      "confirmed_count": 15,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu с управлением",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu мониторингом управлением",
+      "cluster_id": "pdu-мониторингом-управлением::feature::commercial"
+    },
+    {
+      "phrase": "metered pdu",
+      "axis": "feature",
+      "confirmed_count": 119,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "metered pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "metered pdu",
+      "cluster_id": "metered-pdu::feature::commercial"
+    },
+    {
+      "phrase": "metered rack pdu",
+      "axis": "feature",
+      "confirmed_count": 45,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "metered pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "metered rack pdu",
+      "cluster_id": "metered-rack-pdu::feature::commercial"
+    },
+    {
+      "phrase": "apc metered pdu",
+      "axis": "feature",
+      "confirmed_count": 26,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "metered pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "apc metered pdu",
+      "cluster_id": "apc-metered-pdu::feature::commercial"
+    },
+    {
+      "phrase": "eaton in line metered rack pdu",
+      "axis": "feature",
+      "confirmed_count": 9,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "metered pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "eaton line metered",
+      "cluster_id": "eaton-line-metered::feature::commercial"
+    },
+    {
+      "phrase": "monitored pdu",
+      "axis": "feature",
+      "confirmed_count": 16,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "monitored pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "monitored pdu",
+      "cluster_id": "monitored-pdu::feature::commercial"
+    },
+    {
+      "phrase": "switched pdu",
+      "axis": "feature",
+      "confirmed_count": 123,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "switched pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "switched pdu",
+      "cluster_id": "switched-pdu::feature::commercial"
+    },
+    {
+      "phrase": "switched rack pdu",
+      "axis": "feature",
+      "confirmed_count": 83,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "switched pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "switched rack pdu",
+      "cluster_id": "switched-rack-pdu::feature::commercial"
+    },
+    {
+      "phrase": "apc switched pdu",
+      "axis": "feature",
+      "confirmed_count": 63,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "switched pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "apc switched pdu",
+      "cluster_id": "apc-switched-pdu::feature::commercial"
+    },
+    {
+      "phrase": "apc switched rack pdu",
+      "axis": "feature",
+      "confirmed_count": 57,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "switched pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "apc switched rack",
+      "cluster_id": "apc-switched-rack::feature::commercial"
+    },
+    {
+      "phrase": "pdu switched panel c13",
+      "axis": "feature",
+      "confirmed_count": 9,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "switched pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu switched panel",
+      "cluster_id": "pdu-switched-panel::feature::commercial"
+    },
+    {
+      "phrase": "apc switched a rack pdu ap8981 прошивка",
+      "axis": "feature",
+      "confirmed_count": 5,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "switched pdu",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "apc switched rack",
+      "cluster_id": "apc-switched-rack::feature::commercial"
+    },
+    {
+      "phrase": "snmp pdu",
+      "axis": "feature",
+      "confirmed_count": 56,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu snmp",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "snmp pdu",
+      "cluster_id": "snmp-pdu::feature::commercial"
+    },
+    {
+      "phrase": "лабораторная работа набор услуг pdu протокола snmp",
+      "axis": "feature",
+      "confirmed_count": 5,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu snmp",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "лабораторная работа набор",
+      "cluster_id": "лабораторная-работа-набор::feature::commercial"
+    },
+    {
+      "phrase": "блок розеток с мониторингом",
+      "axis": "feature",
+      "confirmed_count": 70,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток с мониторингом",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток мониторингом",
+      "cluster_id": "блок-розеток-мониторингом::feature::commercial"
+    },
+    {
+      "phrase": "измерительный блок розеток",
+      "axis": "feature",
+      "confirmed_count": 9,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "измерительный блок розеток",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "измерительный блок розеток",
+      "cluster_id": "измерительный-блок-розеток::feature::commercial"
+    },
+    {
+      "phrase": "лучшие сетевые фильтры с дугогашением afci узип",
+      "axis": "adjacent",
+      "confirmed_count": 6,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "сетевой фильтр с узип",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "лучшие сетевые фильтры",
+      "cluster_id": "лучшие-сетевые-фильтры::adjacent::commercial"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "axis": "feature",
+      "confirmed_count": 0,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "блок розеток с узип",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "блок розеток узип",
+      "cluster_id": "блок-розеток-узип::feature::commercial"
+    },
+    {
+      "phrase": "pdu с узип",
+      "axis": "feature",
+      "confirmed_count": 0,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "pdu с узип",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "feature",
+      "page_type": "category",
+      "cluster_key": "pdu узип",
+      "cluster_id": "pdu-узип::feature::commercial"
+    },
+    {
+      "phrase": "сетевой фильтр 19",
+      "axis": "adjacent",
+      "confirmed_count": 181,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "сетевой фильтр 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "сетевой фильтр 19",
+      "cluster_id": "сетевой-фильтр-19::adjacent::commercial"
+    },
+    {
+      "phrase": "сетевой фильтр 19 дюймов",
+      "axis": "adjacent",
+      "confirmed_count": 39,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "сетевой фильтр 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "сетевой фильтр 19",
+      "cluster_id": "сетевой-фильтр-19::adjacent::commercial"
+    },
+    {
+      "phrase": "сетевой фильтр в стойку 19",
+      "axis": "adjacent",
+      "confirmed_count": 31,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "сетевой фильтр 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "сетевой фильтр стойку",
+      "cluster_id": "сетевой-фильтр-стойку::adjacent::commercial"
+    },
+    {
+      "phrase": "фильтр сетевой premium line 19 1156057128 brennenstuhl",
+      "axis": "adjacent",
+      "confirmed_count": 22,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "сетевой фильтр 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "фильтр сетевой premium",
+      "cluster_id": "фильтр-сетевой-premium::adjacent::commercial"
+    },
+    {
+      "phrase": "19 шкаф сетевой фильтр",
+      "axis": "adjacent",
+      "confirmed_count": 22,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "сетевой фильтр 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "19 шкаф сетевой",
+      "cluster_id": "19-шкаф-сетевой::adjacent::commercial"
+    },
+    {
+      "phrase": "сетевой фильтр 19 1u",
+      "axis": "adjacent",
+      "confirmed_count": 16,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "сетевой фильтр 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "сетевой фильтр 19",
+      "cluster_id": "сетевой-фильтр-19::adjacent::commercial"
+    },
+    {
+      "phrase": "сетевой фильтр 19 дюймов в стойку",
+      "axis": "adjacent",
+      "confirmed_count": 16,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "сетевой фильтр 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "сетевой фильтр 19",
+      "cluster_id": "сетевой-фильтр-19::adjacent::commercial"
+    },
+    {
+      "phrase": "сетевой фильтр 19 8 розеток",
+      "axis": "adjacent",
+      "confirmed_count": 7,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "сетевой фильтр 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "сетевой фильтр 19",
+      "cluster_id": "сетевой-фильтр-19::adjacent::commercial"
+    },
+    {
+      "phrase": "фильтр сетевой стоечный 19",
+      "axis": "adjacent",
+      "confirmed_count": 6,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "сетевой фильтр 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "фильтр сетевой стоечный",
+      "cluster_id": "фильтр-сетевой-стоечный::adjacent::commercial"
+    },
+    {
+      "phrase": "сетевой фильтр в шкаф 19 дюймов",
+      "axis": "adjacent",
+      "confirmed_count": 5,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "сетевой фильтр 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "сетевой фильтр шкаф",
+      "cluster_id": "сетевой-фильтр-шкаф::adjacent::commercial"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "axis": "adjacent",
+      "confirmed_count": 9967,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "серверный шкаф",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "серверный шкаф",
+      "cluster_id": "серверный-шкаф::adjacent::commercial"
+    },
+    {
+      "phrase": "шкаф серверный напольный",
+      "axis": "adjacent",
+      "confirmed_count": 1564,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "серверный шкаф",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "шкаф серверный напольный",
+      "cluster_id": "шкаф-серверный-напольный::adjacent::commercial"
+    },
+    {
+      "phrase": "серверный шкаф 19",
+      "axis": "adjacent",
+      "confirmed_count": 1299,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "серверный шкаф",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "серверный шкаф 19",
+      "cluster_id": "серверный-шкаф-19::adjacent::commercial"
+    },
+    {
+      "phrase": "серверный шкаф 42u",
+      "axis": "adjacent",
+      "confirmed_count": 870,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "серверный шкаф",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "серверный шкаф 42u",
+      "cluster_id": "серверный-шкаф-42u::adjacent::commercial"
+    },
+    {
+      "phrase": "дверь серверного шкафа",
+      "axis": "adjacent",
+      "confirmed_count": 771,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "серверный шкаф",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "дверь серверного шкафа",
+      "cluster_id": "дверь-серверного-шкафа::adjacent::commercial"
+    },
+    {
+      "phrase": "шкаф серверный телекоммуникационный",
+      "axis": "adjacent",
+      "confirmed_count": 601,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "серверный шкаф",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "шкаф серверный телекоммуникационный",
+      "cluster_id": "шкаф-серверный-телекоммуникационный::adjacent::commercial"
+    },
+    {
+      "phrase": "шкаф серверный напольный 19",
+      "axis": "adjacent",
+      "confirmed_count": 572,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "серверный шкаф",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "шкаф серверный напольный",
+      "cluster_id": "шкаф-серверный-напольный::adjacent::commercial"
+    },
+    {
+      "phrase": "шкаф серверный напольный 42u",
+      "axis": "adjacent",
+      "confirmed_count": 538,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "серверный шкаф",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "шкаф серверный напольный",
+      "cluster_id": "шкаф-серверный-напольный::adjacent::commercial"
+    },
+    {
+      "phrase": "купить серверный шкаф",
+      "axis": "adjacent",
+      "confirmed_count": 471,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "серверный шкаф",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "купить серверный шкаф",
+      "cluster_id": "купить-серверный-шкаф::adjacent::commercial"
+    },
+    {
+      "phrase": "шкаф серверный черный",
+      "axis": "adjacent",
+      "confirmed_count": 460,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "серверный шкаф",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "шкаф серверный черный",
+      "cluster_id": "шкаф-серверный-черный::adjacent::commercial"
+    },
+    {
+      "phrase": "шкаф 19",
+      "axis": "adjacent",
+      "confirmed_count": 25013,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "шкаф 19",
+      "cluster_id": "шкаф-19::adjacent::commercial"
+    },
+    {
+      "phrase": "телекоммуникационный шкаф 19",
+      "axis": "adjacent",
+      "confirmed_count": 7819,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "телекоммуникационный шкаф 19",
+      "cluster_id": "телекоммуникационный-шкаф-19::adjacent::commercial"
+    },
+    {
+      "phrase": "шкаф напольный 19",
+      "axis": "adjacent",
+      "confirmed_count": 5319,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "шкаф напольный 19",
+      "cluster_id": "шкаф-напольный-19::adjacent::commercial"
+    },
+    {
+      "phrase": "шкаф настенный 19",
+      "axis": "adjacent",
+      "confirmed_count": 5086,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "шкаф настенный 19",
+      "cluster_id": "шкаф-настенный-19::adjacent::commercial"
+    },
+    {
+      "phrase": "шкаф 19 дюймов",
+      "axis": "adjacent",
+      "confirmed_count": 2910,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "шкаф 19 дюймов",
+      "cluster_id": "шкаф-19-дюймов::adjacent::commercial"
+    },
+    {
+      "phrase": "шкаф телекоммуникационный 19 настенный",
+      "axis": "adjacent",
+      "confirmed_count": 2810,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "шкаф телекоммуникационный 19",
+      "cluster_id": "шкаф-телекоммуникационный-19::adjacent::commercial"
+    },
+    {
+      "phrase": "шкаф телекоммуникационный 19 напольный",
+      "axis": "adjacent",
+      "confirmed_count": 2441,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "шкаф телекоммуникационный 19",
+      "cluster_id": "шкаф-телекоммуникационный-19::adjacent::commercial"
+    },
+    {
+      "phrase": "шкаф 19 42u",
+      "axis": "adjacent",
+      "confirmed_count": 2204,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "шкаф 19 42u",
+      "cluster_id": "шкаф-19-42u::adjacent::commercial"
+    },
+    {
+      "phrase": "шкаф 19 cabeus",
+      "axis": "adjacent",
+      "confirmed_count": 1922,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "шкаф 19 cabeus",
+      "cluster_id": "шкаф-19-cabeus::adjacent::commercial"
+    },
+    {
+      "phrase": "шкаф напольный 19 42u",
+      "axis": "adjacent",
+      "confirmed_count": 1615,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "шкаф напольный 19",
+      "cluster_id": "шкаф-напольный-19::adjacent::commercial"
+    },
+    {
+      "phrase": "стойка 19",
+      "axis": "adjacent",
+      "confirmed_count": 12272,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "стойка 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "стойка 19",
+      "cluster_id": "стойка-19::adjacent::commercial"
+    },
+    {
+      "phrase": "стойка 19 дюймов",
+      "axis": "adjacent",
+      "confirmed_count": 2686,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "стойка 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "стойка 19 дюймов",
+      "cluster_id": "стойка-19-дюймов::adjacent::commercial"
+    },
+    {
+      "phrase": "комплект 19 стойки",
+      "axis": "adjacent",
+      "confirmed_count": 1138,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "стойка 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "комплект 19 стойки",
+      "cluster_id": "комплект-19-стойки::adjacent::commercial"
+    },
+    {
+      "phrase": "установка в стойку 19",
+      "axis": "adjacent",
+      "confirmed_count": 1024,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "стойка 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "установка стойку 19",
+      "cluster_id": "установка-стойку-19::adjacent::commercial"
+    },
+    {
+      "phrase": "блоки 19 стоек",
+      "axis": "adjacent",
+      "confirmed_count": 949,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "стойка 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "блоки 19 стоек",
+      "cluster_id": "блоки-19-стоек::adjacent::commercial"
+    },
+    {
+      "phrase": "шкафа стойка 19",
+      "axis": "adjacent",
+      "confirmed_count": 868,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "стойка 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "шкафа стойка 19",
+      "cluster_id": "шкафа-стойка-19::adjacent::commercial"
+    },
+    {
+      "phrase": "стойка 19 1u",
+      "axis": "adjacent",
+      "confirmed_count": 825,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "стойка 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "стойка 19 1u",
+      "cluster_id": "стойка-19-1u::adjacent::commercial"
+    },
+    {
+      "phrase": "монтаж стоек 19",
+      "axis": "adjacent",
+      "confirmed_count": 813,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "стойка 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "монтаж стоек 19",
+      "cluster_id": "монтаж-стоек-19::adjacent::commercial"
+    },
+    {
+      "phrase": "19 дюймовая стойка",
+      "axis": "adjacent",
+      "confirmed_count": 737,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "стойка 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "19 дюймовая стойка",
+      "cluster_id": "19-дюймовая-стойка::adjacent::commercial"
+    },
+    {
+      "phrase": "19 стойка ибп",
+      "axis": "adjacent",
+      "confirmed_count": 681,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "стойка 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "19 стойка ибп",
+      "cluster_id": "19-стойка-ибп::adjacent::commercial"
+    },
+    {
+      "phrase": "телекоммуникационный шкаф 19",
+      "axis": "adjacent",
+      "confirmed_count": 7819,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф телекоммуникационный 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "телекоммуникационный шкаф 19",
+      "cluster_id": "телекоммуникационный-шкаф-19::adjacent::commercial"
+    },
+    {
+      "phrase": "шкаф телекоммуникационный 19 настенный",
+      "axis": "adjacent",
+      "confirmed_count": 2810,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф телекоммуникационный 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "шкаф телекоммуникационный 19",
+      "cluster_id": "шкаф-телекоммуникационный-19::adjacent::commercial"
+    },
+    {
+      "phrase": "шкаф телекоммуникационный 19 напольный",
+      "axis": "adjacent",
+      "confirmed_count": 2441,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф телекоммуникационный 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "шкаф телекоммуникационный 19",
+      "cluster_id": "шкаф-телекоммуникационный-19::adjacent::commercial"
+    },
+    {
+      "phrase": "шкаф телекоммуникационный cabeus 19",
+      "axis": "adjacent",
+      "confirmed_count": 1087,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф телекоммуникационный 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "шкаф телекоммуникационный cabeus",
+      "cluster_id": "шкаф-телекоммуникационный-cabeus::adjacent::commercial"
+    },
+    {
+      "phrase": "шкаф телекоммуникационный 19 12u",
+      "axis": "adjacent",
+      "confirmed_count": 880,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф телекоммуникационный 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "шкаф телекоммуникационный 19",
+      "cluster_id": "шкаф-телекоммуникационный-19::adjacent::commercial"
+    },
+    {
+      "phrase": "шкаф телекоммуникационный 19 42u",
+      "axis": "adjacent",
+      "confirmed_count": 860,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф телекоммуникационный 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "шкаф телекоммуникационный 19",
+      "cluster_id": "шкаф-телекоммуникационный-19::adjacent::commercial"
+    },
+    {
+      "phrase": "шкаф телекоммуникационный 19 дверь стекло",
+      "axis": "adjacent",
+      "confirmed_count": 755,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф телекоммуникационный 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "шкаф телекоммуникационный 19",
+      "cluster_id": "шкаф-телекоммуникационный-19::adjacent::commercial"
+    },
+    {
+      "phrase": "шкаф телекоммуникационный напольный 19 42u",
+      "axis": "adjacent",
+      "confirmed_count": 702,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф телекоммуникационный 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "шкаф телекоммуникационный напольный",
+      "cluster_id": "шкаф-телекоммуникационный-напольный::adjacent::commercial"
+    },
+    {
+      "phrase": "телекоммуникационный шкаф 19 6u",
+      "axis": "adjacent",
+      "confirmed_count": 695,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф телекоммуникационный 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "телекоммуникационный шкаф 19",
+      "cluster_id": "телекоммуникационный-шкаф-19::adjacent::commercial"
+    },
+    {
+      "phrase": "шкафа телекоммуникационного 19 9u",
+      "axis": "adjacent",
+      "confirmed_count": 693,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "шкаф телекоммуникационный 19",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "шкафа телекоммуникационного 19",
+      "cluster_id": "шкафа-телекоммуникационного-19::adjacent::commercial"
+    },
+    {
+      "phrase": "ibp для серверного шкафа",
+      "axis": "adjacent",
+      "confirmed_count": 0,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "ibp для серверного шкафа",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "ibp серверного шкафа",
+      "cluster_id": "ibp-серверного-шкафа::adjacent::commercial"
+    },
+    {
+      "phrase": "ибп для серверного шкафа",
+      "axis": "adjacent",
+      "confirmed_count": 39,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "ибп для серверного шкафа",
+      "confirmed": true,
+      "intent": "commercial",
+      "cluster_type": "adjacent",
+      "page_type": "category",
+      "cluster_key": "ибп серверного шкафа",
+      "cluster_id": "ибп-серверного-шкафа::adjacent::commercial"
+    },
+    {
+      "phrase": "soliton pdu",
+      "axis": "alternative",
+      "confirmed_count": 7,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "soliton pdu",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "soliton pdu",
+      "cluster_id": "soliton-pdu::alternative::comparison"
+    },
+    {
+      "phrase": "soliton блок розеток",
+      "axis": "alternative",
+      "confirmed_count": 2,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "soliton блок розеток",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "soliton блок розеток",
+      "cluster_id": "soliton-блок-розеток::alternative::comparison"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "axis": "alternative",
+      "confirmed_count": 17,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "солитон блок розеток",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "солитон блок розеток",
+      "cluster_id": "солитон-блок-розеток::alternative::comparison"
+    },
+    {
+      "phrase": "pdu apc",
+      "axis": "alternative",
+      "confirmed_count": 339,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "apc pdu",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "pdu apc",
+      "cluster_id": "pdu-apc::alternative::comparison"
+    },
+    {
+      "phrase": "apc rack pdu",
+      "axis": "alternative",
+      "confirmed_count": 129,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "apc pdu",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "apc rack pdu",
+      "cluster_id": "apc-rack-pdu::alternative::comparison"
+    },
+    {
+      "phrase": "apc switched pdu",
+      "axis": "alternative",
+      "confirmed_count": 63,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "apc pdu",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "apc switched pdu",
+      "cluster_id": "apc-switched-pdu::alternative::comparison"
+    },
+    {
+      "phrase": "apc switched rack pdu",
+      "axis": "alternative",
+      "confirmed_count": 57,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "apc pdu",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "apc switched rack",
+      "cluster_id": "apc-switched-rack::alternative::comparison"
+    },
+    {
+      "phrase": "pdu apc ap8981",
+      "axis": "alternative",
+      "confirmed_count": 45,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "apc pdu",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "pdu apc ap8981",
+      "cluster_id": "pdu-apc-ap8981::alternative::comparison"
+    },
+    {
+      "phrase": "apc metered pdu",
+      "axis": "alternative",
+      "confirmed_count": 26,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "apc pdu",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "apc metered pdu",
+      "cluster_id": "apc-metered-pdu::alternative::comparison"
+    },
+    {
+      "phrase": "pdu apc ap8886",
+      "axis": "alternative",
+      "confirmed_count": 15,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "apc pdu",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "pdu apc ap8886",
+      "cluster_id": "pdu-apc-ap8886::alternative::comparison"
+    },
+    {
+      "phrase": "apc basic rack pdu",
+      "axis": "alternative",
+      "confirmed_count": 13,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "apc pdu",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "apc basic rack",
+      "cluster_id": "apc-basic-rack::alternative::comparison"
+    },
+    {
+      "phrase": "apc rack pdu 2g",
+      "axis": "alternative",
+      "confirmed_count": 11,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "apc pdu",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "apc rack pdu",
+      "cluster_id": "apc-rack-pdu::alternative::comparison"
+    },
+    {
+      "phrase": "apc rack pdu 9000",
+      "axis": "alternative",
+      "confirmed_count": 8,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "apc pdu",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "apc rack pdu",
+      "cluster_id": "apc-rack-pdu::alternative::comparison"
+    },
+    {
+      "phrase": "schneider pdu",
+      "axis": "alternative",
+      "confirmed_count": 3,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "schneider pdu",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "schneider pdu",
+      "cluster_id": "schneider-pdu::alternative::comparison"
+    },
+    {
+      "phrase": "pdu hyperline",
+      "axis": "alternative",
+      "confirmed_count": 45,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "hyperline pdu",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "pdu hyperline",
+      "cluster_id": "pdu-hyperline::alternative::comparison"
+    },
+    {
+      "phrase": "блок розеток hyperline",
+      "axis": "alternative",
+      "confirmed_count": 378,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "hyperline блок розеток",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "блок розеток hyperline",
+      "cluster_id": "блок-розеток-hyperline::alternative::comparison"
+    },
+    {
+      "phrase": "блок розеток 19 hyperline",
+      "axis": "alternative",
+      "confirmed_count": 176,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "hyperline блок розеток",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::alternative::comparison"
+    },
+    {
+      "phrase": "блок розеток шкаф hyperline",
+      "axis": "alternative",
+      "confirmed_count": 99,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "hyperline блок розеток",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "блок розеток шкаф",
+      "cluster_id": "блок-розеток-шкаф::alternative::comparison"
+    },
+    {
+      "phrase": "hyperline блок розеток для 19 шкафов",
+      "axis": "alternative",
+      "confirmed_count": 88,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "hyperline блок розеток",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "hyperline блок розеток",
+      "cluster_id": "hyperline-блок-розеток::alternative::comparison"
+    },
+    {
+      "phrase": "блок розеток hyperline 19 8 розеток",
+      "axis": "alternative",
+      "confirmed_count": 75,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "hyperline блок розеток",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "блок розеток hyperline",
+      "cluster_id": "блок-розеток-hyperline::alternative::comparison"
+    },
+    {
+      "phrase": "блок розеток hyperline she19 8sh iec",
+      "axis": "alternative",
+      "confirmed_count": 53,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "hyperline блок розеток",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "блок розеток hyperline",
+      "cluster_id": "блок-розеток-hyperline::alternative::comparison"
+    },
+    {
+      "phrase": "блок розеток hyperline she19 8sh s iec",
+      "axis": "alternative",
+      "confirmed_count": 50,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "hyperline блок розеток",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "блок розеток hyperline",
+      "cluster_id": "блок-розеток-hyperline::alternative::comparison"
+    },
+    {
+      "phrase": "блок розеток hyperline sht19 8sh s",
+      "axis": "alternative",
+      "confirmed_count": 42,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "hyperline блок розеток",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "блок розеток hyperline",
+      "cluster_id": "блок-розеток-hyperline::alternative::comparison"
+    },
+    {
+      "phrase": "блок розеток 19 9 розеток hyperline",
+      "axis": "alternative",
+      "confirmed_count": 39,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "hyperline блок розеток",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "блок розеток 19",
+      "cluster_id": "блок-розеток-19::alternative::comparison"
+    },
+    {
+      "phrase": "hyperline блок розеток 1u",
+      "axis": "alternative",
+      "confirmed_count": 29,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "hyperline блок розеток",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "hyperline блок розеток",
+      "cluster_id": "hyperline-блок-розеток::alternative::comparison"
+    },
+    {
+      "phrase": "pdu rittal",
+      "axis": "alternative",
+      "confirmed_count": 13,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "rittal pdu",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "pdu rittal",
+      "cluster_id": "pdu-rittal::alternative::comparison"
+    },
+    {
+      "phrase": "vertiv pdu",
+      "axis": "alternative",
+      "confirmed_count": 16,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "vertiv pdu",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "vertiv pdu",
+      "cluster_id": "vertiv-pdu::alternative::comparison"
+    },
+    {
+      "phrase": "eaton pdu",
+      "axis": "alternative",
+      "confirmed_count": 29,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "eaton pdu",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "eaton pdu",
+      "cluster_id": "eaton-pdu::alternative::comparison"
+    },
+    {
+      "phrase": "eaton in line metered rack pdu",
+      "axis": "alternative",
+      "confirmed_count": 9,
+      "source": "Yandex Wordstat API /v1/topRequests",
+      "source_url": "https://api.wordstat.yandex.net/v1/topRequests",
+      "region_ids": [
+        225
+      ],
+      "requested_phrase": "eaton pdu",
+      "confirmed": true,
+      "intent": "comparison",
+      "cluster_type": "alternative",
+      "page_type": "comparison",
+      "cluster_key": "eaton line metered",
+      "cluster_id": "eaton-line-metered::alternative::comparison"
+    }
+  ]
+}

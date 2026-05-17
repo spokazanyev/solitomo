@@ -1,0 +1,133 @@
+- main:
+  - link "Soliton":
+    - /url: /
+  - navigation:
+    - link "Каталог":
+      - /url: /catalog/pdu/
+    - link "Фильтры с УЗИП":
+      - /url: /catalog/pdu-uzip/
+    - link "Подбор":
+      - /url: /solutions/pdu-dlya-servernogo-shkafa/
+    - link "Документы":
+      - /url: /documents/
+    - link "Запрос КП 1":
+      - /url: /b2b/request-quote/
+      - text: Запрос КП
+      - generic: "1"
+  - navigation:
+    - link "Главная":
+      - /url: /
+    - generic: /
+    - link "Компания":
+      - /url: /company/
+    - generic: /
+    - link "О компании Soliton":
+      - /url: /company/about/
+  - paragraph: Brand trust
+  - heading "О компании Soliton" [level=1]
+  - paragraph: "Soliton: российский производитель PDU и блоков розеток с 15-летней историей, проектными поставками и документами для закупки."
+  - link "Связаться с компанией":
+    - /url: /b2b/request-quote/
+  - link "В каталог":
+    - /url: /catalog/pdu/
+  - complementary:
+    - heading "Коротко" [level=2]
+    - paragraph: "Страница усиливает бренд и доверие: история, производство, документы, реестр и реальные подтверждения."
+    - generic: soliton pdu
+    - generic: солитон блок розеток
+    - generic: производитель pdu
+  - text: 15-летняя история
+  - paragraph: "Soliton работает в нише стоечного питания много лет: это видно по ассортименту, документации и проектному подходу к поставкам."
+  - text: Российское производство
+  - paragraph: Фильтры и PDU российского производства важны для закупок, импортозамещения и стабильных корпоративных поставок.
+  - text: Внесение в реестр
+  - paragraph: Сведения о реестре и подтверждающие документы предоставляются по конкретным моделям при подготовке КП.
+  - text: Проверенная надежность
+  - paragraph: Для серверных шкафов и ЦОД важна повторяемая конструкция, аккуратная сборка и понятная техническая документация.
+  - paragraph: О компании
+  - heading "Производственный опыт и документы для закупки" [level=2]
+  - paragraph: Здесь собраны сведения о компании, производстве, документах, реквизитах и связи с B2B-процессом.
+  - text: История и компетенции
+  - text: Производственные возможности
+  - text: Документы и подтверждения
+  - text: Контакты для закупок
+  - link "Запросить подбор Для проекта лучше сразу отправить параметры стойки, тип розеток, ток, количество и срок поставки.":
+    - /url: /b2b/request-quote/
+    - heading "Запросить подбор" [level=2]
+    - paragraph: Для проекта лучше сразу отправить параметры стойки, тип розеток, ток, количество и срок поставки.
+  - link "PDU и блоки распределения питания PDU / блоки распределения питания":
+    - /url: /catalog/pdu/
+    - text: PDU и блоки распределения питания
+    - generic: PDU / блоки распределения питания
+  - link "Блоки розеток 19 дюймов 1U Блоки розеток 19 / 1U / в стойку":
+    - /url: /catalog/bloki-rozetok-19-1u/
+    - text: Блоки розеток 19 дюймов 1U
+    - generic: Блоки розеток 19 / 1U / в стойку
+  - link "Вертикальные PDU и блоки розеток 0U / 42U Вертикальные PDU / 0U / 42U":
+    - /url: /catalog/vertical-pdu/
+    - text: Вертикальные PDU и блоки розеток 0U / 42U
+    - generic: Вертикальные PDU / 0U / 42U
+  - link "Блоки розеток Schuko Типы розеток Schuko / IEC C13 / C19":
+    - /url: /catalog/schuko/
+    - text: Блоки розеток Schuko
+    - generic: Типы розеток Schuko / IEC C13 / C19
+  - link "PDU и блоки розеток IEC C13 / C19 Типы розеток Schuko / IEC C13 / C19":
+    - /url: /catalog/iec-c13-c19/
+    - text: PDU и блоки розеток IEC C13 / C19
+    - generic: Типы розеток Schuko / IEC C13 / C19
+  - link "Блоки розеток и PDU 16A Ток и мощность 16A / 32A":
+    - /url: /catalog/16a/
+    - text: Блоки розеток и PDU 16A
+    - generic: Ток и мощность 16A / 32A
+- contentinfo:
+  - link "Soliton":
+    - /url: /
+  - paragraph: Российские PDU, блоки розеток 19 дюймов и сетевые фильтры с УЗИП для серверных шкафов, ЦОД и корпоративных закупок.
+  - text: КП, счет и документы для закупки подтверждаются по конкретной модели.
+  - text: Поставка по России согласуется в коммерческом предложении.
+  - text: Для подбора достаточно отправить артикулы или техническое задание.
+  - link "Запросить КП":
+    - /url: /b2b/request-quote/
+    - text: Запросить КП
+  - heading "Каталог" [level=2]
+  - navigation:
+    - link "PDU и блоки распределения питания":
+      - /url: /catalog/pdu/
+    - link "Сетевые фильтры 19 дюймов и PDU с УЗИП":
+      - /url: /catalog/pdu-uzip/
+    - link "Блоки розеток 19 дюймов 1U":
+      - /url: /catalog/bloki-rozetok-19-1u/
+    - link "PDU и блоки розеток IEC C13 / C19":
+      - /url: /catalog/iec-c13-c19/
+    - link "Блоки розеток Schuko":
+      - /url: /catalog/schuko/
+    - link "Блоки розеток и PDU 16A":
+      - /url: /catalog/16a/
+    - link "Блоки розеток и PDU 32A":
+      - /url: /catalog/32a/
+  - heading "Подбор" [level=2]
+  - navigation:
+    - link "PDU для серверного шкафа 19 дюймов":
+      - /url: /solutions/pdu-dlya-servernogo-shkafa/
+    - link "Питание серверной стойки 42U":
+      - /url: /solutions/pitanie-stojki-42u/
+    - link "PDU для ЦОД":
+      - /url: /solutions/pdu-dlya-cod/
+    - link "PDU для телекоммуникационного шкафа":
+      - /url: /solutions/pdu-dlya-telekommunikacionnogo-shkafa/
+  - heading "Закупка" [level=2]
+  - navigation:
+    - link "PDU и блоки розеток для корпоративных поставок":
+      - /url: /b2b/
+    - link "Запросить коммерческое предложение":
+      - /url: /b2b/request-quote/
+    - link "Документы Soliton":
+      - /url: /documents/
+    - link "О компании Soliton":
+      - /url: /company/about/
+    - link "Контакты Soliton":
+      - /url: /company/contacts/
+  - generic: © 2026 Soliton
+  - generic: Заявки принимаются через КП; онлайн-оплата и доставка согласуются отдельно.
+- button "Open Next.js Dev Tools":
+- alert

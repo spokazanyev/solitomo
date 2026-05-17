@@ -1,0 +1,3159 @@
+{
+  "queries": [
+    {
+      "phrase": "блок розеток",
+      "axis": "feature",
+      "cluster": "core_blocks"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "axis": "feature",
+      "cluster": "core_19_1u"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "axis": "feature",
+      "cluster": "core_19_1u"
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток",
+      "axis": "feature",
+      "cluster": "core_19_1u"
+    },
+    {
+      "phrase": "блок розеток 1u",
+      "axis": "feature",
+      "cluster": "core_19_1u"
+    },
+    {
+      "phrase": "блок розеток в стойку",
+      "axis": "feature",
+      "cluster": "core_19_1u"
+    },
+    {
+      "phrase": "блок розеток для серверного шкафа",
+      "axis": "feature",
+      "cluster": "core_19_1u"
+    },
+    {
+      "phrase": "розеточный блок 19",
+      "axis": "feature",
+      "cluster": "core_19_1u"
+    },
+    {
+      "phrase": "панель розеток 19",
+      "axis": "feature",
+      "cluster": "core_19_1u"
+    },
+    {
+      "phrase": "pdu",
+      "axis": "feature",
+      "cluster": "pdu_generic"
+    },
+    {
+      "phrase": "pdu розетки",
+      "axis": "feature",
+      "cluster": "pdu_generic"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "axis": "feature",
+      "cluster": "pdu_generic"
+    },
+    {
+      "phrase": "pdu 19",
+      "axis": "feature",
+      "cluster": "pdu_generic"
+    },
+    {
+      "phrase": "pdu 1u",
+      "axis": "feature",
+      "cluster": "pdu_generic"
+    },
+    {
+      "phrase": "rack pdu",
+      "axis": "feature",
+      "cluster": "pdu_generic"
+    },
+    {
+      "phrase": "power distribution unit",
+      "axis": "feature",
+      "cluster": "pdu_generic"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "axis": "feature",
+      "cluster": "socket_type"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "axis": "feature",
+      "cluster": "socket_type"
+    },
+    {
+      "phrase": "розетка iec320 c13",
+      "axis": "adjacent",
+      "cluster": "socket_type"
+    },
+    {
+      "phrase": "розетка c13",
+      "axis": "adjacent",
+      "cluster": "socket_type"
+    },
+    {
+      "phrase": "pdu c13",
+      "axis": "feature",
+      "cluster": "socket_type"
+    },
+    {
+      "phrase": "pdu c19",
+      "axis": "feature",
+      "cluster": "socket_type"
+    },
+    {
+      "phrase": "блок розеток 10 1u",
+      "axis": "feature",
+      "cluster": "form_factor"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "axis": "feature",
+      "cluster": "amperage"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "axis": "feature",
+      "cluster": "amperage"
+    },
+    {
+      "phrase": "pdu 16a",
+      "axis": "feature",
+      "cluster": "amperage"
+    },
+    {
+      "phrase": "pdu 32a",
+      "axis": "feature",
+      "cluster": "amperage"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "axis": "feature",
+      "cluster": "vertical_mount"
+    },
+    {
+      "phrase": "блок розеток вертикальный",
+      "axis": "feature",
+      "cluster": "vertical_mount"
+    },
+    {
+      "phrase": "вертикальный pdu",
+      "axis": "feature",
+      "cluster": "vertical_mount"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "axis": "feature",
+      "cluster": "three_phase"
+    },
+    {
+      "phrase": "pdu трехфазный",
+      "axis": "feature",
+      "cluster": "three_phase"
+    },
+    {
+      "phrase": "pdu 3 фазы",
+      "axis": "feature",
+      "cluster": "three_phase"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "axis": "feature",
+      "cluster": "managed_metered"
+    },
+    {
+      "phrase": "интеллектуальный pdu",
+      "axis": "feature",
+      "cluster": "managed_metered"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "axis": "feature",
+      "cluster": "managed_metered"
+    },
+    {
+      "phrase": "pdu с управлением",
+      "axis": "feature",
+      "cluster": "managed_metered"
+    },
+    {
+      "phrase": "metered pdu",
+      "axis": "feature",
+      "cluster": "managed_metered"
+    },
+    {
+      "phrase": "monitored pdu",
+      "axis": "feature",
+      "cluster": "managed_metered"
+    },
+    {
+      "phrase": "switched pdu",
+      "axis": "feature",
+      "cluster": "managed_metered"
+    },
+    {
+      "phrase": "pdu snmp",
+      "axis": "feature",
+      "cluster": "managed_metered"
+    },
+    {
+      "phrase": "блок розеток с мониторингом",
+      "axis": "feature",
+      "cluster": "managed_metered"
+    },
+    {
+      "phrase": "измерительный блок розеток",
+      "axis": "feature",
+      "cluster": "managed_metered"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "axis": "adjacent",
+      "cluster": "surge_filter"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "axis": "feature",
+      "cluster": "surge_filter"
+    },
+    {
+      "phrase": "pdu с узип",
+      "axis": "feature",
+      "cluster": "surge_filter"
+    },
+    {
+      "phrase": "сетевой фильтр 19",
+      "axis": "adjacent",
+      "cluster": "surge_filter"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "axis": "adjacent",
+      "cluster": "server_rack_adjacent"
+    },
+    {
+      "phrase": "шкаф 19",
+      "axis": "adjacent",
+      "cluster": "server_rack_adjacent"
+    },
+    {
+      "phrase": "стойка 19",
+      "axis": "adjacent",
+      "cluster": "server_rack_adjacent"
+    },
+    {
+      "phrase": "шкаф телекоммуникационный 19",
+      "axis": "adjacent",
+      "cluster": "server_rack_adjacent"
+    },
+    {
+      "phrase": "ibp для серверного шкафа",
+      "axis": "adjacent",
+      "cluster": "ups_adjacent"
+    },
+    {
+      "phrase": "ибп для серверного шкафа",
+      "axis": "adjacent",
+      "cluster": "ups_adjacent"
+    },
+    {
+      "phrase": "soliton pdu",
+      "axis": "alternative",
+      "cluster": "brand_soliton"
+    },
+    {
+      "phrase": "soliton блок розеток",
+      "axis": "alternative",
+      "cluster": "brand_soliton"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "axis": "alternative",
+      "cluster": "brand_soliton"
+    },
+    {
+      "phrase": "apc pdu",
+      "axis": "alternative",
+      "cluster": "brand_competitors"
+    },
+    {
+      "phrase": "schneider pdu",
+      "axis": "alternative",
+      "cluster": "brand_competitors"
+    },
+    {
+      "phrase": "hyperline pdu",
+      "axis": "alternative",
+      "cluster": "brand_competitors"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "axis": "alternative",
+      "cluster": "brand_competitors"
+    },
+    {
+      "phrase": "rittal pdu",
+      "axis": "alternative",
+      "cluster": "brand_competitors"
+    },
+    {
+      "phrase": "vertiv pdu",
+      "axis": "alternative",
+      "cluster": "brand_competitors"
+    },
+    {
+      "phrase": "eaton pdu",
+      "axis": "alternative",
+      "cluster": "brand_competitors"
+    },
+    {
+      "phrase": "блок выключателей с розеткой",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 4293,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 8",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 3868,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок 2 розетки",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 3018,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 16",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 1956,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток schuko 19",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 1305,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток pdu 19",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 1107,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток для 19 шкафов",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 1089,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 19 горизонтальный",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 861,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 19 16а",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 803,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток schuko",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 772,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 19 iec",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 715,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 19 1u 8 розеток",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 19 1u",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 701,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 19 1u 16а",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 19 1u",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 251,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 19 1u с выключателем",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 19 1u",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 212,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 220в 19 1u",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 19 1u",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 159,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 19 1u 8 гнезд",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 19 1u",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 135,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок электрических розеток 19 1u",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 19 1u",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 99,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок силовых розеток 19 1u",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 19 1u",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 96,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 19 1u 9 розеток",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 19 1u",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 93,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток ntss 19 1u",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 19 1u",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 86,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток для 19 шкафов 8 розеток",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 19 8 розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 606,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток горизонтальный",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 19 8 розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 539,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 19 8 розеток 16а",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 19 8 розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 465,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 8 гнезд 19",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 19 8 розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 427,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок евророзеток 19 8 розеток",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 19 8 розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 376,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок силовых розеток 19 8 розеток",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 19 8 розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 232,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок распределения питания 8 розеток 19",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 19 8 розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 178,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 1u 8 розеток",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 1u",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 961,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 1u с выключателем",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 1u",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 367,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 1u 8 розеток 16а",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 1u",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 179,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 1u 8 гнезд",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 1u",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 164,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток в стойку 19",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток в стойку",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 488,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток в стойку 8 розеток",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток в стойку",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 83,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток в стойку 19 8",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток в стойку",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 67,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток в стойку 19 16а",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток в стойку",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 50,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 1u в стойку",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток в стойку",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 38,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток в стойку 19 1u",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток в стойку",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 36,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 19 дюймов в стойку",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток в стойку",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 34,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "установка блока розеток в стойку",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток в стойку",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 31,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток вертикальный в стойку",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток в стойку",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 27,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "розеточный блок в стойку 19",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "розеточный блок 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 36,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "панель розеток в стойку 19",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "панель розеток 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 16,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "панель питания 19 на 8 розеток",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "панель розеток 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 6,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок pdu",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 3431,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "cabeus pdu",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 1263,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu 8p",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 1216,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu питание",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 1133,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu 8",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 1092,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu 8 розеток",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu розетки",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 873,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток pdu 8p",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu розетки",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 506,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "горизонтальный блок розеток pdu",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu розетки",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 427,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 19 pdu 8p",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu розетки",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 389,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu 9 розеток",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu розетки",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 360,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток cabeus pdu 8p",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu розетки",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 345,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "cabeus pdu 8p 8 розеток",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu розетки",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 287,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 19 cabeus pdu 8p",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 266,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток pdu 9 розеток",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 253,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток pdu 8p 2eu",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 226,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 19 pdu 8p 2eu",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 165,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu 19 1u",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 507,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок распределения питания pdu 19",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 276,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок евророзеток 19 cabeus pdu 8p",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 141,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "19 cabeus pdu 8p 2eu",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 139,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 19 pdu 8p 2iec",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 102,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu 9 розеток 1u",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu 1u",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 188,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток pdu 9 розеток 1u",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu 1u",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 107,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "itk pdu 8 розеток 1u",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu 1u",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 98,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu basic 1u",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu 1u",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 30,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu 8 розеток 1u ph12 8d3",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu 1u",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 23,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu 1u g8",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu 1u",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 23,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu ippon basic 1u",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu 1u",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 11,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu 1u g8 k",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu 1u",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 9,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "apc rack pdu",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "rack pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 129,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "switched rack pdu",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "rack pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 83,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "apc switched rack pdu",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "rack pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 57,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "metered rack pdu",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "rack pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 45,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "basic rack pdu",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "rack pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 37,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "rack pdu 2g",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "rack pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 15,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "apc basic rack pdu",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "rack pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 13,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "apc rack pdu 2g",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "rack pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 11,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "eaton in line metered rack pdu",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "rack pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 9,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu power distribution unit",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "power distribution unit",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 19,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток schuko 8",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток schuko",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 976,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 7 schuko",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток schuko",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 289,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 9 schuko",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток schuko",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 287,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток c14 schuko",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток schuko",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 285,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 19 9 розеток schuko",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток schuko",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 205,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 8 розеток schuko 16а",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток schuko",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 154,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок 6 розеток schuko",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток schuko",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 138,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "розетки iec320 c13",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "розетка iec320 c13",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 91,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "розетка iec c13",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "розетка c13",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 744,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток c13",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "розетка c13",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 437,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "розетка iec 320 c13",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "розетка c13",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 326,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток iec c13",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "розетка c13",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 245,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "8 розеток c13",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "розетка c13",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 236,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "c13 c19 розетки",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "розетка c13",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 233,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "розетка 60320 c13",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "розетка c13",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 229,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "розетка iec 60320 c13",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "розетка c13",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 222,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 19 c13",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "розетка c13",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 182,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu c13 c19",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu c13",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 160,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu c13 c14",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu c13",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 84,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu 32a c13",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu c13",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 39,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu 8 розеток c13",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu c13",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 37,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu с разъемом c13",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu c13",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 37,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "cab pdu c14 3m c13 rus",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu c13",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 14,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu switched panel c13",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu c13",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 9,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu 6 c19",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu c19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 69,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 8 розеток 16а",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 16а",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 551,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 220в 16а",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 16а",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 183,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 19 250в 16а",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 16а",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 97,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток с авт 16а",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 16а",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 89,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток вертикальный 32а",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "блок розеток 32а",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 78,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок распределения питания pdu 16a",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu 16a",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 124,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "mdx pdu 8e 16a",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu 16a",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 31,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu 16a type 2",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu 16a",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 23,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "mdx pdu 8e 16a term",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu 16a",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 21,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок распределения питания pdu 16a type 2",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu 16a",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 9,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "powercom pdu 16a type 2",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu 16a",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 6,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розетка выключатель вертикальный",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "вертикальный блок розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 212,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток pdu вертикальный",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "вертикальный блок розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 83,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 19 вертикальный",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "вертикальный блок розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 69,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "вертикальный блок розеток rem",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "вертикальный блок розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 66,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток выдвижной вертикальный",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "вертикальный блок розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 37,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розетка выключатель вертикальный черный",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "вертикальный блок розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 29,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "вертикальный блок розеток rem 32",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "вертикальный блок розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 26,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu вертикальный 32а",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "вертикальный pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 74,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "трехфазные блоки розеток",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "трехфазный блок розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 43,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "управляемая pdu",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "управляемый pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 33,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "интеллектуальные pdu",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "интеллектуальный pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 33,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок pdu с мониторингом",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu с мониторингом",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 70,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu с мониторингом и управлением",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu с мониторингом",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 15,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "apc metered pdu",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "metered pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 26,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "apc switched pdu",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "switched pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 63,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "apc switched a rack pdu ap8981 прошивка",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "switched pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 5,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "snmp pdu",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu snmp",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 56,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "лабораторная работа набор услуг pdu протокола snmp",
+      "axis": "feature",
+      "confidence": "medium",
+      "seed": "pdu snmp",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 5,
+      "semantic_family": "feature",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "лучшие сетевые фильтры с дугогашением afci узип",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "сетевой фильтр с узип",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 6,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "сетевой фильтр 19 дюймов",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "сетевой фильтр 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 39,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "сетевой фильтр в стойку 19",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "сетевой фильтр 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 31,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "фильтр сетевой premium line 19 1156057128 brennenstuhl",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "сетевой фильтр 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 22,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "19 шкаф сетевой фильтр",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "сетевой фильтр 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 22,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "сетевой фильтр 19 1u",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "сетевой фильтр 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 16,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "сетевой фильтр 19 дюймов в стойку",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "сетевой фильтр 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 16,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "сетевой фильтр 19 8 розеток",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "сетевой фильтр 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 7,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "фильтр сетевой стоечный 19",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "сетевой фильтр 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 6,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "сетевой фильтр в шкаф 19 дюймов",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "сетевой фильтр 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 5,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "шкаф серверный напольный",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "серверный шкаф",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 1564,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "серверный шкаф 19",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "серверный шкаф",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 1299,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "серверный шкаф 42u",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "серверный шкаф",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 870,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "дверь серверного шкафа",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "серверный шкаф",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 771,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "шкаф серверный телекоммуникационный",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "серверный шкаф",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 601,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "шкаф серверный напольный 19",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "серверный шкаф",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 572,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "шкаф серверный напольный 42u",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "серверный шкаф",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 538,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "купить серверный шкаф",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "серверный шкаф",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 471,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "шкаф серверный черный",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "серверный шкаф",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 460,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "телекоммуникационный шкаф 19",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "шкаф 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 7819,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "шкаф напольный 19",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "шкаф 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 5319,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "шкаф настенный 19",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "шкаф 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 5086,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "шкаф 19 дюймов",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "шкаф 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 2910,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "шкаф телекоммуникационный 19 настенный",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "шкаф 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 2810,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "шкаф телекоммуникационный 19 напольный",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "шкаф 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 2441,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "шкаф 19 42u",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "шкаф 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 2204,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "шкаф 19 cabeus",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "шкаф 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 1922,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "шкаф напольный 19 42u",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "шкаф 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 1615,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "стойка 19 дюймов",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "стойка 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 2686,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "комплект 19 стойки",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "стойка 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 1138,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "установка в стойку 19",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "стойка 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 1024,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блоки 19 стоек",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "стойка 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 949,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "шкафа стойка 19",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "стойка 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 868,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "стойка 19 1u",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "стойка 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 825,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "монтаж стоек 19",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "стойка 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 813,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "19 дюймовая стойка",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "стойка 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 737,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "19 стойка ибп",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "стойка 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 681,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "шкаф телекоммуникационный cabeus 19",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "шкаф телекоммуникационный 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 1087,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "шкаф телекоммуникационный 19 12u",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "шкаф телекоммуникационный 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 880,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "шкаф телекоммуникационный 19 42u",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "шкаф телекоммуникационный 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 860,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "шкаф телекоммуникационный 19 дверь стекло",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "шкаф телекоммуникационный 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 755,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "шкаф телекоммуникационный напольный 19 42u",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "шкаф телекоммуникационный 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 702,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "телекоммуникационный шкаф 19 6u",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "шкаф телекоммуникационный 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 695,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "шкафа телекоммуникационного 19 9u",
+      "axis": "adjacent",
+      "confidence": "medium",
+      "seed": "шкаф телекоммуникационный 19",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 693,
+      "semantic_family": "adjacent",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu apc",
+      "axis": "alternative",
+      "confidence": "medium",
+      "seed": "apc pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 339,
+      "semantic_family": "alternative",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "apc rack pdu",
+      "axis": "alternative",
+      "confidence": "medium",
+      "seed": "apc pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 129,
+      "semantic_family": "alternative",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "apc switched pdu",
+      "axis": "alternative",
+      "confidence": "medium",
+      "seed": "apc pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 63,
+      "semantic_family": "alternative",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "apc switched rack pdu",
+      "axis": "alternative",
+      "confidence": "medium",
+      "seed": "apc pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 57,
+      "semantic_family": "alternative",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu apc ap8981",
+      "axis": "alternative",
+      "confidence": "medium",
+      "seed": "apc pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 45,
+      "semantic_family": "alternative",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "apc metered pdu",
+      "axis": "alternative",
+      "confidence": "medium",
+      "seed": "apc pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 26,
+      "semantic_family": "alternative",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu apc ap8886",
+      "axis": "alternative",
+      "confidence": "medium",
+      "seed": "apc pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 15,
+      "semantic_family": "alternative",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "apc basic rack pdu",
+      "axis": "alternative",
+      "confidence": "medium",
+      "seed": "apc pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 13,
+      "semantic_family": "alternative",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "apc rack pdu 2g",
+      "axis": "alternative",
+      "confidence": "medium",
+      "seed": "apc pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 11,
+      "semantic_family": "alternative",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "apc rack pdu 9000",
+      "axis": "alternative",
+      "confidence": "medium",
+      "seed": "apc pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 8,
+      "semantic_family": "alternative",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu hyperline",
+      "axis": "alternative",
+      "confidence": "medium",
+      "seed": "hyperline pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 45,
+      "semantic_family": "alternative",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток hyperline",
+      "axis": "alternative",
+      "confidence": "medium",
+      "seed": "hyperline блок розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 378,
+      "semantic_family": "alternative",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 19 hyperline",
+      "axis": "alternative",
+      "confidence": "medium",
+      "seed": "hyperline блок розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 176,
+      "semantic_family": "alternative",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток шкаф hyperline",
+      "axis": "alternative",
+      "confidence": "medium",
+      "seed": "hyperline блок розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 99,
+      "semantic_family": "alternative",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "hyperline блок розеток для 19 шкафов",
+      "axis": "alternative",
+      "confidence": "medium",
+      "seed": "hyperline блок розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 88,
+      "semantic_family": "alternative",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток hyperline 19 8 розеток",
+      "axis": "alternative",
+      "confidence": "medium",
+      "seed": "hyperline блок розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 75,
+      "semantic_family": "alternative",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток hyperline she19 8sh iec",
+      "axis": "alternative",
+      "confidence": "medium",
+      "seed": "hyperline блок розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 53,
+      "semantic_family": "alternative",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток hyperline she19 8sh s iec",
+      "axis": "alternative",
+      "confidence": "medium",
+      "seed": "hyperline блок розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 50,
+      "semantic_family": "alternative",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток hyperline sht19 8sh s",
+      "axis": "alternative",
+      "confidence": "medium",
+      "seed": "hyperline блок розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 42,
+      "semantic_family": "alternative",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток 19 9 розеток hyperline",
+      "axis": "alternative",
+      "confidence": "medium",
+      "seed": "hyperline блок розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 39,
+      "semantic_family": "alternative",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "hyperline блок розеток 1u",
+      "axis": "alternative",
+      "confidence": "medium",
+      "seed": "hyperline блок розеток",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 29,
+      "semantic_family": "alternative",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "pdu rittal",
+      "axis": "alternative",
+      "confidence": "medium",
+      "seed": "rittal pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 13,
+      "semantic_family": "alternative",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "eaton in line metered rack pdu",
+      "axis": "alternative",
+      "confidence": "medium",
+      "seed": "eaton pdu",
+      "discovered_from_wordstat": true,
+      "confirmed_count": 9,
+      "semantic_family": "alternative",
+      "provenance": [
+        "wordstat_confirmed_neighbors"
+      ]
+    },
+    {
+      "phrase": "блок розеток",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "блок розеток",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "derived_from_pattern": "блок розеток",
+      "candidate_generation_rule": "pattern_to_next_step",
+      "provenance": [
+        "wordstat_confirmed_neighbors",
+        "pattern_extraction"
+      ]
+    },
+    {
+      "phrase": "блок розеток онлайн",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "блок розеток",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "derived_from_pattern": "блок розеток",
+      "candidate_generation_rule": "pattern_to_next_step",
+      "provenance": [
+        "wordstat_confirmed_neighbors",
+        "pattern_extraction"
+      ]
+    },
+    {
+      "phrase": "розеток 19",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "розеток 19",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "derived_from_pattern": "розеток 19",
+      "candidate_generation_rule": "pattern_to_next_step",
+      "provenance": [
+        "wordstat_confirmed_neighbors",
+        "pattern_extraction"
+      ]
+    },
+    {
+      "phrase": "розеток 19 онлайн",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "розеток 19",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "derived_from_pattern": "розеток 19",
+      "candidate_generation_rule": "pattern_to_next_step",
+      "provenance": [
+        "wordstat_confirmed_neighbors",
+        "pattern_extraction"
+      ]
+    },
+    {
+      "phrase": "розеток 8",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "розеток 8",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "derived_from_pattern": "розеток 8",
+      "candidate_generation_rule": "pattern_to_next_step",
+      "provenance": [
+        "wordstat_confirmed_neighbors",
+        "pattern_extraction"
+      ]
+    },
+    {
+      "phrase": "розеток 8 онлайн",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "розеток 8",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "derived_from_pattern": "розеток 8",
+      "candidate_generation_rule": "pattern_to_next_step",
+      "provenance": [
+        "wordstat_confirmed_neighbors",
+        "pattern_extraction"
+      ]
+    },
+    {
+      "phrase": "розеток pdu",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "розеток pdu",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "derived_from_pattern": "розеток pdu",
+      "candidate_generation_rule": "pattern_to_next_step",
+      "provenance": [
+        "wordstat_confirmed_neighbors",
+        "pattern_extraction"
+      ]
+    },
+    {
+      "phrase": "розеток pdu онлайн",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "розеток pdu",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "derived_from_pattern": "розеток pdu",
+      "candidate_generation_rule": "pattern_to_next_step",
+      "provenance": [
+        "wordstat_confirmed_neighbors",
+        "pattern_extraction"
+      ]
+    },
+    {
+      "phrase": "19 8",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "19 8",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "derived_from_pattern": "19 8",
+      "candidate_generation_rule": "pattern_to_next_step",
+      "provenance": [
+        "wordstat_confirmed_neighbors",
+        "pattern_extraction"
+      ]
+    },
+    {
+      "phrase": "19 8 онлайн",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "19 8",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "derived_from_pattern": "19 8",
+      "candidate_generation_rule": "pattern_to_next_step",
+      "provenance": [
+        "wordstat_confirmed_neighbors",
+        "pattern_extraction"
+      ]
+    },
+    {
+      "phrase": "8 розеток",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "8 розеток",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "derived_from_pattern": "8 розеток",
+      "candidate_generation_rule": "pattern_to_next_step",
+      "provenance": [
+        "wordstat_confirmed_neighbors",
+        "pattern_extraction"
+      ]
+    },
+    {
+      "phrase": "8 розеток онлайн",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "8 розеток",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "derived_from_pattern": "8 розеток",
+      "candidate_generation_rule": "pattern_to_next_step",
+      "provenance": [
+        "wordstat_confirmed_neighbors",
+        "pattern_extraction"
+      ]
+    },
+    {
+      "phrase": "розеток schuko",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "розеток schuko",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "derived_from_pattern": "розеток schuko",
+      "candidate_generation_rule": "pattern_to_next_step",
+      "provenance": [
+        "wordstat_confirmed_neighbors",
+        "pattern_extraction"
+      ]
+    },
+    {
+      "phrase": "розеток schuko онлайн",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "розеток schuko",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "derived_from_pattern": "розеток schuko",
+      "candidate_generation_rule": "pattern_to_next_step",
+      "provenance": [
+        "wordstat_confirmed_neighbors",
+        "pattern_extraction"
+      ]
+    },
+    {
+      "phrase": "розеток 1u",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "розеток 1u",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "derived_from_pattern": "розеток 1u",
+      "candidate_generation_rule": "pattern_to_next_step",
+      "provenance": [
+        "wordstat_confirmed_neighbors",
+        "pattern_extraction"
+      ]
+    },
+    {
+      "phrase": "розеток 1u онлайн",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "розеток 1u",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "derived_from_pattern": "розеток 1u",
+      "candidate_generation_rule": "pattern_to_next_step",
+      "provenance": [
+        "wordstat_confirmed_neighbors",
+        "pattern_extraction"
+      ]
+    },
+    {
+      "phrase": "19 1u",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "19 1u",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "derived_from_pattern": "19 1u",
+      "candidate_generation_rule": "pattern_to_next_step",
+      "provenance": [
+        "wordstat_confirmed_neighbors",
+        "pattern_extraction"
+      ]
+    },
+    {
+      "phrase": "19 1u онлайн",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "19 1u",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "derived_from_pattern": "19 1u",
+      "candidate_generation_rule": "pattern_to_next_step",
+      "provenance": [
+        "wordstat_confirmed_neighbors",
+        "pattern_extraction"
+      ]
+    },
+    {
+      "phrase": "schuko 19",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "schuko 19",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "derived_from_pattern": "schuko 19",
+      "candidate_generation_rule": "pattern_to_next_step",
+      "provenance": [
+        "wordstat_confirmed_neighbors",
+        "pattern_extraction"
+      ]
+    },
+    {
+      "phrase": "schuko 19 онлайн",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "schuko 19",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "derived_from_pattern": "schuko 19",
+      "candidate_generation_rule": "pattern_to_next_step",
+      "provenance": [
+        "wordstat_confirmed_neighbors",
+        "pattern_extraction"
+      ]
+    },
+    {
+      "phrase": "российский рынок модульных цод вырос в 2025 году",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "российский рынок модульных цод вырос в 2025 году",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "candidate_generation_rule": "market_reinjection",
+      "provenance": [
+        "market_findings",
+        "discovery_loop"
+      ]
+    },
+    {
+      "phrase": "высокоплотные стойки 25 квт на шкаф",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "высокоплотные стойки 25 квт на шкаф",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "candidate_generation_rule": "market_reinjection",
+      "provenance": [
+        "market_findings",
+        "discovery_loop"
+      ]
+    },
+    {
+      "phrase": "smart pdu metered pdu monitored pdu three phase pdu",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "smart pdu metered pdu monitored pdu three phase pdu",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "candidate_generation_rule": "market_reinjection",
+      "provenance": [
+        "market_findings",
+        "discovery_loop"
+      ]
+    },
+    {
+      "phrase": "data center rack power distribution unit market",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "data center rack power distribution unit market",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "candidate_generation_rule": "market_reinjection",
+      "provenance": [
+        "market_findings",
+        "discovery_loop"
+      ]
+    },
+    {
+      "phrase": "intelligent rack pdu input metering network connectivity output metering",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "intelligent rack pdu input metering network connectivity output metering",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "candidate_generation_rule": "market_reinjection",
+      "provenance": [
+        "market_findings",
+        "discovery_loop"
+      ]
+    },
+    {
+      "phrase": "data center rack power distribution unit market summary",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "data center rack power distribution unit market summary",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "candidate_generation_rule": "market_reinjection",
+      "provenance": [
+        "market_findings",
+        "discovery_loop"
+      ]
+    },
+    {
+      "phrase": "анализ состояния отрасли цод",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "анализ состояния отрасли цод",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "candidate_generation_rule": "market_reinjection",
+      "provenance": [
+        "market_findings",
+        "discovery_loop"
+      ]
+    },
+    {
+      "phrase": "мощность цод стойко-места электроснабжение",
+      "axis": "adjacent",
+      "confidence": "low",
+      "seed": "мощность цод стойко-места электроснабжение",
+      "semantic_family": "adjacent",
+      "strengthens_cluster_type": "adjacent",
+      "candidate_generation_rule": "market_reinjection",
+      "provenance": [
+        "market_findings",
+        "discovery_loop"
+      ]
+    }
+  ],
+  "discovery_summary": {
+    "confirmed_phrase_count": 315,
+    "repeated_patterns": [
+      "блок розеток",
+      "розеток 19",
+      "розеток 8",
+      "розеток pdu",
+      "19 8",
+      "8 розеток",
+      "розеток schuko",
+      "розеток 1u",
+      "19 1u",
+      "schuko 19"
+    ],
+    "provenance_breakdown": {
+      "initial_hypothesis": 83,
+      "wordstat_confirmed_neighbors": 203,
+      "market_findings": 8
+    }
+  }
+}

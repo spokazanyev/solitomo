@@ -1,0 +1,125 @@
+{
+  "seo_feasibility": [
+    {
+      "cluster_id": "server_rack_adjacent",
+      "cluster_key": "Серверные шкафы, 19” стойки и телеком-шкафы",
+      "page_type": "use-case",
+      "seo_feasibility_score": 86.0,
+      "seo_feasibility_status": "strong",
+      "reasons": [
+        "Intent can support a dedicated landing or tool page.",
+        "Page type `use-case` is pageable.",
+        "Cluster has breadth across multiple confirmed phrases."
+      ]
+    },
+    {
+      "cluster_id": "core_19_1u",
+      "cluster_key": "Блоки розеток 19” / 1U / в стойку",
+      "page_type": "category",
+      "seo_feasibility_score": 86.0,
+      "seo_feasibility_status": "strong",
+      "reasons": [
+        "Intent can support a dedicated landing or tool page.",
+        "Page type `category` is pageable.",
+        "Cluster has breadth across multiple confirmed phrases."
+      ]
+    },
+    {
+      "cluster_id": "pdu_generic",
+      "cluster_key": "PDU / блоки распределения питания",
+      "page_type": "category",
+      "seo_feasibility_score": 86.0,
+      "seo_feasibility_status": "strong",
+      "reasons": [
+        "Intent can support a dedicated landing or tool page.",
+        "Page type `category` is pageable.",
+        "Cluster has breadth across multiple confirmed phrases."
+      ]
+    },
+    {
+      "cluster_id": "socket_type",
+      "cluster_key": "Типы розеток Schuko / IEC C13 / C19",
+      "page_type": "category",
+      "seo_feasibility_score": 86.0,
+      "seo_feasibility_status": "strong",
+      "reasons": [
+        "Intent can support a dedicated landing or tool page.",
+        "Page type `category` is pageable.",
+        "Cluster has breadth across multiple confirmed phrases."
+      ]
+    },
+    {
+      "cluster_id": "amperage",
+      "cluster_key": "Ток и мощность 16A / 32A",
+      "page_type": "category",
+      "seo_feasibility_score": 86.0,
+      "seo_feasibility_status": "strong",
+      "reasons": [
+        "Intent can support a dedicated landing or tool page.",
+        "Page type `category` is pageable.",
+        "Cluster has breadth across multiple confirmed phrases."
+      ]
+    },
+    {
+      "cluster_id": "vertical_mount",
+      "cluster_key": "Вертикальные PDU / 0U / 42U",
+      "page_type": "category",
+      "seo_feasibility_score": 80.0,
+      "seo_feasibility_status": "strong",
+      "reasons": [
+        "Intent can support a dedicated landing or tool page.",
+        "Page type `category` is pageable.",
+        "Cluster has breadth across multiple confirmed phrases."
+      ]
+    },
+    {
+      "cluster_id": "managed_metered",
+      "cluster_key": "Измерительные, управляемые и мониторинговые PDU",
+      "page_type": "category",
+      "seo_feasibility_score": 80.0,
+      "seo_feasibility_status": "strong",
+      "reasons": [
+        "Intent can support a dedicated landing or tool page.",
+        "Page type `category` is pageable.",
+        "Cluster has breadth across multiple confirmed phrases."
+      ]
+    },
+    {
+      "cluster_id": "brand_competitors",
+      "cluster_key": "Брендовые и конкурентные запросы",
+      "page_type": "comparison",
+      "seo_feasibility_score": 69.0,
+      "seo_feasibility_status": "feasible",
+      "reasons": [
+        "Intent can support a dedicated landing or tool page.",
+        "Page type `comparison` is pageable.",
+        "Cluster has breadth across multiple confirmed phrases.",
+        "Alternative clusters are useful, but often constrained by SERP comparison patterns."
+      ]
+    },
+    {
+      "cluster_id": "surge_filter",
+      "cluster_key": "УЗИП и стоечные сетевые фильтры",
+      "page_type": "category",
+      "seo_feasibility_score": 73.0,
+      "seo_feasibility_status": "feasible",
+      "reasons": [
+        "Intent can support a dedicated landing or tool page.",
+        "Page type `category` is pageable.",
+        "Cluster has breadth across multiple confirmed phrases."
+      ]
+    },
+    {
+      "cluster_id": "three_phase",
+      "cluster_key": "Трехфазные PDU",
+      "page_type": "category",
+      "seo_feasibility_score": 67.0,
+      "seo_feasibility_status": "feasible",
+      "reasons": [
+        "Intent can support a dedicated landing or tool page.",
+        "Page type `category` is pageable."
+      ]
+    }
+  ],
+  "overall_seo_feasibility_score": 79.9
+}

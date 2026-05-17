@@ -1,0 +1,5525 @@
+{
+  "queries": [],
+  "dynamics": [
+    {
+      "phrase": "блок розеток",
+      "date": "2024-05-01",
+      "count": 38847,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток",
+      "date": "2024-06-01",
+      "count": 36597,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток",
+      "date": "2024-07-01",
+      "count": 40611,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток",
+      "date": "2024-08-01",
+      "count": 39626,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток",
+      "date": "2024-09-01",
+      "count": 38576,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток",
+      "date": "2024-10-01",
+      "count": 46259,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток",
+      "date": "2024-11-01",
+      "count": 47909,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток",
+      "date": "2024-12-01",
+      "count": 45935,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток",
+      "date": "2025-01-01",
+      "count": 43132,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток",
+      "date": "2025-02-01",
+      "count": 47854,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток",
+      "date": "2025-03-01",
+      "count": 46764,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток",
+      "date": "2025-04-01",
+      "count": 44368,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток",
+      "date": "2025-05-01",
+      "count": 40013,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток",
+      "date": "2025-06-01",
+      "count": 42912,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток",
+      "date": "2025-07-01",
+      "count": 48580,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток",
+      "date": "2025-08-01",
+      "count": 47962,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток",
+      "date": "2025-09-01",
+      "count": 46965,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток",
+      "date": "2025-10-01",
+      "count": 52463,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток",
+      "date": "2025-11-01",
+      "count": 49245,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток",
+      "date": "2025-12-01",
+      "count": 46743,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток",
+      "date": "2026-01-01",
+      "count": 37017,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток",
+      "date": "2026-02-01",
+      "count": 38810,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток",
+      "date": "2026-03-01",
+      "count": 44824,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток",
+      "date": "2026-04-01",
+      "count": 44744,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2024-05-01",
+      "count": 6725,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2024-06-01",
+      "count": 6093,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2024-07-01",
+      "count": 7063,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2024-08-01",
+      "count": 6521,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2024-09-01",
+      "count": 6050,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2024-10-01",
+      "count": 7422,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2024-11-01",
+      "count": 7633,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2024-12-01",
+      "count": 7075,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2025-01-01",
+      "count": 5862,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2025-02-01",
+      "count": 7706,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2025-03-01",
+      "count": 7467,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2025-04-01",
+      "count": 7560,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2025-05-01",
+      "count": 5955,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2025-06-01",
+      "count": 6252,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2025-07-01",
+      "count": 7225,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2025-08-01",
+      "count": 7134,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2025-09-01",
+      "count": 7117,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2025-10-01",
+      "count": 7916,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2025-11-01",
+      "count": 6402,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2025-12-01",
+      "count": 6317,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2026-01-01",
+      "count": 4297,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2026-02-01",
+      "count": 5819,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2026-03-01",
+      "count": 6846,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19",
+      "date": "2026-04-01",
+      "count": 7074,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2024-05-01",
+      "count": 1489,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2024-06-01",
+      "count": 1261,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2024-07-01",
+      "count": 1568,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2024-08-01",
+      "count": 1407,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2024-09-01",
+      "count": 1273,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2024-10-01",
+      "count": 1715,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2024-11-01",
+      "count": 1584,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2024-12-01",
+      "count": 1454,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2025-01-01",
+      "count": 1202,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2025-02-01",
+      "count": 1582,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2025-03-01",
+      "count": 1498,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2025-04-01",
+      "count": 1566,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2025-05-01",
+      "count": 1177,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2025-06-01",
+      "count": 1295,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2025-07-01",
+      "count": 1479,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2025-08-01",
+      "count": 1558,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2025-09-01",
+      "count": 1501,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2025-10-01",
+      "count": 1644,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2025-11-01",
+      "count": 1395,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2025-12-01",
+      "count": 1472,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2026-01-01",
+      "count": 897,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2026-02-01",
+      "count": 1226,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2026-03-01",
+      "count": 1499,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 19 1u",
+      "date": "2026-04-01",
+      "count": 1549,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2024-05-01",
+      "count": 1719,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2024-06-01",
+      "count": 1677,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2024-07-01",
+      "count": 2058,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2024-08-01",
+      "count": 2122,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2024-09-01",
+      "count": 1898,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2024-10-01",
+      "count": 2390,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2024-11-01",
+      "count": 2386,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2024-12-01",
+      "count": 2418,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2025-01-01",
+      "count": 1956,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2025-02-01",
+      "count": 2435,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2025-03-01",
+      "count": 2609,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2025-04-01",
+      "count": 2819,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2025-05-01",
+      "count": 2163,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2025-06-01",
+      "count": 2344,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2025-07-01",
+      "count": 2607,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2025-08-01",
+      "count": 2862,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2025-09-01",
+      "count": 2784,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2025-10-01",
+      "count": 3304,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2025-11-01",
+      "count": 2648,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2025-12-01",
+      "count": 2357,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2026-01-01",
+      "count": 1790,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2026-02-01",
+      "count": 2312,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2026-03-01",
+      "count": 2801,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток pdu",
+      "date": "2026-04-01",
+      "count": 2868,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2024-05-01",
+      "count": 14155,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2024-06-01",
+      "count": 12641,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2024-07-01",
+      "count": 12878,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2024-08-01",
+      "count": 12509,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2024-09-01",
+      "count": 13475,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2024-10-01",
+      "count": 17025,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2024-11-01",
+      "count": 17871,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2024-12-01",
+      "count": 16744,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2025-01-01",
+      "count": 14122,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2025-02-01",
+      "count": 17097,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2025-03-01",
+      "count": 17000,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2025-04-01",
+      "count": 17000,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2025-05-01",
+      "count": 13764,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2025-06-01",
+      "count": 14610,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2025-07-01",
+      "count": 15791,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2025-08-01",
+      "count": 15037,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2025-09-01",
+      "count": 16762,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2025-10-01",
+      "count": 19345,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2025-11-01",
+      "count": 15811,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2025-12-01",
+      "count": 15024,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2026-01-01",
+      "count": 11225,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2026-02-01",
+      "count": 13185,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2026-03-01",
+      "count": 15850,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu",
+      "date": "2026-04-01",
+      "count": 15930,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2024-05-01",
+      "count": 1066,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2024-06-01",
+      "count": 1119,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2024-07-01",
+      "count": 1396,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2024-08-01",
+      "count": 1312,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2024-09-01",
+      "count": 1152,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2024-10-01",
+      "count": 1360,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2024-11-01",
+      "count": 1416,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2024-12-01",
+      "count": 1409,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2025-01-01",
+      "count": 1075,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2025-02-01",
+      "count": 1420,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2025-03-01",
+      "count": 1515,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2025-04-01",
+      "count": 1548,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2025-05-01",
+      "count": 1244,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2025-06-01",
+      "count": 1332,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2025-07-01",
+      "count": 1550,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2025-08-01",
+      "count": 1641,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2025-09-01",
+      "count": 1645,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2025-10-01",
+      "count": 1859,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2025-11-01",
+      "count": 1473,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2025-12-01",
+      "count": 1415,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2026-01-01",
+      "count": 1036,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2026-02-01",
+      "count": 1360,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2026-03-01",
+      "count": 1636,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu 19",
+      "date": "2026-04-01",
+      "count": 1571,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2024-05-01",
+      "count": 1888,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2024-06-01",
+      "count": 1833,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2024-07-01",
+      "count": 2204,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2024-08-01",
+      "count": 1999,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2024-09-01",
+      "count": 1908,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2024-10-01",
+      "count": 2246,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2024-11-01",
+      "count": 2357,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2024-12-01",
+      "count": 2257,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2025-01-01",
+      "count": 1858,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2025-02-01",
+      "count": 2502,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2025-03-01",
+      "count": 2575,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2025-04-01",
+      "count": 2459,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2025-05-01",
+      "count": 1982,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2025-06-01",
+      "count": 1919,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2025-07-01",
+      "count": 2302,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2025-08-01",
+      "count": 2457,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2025-09-01",
+      "count": 2215,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2025-10-01",
+      "count": 2624,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2025-11-01",
+      "count": 1921,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2025-12-01",
+      "count": 1974,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2026-01-01",
+      "count": 1460,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2026-02-01",
+      "count": 1789,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2026-03-01",
+      "count": 2209,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток schuko",
+      "date": "2026-04-01",
+      "count": 2164,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2024-05-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2024-06-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2024-07-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2024-08-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2024-09-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2024-10-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2024-11-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2024-12-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2025-01-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2025-02-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2025-03-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2025-04-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2025-05-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2025-06-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2025-07-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2025-08-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2025-09-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2025-10-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2025-11-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2025-12-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2026-01-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2026-02-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2026-03-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток iec320 c13",
+      "date": "2026-04-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2024-05-01",
+      "count": 1485,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2024-06-01",
+      "count": 1408,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2024-07-01",
+      "count": 1698,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2024-08-01",
+      "count": 1658,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2024-09-01",
+      "count": 1586,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2024-10-01",
+      "count": 1777,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2024-11-01",
+      "count": 1820,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2024-12-01",
+      "count": 1683,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2025-01-01",
+      "count": 1381,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2025-02-01",
+      "count": 1849,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2025-03-01",
+      "count": 1848,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2025-04-01",
+      "count": 1741,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2025-05-01",
+      "count": 1480,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2025-06-01",
+      "count": 1534,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2025-07-01",
+      "count": 1822,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2025-08-01",
+      "count": 1850,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2025-09-01",
+      "count": 1697,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2025-10-01",
+      "count": 1877,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2025-11-01",
+      "count": 1460,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2025-12-01",
+      "count": 1393,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2026-01-01",
+      "count": 996,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2026-02-01",
+      "count": 1309,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2026-03-01",
+      "count": 1641,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 16а",
+      "date": "2026-04-01",
+      "count": 1683,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2024-05-01",
+      "count": 173,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2024-06-01",
+      "count": 182,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2024-07-01",
+      "count": 178,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2024-08-01",
+      "count": 209,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2024-09-01",
+      "count": 218,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2024-10-01",
+      "count": 268,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2024-11-01",
+      "count": 299,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2024-12-01",
+      "count": 257,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2025-01-01",
+      "count": 208,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2025-02-01",
+      "count": 287,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2025-03-01",
+      "count": 277,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2025-04-01",
+      "count": 229,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2025-05-01",
+      "count": 205,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2025-06-01",
+      "count": 261,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2025-07-01",
+      "count": 306,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2025-08-01",
+      "count": 244,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2025-09-01",
+      "count": 242,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2025-10-01",
+      "count": 278,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2025-11-01",
+      "count": 207,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2025-12-01",
+      "count": 287,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2026-01-01",
+      "count": 163,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2026-02-01",
+      "count": 219,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2026-03-01",
+      "count": 239,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток 32а",
+      "date": "2026-04-01",
+      "count": 235,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2024-05-01",
+      "count": 765,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2024-06-01",
+      "count": 801,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2024-07-01",
+      "count": 836,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2024-08-01",
+      "count": 852,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2024-09-01",
+      "count": 777,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2024-10-01",
+      "count": 924,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2024-11-01",
+      "count": 919,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2024-12-01",
+      "count": 919,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2025-01-01",
+      "count": 676,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2025-02-01",
+      "count": 784,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2025-03-01",
+      "count": 886,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2025-04-01",
+      "count": 773,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2025-05-01",
+      "count": 642,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2025-06-01",
+      "count": 719,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2025-07-01",
+      "count": 981,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2025-08-01",
+      "count": 808,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2025-09-01",
+      "count": 868,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2025-10-01",
+      "count": 917,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2025-11-01",
+      "count": 828,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2025-12-01",
+      "count": 672,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2026-01-01",
+      "count": 541,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2026-02-01",
+      "count": 605,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2026-03-01",
+      "count": 743,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "вертикальный блок розеток",
+      "date": "2026-04-01",
+      "count": 730,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2024-05-01",
+      "count": 18,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2024-06-01",
+      "count": 21,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2024-07-01",
+      "count": 40,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2024-08-01",
+      "count": 22,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2024-09-01",
+      "count": 29,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2024-10-01",
+      "count": 35,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2024-11-01",
+      "count": 33,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2024-12-01",
+      "count": 46,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2025-01-01",
+      "count": 31,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2025-02-01",
+      "count": 59,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2025-03-01",
+      "count": 91,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2025-04-01",
+      "count": 11,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2025-05-01",
+      "count": 28,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2025-06-01",
+      "count": 23,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2025-07-01",
+      "count": 86,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2025-08-01",
+      "count": 23,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2025-09-01",
+      "count": 38,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2025-10-01",
+      "count": 32,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2025-11-01",
+      "count": 36,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2025-12-01",
+      "count": 38,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2026-01-01",
+      "count": 20,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2026-02-01",
+      "count": 35,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2026-03-01",
+      "count": 18,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "трехфазный блок розеток",
+      "date": "2026-04-01",
+      "count": 58,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2024-05-01",
+      "count": 68,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2024-06-01",
+      "count": 50,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2024-07-01",
+      "count": 58,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2024-08-01",
+      "count": 111,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2024-09-01",
+      "count": 63,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2024-10-01",
+      "count": 75,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2024-11-01",
+      "count": 130,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2024-12-01",
+      "count": 71,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2025-01-01",
+      "count": 60,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2025-02-01",
+      "count": 144,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2025-03-01",
+      "count": 115,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2025-04-01",
+      "count": 124,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2025-05-01",
+      "count": 85,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2025-06-01",
+      "count": 75,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2025-07-01",
+      "count": 90,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2025-08-01",
+      "count": 113,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2025-09-01",
+      "count": 99,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2025-10-01",
+      "count": 131,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2025-11-01",
+      "count": 95,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2025-12-01",
+      "count": 126,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2026-01-01",
+      "count": 63,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2026-02-01",
+      "count": 110,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2026-03-01",
+      "count": 92,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "pdu с мониторингом",
+      "date": "2026-04-01",
+      "count": 173,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2024-05-01",
+      "count": 55,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2024-06-01",
+      "count": 54,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2024-07-01",
+      "count": 43,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2024-08-01",
+      "count": 28,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2024-09-01",
+      "count": 50,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2024-10-01",
+      "count": 83,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2024-11-01",
+      "count": 110,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2024-12-01",
+      "count": 69,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2025-01-01",
+      "count": 72,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2025-02-01",
+      "count": 85,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2025-03-01",
+      "count": 84,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2025-04-01",
+      "count": 74,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2025-05-01",
+      "count": 67,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2025-06-01",
+      "count": 86,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2025-07-01",
+      "count": 54,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2025-08-01",
+      "count": 52,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2025-09-01",
+      "count": 81,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2025-10-01",
+      "count": 68,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2025-11-01",
+      "count": 59,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2025-12-01",
+      "count": 93,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2026-01-01",
+      "count": 53,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2026-02-01",
+      "count": 73,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2026-03-01",
+      "count": 64,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "управляемый pdu",
+      "date": "2026-04-01",
+      "count": 78,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2024-05-01",
+      "count": 108,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2024-06-01",
+      "count": 101,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2024-07-01",
+      "count": 113,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2024-08-01",
+      "count": 129,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2024-09-01",
+      "count": 103,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2024-10-01",
+      "count": 149,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2024-11-01",
+      "count": 158,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2024-12-01",
+      "count": 113,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2025-01-01",
+      "count": 135,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2025-02-01",
+      "count": 159,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2025-03-01",
+      "count": 158,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2025-04-01",
+      "count": 128,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2025-05-01",
+      "count": 99,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2025-06-01",
+      "count": 69,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2025-07-01",
+      "count": 138,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2025-08-01",
+      "count": 101,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2025-09-01",
+      "count": 154,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2025-10-01",
+      "count": 145,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2025-11-01",
+      "count": 101,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2025-12-01",
+      "count": 128,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2026-01-01",
+      "count": 110,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2026-02-01",
+      "count": 80,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2026-03-01",
+      "count": 92,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "metered pdu",
+      "date": "2026-04-01",
+      "count": 90,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2024-05-01",
+      "count": 20,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2024-06-01",
+      "count": 18,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2024-07-01",
+      "count": 26,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2024-08-01",
+      "count": 11,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2024-09-01",
+      "count": 8,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2024-10-01",
+      "count": 36,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2024-11-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2024-12-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2025-01-01",
+      "count": 8,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2025-02-01",
+      "count": 8,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2025-03-01",
+      "count": 10,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2025-04-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2025-05-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2025-06-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2025-07-01",
+      "count": 14,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2025-08-01",
+      "count": 8,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2025-09-01",
+      "count": 16,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2025-10-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2025-11-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2025-12-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2026-01-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2026-02-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2026-03-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "сетевой фильтр с узип",
+      "date": "2026-04-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2024-05-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2024-06-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2024-07-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2024-08-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2024-09-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2024-10-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2024-11-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2024-12-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2025-01-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2025-02-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2025-03-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2025-04-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2025-05-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2025-06-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2025-07-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2025-08-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2025-09-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2025-10-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2025-11-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2025-12-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2026-01-01",
+      "count": 10,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2026-02-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2026-03-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "блок розеток с узип",
+      "date": "2026-04-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2024-05-01",
+      "count": 12294,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2024-06-01",
+      "count": 9908,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2024-07-01",
+      "count": 10539,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2024-08-01",
+      "count": 9231,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2024-09-01",
+      "count": 9082,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2024-10-01",
+      "count": 10827,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2024-11-01",
+      "count": 11911,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2024-12-01",
+      "count": 14100,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2025-01-01",
+      "count": 12728,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2025-02-01",
+      "count": 13079,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2025-03-01",
+      "count": 12543,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2025-04-01",
+      "count": 12883,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2025-05-01",
+      "count": 13099,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2025-06-01",
+      "count": 14532,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2025-07-01",
+      "count": 15904,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2025-08-01",
+      "count": 14322,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2025-09-01",
+      "count": 11883,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2025-10-01",
+      "count": 13337,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2025-11-01",
+      "count": 11427,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2025-12-01",
+      "count": 10673,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2026-01-01",
+      "count": 7696,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2026-02-01",
+      "count": 9225,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2026-03-01",
+      "count": 11083,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "серверный шкаф",
+      "date": "2026-04-01",
+      "count": 10825,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2024-05-01",
+      "count": 24545,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2024-06-01",
+      "count": 20775,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2024-07-01",
+      "count": 23359,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2024-08-01",
+      "count": 23032,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2024-09-01",
+      "count": 21596,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2024-10-01",
+      "count": 26499,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2024-11-01",
+      "count": 29254,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2024-12-01",
+      "count": 30896,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2025-01-01",
+      "count": 26277,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2025-02-01",
+      "count": 28736,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2025-03-01",
+      "count": 29707,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2025-04-01",
+      "count": 30224,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2025-05-01",
+      "count": 25946,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2025-06-01",
+      "count": 27353,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2025-07-01",
+      "count": 32420,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2025-08-01",
+      "count": 29057,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2025-09-01",
+      "count": 27971,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2025-10-01",
+      "count": 30556,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2025-11-01",
+      "count": 26137,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2025-12-01",
+      "count": 24733,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2026-01-01",
+      "count": 16788,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2026-02-01",
+      "count": 21445,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2026-03-01",
+      "count": 26286,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "шкаф 19",
+      "date": "2026-04-01",
+      "count": 27748,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2024-05-01",
+      "count": 14023,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2024-06-01",
+      "count": 12044,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2024-07-01",
+      "count": 12714,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2024-08-01",
+      "count": 11766,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2024-09-01",
+      "count": 11588,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2024-10-01",
+      "count": 14066,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2024-11-01",
+      "count": 14151,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2024-12-01",
+      "count": 13492,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2025-01-01",
+      "count": 12441,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2025-02-01",
+      "count": 15304,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2025-03-01",
+      "count": 14861,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2025-04-01",
+      "count": 14098,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2025-05-01",
+      "count": 12944,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2025-06-01",
+      "count": 13518,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2025-07-01",
+      "count": 15320,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2025-08-01",
+      "count": 13495,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2025-09-01",
+      "count": 13771,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2025-10-01",
+      "count": 14867,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2025-11-01",
+      "count": 13249,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2025-12-01",
+      "count": 12541,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2026-01-01",
+      "count": 8608,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2026-02-01",
+      "count": 10462,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2026-03-01",
+      "count": 12649,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "стойка 19",
+      "date": "2026-04-01",
+      "count": 12880,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2024-05-01",
+      "count": 428,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2024-06-01",
+      "count": 321,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2024-07-01",
+      "count": 414,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2024-08-01",
+      "count": 345,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2024-09-01",
+      "count": 414,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2024-10-01",
+      "count": 375,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2024-11-01",
+      "count": 417,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2024-12-01",
+      "count": 356,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2025-01-01",
+      "count": 351,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2025-02-01",
+      "count": 487,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2025-03-01",
+      "count": 466,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2025-04-01",
+      "count": 435,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2025-05-01",
+      "count": 385,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2025-06-01",
+      "count": 325,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2025-07-01",
+      "count": 320,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2025-08-01",
+      "count": 430,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2025-09-01",
+      "count": 513,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2025-10-01",
+      "count": 496,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2025-11-01",
+      "count": 316,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2025-12-01",
+      "count": 289,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2026-01-01",
+      "count": 181,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2026-02-01",
+      "count": 247,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2026-03-01",
+      "count": 273,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "apc pdu",
+      "date": "2026-04-01",
+      "count": 358,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2024-05-01",
+      "count": 803,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2024-06-01",
+      "count": 688,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2024-07-01",
+      "count": 791,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2024-08-01",
+      "count": 816,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2024-09-01",
+      "count": 720,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2024-10-01",
+      "count": 797,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2024-11-01",
+      "count": 865,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2024-12-01",
+      "count": 844,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2025-01-01",
+      "count": 631,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2025-02-01",
+      "count": 811,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2025-03-01",
+      "count": 875,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2025-04-01",
+      "count": 820,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2025-05-01",
+      "count": 537,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2025-06-01",
+      "count": 581,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2025-07-01",
+      "count": 702,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2025-08-01",
+      "count": 608,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2025-09-01",
+      "count": 603,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2025-10-01",
+      "count": 602,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2025-11-01",
+      "count": 472,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2025-12-01",
+      "count": 410,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2026-01-01",
+      "count": 308,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2026-02-01",
+      "count": 361,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2026-03-01",
+      "count": 548,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "hyperline блок розеток",
+      "date": "2026-04-01",
+      "count": 362,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2024-05-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2024-06-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2024-07-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2024-08-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2024-09-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2024-10-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2024-11-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2024-12-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2025-01-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2025-02-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2025-03-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2025-04-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2025-05-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2025-06-01",
+      "count": 19,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2025-07-01",
+      "count": 28,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2025-08-01",
+      "count": 20,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2025-09-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2025-10-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2025-11-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2025-12-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2026-01-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2026-02-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2026-03-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    },
+    {
+      "phrase": "солитон блок розеток",
+      "date": "2026-04-01",
+      "count": 0,
+      "region_ids": [
+        225
+      ],
+      "source": "Yandex Wordstat API /v1/dynamics",
+      "source_url": "https://api.wordstat.yandex.net/v1/dynamics"
+    }
+  ]
+}
