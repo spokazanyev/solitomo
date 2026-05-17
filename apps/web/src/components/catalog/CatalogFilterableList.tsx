@@ -144,7 +144,7 @@ function ProductCard({ product }: { product: Product }) {
   const [paramsOpen, setParamsOpen] = useState(false);
 
   return (
-    <article className="grid grid-cols-[112px_1fr] gap-x-4 gap-y-3 rounded-lg border border-slate-200 bg-white p-4 transition hover:border-sky-400 md:grid-cols-[128px_1fr_180px] md:items-start md:gap-4">
+    <article className="grid grid-cols-[112px_1fr] gap-x-4 gap-y-3 rounded-lg border border-slate-200 bg-white p-4 transition hover:border-sky-400 md:grid-cols-[112px_minmax(0,1fr)_150px] md:items-start md:gap-4 xl:grid-cols-[128px_minmax(0,1fr)_180px]">
       <div className="col-start-1 row-start-1 flex aspect-square items-center justify-center rounded-md border border-slate-100 bg-slate-50">
         {/* Cached legacy assets from soliton1.ru, served from /public/legacy/. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -189,7 +189,7 @@ function ProductCard({ product }: { product: Product }) {
           className={`${paramsOpen ? "block" : "hidden"} md:block`}
           id={`product-params-${product.slug}`}
         >
-          <dl className="mt-3 grid gap-2 text-xs sm:grid-cols-2 lg:grid-cols-3">
+          <dl className="mt-3 grid gap-2 text-xs sm:grid-cols-2 xl:grid-cols-3">
             {parameters.map(([label, value]) => (
               <div className="rounded-md border border-slate-100 bg-slate-50 px-2 py-1.5" key={label}>
                 <dt className="text-slate-500">{label}</dt>
@@ -202,7 +202,7 @@ function ProductCard({ product }: { product: Product }) {
           </p>
         </div>
       </div>
-      <div className="col-span-2 grid gap-3 md:col-span-1 md:col-start-3 md:row-start-1 md:min-w-36 md:justify-items-end md:gap-3">
+      <div className="col-span-2 grid gap-3 md:col-span-1 md:col-start-3 md:row-start-1 md:min-w-0 md:justify-items-stretch md:gap-3">
         <div className="flex items-baseline justify-between gap-3 md:flex-col md:items-end md:gap-1">
           <p className="text-sm font-semibold text-sky-800">{product.price.display}</p>
           <p className="text-right text-xs leading-5 text-slate-500">
@@ -417,7 +417,7 @@ export function CatalogFilterableList({
   );
 
   return (
-    <section className="grid gap-6 lg:grid-cols-[280px_1fr]">
+    <section className="grid gap-6 lg:grid-cols-[240px_1fr] xl:grid-cols-[280px_1fr]">
       {/* Mobile/tablet trigger button (≤lg) */}
       <div className="lg:hidden">
         <button
