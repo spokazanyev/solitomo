@@ -141,10 +141,11 @@ function sortProducts(products: Product[], sortMode: SortMode) {
 function ProductCard({ product }: { product: Product }) {
   const image = product.images[0];
   const parameters = getListingAttributeRows(product.attributes);
+  const [paramsOpen, setParamsOpen] = useState(false);
 
   return (
-    <article className="grid gap-4 rounded-lg border border-slate-200 bg-white p-4 transition hover:border-sky-400 md:grid-cols-[128px_1fr_180px] md:items-start">
-      <div className="flex aspect-square items-center justify-center rounded-md border border-slate-100 bg-slate-50">
+    <article className="grid grid-cols-[112px_1fr] gap-x-4 gap-y-3 rounded-lg border border-slate-200 bg-white p-4 transition hover:border-sky-400 md:grid-cols-[128px_1fr_180px] md:items-start md:gap-4">
+      <div className="col-start-1 row-start-1 flex aspect-square items-center justify-center rounded-md border border-slate-100 bg-slate-50">
         {/* Cached legacy assets from soliton1.ru, served from /public/legacy/. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -155,14 +156,14 @@ function ProductCard({ product }: { product: Product }) {
           src={image || "/placeholders/pdu-silhouette.svg"}
         />
       </div>
-      <div>
+      <div className="col-start-2 row-start-1 min-w-0">
         <p className="font-mono text-xs text-slate-500">{product.sku}</p>
         <Link href={`/product/${product.slug}/`}>
           <h3 className="mt-1 text-base font-semibold leading-6 text-slate-950 hover:text-sky-800">
             {product.h1}
           </h3>
         </Link>
-        <div className="mt-3 flex flex-wrap gap-2">
+        <div className="mt-2 flex flex-wrap gap-1.5 md:mt-3 md:gap-2">
           {product.attributes.functions.all.slice(0, 3).map((badge) => (
             <span
               className="rounded-md bg-sky-50 px-2 py-1 text-xs font-medium text-sky-800"
@@ -172,39 +173,62 @@ function ProductCard({ product }: { product: Product }) {
             </span>
           ))}
         </div>
-        <dl className="mt-4 grid gap-2 text-xs sm:grid-cols-2 lg:grid-cols-3">
-          {parameters.map(([label, value]) => (
-            <div className="rounded-md border border-slate-100 bg-slate-50 px-2 py-1.5" key={label}>
-              <dt className="text-slate-500">{label}</dt>
-              <dd className="mt-0.5 font-medium text-slate-800">{value}</dd>
-            </div>
-          ))}
-        </dl>
-        <p className="mt-3 line-clamp-2 text-sm leading-6 text-slate-600">
-          {product.shortDescription}
-        </p>
-      </div>
-      <div className="grid gap-3 md:min-w-36 md:justify-items-end">
-        <p className="text-sm font-semibold text-sky-800">{product.price.display}</p>
-        <p className="text-right text-xs leading-5 text-slate-500">
-          {product.attributes.availability.label}
-        </p>
-        <AddToRfqButton
-          item={{
-            name: product.h1,
-            quantity: "1",
-            sku: product.sku,
-            price: product.price.amount,
-            slug: product.slug,
-            image: product.images[0],
-          }}
-        />
-        <Link
-          className="inline-flex h-11 w-full items-center justify-center rounded-md border border-slate-300 px-4 text-sm font-semibold text-slate-700 hover:border-sky-700 hover:text-sky-800"
-          href={`/product/${product.slug}/`}
+        <button
+          aria-controls={`product-params-${product.slug}`}
+          aria-expanded={paramsOpen}
+          className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-sky-700 hover:text-sky-900 md:hidden"
+          onClick={() => setParamsOpen((value) => !value)}
+          type="button"
         >
-          Открыть
-        </Link>
+          <ChevronDown
+            className={`h-3.5 w-3.5 transition ${paramsOpen ? "rotate-180" : "rotate-0"}`}
+          />
+          {paramsOpen ? "Скрыть параметры" : "Параметры и описание"}
+        </button>
+        <div
+          className={`${paramsOpen ? "block" : "hidden"} md:block`}
+          id={`product-params-${product.slug}`}
+        >
+          <dl className="mt-3 grid gap-2 text-xs sm:grid-cols-2 lg:grid-cols-3">
+            {parameters.map(([label, value]) => (
+              <div className="rounded-md border border-slate-100 bg-slate-50 px-2 py-1.5" key={label}>
+                <dt className="text-slate-500">{label}</dt>
+                <dd className="mt-0.5 font-medium text-slate-800">{value}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-3 line-clamp-2 text-sm leading-6 text-slate-600">
+            {product.shortDescription}
+          </p>
+        </div>
+      </div>
+      <div className="col-span-2 grid gap-3 md:col-span-1 md:col-start-3 md:row-start-1 md:min-w-36 md:justify-items-end md:gap-3">
+        <div className="flex items-baseline justify-between gap-3 md:flex-col md:items-end md:gap-1">
+          <p className="text-sm font-semibold text-sky-800">{product.price.display}</p>
+          <p className="text-right text-xs leading-5 text-slate-500">
+            {product.attributes.availability.label}
+          </p>
+        </div>
+        <div className="flex gap-2 md:flex-col md:gap-3">
+          <div className="flex-1 md:w-full">
+            <AddToRfqButton
+              item={{
+                name: product.h1,
+                quantity: "1",
+                sku: product.sku,
+                price: product.price.amount,
+                slug: product.slug,
+                image: product.images[0],
+              }}
+            />
+          </div>
+          <Link
+            className="inline-flex h-11 flex-1 items-center justify-center rounded-md border border-slate-300 px-4 text-sm font-semibold text-slate-700 hover:border-sky-700 hover:text-sky-800 md:w-full md:flex-none"
+            href={`/product/${product.slug}/`}
+          >
+            Открыть
+          </Link>
+        </div>
       </div>
     </article>
   );
