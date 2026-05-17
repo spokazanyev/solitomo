@@ -442,10 +442,10 @@ export function CatalogFilterableList({
         </button>
       </div>
 
-      {/* Desktop sidebar (≥lg) */}
+      {/* Desktop sidebar (≥lg) — без визуального фрейма, просто колонка */}
       <aside
         id="catalog-filters"
-        className="hidden self-start rounded-lg border border-slate-200 bg-white p-5 lg:block"
+        className="hidden self-start lg:block lg:pr-2"
       >
         {filterHeader}
         <div className="mt-5">{filtersContent}</div>
