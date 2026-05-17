@@ -6,6 +6,7 @@ import { useMemo, useState } from "react";
 
 import { MobileDrawer } from "@/components/site/MobileDrawer";
 import { AddToRfqButton } from "@/components/rfq/RfqCart";
+import { ProductImageZoom } from "@/components/product/ProductImageZoom";
 import { getListingAttributeRows } from "@/lib/products/product-attributes";
 import type { Product } from "@/lib/products/catalog";
 
@@ -140,22 +141,19 @@ function sortProducts(products: Product[], sortMode: SortMode) {
 
 function ProductCard({ product }: { product: Product }) {
   const image = product.images[0];
+  const imageAlt = `${product.h1}, ${product.sku}`;
   const parameters = getListingAttributeRows(product.attributes);
   const [paramsOpen, setParamsOpen] = useState(false);
 
   return (
     <article className="grid grid-cols-[112px_1fr] gap-x-4 gap-y-3 rounded-lg border border-slate-200 bg-white p-4 transition hover:border-sky-400 md:grid-cols-[112px_minmax(0,1fr)_150px] md:items-start md:gap-4 xl:grid-cols-[128px_minmax(0,1fr)_180px]">
-      <div className="col-start-1 row-start-1 flex aspect-square items-center justify-center rounded-md border border-slate-100 bg-slate-50">
-        {/* Cached legacy assets from soliton1.ru, served from /public/legacy/. */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          alt={`${product.h1}, ${product.sku}`}
-          className="h-full w-full object-contain p-2"
-          loading="lazy"
-          decoding="async"
-          src={image || "/placeholders/pdu-silhouette.svg"}
-        />
-      </div>
+      <ProductImageZoom
+        alt={imageAlt}
+        buttonClassName="group col-start-1 row-start-1 flex aspect-square cursor-zoom-in items-center justify-center rounded-md border border-slate-100 bg-slate-50 transition hover:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-500"
+        image={image || "/placeholders/pdu-silhouette.svg"}
+        imageClassName="h-full w-full object-contain p-2 transition group-hover:scale-[1.03]"
+        images={product.images.length > 0 ? product.images : undefined}
+      />
       <div className="col-start-2 row-start-1 min-w-0">
         <p className="font-mono text-xs text-slate-500">{product.sku}</p>
         <Link href={`/product/${product.slug}/`}>

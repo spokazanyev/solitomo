@@ -18,6 +18,7 @@ import { Suspense } from "react";
 
 import { CatalogFilterableList } from "@/components/catalog/CatalogFilterableList";
 import { ComparisonPlaceholder } from "@/components/comparison/ComparisonPlaceholder";
+import { ProductImageZoom } from "@/components/product/ProductImageZoom";
 import { RackParametersForm } from "@/components/solutions/RackParametersForm";
 import { ContactsTemplate } from "@/components/templates/ContactsTemplate";
 import {
@@ -257,21 +258,18 @@ function SelectorPanel() {
 
 function ProductCard({ product }: { product: Product }) {
   const image = product.images[0];
+  const imageAlt = `${product.h1}, ${product.sku}`;
   const parameters = getListingAttributeRows(product.attributes);
 
   return (
     <article className="grid gap-4 rounded-lg border border-slate-200 bg-white p-4 transition hover:border-sky-400 md:grid-cols-[128px_1fr_180px] md:items-start">
-      <div className="flex aspect-square items-center justify-center rounded-md border border-slate-100 bg-slate-50">
-        {/* Cached legacy assets from soliton1.ru, served from /public/legacy/. */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          alt={`${product.h1}, ${product.sku}`}
-          className="h-full w-full object-contain p-2"
-          loading="lazy"
-          decoding="async"
-          src={image || "/placeholders/pdu-silhouette.svg"}
-        />
-      </div>
+      <ProductImageZoom
+        alt={imageAlt}
+        buttonClassName="group flex aspect-square cursor-zoom-in items-center justify-center rounded-md border border-slate-100 bg-slate-50 transition hover:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-500"
+        image={image || "/placeholders/pdu-silhouette.svg"}
+        imageClassName="h-full w-full object-contain p-2 transition group-hover:scale-[1.03]"
+        images={product.images.length > 0 ? product.images : undefined}
+      />
       <div>
         <p className="font-mono text-xs text-slate-500">{product.sku}</p>
         <Link href={`/product/${product.slug}/`}>

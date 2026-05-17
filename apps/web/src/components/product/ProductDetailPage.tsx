@@ -10,6 +10,7 @@ import {
 import Link from "next/link";
 
 import { ProductInfoTabs } from "@/components/product/ProductInfoTabs";
+import { ProductImageZoom } from "@/components/product/ProductImageZoom";
 import { ProductStickyCta } from "@/components/product/ProductStickyCta";
 import { AddToRfqButton } from "@/components/rfq/RfqCart";
 import {
@@ -35,16 +36,15 @@ function JsonLd({ data }: { data: object }) {
 
 function ProductImage({ product }: { product: Product }) {
   const image = product.images[0] || "/placeholders/pdu-silhouette.svg";
+  const imageAlt = `${product.h1}, ${product.sku}`;
 
   return (
-    // Cached legacy assets from soliton1.ru, served from /public/legacy/.
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      alt={`${product.h1}, ${product.sku}`}
-      className="aspect-[4/3] w-full rounded-lg border border-slate-200 bg-white object-contain p-4"
-      decoding="async"
-      fetchPriority="high"
-      src={image}
+    <ProductImageZoom
+      alt={imageAlt}
+      buttonClassName="group flex aspect-[4/3] w-full cursor-zoom-in items-center justify-center rounded-lg border border-slate-200 bg-white transition hover:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-500"
+      image={image}
+      imageClassName="h-full w-full object-contain p-4 transition group-hover:scale-[1.02]"
+      images={product.images.length > 0 ? product.images : undefined}
     />
   );
 }
@@ -101,15 +101,15 @@ export async function ProductDetailPage({ product }: ProductDetailPageProps) {
             <ProductImage product={product} />
             {product.images.length > 1 ? (
               <div className="mt-3 grid grid-cols-4 gap-2">
-                {product.images.slice(1, 5).map((image) => (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    alt={`${product.h1}, дополнительное фото`}
-                    className="aspect-square rounded-md border border-slate-200 bg-white object-contain p-2"
-                    decoding="async"
-                    key={image}
-                    loading="lazy"
-                    src={image}
+                {product.images.slice(1, 5).map((image, index) => (
+                  <ProductImageZoom
+                    alt={`${product.h1}, ${product.sku}`}
+                    buttonClassName="group flex aspect-square cursor-zoom-in items-center justify-center rounded-md border border-slate-200 bg-white transition hover:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                    image={image}
+                    imageClassName="h-full w-full object-contain p-2 transition group-hover:scale-[1.03]"
+                    images={product.images}
+                    initialIndex={index + 1}
+                    key={`${image}-${index}`}
                   />
                 ))}
               </div>
