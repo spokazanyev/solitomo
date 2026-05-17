@@ -1,4 +1,4 @@
-import { ArrowRight, Mail, MapPin, Phone, ShieldCheck } from "lucide-react";
+import { Mail, MapPin, Phone, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 
 import { getPrimaryEmail, getPrimaryPhone } from "@/lib/company/get-company-contacts";
@@ -106,13 +106,6 @@ export function SiteFooter() {
               Поставка по России согласуется в коммерческом предложении.
             </div>
           </div>
-          <Link
-            className="mt-6 inline-flex items-center gap-2 rounded-md bg-sky-700 px-4 py-2 text-sm font-semibold text-white hover:bg-sky-800"
-            href="/b2b/request-quote/"
-          >
-            Запросить КП
-            <ArrowRight className="h-4 w-4" />
-          </Link>
         </div>
 
         <div className="grid gap-8 sm:grid-cols-3">

@@ -327,16 +327,16 @@ function ProductCard({ product }: { product: Product }) {
 
 const routeToneStyles: Record<string, string> = {
   primary: "bg-sky-50/60 border-sky-200 hover:border-sky-400",
-  accent: "bg-amber-50/60 border-amber-200 hover:border-amber-400",
-  neutral: "bg-white border-slate-200 hover:border-sky-400",
-  dark: "bg-emerald-50/60 border-emerald-200 hover:border-emerald-400",
+  accent: "bg-white border-slate-200 hover:border-sky-400 hover:bg-sky-50/40",
+  neutral: "bg-white border-slate-200 hover:border-sky-400 hover:bg-slate-50",
+  dark: "bg-white border-slate-200 hover:border-sky-400 hover:bg-sky-50/40",
 };
 
 const routeCtaStyles: Record<string, string> = {
   primary: "bg-sky-700 text-white hover:bg-sky-800",
-  accent: "bg-amber-600 text-white hover:bg-amber-700",
+  accent: "border border-sky-700 text-sky-800 hover:bg-sky-700 hover:text-white",
   neutral: "border border-slate-300 text-slate-700 hover:border-sky-700 hover:text-sky-800",
-  dark: "bg-emerald-700 text-white hover:bg-emerald-800",
+  dark: "border border-slate-300 text-slate-700 hover:border-sky-700 hover:text-sky-800",
 };
 
 function HomeRoutes() {
