@@ -70,7 +70,9 @@ function parsePrice(value) {
     return null;
   }
 
-  const parsed = Number.parseFloat(String(value).replace(/\s/g, "").replace(",", "."));
+  // Source JSON хранит цены в US-формате: "11,055.00" = 11055 руб.
+  // Запятая — разделитель тысяч (а не дробной части), точка — десятичный.
+  const parsed = Number.parseFloat(String(value).replace(/\s/g, "").replace(/,/g, ""));
   return Number.isFinite(parsed) ? parsed : null;
 }
 
