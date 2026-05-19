@@ -30,7 +30,7 @@ services:
     environment:
       DATABASE_URI: postgres://soliton:${SOLITON_DB_PASSWORD}@soliton-postgres:5432/soliton
       PAYLOAD_SECRET: ${SOLITON_PAYLOAD_SECRET}
-      NEXT_PUBLIC_SITE_URL: https://soliton.${DOMAIN}
+      NEXT_PUBLIC_SITE_URL: https://pdumarket.ru
       NEXT_TELEMETRY_DISABLED: "1"
       NODE_ENV: production
       PORT: "3000"
@@ -38,7 +38,9 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
-      - "traefik.http.routers.soliton.rule=Host(`soliton.${DOMAIN}`)"
+      # Apex + www + legacy test host обслуживаются одним роутером (canonical = pdumarket.ru).
+      # Traefik v3: для нескольких хостов используется OR-комбинация, не запятая.
+      - "traefik.http.routers.soliton.rule=Host(`pdumarket.ru`) || Host(`www.pdumarket.ru`) || Host(`soliton.${DOMAIN}`)"
       - "traefik.http.routers.soliton.entrypoints=websecure"
       - "traefik.http.routers.soliton.tls.certresolver=letsencrypt"
       - "traefik.http.services.soliton.loadbalancer.server.port=3000"

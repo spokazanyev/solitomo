@@ -1,4 +1,4 @@
-# Soliton deploy (mac-mini, soliton.heado.tech)
+# Soliton deploy (mac-mini, pdumarket.ru)
 
 ## Что это
 
@@ -6,7 +6,7 @@
 
 - `soliton-postgres` — отдельный Postgres 16 контейнер (volume `./postgres-data`)
 - `soliton-web` — Next.js 16 + Payload 3 (multi-stage Dockerfile)
-- Traefik labels для `soliton.heado.tech` через Let's Encrypt
+- Traefik labels для трёх Host: `pdumarket.ru` (canonical), `www.pdumarket.ru`, `soliton.heado.tech` (legacy test host). Все три обслуживает один router через OR-комбинацию `Host(\`a\`) || Host(\`b\`)` (Traefik v3 синтаксис, запятые не поддерживаются — выдаёт `unexpected number of parameters`). Let's Encrypt выпускает SAN-cert на все три имени автоматически.
 
 ## Структура на сервере
 
@@ -25,7 +25,12 @@
 2. `docker compose up -d --build` — сборка образа + старт postgres.
 3. Ожидание healthcheck postgres.
 4. `docker exec soliton-web pnpm --filter @soliton/web seed:catalog` — заливка ассортимента.
-5. `curl https://soliton.heado.tech` — проверка.
+5. `curl https://pdumarket.ru` — проверка.
+
+## Заметки по конфигу
+
+- **`NEXT_PUBLIC_SITE_URL`** прокинут в `environment:` контейнера (runtime). Это работает, потому что у нас все маршруты `dynamic = "force-dynamic"` и метаданные генерятся на каждый render — Next подхватывает runtime env. Если когда-то понадобится статика — нужно добавить `ARG NEXT_PUBLIC_SITE_URL` в `Dockerfile` и `args:` в `build:` блок compose, иначе bundle запечётся с fallback `http://localhost:3000`.
+- **Traefik v3 multi-host:** только OR-комбинация `Host(\`a\`) || Host(\`b\`)`. Запятые внутри `Host()` — синтаксис v2, в v3 валит router в state `disabled`.
 
 ## Откат
 
