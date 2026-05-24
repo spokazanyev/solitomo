@@ -10,10 +10,17 @@ import { buildConfig } from "payload";
 import { AdminChangeLog } from "./collections/AdminChangeLog.js";
 import { AttributeGroups, AttributeOptions, Attributes } from "./collections/Attributes.js";
 import { Categories, Documents, MediaAssets, Products } from "./collections/Catalog.js";
+import { CrmSyncJobs } from "./collections/CrmSyncJobs";
 import { FilterFields, FilterGroups, FilterOptions, FilterPresets } from "./collections/Filters.js";
+import { NotificationJobs } from "./collections/NotificationJobs";
 import { Orders } from "./collections/Orders.js";
 import { RfqRequests } from "./collections/RfqRequests.js";
+import { ShippingCalculations } from "./collections/ShippingCalculations";
+import { ShippingLogs } from "./collections/ShippingLogs";
 import { Users } from "./collections/Users.js";
+import { ApiShipSettings } from "./globals/ApiShipSettings";
+import { CrmSettings } from "./globals/CrmSettings";
+import { NotificationsSettings } from "./globals/NotificationsSettings";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -61,7 +68,21 @@ export default buildConfig({
     MediaAssets,
     Documents,
     AdminChangeLog,
+    ShippingCalculations,
+    ShippingLogs,
+    CrmSyncJobs,
+    NotificationJobs,
   ],
+  globals: [ApiShipSettings, CrmSettings, NotificationsSettings],
+  onInit: async () => {
+    try {
+      const { registerCoreSubscribers } = await import("./lib/lifecycle/events");
+      await registerCoreSubscribers();
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.warn("[payload onInit] failed to register lifecycle subscribers", err);
+    }
+  },
   db: postgresAdapter({
     pool: {
       connectionString:

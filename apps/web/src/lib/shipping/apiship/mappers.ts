@@ -1,0 +1,229 @@
+import type {
+  CalculationInput,
+  DeliveryTypeCode,
+  OrderForShipment,
+  PickupPoint,
+  PointsInput,
+  ShippingRate,
+} from "../types";
+import type {
+  CalculatorRequest,
+  OrderRequest,
+  PointObject,
+  TariffObject,
+} from "./client";
+import type { ApiShipSettings } from "./settings";
+
+const DELIVERY_TYPE_MAP: Record<
+  DeliveryTypeCode,
+  { deliveryType: 1 | 2; pickupType: 1 | 2 }
+> = {
+  doortodoor: { deliveryType: 1, pickupType: 1 },
+  doortopoint: { deliveryType: 2, pickupType: 1 },
+  pointtodoor: { deliveryType: 1, pickupType: 2 },
+  pointtopoint: { deliveryType: 2, pickupType: 2 },
+};
+
+export function toCalculatorRequest(
+  input: CalculationInput,
+  type: DeliveryTypeCode,
+  settings: ApiShipSettings,
+): CalculatorRequest {
+  const { deliveryType, pickupType } = DELIVERY_TYPE_MAP[type];
+  return {
+    from: {
+      countryCode: settings.sender.countryCode,
+      address: settings.sender.addressString,
+    },
+    to: {
+      countryCode: input.address.countryCode || "RU",
+      city: input.address.city,
+      postIndex: input.address.postalCode,
+      address: input.address.addressString,
+    },
+    places: input.items.map((item) => ({
+      cost: item.price * item.quantity,
+      weight: item.weight ?? settings.defaults.weight,
+      length: item.length ?? settings.defaults.length,
+      width: item.width ?? settings.defaults.width,
+      height: item.height ?? settings.defaults.height,
+    })),
+    pickupTypes: [pickupType],
+    deliveryTypes: [deliveryType],
+    includeFees: 1,
+  };
+}
+
+export function toShippingRate(
+  tariff: TariffObject,
+  type: DeliveryTypeCode,
+): ShippingRate {
+  const { deliveryType, pickupType } = DELIVERY_TYPE_MAP[type];
+  return {
+    shippingOptionId: `apiship_${type}`,
+    providerKey: tariff.providerKey ?? "unknown",
+    providerName: providerNameFromKey(tariff.providerKey),
+    tariffId: tariff.tariffId ?? tariff.id,
+    tariffName: tariff.name,
+    deliveryType,
+    pickupType,
+    cost: Number(tariff.deliveryCost ?? 0),
+    currency: "RUB",
+    etaMinDays: Number(tariff.daysMin ?? 1),
+    etaMaxDays: Number(tariff.daysMax ?? 5),
+    rawTariff: tariff,
+  };
+}
+
+function providerNameFromKey(key?: string): string | undefined {
+  if (!key) return undefined;
+  const map: Record<string, string> = {
+    cdek: "СДЭК",
+    boxberry: "Boxberry",
+    russianpost: "Почта России",
+    "russian-post": "Почта России",
+    pochta: "Почта России",
+    dpd: "DPD",
+    yandex: "Яндекс Доставка",
+    "yandex-delivery": "Яндекс Доставка",
+    pickpoint: "PickPoint",
+    iml: "IML",
+    dellin: "Деловые Линии",
+  };
+  return map[key] ?? key;
+}
+
+export function pickCheapestTariff(
+  tariffs: TariffObject[],
+  type: DeliveryTypeCode,
+): TariffObject | undefined {
+  const { deliveryType, pickupType } = DELIVERY_TYPE_MAP[type];
+  return [...tariffs]
+    .filter((t) => !t.isError)
+    .filter((t) => (t.deliveryType ?? deliveryType) === deliveryType)
+    .filter((t) => (t.pickupType ?? pickupType) === pickupType)
+    .sort((a, b) => Number(a.deliveryCost ?? Infinity) - Number(b.deliveryCost ?? Infinity))[0];
+}
+
+export function toOrderRequest(
+  order: OrderForShipment,
+  settings: ApiShipSettings,
+): OrderRequest {
+  const totalCost = order.totals.total;
+  const weight = order.items.reduce(
+    (sum, item) => sum + (item.weight ?? settings.defaults.weight) * item.quantity,
+    0,
+  );
+  const places: OrderRequest["places"] = order.items.map((item) => ({
+    description: item.name ?? item.sku,
+    height: item.height ?? settings.defaults.height,
+    length: item.length ?? settings.defaults.length,
+    width: item.width ?? settings.defaults.width,
+    weight: item.weight ?? settings.defaults.weight,
+    items: [
+      {
+        description: item.name ?? item.sku,
+        quantity: item.quantity,
+        cost: item.price,
+        weight: item.weight ?? settings.defaults.weight,
+      },
+    ],
+  }));
+
+  const receiverAddress =
+    order.delivery.address?.addressString ??
+    [
+      order.delivery.address?.postalCode,
+      order.delivery.address?.city,
+      order.delivery.address?.street,
+      order.delivery.address?.house,
+      order.delivery.address?.flat,
+    ]
+      .filter(Boolean)
+      .join(", ");
+
+  return {
+    order: {
+      clientNumber: order.id,
+      description: `Soliton order ${order.id}`,
+      pickupType: order.delivery.pickupType,
+      deliveryType: order.delivery.deliveryType,
+      pointOutId: order.delivery.pointId,
+      weight,
+      length: settings.defaults.length,
+      width: settings.defaults.width,
+      height: settings.defaults.height,
+    },
+    cost: {
+      cost: totalCost,
+      assessedCost: order.totals.subtotal,
+      deliveryCost: order.delivery.cost,
+      deliveryCostVat: settings.defaults.deliveryCostVat as OrderRequest["cost"]["deliveryCostVat"],
+    },
+    sender: {
+      countryCode: settings.sender.countryCode,
+      addressString: settings.sender.addressString,
+      contactName: settings.sender.contactName,
+      phone: settings.sender.phone,
+    },
+    recipient: {
+      countryCode: order.delivery.address?.countryCode ?? "RU",
+      addressString: receiverAddress,
+      fullName: order.customer.fullName ?? order.customer.companyName ?? "",
+      email: order.customer.email,
+      phone: order.customer.phone,
+    },
+    providerKey: order.delivery.providerKey,
+    tariffId: order.delivery.tariffId,
+    places,
+  };
+}
+
+export function toPickupPoints(rows: PointObject[], input: PointsInput): PickupPoint[] {
+  const filtered = rows
+    .map((row) => ({
+      pointId: String(row.id ?? ""),
+      providerKey: row.providerKey ?? input.providerKey,
+      name: row.name,
+      address: row.address ?? "",
+      city: row.city,
+      postalCode: row.postIndex,
+      lat: row.lat,
+      lon: row.lng,
+      workHours: row.timetable,
+      phone: row.phone,
+      paymentMethods: [
+        row.cashPayment ? "cash" : null,
+        row.cardPayment ? "card" : null,
+      ].filter((x): x is "cash" | "card" => x != null),
+      maxDimensions: {
+        length: row.maxLength,
+        width: row.maxWidth,
+        height: row.maxHeight,
+        weight: row.maxWeight,
+      },
+    }))
+    .filter((p) => p.pointId && p.address);
+
+  if (input.maxDimensions || input.maxWeightGrams) {
+    return filtered.filter((p) => {
+      const max = p.maxDimensions;
+      if (!max) return true;
+      if (
+        input.maxDimensions &&
+        max.length &&
+        max.length < input.maxDimensions.length
+      )
+        return false;
+      if (input.maxDimensions && max.width && max.width < input.maxDimensions.width)
+        return false;
+      if (input.maxDimensions && max.height && max.height < input.maxDimensions.height)
+        return false;
+      if (input.maxWeightGrams && max.weight && max.weight < input.maxWeightGrams)
+        return false;
+      return true;
+    });
+  }
+
+  return filtered;
+}

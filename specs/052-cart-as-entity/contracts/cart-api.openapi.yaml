@@ -1,0 +1,445 @@
+openapi: 3.1.0
+info:
+  title: Soliton Cart API
+  version: 0.1.0
+  description: |
+    REST-контракт корзины Soliton (052-cart-as-entity).
+    Все endpoint'ы public, авторизация — по `cartToken` в HTTP-only cookie
+    `soliton_cart_token` или в path-параметре `/api/cart/{token}` (для restore-сценариев).
+
+    Rate-limit: 60 req/min/IP на mutate-эндпоинты, 30 req/min/IP на GET по token.
+
+    Все mutate-эндпоинты поддерживают опциональный заголовок `Idempotency-Key`
+    (UUID-style). Повторный запрос с тем же ключом в течение 5 минут возвращает
+    кешированный ответ без выполнения операции.
+
+servers:
+  - url: https://pdumarket.ru
+  - url: http://localhost:3000
+
+tags:
+  - name: cart-public
+    description: Public cart endpoints (без авторизации, по cartToken).
+  - name: cart-internal
+    description: Internal endpoints (требуют Payload session).
+
+paths:
+
+  /api/cart:
+    post:
+      tags: [cart-public]
+      summary: Создать новую корзину
+      description: |
+        Если cookie `soliton_cart_token` нет (или указывает на несуществующую/expired cart),
+        создаёт новую `carts` запись. Возвращает state + ставит cookie на 30 дней.
+        Можно передать `items` (seed из localStorage при migration) и `sourcePage`/`utm`.
+      operationId: createCart
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items: { $ref: "#/components/schemas/CartItemInput" }
+                  maxItems: 100
+                sourcePage:
+                  type: string
+                  description: Pathname страницы, где произошёл add_to_cart
+                utm:
+                  $ref: "#/components/schemas/Utm"
+                customerEmail:
+                  type: string
+                  format: email
+      responses:
+        "201":
+          description: Cart создан
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+                example: soliton_cart_token=abc123; HttpOnly; Max-Age=2592000; Path=/; SameSite=Lax; Secure
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Cart" }
+        "400": { $ref: "#/components/responses/BadRequest" }
+        "429": { $ref: "#/components/responses/TooManyRequests" }
+
+  /api/cart/{token}:
+    parameters:
+      - $ref: "#/components/parameters/CartToken"
+
+    get:
+      tags: [cart-public]
+      summary: Прочитать корзину по токену
+      description: |
+        Возвращает Cart state. Используется для:
+        - гидратации CartClient на mount (после прочтения cookie);
+        - восстановления при переходе по `/cart/restore/{token}/` (с query `?activity=true`,
+          тогда `lastActivityAt = now()`).
+      operationId: getCart
+      parameters:
+        - in: query
+          name: activity
+          schema: { type: boolean, default: false }
+          description: Обновить ли lastActivityAt (true для restore-link, false для passive hydrate).
+      responses:
+        "200":
+          description: Cart найден
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Cart" }
+        "404": { $ref: "#/components/responses/NotFound" }
+        "410":
+          description: Cart истёк или был слит/конвертирован.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiError"
+                  - type: object
+                    properties:
+                      status: { type: string, enum: [expired, merged, converted, hard_deleted] }
+                      orderId:
+                        type: string
+                        description: Если cart converted, ссылка на Order.
+                      mergedIntoToken:
+                        type: string
+                        description: Если cart merged, токен target-cart.
+
+    patch:
+      tags: [cart-public]
+      summary: Обновить items / email / qty
+      description: |
+        Body содержит ровно одно из:
+        - `setItems`: полный replace items (для drag-n-drop reorder, очистка).
+          Требует `If-Match` header (FR-5214a);
+        - `mergeItems`: добавить/обновить items (как mergeRfqItems);
+        - `setCustomerEmail`: установить email;
+        - `setQuantity`: изменить qty одного item;
+        - `removeItem`: удалить item по sku;
+        - `touch`: продлить `lastActivityAt` без изменения items (FR-5226a).
+
+        Обновляет `lastActivityAt` и `totals`. При первом установлении `customerEmail`
+        эмитит `cart.identified`. Если cart был `abandoned` — возвращается в `active`.
+      operationId: patchCart
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - in: header
+          name: If-Match
+          required: false
+          schema:
+            type: string
+            format: date-time
+          description: |
+            Обязателен для `op=setItems` (optimistic lock по `updatedAt`).
+            При mismatch — 409 `cart_stale`. Для коммутативных операций
+            (`mergeItems`, `setQuantity`, `removeItem`, `touch`) — не обязателен.
+            (FR-5214a)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - type: object
+                  required: [op, items]
+                  properties:
+                    op: { type: string, enum: [setItems] }
+                    items:
+                      type: array
+                      items: { $ref: "#/components/schemas/CartItemInput" }
+                - type: object
+                  required: [op, items]
+                  properties:
+                    op: { type: string, enum: [mergeItems] }
+                    items:
+                      type: array
+                      items: { $ref: "#/components/schemas/CartItemInput" }
+                - type: object
+                  required: [op, customerEmail]
+                  properties:
+                    op: { type: string, enum: [setCustomerEmail] }
+                    customerEmail: { type: string, format: email }
+                - type: object
+                  required: [op, sku, qty]
+                  properties:
+                    op: { type: string, enum: [setQuantity] }
+                    sku: { type: string }
+                    qty: { type: integer, minimum: 1, maximum: 9999 }
+                - type: object
+                  required: [op]
+                  properties:
+                    op: { type: string, enum: [removeItem] }
+                    sku: { type: string }
+                - type: object
+                  required: [op]
+                  properties:
+                    op: { type: string, enum: [touch] }
+                  description: |
+                    Продлевает `lastActivityAt` без изменения items. Используется
+                    checkout-навигацией и finalize-shipping для предотвращения
+                    abandoned-статуса. (FR-5226a)
+      responses:
+        "200":
+          description: Обновлённый cart
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Cart" }
+        "400": { $ref: "#/components/responses/BadRequest" }
+        "404": { $ref: "#/components/responses/NotFound" }
+        "409":
+          description: |
+            Мутация невозможна. Возможные коды:
+            - `cart_already_converted` / `cart_expired` / `cart_merged` — терминальный статус.
+            - `cart_stale` — `If-Match` header не совпадает с текущим `updatedAt`
+              (только для `op=setItems`). Клиент должен перечитать cart и повторить. (FR-5214a)
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiError" }
+
+    delete:
+      tags: [cart-public]
+      summary: Очистить или удалить корзину
+      description: |
+        - Без `?hard=true` — items=[] (cart остаётся, status=active).
+        - С `?hard=true` — hard delete (GDPR-запрос; требует подтверждение email через
+          одноразовый код, либо admin session).
+      operationId: deleteCart
+      parameters:
+        - in: query
+          name: hard
+          schema: { type: boolean, default: false }
+        - in: query
+          name: confirmToken
+          schema: { type: string }
+          description: Одноразовый код, отправленный на customerEmail (для hard-delete).
+      responses:
+        "200":
+          description: Cart очищена (soft)
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Cart" }
+        "204":
+          description: Cart hard-deleted
+        "401":
+          description: Требуется confirmToken или admin session
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiError" }
+
+  /api/cart/{token}/items:
+    parameters:
+      - $ref: "#/components/parameters/CartToken"
+
+    post:
+      tags: [cart-public]
+      summary: Добавить item в корзину
+      description: |
+        Эквивалент `PATCH ?op=mergeItems` с одним элементом. Сохранён как отдельный
+        endpoint для удобства аналитики `add_to_cart` event.
+      operationId: addCartItem
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CartItemInput" }
+      responses:
+        "200":
+          description: Item добавлен (или qty увеличена при merge)
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Cart" }
+        "404": { $ref: "#/components/responses/NotFound" }
+        "409":
+          description: Cart не позволяет мутацию (converted/merged/expired)
+
+  /api/cart/{token}/items/{sku}:
+    parameters:
+      - $ref: "#/components/parameters/CartToken"
+      - in: path
+        name: sku
+        required: true
+        schema: { type: string }
+
+    delete:
+      tags: [cart-public]
+      summary: Удалить item по SKU
+      operationId: removeCartItem
+      responses:
+        "200":
+          description: Item удалён
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Cart" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  /api/cart/merge:
+    post:
+      tags: [cart-public]
+      summary: Слить гостевую корзину в авторизованную (US6 — после 054)
+      description: |
+        В 052 endpoint возвращает 501. Реальная имплементация — в 054 (Customer Account).
+        Body: `{guestCartToken}`; авторизация — через Customer session (после 054).
+      operationId: mergeCarts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [guestCartToken]
+              properties:
+                guestCartToken: { type: string }
+      responses:
+        "200":
+          description: (после 054) Cart мерджнут
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Cart" }
+        "501":
+          description: Не реализовано в 052 (заглушка до 054)
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiError" }
+
+components:
+
+  parameters:
+    CartToken:
+      in: path
+      name: token
+      required: true
+      schema:
+        type: string
+        minLength: 16
+        maxLength: 64
+      description: cartToken (тот же, что в cookie).
+    IdempotencyKey:
+      in: header
+      name: Idempotency-Key
+      required: false
+      schema:
+        type: string
+        format: uuid
+      description: Опциональный ключ идемпотентности (UUID).
+
+  schemas:
+
+    Cart:
+      type: object
+      required: [id, cartToken, items, totals, status, lastActivityAt, expiresAt]
+      properties:
+        id:               { type: string }
+        cartToken:        { type: string, description: "Внимание: возвращается ТОЛЬКО при create. Для GET — не возвращается (anti-leak)." }
+        customerEmail:    { type: string, format: email, nullable: true }
+        customerId:       { type: string, nullable: true, description: "Заполняется после 054." }
+        companyId:        { type: string, nullable: true, description: "Forward-ref для 054 (FR-5404). Nullable." }
+        marketingOptIn:   { type: boolean, default: false, description: "Согласие на маркетинговые рассылки (FR-5224a). Default false." }
+        items:
+          type: array
+          items: { $ref: "#/components/schemas/CartItem" }
+        totals:           { $ref: "#/components/schemas/CartTotals" }
+        status:
+          type: string
+          enum: [active, abandoned, converted, expired, merged]
+        convertedToOrderId: { type: string, nullable: true }
+        mergedIntoId:     { type: string, nullable: true }
+        createdAt:        { type: string, format: date-time }
+        updatedAt:        { type: string, format: date-time }
+        lastActivityAt:   { type: string, format: date-time }
+        abandonedAt:      { type: string, format: date-time, nullable: true }
+        convertedAt:      { type: string, format: date-time, nullable: true }
+        expiresAt:        { type: string, format: date-time }
+        sourcePage:       { type: string, nullable: true }
+        utm:              { $ref: "#/components/schemas/Utm" }
+
+    CartItem:
+      type: object
+      required: [sku, name, qty, addedAt]
+      properties:
+        sku:        { type: string }
+        name:       { type: string }
+        qty:        { type: integer, minimum: 1, maximum: 9999 }
+        priceAtAdd: { type: number, nullable: true, description: "RUB, snapshot." }
+        addedAt:    { type: string, format: date-time }
+        productId:  { type: string, nullable: true }
+        slug:       { type: string, nullable: true }
+        image:      { type: string, nullable: true }
+        warning:
+          type: string
+          enum: [none, removed, price_changed, stock_low]
+          default: none
+
+    CartItemInput:
+      type: object
+      required: [sku, qty]
+      properties:
+        sku:        { type: string }
+        name:       { type: string }
+        qty:        { type: integer, minimum: 1, maximum: 9999 }
+        priceAtAdd: { type: number, nullable: true }
+        productId:  { type: string, nullable: true }
+        slug:       { type: string, nullable: true }
+        image:      { type: string, nullable: true }
+
+    CartTotals:
+      type: object
+      properties:
+        itemCount:          { type: integer }
+        subtotal:           { type: number, description: "RUB." }
+        knownPriceCount:    { type: integer }
+        unknownPriceCount:  { type: integer }
+
+    Utm:
+      type: object
+      properties:
+        source:   { type: string, nullable: true }
+        medium:   { type: string, nullable: true }
+        campaign: { type: string, nullable: true }
+        term:     { type: string, nullable: true }
+        content:  { type: string, nullable: true }
+
+    ApiError:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
+          description: |
+            Машиночитаемый код ошибки. Возможные значения:
+            `validation_failed`, `not_found`, `gone`, `cart_already_converted`,
+            `cart_expired`, `cart_merged`, `cart_stale`, `rate_limited`, `merge_pending_054`,
+            `idempotency_conflict`, `unauthorized`.
+        message:
+          type: string
+          description: Человекочитаемое описание (без PII).
+        details:
+          type: object
+          additionalProperties: true
+
+  responses:
+
+    BadRequest:
+      description: Невалидные входные данные
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/ApiError" }
+
+    NotFound:
+      description: Cart по токену не найден
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/ApiError" }
+
+    TooManyRequests:
+      description: Превышен rate-limit
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/ApiError" }

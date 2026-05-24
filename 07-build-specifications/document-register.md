@@ -83,6 +83,16 @@ Codex должен использовать эти документы как о�
 | llms.txt + agent entry points | `specs/043-llms-txt-and-agent-entry/spec.md` | отложено | Спека готова, реализация отложена. См. `deferred-content-track.md` п.21. |
 | MCP server for Solton catalog | `specs/044-mcp-server-soliton/spec.md` | отложено | Спека готова, реализация отложена. См. `deferred-content-track.md` п.22. |
 | Public catalog from Payload | `specs/045-public-catalog-from-payload/spec.md` | готово | Публичный сайт читает товары и категории из Payload (`lib/products/catalog.ts`); JSON-файл остаётся только как input для seed-скрипта. |
+| Mobile friendly refresh | `specs/046-mobile-friendly-refresh/spec.md` | готово | Сводный мобильный аудит и доработки. |
+| Delivery checkout with ApiShip | `specs/047-delivery-checkout-apiship/spec.md` | создать | Модуль доставки: расчёт тарифов, snapshot цены, ПВЗ, отправления, webhook трекинга, закрытие сделки, event emitter, минимальный email-stub (4 шаблона). Ядро портировано из Medusa-плагина (MIT). |
+| Twenty CRM sync | `specs/048-twenty-crm-sync/spec.md` | создать | Синхронизация Soliton Orders ↔ Twenty (Person/Company/Opportunity/Activity), маппинг стадий, миграция custom fields, авто-задачи менеджеру, очередь crm-sync-jobs с retry. Soliton → Twenty в MVP; двунаправленность во второй фазе. |
+| Customer notifications | `specs/049-customer-notifications/spec.md` | создать | Модуль уведомлений: **email** (Postmark/Mailgun/SendPulse) + admin + placeholder-канал `messenger` (под 050). Матрица событий, queue notification-jobs с dedup и retry, opt-in/opt-out, React-email шаблоны, cron ПВЗ-напоминаний и stuck-alerts. **SMS не реализуется** (решение 2026-05-23). |
+| Messenger notifications (Telegram/MAX) | `specs/050-messenger-notifications/spec.md` | после MVP | Второй канал клиентских уведомлений — мессенджер. Telegram-бот в первую очередь, MAX/VK Messages — позже. Подключается к event emitter из 047, регистрирует sender для канала `messenger` в 049. |
+| Order numbering + items immutability | `specs/051-order-numbering-and-immutability/spec.md` | создать | Человекочитаемый номер заказа `SO-YYYY-NNNN` + блокировка изменения позиций/итогов после `paid`. Низкая стоимость, высокая ценность для UX и аудита. |
+| Cart as entity | `specs/052-cart-as-entity/spec.md` | создать | Выделение корзины из localStorage в coll. `carts`: cart-abandonment, cross-device sync, конверсионная аналитика, merge при логине. |
+| Returns & Refunds | `specs/053-returns-and-refunds/spec.md` | создать | Полноценный жизненный цикл возврата: coll. `returns` с `returnNumber`, частичные возвраты, ЮKassa Refund API, ApiShip return-shipment, корректировочные счёт-фактуры. |
+| Customer account | `specs/054-customer-account/spec.md` | создать | Coll. `customers` + `companies`, magic-link для гостей, авторизация для зарегистрированных, личный кабинет с историей заказов, B2B-роли, GDPR-экспорт/удаление. |
+| Order lifecycle (cross-cutting) | `07-build-specifications/order-lifecycle-spec.md` | создать | Канонический документ жизненного цикла заказа: state machine, snapshot цены, матрица уведомлений (отсылка к 049), маппинг в Twenty (отсылка к 048), SLA, закрытие сделки. Источник истины для 047/048/049. |
 
 ## 4. Контент И SEO
 
@@ -104,6 +114,7 @@ Codex должен использовать эти документы как о�
 |---|---|---|---|
 | Оплата и логистика в России | `05-implementation-roadmap/russia-payments-logistics.md` | готово | Общая рамка российских платежей и доставки. |
 | Агрегаторы оплаты и доставки | `05-implementation-roadmap/russian-payment-delivery-aggregators.md` | готово | Выбор ЮKassa, ApiShip, СДЭК и др. |
+| Order lifecycle (cross-cutting) | `07-build-specifications/order-lifecycle-spec.md` | создать | См. полное описание в разделе 3 (Сайт и страницы) — canonical для 047/048/049. |
 | МойСклад | `05-implementation-roadmap/moysklad-ecommerce-integration-evaluation.md` | готово | Роль МойСклад и варианты интеграции. |
 | МойСклад API spec | `07-build-specifications/moysklad-integration-spec.md` | после MVP | Потоки товаров, остатков, заказов, контрагентов. |
 | Payment integration spec | `07-build-specifications/payment-integration-spec.md` | создать | ЮKassa, счета, webhooks, 54-ФЗ. |

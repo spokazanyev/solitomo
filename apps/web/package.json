@@ -22,7 +22,10 @@
     "validate:schema": "node scripts/validate-schema.mjs",
     "smoke:public-pages": "node scripts/agent-operation-placeholder.mjs smoke:public-pages",
     "public-copy-audit": "node scripts/public-copy-audit.mjs",
-    "download:legacy-assets": "node scripts/download-legacy-assets.mjs"
+    "download:legacy-assets": "node scripts/download-legacy-assets.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.84.1",
@@ -30,13 +33,18 @@
     "@payloadcms/richtext-lexical": "^3.84.1",
     "@payloadcms/translations": "^3.84.1",
     "@payloadcms/ui": "^3.84.1",
+    "axios": "^1.13.2",
+    "axios-rate-limit": "^1.4.0",
+    "axios-retry": "^4.5.0",
+    "graphql-request": "^7.1.0",
     "lucide-react": "^1.16.0",
     "next": "16.2.6",
     "payload": "^3.84.1",
     "pdfkit": "^0.18.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "sharp": "^0.34.5"
+    "sharp": "^0.34.5",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -47,6 +55,8 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^2.1.0",
+    "@vitest/coverage-v8": "^2.1.0"
   }
 }

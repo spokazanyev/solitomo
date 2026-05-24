@@ -8,11 +8,13 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 Read `../../agent-project-context.md` before changing Payload collections, public routes, SEO/schema.org logic or RFQ behavior.
 
-Current admin feature:
+Current features (active implementation):
 
-- `../../specs/016-admin-configuration-system/spec.md`
-- `../../specs/016-admin-configuration-system/plan.md`
-- `../../specs/016-admin-configuration-system/tasks.md`
+- `../../specs/047-delivery-checkout-apiship/` — модуль доставки с ApiShip + lifecycle + email stub.
+- `../../specs/048-twenty-crm-sync/` — синхронизация заказов с Twenty CRM (self-host).
+- `../../specs/049-customer-notifications/` — полная инфраструктура уведомлений (email-only, messenger placeholder).
+- `../../specs/051-order-numbering-and-immutability/` — SO-YYYY-NNNN нумерация + иммутабельность оплаченных заказов.
+- Канонический документ жизненного цикла: `../../07-build-specifications/order-lifecycle-spec.md`.
 
 Useful commands from repo root:
 
@@ -21,4 +23,17 @@ pnpm agent:context
 pnpm --filter @soliton/web generate:types
 pnpm typecheck
 pnpm lint
+pnpm --filter @soliton/web test
 ```
+
+Краткая карта модулей:
+
+- `src/lib/shipping/` — ApiShip provider + fallback + registry (047).
+- `src/lib/lifecycle/` — domain event emitter, status-machine, closure cron, client-number generator (051), immutability guard (051).
+- `src/lib/notifications/` — stub email (047) + полная матрица (049).
+- `src/lib/crm/twenty/` — GraphQL client + sync + subscriber (048).
+- `src/lib/dadata/` — нормализация адресов.
+- `src/globals/{ApiShipSettings,CrmSettings,NotificationsSettings}.ts`.
+- `src/collections/{ShippingCalculations,ShippingLogs,CrmSyncJobs,NotificationJobs}.ts`.
+- Cron-эндпоинты: `src/app/api/cron/{closure,crm-sync,notifications,pickup-reminder,stuck-alerts}/route.ts` — защищены `CRON_SECRET`.
+- Admin-эндпоинты: `src/app/api/admin/orders/[id]/reissue-number/route.ts` (051) — перевыпуск clientNumber.

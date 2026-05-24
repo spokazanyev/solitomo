@@ -1,5 +1,6 @@
 import { withDiscardChangesControl } from "./admin-components.js";
 import { adminGroups, adminLabel, commonLabels } from "./admin-i18n.js";
+// 051: Order numbering + immutability hooks (lazy-imported to avoid startup cost)
 
 /** @type {import('payload').CollectionConfig} */
 export const Orders = {
@@ -10,7 +11,7 @@ export const Orders = {
   },
   admin: withDiscardChangesControl({
     defaultColumns: [
-      "id",
+      "clientNumber", // 051: human-readable number first
       "type",
       "status",
       "total",
@@ -18,7 +19,7 @@ export const Orders = {
       "createdAt",
     ],
     group: adminGroups.sales,
-    useAsTitle: "id",
+    useAsTitle: "clientNumber",
   }),
   access: {
     create: () => true,
@@ -47,6 +48,7 @@ export const Orders = {
       label: commonLabels.status,
       options: [
         { label: adminLabel("Новый", "New"), value: "new" },
+        { label: adminLabel("Черновик", "Draft"), value: "draft" },
         { label: adminLabel("Ожидает оплаты", "Pending payment"), value: "pending_payment" },
         { label: adminLabel("Ожидает оплаты счёта", "Awaiting payment"), value: "awaiting_payment" },
         { label: adminLabel("Оплачен", "Paid"), value: "paid" },
@@ -55,6 +57,8 @@ export const Orders = {
         { label: adminLabel("Доставлен", "Delivered"), value: "delivered" },
         { label: adminLabel("Отменён", "Cancelled"), value: "cancelled" },
         { label: adminLabel("Просрочен", "Expired"), value: "expired" },
+        { label: adminLabel("Закрыт", "Completed"), value: "completed" },
+        { label: adminLabel("Возврат", "Returned"), value: "returned" },
       ],
     },
     {
@@ -107,6 +111,18 @@ export const Orders = {
         { name: "kpp", type: "text", label: adminLabel("КПП", "KPP") },
         { name: "ogrn", type: "text", label: adminLabel("ОГРН", "OGRN") },
         { name: "legalAddress", type: "textarea", label: adminLabel("Юр. адрес", "Legal address") },
+        {
+          name: "emailValid",
+          type: "checkbox",
+          defaultValue: true,
+          label: adminLabel("Email валиден", "Email valid"),
+          admin: {
+            description: adminLabel(
+              "Помечается false после 3 hard bounce от провайдера (049, FR-edge bounce).",
+              "Flipped false after 3 hard bounces (049, edge case).",
+            ),
+          },
+        },
       ],
     },
     {
@@ -131,7 +147,147 @@ export const Orders = {
         { name: "cost", type: "number", label: adminLabel("Стоимость доставки, ₽", "Delivery cost, ₽") },
         { name: "trackNumber", type: "text", label: adminLabel("Трек-номер", "Track number") },
         { name: "shippedAt", type: "date", label: adminLabel("Отправлен", "Shipped at") },
+        // 047: ApiShip integration
+        {
+          name: "provider",
+          type: "select",
+          defaultValue: "fallback",
+          label: adminLabel("Провайдер", "Provider"),
+          options: [
+            { label: "ApiShip", value: "apiship" },
+            { label: adminLabel("Fallback (старые опции)", "Fallback"), value: "fallback" },
+          ],
+        },
+        { name: "providerKey", type: "text", label: adminLabel("Код службы", "Provider key") },
+        { name: "tariffId", type: "number" },
+        {
+          name: "deliveryType",
+          type: "select",
+          label: adminLabel("Тип доставки", "Delivery type"),
+          options: [
+            { label: adminLabel("До двери", "Door"), value: "1" },
+            { label: adminLabel("До ПВЗ", "Point"), value: "2" },
+          ],
+        },
+        {
+          name: "pickupType",
+          type: "select",
+          label: adminLabel("Тип забора", "Pickup type"),
+          options: [
+            { label: adminLabel("От двери", "Door"), value: "1" },
+            { label: adminLabel("От ПВЗ", "Point"), value: "2" },
+          ],
+        },
+        { name: "pointId", type: "text", label: adminLabel("ID ПВЗ", "Pickup point ID") },
+        { name: "pointAddress", type: "text", label: adminLabel("Адрес ПВЗ", "Pickup point address") },
+        { name: "etaMinDays", type: "number", label: adminLabel("Срок мин, дн.", "ETA min days") },
+        { name: "etaMaxDays", type: "number", label: adminLabel("Срок макс, дн.", "ETA max days") },
+        { name: "selectedAt", type: "date", admin: { readOnly: true } },
+        { name: "addressNormalized", type: "json", label: adminLabel("Нормализованный адрес", "Normalized address") },
+        {
+          name: "priceSnapshot",
+          type: "group",
+          admin: { readOnly: true, description: adminLabel("Фиксируется на шаге Review (FR-107).", "Captured on Review step.") },
+          fields: [
+            { name: "cost", type: "number" },
+            { name: "currency", type: "text", defaultValue: "RUB" },
+            { name: "capturedAt", type: "date" },
+            { name: "sourceCacheKey", type: "text" },
+            { name: "refreshCheckAt", type: "date" },
+          ],
+        },
+        { name: "pickupExpiresAt", type: "date", label: adminLabel("Срок хранения в ПВЗ", "Pickup expires at") },
       ],
+    },
+    {
+      type: "group",
+      name: "shipment",
+      label: adminLabel("Отправление", "Shipment"),
+      admin: { description: adminLabel("Заполняется автоматически после создания заказа в ApiShip.", "Filled after ApiShip order creation.") },
+      fields: [
+        { name: "providerOrderId", type: "text" },
+        { name: "trackingNumber", type: "text" },
+        { name: "trackingUrl", type: "text" },
+        { name: "labelUrl", type: "text" },
+        { name: "waybillUrl", type: "text" },
+        {
+          name: "status",
+          type: "select",
+          defaultValue: "none",
+          options: [
+            { label: adminLabel("Не создан", "Not created"), value: "none" },
+            { label: adminLabel("Создаётся", "Pending"), value: "pending" },
+            { label: adminLabel("Создан", "Created"), value: "created" },
+            { label: adminLabel("Ожидает этикетки", "Pending label"), value: "pending_label" },
+            { label: adminLabel("В пути", "In transit"), value: "in_transit" },
+            { label: adminLabel("В ПВЗ", "At point"), value: "at_point" },
+            { label: adminLabel("Доставлен", "Delivered"), value: "delivered" },
+            { label: adminLabel("Возврат", "Returned"), value: "returned" },
+            { label: adminLabel("Отменён", "Cancelled"), value: "cancelled" },
+            { label: adminLabel("Ошибка", "Error"), value: "error" },
+          ],
+        },
+        {
+          name: "events",
+          type: "array",
+          fields: [
+            { name: "eventId", type: "text", required: true },
+            { name: "providerStatus", type: "text" },
+            { name: "internalStatus", type: "text" },
+            { name: "at", type: "date", required: true },
+            { name: "receivedAt", type: "date" },
+            { name: "message", type: "text" },
+            { name: "raw", type: "json" },
+          ],
+        },
+        { name: "createdAt", type: "date", admin: { readOnly: true } },
+        { name: "cancelledAt", type: "date", admin: { readOnly: true } },
+        { name: "errorMessage", type: "text", admin: { readOnly: true } },
+        { name: "lastSyncedAt", type: "date", admin: { readOnly: true } },
+      ],
+    },
+    {
+      type: "group",
+      name: "crmRefs",
+      label: adminLabel("CRM (Twenty)", "CRM (Twenty)"),
+      admin: { description: adminLabel("Заполнение — 048-twenty-crm-sync.", "Filled by 048-twenty-crm-sync.") },
+      fields: [
+        { name: "opportunityId", type: "text", admin: { readOnly: true } },
+        { name: "personId", type: "text", admin: { readOnly: true } },
+        { name: "companyId", type: "text", admin: { readOnly: true } },
+        { name: "lastSyncedAt", type: "date", admin: { readOnly: true } },
+        {
+          name: "lastSyncStatus",
+          type: "select",
+          options: ["queued", "in_progress", "success", "failed", "quarantined"].map((v) => ({ label: v, value: v })),
+          admin: { readOnly: true },
+        },
+        { name: "lastSyncError", type: "text", admin: { readOnly: true } },
+        { name: "pendingCancellationFromCrm", type: "checkbox", defaultValue: false },
+      ],
+    },
+    { name: "deliveredAt", type: "date", admin: { readOnly: true } },
+    { name: "closedAt", type: "date", admin: { readOnly: true } },
+    { name: "disputeFlag", type: "checkbox", defaultValue: false,
+      label: adminLabel("Диспут / возврат", "Dispute"),
+      admin: { description: adminLabel(
+        "Derived: true ⟺ есть Return со статусом requested/approved/received. Синхронизируется из returns.afterChange (053, FR-5310).",
+        "Derived: true iff active Return exists. Synced from returns.afterChange (053).",
+      ) },
+    },
+    { name: "paymentRetryUntil", type: "date", admin: { readOnly: true } },
+    // 053: Return aggregates (computed from returns collection afterChange)
+    { name: "hasReturns", type: "checkbox", defaultValue: false,
+      label: adminLabel("Есть возвраты", "Has returns"),
+      admin: { readOnly: true, description: adminLabel("Computed из коллекции returns.", "Computed from returns collection.") },
+    },
+    { name: "returnsCount", type: "number", defaultValue: 0,
+      label: adminLabel("Количество возвратов", "Returns count"),
+      admin: { readOnly: true },
+    },
+    { name: "totalRefunded", type: "number", defaultValue: 0,
+      label: adminLabel("Сумма возвратов, ₽", "Total refunded, ₽"),
+      admin: { readOnly: true, description: adminLabel("В копейках. Computed из returns.", "In kopecks. Computed from returns.") },
     },
     {
       type: "group",
@@ -161,6 +317,28 @@ export const Orders = {
         { name: "providerRef", type: "text", label: adminLabel("ID платежа", "Provider ref") },
         { name: "paidAt", type: "date", label: adminLabel("Дата оплаты", "Paid at") },
         { name: "amount", type: "number", label: adminLabel("Сумма оплаты, ₽", "Amount paid, ₽") },
+        // 053: Refund records
+        {
+          name: "refunds",
+          type: "array",
+          label: adminLabel("Возвраты средств", "Refunds"),
+          admin: { readOnly: true, description: adminLabel("Заполняется автоматически при возврате (053).", "Auto-filled on refund (053).") },
+          fields: [
+            { name: "providerRefundId", type: "text", required: true },
+            { name: "returnId", type: "text" },
+            { name: "amount", type: "number", required: true, admin: { description: adminLabel("В копейках.", "In kopecks.") } },
+            { name: "refundedAt", type: "date", required: true },
+            {
+              name: "providerStatus",
+              type: "select",
+              options: [
+                { label: "pending", value: "pending" },
+                { label: "succeeded", value: "succeeded" },
+                { label: "failed", value: "failed" },
+              ],
+            },
+          ],
+        },
       ],
     },
     {
@@ -192,6 +370,48 @@ export const Orders = {
         ),
       },
     },
+    // 051: Human-readable order number
+    {
+      name: "clientNumber",
+      type: "text",
+      unique: true,
+      index: true,
+      label: adminLabel("Номер заказа", "Order number"),
+      admin: {
+        readOnly: true,
+        description: adminLabel(
+          "Формат SO-YYYY-NNNN. Генерируется автоматически через PG SEQUENCE (051, FR-5101).",
+          "Format SO-YYYY-NNNN. Auto-generated via PG SEQUENCE (051, FR-5101).",
+        ),
+      },
+    },
+    // 051: Reissue reason (audit trail, FR-5110)
+    {
+      name: "clientNumberReissueReason",
+      type: "text",
+      label: adminLabel("Причина перевыпуска номера", "Reissue reason"),
+      admin: {
+        readOnly: true,
+        description: adminLabel(
+          "Заполняется при ручном изменении clientNumber через admin-роут. ≥10 символов.",
+          "Filled when reissuing number via admin route. ≥10 chars.",
+        ),
+        condition: (data) => Boolean(data?.clientNumberReissueReason),
+      },
+    },
+    // 051: History of reissued client numbers (audit trail)
+    {
+      name: "clientNumberHistory",
+      type: "array",
+      label: adminLabel("История номеров", "Number history"),
+      admin: { readOnly: true },
+      fields: [
+        { name: "oldNumber", type: "text", required: true },
+        { name: "reissuedAt", type: "date", required: true },
+        { name: "reason", type: "text" },
+        { name: "actorEmail", type: "text" },
+      ],
+    },
     {
       name: "internalComment",
       type: "textarea",
@@ -209,10 +429,79 @@ export const Orders = {
         { name: "note", type: "text" },
       ],
     },
+    {
+      name: "marketingOptIn",
+      type: "checkbox",
+      defaultValue: false,
+      label: adminLabel("Согласие на маркетинговые письма", "Marketing opt-in"),
+      admin: {
+        description: adminLabel(
+          "Управляется через /preferences/[token]/. 152-ФЗ: opt-in явный, отзыв доступен в любой момент.",
+          "Controlled via /preferences/[token]/.",
+        ),
+      },
+    },
+    {
+      name: "messengerOptIn",
+      type: "checkbox",
+      defaultValue: false,
+      label: adminLabel("Канал messenger (placeholder 050)", "Messenger opt-in (placeholder 050)"),
+      admin: {
+        description: adminLabel(
+          "Согласие на messenger-канал. В 049 placeholder; реализация в спеке 050 (Telegram).",
+          "Messenger consent placeholder for spec 050 (Telegram).",
+        ),
+      },
+    },
+    {
+      name: "notifications",
+      type: "array",
+      label: adminLabel("Журнал уведомлений", "Notifications log"),
+      admin: {
+        description: adminLabel(
+          "Зеркало notification-jobs для быстрого отображения в карточке заказа.",
+          "Mirror of notification-jobs for quick lookup.",
+        ),
+      },
+      fields: [
+        { name: "notificationId", type: "text", required: true },
+        { name: "event", type: "text", required: true },
+        {
+          name: "channel",
+          type: "select",
+          required: true,
+          options: [
+            { label: "email", value: "email" },
+            { label: "messenger", value: "messenger" },
+            { label: "crm", value: "crm" },
+            { label: "admin_ui", value: "admin_ui" },
+            { label: "dataLayer", value: "dataLayer" },
+          ],
+        },
+        { name: "template", type: "text" },
+        { name: "recipient", type: "text" },
+        { name: "scheduledAt", type: "date" },
+        { name: "sentAt", type: "date" },
+        {
+          name: "status",
+          type: "select",
+          required: true,
+          options: [
+            { label: "queued", value: "queued" },
+            { label: "sent", value: "sent" },
+            { label: "failed", value: "failed" },
+            { label: "skipped", value: "skipped" },
+          ],
+        },
+        { name: "errorMessage", type: "text" },
+        { name: "externalRef", type: "text" },
+        { name: "skipReason", type: "text" },
+      ],
+    },
   ],
   hooks: {
     beforeChange: [
-      ({ data, originalDoc, operation }) => {
+      async ({ data, originalDoc, operation, req }) => {
         // auto-fill customerLabel
         const c = data?.customer ?? originalDoc?.customer ?? {};
         const label = c.companyName?.trim() || c.fullName?.trim() || c.email?.trim() || "—";
@@ -222,6 +511,65 @@ export const Orders = {
         if (operation === "create" && !data.publicToken) {
           data.publicToken =
             Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+        }
+
+        // 051: Generate clientNumber on create (if not already set)
+        if (operation === "create" && !data.clientNumber) {
+          try {
+            const { generateClientNumber } = await import("../lib/lifecycle/client-number.ts");
+            const result = await generateClientNumber(req.payload);
+            data.clientNumber = result.clientNumber;
+          } catch (err) {
+            req.payload.logger.error("[orders] clientNumber generation failed:", err);
+            // Don't block order creation — clientNumber can be backfilled later
+          }
+        }
+
+        // 051: Immutability check on update (wasEverPaid guard)
+        // Skip via req.context.skipImmutability for reissue endpoint and backfill
+        if (operation === "update" && originalDoc && !req.context?.skipImmutability) {
+          let isValidationError = false;
+          try {
+            const { checkPaidImmutability } = await import("../lib/lifecycle/immutability.ts");
+            const result = checkPaidImmutability(data, originalDoc, operation);
+            if (!result.allowed) {
+              // Log the rejected mutation to admin-change-log
+              try {
+                await req.payload.create({
+                  collection: "admin-change-log",
+                  data: {
+                    actorType: "system",
+                    actorName: req.user?.email ?? "system:immutability-guard",
+                    targetCollection: "orders",
+                    targetId: String(originalDoc.id),
+                    targetLabel: originalDoc.clientNumber ?? String(originalDoc.id),
+                    changeType: "update",
+                    diffSummary: "order_mutation_rejected",
+                    afterSnapshot: {
+                      violations: result.violations,
+                      wasEverPaid: true,
+                      attemptedFields: result.violations,
+                    },
+                  },
+                });
+              } catch {
+                // AdminChangeLog may not exist yet — don't block the rejection
+              }
+
+              const { ValidationError } = await import("payload");
+              isValidationError = true;
+              throw new ValidationError({
+                errors: result.violations.map((field) => ({
+                  message: `Field "${field}" is immutable after payment`,
+                  path: field,
+                })),
+              });
+            }
+          } catch (err) {
+            // Re-throw ValidationError (it's the intentional block)
+            if (isValidationError) throw err;
+            req.payload.logger.error("[orders] immutability check failed:", err);
+          }
         }
 
         // append history entry on status change

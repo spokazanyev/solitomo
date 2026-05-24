@@ -1,0 +1,518 @@
+openapi: 3.1.0
+info:
+  title: Soliton Returns & Refunds API
+  version: 0.1.0
+  description: |
+    REST-контракты модуля возвратов Soliton (053-returns-and-refunds).
+
+    - **Public** эндпоинт `/api/returns` доступен без авторизации, но требует валидный
+      `orderToken` (тот же immutable-токен, что для `/cart/order/[token]/`).
+      Защищён rate-limit'ом 3 запроса/час на токен.
+    - **Admin** эндпоинты `/api/admin/returns/*` требуют активной Payload-сессии
+      (роль staff/admin).
+servers:
+  - url: https://pdumarket.ru
+  - url: http://localhost:3000
+tags:
+  - name: returns-public
+    description: Публичные эндпоинты для покупателя
+  - name: returns-admin
+    description: Admin-only (Payload session required)
+
+paths:
+
+  # ─────────────────────────────────────────────────────────
+  # PUBLIC
+  # ─────────────────────────────────────────────────────────
+
+  /api/returns:
+    post:
+      tags: [returns-public]
+      summary: Оформить заявку на возврат
+      operationId: createReturn
+      description: |
+        Создаёт новую заявку Return со статусом `requested`.
+        Требует валидный `orderToken`. Order должен быть в статусе `delivered`
+        или `completed`. Rate-limit: 3 запроса/час на токен.
+
+        Идемпотентность: повторный submit с тем же `clientRequestId` в течение
+        10 минут возвращает существующий Return (200 OK), а не дубликат.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateReturnRequest"
+      responses:
+        "201":
+          description: Заявка создана
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReturnPublicView"
+        "200":
+          description: Идемпотентный повтор — возвращена существующая заявка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReturnPublicView"
+        "400": { $ref: "#/components/responses/BadRequest" }
+        "403":
+          description: Order не в статусе delivered/completed либо токен не подходит
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiError" }
+        "404":
+          description: Order по `orderToken` не найден
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiError" }
+        "409":
+          description: Конфликт — например, для выбранной позиции уже оформлен возврат на полное qty
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiError" }
+        "429":
+          description: Rate-limit exceeded
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiError" }
+
+    get:
+      tags: [returns-public]
+      summary: Получить список Returns по заказу
+      operationId: getReturnsForOrder
+      parameters:
+        - in: query
+          name: orderToken
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Список Returns по заказу
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  returns:
+                    type: array
+                    items: { $ref: "#/components/schemas/ReturnPublicView" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  # ─────────────────────────────────────────────────────────
+  # ADMIN
+  # ─────────────────────────────────────────────────────────
+
+  /api/admin/returns:
+    post:
+      tags: [returns-admin]
+      summary: Менеджер создаёт возврат от имени клиента
+      operationId: createReturnByAdmin
+      security: [{ payloadSession: [] }]
+      description: |
+        Менеджер вручную создаёт Return от имени клиента (US7).
+        `createdVia = manager-manual`. Требует admin-auth.
+        Body — расширенный CreateReturnRequest + `orderId` (вместо `orderToken`).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdminCreateReturnRequest"
+      responses:
+        "201":
+          description: Заявка создана
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReturnAdminView"
+        "400": { $ref: "#/components/responses/BadRequest" }
+        "403":
+          description: Order не в статусе delivered/completed
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiError" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  /api/admin/returns/{id}/approve:
+    post:
+      tags: [returns-admin]
+      summary: Одобрить заявку
+      operationId: approveReturn
+      security: [{ payloadSession: [] }]
+      parameters:
+        - $ref: "#/components/parameters/ReturnId"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                managerNotes: { type: string }
+      responses:
+        "200":
+          description: Статус → approved
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ReturnAdminView" }
+        "400": { $ref: "#/components/responses/BadRequest" }
+        "409":
+          description: Запрещённый переход (например, статус уже refunded)
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiError" }
+
+  /api/admin/returns/{id}/reject:
+    post:
+      tags: [returns-admin]
+      summary: Отклонить заявку
+      operationId: rejectReturn
+      security: [{ payloadSession: [] }]
+      parameters:
+        - $ref: "#/components/parameters/ReturnId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [statusReason]
+              properties:
+                statusReason: { type: string, minLength: 5,
+                  description: "Обязательный текст обоснования отказа." }
+                managerNotes: { type: string }
+      responses:
+        "200":
+          description: Статус → rejected
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ReturnAdminView" }
+        "400": { $ref: "#/components/responses/BadRequest" }
+
+  /api/admin/returns/{id}/cancel:
+    post:
+      tags: [returns-admin]
+      summary: Отменить заявку (от менеджера или после таймаута)
+      operationId: cancelReturn
+      security: [{ payloadSession: [] }]
+      parameters:
+        - $ref: "#/components/parameters/ReturnId"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                statusReason: { type: string }
+      responses:
+        "200":
+          description: Статус → cancelled
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ReturnAdminView" }
+
+  /api/admin/returns/{id}/received:
+    post:
+      tags: [returns-admin]
+      summary: Зафиксировать получение возврата на склад
+      operationId: markReturnReceived
+      security: [{ payloadSession: [] }]
+      parameters:
+        - $ref: "#/components/parameters/ReturnId"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                managerNotes: { type: string }
+                refundAmountOverride:
+                  type: integer
+                  description: "Опц. — менеджер корректирует сумму (в копейках)."
+      responses:
+        "200":
+          description: Статус → received
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ReturnAdminView" }
+
+  /api/admin/returns/{id}/refund:
+    post:
+      tags: [returns-admin]
+      summary: Вернуть деньги клиенту (через ЮKassa или ручная фиксация)
+      operationId: refundReturn
+      security: [{ payloadSession: [] }]
+      parameters:
+        - $ref: "#/components/parameters/ReturnId"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                manualConfirmation:
+                  type: object
+                  description: "Для refundMethod ≠ card-original."
+                  properties:
+                    paymentDoc: { type: string, description: "Номер платёжки." }
+      responses:
+        "200":
+          description: Статус → refunded; refund в ЮKassa выполнен (или зафиксирован вручную)
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ReturnAdminView" }
+        "409":
+          description: ЮKassa отказала (карта истекла, paymentId не найден и т.п.)
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiError" }
+
+  /api/admin/returns/{id}/create-return-shipment:
+    post:
+      tags: [returns-admin]
+      summary: Оформить return-shipment в ApiShip
+      operationId: createReturnShipment
+      security: [{ payloadSession: [] }]
+      parameters:
+        - $ref: "#/components/parameters/ReturnId"
+      responses:
+        "200":
+          description: ApiShip return order создан
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiShipReturnOrderId: { type: string }
+                  returnLabelUrl:       { type: string, format: uri }
+
+  /api/admin/returns/{id}/regenerate-credit-memo:
+    post:
+      tags: [returns-admin]
+      summary: Перегенерировать корректировочный счёт-фактуру (для юрлица)
+      operationId: regenerateCreditMemo
+      security: [{ payloadSession: [] }]
+      parameters:
+        - $ref: "#/components/parameters/ReturnId"
+      responses:
+        "200":
+          description: КСФ сгенерирован
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  creditMemoNumber:  { type: string, example: "CM-2026-0042" }
+                  creditMemoPdfUrl:  { type: string, format: uri }
+        "400":
+          description: Order не legal — КСФ не нужен
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiError" }
+
+# ─────────────────────────────────────────────────────────
+components:
+
+  securitySchemes:
+    payloadSession:
+      type: apiKey
+      in: cookie
+      name: payload-token
+
+  parameters:
+    ReturnId:
+      in: path
+      name: id
+      required: true
+      schema: { type: string }
+
+  responses:
+    BadRequest:
+      description: Невалидный запрос
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/ApiError" }
+    NotFound:
+      description: Не найдено
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/ApiError" }
+
+  schemas:
+
+    CreateReturnRequest:
+      type: object
+      required: [orderToken, items, reasonCategory, refundMethod]
+      properties:
+        orderToken:
+          type: string
+          description: Immutable-токен заказа из /cart/order/[token]/.
+        clientRequestId:
+          type: string
+          description: |
+            UUID, генерируется на клиенте. Окно дедупликации 10 мин
+            (double-click protection). Rate-limit 3/час на токен — abuse protection.
+            Обычные повторные заявки клиента создают новый Return с собственным returnNumber.
+        items:
+          type: array
+          minItems: 1
+          items:
+            type: object
+            required: [orderItemSku, qty]
+            properties:
+              orderItemSku: { type: string }
+              qty:          { type: integer, minimum: 1 }
+              reason:       { type: string, maxLength: 500 }
+              condition:
+                type: string
+                enum: [unopened, opened_unused, used, defective]
+        reasonCategory:
+          type: string
+          enum: [defect, wrong-item, not-needed, other]
+        customerNotes:
+          type: string
+          maxLength: 2000
+        refundMethod:
+          type: string
+          enum: [card-original, bank-transfer, other]
+        returnMethod:
+          type: string
+          enum: [self_post, pickup_via_courier, drop_off]
+          default: self_post
+        photoMediaIds:
+          type: array
+          items: { type: string }
+          maxItems: 5
+          description: |
+            ID файлов из Payload Media (предварительно загруженных).
+            До 5 файлов × 5 МБ. MIME: image/jpeg, image/png, image/heic, image/webp.
+            EXIF-strip обязателен (152-ФЗ, геолокация = ПДн).
+
+    AdminCreateReturnRequest:
+      type: object
+      required: [orderId, items, reasonCategory, refundMethod]
+      properties:
+        orderId:
+          type: string
+          description: ID заказа в Payload (вместо orderToken — для admin).
+        items:
+          type: array
+          minItems: 1
+          items:
+            type: object
+            required: [orderItemSku, qty]
+            properties:
+              orderItemSku: { type: string }
+              qty:          { type: integer, minimum: 1 }
+              reason:       { type: string, maxLength: 500 }
+              condition:
+                type: string
+                enum: [unopened, opened_unused, used, defective]
+        reasonCategory:
+          type: string
+          enum: [defect, wrong-item, not-needed, other]
+        customerNotes:
+          type: string
+          maxLength: 2000
+        managerNotes:
+          type: string
+          maxLength: 2000
+        refundMethod:
+          type: string
+          enum: [card-original, bank-transfer, other]
+        returnMethod:
+          type: string
+          enum: [self_post, pickup_via_courier, drop_off]
+          default: self_post
+
+    ReturnPublicView:
+      type: object
+      properties:
+        returnNumber:  { type: string, example: "RT-2026-0001" }
+        status:
+          type: string
+          enum: [requested, approved, received, refunded, rejected, cancelled]
+        refundAmount:
+          type: integer
+          description: В копейках.
+        refundMethod:
+          type: string
+          enum: [card-original, bank-transfer, other]
+        requestedAt:   { type: string, format: date-time }
+        approvedAt:    { type: string, format: date-time, nullable: true }
+        receivedAt:    { type: string, format: date-time, nullable: true }
+        refundedAt:    { type: string, format: date-time, nullable: true }
+        returnLabelUrl:
+          type: string
+          format: uri
+          nullable: true
+          description: Появляется когда менеджер оформил return-shipment в ApiShip.
+        creditMemoPdfUrl:
+          type: string
+          format: uri
+          nullable: true
+          description: Только для Order.type=legal, после refund.
+
+    ReturnAdminView:
+      allOf:
+        - $ref: "#/components/schemas/ReturnPublicView"
+        - type: object
+          properties:
+            orderId:               { type: string }
+            orderNumberSnapshot:   { type: string }
+            reasonCategory:
+              type: string
+              enum: [defect, wrong-item, not-needed, other]
+            customerNotes:         { type: string }
+            managerNotes:          { type: string }
+            statusReason:          { type: string }
+            refundProviderRef:     { type: string, nullable: true,
+              description: "ID refund в ЮKassa." }
+            apiShipReturnOrderId:  { type: string, nullable: true }
+            correctionReceiptStatus:
+              type: string
+              enum: [pending, issued, not_required, error]
+            history:
+              type: array
+              items:
+                type: object
+                properties:
+                  at:         { type: string, format: date-time }
+                  fromStatus: { type: string }
+                  toStatus:   { type: string }
+                  byUser:     { type: string, nullable: true }
+                  reason:     { type: string }
+            items:
+              type: array
+              items:
+                type: object
+                properties:
+                  orderItemSku:  { type: string }
+                  productName:   { type: string }
+                  qty:           { type: integer }
+                  priceSnapshot: { type: integer, description: "Копейки." }
+                  vatRate:       { type: string }
+                  reason:        { type: string }
+                  condition:     { type: string }
+                  photos:
+                    type: array
+                    items: { type: string, format: uri }
+
+    ApiError:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: string
+          example: ORDER_NOT_RETURNABLE
+        message:
+          type: string
+          example: "Заказ ещё не доставлен — возврат недоступен."
+        details:
+          type: object
+          additionalProperties: true

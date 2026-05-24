@@ -3,17 +3,12 @@
 import { ArrowRight, CreditCard, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
+import { AddressForm, type AddressFormValue } from "@/components/checkout/AddressForm";
+import { DeliveryBlock, type SelectedRate } from "@/components/checkout/DeliveryBlock";
 import { clearCartItems, getCartTotal, useRfqCartItems } from "@/components/rfq/RfqCart";
 import { pushEvent } from "@/lib/analytics/data-layer";
-
-const DELIVERY_OPTIONS = [
-  { value: "cdek", label: "СДЭК" },
-  { value: "boxberry", label: "Boxberry" },
-  { value: "russian-post", label: "Почта России" },
-  { value: "pickup", label: "Самовывоз" },
-];
 
 function formatPrice(amount: number) {
   return new Intl.NumberFormat("ru-RU", {
@@ -31,11 +26,30 @@ export function PhysicalCheckoutForm() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [city, setCity] = useState("");
-  const [address, setAddress] = useState("");
-  const [delivery, setDelivery] = useState("cdek");
+  const [address, setAddress] = useState<AddressFormValue>({ query: "" });
+  const [selectedRate, setSelectedRate] = useState<SelectedRate | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const cartId = useMemo(() => {
+    if (typeof window === "undefined") return "anon";
+    let id = window.localStorage.getItem("soliton-cart-id");
+    if (!id) {
+      id = `cart_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
+      window.localStorage.setItem("soliton-cart-id", id);
+    }
+    return id;
+  }, []);
+
+  const itemsForShipping = useMemo(
+    () =>
+      items.map((item) => ({
+        sku: item.sku,
+        quantity: Number.parseInt(item.quantity, 10) || 1,
+        price: item.price ?? 0,
+      })),
+    [items],
+  );
 
   useEffect(() => {
     if (items.length === 0) return;
@@ -64,10 +78,19 @@ export function PhysicalCheckoutForm() {
       setError("В корзине только позиции без цены — оплата картой невозможна. Запросите КП.");
       return;
     }
+    if (!selectedRate) {
+      setError("Выберите способ доставки.");
+      return;
+    }
+    if (!address.isValid) {
+      setError("Выберите адрес из подсказок DaData.");
+      return;
+    }
     setError(null);
     setSubmitting(true);
 
     try {
+      const rate = selectedRate.rate;
       const res = await fetch("/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -81,7 +104,32 @@ export function PhysicalCheckoutForm() {
             price: item.price ?? null,
           })),
           customer: { fullName, email, phone },
-          delivery: { method: delivery, city, address },
+          delivery: {
+            method: rate.providerKey,
+            city: address.city,
+            address: address.query,
+            provider: rate.providerKey?.startsWith("fallback_") ? "fallback" : "apiship",
+            providerKey: rate.providerKey,
+            tariffId: rate.tariffId,
+            deliveryType: String(rate.deliveryType),
+            pickupType: String(rate.pickupType),
+            pointId: selectedRate.pointId,
+            pointAddress: selectedRate.pointAddress,
+            cost: rate.cost,
+            etaMinDays: rate.etaMinDays,
+            etaMaxDays: rate.etaMaxDays,
+            addressNormalized: {
+              postalCode: address.postalCode,
+              city: address.city,
+              region: address.region,
+              street: address.street,
+              house: address.house,
+              flat: address.flat,
+              kladrId: address.kladrId,
+              fiasId: address.fiasId,
+              isValid: address.isValid,
+            },
+          },
           sourcePage: typeof window !== "undefined" ? window.location.pathname : undefined,
         }),
       });
@@ -156,42 +204,19 @@ export function PhysicalCheckoutForm() {
         </div>
 
         <div className="rounded-lg border border-slate-200 bg-white p-6">
-          <p className="text-sm font-semibold text-slate-950">Доставка</p>
-          <div className="mt-4 grid gap-4 md:grid-cols-2">
-            <label className="grid gap-1 text-xs font-medium text-slate-600">
-              Способ
-              <select
-                className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 focus:border-sky-600 focus:outline-none"
-                onChange={(event) => setDelivery(event.target.value)}
-                value={delivery}
-              >
-                {DELIVERY_OPTIONS.map((option) => (
-                  <option key={option.value} value={option.value}>{option.label}</option>
-                ))}
-              </select>
-            </label>
-            <label className="grid gap-1 text-xs font-medium text-slate-600">
-              Город *
-              <input
-                className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 focus:border-sky-600 focus:outline-none"
-                onChange={(event) => setCity(event.target.value)}
-                required
-                type="text"
-                value={city}
-              />
-            </label>
-            <label className="grid gap-1 text-xs font-medium text-slate-600 md:col-span-2">
-              Адрес / ПВЗ *
-              <textarea
-                className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 focus:border-sky-600 focus:outline-none"
-                onChange={(event) => setAddress(event.target.value)}
-                required
-                rows={2}
-                value={address}
-              />
-            </label>
+          <p className="text-sm font-semibold text-slate-950">Адрес</p>
+          <div className="mt-4">
+            <AddressForm value={address} onChange={setAddress} />
+            {address.isValid && (
+              <p className="mt-2 text-xs text-emerald-700">
+                Адрес подтверждён DaData
+                {address.postalCode ? ` · индекс ${address.postalCode}` : ""}
+              </p>
+            )}
           </div>
         </div>
+
+        <DeliveryBlock cartId={cartId} items={itemsForShipping} onSelect={setSelectedRate} address={address} />
 
         <div className="rounded-lg border border-amber-200 bg-amber-50/70 p-5 text-sm leading-6 text-amber-900">
           <strong className="font-semibold">Оплата в режиме mock.</strong> Интеграция с
@@ -204,8 +229,20 @@ export function PhysicalCheckoutForm() {
       <aside className="h-fit rounded-2xl border border-slate-200 bg-white p-6 lg:sticky lg:top-4">
         <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">К оплате</p>
         <p className="mt-2 text-3xl font-semibold text-slate-950">
-          {knownCount > 0 ? formatPrice(total) : "Цена по запросу"}
+          {knownCount > 0 ? formatPrice(total + (selectedRate?.rate.cost ?? 0)) : "Цена по запросу"}
         </p>
+        {selectedRate ? (
+          <p className="mt-1 text-xs text-slate-600">
+            Товары: {formatPrice(total)} ·{" "}
+            {selectedRate.rate.providerKey === "pickup"
+              ? "Самовывоз бесплатно"
+              : selectedRate.rate.cost > 0
+                ? `Доставка: ${formatPrice(selectedRate.rate.cost)}`
+                : "Доставка по запросу — уточнит менеджер"}
+          </p>
+        ) : (
+          <p className="mt-1 text-xs text-amber-700">Выберите способ доставки, чтобы увидеть итог.</p>
+        )}
         {unknownCount > 0 && knownCount > 0 ? (
           <p className="mt-1 text-xs leading-5 text-rose-700">
             {unknownCount} {unknownCount === 1 ? "позиция" : "позиции"} без цены — оплата картой не сработает, нужен КП.

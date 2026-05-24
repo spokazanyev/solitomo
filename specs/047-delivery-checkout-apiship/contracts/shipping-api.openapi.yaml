@@ -1,0 +1,494 @@
+openapi: 3.1.0
+info:
+  title: Soliton Shipping API
+  version: 0.1.0
+  description: |
+    REST-контракты модуля доставки Soliton (047-delivery-checkout-apiship).
+    Все public-эндпоинты доступны без авторизации, но защищены rate-limit и идентифицируются
+    по `cartId` / `orderToken`. Admin-эндпоинты требуют активной Payload-сессии.
+servers:
+  - url: https://soliton.ru
+  - url: http://localhost:3000
+tags:
+  - name: shipping-public
+    description: Public storefront endpoints
+  - name: shipping-admin
+    description: Admin-only endpoints (Payload session required)
+  - name: shipping-webhooks
+    description: Inbound webhook receivers
+paths:
+
+  /api/shipping/calculate:
+    post:
+      tags: [shipping-public]
+      summary: Рассчитать стоимость доставки для корзины
+      operationId: calculateShipping
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CalculateRequest"
+      responses:
+        "200":
+          description: Список доступных тарифов
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CalculateResponse"
+        "400": { $ref: "#/components/responses/BadRequest" }
+        "503":
+          description: Расчёт временно недоступен — клиенту следует показать fallback
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiError" }
+
+  /api/shipping/points:
+    post:
+      tags: [shipping-public]
+      summary: Получить ПВЗ для выбранного тарифа и города
+      operationId: getPoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PointsRequest"
+      responses:
+        "200":
+          description: Список ПВЗ
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PointsResponse"
+        "400": { $ref: "#/components/responses/BadRequest" }
+
+  /api/checkout/finalize-shipping:
+    post:
+      tags: [shipping-public]
+      summary: Финализация тарифа и snapshot цены доставки перед оплатой (FR-107/108)
+      description: |
+        Вызывается на шаге S10 «Проверьте заказ» при переходе к оплате.
+        1. Повторно вычисляет стоимость по выбранному тарифу.
+        2. Сравнивает с ранее показанной ценой (`previousCost`).
+        3. Если delta ≤ max(5%, 100 ₽) — фиксирует snapshot и возвращает 200.
+        4. Иначе — возвращает 409 PRICE_CHANGED или 409 RATE_UNAVAILABLE.
+        5. С параметром `?accept=true` принимает новую цену пользователем.
+      parameters:
+        - in: query
+          name: accept
+          schema: { type: boolean, default: false }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [cartId, shippingOptionId, providerKey, tariffId, previousCost]
+              properties:
+                cartId:           { type: string }
+                shippingOptionId: { type: string }
+                providerKey:      { type: string }
+                tariffId:         { type: integer }
+                pointId:          { type: string }
+                previousCost:     { type: number }
+      responses:
+        "200":
+          description: Цена принята (либо без изменений, либо подтверждена пользователем)
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [priceSnapshot]
+                properties:
+                  priceSnapshot:
+                    $ref: "#/components/schemas/PriceSnapshot"
+        "409":
+          description: Цена изменилась или тариф недоступен
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/PriceChangedError"
+                  - $ref: "#/components/schemas/RateUnavailableError"
+
+  /api/shipping/validate-address:
+    post:
+      tags: [shipping-public]
+      summary: Нормализовать и проверить адрес (через DaData или вручную)
+      operationId: validateAddress
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddressInput"
+      responses:
+        "200":
+          description: Нормализованный адрес
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddressNormalized"
+
+  /api/admin/shipping/create:
+    post:
+      tags: [shipping-admin]
+      summary: Создать отправление в ApiShip для оплаченного заказа
+      operationId: adminCreateShipment
+      security:
+        - payloadSession: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [orderId]
+              properties:
+                orderId: { type: string }
+                stockLocationId:
+                  type: string
+                  description: id склада-отправителя (опц., если не из глобала)
+      responses:
+        "200":
+          description: Отправление создано
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ShipmentInfo"
+        "409":
+          description: Уже есть активное отправление
+        "422":
+          description: Заказ не готов к отправке (не оплачен / нет тарифа)
+
+  /api/admin/shipping/cancel:
+    post:
+      tags: [shipping-admin]
+      security: [{ payloadSession: [] }]
+      summary: Отменить отправление в ApiShip
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [orderId]
+              properties:
+                orderId: { type: string }
+                reason:  { type: string }
+      responses:
+        "200": { description: Отменено }
+
+  /api/admin/shipping/labels:
+    post:
+      tags: [shipping-admin]
+      security: [{ payloadSession: [] }]
+      summary: Запросить (или перезапросить) этикетку/накладную
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [orderId, document]
+              properties:
+                orderId:  { type: string }
+                document:
+                  type: string
+                  enum: [label, waybill]
+      responses:
+        "200":
+          description: Ссылка на документ
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url: { type: string, format: uri }
+
+  /api/admin/shipping/refresh-tracking:
+    post:
+      tags: [shipping-admin]
+      security: [{ payloadSession: [] }]
+      summary: Ручной pull текущего статуса от ApiShip (на случай пропущенного webhook)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [orderId]
+              properties: { orderId: { type: string } }
+      responses:
+        "200":
+          description: Обновлённое состояние shipment
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ShipmentInfo" }
+
+  /api/webhooks/apiship:
+    post:
+      tags: [shipping-webhooks]
+      summary: Приём webhook ApiShip
+      description: |
+        Заголовки: `X-Apiship-Signature: sha256=<hex>` (HMAC-SHA256 от raw body
+        с секретом `apiShipSettings.webhookSecret`), `X-Apiship-Event-Id`,
+        `X-Apiship-Timestamp`. Отказ при невалидной подписи — 401.
+      requestBody:
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ApiShipWebhookEvent" }
+      responses:
+        "200": { description: Принято (даже если задвоилось — идемпотентность) }
+        "401": { description: Невалидная подпись }
+        "400": { description: Невалидный payload }
+
+components:
+
+  securitySchemes:
+    payloadSession:
+      type: apiKey
+      in: cookie
+      name: payload-token
+
+  responses:
+    BadRequest:
+      description: Невалидный запрос
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/ApiError" }
+
+  schemas:
+
+    ApiError:
+      type: object
+      required: [code, message]
+      properties:
+        code: { type: string }
+        message: { type: string }
+        details: { type: object, additionalProperties: true }
+
+    PriceSnapshot:
+      type: object
+      required: [cost, currency, capturedAt, sourceCacheKey, refreshCheckAt]
+      properties:
+        cost:            { type: number }
+        currency:        { type: string, default: "RUB" }
+        capturedAt:      { type: string, format: date-time }
+        sourceCacheKey:  { type: string }
+        refreshCheckAt:  { type: string, format: date-time }
+
+    PriceChangedError:
+      type: object
+      required: [code, previousCost, newCost]
+      properties:
+        code:         { type: string, enum: [PRICE_CHANGED] }
+        previousCost: { type: number }
+        newCost:      { type: number }
+        deltaAbsolute:{ type: number }
+        deltaPercent: { type: number }
+        message:      { type: string }
+
+    RateUnavailableError:
+      type: object
+      required: [code]
+      properties:
+        code:    { type: string, enum: [RATE_UNAVAILABLE] }
+        reason:  { type: string }
+        message: { type: string }
+
+    CalculateRequest:
+      type: object
+      required: [cartId, address, items]
+      properties:
+        cartId: { type: string }
+        address: { $ref: "#/components/schemas/AddressInput" }
+        items:
+          type: array
+          minItems: 1
+          items: { $ref: "#/components/schemas/CartItem" }
+        deliveryTypes:
+          type: array
+          description: фильтр (если не задан — все включённые в настройках)
+          items:
+            type: string
+            enum: [doortodoor, doortopoint, pointtodoor, pointtopoint]
+
+    CartItem:
+      type: object
+      required: [sku, quantity, price]
+      properties:
+        sku:      { type: string }
+        name:     { type: string }
+        quantity: { type: integer, minimum: 1 }
+        price:    { type: number, description: "₽ за единицу" }
+        weight:   { type: number, description: "грамм; опц., при отсутствии — defaults" }
+        length:   { type: number }
+        width:    { type: number }
+        height:   { type: number }
+
+    AddressInput:
+      type: object
+      required: [countryCode]
+      properties:
+        countryCode: { type: string, example: "RU" }
+        postalCode:  { type: string }
+        region:      { type: string }
+        city:        { type: string }
+        street:      { type: string }
+        house:       { type: string }
+        flat:        { type: string }
+        addressString:
+          type: string
+          description: Полный адрес одной строкой (если задан — остальные поля опциональны)
+
+    AddressNormalized:
+      allOf:
+        - $ref: "#/components/schemas/AddressInput"
+        - type: object
+          properties:
+            kladrId:  { type: string }
+            fiasId:   { type: string }
+            lat:      { type: number }
+            lon:      { type: number }
+            isValid:  { type: boolean }
+            unparsedParts: { type: array, items: { type: string } }
+
+    CalculateResponse:
+      type: object
+      required: [rates]
+      properties:
+        cachedAt: { type: string, format: date-time }
+        rates:
+          type: array
+          items: { $ref: "#/components/schemas/ShippingRate" }
+        warnings:
+          type: array
+          items: { type: string }
+
+    ShippingRate:
+      type: object
+      required: [shippingOptionId, providerKey, deliveryType, pickupType, cost, etaMinDays, etaMaxDays]
+      properties:
+        shippingOptionId:
+          type: string
+          enum: [apiship_doortodoor, apiship_doortopoint, apiship_pointtodoor, apiship_pointtopoint]
+        providerKey:    { type: string, example: "cdek" }
+        providerName:   { type: string, example: "СДЭК" }
+        tariffId:       { type: integer }
+        tariffName:     { type: string }
+        deliveryType:   { type: integer, enum: [1, 2] }
+        pickupType:     { type: integer, enum: [1, 2] }
+        cost:           { type: number }
+        currency:       { type: string, default: "RUB" }
+        etaMinDays:     { type: integer }
+        etaMaxDays:     { type: integer }
+        badges:
+          type: array
+          items: { type: string, enum: [cheapest, fastest, recommended] }
+        rawTariff:
+          type: object
+          description: оригинальный объект ApiShip (для отладки / debug-режима)
+          additionalProperties: true
+
+    PointsRequest:
+      type: object
+      required: [cartId, shippingOptionId, providerKey, city]
+      properties:
+        cartId: { type: string }
+        shippingOptionId:
+          type: string
+          enum: [apiship_doortopoint, apiship_pointtopoint]
+        providerKey: { type: string }
+        city:        { type: string }
+        radiusKm:    { type: number, default: 15 }
+        boundingBox:
+          type: object
+          properties:
+            northEast: { type: object, properties: { lat: { type: number }, lon: { type: number } } }
+            southWest: { type: object, properties: { lat: { type: number }, lon: { type: number } } }
+        maxWeightGrams: { type: number }
+        maxDimensions:
+          type: object
+          properties:
+            length: { type: number }
+            width:  { type: number }
+            height: { type: number }
+
+    PointsResponse:
+      type: object
+      required: [points]
+      properties:
+        points:
+          type: array
+          items: { $ref: "#/components/schemas/PickupPoint" }
+
+    PickupPoint:
+      type: object
+      required: [pointId, providerKey, address]
+      properties:
+        pointId:     { type: string }
+        providerKey: { type: string }
+        name:        { type: string }
+        address:     { type: string }
+        city:        { type: string }
+        postalCode:  { type: string }
+        lat:         { type: number }
+        lon:         { type: number }
+        workHours:   { type: string }
+        phone:       { type: string }
+        paymentMethods:
+          type: array
+          items: { type: string, enum: [cash, card] }
+        maxDimensions:
+          type: object
+          properties:
+            length: { type: number }
+            width:  { type: number }
+            height: { type: number }
+            weight: { type: number }
+        photos:
+          type: array
+          items: { type: string, format: uri }
+
+    ShipmentInfo:
+      type: object
+      required: [orderId, status]
+      properties:
+        orderId:           { type: string }
+        providerOrderId:   { type: string }
+        providerKey:       { type: string }
+        trackingNumber:    { type: string }
+        trackingUrl:       { type: string, format: uri }
+        labelUrl:          { type: string, format: uri }
+        waybillUrl:        { type: string, format: uri }
+        status:
+          type: string
+          enum: [none, pending, created, pending_label, in_transit, at_point, delivered, returned, cancelled, error]
+        errorMessage:      { type: string }
+        events:
+          type: array
+          items: { $ref: "#/components/schemas/ShipmentEvent" }
+
+    ShipmentEvent:
+      type: object
+      required: [eventId, at, providerStatus, internalStatus]
+      properties:
+        eventId:        { type: string }
+        providerStatus: { type: string }
+        internalStatus: { type: string }
+        at:             { type: string, format: date-time }
+        message:        { type: string }
+
+    ApiShipWebhookEvent:
+      type: object
+      required: [eventId, orderId, status, at]
+      properties:
+        eventId:   { type: string }
+        orderId:   { type: integer, description: "providerOrderId в ApiShip" }
+        status:    { oneOf: [{ type: string }, { type: integer }] }
+        statusText:{ type: string }
+        at:        { type: string, format: date-time }
+        trackingNumber: { type: string }
+        trackingUrl:    { type: string }
+        payload:
+          type: object
+          additionalProperties: true

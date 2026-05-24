@@ -1,6 +1,6 @@
 <!-- SPECKIT START -->
 Current Spec Kit feature plan:
-`specs/016-admin-configuration-system/plan.md`
+`specs/047-delivery-checkout-apiship/plan.md`
 <!-- SPECKIT END -->
 
 # Soliton Project Agent Entry
