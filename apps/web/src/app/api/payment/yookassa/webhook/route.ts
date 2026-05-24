@@ -1,75 +1,35 @@
+/**
+ * ЮKassa webhook endpoint (055 production, replaces 037 mock).
+ *
+ * Coverage: FR-5530..5555. Полная security pipeline в lib/payments/yookassa-webhook-handler.
+ * Этот файл — thin route wrapper.
+ */
+
 import { NextResponse, type NextRequest } from "next/server";
-import configPromise from "@payload-config";
-import { getPayload } from "payload";
+import { after } from "next/server";
 
-// TODO(owner): после получения ЮKassa shopId/secret реализовать проверку подписи,
-// идемпотентность и реальное обновление статуса заказа (см. spec 037, Phase 4).
-// Сейчас обработчик принимает payload, ищет заказ по providerRef и переключает статус,
-// но без проверки источника. В режиме mock не должен быть открыт в продакшен.
+import { handleYooKassaWebhook } from "@/lib/payments/yookassa-webhook-handler";
 
-export async function POST(request: NextRequest) {
-  if (process.env.YOOKASSA_MOCK_DISABLED === "true") {
-    return NextResponse.json({ error: "Mock disabled" }, { status: 403 });
-  }
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
-  let body: { object?: { id?: string; status?: string; amount?: { value?: string } } };
+export async function POST(request: NextRequest): Promise<NextResponse> {
+  let rawBody: unknown;
   try {
-    body = (await request.json()) as typeof body;
+    rawBody = await request.json();
   } catch {
-    return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
+    rawBody = null;
   }
 
-  const providerRef = body.object?.id;
-  const providerStatus = body.object?.status;
-  if (!providerRef) {
-    return NextResponse.json({ error: "Missing payment id" }, { status: 400 });
+  const result = await handleYooKassaWebhook({
+    rawBody,
+    headers: request.headers,
+  });
+
+  // FR-5536: heavy ops (emit + 049 send) выполняются после ответа 200 через after()
+  if (result.outcome.afterResponse) {
+    after(result.outcome.afterResponse());
   }
 
-  try {
-    const payload = await getPayload({ config: configPromise });
-    const result = await payload.find({
-      collection: "orders",
-      where: { "payment.providerRef": { equals: providerRef } },
-      limit: 1,
-    });
-    const order = result.docs[0];
-    if (!order) {
-      return NextResponse.json({ error: "Order not found" }, { status: 404 });
-    }
-
-    const allowedProviderStatuses = ["none", "pending", "succeeded", "canceled"] as const;
-    type ProviderStatus = (typeof allowedProviderStatuses)[number];
-    const normalisedProviderStatus: ProviderStatus = allowedProviderStatuses.includes(
-      (providerStatus ?? "") as ProviderStatus,
-    )
-      ? (providerStatus as ProviderStatus)
-      : "pending";
-
-    const nextStatus =
-      normalisedProviderStatus === "succeeded"
-        ? "paid"
-        : normalisedProviderStatus === "canceled"
-          ? "cancelled"
-          : order.status;
-    await payload.update({
-      collection: "orders",
-      id: order.id,
-      data: {
-        status: nextStatus,
-        payment: {
-          ...order.payment,
-          providerStatus: normalisedProviderStatus,
-          paidAt:
-            normalisedProviderStatus === "succeeded"
-              ? new Date().toISOString()
-              : order.payment?.paidAt,
-        },
-      },
-    });
-
-    return NextResponse.json({ ok: true });
-  } catch (error) {
-    console.error("[yookassa webhook] update failed:", error);
-    return NextResponse.json({ error: "Failed" }, { status: 500 });
-  }
+  return NextResponse.json(result.body, { status: result.status });
 }

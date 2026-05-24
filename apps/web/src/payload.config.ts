@@ -18,6 +18,7 @@ import { Returns } from "./collections/Returns";
 import { FilterFields, FilterGroups, FilterOptions, FilterPresets } from "./collections/Filters.js";
 import { NotificationJobs } from "./collections/NotificationJobs";
 import { Orders } from "./collections/Orders.js";
+import { PaymentEvents } from "./collections/PaymentEvents";
 import { RfqRequests } from "./collections/RfqRequests.js";
 import { ShippingCalculations } from "./collections/ShippingCalculations";
 import { ShippingLogs } from "./collections/ShippingLogs";
@@ -25,6 +26,7 @@ import { Users } from "./collections/Users.js";
 import { ApiShipSettings } from "./globals/ApiShipSettings";
 import { CrmSettings } from "./globals/CrmSettings";
 import { NotificationsSettings } from "./globals/NotificationsSettings";
+import { PaymentSettings } from "./globals/PaymentSettings";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -80,8 +82,9 @@ export default buildConfig({
     ShippingLogs,
     CrmSyncJobs,
     NotificationJobs,
+    PaymentEvents,
   ],
-  globals: [ApiShipSettings, CrmSettings, NotificationsSettings],
+  globals: [ApiShipSettings, CrmSettings, NotificationsSettings, PaymentSettings],
   onInit: async () => {
     try {
       const { registerCoreSubscribers } = await import("./lib/lifecycle/events");

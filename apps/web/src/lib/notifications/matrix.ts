@@ -57,6 +57,15 @@ export const notificationMatrix: NotificationRule[] = [
   { event: "return.created",  channel: "email", template: "T-106", recipient: "manager" },
   { event: "return.refunded", channel: "email", template: "T-107", recipient: "manager" },
   { event: "return.overdue",  channel: "email", template: "T-108", recipient: "manager" },
+
+  // -------- 055: ЮKassa payment events --------
+  // Customer-facing (transactional, не требуют marketingOptIn — это сервисные)
+  { event: "payment.expired", channel: "email", template: "T-015", recipient: "customer", requires: "emailValid" },
+
+  // Manager-facing (high-priority alerts)
+  { event: "payment.amount_mismatch", channel: "email", template: "T-109", recipient: "manager" },
+  { event: "payment.receipt_failed",  channel: "email", template: "T-110", recipient: "manager" },
+  { event: "return.refund_failed",    channel: "email", template: "T-111", recipient: "manager" },
 ];
 
 /** Правило для cron-only события pickup-reminder-24h (см. cron/pickup-reminder/route.ts). */

@@ -250,3 +250,265 @@ export async function maybeReopenCompletedOrder(
   });
   return true;
 }
+
+// ---------------------------------------------------------------------------
+// 055: Refund webhook integration (US4)
+// Contract: specs/055-yookassa-payments-integration/contracts/refund-webhook-contract.md
+// ---------------------------------------------------------------------------
+
+export interface ApplyRefundSucceededInput {
+  /** YooKassa refund ID — matches Returns.refundProviderRef. */
+  providerRefundId: string;
+  /** ISO datetime — when refund succeeded (use receive time if YooKassa doesn't send). */
+  succeededAt: Date;
+  /** Amount in kopecks (per 053 convention) — must match Return.refundAmount. */
+  amount: number;
+  /** PaymentEvents.eventId for trace. */
+  receivedEventId: string;
+}
+
+export interface ApplyRefundCanceledInput {
+  providerRefundId: string;
+  canceledAt: Date;
+  reason: string;
+  receivedEventId: string;
+}
+
+export interface ApplyRefundResult {
+  applied: boolean;
+  returnId?: string;
+  returnNumber?: string;
+  orderId?: string;
+  orderNumber?: string;
+  reason?: "not_found" | "already_in_terminal_state" | "amount_mismatch";
+}
+
+/**
+ * applyRefundSucceeded (055 US4 + 053 chain).
+ *
+ * Called from yookassa-webhook-handler on `refund.succeeded` event.
+ * Atomic transition: received → refunded + Order.payment.refunds[i].providerStatus=succeeded.
+ */
+export async function applyRefundSucceeded(
+  input: ApplyRefundSucceededInput,
+): Promise<ApplyRefundResult> {
+  const { default: configPromise } = await import("@payload-config");
+  const { getPayload } = await import("payload");
+  const { emitDomainEvent } = await import("../lifecycle/events");
+  const payload = await getPayload({ config: configPromise });
+
+  const res = await payload
+    .find({
+      collection: "returns",
+      where: { refundProviderRef: { equals: input.providerRefundId } },
+      limit: 1,
+    })
+    .catch(() => ({ docs: [] as Array<Record<string, unknown>> }));
+  const doc = res.docs[0];
+  if (!doc) {
+    return { applied: false, reason: "not_found" };
+  }
+  const ret = toReturnRecord(doc as Record<string, unknown>);
+
+  // Idempotent — already terminal
+  if (ret.status === "refunded") {
+    return {
+      applied: false,
+      reason: "already_in_terminal_state",
+      returnId: ret.id,
+      returnNumber: ret.returnNumber,
+      orderId: ret.orderId,
+    };
+  }
+  if (ret.status === "rejected" || ret.status === "cancelled") {
+    return {
+      applied: false,
+      reason: "already_in_terminal_state",
+      returnId: ret.id,
+      returnNumber: ret.returnNumber,
+      orderId: ret.orderId,
+    };
+  }
+
+  // Amount-match (kopecks)
+  const expectedKopecks = ret.refundAmount; // 053 convention: stored as kopecks
+  if (Math.abs(expectedKopecks - input.amount) > 1) {
+    return {
+      applied: false,
+      reason: "amount_mismatch",
+      returnId: ret.id,
+      returnNumber: ret.returnNumber,
+      orderId: ret.orderId,
+    };
+  }
+
+  // Transition: received → refunded
+  await payload.update({
+    collection: "returns",
+    id: ret.id,
+    data: {
+      status: "refunded",
+      refundedAt: input.succeededAt.toISOString(),
+    } as never,
+    context: { paymentWebhookVerified: true } as never,
+  });
+
+  // Update Order.payment.refunds[i].providerStatus
+  try {
+    const orderRaw = (await payload.findByID({
+      collection: "orders",
+      id: ret.orderId as never,
+      depth: 0,
+    })) as unknown as {
+      id: string | number;
+      payment?: { refunds?: Array<{ providerRefundId?: string; providerStatus?: string; refundedAt?: string }> } | null;
+    };
+    const refunds = orderRaw.payment?.refunds ?? [];
+    let mutated = false;
+    const updatedRefunds = refunds.map((r) => {
+      if (r.providerRefundId === input.providerRefundId) {
+        mutated = true;
+        return { ...r, providerStatus: "succeeded", refundedAt: input.succeededAt.toISOString() };
+      }
+      return r;
+    });
+    if (mutated) {
+      await payload.update({
+        collection: "orders",
+        id: ret.orderId,
+        data: {
+          payment: { ...(orderRaw.payment ?? {}), refunds: updatedRefunds },
+        } as never,
+        context: { paymentWebhookVerified: true, skipImmutability: true } as never,
+      });
+    }
+  } catch (err) {
+    // Non-fatal — Return is already updated; aggregate recompute below
+    // eslint-disable-next-line no-console
+    console.error(`[applyRefundSucceeded] failed to update Order.payment.refunds:`, err);
+  }
+
+  // Recompute Order aggregates (053 existing logic)
+  const agg = await recomputeOrderReturnAggregates(payload, ret.orderId).catch(() => null);
+  if (agg) {
+    await maybeMarkOrderReturned(payload, ret.orderId, agg).catch(() => undefined);
+  }
+
+  // Emit domain event
+  await emitDomainEvent({
+    kind: "return.refunded",
+    returnData: {
+      id: ret.id,
+      returnNumber: ret.returnNumber,
+      orderId: ret.orderId,
+      orderClientNumber: ret.orderNumberSnapshot,
+      status: "refunded",
+      refundAmount: ret.refundAmount,
+    },
+    eventIdSuffix: `${input.receivedEventId}:refunded`,
+  });
+
+  return {
+    applied: true,
+    returnId: ret.id,
+    returnNumber: ret.returnNumber,
+    orderId: ret.orderId,
+    orderNumber: ret.orderNumberSnapshot,
+  };
+}
+
+/**
+ * applyRefundCanceled — webhook refund.canceled handler.
+ *
+ * 053 state-machine не имеет explicit `refund_failed` статуса. Стратегия:
+ *   - Return.status остаётся `received` (refund в процессе но не успешен)
+ *   - statusReason = `Refund failed: <reason>`
+ *   - Order.payment.refunds[i].providerStatus = "canceled"
+ *   - emit return.refund_failed → 049 alerts manager
+ */
+export async function applyRefundCanceled(
+  input: ApplyRefundCanceledInput,
+): Promise<ApplyRefundResult> {
+  const { default: configPromise } = await import("@payload-config");
+  const { getPayload } = await import("payload");
+  const { emitDomainEvent } = await import("../lifecycle/events");
+  const payload = await getPayload({ config: configPromise });
+
+  const res = await payload
+    .find({
+      collection: "returns",
+      where: { refundProviderRef: { equals: input.providerRefundId } },
+      limit: 1,
+    })
+    .catch(() => ({ docs: [] as Array<Record<string, unknown>> }));
+  const doc = res.docs[0];
+  if (!doc) {
+    return { applied: false, reason: "not_found" };
+  }
+  const ret = toReturnRecord(doc as Record<string, unknown>);
+  if (ret.status === "refunded" || ret.status === "rejected" || ret.status === "cancelled") {
+    return { applied: false, reason: "already_in_terminal_state", returnId: ret.id, returnNumber: ret.returnNumber, orderId: ret.orderId };
+  }
+
+  await payload.update({
+    collection: "returns",
+    id: ret.id,
+    data: {
+      statusReason: `Refund failed via webhook: ${input.reason}`.slice(0, 500),
+    } as never,
+    context: { paymentWebhookVerified: true } as never,
+  });
+
+  try {
+    const orderRaw = (await payload.findByID({
+      collection: "orders",
+      id: ret.orderId as never,
+      depth: 0,
+    })) as unknown as {
+      id: string | number;
+      payment?: { refunds?: Array<{ providerRefundId?: string; providerStatus?: string }> } | null;
+    };
+    const refunds = orderRaw.payment?.refunds ?? [];
+    let mutated = false;
+    const updated = refunds.map((r) => {
+      if (r.providerRefundId === input.providerRefundId) {
+        mutated = true;
+        return { ...r, providerStatus: "canceled" };
+      }
+      return r;
+    });
+    if (mutated) {
+      await payload.update({
+        collection: "orders",
+        id: ret.orderId,
+        data: { payment: { ...(orderRaw.payment ?? {}), refunds: updated } } as never,
+        context: { paymentWebhookVerified: true, skipImmutability: true } as never,
+      });
+    }
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error(`[applyRefundCanceled] failed to update Order.payment.refunds:`, err);
+  }
+
+  await emitDomainEvent({
+    kind: "return.refund_failed",
+    returnData: {
+      id: ret.id,
+      returnNumber: ret.returnNumber,
+      orderId: ret.orderId,
+      orderClientNumber: ret.orderNumberSnapshot,
+      status: ret.status,
+      refundAmount: ret.refundAmount,
+    },
+    context: { errorMessage: input.reason },
+    eventIdSuffix: `${input.receivedEventId}:refund-failed`,
+  });
+
+  return {
+    applied: true,
+    returnId: ret.id,
+    returnNumber: ret.returnNumber,
+    orderId: ret.orderId,
+    orderNumber: ret.orderNumberSnapshot,
+  };
+}

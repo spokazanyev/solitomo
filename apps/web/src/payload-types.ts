@@ -91,6 +91,7 @@ export interface Config {
     'shipping-logs': ShippingLog;
     'crm-sync-jobs': CrmSyncJob;
     'notification-jobs': NotificationJob;
+    paymentEvents: PaymentEvent;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -121,6 +122,7 @@ export interface Config {
     'shipping-logs': ShippingLogsSelect<false> | ShippingLogsSelect<true>;
     'crm-sync-jobs': CrmSyncJobsSelect<false> | CrmSyncJobsSelect<true>;
     'notification-jobs': NotificationJobsSelect<false> | NotificationJobsSelect<true>;
+    paymentEvents: PaymentEventsSelect<false> | PaymentEventsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -134,11 +136,13 @@ export interface Config {
     'apiship-settings': ApishipSetting;
     'crm-settings': CrmSetting;
     'notifications-settings': NotificationsSetting;
+    'payment-settings': PaymentSetting;
   };
   globalsSelect: {
     'apiship-settings': ApishipSettingsSelect<false> | ApishipSettingsSelect<true>;
     'crm-settings': CrmSettingsSelect<false> | CrmSettingsSelect<true>;
     'notifications-settings': NotificationsSettingsSelect<false> | NotificationsSettingsSelect<true>;
+    'payment-settings': PaymentSettingsSelect<false> | PaymentSettingsSelect<true>;
   };
   locale: null;
   widgets: {
@@ -514,10 +518,71 @@ export interface Order {
   totalRefunded?: number | null;
   payment?: {
     method?: ('card' | 'invoice') | null;
-    providerStatus?: ('none' | 'pending' | 'succeeded' | 'canceled') | null;
+    providerStatus?: ('none' | 'pending' | 'authorized' | 'succeeded' | 'canceled') | null;
     providerRef?: string | null;
     paidAt?: string | null;
     amount?: number | null;
+    /**
+     * Two-stage: capture timestamp (FR-5524).
+     */
+    capturedAt?: string | null;
+    /**
+     * UUID, generated on first create-payment (FR-5510).
+     */
+    idempotenceKey?: string | null;
+    confirmationUrl?: string | null;
+    /**
+     * FR-5508. Payment session created.
+     */
+    createdAt?: string | null;
+    confirmationType?: ('redirect' | 'qr' | 'embedded') | null;
+    /**
+     * FR-5545. ЮKassa auto-mode receipt registration.
+     */
+    receiptStatus?: ('pending' | 'succeeded' | 'canceled') | null;
+    /**
+     * FR-5544c. Rate snapshot for refunds.
+     */
+    vatCodeApplied?: number | null;
+    /**
+     * OQ-6. Filled by webhook handler.
+     */
+    paymentMethodSnapshot?: {
+      type?: ('bank_card' | 'sbp' | 'yoo_money' | 'sberbank') | null;
+      title?: string | null;
+      card?: {
+        first6?: string | null;
+        last4?: string | null;
+        expiryMonth?: string | null;
+        expiryYear?: string | null;
+        cardType?: string | null;
+        issuerCountry?: string | null;
+        issuerName?: string | null;
+      };
+      sbp?: {
+        bankId?: string | null;
+        bankName?: string | null;
+      };
+      yooMoney?: {
+        accountNumber?: string | null;
+      };
+      sberbank?: {
+        phone?: string | null;
+      };
+    };
+    /**
+     * FR-5523a. Exponential backoff for capture retry.
+     */
+    captureAttempts?:
+      | {
+          attemptedAt: string;
+          error: string;
+          errorCode?: string | null;
+          nextRetryAt?: string | null;
+          exhausted?: boolean | null;
+          id?: string | null;
+        }[]
+      | null;
     /**
      * Auto-filled on refund (053).
      */
@@ -1081,6 +1146,10 @@ export interface Return {
   returnNumber?: string | null;
   orderId: number | Order;
   /**
+   * Snapshot of Order.customerId at creation. Null for guest returns.
+   */
+  customerId?: (number | null) | Customer;
+  /**
    * Order.clientNumber snapshot at creation time (immutable).
    */
   orderNumberSnapshot?: string | null;
@@ -1474,6 +1543,69 @@ export interface NotificationJob {
   createdAt: string;
 }
 /**
+ * Append-only journal of ЮKassa webhooks. Written before Order/Return mutations (FR-5555). 90-day retention.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "paymentEvents".
+ */
+export interface PaymentEvent {
+  id: number;
+  /**
+   * Composite: `${object.id}:${event_type}`. See composeEventId().
+   */
+  eventId: string;
+  eventType:
+    | 'payment.waiting_for_capture'
+    | 'payment.succeeded'
+    | 'payment.canceled'
+    | 'refund.succeeded'
+    | 'refund.canceled'
+    | 'payment.refunded'
+    | 'other';
+  providerRef: string;
+  order?: (number | null) | Order;
+  return?: (number | null) | Return;
+  /**
+   * Raw payload. Truncated to 16KB with truncatedAt indicator.
+   */
+  payload?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Original bytes if truncated.
+   */
+  truncatedAt?: number | null;
+  receivedAt: string;
+  processedAt?: string | null;
+  result: 'success' | 'rejected' | 'duplicate';
+  rejectedReason?:
+    | (
+        | 'ip_not_allowed'
+        | 'unknown_payment'
+        | 'unknown_refund'
+        | 'amount_mismatch'
+        | 'currency_mismatch'
+        | 'signature_invalid'
+        | 'settings_disabled'
+        | 'internal_error'
+        | 'parse_error'
+      )
+    | null;
+  sourceIp?: string | null;
+  duplicateCount?: number | null;
+  source?: ('webhook' | 'cron_reconciliation') | null;
+  notificationJobId?: string | null;
+  domainEventId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
@@ -1588,6 +1720,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'notification-jobs';
         value: number | NotificationJob;
+      } | null)
+    | ({
+        relationTo: 'paymentEvents';
+        value: number | PaymentEvent;
       } | null);
   globalSlug?: string | null;
   user:
@@ -1874,6 +2010,56 @@ export interface OrdersSelect<T extends boolean = true> {
         providerRef?: T;
         paidAt?: T;
         amount?: T;
+        capturedAt?: T;
+        idempotenceKey?: T;
+        confirmationUrl?: T;
+        createdAt?: T;
+        confirmationType?: T;
+        receiptStatus?: T;
+        vatCodeApplied?: T;
+        paymentMethodSnapshot?:
+          | T
+          | {
+              type?: T;
+              title?: T;
+              card?:
+                | T
+                | {
+                    first6?: T;
+                    last4?: T;
+                    expiryMonth?: T;
+                    expiryYear?: T;
+                    cardType?: T;
+                    issuerCountry?: T;
+                    issuerName?: T;
+                  };
+              sbp?:
+                | T
+                | {
+                    bankId?: T;
+                    bankName?: T;
+                  };
+              yooMoney?:
+                | T
+                | {
+                    accountNumber?: T;
+                  };
+              sberbank?:
+                | T
+                | {
+                    phone?: T;
+                  };
+            };
+        captureAttempts?:
+          | T
+          | {
+              attemptedAt?: T;
+              error?: T;
+              errorCode?: T;
+              nextRetryAt?: T;
+              exhausted?: T;
+              id?: T;
+            };
         refunds?:
           | T
           | {
@@ -2011,6 +2197,7 @@ export interface CartsSelect<T extends boolean = true> {
 export interface ReturnsSelect<T extends boolean = true> {
   returnNumber?: T;
   orderId?: T;
+  customerId?: T;
   orderNumberSnapshot?: T;
   items?:
     | T
@@ -2563,6 +2750,30 @@ export interface NotificationJobsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "paymentEvents_select".
+ */
+export interface PaymentEventsSelect<T extends boolean = true> {
+  eventId?: T;
+  eventType?: T;
+  providerRef?: T;
+  order?: T;
+  return?: T;
+  payload?: T;
+  truncatedAt?: T;
+  receivedAt?: T;
+  processedAt?: T;
+  result?: T;
+  rejectedReason?: T;
+  sourceIp?: T;
+  duplicateCount?: T;
+  source?: T;
+  notificationJobId?: T;
+  domainEventId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -2798,6 +3009,73 @@ export interface NotificationsSetting {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payment-settings".
+ */
+export interface PaymentSetting {
+  id: number;
+  /**
+   * FR-5563. When disabled, all ЮKassa API calls and webhooks are refused.
+   */
+  enabled?: boolean | null;
+  /**
+   * Q2 / FR-5503. Two-stage holds funds for 7 days, captured after fulfillment.
+   */
+  captureMode?: ('two_stage' | 'one_stage') | null;
+  /**
+   * Q3 / FR-5505. Whitelist sent to ЮKassa. If empty, ЮKassa shows all merchant methods.
+   */
+  paymentMethods?: ('bank_card' | 'sbp' | 'yoo_money' | 'sberbank')[] | null;
+  /**
+   * OQ-4 / FR-5552. After this window Order transitions to expired on canceled webhook.
+   */
+  paymentRetryWindowMin?: number | null;
+  /**
+   * FR-5535. MVP: off. Switch to enforce when ЮKassa publishes signature format.
+   */
+  webhookSignatureMode?: ('off' | 'enforce') | null;
+  /**
+   * ≥32 chars. Used only when webhookSignatureMode=enforce.
+   */
+  webhookSecret?: string | null;
+  /**
+   * OQ-1 / FR-5543. 1=ОСН, 2=УСН-income, 3=УСН-profit, 4=ЕНВД, 5=ЕСХН, 6=ПСН.
+   */
+  taxSystemCode?: number | null;
+  /**
+   * OQ-3a / FR-5544. Default 12 = 22/122 calc (Federal Law-425 since 2026-01-01). Legacy: 4 = 20/120.
+   */
+  defaultVatCode?: number | null;
+  /**
+   * FR-5544d. VAT codes accepted in refund correction receipts for legacy orders (20% VAT). NOT used for new payments.
+   */
+  allowedLegacyVatCodes?:
+    | {
+        code: number;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * ЮKassa SBP transaction limit. Orders above this skip SBP in availableMethods.
+   */
+  sbpMaxAmount?: number | null;
+  senderCompanyInfo: {
+    /**
+     * 10 digits (LLC) or 12 (sole proprietor)
+     */
+    inn: string;
+    legalName: string;
+    address: string;
+    kpp?: string | null;
+  };
+  audit?: {
+    lastChangedBy?: (number | null) | User;
+    lastChangedAt?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "apiship-settings_select".
  */
 export interface ApishipSettingsSelect<T extends boolean = true> {
@@ -2978,6 +3256,44 @@ export interface NotificationsSettingsSelect<T extends boolean = true> {
         lastCheckedAt?: T;
         emailOk?: T;
         message?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payment-settings_select".
+ */
+export interface PaymentSettingsSelect<T extends boolean = true> {
+  enabled?: T;
+  captureMode?: T;
+  paymentMethods?: T;
+  paymentRetryWindowMin?: T;
+  webhookSignatureMode?: T;
+  webhookSecret?: T;
+  taxSystemCode?: T;
+  defaultVatCode?: T;
+  allowedLegacyVatCodes?:
+    | T
+    | {
+        code?: T;
+        id?: T;
+      };
+  sbpMaxAmount?: T;
+  senderCompanyInfo?:
+    | T
+    | {
+        inn?: T;
+        legalName?: T;
+        address?: T;
+        kpp?: T;
+      };
+  audit?:
+    | T
+    | {
+        lastChangedBy?: T;
+        lastChangedAt?: T;
       };
   updatedAt?: T;
   createdAt?: T;

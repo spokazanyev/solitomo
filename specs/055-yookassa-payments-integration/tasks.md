@@ -29,9 +29,9 @@ Monorepo Next.js + Payload (apps/web):
 
 **Purpose**: Минимальные скелеты + env-документация. Не блокирующий, но рекомендуется первым.
 
-- [ ] T001 [P] Создать stub-файлы (пустые экспорты с TODO) для будущих модулей: `apps/web/src/lib/payments/{settings,ip-allowlist,yookassa-client,yookassa-receipt,yookassa-webhook-handler,yookassa-types}.ts`
-- [ ] T002 [P] Обновить `apps/web/.env.example` записями `YOOKASSA_SHOP_ID=`, `YOOKASSA_SECRET_KEY=` с комментариями (см. quickstart.md §2)
-- [ ] T003 [P] Обновить `apps/web/AGENTS.md` — раздел «Краткая карта модулей»: добавить строки про `src/lib/payments/yookassa-client.ts`, `yookassa-webhook-handler.ts`, `yookassa-receipt.ts`, `src/globals/PaymentSettings.ts`, `src/collections/PaymentEvents.ts`, `src/app/api/cron/payments-expire/`
+- [X] T001 [P] Создать stub-файлы (пустые экспорты с TODO) для будущих модулей: `apps/web/src/lib/payments/{settings,ip-allowlist,yookassa-client,yookassa-receipt,yookassa-webhook-handler,yookassa-types}.ts` — merged into Phase 2 real implementation
+- [X] T002 [P] Обновить `apps/web/.env.example` — already done in 053 (YOOKASSA_SHOP_ID/SECRET_KEY/WEBHOOK_SECRET present)
+- [X] T003 [P] Обновить `apps/web/AGENTS.md` — done in commit c273622
 
 ---
 

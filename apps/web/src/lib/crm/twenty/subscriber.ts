@@ -23,7 +23,9 @@ import { loadTwentySettings } from "./settings";
  * integration-pattern document. For MVP we only need the global `enabled` gate.
  */
 
-const CRM_RELEVANT_PREFIXES = ["order.", "shipment.", "return.", "customer."] as const;
+// 055: `payment.` добавлен — когда Twenty подключат (crmSettings.enabled=true),
+// payment.succeeded/canceled/etc будут идти в Activity. На launch crmSettings.enabled=false → no-op.
+const CRM_RELEVANT_PREFIXES = ["order.", "shipment.", "return.", "customer.", "payment."] as const;
 
 function isCrmRelevant(kind: string): boolean {
   return CRM_RELEVANT_PREFIXES.some((p) => kind.startsWith(p));

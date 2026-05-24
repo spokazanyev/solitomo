@@ -13,6 +13,20 @@ import "server-only";
  * MUST set both env vars.
  */
 
+/** 055 T044: shape совпадает с YooKassaReceiptInput из yookassa-types.ts. */
+export interface RefundReceiptInput {
+  customer: { email?: string; phone?: string };
+  items: Array<{
+    description: string;
+    quantity: string;
+    amount: { value: string; currency: "RUB" };
+    vat_code: number;
+    payment_subject: "commodity" | "service";
+    payment_mode: "full_prepayment";
+  }>;
+  tax_system_code: number;
+}
+
 export interface CreateRefundInput {
   /** YooKassa payment ID from original purchase (Order.payment.providerRef). */
   paymentId: string;
@@ -22,6 +36,8 @@ export interface CreateRefundInput {
   description: string;
   /** Idempotence-Key header — use `${returnId}:refund` to dedupe retries. */
   idempotencyKey: string;
+  /** 055 T044, FR-5544c: receipt-объект для чека коррекции 54-ФЗ. */
+  receipt?: RefundReceiptInput;
 }
 
 export interface RefundResult {
@@ -60,7 +76,7 @@ export async function createRefund(input: CreateRefundInput): Promise<RefundResu
   }
 
   const auth = Buffer.from(`${shopId}:${secretKey}`).toString("base64");
-  const body = {
+  const body: Record<string, unknown> = {
     payment_id: input.paymentId,
     amount: {
       // YooKassa uses rubles with 2 decimals
@@ -69,6 +85,10 @@ export async function createRefund(input: CreateRefundInput): Promise<RefundResu
     },
     description: input.description.slice(0, 128),
   };
+  // 055 T044: optional receipt for fiscal correction receipt (54-ФЗ)
+  if (input.receipt) {
+    body.receipt = input.receipt;
+  }
 
   let response: Response;
   try {

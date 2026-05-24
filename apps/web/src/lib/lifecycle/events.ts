@@ -66,12 +66,25 @@ export type CustomerEventKind =
   | "customer.email_changed"
   | "customer.deleted";
 
+// --- Payment events (055) ---
+export type PaymentEventKind =
+  | "payment.authorized"
+  | "payment.captured"
+  | "payment.succeeded"
+  | "payment.canceled"
+  | "payment.expired"
+  | "payment.amount_mismatch"
+  | "payment.receipt_failed"
+  // 055: cross-spec — refund webhook results that close the 053 loop
+  | "return.refund_failed";
+
 export type DomainEventKind =
   | OrderEventKind
   | ShipmentEventKind
   | CartEventKind
   | ReturnEventKind
-  | CustomerEventKind;
+  | CustomerEventKind
+  | PaymentEventKind;
 
 export interface OrderSnapshot {
   id: string;
@@ -161,6 +174,32 @@ export interface EventContext {
   trackingUrl?: string;
   errorMessage?: string;
   meta?: Record<string, unknown>;
+  // 055: для payment.* событий
+  payment?: PaymentSnapshot;
+}
+
+/** 055: Snapshot платежа для payment.* событий и dataLayer-аналитики (FR-5599). */
+export interface PaymentSnapshot {
+  providerRef: string;
+  amount?: number;
+  currency?: string;
+  method?: "bank_card" | "sbp" | "yoo_money" | "sberbank";
+  receiptStatus?: "pending" | "succeeded" | "canceled";
+  vatCodeApplied?: number;
+  reason?: string;
+  /** UTM snapshot из Cart.metadata.utm на момент конверсии (FR-5599). */
+  utm?: {
+    source?: string | null;
+    medium?: string | null;
+    campaign?: string | null;
+    term?: string | null;
+    content?: string | null;
+  };
+  /** Diff для amount_mismatch event'а. */
+  expected?: number;
+  actual?: number;
+  /** Композитный eventId из webhook (composeEventId). */
+  eventId?: string;
 }
 
 export interface DomainEventPayload {
