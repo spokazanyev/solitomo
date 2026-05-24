@@ -30,12 +30,39 @@ export const NotificationJobs: CollectionConfig = {
   },
   fields: [
     { name: "notificationId", type: "text", required: true, unique: true },
+    // 053 C2 fix: orderId is now optional. For order/shipment events it still points
+    // at the Order; for cart.*/return.* events it's null and the entity is stored
+    // polymorphically in entityCollection + entityId.
     {
       name: "orderId",
       type: "relationship",
       relationTo: "orders",
-      required: true,
+      required: false,
       label: adminLabel("Заказ", "Order"),
+    },
+    // 053 C2: polymorphic entity reference for non-Order events.
+    {
+      name: "entityCollection",
+      type: "select",
+      label: adminLabel("Коллекция сущности", "Entity collection"),
+      options: [
+        { label: "orders", value: "orders" },
+        { label: "carts", value: "carts" },
+        { label: "returns", value: "returns" },
+      ],
+      admin: {
+        description: adminLabel(
+          "Тип сущности, к которой относится уведомление (для cart.*/return.* событий).",
+          "Entity collection this job refers to (for cart.*/return.* events).",
+        ),
+      },
+    },
+    {
+      name: "entityId",
+      type: "text",
+      index: true,
+      label: adminLabel("ID сущности", "Entity ID"),
+      admin: { description: adminLabel("ID записи в entityCollection.", "Record ID in entityCollection.") },
     },
     { name: "event", type: "text", required: true, label: adminLabel("Событие", "Event") },
     {

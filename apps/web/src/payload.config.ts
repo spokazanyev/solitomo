@@ -12,6 +12,7 @@ import { AttributeGroups, AttributeOptions, Attributes } from "./collections/Att
 import { Categories, Documents, MediaAssets, Products } from "./collections/Catalog.js";
 import { Carts } from "./collections/Carts";
 import { CrmSyncJobs } from "./collections/CrmSyncJobs";
+import { Returns } from "./collections/Returns";
 import { FilterFields, FilterGroups, FilterOptions, FilterPresets } from "./collections/Filters.js";
 import { NotificationJobs } from "./collections/NotificationJobs";
 import { Orders } from "./collections/Orders.js";
@@ -57,6 +58,7 @@ export default buildConfig({
     Users,
     Orders,
     Carts,
+    Returns,
     RfqRequests,
     Products,
     Categories,

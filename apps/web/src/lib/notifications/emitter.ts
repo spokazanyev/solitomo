@@ -38,12 +38,28 @@ export async function emitNotificationJobs(event: DomainEventPayload): Promise<{
   let created = 0;
   let skipped = 0;
 
-  // 052: For cart.* events, the "entity id" is the cart id (event.order is absent).
-  // For order/shipment/return events, fall back to event.order.id.
-  const entityId =
-    (event.kind.startsWith("cart.") && event.cart?.id) ||
-    event.order?.id ||
-    "unknown";
+  // 052/053 C2 fix: derive polymorphic entity reference per event family.
+  // For order/shipment events: orderId carries the Order FK.
+  // For cart.* events: orderId is null, entity is in carts table.
+  // For return.* events: orderId is the Order FK (returnData.orderId), entityId
+  //   carries the Return id so dedup-keys stay unique per-return.
+  let entityCollection: "orders" | "carts" | "returns";
+  let entityId: string;
+  let orderFk: string | null;
+
+  if (event.kind.startsWith("cart.") && event.cart?.id) {
+    entityCollection = "carts";
+    entityId = String(event.cart.id);
+    orderFk = null;
+  } else if (event.kind.startsWith("return.") && event.returnData) {
+    entityCollection = "returns";
+    entityId = String(event.returnData.id);
+    orderFk = event.returnData.orderId || null;
+  } else {
+    entityCollection = "orders";
+    entityId = String(event.order?.id ?? "unknown");
+    orderFk = entityId !== "unknown" ? entityId : null;
+  }
 
   for (const rule of matched) {
     const recipients = await resolveRecipients(rule, event, settings.managers);
@@ -57,7 +73,7 @@ export async function emitNotificationJobs(event: DomainEventPayload): Promise<{
         continue;
       }
       const key = dedupKey({
-        orderId: String(entityId),
+        orderId: entityId, // dedup key is per-entity (Return/Cart/Order id)
         event: event.kind,
         channel: rule.channel,
         recipient: recipient.email,
@@ -71,7 +87,9 @@ export async function emitNotificationJobs(event: DomainEventPayload): Promise<{
       }
       const ok = await enqueueJob({
         notificationId: makeNotificationId(event, rule, recipient.email),
-        orderId: String(entityId),
+        orderId: orderFk,
+        entityCollection,
+        entityId,
         channel: rule.channel,
         event: event.kind,
         template: rule.template,
@@ -109,7 +127,11 @@ async function resolveRecipients(
 ): Promise<ResolvedRecipient[]> {
   if (rule.recipient === "customer") {
     // 052: cart.* events carry customerEmail on event.cart, not event.order
-    const email = event.cart?.customerEmail ?? event.order?.customer?.email;
+    // 053: return.* events carry customerEmail on event.returnData, not event.order
+    const email =
+      event.returnData?.customerEmail ??
+      event.cart?.customerEmail ??
+      event.order?.customer?.email;
     if (!email) return [];
     const name = event.order?.customer?.fullName;
     return [{ email, name }];
@@ -149,16 +171,25 @@ function makeNotificationId(event: DomainEventPayload, rule: NotificationRule, r
 }
 
 function buildPayload(event: DomainEventPayload, recipient: ResolvedRecipient): NotificationJobPayload {
-  // 052: for cart.* events, synthesize a minimal OrderSnapshot-shaped object from cart data
-  // so downstream templates that expect order.customer.email don't crash.
-  const order = event.order ?? (event.cart
-    ? ({
-        id: event.cart.id,
-        status: event.cart.status,
-        customer: { email: event.cart.customerEmail },
-        // Bare minimum fields — templates targeting cart.* should look at event.cart instead.
-      } as unknown as NotificationJobPayload["order"])
-    : ({ id: "unknown", status: "unknown" } as unknown as NotificationJobPayload["order"]));
+  // 052/053: for cart.*/return.* events, synthesize a minimal OrderSnapshot-shaped object so
+  // downstream templates that read order.customer.email don't crash. Templates that target
+  // cart.*/return.* should read from event.cart / event.returnData directly.
+  const order =
+    event.order ??
+    (event.cart
+      ? ({
+          id: event.cart.id,
+          status: event.cart.status,
+          customer: { email: event.cart.customerEmail },
+        } as unknown as NotificationJobPayload["order"])
+      : event.returnData
+        ? ({
+            id: event.returnData.orderId,
+            clientNumber: event.returnData.orderClientNumber,
+            status: "delivered",
+            customer: { email: event.returnData.customerEmail },
+          } as unknown as NotificationJobPayload["order"])
+        : ({ id: "unknown", status: "unknown" } as unknown as NotificationJobPayload["order"]));
 
   return {
     order,
@@ -177,7 +208,11 @@ function buildPayload(event: DomainEventPayload, recipient: ResolvedRecipient): 
 
 async function enqueueJob(input: {
   notificationId: string;
-  orderId: string;
+  /** Order FK for order/shipment/return.* events; null for cart.* events */
+  orderId: string | null;
+  /** 053 C2: polymorphic entity reference */
+  entityCollection: "orders" | "carts" | "returns";
+  entityId: string;
   event: string;
   channel: NotificationChannel;
   template: string;
@@ -188,22 +223,27 @@ async function enqueueJob(input: {
 }): Promise<boolean> {
   try {
     const p = await getPayload({ config: configPromise });
+    const data: Record<string, unknown> = {
+      notificationId: input.notificationId,
+      entityCollection: input.entityCollection,
+      entityId: input.entityId,
+      event: input.event,
+      channel: input.channel,
+      template: input.template,
+      recipient: input.recipient,
+      scheduledAt: input.scheduledAt,
+      status: "queued",
+      attempt: 0,
+      nextAttemptAt: input.scheduledAt,
+      payload: input.payload as unknown as Record<string, unknown>,
+      dedupKey: input.dedupKey,
+    };
+    if (input.orderId !== null) {
+      data.orderId = Number(input.orderId);
+    }
     await p.create({
       collection: "notification-jobs",
-      data: {
-        notificationId: input.notificationId,
-        orderId: Number(input.orderId),
-        event: input.event,
-        channel: input.channel,
-        template: input.template,
-        recipient: input.recipient,
-        scheduledAt: input.scheduledAt,
-        status: "queued",
-        attempt: 0,
-        nextAttemptAt: input.scheduledAt,
-        payload: input.payload as unknown as Record<string, unknown>,
-        dedupKey: input.dedupKey,
-      },
+      data: data as never,
     });
     return true;
   } catch (err) {

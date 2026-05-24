@@ -70,6 +70,7 @@ export interface Config {
     users: User;
     orders: Order;
     carts: Cart;
+    returns: Return;
     'rfq-requests': RfqRequest;
     products: Product;
     categories: Category;
@@ -97,6 +98,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     orders: OrdersSelect<false> | OrdersSelect<true>;
     carts: CartsSelect<false> | CartsSelect<true>;
+    returns: ReturnsSelect<false> | ReturnsSelect<true>;
     'rfq-requests': RfqRequestsSelect<false> | RfqRequestsSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
@@ -373,10 +375,19 @@ export interface Order {
            */
           amount: number;
           refundedAt: string;
-          providerStatus?: ('pending' | 'succeeded' | 'failed') | null;
+          providerStatus?: ('pending' | 'succeeded' | 'failed' | 'canceled') | null;
           id?: string | null;
         }[]
       | null;
+    /**
+     * Payer bank details snapshot for bank-transfer refunds (legal entity, 053).
+     */
+    payerBankDetails?: {
+      bankAccount?: string | null;
+      bik?: string | null;
+      recipientName?: string | null;
+      bankName?: string | null;
+    };
   };
   /**
    * Filled for legal orders.
@@ -890,6 +901,96 @@ export interface Cart {
   createdAt: string;
 }
 /**
+ * Returns and refunds. Lifecycle and integrations per spec 053.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "returns".
+ */
+export interface Return {
+  id: number;
+  /**
+   * Format RT-YYYY-NNNN, auto-generated via PG SEQUENCE.
+   */
+  returnNumber?: string | null;
+  orderId: number | Order;
+  /**
+   * Order.clientNumber snapshot at creation time (immutable).
+   */
+  orderNumberSnapshot?: string | null;
+  items: {
+    orderItemSku: string;
+    productName?: string | null;
+    qty: number;
+    /**
+     * Per-unit price in kopecks, snapshot from Order.
+     */
+    priceSnapshot: number;
+    /**
+     * Snapshot ('20', '10', '0', '-1' no VAT).
+     */
+    vatRate?: string | null;
+    reason?: string | null;
+    condition?: ('unopened' | 'opened_unused' | 'used' | 'defective') | null;
+    photos?: (number | Media)[] | null;
+    id?: string | null;
+  }[];
+  reasonCategory: 'defect' | 'wrong-item' | 'not-needed' | 'other';
+  customerNotes?: string | null;
+  managerNotes?: string | null;
+  /**
+   * In kopecks.
+   */
+  refundAmount: number;
+  refundMethod: 'card-original' | 'bank-transfer' | 'other';
+  refundProviderRef?: string | null;
+  manualRefundConfirmation?: {
+    byUser?: (number | null) | User;
+    at?: string | null;
+    paymentDoc?: string | null;
+    bankAccount?: string | null;
+    bik?: string | null;
+    recipientName?: string | null;
+    purpose?: string | null;
+  };
+  returnMethod?: ('self_post' | 'pickup_via_courier' | 'drop_off') | null;
+  apiShipReturnOrderId?: string | null;
+  returnLabelUrl?: string | null;
+  creditMemoNumber?: string | null;
+  creditMemoPdfUrl?: string | null;
+  creditMemoIssuedAt?: string | null;
+  documentsError?: string | null;
+  correctionReceiptStatus?: ('pending' | 'issued' | 'not_required' | 'error') | null;
+  correctionReceiptRef?: string | null;
+  status: 'requested' | 'approved' | 'received' | 'refunded' | 'rejected' | 'cancelled';
+  /**
+   * Required for rejected; for approved may contain markers (e.g. outside_short_window).
+   */
+  statusReason?: string | null;
+  requestedAt: string;
+  approvedAt?: string | null;
+  receivedAt?: string | null;
+  refundedAt?: string | null;
+  rejectedAt?: string | null;
+  cancelledAt?: string | null;
+  /**
+   * Client-side UUID — 10 min deduplication window. DB-unique.
+   */
+  clientRequestId?: string | null;
+  createdVia?: ('customer-public' | 'manager-manual' | 'api') | null;
+  history?:
+    | {
+        at?: string | null;
+        fromStatus?: string | null;
+        toStatus?: string | null;
+        byUser?: (number | null) | User;
+        reason?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "rfq-requests".
  */
@@ -1167,7 +1268,15 @@ export interface CrmSyncJob {
 export interface NotificationJob {
   id: number;
   notificationId: string;
-  orderId: number | Order;
+  orderId?: (number | null) | Order;
+  /**
+   * Entity collection this job refers to (for cart.* /return.* events).
+   */
+  entityCollection?: ('orders' | 'carts' | 'returns') | null;
+  /**
+   * Record ID in entityCollection.
+   */
+  entityId?: string | null;
   event: string;
   channel: 'email' | 'messenger' | 'admin_ui' | 'dataLayer';
   template: string;
@@ -1232,6 +1341,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'carts';
         value: number | Cart;
+      } | null)
+    | ({
+        relationTo: 'returns';
+        value: number | Return;
       } | null)
     | ({
         relationTo: 'rfq-requests';
@@ -1500,6 +1613,14 @@ export interface OrdersSelect<T extends boolean = true> {
               providerStatus?: T;
               id?: T;
             };
+        payerBankDetails?:
+          | T
+          | {
+              bankAccount?: T;
+              bik?: T;
+              recipientName?: T;
+              bankName?: T;
+            };
       };
   invoice?:
     | T
@@ -1606,6 +1727,76 @@ export interface CartsSelect<T extends boolean = true> {
       };
   userAgent?: T;
   ipHash?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "returns_select".
+ */
+export interface ReturnsSelect<T extends boolean = true> {
+  returnNumber?: T;
+  orderId?: T;
+  orderNumberSnapshot?: T;
+  items?:
+    | T
+    | {
+        orderItemSku?: T;
+        productName?: T;
+        qty?: T;
+        priceSnapshot?: T;
+        vatRate?: T;
+        reason?: T;
+        condition?: T;
+        photos?: T;
+        id?: T;
+      };
+  reasonCategory?: T;
+  customerNotes?: T;
+  managerNotes?: T;
+  refundAmount?: T;
+  refundMethod?: T;
+  refundProviderRef?: T;
+  manualRefundConfirmation?:
+    | T
+    | {
+        byUser?: T;
+        at?: T;
+        paymentDoc?: T;
+        bankAccount?: T;
+        bik?: T;
+        recipientName?: T;
+        purpose?: T;
+      };
+  returnMethod?: T;
+  apiShipReturnOrderId?: T;
+  returnLabelUrl?: T;
+  creditMemoNumber?: T;
+  creditMemoPdfUrl?: T;
+  creditMemoIssuedAt?: T;
+  documentsError?: T;
+  correctionReceiptStatus?: T;
+  correctionReceiptRef?: T;
+  status?: T;
+  statusReason?: T;
+  requestedAt?: T;
+  approvedAt?: T;
+  receivedAt?: T;
+  refundedAt?: T;
+  rejectedAt?: T;
+  cancelledAt?: T;
+  clientRequestId?: T;
+  createdVia?: T;
+  history?:
+    | T
+    | {
+        at?: T;
+        fromStatus?: T;
+        toStatus?: T;
+        byUser?: T;
+        reason?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -2076,6 +2267,8 @@ export interface CrmSyncJobsSelect<T extends boolean = true> {
 export interface NotificationJobsSelect<T extends boolean = true> {
   notificationId?: T;
   orderId?: T;
+  entityCollection?: T;
+  entityId?: T;
   event?: T;
   channel?: T;
   template?: T;

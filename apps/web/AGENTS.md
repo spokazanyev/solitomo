@@ -15,6 +15,7 @@ Current features (active implementation):
 - `../../specs/049-customer-notifications/` — полная инфраструктура уведомлений (email-only, messenger placeholder).
 - `../../specs/051-order-numbering-and-immutability/` — SO-YYYY-NNNN нумерация + иммутабельность оплаченных заказов.
 - `../../specs/052-cart-as-entity/` — Корзина как сущность БД (Payload `carts`), TTL/abandonment/expiry, конверсия в Order, recovery при отмене до оплаты.
+- `../../specs/053-returns-and-refunds/` — Полноценный жизненный цикл возвратов (Payload `returns`), RT-YYYY-NNNN, ЮKassa Refunds, чек коррекции 54-ФЗ (stub), КСФ для юрлица (stub), полный/частичный возврат, синхронизация Order.{hasReturns,returnsCount,totalRefunded,disputeFlag}.
 - Канонический документ жизненного цикла: `../../07-build-specifications/order-lifecycle-spec.md`.
 
 Useful commands from repo root:
@@ -32,11 +33,15 @@ pnpm --filter @soliton/web test
 - `src/lib/shipping/` — ApiShip provider + fallback + registry (047).
 - `src/lib/lifecycle/` — domain event emitter, status-machine, closure cron, client-number generator (051), immutability guard (051).
 - `src/lib/cart/` — Cart token/cookie/state-machine/merge/totals/repository/cron + recovery subscriber (052).
+- `src/lib/returns/` — Returns state-machine, number-generator (RT), policies, repository, events, admin-helpers (053).
+- `src/lib/payments/yookassa-refunds.ts` — ЮKassa Refunds adapter (053).
+- `src/lib/documents/credit-memo-number.ts` — Credit-memo number generator (CM-YYYY-NNNN, 053).
 - `src/lib/notifications/` — stub email (047) + полная матрица (049).
 - `src/lib/crm/twenty/` — GraphQL client + sync + subscriber (048).
 - `src/lib/dadata/` — нормализация адресов.
 - `src/globals/{ApiShipSettings,CrmSettings,NotificationsSettings}.ts`.
 - `src/collections/{ShippingCalculations,ShippingLogs,CrmSyncJobs,NotificationJobs}.ts`.
-- Cron-эндпоинты: `src/app/api/cron/{closure,crm-sync,notifications,pickup-reminder,stuck-alerts,carts-cleanup}/route.ts` — защищены `CRON_SECRET`.
+- Cron-эндпоинты: `src/app/api/cron/{closure,crm-sync,notifications,pickup-reminder,stuck-alerts,carts-cleanup,returns-overdue}/route.ts` — защищены `CRON_SECRET`.
 - Cart API: `src/app/api/cart/{route,[token]/route,[token]/items/route,[token]/items/[sku]/route,merge/route}.ts` (052).
+- Returns API: `src/app/api/returns/route.ts` (public POST/GET), `src/app/api/admin/returns/{route,[id]/{approve,reject,cancel,received,refund}/route}.ts` (053).
 - Admin-эндпоинты: `src/app/api/admin/orders/[id]/reissue-number/route.ts` (051) — перевыпуск clientNumber.

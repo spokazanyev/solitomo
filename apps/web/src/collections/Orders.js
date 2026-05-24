@@ -1,3 +1,5 @@
+import { randomBytes } from "node:crypto";
+
 import { withDiscardChangesControl } from "./admin-components.js";
 import { adminGroups, adminLabel, commonLabels } from "./admin-i18n.js";
 // 051: Order numbering + immutability hooks (lazy-imported to avoid startup cost)
@@ -335,8 +337,27 @@ export const Orders = {
                 { label: "pending", value: "pending" },
                 { label: "succeeded", value: "succeeded" },
                 { label: "failed", value: "failed" },
+                { label: "canceled", value: "canceled" },
               ],
             },
+          ],
+        },
+        // 053: Payer bank details snapshot (для bank-transfer refunds, юрлицо)
+        {
+          name: "payerBankDetails",
+          type: "group",
+          label: adminLabel("Реквизиты плательщика", "Payer bank details"),
+          admin: {
+            description: adminLabel(
+              "Snapshot реквизитов плательщика для bank-transfer refunds (юрлицо, 053).",
+              "Payer bank details snapshot for bank-transfer refunds (legal entity, 053).",
+            ),
+          },
+          fields: [
+            { name: "bankAccount", type: "text", label: adminLabel("Расчётный счёт", "Bank account") },
+            { name: "bik", type: "text", label: adminLabel("БИК", "BIK") },
+            { name: "recipientName", type: "text", label: adminLabel("Наименование получателя", "Recipient name") },
+            { name: "bankName", type: "text", label: adminLabel("Банк", "Bank") },
           ],
         },
       ],
@@ -525,10 +546,11 @@ export const Orders = {
         const label = c.companyName?.trim() || c.fullName?.trim() || c.email?.trim() || "—";
         data.customerLabel = label;
 
-        // generate publicToken once
+        // generate publicToken once — 128-bit cryptographically secure (053 H5)
         if (operation === "create" && !data.publicToken) {
-          data.publicToken =
-            Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+          // 16 bytes → 22-char URL-safe base64 (~128 bits of entropy).
+          // Replaces the prior Math.random+Date.now combo which was guessable.
+          data.publicToken = randomBytes(16).toString("base64url");
         }
 
         // 051: Generate clientNumber on create (if not already set)
@@ -540,6 +562,21 @@ export const Orders = {
           } catch (err) {
             req.payload.logger.error("[orders] clientNumber generation failed:", err);
             // Don't block order creation — clientNumber can be backfilled later
+          }
+        }
+
+        // 053 H4 fix: validate status transitions through the lifecycle state machine.
+        // `reopenAuthorized` context flag opens completed → delivered/returned for
+        // Returns.afterChange (FR-5316). Without this, leaving completed throws.
+        if (operation === "update" && originalDoc && originalDoc.status && data.status && originalDoc.status !== data.status) {
+          try {
+            const { assertTransition } = await import("../lib/lifecycle/status-machine.ts");
+            assertTransition(originalDoc.status, data.status, {
+              reopenAuthorized: Boolean(req.context?.reopenAuthorized),
+            });
+          } catch (err) {
+            req.payload.logger.error(`[orders] status transition rejected: ${err?.message ?? err}`);
+            throw err;
           }
         }
 
