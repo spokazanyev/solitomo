@@ -81,7 +81,7 @@
 ## TODO / открытые вопросы
 
 - **SendPulse-sender**: реализовать OAuth-flow + token-cache. Сейчас возвращает `failed: not implemented`.
-- **Email bounce-handling**: спека требует пометить `customer.emailValid=false` после 3 hard bounce. Это требует webhook от Postmark/Mailgun (`POST /api/webhooks/email-bounce/route.ts`) — **не реализовано**, нужен Q к владельцу о провайдере.
+- **Email bounce-handling**: спека требует пометить `customer.emailValid=false` после 3 hard bounce. ~~Это требует webhook от Postmark/Mailgun (`POST /api/webhooks/email-bounce/route.ts`) — **не реализовано**, нужен Q к владельцу о провайдере.~~ **Провайдер выбран (Unisender Go, 2026-05-24).** Webhook у Unisender называется «Webhook для статистики», настраивается в кабинете → даёт события `delivered / hard_bounce / soft_bounce / complained / unsubscribed`. Endpoint всё ещё не реализован — задача в `07-build-specifications/deferred-content-track.md` § п. 25, шаг 6.
 - **Аутентификация админ-эндпоинтов**: используется `payload.auth({ headers })`. В Next.js 16 / Payload 3 точная сигнатура может отличаться — следует уточнить при первом запуске.
 - **NotificationLogPanel** (T062): UI-панель в карточке заказа Payload Admin для просмотра журнала уведомлений — не реализована, оставлена на следующую итерацию.
 - **Маска API key в admin UI** (T013): сейчас apiKey — обычный text. Реальная маскировка через кастомный field component не реализована.
@@ -107,11 +107,12 @@
 
 ## ENV переменные
 
-- `EMAIL_PROVIDER` — `postmark` | `mailgun` | `sendpulse` (fallback если в global не задано).
-- `EMAIL_API_KEY` — fallback.
-- `EMAIL_FROM` — fallback.
+- `EMAIL_PROVIDER` — `postmark` | `mailgun` | `sendpulse` | `unisender_go` (fallback если в global не задано). С 2026-05-24 в `.env.local` стоит `unisender_go`.
+- `EMAIL_API_KEY` — fallback. Для Unisender Go это API-ключ из кабинета.
+- `EMAIL_FROM` — fallback. На 2026-05-24 = `PDU Market <orders@pdumarket.ru>` (подтверждённый домен Unisender).
 - `EMAIL_REPLY_TO` — fallback.
 - `EMAIL_MAILGUN_DOMAIN` — для Mailgun.
+- `UNISENDER_GO_BASE_URL` — base URL региона Unisender Go. На EU-аккаунте — `https://go2.unisender.ru/ru/transactional/api/v1`, на RU-аккаунте — `https://go1.unisender.ru/ru/transactional/api/v1`. Если не задан, адаптер использует `go1` по умолчанию.
 - `EMAIL_SANDBOX` — `true` → dry-run.
 - `CRON_SECRET` — Bearer-токен для cron-эндпоинтов и admin-операций.
 - `SITE_URL` — для генерации ссылок в письмах.
@@ -137,3 +138,42 @@ registerSender("messenger", telegramSender);
 ```
 
 После этого все queued messenger-jobs автоматически начинают доставляться.
+
+## 2026-05-24: Подключён Unisender Go (EU-регион `go2`)
+
+**Контекст.** В рамках выбора транзакционного email-провайдера (см. ресёрч и сравнение, проведённые в чат-истории «Транзакционная почта для pdumarket.ru») остановились на **Unisender Go** — российский ESP, оплата рублями с ИП, лучшая доставляемость в Mail.ru/Yandex среди доступных, API в стиле Mailgun.
+
+**Аккаунт.** Пользователь зарегистрирован на EU-инстансе (`go2.unisender.ru`). RU-инстанс (`go1.unisender.ru`) не знает user_id этого ключа — проверено через `/template/list.json` (401 на go1, 200 на go2). При создании нового адаптера обязательно указывать корректный регион через `UNISENDER_GO_BASE_URL`.
+
+**Что сделано:**
+
+1. **Новый файл `apps/web/src/lib/notifications/senders/email/unisender-go.ts`** — реализация `EmailSender` под Unisender Go transactional API.
+   - `sendEmail(...)` → POST `/email/send.json` с payload `{ message: { recipients[], body{html,plaintext}, subject, from_email, from_name, reply_to, track_links:0, track_read:0 } }`.
+   - Header `X-API-KEY: <apiKey>`.
+   - Парсер `From` понимает форматы `"Name <email@domain>"` и `"email@domain"`.
+   - Маппинг ответа: `{status:"success", emails:[{id}]}` → `SendResult.sent` с `externalRef`; `{status:"error", code, message}` → `SendResult.failed` с кодом, классификация transient: `http >= 500 || http === 429`.
+   - `ping()` использует `/template/list.json` (cheapest auth check; протестировано — работает).
+2. **`apps/web/src/lib/notifications/settings.ts`** — в union `EmailProvider` добавлен `"unisender_go"`.
+3. **`apps/web/src/lib/notifications/senders/index.ts`** — `buildEmailSender` теперь умеет ветку `unisender_go`, читает `process.env.UNISENDER_GO_BASE_URL` (fallback на go1).
+4. **`apps/web/.env.local` + `apps/web/.env.example`** — переключено: `EMAIL_PROVIDER=unisender_go`, ключ в `EMAIL_API_KEY` (общая конвенция), `EMAIL_FROM="PDU Market <orders@pdumarket.ru>"`, `EMAIL_REPLY_TO=support@pdumarket.ru`, `UNISENDER_GO_BASE_URL=https://go2.unisender.ru/ru/transactional/api/v1`. **`EMAIL_SANDBOX=true` сохранён** — на free-тарифе реальная отправка на mail.ru/gmail/yandex заблокирована Unisender'ом.
+5. **`stub.ts` не трогался** — он 047-stub, который 049 subscriber снимает через `unregisterSubscriber("047-email-stub")`. На проде дублирования не будет.
+
+**Что протестировано:**
+
+- ✅ Auth — `/template/list.json` → 200 OK, аккаунт чист.
+- ✅ Регион — `go2` принимает, `go1` отвергает с 401 (зафиксировано в env).
+- ✅ Подтверждённый домен — `/domain/list.json` показывает `pdumarket.ru` со статусом `confirmed` и DKIM `active`.
+- ✅ Адаптер end-to-end до уровня валидации Unisender — `From: orders@pdumarket.ru` принят; payload корректный.
+- ❌ Реальная доставка на gmail/mail.ru — **заблокирована free-tier'ом** (HTTP 403, code 903: «On the 'free_tier' tariff it is allowed to send letters only to the 'checked' domains or 'checked' emails»). Требуется платный тариф.
+
+**TypeScript.** В новых файлах ошибок нет. Pre-existing ошибки в `src/lib/crm/twenty/*` и `src/lib/lifecycle/__tests__/events.test.ts` не относятся к этим изменениям.
+
+**Тест-скрипт.** Лежит в `/tmp/test-unisender-send.mjs` (не в репозитории — одноразовый). Воспроизводит ровно тот же HTTP-запрос, что и адаптер; читает `.env.local` напрямую. Удобен для проверки после смены тарифа / DNS-записей.
+
+**Снятые блокеры:**
+
+- `07-build-specifications/deferred-content-track.md` § п. 15, строка про «SMTP / email-сервис для отправки PDF-счетов и нотификаций» — выбор сделан.
+- Тот же файл, § п. 24, пункт owner-actions 3 — «Получить SMTP для уведомлений Twenty» — переиспользуем Unisender.
+- Этот файл, раздел «TODO / открытые вопросы», пункт «Email bounce-handling … нужен Q к владельцу о провайдере» — провайдер выбран. Реализация webhook остаётся открытой.
+
+**Что осталось до боевого включения** — см. `07-build-specifications/deferred-content-track.md` § п. 25 «Unisender Go — переход на платный тариф + boevoe тестирование»: смена тарифа, DMARC/SPF верификация, end-to-end тест с прибытием в инбокс, снятие sandbox, прогрев репутации, bounce-webhook.
