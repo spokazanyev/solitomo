@@ -90,6 +90,13 @@ paths:
       responses:
         "200":
           description: Cart найден
+          headers:
+            ETag:
+              schema: { type: string, example: 'W/"abcdef0123456789"' }
+              description: |
+                Weak ETag (RFC 7232), вычисляется из id+updatedAt. Клиент
+                должен сохранить и передать в `If-Match` на последующих
+                PATCH `op=setItems`. (052 H3)
           content:
             application/json:
               schema: { $ref: "#/components/schemas/Cart" }
@@ -134,12 +141,14 @@ paths:
           required: false
           schema:
             type: string
-            format: date-time
+            example: 'W/"abcdef0123456789"'
           description: |
-            Обязателен для `op=setItems` (optimistic lock по `updatedAt`).
-            При mismatch — 409 `cart_stale`. Для коммутативных операций
-            (`mergeItems`, `setQuantity`, `removeItem`, `touch`) — не обязателен.
-            (FR-5214a)
+            Обязателен для `op=setItems` (optimistic lock через ETag, RFC 7232).
+            Клиент берёт значение из заголовка `ETag` последнего GET-ответа.
+            При mismatch — 409 `cart_stale` с `details.expectedETag`. Для коммутативных
+            операций (`mergeItems`, `setQuantity`, `removeItem`, `touch`) — не обязателен.
+            Поддерживается также wildcard `*` и bare digest без кавычек.
+            (FR-5214a, 052 H3)
       requestBody:
         required: true
         content:
@@ -342,6 +351,7 @@ components:
         customerId:       { type: string, nullable: true, description: "Заполняется после 054." }
         companyId:        { type: string, nullable: true, description: "Forward-ref для 054 (FR-5404). Nullable." }
         marketingOptIn:   { type: boolean, default: false, description: "Согласие на маркетинговые рассылки (FR-5224a). Default false." }
+        synthetic:        { type: boolean, default: false, description: "Создана автоматически в /api/orders для legacy-флоу. Исключать из funnel-аналитики. (052 H6)" }
         items:
           type: array
           items: { $ref: "#/components/schemas/CartItem" }

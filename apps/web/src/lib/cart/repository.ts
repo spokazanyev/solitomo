@@ -10,8 +10,10 @@ import "server-only";
 import type { Payload } from "payload";
 
 import type { CartItem } from "./merge";
-import type { CartStatus } from "./state-machine";
+import { canTransition, type CartStatus, type TransitionContext } from "./state-machine";
 import { computeTotals, type CartTotals } from "./totals";
+
+import { isValidTokenFormat } from "./token";
 
 export interface CartRecord {
   id: string;
@@ -20,6 +22,8 @@ export interface CartRecord {
   customerId?: string | null;
   companyId?: string | null;
   marketingOptIn: boolean;
+  /** H6: marks carts created synthetically by /api/orders for legacy flow — excluded from funnel metrics */
+  synthetic: boolean;
   items: CartItem[];
   totals: CartTotals;
   status: CartStatus;
@@ -52,6 +56,11 @@ export interface CreateCartInput {
   marketingOptIn?: boolean;
   ipHash?: string;
   userAgent?: string;
+  /** H6: mark as synthetic (created by /api/orders for legacy flow) */
+  synthetic?: boolean;
+  /** Pre-set status (e.g. "converted" for synthetic carts) */
+  status?: CartStatus;
+  convertedToOrderId?: string;
 }
 
 export const CART_EXPIRY_DAYS = Number(process.env.CART_EXPIRY_DAYS ?? 30);
@@ -81,6 +90,7 @@ export function toCartRecord(doc: Record<string, unknown>): CartRecord {
     customerId: typeof customerId === "string" ? customerId : (customerId as { id?: string })?.id ?? null,
     companyId: typeof companyId === "string" ? companyId : (companyId as { id?: string })?.id ?? null,
     marketingOptIn: Boolean(doc.marketingOptIn),
+    synthetic: Boolean(doc.synthetic),
     items,
     totals,
     status: (doc.status as CartStatus) ?? "active",
@@ -103,12 +113,15 @@ export function toCartRecord(doc: Record<string, unknown>): CartRecord {
 
 /**
  * Find cart by cartToken. Returns null if not found.
+ *
+ * H7 fix: validates token format via `isValidTokenFormat` to reject whitespace,
+ * wrong chars, or invalid lengths before hitting the DB.
  */
 export async function findByToken(payload: Payload, token: string): Promise<CartRecord | null> {
-  if (!token) return null;
+  if (!isValidTokenFormat(token)) return null;
   const result = await payload.find({
     collection: "carts" as never,
-    where: { cartToken: { equals: token } },
+    where: { cartToken: { equals: token.trim() } },
     limit: 1,
   });
   const doc = result.docs[0] as Record<string, unknown> | undefined;
@@ -132,6 +145,9 @@ export async function findById(payload: Payload, id: string): Promise<CartRecord
 
 /**
  * Create a new cart.
+ *
+ * Supports H6 `synthetic` flag and pre-set status/convertedToOrderId for the
+ * legacy-flow synthetic cart created by `/api/orders` when no real cart exists.
  */
 export async function createCart(payload: Payload, input: CreateCartInput): Promise<CartRecord> {
   const now = new Date();
@@ -146,9 +162,12 @@ export async function createCart(payload: Payload, input: CreateCartInput): Prom
       customerId: input.customerId,
       companyId: input.companyId,
       marketingOptIn: input.marketingOptIn ?? false,
+      synthetic: input.synthetic ?? false,
       items,
       totals,
-      status: "active",
+      status: input.status ?? "active",
+      convertedToOrderId: input.convertedToOrderId,
+      convertedAt: input.convertedToOrderId ? now.toISOString() : undefined,
       lastActivityAt: now.toISOString(),
       expiresAt: defaultExpiresAt(now),
       sourcePage: input.sourcePage,
@@ -178,13 +197,41 @@ export interface UpdateCartInput {
   convertedAt?: string | null;
   /** Set true to refresh lastActivityAt + expiresAt. */
   touch?: boolean;
+  /** State-machine transition context (M5+M6). Required for guarded transitions. */
+  transition?: TransitionContext;
 }
 
+export class CartInvalidTransitionError extends Error {
+  constructor(public cartId: string, public from: CartStatus, public to: CartStatus) {
+    super(`Invalid cart transition: ${from} → ${to} (cart=${cartId})`);
+    this.name = "CartInvalidTransitionError";
+  }
+}
+
+/**
+ * Update cart fields.
+ *
+ * M5+M6 fix: when `status` is being changed, validates the transition through
+ * `canTransition` and throws `CartInvalidTransitionError` if disallowed.
+ * Guarded transitions (converted→active, expired→active) require explicit
+ * `input.transition` context flags.
+ */
 export async function updateCart(
   payload: Payload,
   id: string,
   input: UpdateCartInput,
 ): Promise<CartRecord> {
+  // M5+M6: guard status transitions
+  if (input.status !== undefined) {
+    const current = await findById(payload, id);
+    if (!current) throw new Error(`Cart not found: ${id}`);
+    if (current.status !== input.status) {
+      if (!canTransition(current.status, input.status, input.transition ?? {})) {
+        throw new CartInvalidTransitionError(id, current.status, input.status);
+      }
+    }
+  }
+
   const data: Record<string, unknown> = {};
 
   if (input.items !== undefined) {
@@ -281,6 +328,9 @@ export async function markConverted(
 /**
  * Recover a cart from converted → active (FR-5223a).
  * Used when Order is cancelled/expired before paid.
+ *
+ * M5+M6: passes the `recoverFromConverted` transition flag so the state machine
+ * allows what would otherwise be a forbidden converted → active transition.
  */
 export async function recoverFromConverted(payload: Payload, id: string): Promise<CartRecord> {
   return updateCart(payload, id, {
@@ -288,5 +338,21 @@ export async function recoverFromConverted(payload: Payload, id: string): Promis
     convertedToOrderId: null,
     convertedAt: null,
     touch: true,
+    transition: { recoverFromConverted: true },
+  });
+}
+
+/**
+ * Admin action: restore an expired cart back to active.
+ * Requires explicit admin-initiated context (UI guard upstream).
+ */
+export async function adminRestoreFromExpired(
+  payload: Payload,
+  id: string,
+): Promise<CartRecord> {
+  return updateCart(payload, id, {
+    status: "active",
+    touch: true,
+    transition: { adminRestore: true },
   });
 }

@@ -12,6 +12,7 @@ import { getPayload } from "payload";
 import configPromise from "@payload-config";
 
 import { cartError, getClientIp, rateLimit } from "@/lib/cart/api-utils";
+import { computeCartETag, matchesETag } from "@/lib/cart/etag";
 import { isMutationBlocked } from "@/lib/cart/state-machine";
 import { mergeItems, removeItem, setItems, setQuantity, type CartItem } from "@/lib/cart/merge";
 import { findByToken, hardDelete, updateCart } from "@/lib/cart/repository";
@@ -40,31 +41,30 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ toke
 
   if (!cart) return cartError(404, "not_found", "Cart not found");
 
-  // Terminal/gone states
-  if (cart.status === "expired") {
-    return NextResponse.json(
-      { error: "cart_expired", message: "Cart has expired", status: "expired" },
-      { status: 410 },
-    );
-  }
-  if (cart.status === "merged") {
-    return NextResponse.json(
-      {
-        error: "cart_merged",
-        message: "Cart has been merged",
-        status: "merged",
-        mergedIntoToken: null,
-      },
-      { status: 410 },
-    );
-  }
-  if (cart.status === "converted") {
+  // H1 fix: return uniform 404 for all terminal states unless the caller is
+  // authenticated (admin) — prevents token-enumeration timing oracle and
+  // leakage of convertedToOrderId to anyone who happens to know the cartToken.
+  const auth = await payload.auth({ headers: req.headers });
+  const isAdmin = Boolean(auth.user);
+
+  if (cart.status === "expired" || cart.status === "merged" || cart.status === "converted") {
+    if (!isAdmin) {
+      // Uniform response — same shape as not_found, no status/orderId leak.
+      return cartError(404, "not_found", "Cart not found");
+    }
+    // Admin observability: return 410 with detail (audit log / debugging).
     return NextResponse.json(
       {
-        error: "cart_already_converted",
-        message: "Cart has been converted to an order",
-        status: "converted",
-        orderId: cart.convertedToOrderId,
+        error:
+          cart.status === "expired"
+            ? "cart_expired"
+            : cart.status === "merged"
+              ? "cart_merged"
+              : "cart_already_converted",
+        message: `Cart status: ${cart.status}`,
+        status: cart.status,
+        orderId: cart.status === "converted" ? cart.convertedToOrderId : undefined,
+        mergedIntoToken: cart.status === "merged" ? null : undefined,
       },
       { status: 410 },
     );
@@ -79,10 +79,14 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ toke
       status: cart.status === "abandoned" ? "active" : undefined,
       touch: true,
     });
-    return NextResponse.json(updated);
+    return NextResponse.json(updated, {
+      headers: { ETag: computeCartETag(updated) },
+    });
   }
 
-  return NextResponse.json(cart);
+  return NextResponse.json(cart, {
+    headers: { ETag: computeCartETag(cart) },
+  });
 }
 
 // ─── PATCH ────────────────────────────────────────────────────────────────────
@@ -132,15 +136,18 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ to
     }
   }
 
-  // FR-5214a: If-Match required for setItems (optimistic lock)
+  // FR-5214a + H3 fix: If-Match required for setItems — uses RFC-7232 weak ETag
+  // computed from id + updatedAt. Clients should echo back the ETag from the most
+  // recent GET response. Bare digest also accepted for clients that strip quotes.
   if (body.op === "setItems") {
     const ifMatch = req.headers.get("if-match");
     if (!ifMatch) {
       return cartError(400, "validation_failed", "If-Match header required for setItems");
     }
-    if (ifMatch !== cart.updatedAt) {
+    const currentETag = computeCartETag(cart);
+    if (!matchesETag(ifMatch, currentETag)) {
       return cartError(409, "cart_stale", "Cart was modified by another request", {
-        expectedUpdatedAt: cart.updatedAt,
+        expectedETag: currentETag,
       });
     }
   }
@@ -216,7 +223,9 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ to
       touch: true,
     });
 
-    return NextResponse.json(updated);
+    return NextResponse.json(updated, {
+      headers: { ETag: computeCartETag(updated) },
+    });
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error("[cart] PATCH failed:", err);

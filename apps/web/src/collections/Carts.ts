@@ -105,6 +105,23 @@ export const Carts: CollectionConfig = {
       },
     },
 
+    // -------- Analytics flag --------
+    {
+      name: "synthetic",
+      type: "checkbox",
+      defaultValue: false,
+      index: true,
+      label: adminLabel("Синтетическая (legacy)", "Synthetic (legacy)"),
+      admin: {
+        readOnly: true,
+        description: adminLabel(
+          "Создана автоматически в /api/orders для legacy-флоу (без cartToken). " +
+            "Должна исключаться из funnel-аналитики (createdAt==convertedAt).",
+          "Auto-created by /api/orders for legacy flow (no cartToken). Exclude from funnel analytics.",
+        ),
+      },
+    },
+
     // -------- Items --------
     {
       name: "items",

@@ -125,7 +125,8 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // FR-5223: if no cart at all, create synthetic cart so funnel analytics is consistent
+    // FR-5223 + H6: if no cart at all, create synthetic cart marked with `synthetic: true`
+    // so funnel analytics can exclude these (createdAt==convertedAt, no add_to_cart events).
     if (!cartId) {
       const synthetic = await createCart(payload, {
         cartToken: generateCartToken(),
@@ -140,6 +141,7 @@ export async function POST(request: NextRequest) {
         })),
         customerEmail: body.customer?.email,
         sourcePage: body.sourcePage,
+        synthetic: true,
       });
       cartId = synthetic.id;
     }

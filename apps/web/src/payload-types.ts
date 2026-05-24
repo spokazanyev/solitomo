@@ -821,6 +821,10 @@ export interface Cart {
    * GDPR/Russian PD law consent. Sources: checkout S04 checkbox OR restore-page banner.
    */
   marketingOptIn?: boolean | null;
+  /**
+   * Auto-created by /api/orders for legacy flow (no cartToken). Exclude from funnel analytics.
+   */
+  synthetic?: boolean | null;
   items?:
     | {
         sku: string;
@@ -1560,6 +1564,7 @@ export interface CartsSelect<T extends boolean = true> {
   customerId?: T;
   companyId?: T;
   marketingOptIn?: T;
+  synthetic?: T;
   items?:
     | T
     | {
