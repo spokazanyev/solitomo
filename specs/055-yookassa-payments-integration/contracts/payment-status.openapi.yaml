@@ -1,0 +1,115 @@
+openapi: 3.1.0
+info:
+  title: Order Payment Status Polling API (055)
+  version: 1.0.0
+  description: |
+    Polling endpoint for /payment/success and /payment/return pages.
+    Customer returns from ЮKassa to /payment/return/{orderId}; the page polls
+    this endpoint every 2 sec for up to 60 sec to handle the case where the
+    webhook hasn't arrived yet. See spec 055 edge case "webhook раньше success-redirect'a".
+
+servers:
+  - url: https://pdumarket.ru
+
+paths:
+  /api/orders/{id}/payment-status:
+    get:
+      operationId: getOrderPaymentStatus
+      summary: Получить актуальный статус оплаты заказа
+      description: |
+        Read-only. Возвращает order.status + payment.providerStatus + paidAt.
+        Если статус всё ещё pending_payment после 60с polling'а — фронт
+        показывает "Платёж обрабатывается, придёт письмо когда подтвердим".
+
+        Не запрашивает ЮKassa напрямую — берёт snapshot из Payload Order
+        (webhook handler уже обновил, либо ещё нет).
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Order ID (UUID v4)
+
+      responses:
+        '200':
+          description: Current payment status
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [orderStatus, paymentStatus, retryAvailable]
+                properties:
+                  orderStatus:
+                    type: string
+                    enum:
+                      - draft
+                      - pending_payment
+                      - awaiting_payment
+                      - paid
+                      - cancelled
+                      - expired
+                      - fulfilling
+                      - shipped
+                      - delivered
+                      - completed
+                      - refunding
+                      - refunded
+                  paymentStatus:
+                    type: string
+                    description: providerStatus from ЮKassa
+                    enum: [none, pending, authorized, succeeded, canceled]
+                  paidAt:
+                    type: string
+                    format: date-time
+                    nullable: true
+                  clientNumber:
+                    type: string
+                    description: SO-YYYY-NNNN (051)
+                  retryAvailable:
+                    type: boolean
+                    description: |
+                      true если orderStatus=pending_payment И не истёк
+                      paymentRetryWindowMin — клиент может POST'нуть create
+                      ещё раз.
+                  receiptStatus:
+                    type: string
+                    nullable: true
+                    enum: [pending, succeeded, canceled]
+                    description: |
+                      После payment.succeeded — статус 54-ФЗ чека.
+                      Показываем "Чек придёт по почте" если pending/succeeded.
+
+        '404':
+          description: Order not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code: { type: string, enum: [ORDER_NOT_FOUND] }
+                  message: { type: string }
+
+      security:
+        - customerSessionCookie: []
+        - cartSession: []
+        - publicToken: []
+
+components:
+  securitySchemes:
+    customerSessionCookie:
+      type: apiKey
+      in: cookie
+      name: customer_session
+    cartSession:
+      type: apiKey
+      in: cookie
+      name: cart_session
+    publicToken:
+      type: apiKey
+      in: query
+      name: token
+      description: |
+        Optional. Order.publicToken (FR-5424 054 — generated for guest checkout).
+        Allows access for non-logged guests who closed their cart_session cookie.

@@ -1,0 +1,162 @@
+openapi: 3.1.0
+info:
+  title: ЮKassa Payment Creation API (055)
+  version: 1.0.0
+  description: |
+    Server-side endpoint that converts a Cart → Order into a ЮKassa payment.
+    Customer is then redirected to confirmationUrl. See spec 055 FR-5500..5511.
+  contact:
+    name: Soliton dev
+servers:
+  - url: https://pdumarket.ru
+    description: production
+  - url: https://staging.pdumarket.ru
+    description: staging (ЮKassa test-shop)
+
+paths:
+  /api/payment/yookassa/create:
+    post:
+      operationId: createYooKassaPayment
+      summary: Create a ЮKassa payment for the given Order
+      description: |
+        Reads Order.totals + items, builds receipt 54-ФЗ object, calls ЮKassa
+        POST /v3/payments with Idempotence-Key=${orderId}:${retryNonce},
+        persists providerRef + confirmationUrl in Order.payment, returns the
+        redirect URL.
+
+        Idempotency on this endpoint: repeated calls with same retryNonce
+        return the existing confirmationUrl (FR-5510). The retryNonce is
+        generated client-side once per session (UUID v4) or by server if absent.
+
+        FR-coverage: 5500, 5501, 5502, 5503, 5504, 5505, 5506, 5507, 5508,
+        5509, 5510, 5511, 5540-5546 (receipt), 5544a-d (VAT), 5595-5598 (PII).
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [orderId]
+              properties:
+                orderId:
+                  type: string
+                  description: Payload Order ID (UUID v4)
+                  example: "01931a4f-3e29-7c41-a8a9-1f3c0d8e5b2a"
+                retryNonce:
+                  type: string
+                  description: |
+                    Optional. UUID v4 generated client-side on first call.
+                    If omitted, server generates and returns it (caller MUST
+                    persist for retries). See FR-5510.
+                  example: "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+
+      responses:
+        '200':
+          description: Payment created (or already existed for this retryNonce)
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [confirmationUrl, confirmationType, providerRef, retryNonce]
+                properties:
+                  confirmationUrl:
+                    type: string
+                    format: uri
+                    description: URL для редиректа покупателя на ЮKassa
+                  confirmationType:
+                    type: string
+                    enum: [redirect, qr, embedded]
+                    description: |
+                      redirect — card / yoo_money / sberbank.
+                      qr — СБП (показываем QR-код).
+                      embedded — ЮKassa virtual terminal (не используется в MVP).
+                  providerRef:
+                    type: string
+                    description: ЮKassa payment.id (UUID)
+                    example: "2dbdbeb6-000f-5000-9000-0e6d4eb52a3d"
+                  retryNonce:
+                    type: string
+                    description: |
+                      Серверный UUID, который клиент ОБЯЗАН сохранить и
+                      передавать обратно при retry.
+                  availableMethods:
+                    type: array
+                    description: Whitelist из paymentSettings.paymentMethods
+                    items:
+                      type: string
+                      enum: [bank_card, sbp, yoo_money, sberbank]
+
+        '400':
+          description: Validation error (FR-5544a, FR-5544b, etc.)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                missingEmailAndPhone:
+                  value: { code: VALIDATION_FAILED, message: "Order.customer.email or .phone required for 54-ФЗ receipt" }
+                invalidVatCode:
+                  value: { code: CONFIG_INVALID, message: "paymentSettings.defaultVatCode must be in {1..12}" }
+
+        '404':
+          description: Order not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+        '409':
+          description: |
+            Conflict — Order.status не `pending_payment` (FR-5509), либо
+            Cart-Order conversion ещё не закрыта.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                wrongStatus:
+                  value: { code: INVALID_ORDER_STATUS, message: "Order.status='paid' — cannot create new payment" }
+
+        '503':
+          description: |
+            ЮKassa недоступна (5xx / timeout после 3 retry, FR-5511).
+            Покупатель видит "Платёжная система недоступна, попробуйте позже".
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+      security:
+        - customerSessionCookie: []
+
+components:
+  schemas:
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: string
+          enum:
+            - VALIDATION_FAILED
+            - CONFIG_INVALID
+            - ORDER_NOT_FOUND
+            - INVALID_ORDER_STATUS
+            - YOOKASSA_UNAVAILABLE
+            - YOOKASSA_REJECTED
+            - INTERNAL_ERROR
+        message:
+          type: string
+        details:
+          type: object
+          description: Optional structured context (e.g. validation errors per field)
+
+  securitySchemes:
+    customerSessionCookie:
+      type: apiKey
+      in: cookie
+      name: customer_session
+      description: |
+        Авторизация через customer_session JWT (054). Гость допустим,
+        если Order.cartId совпадает с cart_session cookie (anti-hijack).

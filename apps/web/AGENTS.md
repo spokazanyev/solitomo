@@ -17,6 +17,7 @@ Current features (active implementation):
 - `../../specs/052-cart-as-entity/` — Корзина как сущность БД (Payload `carts`), TTL/abandonment/expiry, конверсия в Order, recovery при отмене до оплаты.
 - `../../specs/053-returns-and-refunds/` — Полноценный жизненный цикл возвратов (Payload `returns`), RT-YYYY-NNNN, ЮKassa Refunds, чек коррекции 54-ФЗ (stub), КСФ для юрлица (stub), полный/частичный возврат, синхронизация Order.{hasReturns,returnsCount,totalRefunded,disputeFlag}.
 - `../../specs/054-customer-account/` — Customer / Company сущности, magic-link (opaque 256-bit), customer_session cookie, register/login/forgot-password, /me/orders с role-based privacy filter, GDPR export/delete, marketingOptIn migration на Customer (049 fallback на Order), FR-5420/FR-5421 backfill.
+- `../../specs/055-yookassa-payments-integration/` — Полная интеграция ЮKassa: create-payment + two-stage capture + webhook handler (IP-allowlist + idempotency + amount-match) + receipt 54-ФЗ (`vat_code=12`, НДС 22% по ФЗ-425) + cron expire/reconcile/capture-retry + refund-webhook (закрывает 053). **Status**: `/speckit-specify` + `/speckit-clarify` done; `/speckit-plan` complete; `/speckit-tasks` следующий.
 - Канонический документ жизненного цикла: `../../07-build-specifications/order-lifecycle-spec.md`.
 
 Useful commands from repo root:
