@@ -4,13 +4,28 @@
 
 **Created**: 2026-05-23
 
-**Status**: Draft
+**Status**: Draft — Twenty integration deferred 1-2 months post-launch (decision 2026-05-24)
 
 **Input**: Соединить Soliton (Payload Orders + checkout) с Twenty CRM — open-source CRM, который будет основной системой работы менеджеров со сделками. Покрыть полный жизненный цикл: идентификация контакта/компании, создание сделки, отражение каждого статусного перехода как Activity, авто-создание задач менеджеру.
+
+## Architectural Pattern
+
+⚠ **Read first**: `07-build-specifications/crm-integration-pattern.md` — defines the
+capability matrix (per-function delegation), 4-phase rollout, email-policy contract,
+and immutability guards. This spec describes the **mechanics** of sync;
+the pattern document defines the **boundaries** of what CRM owns vs. what stays
+in the service.
+
+**MVP launch state (2026-05-24)**:
+- `crmSettings.enabled = false` by default
+- Service operates standalone — no Twenty dependency for sales / fulfilment / notifications / returns
+- Twenty integration is Phase 1, scheduled for 1-2 months after launch when buyer volume grows
+- All hooks and subscribers in this spec remain in code but short-circuit when `enabled=false`
 
 ## Контекст и связи
 
 - **Канонический документ жизненного цикла**: `07-build-specifications/order-lifecycle-spec.md §4` (маппинг сущностей и стадий).
+- **Integration pattern**: `07-build-specifications/crm-integration-pattern.md` (capability matrix, rollout phases).
 - **Зависимости**: спека 047 (`specs/047-delivery-checkout-apiship/spec.md`) предоставляет event emitter (`emitDomainEvent`) и доменные события `order.*` / `shipment.*` — это вход для CRM sync.
 - **Twenty**: open-source, GraphQL API, **self-hosted** (решение владельца от 2026-05-23), стандартные объекты `Person`/`Company`/`Opportunity`/`Activity`/`Note`/`Task`. Twenty инстанс поднимается в Docker рядом с нашим Payload-стеком (на отдельном поддомене, например `crm.soliton.ru`).
 - **Стек проекта**: Next.js 16 + Payload v3 + PostgreSQL (без Medusa, без MikroORM).

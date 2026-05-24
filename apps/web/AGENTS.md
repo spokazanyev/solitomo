@@ -11,7 +11,7 @@ Read `../../agent-project-context.md` before changing Payload collections, publi
 Current features (active implementation):
 
 - `../../specs/047-delivery-checkout-apiship/` — модуль доставки с ApiShip + lifecycle + email stub.
-- `../../specs/048-twenty-crm-sync/` — синхронизация заказов с Twenty CRM (self-host).
+- `../../specs/048-twenty-crm-sync/` — синхронизация заказов с Twenty CRM (self-host). **MVP-state: `crmSettings.enabled=false`**, сервис автономен. Интеграция Twenty запланирована через 1-2 месяца после запуска. Целевая архитектура — `../../07-build-specifications/crm-integration-pattern.md` (capability matrix).
 - `../../specs/049-customer-notifications/` — полная инфраструктура уведомлений (email-only, messenger placeholder).
 - `../../specs/051-order-numbering-and-immutability/` — SO-YYYY-NNNN нумерация + иммутабельность оплаченных заказов.
 - `../../specs/052-cart-as-entity/` — Корзина как сущность БД (Payload `carts`), TTL/abandonment/expiry, конверсия в Order, recovery при отмене до оплаты.

@@ -47,7 +47,7 @@ describe("emitDomainEvent", () => {
     expect(handle).toHaveBeenCalledTimes(1);
     const payload = handle.mock.calls[0][0] as DomainEventPayload;
     expect(payload.kind).toBe("order.paid");
-    expect(payload.order.id).toBe("ORD-evt-1");
+    expect(payload.order?.id).toBe("ORD-evt-1");
     expect(payload.eventId).toContain("ORD-evt-1:order.paid:");
   });
 

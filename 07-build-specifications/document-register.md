@@ -93,6 +93,7 @@ Codex должен использовать эти документы как о�
 | Returns & Refunds | `specs/053-returns-and-refunds/spec.md` | создать | Полноценный жизненный цикл возврата: coll. `returns` с `returnNumber`, частичные возвраты, ЮKassa Refund API, ApiShip return-shipment, корректировочные счёт-фактуры. |
 | Customer account | `specs/054-customer-account/spec.md` | создать | Coll. `customers` + `companies`, magic-link для гостей, авторизация для зарегистрированных, личный кабинет с историей заказов, B2B-роли, GDPR-экспорт/удаление. |
 | Order lifecycle (cross-cutting) | `07-build-specifications/order-lifecycle-spec.md` | создать | Канонический документ жизненного цикла заказа: state machine, snapshot цены, матрица уведомлений (отсылка к 049), маппинг в Twenty (отсылка к 048), SLA, закрытие сделки. Источник истины для 047/048/049. |
+| CRM integration pattern | `07-build-specifications/crm-integration-pattern.md` | создан 2026-05-24 | Архитектурный паттерн интеграции с Twenty CRM: capability matrix (7 функциональных областей × 3 режима), 4-фазный rollout, email-policy contract, immutability guards, inbound webhook contract. Целевая архитектура; в MVP `crmSettings.enabled=false`, сервис автономен. |
 
 ## 4. Контент И SEO
 

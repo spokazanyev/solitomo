@@ -31,7 +31,17 @@ export async function processCrmEvent(event: DomainEventPayload): Promise<{
   if (!ctx) return { status: "failed", errorMessage: "Twenty disabled" };
 
   const { client, settings } = ctx;
+  // After 052/053/054 cross-spec changes, DomainEventPayload.order is optional.
+  // For Twenty sync we currently require an Order context — return-events and
+  // customer-events fall back to looking up by Return.orderId etc., not
+  // implemented in MVP. Skip cleanly if no order available.
   const order = event.order;
+  if (!order) {
+    return {
+      status: "success",
+      errorMessage: `skipped: ${event.kind} has no Order context (deferred to phase 2)`,
+    };
+  }
 
   try {
     let personId: string | undefined;
@@ -131,31 +141,45 @@ export async function processCrmEvent(event: DomainEventPayload): Promise<{
 }
 
 function humanLabel(kind: DomainEventPayload["kind"]): string {
-  const map: Record<DomainEventPayload["kind"], string> = {
+  // Partial<>: not every event kind has a Twenty label. Unknown kinds fall back
+  // to the raw kind string (caller treats as Activity title).
+  const map: Partial<Record<DomainEventPayload["kind"], string>> = {
     "order.identified": "Customer identified",
     "order.created": "Order created",
     "order.invoice_issued": "Invoice issued",
     "order.paid": "Payment received",
     "order.payment_failed": "Payment failed",
+    "order.cancelled": "Cancelled",
+    "order.completed": "Closed",
+    "order.returned": "Returned (full)",
+    "order.stuck": "Stuck",
+    "order.expired": "Expired",
     "shipment.created": "Shipped",
     "shipment.in_transit": "In transit",
     "shipment.at_point": "Arrived at point",
     "shipment.courier_today": "Out for delivery",
     "shipment.delivered": "Delivered",
-    "shipment.returned": "Returned",
+    "shipment.returned": "Shipment returned",
     "shipment.error": "Shipment error",
-    "order.cancelled": "Cancelled",
-    "order.completed": "Closed",
-    "order.stuck": "Stuck",
-    "order.expired": "Expired",
+    "return.created": "Return requested",
+    "return.approved": "Return approved",
+    "return.rejected": "Return rejected",
+    "return.received": "Return item received",
+    "return.refunded": "Refund issued",
+    "return.cancelled": "Return cancelled",
+    "return.overdue": "Return overdue",
   };
   return map[kind] ?? kind;
 }
 
 function renderActivityBody(event: DomainEventPayload): string {
   const ctx = event.context ?? {};
-  const parts: string[] = [`Event: ${event.kind}`, `Order: ${event.order.id}`];
-  if (event.order.totals?.total) parts.push(`Total: ${event.order.totals.total} ₽`);
+  const orderId = event.order?.id ?? event.returnData?.orderId ?? "unknown";
+  const parts: string[] = [`Event: ${event.kind}`, `Order: ${orderId}`];
+  if (event.order?.totals?.total) parts.push(`Total: ${event.order.totals.total} ₽`);
+  if (event.returnData?.refundAmount != null) {
+    parts.push(`Refund: ${(event.returnData.refundAmount / 100).toFixed(2)} ₽`);
+  }
   if (ctx.trackingNumber) parts.push(`Track: ${ctx.trackingNumber}`);
   if (ctx.trackingUrl) parts.push(ctx.trackingUrl);
   if (ctx.errorMessage) parts.push(`Error: ${ctx.errorMessage}`);
