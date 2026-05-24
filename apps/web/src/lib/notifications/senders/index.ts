@@ -15,7 +15,10 @@ import type { AnySender, EmailSender, MessengerSender } from "../types";
 import { createMailgunSender } from "./email/mailgun";
 import { createPostmarkSender } from "./email/postmark";
 import { createSendpulseSender } from "./email/sendpulse";
+import { createUnisenderGoSender } from "./email/unisender-go";
 import { messengerPlaceholderSender } from "./messenger";
+
+const UNISENDER_GO_DEFAULT_BASE_URL = "https://go1.unisender.ru/ru/transactional/api/v1";
 
 const registry: Record<string, AnySender> = {};
 
@@ -42,6 +45,10 @@ export function buildEmailSender(settings: NotificationsSettings): EmailSender |
     return createMailgunSender(apiKey, settings.email.domain);
   }
   if (provider === "sendpulse") return createSendpulseSender(apiKey);
+  if (provider === "unisender_go") {
+    const baseUrl = process.env.UNISENDER_GO_BASE_URL ?? UNISENDER_GO_DEFAULT_BASE_URL;
+    return createUnisenderGoSender(apiKey, baseUrl);
+  }
   return null;
 }
 

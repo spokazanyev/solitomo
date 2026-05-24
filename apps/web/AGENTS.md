@@ -16,6 +16,7 @@ Current features (active implementation):
 - `../../specs/051-order-numbering-and-immutability/` — SO-YYYY-NNNN нумерация + иммутабельность оплаченных заказов.
 - `../../specs/052-cart-as-entity/` — Корзина как сущность БД (Payload `carts`), TTL/abandonment/expiry, конверсия в Order, recovery при отмене до оплаты.
 - `../../specs/053-returns-and-refunds/` — Полноценный жизненный цикл возвратов (Payload `returns`), RT-YYYY-NNNN, ЮKassa Refunds, чек коррекции 54-ФЗ (stub), КСФ для юрлица (stub), полный/частичный возврат, синхронизация Order.{hasReturns,returnsCount,totalRefunded,disputeFlag}.
+- `../../specs/054-customer-account/` — Customer / Company сущности, magic-link (opaque 256-bit), customer_session cookie, register/login/forgot-password, /me/orders с role-based privacy filter, GDPR export/delete, marketingOptIn migration на Customer (049 fallback на Order), FR-5420/FR-5421 backfill.
 - Канонический документ жизненного цикла: `../../07-build-specifications/order-lifecycle-spec.md`.
 
 Useful commands from repo root:
@@ -34,6 +35,7 @@ pnpm --filter @soliton/web test
 - `src/lib/lifecycle/` — domain event emitter, status-machine, closure cron, client-number generator (051), immutability guard (051).
 - `src/lib/cart/` — Cart token/cookie/state-machine/merge/totals/repository/cron + recovery subscriber (052).
 - `src/lib/returns/` — Returns state-machine, number-generator (RT), policies, repository, events, admin-helpers (053).
+- `src/lib/customers/` — Magic-link/reset tokens, session loader, repository, CSRF helpers, api-utils (054).
 - `src/lib/payments/yookassa-refunds.ts` — ЮKassa Refunds adapter (053).
 - `src/lib/documents/credit-memo-number.ts` — Credit-memo number generator (CM-YYYY-NNNN, 053).
 - `src/lib/notifications/` — stub email (047) + полная матрица (049).
@@ -44,4 +46,5 @@ pnpm --filter @soliton/web test
 - Cron-эндпоинты: `src/app/api/cron/{closure,crm-sync,notifications,pickup-reminder,stuck-alerts,carts-cleanup,returns-overdue}/route.ts` — защищены `CRON_SECRET`.
 - Cart API: `src/app/api/cart/{route,[token]/route,[token]/items/route,[token]/items/[sku]/route,merge/route}.ts` (052).
 - Returns API: `src/app/api/returns/route.ts` (public POST/GET), `src/app/api/admin/returns/{route,[id]/{approve,reject,cancel,received,refund}/route}.ts` (053).
+- Customers API: `src/app/api/customers/{register,login,logout,magic-request,magic/[token],forgot-password,reset-password,me/{route,orders,export,delete,merge-cart}}/route.ts` (054).
 - Admin-эндпоинты: `src/app/api/admin/orders/[id]/reissue-number/route.ts` (051) — перевыпуск clientNumber.

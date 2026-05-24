@@ -56,6 +56,21 @@ export const Returns: CollectionConfig = {
       index: true,
       label: adminLabel("Заказ", "Order"),
     },
+    // 054 FR-5405: customerId for privacy filter (see Phase 3)
+    {
+      name: "customerId",
+      type: "relationship",
+      relationTo: "customers",
+      index: true,
+      label: adminLabel("Клиент", "Customer"),
+      admin: {
+        readOnly: true,
+        description: adminLabel(
+          "Snapshot Order.customerId на момент создания. Null для guest returns.",
+          "Snapshot of Order.customerId at creation. Null for guest returns.",
+        ),
+      },
+    },
     {
       name: "orderNumberSnapshot",
       type: "text",
@@ -317,15 +332,22 @@ export const Returns: CollectionConfig = {
           if (!data.requestedAt) data.requestedAt = new Date().toISOString();
           if (!data.status) data.status = "requested";
 
-          // Snapshot orderNumber
-          if (data.orderId && !data.orderNumberSnapshot) {
+          // Snapshot orderNumber + customerId (054 H3 fix, FR-5405)
+          if (data.orderId && (!data.orderNumberSnapshot || !data.customerId)) {
             try {
               const order = (await req.payload.findByID({
                 collection: "orders",
                 id: typeof data.orderId === "string" ? data.orderId : String(data.orderId),
               })) as unknown as Record<string, unknown>;
-              if (typeof order.clientNumber === "string") {
+              if (typeof order.clientNumber === "string" && !data.orderNumberSnapshot) {
                 data.orderNumberSnapshot = order.clientNumber;
+              }
+              // FR-5405: snapshot customerId for GDPR export / privacy filter
+              if (!data.customerId && order.customerId) {
+                data.customerId =
+                  typeof order.customerId === "string" || typeof order.customerId === "number"
+                    ? order.customerId
+                    : (order.customerId as { id?: unknown })?.id;
               }
             } catch {
               // Order may not exist yet under some test flows — let the relationship validation fail later

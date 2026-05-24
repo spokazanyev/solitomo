@@ -68,25 +68,29 @@ export const Carts: CollectionConfig = {
         ),
       },
     },
+    // 054 FR-5404: upgraded from forward-ref text → real relationships now that
+    // Customers/Companies collections exist.
     {
       name: "customerId",
-      type: "text",
-      label: adminLabel("ID клиента", "Customer ID"),
+      type: "relationship",
+      relationTo: "customers",
+      label: adminLabel("Клиент", "Customer"),
       admin: {
         description: adminLabel(
-          "Forward-ref для 054 (Customer Account). До релиза 054 — placeholder string.",
-          "Forward-ref for 054 (Customer Account). Placeholder until 054 ships.",
+          "FK на customers. Null для гостевых корзин до merge при логине.",
+          "FK to customers. Null for guest carts before merge on login.",
         ),
       },
     },
     {
       name: "companyId",
-      type: "text",
-      label: adminLabel("ID компании", "Company ID"),
+      type: "relationship",
+      relationTo: "companies",
+      label: adminLabel("Компания", "Company"),
       admin: {
         description: adminLabel(
-          "Nullable. Forward-ref для 054 (FR-5404).",
-          "Nullable. Forward-ref for 054 (FR-5404).",
+          "FK на companies. Nullable.",
+          "FK to companies. Nullable.",
         ),
       },
     },

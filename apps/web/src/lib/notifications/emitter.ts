@@ -148,17 +148,30 @@ async function resolveRecipients(
 function checkRequires(requires: NotificationRequires | undefined, event: DomainEventPayload): boolean {
   if (!requires) return true;
   const order = event.order;
+  // 054 FR-5431a: source-of-truth priority for opt-in flags:
+  //   1. event.customer.* (direct customer event)
+  //   2. event.cart.* (cart events carry their own consent)
+  //   3. event.order.customer.* (order snapshot, fallback for guests)
+  // For Order events with `customerId`, the caller should pre-load the Customer
+  // and pass its flags via event.customer (helper: enrichOrderEventWithCustomer).
+  const customer = event.customer;
+
   if (requires === "marketingOptIn") {
-    // 052: cart events carry marketingOptIn on the cart snapshot
-    const cartOptIn = (event.cart as { marketingOptIn?: boolean } | undefined)?.marketingOptIn;
-    if (cartOptIn === true) return true;
+    if (customer?.marketingOptIn === true) return true;
+    if ((event.cart as { marketingOptIn?: boolean } | undefined)?.marketingOptIn === true) return true;
+    // 054 FR-5431a: if Customer is present, it's source-of-truth — don't fall
+    // back to Order snapshot. (Customer's opt-out wins over Order's stale opt-in.)
+    if (customer) return false;
     return order?.customer?.marketingOptIn === true;
   }
   if (requires === "messengerOptIn") {
+    if (customer?.messengerOptIn === true) return true;
+    if (customer) return false;
     return order?.customer?.messengerOptIn === true;
   }
   if (requires === "emailValid") {
     // если поле не задано — считаем true (default)
+    if (customer && customer.emailValid === false) return false;
     const explicit = (order?.customer as { emailValid?: boolean } | undefined)?.emailValid;
     return explicit !== false;
   }

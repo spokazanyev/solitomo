@@ -409,6 +409,45 @@ export const Orders = {
         ),
       },
     },
+    // 054: Customer / Company FKs (FR-5403)
+    {
+      name: "customerId",
+      type: "relationship",
+      relationTo: "customers",
+      label: adminLabel("Клиент", "Customer"),
+      index: true,
+      admin: {
+        description: adminLabel(
+          "FK на customers. Null для guest-заказов до merge.",
+          "FK to customers. Null for guest orders before merge.",
+        ),
+      },
+    },
+    {
+      name: "companyId",
+      type: "relationship",
+      relationTo: "companies",
+      label: adminLabel("Компания", "Company"),
+      index: true,
+      admin: {
+        description: adminLabel(
+          "FK на companies. Null для физлиц и личных заказов company-contact.",
+          "FK to companies. Null for individuals and personal company-contact orders.",
+        ),
+      },
+    },
+    {
+      name: "isPersonalOrder",
+      type: "checkbox",
+      defaultValue: false,
+      label: adminLabel("Личный заказ", "Personal order"),
+      admin: {
+        description: adminLabel(
+          "Toggle в чекауте (FR-5437): личный заказ company-contact, owner не видит.",
+          "Checkout toggle (FR-5437): personal company-contact order, owner doesn't see.",
+        ),
+      },
+    },
     // 051: Human-readable order number
     {
       name: "clientNumber",
@@ -645,20 +684,70 @@ export const Orders = {
     ],
     afterChange: [
       async ({ doc, previousDoc, operation, req }) => {
-        // TODO(owner): подключить SMTP/transactional email-сервис.
-        // Сейчас нотификации логируются на сервер. Триггеры:
-        // - operation==="create" → "new order" менеджеру
-        // - status change paid|shipped|delivered → клиенту
         try {
           if (operation === "create") {
             req.payload.logger.info(
               `[orders] new ${doc.type} order ${doc.id} for ${doc.customerLabel ?? "—"}`,
             );
+
+            // 054 FR-5421 + H6 fix: backfill customerId on guest-order create
+            // when an existing Customer has the same email — but ONLY if the
+            // creation came from a trusted source. Otherwise an anonymous POST
+            // to /api/orders with someone else's email would silently attach
+            // a fraudulent order to their account.
+            //
+            // Trust sources:
+            //  - admin user (req.user) — manager-created order
+            //  - customer session (req.context.customerSessionVerified) — set by
+            //    the future logged-in checkout flow
+            //  - trusted internal cart conversion (req.context.fromCartConversion)
+            //    — set by POST /api/orders when a valid cart cookie matches
+            const trusted =
+              Boolean(req.user) ||
+              Boolean(req.context?.customerSessionVerified) ||
+              Boolean(req.context?.fromCartConversion);
+
+            if (trusted && !doc.customerId && doc.customer?.email) {
+              try {
+                const normEmail = String(doc.customer.email).trim().toLowerCase();
+                const found = await req.payload.find({
+                  collection: "customers",
+                  where: {
+                    and: [
+                      { email: { equals: normEmail } },
+                      { deletedAt: { exists: false } },
+                    ],
+                  },
+                  limit: 1,
+                  overrideAccess: true,
+                });
+                const customerDoc = found.docs[0];
+                if (customerDoc) {
+                  await req.payload.update({
+                    collection: "orders",
+                    id: doc.id,
+                    data: { customerId: customerDoc.id },
+                    context: { skipImmutability: true },
+                    overrideAccess: true,
+                  });
+                  req.payload.logger.info(
+                    `[orders] FR-5421 backfill: linked order=${doc.id} → customer=${customerDoc.id}`,
+                  );
+                }
+              } catch (err) {
+                req.payload.logger.error(
+                  `[orders] FR-5421 customerId backfill failed: ${err?.message ?? err}`,
+                );
+              }
+            } else if (!trusted && !doc.customerId && doc.customer?.email) {
+              req.payload.logger.info(
+                `[orders] FR-5421 skipped: untrusted source for order=${doc.id} (anti-hijack)`,
+              );
+            }
           } else if (previousDoc && previousDoc.status !== doc.status) {
             req.payload.logger.info(
               `[orders] ${doc.id} status ${previousDoc.status} → ${doc.status}`,
             );
-            // TODO(owner): sendOrderStatusEmail(doc, previousDoc.status, doc.status)
           }
         } catch (error) {
           req.payload.logger.error("[orders] afterChange notify failed:", error);

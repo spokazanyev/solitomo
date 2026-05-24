@@ -64,10 +64,13 @@ export type SupportedTimezones =
 export interface Config {
   auth: {
     users: UserAuthOperations;
+    customers: CustomerAuthOperations;
   };
   blocks: {};
   collections: {
     users: User;
+    customers: Customer;
+    companies: Company;
     orders: Order;
     carts: Cart;
     returns: Return;
@@ -96,6 +99,8 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
+    customers: CustomersSelect<false> | CustomersSelect<true>;
+    companies: CompaniesSelect<false> | CompaniesSelect<true>;
     orders: OrdersSelect<false> | OrdersSelect<true>;
     carts: CartsSelect<false> | CartsSelect<true>;
     returns: ReturnsSelect<false> | ReturnsSelect<true>;
@@ -139,13 +144,31 @@ export interface Config {
   widgets: {
     collections: CollectionsWidget;
   };
-  user: User;
+  user: User | Customer;
   jobs: {
     tasks: unknown;
     workflows: unknown;
   };
 }
 export interface UserAuthOperations {
+  forgotPassword: {
+    email: string;
+    password: string;
+  };
+  login: {
+    email: string;
+    password: string;
+  };
+  registerFirstUser: {
+    email: string;
+    password: string;
+  };
+  unlock: {
+    email: string;
+    password: string;
+  };
+}
+export interface CustomerAuthOperations {
   forgotPassword: {
     email: string;
     password: string;
@@ -188,6 +211,138 @@ export interface User {
     | null;
   password?: string | null;
   collection: 'users';
+}
+/**
+ * Customer-facing auth collection, separate from admin Users.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "customers".
+ */
+export interface Customer {
+  id: number;
+  /**
+   * Flipped false after 3 hard bounces (049).
+   */
+  emailValid?: boolean | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  /**
+   * Computed from firstName + lastName.
+   */
+  fullName?: string | null;
+  phone?: string | null;
+  /**
+   * E.164 format (+7XXXXXXXXXX).
+   */
+  phoneNormalized?: string | null;
+  accountState: 'email-only' | 'password-set' | 'invited-stub' | 'deleted';
+  customerType: 'individual' | 'company-contact';
+  /**
+   * Required if customerType=company-contact.
+   */
+  companyId?: (number | null) | Company;
+  role?: ('owner' | 'accountant' | 'purchaser' | 'contact') | null;
+  magicLinkToken?: string | null;
+  magicLinkExpiresAt?: string | null;
+  magicLinkConsumedAt?: string | null;
+  magicLinkRequestedFromIp?: string | null;
+  resetPasswordExpiresAt?: string | null;
+  addresses?:
+    | {
+        label: string;
+        city: string;
+        fullAddress: string;
+        postalCode?: string | null;
+        addressNormalized?:
+          | {
+              [k: string]: unknown;
+            }
+          | unknown[]
+          | string
+          | number
+          | boolean
+          | null;
+        isDefault?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  marketingOptIn?: boolean | null;
+  messengerOptIn?: boolean | null;
+  languagePreference?: ('ru' | 'en') | null;
+  crmPersonId?: string | null;
+  crmLastSyncedAt?: string | null;
+  crmLastSyncStatus?: ('queued' | 'in_progress' | 'success' | 'failed') | null;
+  /**
+   * Consent timestamp.
+   */
+  gdprConsentAt?: string | null;
+  /**
+   * Privacy policy version.
+   */
+  gdprConsentVersion?: string | null;
+  /**
+   * Soft delete. PII anonymized. Order.customer.* snapshot retained.
+   */
+  deletedAt?: string | null;
+  lastLoginAt?: string | null;
+  lastLoginIp?: string | null;
+  lastLoginUserAgent?: string | null;
+  loginCount?: number | null;
+  invitedBy?: (number | null) | Customer;
+  inviteToken?: string | null;
+  inviteExpiresAt?: string | null;
+  inviteAcceptedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+  collection: 'customers';
+}
+/**
+ * Legal-entity buyers. Deduped by tax ID. Synced to Twenty Company via 048.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "companies".
+ */
+export interface Company {
+  id: number;
+  name: string;
+  /**
+   * Tax ID (10 or 12 digits). Unique. Used for dedup with Twenty Company.
+   */
+  taxId: string;
+  kpp?: string | null;
+  ogrn?: string | null;
+  legalAddress?: string | null;
+  /**
+   * If different from legal address.
+   */
+  billingAddress?: string | null;
+  contactEmail?: string | null;
+  contactPhone?: string | null;
+  /**
+   * Forward-compat field for US7. Not enforced in MVP.
+   */
+  approvalLimit?: number | null;
+  crmCompanyId?: string | null;
+  crmLastSyncedAt?: string | null;
+  crmLastSyncStatus?: ('queued' | 'in_progress' | 'success' | 'failed') | null;
+  deletedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -407,6 +562,18 @@ export interface Order {
    * Source cart for funnel analytics. Unique. May be empty for legacy orders.
    */
   cartId?: (number | null) | Cart;
+  /**
+   * FK to customers. Null for guest orders before merge.
+   */
+  customerId?: (number | null) | Customer;
+  /**
+   * FK to companies. Null for individuals and personal company-contact orders.
+   */
+  companyId?: (number | null) | Company;
+  /**
+   * Checkout toggle (FR-5437): personal company-contact order, owner doesn't see.
+   */
+  isPersonalOrder?: boolean | null;
   /**
    * Format SO-YYYY-NNNN. Auto-generated via PG SEQUENCE (051, FR-5101).
    */
@@ -821,13 +988,13 @@ export interface Cart {
    */
   customerEmail?: string | null;
   /**
-   * Forward-ref for 054 (Customer Account). Placeholder until 054 ships.
+   * FK to customers. Null for guest carts before merge on login.
    */
-  customerId?: string | null;
+  customerId?: (number | null) | Customer;
   /**
-   * Nullable. Forward-ref for 054 (FR-5404).
+   * FK to companies. Nullable.
    */
-  companyId?: string | null;
+  companyId?: (number | null) | Company;
   /**
    * GDPR/Russian PD law consent. Sources: checkout S04 checkbox OR restore-page banner.
    */
@@ -1335,6 +1502,14 @@ export interface PayloadLockedDocument {
         value: number | User;
       } | null)
     | ({
+        relationTo: 'customers';
+        value: number | Customer;
+      } | null)
+    | ({
+        relationTo: 'companies';
+        value: number | Company;
+      } | null)
+    | ({
         relationTo: 'orders';
         value: number | Order;
       } | null)
@@ -1415,10 +1590,15 @@ export interface PayloadLockedDocument {
         value: number | NotificationJob;
       } | null);
   globalSlug?: string | null;
-  user: {
-    relationTo: 'users';
-    value: number | User;
-  };
+  user:
+    | {
+        relationTo: 'users';
+        value: number | User;
+      }
+    | {
+        relationTo: 'customers';
+        value: number | Customer;
+      };
   updatedAt: string;
   createdAt: string;
 }
@@ -1428,10 +1608,15 @@ export interface PayloadLockedDocument {
  */
 export interface PayloadPreference {
   id: number;
-  user: {
-    relationTo: 'users';
-    value: number | User;
-  };
+  user:
+    | {
+        relationTo: 'users';
+        value: number | User;
+      }
+    | {
+        relationTo: 'customers';
+        value: number | Customer;
+      };
   key?: string | null;
   value?:
     | {
@@ -1478,6 +1663,92 @@ export interface UsersSelect<T extends boolean = true> {
         createdAt?: T;
         expiresAt?: T;
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "customers_select".
+ */
+export interface CustomersSelect<T extends boolean = true> {
+  emailValid?: T;
+  firstName?: T;
+  lastName?: T;
+  fullName?: T;
+  phone?: T;
+  phoneNormalized?: T;
+  accountState?: T;
+  customerType?: T;
+  companyId?: T;
+  role?: T;
+  magicLinkToken?: T;
+  magicLinkExpiresAt?: T;
+  magicLinkConsumedAt?: T;
+  magicLinkRequestedFromIp?: T;
+  resetPasswordExpiresAt?: T;
+  addresses?:
+    | T
+    | {
+        label?: T;
+        city?: T;
+        fullAddress?: T;
+        postalCode?: T;
+        addressNormalized?: T;
+        isDefault?: T;
+        id?: T;
+      };
+  marketingOptIn?: T;
+  messengerOptIn?: T;
+  languagePreference?: T;
+  crmPersonId?: T;
+  crmLastSyncedAt?: T;
+  crmLastSyncStatus?: T;
+  gdprConsentAt?: T;
+  gdprConsentVersion?: T;
+  deletedAt?: T;
+  lastLoginAt?: T;
+  lastLoginIp?: T;
+  lastLoginUserAgent?: T;
+  loginCount?: T;
+  invitedBy?: T;
+  inviteToken?: T;
+  inviteExpiresAt?: T;
+  inviteAcceptedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "companies_select".
+ */
+export interface CompaniesSelect<T extends boolean = true> {
+  name?: T;
+  taxId?: T;
+  kpp?: T;
+  ogrn?: T;
+  legalAddress?: T;
+  billingAddress?: T;
+  contactEmail?: T;
+  contactPhone?: T;
+  approvalLimit?: T;
+  crmCompanyId?: T;
+  crmLastSyncedAt?: T;
+  crmLastSyncStatus?: T;
+  deletedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1633,6 +1904,9 @@ export interface OrdersSelect<T extends boolean = true> {
   sourcePage?: T;
   publicToken?: T;
   cartId?: T;
+  customerId?: T;
+  companyId?: T;
+  isPersonalOrder?: T;
   clientNumber?: T;
   clientNumberReissueReason?: T;
   clientNumberHistory?:

@@ -148,6 +148,9 @@ export async function POST(request: NextRequest) {
 
     const order = await payload.create({
       collection: "orders",
+      // 054 H6: mark this as a trusted source so the FR-5421 customerId backfill
+      // can proceed. The cart-token resolution above already proved possession.
+      context: { fromCartConversion: true } as never,
       data: {
         type,
         status: initialStatus,

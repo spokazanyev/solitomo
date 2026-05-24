@@ -58,11 +58,20 @@ export type ReturnEventKind =
   | "return.cancelled"
   | "return.overdue";
 
+// --- Customer events (054) ---
+export type CustomerEventKind =
+  | "customer.created"
+  | "customer.activated"
+  | "customer.preferences_updated"
+  | "customer.email_changed"
+  | "customer.deleted";
+
 export type DomainEventKind =
   | OrderEventKind
   | ShipmentEventKind
   | CartEventKind
-  | ReturnEventKind;
+  | ReturnEventKind
+  | CustomerEventKind;
 
 export interface OrderSnapshot {
   id: string;
@@ -128,6 +137,22 @@ export interface ReturnSnapshot {
   createdVia?: string;
 }
 
+/** 054: Snapshot of a Customer for customer.* domain events */
+export interface CustomerSnapshot {
+  id: string;
+  email: string;
+  fullName?: string;
+  customerType?: "individual" | "company-contact";
+  companyId?: string;
+  role?: "owner" | "accountant" | "purchaser" | "contact";
+  accountState?: "email-only" | "password-set" | "invited-stub" | "deleted";
+  marketingOptIn?: boolean;
+  messengerOptIn?: boolean;
+  emailValid?: boolean;
+  /** True if this was the first event since registration (US3 backfill trigger). */
+  isFirstActivation?: boolean;
+}
+
 export interface EventContext {
   statusFrom?: string;
   statusTo?: string;
@@ -143,12 +168,14 @@ export interface DomainEventPayload {
   kind: DomainEventKind;
   at: string;
   emittedAt: string;
-  /** Required for order and shipment events; optional for cart and return events */
+  /** Required for order and shipment events; optional for cart, return, customer events */
   order?: OrderSnapshot;
   /** Present for cart.* events (052) */
   cart?: CartSnapshot;
   /** Present for return events (053) */
   returnData?: ReturnSnapshot;
+  /** Present for customer.* events (054) */
+  customer?: CustomerSnapshot;
   context?: EventContext;
 }
 
@@ -181,11 +208,13 @@ export async function emitDomainEvent(input: {
   order?: OrderSnapshot;
   cart?: CartSnapshot;
   returnData?: ReturnSnapshot;
+  customer?: CustomerSnapshot;
   context?: EventContext;
   at?: string;
   eventIdSuffix?: string;
 }): Promise<void> {
-  const entityId = input.order?.id ?? input.cart?.id ?? input.returnData?.id ?? "unknown";
+  const entityId =
+    input.order?.id ?? input.cart?.id ?? input.returnData?.id ?? input.customer?.id ?? "unknown";
   const eventId = `${entityId}:${input.kind}:${input.eventIdSuffix ?? Date.now()}`;
   if (emittedIds.has(eventId)) return;
   emittedIds.add(eventId);
@@ -203,6 +232,7 @@ export async function emitDomainEvent(input: {
     order: input.order,
     cart: input.cart,
     returnData: input.returnData,
+    customer: input.customer,
     context: input.context,
   };
 
@@ -240,6 +270,14 @@ async function logToAdminChangeLog(payload: DomainEventPayload): Promise<void> {
       targetId = String(payload.returnData.id);
       targetLabel = `Return ${payload.returnData.returnNumber ?? payload.returnData.id}`;
       entityStatus = payload.returnData.status;
+    } else if (payload.kind.startsWith("customer.") && payload.customer) {
+      targetCollection = "customers";
+      targetId = String(payload.customer.id);
+      // Mask email in the label — never log PII directly
+      const email = payload.customer.email;
+      const masked = email ? `***@${email.split("@")[1] ?? "?"}` : payload.customer.id;
+      targetLabel = `Customer ${masked}`;
+      entityStatus = payload.customer.accountState;
     } else {
       targetCollection = "orders";
       targetId = String(payload.order?.id ?? "unknown");

@@ -11,7 +11,9 @@ import { AdminChangeLog } from "./collections/AdminChangeLog.js";
 import { AttributeGroups, AttributeOptions, Attributes } from "./collections/Attributes.js";
 import { Categories, Documents, MediaAssets, Products } from "./collections/Catalog.js";
 import { Carts } from "./collections/Carts";
+import { Companies } from "./collections/Companies";
 import { CrmSyncJobs } from "./collections/CrmSyncJobs";
+import { Customers } from "./collections/Customers";
 import { Returns } from "./collections/Returns";
 import { FilterFields, FilterGroups, FilterOptions, FilterPresets } from "./collections/Filters.js";
 import { NotificationJobs } from "./collections/NotificationJobs";
@@ -56,6 +58,8 @@ export default buildConfig({
   ],
   collections: [
     Users,
+    Customers,
+    Companies,
     Orders,
     Carts,
     Returns,

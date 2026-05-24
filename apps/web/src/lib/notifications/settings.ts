@@ -3,7 +3,7 @@ import "server-only";
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
 
-export type EmailProvider = "postmark" | "mailgun" | "sendpulse";
+export type EmailProvider = "postmark" | "mailgun" | "sendpulse" | "unisender_go";
 
 export interface NotificationsSettings {
   enabled: boolean;
