@@ -38,6 +38,13 @@ export async function emitNotificationJobs(event: DomainEventPayload): Promise<{
   let created = 0;
   let skipped = 0;
 
+  // 052: For cart.* events, the "entity id" is the cart id (event.order is absent).
+  // For order/shipment/return events, fall back to event.order.id.
+  const entityId =
+    (event.kind.startsWith("cart.") && event.cart?.id) ||
+    event.order?.id ||
+    "unknown";
+
   for (const rule of matched) {
     const recipients = await resolveRecipients(rule, event, settings.managers);
     for (const recipient of recipients) {
@@ -50,7 +57,7 @@ export async function emitNotificationJobs(event: DomainEventPayload): Promise<{
         continue;
       }
       const key = dedupKey({
-        orderId: event.order.id,
+        orderId: String(entityId),
         event: event.kind,
         channel: rule.channel,
         recipient: recipient.email,
@@ -64,7 +71,7 @@ export async function emitNotificationJobs(event: DomainEventPayload): Promise<{
       }
       const ok = await enqueueJob({
         notificationId: makeNotificationId(event, rule, recipient.email),
-        orderId: event.order.id,
+        orderId: String(entityId),
         channel: rule.channel,
         event: event.kind,
         template: rule.template,
@@ -101,9 +108,11 @@ async function resolveRecipients(
   managers: Array<{ email: string; name?: string; events: string[] }>,
 ): Promise<ResolvedRecipient[]> {
   if (rule.recipient === "customer") {
-    const email = event.order.customer?.email;
+    // 052: cart.* events carry customerEmail on event.cart, not event.order
+    const email = event.cart?.customerEmail ?? event.order?.customer?.email;
     if (!email) return [];
-    return [{ email, name: event.order.customer?.fullName }];
+    const name = event.order?.customer?.fullName;
+    return [{ email, name }];
   }
   if (rule.recipient === "manager") {
     const subscribed = managers.filter(
@@ -118,14 +127,17 @@ function checkRequires(requires: NotificationRequires | undefined, event: Domain
   if (!requires) return true;
   const order = event.order;
   if (requires === "marketingOptIn") {
-    return order.customer?.marketingOptIn === true;
+    // 052: cart events carry marketingOptIn on the cart snapshot
+    const cartOptIn = (event.cart as { marketingOptIn?: boolean } | undefined)?.marketingOptIn;
+    if (cartOptIn === true) return true;
+    return order?.customer?.marketingOptIn === true;
   }
   if (requires === "messengerOptIn") {
-    return order.customer?.messengerOptIn === true;
+    return order?.customer?.messengerOptIn === true;
   }
   if (requires === "emailValid") {
     // если поле не задано — считаем true (default)
-    const explicit = (order.customer as { emailValid?: boolean } | undefined)?.emailValid;
+    const explicit = (order?.customer as { emailValid?: boolean } | undefined)?.emailValid;
     return explicit !== false;
   }
   return true;
@@ -137,8 +149,19 @@ function makeNotificationId(event: DomainEventPayload, rule: NotificationRule, r
 }
 
 function buildPayload(event: DomainEventPayload, recipient: ResolvedRecipient): NotificationJobPayload {
+  // 052: for cart.* events, synthesize a minimal OrderSnapshot-shaped object from cart data
+  // so downstream templates that expect order.customer.email don't crash.
+  const order = event.order ?? (event.cart
+    ? ({
+        id: event.cart.id,
+        status: event.cart.status,
+        customer: { email: event.cart.customerEmail },
+        // Bare minimum fields — templates targeting cart.* should look at event.cart instead.
+      } as unknown as NotificationJobPayload["order"])
+    : ({ id: "unknown", status: "unknown" } as unknown as NotificationJobPayload["order"]));
+
   return {
-    order: event.order,
+    order,
     event: {
       kind: event.kind,
       at: event.at,

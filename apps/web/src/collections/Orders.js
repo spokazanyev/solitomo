@@ -370,6 +370,24 @@ export const Orders = {
         ),
       },
     },
+    // 052: Cart link for funnel analytics (cart → order conversion)
+    // C3 fix: unique constraint prevents two orders pointing at the same cart
+    // (race-condition guard for double-click / parallel-device).
+    {
+      name: "cartId",
+      type: "relationship",
+      relationTo: "carts",
+      unique: true,
+      label: adminLabel("Корзина", "Cart"),
+      index: true,
+      admin: {
+        readOnly: true,
+        description: adminLabel(
+          "Cart, из которого создан заказ (для funnel-аналитики). Уникален. Может быть пустым для legacy заказов.",
+          "Source cart for funnel analytics. Unique. May be empty for legacy orders.",
+        ),
+      },
+    },
     // 051: Human-readable order number
     {
       name: "clientNumber",

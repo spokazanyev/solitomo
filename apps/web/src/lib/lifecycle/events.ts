@@ -106,6 +106,8 @@ export interface CartSnapshot {
   status: string;
   customerEmail?: string;
   customerId?: string;
+  /** 052 FR-5224a: required for cart.abandoned → T-010 marketing-consent check */
+  marketingOptIn?: boolean;
   itemCount?: number;
   totalAmount?: number;
   lastActivityAt?: string;
@@ -282,4 +284,8 @@ export async function registerCoreSubscribers(): Promise<void> {
 
   const fullNotifications = await import("../notifications/subscriber").catch(() => null);
   if (fullNotifications?.registerNotificationsSubscriber) fullNotifications.registerNotificationsSubscriber();
+
+  // 052: Cart recovery on order cancel/expire before paid
+  const cartRecovery = await import("../cart/recovery-subscriber").catch(() => null);
+  if (cartRecovery?.registerCartRecoverySubscriber) cartRecovery.registerCartRecoverySubscriber();
 }

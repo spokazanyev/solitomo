@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     users: User;
     orders: Order;
+    carts: Cart;
     'rfq-requests': RfqRequest;
     products: Product;
     categories: Category;
@@ -95,6 +96,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     orders: OrdersSelect<false> | OrdersSelect<true>;
+    carts: CartsSelect<false> | CartsSelect<true>;
     'rfq-requests': RfqRequestsSelect<false> | RfqRequestsSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
@@ -390,6 +392,10 @@ export interface Order {
    * Used for public order page /cart/order/[token]/.
    */
   publicToken?: string | null;
+  /**
+   * Source cart for funnel analytics. Unique. May be empty for legacy orders.
+   */
+  cartId?: (number | null) | Cart;
   /**
    * Format SO-YYYY-NNNN. Auto-generated via PG SEQUENCE (051, FR-5101).
    */
@@ -788,6 +794,98 @@ export interface Document {
   createdAt: string;
 }
 /**
+ * Customer carts. After 30 days idle → expired, 90 days later → hard delete (GDPR).
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "carts".
+ */
+export interface Cart {
+  id: number;
+  /**
+   * URL-safe 128-bit random; HTTP-only cookie on client.
+   */
+  cartToken: string;
+  /**
+   * Linked email from checkout (if provided).
+   */
+  customerEmail?: string | null;
+  /**
+   * Forward-ref for 054 (Customer Account). Placeholder until 054 ships.
+   */
+  customerId?: string | null;
+  /**
+   * Nullable. Forward-ref for 054 (FR-5404).
+   */
+  companyId?: string | null;
+  /**
+   * GDPR/Russian PD law consent. Sources: checkout S04 checkbox OR restore-page banner.
+   */
+  marketingOptIn?: boolean | null;
+  items?:
+    | {
+        sku: string;
+        name: string;
+        qty: number;
+        /**
+         * Snapshot of price at add time; null for RFQ-only.
+         */
+        priceAtAdd?: number | null;
+        addedAt: string;
+        productId?: (number | null) | Product;
+        slug?: string | null;
+        image?: string | null;
+        /**
+         * Set on GET if catalog has changed. FR-5232.
+         */
+        warning?: ('none' | 'removed' | 'price_changed' | 'stock_low') | null;
+        id?: string | null;
+      }[]
+    | null;
+  totals?: {
+    itemCount?: number | null;
+    subtotal?: number | null;
+    knownPriceCount?: number | null;
+    unknownPriceCount?: number | null;
+  };
+  status: 'active' | 'abandoned' | 'converted' | 'expired' | 'merged';
+  /**
+   * Set when status=converted.
+   */
+  convertedToOrderId?: (number | null) | Order;
+  /**
+   * US6 (054): merge target.
+   */
+  mergedIntoId?: (number | null) | Cart;
+  lastActivityAt: string;
+  abandonedAt?: string | null;
+  convertedAt?: string | null;
+  /**
+   * Computed as lastActivityAt + 30d.
+   */
+  expiresAt: string;
+  /**
+   * Pathname of first add_to_cart.
+   */
+  sourcePage?: string | null;
+  utm?: {
+    source?: string | null;
+    medium?: string | null;
+    campaign?: string | null;
+    term?: string | null;
+    content?: string | null;
+  };
+  /**
+   * Masked UA of first add.
+   */
+  userAgent?: string | null;
+  /**
+   * SHA-256 of IP — GDPR-friendly.
+   */
+  ipHash?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "rfq-requests".
  */
@@ -1128,6 +1226,10 @@ export interface PayloadLockedDocument {
         value: number | Order;
       } | null)
     | ({
+        relationTo: 'carts';
+        value: number | Cart;
+      } | null)
+    | ({
         relationTo: 'rfq-requests';
         value: number | RfqRequest;
       } | null)
@@ -1405,6 +1507,7 @@ export interface OrdersSelect<T extends boolean = true> {
       };
   sourcePage?: T;
   publicToken?: T;
+  cartId?: T;
   clientNumber?: T;
   clientNumberReissueReason?: T;
   clientNumberHistory?:
@@ -1444,6 +1547,60 @@ export interface OrdersSelect<T extends boolean = true> {
         skipReason?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "carts_select".
+ */
+export interface CartsSelect<T extends boolean = true> {
+  cartToken?: T;
+  customerEmail?: T;
+  customerId?: T;
+  companyId?: T;
+  marketingOptIn?: T;
+  items?:
+    | T
+    | {
+        sku?: T;
+        name?: T;
+        qty?: T;
+        priceAtAdd?: T;
+        addedAt?: T;
+        productId?: T;
+        slug?: T;
+        image?: T;
+        warning?: T;
+        id?: T;
+      };
+  totals?:
+    | T
+    | {
+        itemCount?: T;
+        subtotal?: T;
+        knownPriceCount?: T;
+        unknownPriceCount?: T;
+      };
+  status?: T;
+  convertedToOrderId?: T;
+  mergedIntoId?: T;
+  lastActivityAt?: T;
+  abandonedAt?: T;
+  convertedAt?: T;
+  expiresAt?: T;
+  sourcePage?: T;
+  utm?:
+    | T
+    | {
+        source?: T;
+        medium?: T;
+        campaign?: T;
+        term?: T;
+        content?: T;
+      };
+  userAgent?: T;
+  ipHash?: T;
   updatedAt?: T;
   createdAt?: T;
 }

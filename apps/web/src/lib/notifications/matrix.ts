@@ -41,6 +41,10 @@ export const notificationMatrix: NotificationRule[] = [
   { event: "shipment.error", channel: "email", template: "T-103", recipient: "manager" },
   { event: "order.stuck", channel: "email", template: "T-104", recipient: "manager" },
   { event: "order.cancelled", channel: "email", template: "T-105", recipient: "manager" },
+
+  // -------- 052: Cart abandonment (marketing) --------
+  // T-010 — email клиенту с восстановительной ссылкой. Требует marketingOptIn (152-ФЗ).
+  { event: "cart.abandoned", channel: "email", template: "T-010", recipient: "customer", requires: "marketingOptIn" },
 ];
 
 /** Правило для cron-only события pickup-reminder-24h (см. cron/pickup-reminder/route.ts). */
@@ -54,4 +58,4 @@ export const pickupReminderRule: NotificationRule = {
 };
 
 /** Маркетинговые шаблоны — содержат ссылку отписки (FR-4951). */
-export const marketingTemplates: ReadonlySet<string> = new Set(["T-008"]);
+export const marketingTemplates: ReadonlySet<string> = new Set(["T-008", "T-010"]);

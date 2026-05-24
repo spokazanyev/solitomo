@@ -10,6 +10,7 @@ import { buildConfig } from "payload";
 import { AdminChangeLog } from "./collections/AdminChangeLog.js";
 import { AttributeGroups, AttributeOptions, Attributes } from "./collections/Attributes.js";
 import { Categories, Documents, MediaAssets, Products } from "./collections/Catalog.js";
+import { Carts } from "./collections/Carts";
 import { CrmSyncJobs } from "./collections/CrmSyncJobs";
 import { FilterFields, FilterGroups, FilterOptions, FilterPresets } from "./collections/Filters.js";
 import { NotificationJobs } from "./collections/NotificationJobs";
@@ -55,6 +56,7 @@ export default buildConfig({
   collections: [
     Users,
     Orders,
+    Carts,
     RfqRequests,
     Products,
     Categories,
