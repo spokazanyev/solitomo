@@ -35,9 +35,13 @@ export function PaymentReturnClient(props: PaymentReturnProps) {
   const tickCountRef = useRef(0);
   const purchaseFiredRef = useRef(false);
 
-  // Fire dataLayer purchase on success (anti-double-fire via sessionStorage + ref)
+  // Fire dataLayer purchase on success (anti-double-fire via sessionStorage + ref).
+  // Review-fix R-01: skip event if clientNumber is empty (race: webhook arrived
+  // before 051 client-number-generator) — avoid polluting analytics with empty
+  // transaction_id. Effect retries on next state change once clientNumber filled.
   useEffect(() => {
     if (state.kind !== "success") return;
+    if (!state.clientNumber) return;
     if (purchaseFiredRef.current) return;
     if (isPurchaseAlreadyFired(props.orderId)) {
       purchaseFiredRef.current = true;

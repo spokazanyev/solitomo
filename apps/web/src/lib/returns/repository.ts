@@ -490,6 +490,8 @@ export async function applyRefundCanceled(
     console.error(`[applyRefundCanceled] failed to update Order.payment.refunds:`, err);
   }
 
+  // 056 R-02: serialize structured data into errorMessage so T-111 template
+  // can extract returnNumber/returnId/providerRefundId/reason for manager email.
   await emitDomainEvent({
     kind: "return.refund_failed",
     returnData: {
@@ -500,7 +502,9 @@ export async function applyRefundCanceled(
       status: ret.status,
       refundAmount: ret.refundAmount,
     },
-    context: { errorMessage: input.reason },
+    context: {
+      errorMessage: `returnNumber=${ret.returnNumber ?? "-"},returnId=${ret.id},providerRefundId=${input.providerRefundId},reason=${input.reason}`,
+    },
     eventIdSuffix: `${input.receivedEventId}:refund-failed`,
   });
 

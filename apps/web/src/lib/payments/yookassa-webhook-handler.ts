@@ -240,6 +240,9 @@ export async function handleYooKassaWebhook(
           eventId,
           // FR-5532a: эмит amount_mismatch event + alert менеджеру (after response)
           afterResponse: async () => {
+            // 056 R-02 fix: serialize structured data into context.errorMessage
+            // so 049 emitter's payload.event.message (mapped from errorMessage)
+            // carries the values into T-109 email template parsing.
             await emitDomainEvent({
               kind: "payment.amount_mismatch",
               order: {
@@ -254,6 +257,7 @@ export async function handleYooKassaWebhook(
                   actual: actualKop,
                   eventId,
                 },
+                errorMessage: `expected=${expectedKop},actual=${actualKop},providerRef=${obj.id}`,
               },
               eventIdSuffix: eventId,
             });
@@ -500,12 +504,14 @@ async function handlePaymentSucceeded(
   });
 
   // Receipt failure → emit alert (FR-5546)
+  // 056 R-02 fix: errorMessage carries structured data to T-110 template.
   if (receiptStatus === "canceled") {
     await emitDomainEvent({
       kind: "payment.receipt_failed",
       order: { id: String(order.id), clientNumber: orderTyped.clientNumber, status: "paid" },
       context: {
         payment: { providerRef: obj.id, receiptStatus, eventId: String(ctx.paymentEventId) },
+        errorMessage: `providerRef=${obj.id}`,
       },
       eventIdSuffix: `${ctx.paymentEventId}:receipt-failed`,
     });
