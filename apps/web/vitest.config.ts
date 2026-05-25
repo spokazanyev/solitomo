@@ -11,6 +11,7 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
       "server-only": path.resolve(__dirname, "./src/__test-utils__/server-only-shim.ts"),
+      "@payload-config": path.resolve(__dirname, "./src/__test-utils__/payload-config-shim.ts"),
     },
   },
 });

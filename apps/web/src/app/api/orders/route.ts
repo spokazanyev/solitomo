@@ -10,6 +10,8 @@ import {
   markConverted,
 } from "@/lib/cart/repository";
 import { generateCartToken } from "@/lib/cart/token";
+// 056 FR-5609: customer_session-binding for authenticated checkout
+import { loadCustomerFromRequest } from "@/lib/customers/session";
 
 type IncomingItem = {
   sku?: string;
@@ -146,11 +148,28 @@ export async function POST(request: NextRequest) {
       cartId = synthetic.id;
     }
 
+    // 056 FR-5609: customer_session-binding. If a valid customer_session cookie
+    // is present, link Order.customerId so authenticated buyers can see their
+    // history in /me/orders. Guest checkout continues to work unchanged.
+    let resolvedCustomerId: string | number | undefined;
+    try {
+      const session = await loadCustomerFromRequest(request);
+      const sessionId = session?.customer?.id;
+      if (sessionId != null) resolvedCustomerId = sessionId;
+    } catch {
+      // Session lookup failed — proceed as guest (additive enhancement)
+    }
+
     const order = await payload.create({
       collection: "orders",
       // 054 H6: mark this as a trusted source so the FR-5421 customerId backfill
       // can proceed. The cart-token resolution above already proved possession.
-      context: { fromCartConversion: true } as never,
+      // 056: customerSessionVerified flag lets 054 hooks know binding came from
+      // a verified JWT session (separate from cart-token-based backfill).
+      context: {
+        fromCartConversion: true,
+        customerSessionVerified: Boolean(resolvedCustomerId),
+      } as never,
       data: {
         type,
         status: initialStatus,
@@ -177,6 +196,8 @@ export async function POST(request: NextRequest) {
         // generated narrow type while keeping the call site readable.
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ...((cartId ? { cartId } : {}) as any),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ...((resolvedCustomerId ? { customerId: resolvedCustomerId } : {}) as any),
       },
     });
 

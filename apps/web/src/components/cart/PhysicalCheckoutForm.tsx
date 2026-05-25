@@ -141,23 +141,47 @@ export function PhysicalCheckoutForm() {
 
       const data = (await res.json()) as { id: string; publicToken?: string };
 
-      // Создание платежа в ЮKassa (заглушка) — TODO(owner): подключить /api/payment/yookassa/create
-      // с реальными YOOKASSA_SHOP_ID и YOOKASSA_SECRET_KEY. Сейчас просто прокидываем на success-страницу
-      // с пометкой "оплата в режиме mock".
-      pushEvent("purchase", {
-        transaction_id: data.id,
+      // 056 FR-5603: Order created — теперь create payment session и redirect на ЮKassa.
+      // Анти-pattern (TODO mock из 037) удалён: реальный backend 055 готов.
+      // NOTE: `purchase` dataLayer event перенесён на /payment/return success-state
+      // (FR-5630) — fires only when payment actually succeeds, not when form submits.
+      // Здесь используем `payment_intent` для funnel measurement.
+      pushEvent("payment_intent" as never, {
+        order_id: data.id,
         value: total,
         currency: "RUB",
-        items: items.map((item) => ({
-          item_id: item.sku,
-          item_name: item.name,
-          quantity: Number.parseInt(item.quantity, 10) || 1,
-          price: item.price ?? undefined,
-        })),
       });
 
+      // Create payment session
+      const retryNonce =
+        typeof crypto !== "undefined" && typeof crypto.randomUUID === "function"
+          ? crypto.randomUUID()
+          : `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+      const payRes = await fetch("/api/payment/yookassa/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderId: data.id, retryNonce }),
+      });
+
+      if (payRes.status === 409) {
+        // Order уже в paid/expired — redirect на Order page
+        router.push(`/cart/order/${data.publicToken ?? data.id}/`);
+        return;
+      }
+
+      if (!payRes.ok) {
+        const errBody = (await payRes.json().catch(() => ({}))) as { code?: string; message?: string };
+        throw new Error(errBody.message || "Платёжный шлюз временно недоступен");
+      }
+
+      const payBody = (await payRes.json()) as { confirmationUrl?: string };
+      if (!payBody.confirmationUrl) {
+        throw new Error("Ссылка на оплату не получена");
+      }
+
       clearCartItems();
-      router.push(`/cart/order/${data.publicToken ?? data.id}/?type=physical&pay=mock`);
+      // FR-5604: window.location.assign (allows browser back)
+      window.location.assign(payBody.confirmationUrl);
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : "Ошибка отправки");
       setSubmitting(false);

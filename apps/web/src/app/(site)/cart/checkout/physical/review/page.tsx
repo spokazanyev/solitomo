@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -94,6 +95,33 @@ export default async function PhysicalCheckoutReviewPage() {
     },
   };
 
+  // 056: payload для POST /api/orders. Содержит всё что spec /api/orders требует —
+  // отдельно от ReviewSummaryData (которая только для отображения).
+  const orderPayload = {
+    type: "physical" as const,
+    items: draft.items.map((i) => ({
+      sku: i.sku,
+      name: i.name,
+      quantity: i.quantity,
+      price: typeof i.price === "number" ? i.price : null,
+    })),
+    customer: draft.customer,
+    delivery: {
+      // /api/orders ожидает method из {pickup,cdek,boxberry,russian-post,tc}
+      // — маппим providerKey, fallback на provider name
+      method: draft.rate.providerKey,
+      address:
+        draft.rate.pickupType === 2 && draft.rate.pointAddress
+          ? draft.rate.pointAddress
+          : addressLabel,
+      city: draft.address.city,
+      cost: deliveryCost,
+    },
+    sourcePage: "/cart/checkout/physical/review/",
+  };
+  const cookieStore = await cookies();
+  const cartToken = cookieStore.get("cart_session")?.value ?? "";
+
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <section className="mx-auto w-full max-w-5xl px-6 py-8 md:px-10 lg:px-12">
@@ -118,7 +146,12 @@ export default async function PhysicalCheckoutReviewPage() {
             мы зафиксируем стоимость доставки и перенаправим вас на форму ЮKassa.
           </p>
         </header>
-        <ReviewClient data={data} finalizeBody={finalizeBody} />
+        <ReviewClient
+          data={data}
+          finalizeBody={finalizeBody}
+          orderPayload={orderPayload}
+          cartToken={cartToken}
+        />
       </section>
     </div>
   );

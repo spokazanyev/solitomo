@@ -26,6 +26,11 @@ import {
   renderT105ManagerCancelled,
 } from "./t-1xx-manager";
 import { renderMessenger } from "./m-messenger";
+// 056 US4: 4 new templates for ЮKassa payment events
+import { renderT015PaymentExpired } from "./t-015-payment-expired";
+import { renderT109AmountMismatch } from "./t-109-amount-mismatch";
+import { renderT110ReceiptFailed } from "./t-110-receipt-failed";
+import { renderT111RefundFailed } from "./t-111-refund-failed";
 
 export type TemplateRenderer = (payload: NotificationJobPayload) => RenderedMessage;
 
@@ -44,6 +49,11 @@ const REGISTRY: Record<string, TemplateRenderer> = {
   "T-103": renderT103ManagerError,
   "T-104": renderT104ManagerStuck,
   "T-105": renderT105ManagerCancelled,
+  // 056 US4: payment alerts
+  "T-015": renderT015PaymentExpired,
+  "T-109": renderT109AmountMismatch,
+  "T-110": renderT110ReceiptFailed,
+  "T-111": renderT111RefundFailed,
   "M-001": renderMessenger("paid"),
   "M-003": renderMessenger("shipped"),
   "M-004": renderMessenger("at_point"),
