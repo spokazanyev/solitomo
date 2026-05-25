@@ -46,6 +46,16 @@ export function InvoiceCheckoutForm() {
   const [error, setError] = useState<string | null>(null);
   const [consent, setConsent] = useState(false);
 
+  // 057 follow-up: the submit button must reflect actual readiness, not just
+  // the consent checkbox. Required fields per the markup (`required` attr):
+  // companyName, inn (10-12 digits), fullName, email.
+  const isLegalReady =
+    companyName.trim().length > 0 &&
+    /^[0-9]{10,12}$/.test(inn.trim()) &&
+    fullName.trim().length > 0 &&
+    email.trim().length > 0 &&
+    consent;
+
   useEffect(() => {
     if (items.length === 0) return;
     pushEvent("add_shipping_info", { checkout_type: "legal" });
@@ -309,7 +319,7 @@ export function InvoiceCheckoutForm() {
         <ConsentCheckbox className="mt-4" onChange={setConsent} value={consent} />
         <button
           className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-sky-700 px-4 py-3 text-sm font-semibold text-white hover:bg-sky-800 disabled:opacity-60"
-          disabled={submitting || !consent}
+          disabled={submitting || !isLegalReady}
           type="submit"
         >
           {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Receipt className="h-4 w-4" />}

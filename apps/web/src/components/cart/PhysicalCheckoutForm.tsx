@@ -33,6 +33,20 @@ export function PhysicalCheckoutForm() {
   const [error, setError] = useState<string | null>(null);
   const [consent, setConsent] = useState(false);
 
+  // 057 follow-up: the submit button must reflect actual readiness — not just
+  // the consent checkbox. Previously `disabled={submitting || !consent}` made
+  // the button look clickable as soon as the checkbox was ticked, even with
+  // empty contact fields / no shipping rate. handleSubmit still rejected such
+  // attempts, but the UX was misleading.
+  const isContactComplete =
+    fullName.trim().length > 0 && email.trim().length > 0 && phone.trim().length > 0;
+  const isReadyToPay =
+    isContactComplete &&
+    address.isValid === true &&
+    selectedRate !== null &&
+    knownCount > 0 &&
+    consent;
+
   // SSR-safe lazy initialization: read or mint a stable cart id on first client render.
   // The Date.now/Math.random calls are impure but only run once via useState's initializer
   // function — they don't recur on rerenders, so the React Compiler purity rule is OK here.
@@ -304,7 +318,7 @@ export function PhysicalCheckoutForm() {
         <ConsentCheckbox className="mt-4" onChange={setConsent} value={consent} />
         <button
           className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-sky-700 px-4 py-3 text-sm font-semibold text-white hover:bg-sky-800 disabled:opacity-60"
-          disabled={submitting || !consent}
+          disabled={submitting || !isReadyToPay}
           type="submit"
         >
           {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <CreditCard className="h-4 w-4" />}
