@@ -8,7 +8,8 @@ export type SeoRouteType =
   | "b2b"
   | "document"
   | "company"
-  | "info";
+  | "info"
+  | "legal";
 
 export type SeoRoute = {
   path: string;
@@ -878,8 +879,8 @@ export const seoRoutes: SeoRoute[] = [
     cta: "Обратиться в сервис",
   },
   {
-    path: "/info/offer/",
-    type: "info",
+    path: "/legal/offer/",
+    type: "legal",
     h1: "Публичная оферта",
     title: "Публичная оферта — Солитон",
     description:
@@ -894,8 +895,8 @@ export const seoRoutes: SeoRoute[] = [
     cta: "Читать оферту",
   },
   {
-    path: "/info/privacy/",
-    type: "info",
+    path: "/legal/privacy/",
+    type: "legal",
     h1: "Политика конфиденциальности",
     title: "Политика конфиденциальности — Солитон",
     description:
@@ -910,8 +911,8 @@ export const seoRoutes: SeoRoute[] = [
     cta: "Читать политику",
   },
   {
-    path: "/info/pd-policy/",
-    type: "info",
+    path: "/legal/pd-policy/",
+    type: "legal",
     h1: "Политика обработки персональных данных",
     title: "Политика обработки персональных данных — Солитон",
     description:
@@ -926,8 +927,8 @@ export const seoRoutes: SeoRoute[] = [
     cta: "Читать политику ПДн",
   },
   {
-    path: "/info/terms/",
-    type: "info",
+    path: "/legal/terms/",
+    type: "legal",
     h1: "Пользовательское соглашение",
     title: "Пользовательское соглашение — Солитон",
     description:

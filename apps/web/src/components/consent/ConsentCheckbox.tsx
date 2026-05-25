@@ -27,7 +27,7 @@ const DefaultLabel = (
   <>
     Я согласен с{" "}
     <Link
-      href="/info/offer/"
+      href="/legal/offer/"
       target="_blank"
       className="text-emerald-700 underline"
     >
@@ -35,7 +35,7 @@ const DefaultLabel = (
     </Link>{" "}
     и{" "}
     <Link
-      href="/info/pd-policy/"
+      href="/legal/pd-policy/"
       target="_blank"
       className="text-emerald-700 underline"
     >

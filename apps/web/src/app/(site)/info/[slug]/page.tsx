@@ -5,17 +5,9 @@ import { StaticPageRenderer } from "@/components/static-pages/StaticPageRenderer
 import { createMetadata, getSeoRoute } from "@/lib/seo/seo-registry";
 import { getStaticPage } from "@/lib/static-pages/get-static-page";
 
-const ALLOWED_SLUGS = [
-  "payment",
-  "delivery",
-  "return",
-  "warranty",
-  "offer",
-  "privacy",
-  "pd-policy",
-  "terms",
-  "faq",
-] as const;
+// Operational info only — the 4 versioned legal docs (offer / privacy /
+// pd-policy / terms) live under /legal/* now. See apps/web/src/app/(site)/legal/.
+const ALLOWED_SLUGS = ["payment", "delivery", "return", "warranty", "faq"] as const;
 type AllowedSlug = (typeof ALLOWED_SLUGS)[number];
 
 // 057 → repo pattern: DB-backed pages are `force-dynamic` so the docker build
@@ -48,5 +40,5 @@ export default async function InfoPage({ params }: Props) {
   if (!ALLOWED_SLUGS.includes(slug as AllowedSlug)) notFound();
   const page = await getStaticPage(slug);
   if (!page) notFound();
-  return <StaticPageRenderer page={page} />;
+  return <StaticPageRenderer page={page} section="info" />;
 }

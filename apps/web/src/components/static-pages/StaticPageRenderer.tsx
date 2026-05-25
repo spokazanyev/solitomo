@@ -10,7 +10,25 @@ import type { StaticPageDoc } from "@/lib/static-pages/get-static-page";
 
 type Props = {
   page: StaticPageDoc;
+  /**
+   * Which top-level section the page lives under. Drives the breadcrumb label
+   * and tells the sidebar which group to mark as "current category". Default
+   * `"info"` keeps backward compatibility — only the new /legal/[slug]/ route
+   * needs to pass `"legal"` explicitly.
+   */
+  section?: "info" | "legal";
 };
+
+const SECTION_META = {
+  info: {
+    breadcrumbLabel: "Покупателям",
+    breadcrumbHref: "/info/payment/",
+  },
+  legal: {
+    breadcrumbLabel: "Юридические документы",
+    breadcrumbHref: "/legal/offer/",
+  },
+} as const;
 
 function buildJsonLd(page: StaticPageDoc): unknown {
   if (page.category === "policy") {
@@ -58,14 +76,15 @@ const RU_LONG_DATE = new Intl.DateTimeFormat("ru-RU", {
  *  - Breadcrumb is `not-prose` so its styling is independent of the
  *    article body.
  */
-export function StaticPageRenderer({ page }: Props) {
+export function StaticPageRenderer({ page, section = "info" }: Props) {
   const isPolicy = page.category === "policy";
   const showVersionLine = isPolicy && Boolean(page.version) && Boolean(page.effectiveFrom);
+  const sectionMeta = SECTION_META[section];
 
   return (
     <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-10 md:px-10 lg:grid-cols-[260px_minmax(0,1fr)] lg:px-12">
       <aside className="lg:sticky lg:top-24 lg:self-start">
-        <BuyerInfoNav currentSlug={page.slug} />
+        <BuyerInfoNav currentSlug={page.slug} currentSection={section} />
       </aside>
 
       <article className="min-w-0 max-w-3xl">
@@ -80,8 +99,8 @@ export function StaticPageRenderer({ page }: Props) {
           <span aria-hidden="true" className="text-slate-300">
             /
           </span>
-          <Link href="/info/payment/" className="hover:text-sky-700 hover:underline">
-            Покупателям
+          <Link href={sectionMeta.breadcrumbHref} className="hover:text-sky-700 hover:underline">
+            {sectionMeta.breadcrumbLabel}
           </Link>
           <span aria-hidden="true" className="text-slate-300">
             /

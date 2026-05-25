@@ -2,6 +2,8 @@ import { Boxes } from "lucide-react";
 import Link from "next/link";
 
 import { BankingDetails } from "@/components/company/BankingDetails";
+import { CompanyAboutInfo } from "@/components/company/CompanyAboutInfo";
+import { CompanyProductionInfo } from "@/components/company/CompanyProductionInfo";
 import { TemplateBody } from "@/components/page-templates";
 import { getCatalogProducts } from "@/lib/products/catalog";
 import {
@@ -115,6 +117,7 @@ function routeEyebrow(route: SeoRoute) {
     document: "Документы для закупки",
     company: "Компания",
     info: "Информация для покупателей",
+    legal: "Юридические документы",
   };
 
   return labelsByType[route.type];
@@ -229,6 +232,8 @@ export async function SeoLandingPage({ route }: SeoLandingPageProps) {
         <TemplateBody route={route} />
 
         {route.path === "/company/contacts/" && <BankingDetails />}
+        {route.path === "/company/about/" && <CompanyAboutInfo />}
+        {route.path === "/company/production/" && <CompanyProductionInfo />}
       </section>
     </div>
   );
