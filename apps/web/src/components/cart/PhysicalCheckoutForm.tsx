@@ -7,6 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 
 import { AddressForm, type AddressFormValue } from "@/components/checkout/AddressForm";
 import { DeliveryBlock, type SelectedRate } from "@/components/checkout/DeliveryBlock";
+import { ConsentCheckbox } from "@/components/consent/ConsentCheckbox";
 import { clearCartItems, getCartTotal, useRfqCartItems } from "@/components/rfq/RfqCart";
 import { pushEvent } from "@/lib/analytics/data-layer";
 
@@ -30,16 +31,21 @@ export function PhysicalCheckoutForm() {
   const [selectedRate, setSelectedRate] = useState<SelectedRate | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [consent, setConsent] = useState(false);
 
-  const cartId = useMemo(() => {
+  // SSR-safe lazy initialization: read or mint a stable cart id on first client render.
+  // The Date.now/Math.random calls are impure but only run once via useState's initializer
+  // function — they don't recur on rerenders, so the React Compiler purity rule is OK here.
+  const [cartId] = useState<string>(() => {
     if (typeof window === "undefined") return "anon";
     let id = window.localStorage.getItem("soliton-cart-id");
     if (!id) {
+      // eslint-disable-next-line react-hooks/purity
       id = `cart_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
       window.localStorage.setItem("soliton-cart-id", id);
     }
     return id;
-  }, []);
+  });
 
   const itemsForShipping = useMemo(
     () =>
@@ -131,6 +137,12 @@ export function PhysicalCheckoutForm() {
             },
           },
           sourcePage: typeof window !== "undefined" ? window.location.pathname : undefined,
+          // 057 FR-5735: forward the actual checkbox state, not a literal
+          // `true`. The server-side gate must see the same value the user
+          // toggled — otherwise the UI disable is the *only* enforcement
+          // (trivially bypassed via devtools), and 152-ФЗ recording becomes
+          // a sham.
+          consent,
         }),
       });
 
@@ -289,9 +301,10 @@ export function PhysicalCheckoutForm() {
         {error ? (
           <p className="mt-3 rounded-md bg-rose-50 px-3 py-2 text-xs leading-5 text-rose-900">{error}</p>
         ) : null}
+        <ConsentCheckbox className="mt-4" onChange={setConsent} value={consent} />
         <button
           className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-sky-700 px-4 py-3 text-sm font-semibold text-white hover:bg-sky-800 disabled:opacity-60"
-          disabled={submitting}
+          disabled={submitting || !consent}
           type="submit"
         >
           {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <CreditCard className="h-4 w-4" />}

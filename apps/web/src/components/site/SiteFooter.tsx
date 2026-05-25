@@ -1,8 +1,20 @@
 import { Mail, MapPin, Phone, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 
-import { getPrimaryEmail, getPrimaryPhone } from "@/lib/company/get-company-contacts";
+import { ManageCookiesButton } from "@/components/site/ManageCookiesButton";
+import {
+  getCompanyContacts,
+  getPrimaryEmail,
+  getPrimaryPhone,
+} from "@/lib/company/get-company-contacts";
 import { SITE_NAME, seoRoutes, type SeoRouteType } from "@/lib/seo/seo-registry";
+
+const POLICY_LINKS = [
+  { href: "/info/offer/", label: "Публичная оферта" },
+  { href: "/info/privacy/", label: "Политика конфиденциальности" },
+  { href: "/info/pd-policy/", label: "Политика обработки ПДн" },
+  { href: "/info/terms/", label: "Пользовательское соглашение" },
+];
 
 function findRoute(path: string) {
   return seoRoutes.find((route) => route.path === path);
@@ -69,6 +81,12 @@ function FooterColumn({
 export function SiteFooter() {
   const primaryPhone = getPrimaryPhone();
   const primaryEmail = getPrimaryEmail();
+  const contacts = getCompanyContacts();
+  const legalLabel = contacts.legalNameFull ?? contacts.legalName;
+  const requisitesParts = [legalLabel];
+  if (contacts.inn) requisitesParts.push(`ИНН ${contacts.inn}`);
+  if (contacts.ogrn) requisitesParts.push(`ОГРН ${contacts.ogrn}`);
+  const requisitesLine = requisitesParts.join(" · ");
 
   return (
     <footer className="border-t border-slate-200 bg-white text-slate-700">
@@ -115,6 +133,35 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-slate-100">
+        <div className="mx-auto grid w-full max-w-7xl gap-4 px-6 py-6 text-sm text-slate-600 md:px-10 lg:px-12">
+          <nav
+            aria-label="Юридические документы"
+            className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-slate-600"
+          >
+            {POLICY_LINKS.map((link, index) => (
+              <span key={link.href} className="flex items-center gap-x-3">
+                <Link href={link.href} className="underline-offset-2 hover:text-emerald-700 hover:underline">
+                  {link.label}
+                </Link>
+                {index < POLICY_LINKS.length - 1 ? (
+                  <span aria-hidden className="text-slate-300">·</span>
+                ) : null}
+              </span>
+            ))}
+          </nav>
+          <div className="flex flex-wrap items-center gap-4">
+            <div className="flex items-center gap-3" aria-label="Принимаем к оплате">
+              <img src="/payment-logos/mir.svg" alt="Платёжная система МИР" width="48" height="24" />
+              <img src="/payment-logos/visa.svg" alt="Visa" width="48" height="24" />
+              <img src="/payment-logos/mastercard.svg" alt="Mastercard" width="48" height="24" />
+              <img src="/payment-logos/sbp.svg" alt="Система быстрых платежей" width="48" height="24" />
+            </div>
+            <ManageCookiesButton />
+          </div>
+          {requisitesLine ? (
+            <p className="text-xs leading-6 text-slate-500">{requisitesLine}</p>
+          ) : null}
+        </div>
         <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-3 px-6 py-4 text-xs text-slate-500 md:px-10 lg:px-12">
           <span>© 2026 Солитон</span>
           <span>Заявки принимаются через КП; онлайн-оплата и доставка согласуются отдельно.</span>

@@ -22,6 +22,7 @@ import { PaymentEvents } from "./collections/PaymentEvents";
 import { RfqRequests } from "./collections/RfqRequests.js";
 import { ShippingCalculations } from "./collections/ShippingCalculations";
 import { ShippingLogs } from "./collections/ShippingLogs";
+import { StaticPages } from "./collections/StaticPages";
 import { Users } from "./collections/Users.js";
 import { ApiShipSettings } from "./globals/ApiShipSettings";
 import { CrmSettings } from "./globals/CrmSettings";
@@ -57,6 +58,10 @@ export default buildConfig({
       key: "seed:catalog",
       scriptPath: path.resolve(dirname, "../scripts/seed-catalog-payload.mjs"),
     },
+    {
+      key: "seed:static-pages",
+      scriptPath: path.resolve(dirname, "../scripts/seed-static-pages.mjs"),
+    },
   ],
   collections: [
     Users,
@@ -77,6 +82,7 @@ export default buildConfig({
     FilterPresets,
     MediaAssets,
     Documents,
+    StaticPages,
     AdminChangeLog,
     ShippingCalculations,
     ShippingLogs,

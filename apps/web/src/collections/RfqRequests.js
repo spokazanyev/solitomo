@@ -1,3 +1,4 @@
+import { consentField } from "../lib/consent/consent-field";
 import { withDiscardChangesControl } from "./admin-components.js";
 import { adminGroups, adminLabel, commonLabels } from "./admin-i18n.js";
 
@@ -117,6 +118,8 @@ export const RfqRequests = {
       type: "text",
       label: adminLabel("Город", "City"),
     },
+    // 057: Embedded consent record (152-ФЗ Art. 9)
+    consentField(),
     {
       name: "deadline",
       type: "text",

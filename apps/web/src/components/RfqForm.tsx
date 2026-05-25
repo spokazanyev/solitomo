@@ -4,6 +4,7 @@ import { CheckCircle2, Loader2, Plus, Send, Trash2 } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 
+import { ConsentCheckbox } from "@/components/consent/ConsentCheckbox";
 import {
   clearRfqCartItems,
   mergeRfqItems,
@@ -71,6 +72,7 @@ export function RfqForm() {
     message: "",
     status: "idle",
   });
+  const [consent, setConsent] = useState(false);
   const rfqOpenTracked = useRef(false);
   const shouldPersistItems = useRef(false);
 
@@ -169,6 +171,9 @@ export function RfqForm() {
         technicalSpec: formData.get("technicalSpec"),
         sourcePage: window.location.pathname + window.location.search,
         items,
+        // 057 FR-5735: forward the actual checkbox state — the DOM disabled
+        // attribute alone is trivially bypassable.
+        consent,
       }),
     });
 
@@ -334,10 +339,11 @@ export function RfqForm() {
         </label>
       </section>
 
+      <ConsentCheckbox onChange={setConsent} value={consent} />
       <div className="flex flex-wrap items-center gap-4">
         <button
           className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-sky-700 px-5 py-3 text-sm font-semibold text-white hover:bg-sky-800 disabled:cursor-not-allowed disabled:bg-slate-400 sm:w-auto"
-          disabled={state.status === "submitting"}
+          disabled={state.status === "submitting" || !consent}
           type="submit"
         >
           {state.status === "submitting" ? (

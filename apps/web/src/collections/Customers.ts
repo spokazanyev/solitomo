@@ -1,5 +1,6 @@
 import type { CollectionConfig } from "payload";
 
+import { consentField } from "../lib/consent/consent-field";
 import { adminGroups, adminLabel } from "./admin-i18n.js";
 
 /**
@@ -140,6 +141,9 @@ export const Customers: CollectionConfig = {
         { label: adminLabel("Контакт (default)", "Contact"), value: "contact" },
       ],
     },
+
+    // 057: Embedded consent record (152-ФЗ Art. 9)
+    consentField(),
 
     // ─── Magic-link (FR-5411, RD-1) ───
     // 054 L6: field-level access.read = false hides tokens from Admin UI / REST.

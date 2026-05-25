@@ -4,6 +4,13 @@ import path from "node:path";
 import { NextRequest, NextResponse } from "next/server";
 import { getPayload } from "payload";
 
+// 057 US4: PDPA + offer consent validation + recording
+import type { ConsentRecord } from "@/lib/consent/consent-types";
+import {
+  ConsentPolicyMissingError,
+  makeConsentRecord,
+} from "@/lib/consent/make-consent-record";
+
 type RfqItem = {
   name?: string;
   quantity?: string;
@@ -23,6 +30,8 @@ type RfqPayload = {
   phone?: string;
   sourcePage?: string;
   technicalSpec?: string;
+  // 057 US4: explicit PDPA + offer consent (true required)
+  consent?: boolean;
 };
 
 const MAX_TEXT_LENGTH = 3000;
@@ -64,6 +73,30 @@ function cleanCustomerType(value: unknown): CustomerType {
 export async function POST(request: NextRequest) {
   try {
     const body = (await request.json()) as RfqPayload;
+
+    // 057 US4: PDPA + offer consent gate (FR-5712). Must precede side-effects.
+    if (body.consent !== true) {
+      return NextResponse.json(
+        { error: "CONSENT_REQUIRED", message: "Consent to PDPA and offer is required" },
+        { status: 400 },
+      );
+    }
+    let consentRecord: ConsentRecord;
+    try {
+      consentRecord = await makeConsentRecord(request);
+    } catch (e) {
+      if (e instanceof ConsentPolicyMissingError) {
+        return NextResponse.json(
+          {
+            error: "POLICY_NOT_READY",
+            message: "Policy documents are not yet published. Contact support.",
+          },
+          { status: 503 },
+        );
+      }
+      throw e;
+    }
+
     const contactName = cleanText(body.contactName, 160);
     const email = cleanText(body.email, 160);
     const phone = cleanText(body.phone, 80);
@@ -112,7 +145,8 @@ export async function POST(request: NextRequest) {
       const payload = await getPayload({ config });
       const created = await payload.create({
         collection: "rfq-requests",
-        data: requestData,
+        // 057 US4: persist PDPA + offer consent record (152-ФЗ Art. 9)
+        data: { ...requestData, consent: consentRecord },
       });
 
       return NextResponse.json({

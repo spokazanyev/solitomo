@@ -29,7 +29,30 @@
       "Bash(SITE_URL=http://localhost:3000 pnpm validate:seo)",
       "Bash(SITE_URL=http://localhost:3000 pnpm validate:schema)",
       "Bash(pnpm typecheck *)",
-      "Bash(pnpm lint *)"
+      "Bash(pnpm lint *)",
+      "Bash(SSH_AUTH_SOCK=/Users/svp/.ssh/agent/s.NDVk7hpiWV.agent.G6mbeV2Ud8 ssh-add -l)",
+      "Bash(SSH_AUTH_SOCK=/Users/svp/.ssh/agent/s.NDVk7hpiWV.agent.G6mbeV2Ud8 ssh -o ConnectTimeout=8 -o BatchMode=yes mac-mini-ext \"echo OK && hostname && date\")",
+      "Bash(export SSH_AUTH_SOCK=/Users/svp/.ssh/agent/s.NDVk7hpiWV.agent.G6mbeV2Ud8)",
+      "Bash(ssh-add -l)",
+      "Bash(curl -sI -m 15 https://soliton.heado.tech)",
+      "Bash(curl -sI -m 15 https://pdumarket.ru)",
+      "Bash(curl -sI -m 15 https://www.pdumarket.ru)",
+      "Bash(curl -s -m 15 https://pdumarket.ru/)",
+      "Bash(curl -s -m 15 https://pdumarket.ru/catalog/pdu/)",
+      "Bash(curl -s -m 15 https://pdumarket.ru/sitemap.xml)",
+      "Bash(curl -s -m 15 https://soliton.heado.tech/)",
+      "Bash(curl -s -m 15 https://pdumarket.ru/robots.txt)",
+      "Bash(curl -s -m 15 https://www.pdumarket.ru/)",
+      "Bash(openssl s_client -servername pdumarket.ru -connect pdumarket.ru:443)",
+      "Bash(openssl x509 *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "WebSearch",
+      "WebFetch(domain:yandex.ru)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:business-online.su)",
+      "WebFetch(domain:profitads.ru)"
     ]
   }
 }

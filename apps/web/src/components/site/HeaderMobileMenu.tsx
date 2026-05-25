@@ -1,9 +1,10 @@
 "use client";
 
-import { Menu, Phone } from "lucide-react";
+import { ChevronDown, Menu, Phone } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
+import { buyerInfoLinks } from "@/components/site/buyer-info-links";
 import { MobileDrawer } from "@/components/site/MobileDrawer";
 
 type NavItem = {
@@ -41,16 +42,49 @@ export function HeaderMobileMenu({ navItems, phone }: HeaderMobileMenuProps) {
         title="Меню"
       >
         <nav aria-label="Главное меню" className="grid gap-1">
-          {navItems.map((item) => (
-            <Link
-              className="flex h-12 items-center rounded-md px-3 text-base font-medium text-slate-800 hover:bg-slate-100 hover:text-sky-800"
-              href={item.href}
-              key={item.href}
-              onClick={() => setOpen(false)}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const link = (
+              <Link
+                className="flex h-12 items-center rounded-md px-3 text-base font-medium text-slate-800 hover:bg-slate-100 hover:text-sky-800"
+                href={item.href}
+                key={item.href}
+                onClick={() => setOpen(false)}
+              >
+                {item.label}
+              </Link>
+            );
+            if (item.href !== "/company/about/") {
+              return link;
+            }
+            // Insert "Покупателям" accordion before "Компания".
+            return (
+              <div key="buyer-info-and-company" className="contents">
+                <details className="group rounded-md">
+                  <summary className="flex h-12 cursor-pointer items-center justify-between rounded-md px-3 text-base font-medium text-slate-800 hover:bg-slate-100 hover:text-sky-800 [&::-webkit-details-marker]:hidden">
+                    <span>Покупателям</span>
+                    <ChevronDown
+                      aria-hidden="true"
+                      className="h-4 w-4 transition-transform group-open:rotate-180"
+                    />
+                  </summary>
+                  <ul className="mt-1 grid gap-0.5 pb-1">
+                    {buyerInfoLinks.map((l) => (
+                      <li key={l.href}>
+                        <Link
+                          className="flex h-10 items-center rounded-md pl-8 pr-3 text-sm text-slate-700 hover:bg-slate-100 hover:text-sky-800"
+                          href={l.href}
+                          onClick={() => setOpen(false)}
+                        >
+                          {l.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+                {link}
+              </div>
+            );
+          })}
         </nav>
         {phone ? (
           <div className="mt-6 border-t border-slate-100 pt-4">

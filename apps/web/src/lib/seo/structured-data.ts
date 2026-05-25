@@ -177,3 +177,52 @@ export function createFaqJsonLd(items: FaqItem[]) {
     })),
   };
 }
+
+/**
+ * Article JSON-LD (spec 057, US1) — used for legal/policy static pages.
+ * `compactJsonLd` drops any undefined / empty fields automatically.
+ */
+export function createArticleJsonLd(opts: {
+  headline: string;
+  datePublished?: string;
+  dateModified?: string;
+  publisherName?: string;
+  url?: string;
+}) {
+  return compactJsonLd({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: opts.headline,
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified,
+    publisher: opts.publisherName
+      ? {
+          "@type": "Organization",
+          name: opts.publisherName,
+        }
+      : undefined,
+    mainEntityOfPage: opts.url
+      ? {
+          "@type": "WebPage",
+          "@id": opts.url,
+        }
+      : undefined,
+  });
+}
+
+/**
+ * WebPage JSON-LD (spec 057, US1) — generic info-category static page.
+ */
+export function createWebPageJsonLd(opts: {
+  name: string;
+  description?: string;
+  url?: string;
+}) {
+  return compactJsonLd({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: opts.name,
+    description: opts.description,
+    url: opts.url,
+  });
+}

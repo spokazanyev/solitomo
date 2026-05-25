@@ -17,6 +17,7 @@
     "export:catalog": "node scripts/agent-operation-placeholder.mjs export:catalog",
     "seed:catalog": "payload seed:catalog",
     "seed:catalog:dry-run": "pnpm exec payload seed:catalog --dry-run",
+    "seed:static-pages": "payload seed:static-pages",
     "validate:catalog": "node scripts/agent-operation-placeholder.mjs validate:catalog",
     "validate:seo": "node scripts/validate-seo.mjs",
     "validate:schema": "node scripts/validate-schema.mjs",

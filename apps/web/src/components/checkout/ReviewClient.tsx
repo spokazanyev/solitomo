@@ -68,8 +68,15 @@ export function ReviewClient({ data, finalizeBody, orderPayload, cartToken }: Pr
   const [error, setError] = useState<string | null>(null);
   const [mismatchOpen, setMismatchOpen] = useState(false);
   const [mismatch, setMismatch] = useState<{ previousCost: number; newCost: number } | null>(null);
+  // 057 FR-5735: capture the form state at first submit so the PRICE_CHANGED
+  // retry path (which re-enters callFinalize from PriceMismatchModal.onAccept)
+  // re-uses the same consent value instead of defaulting to `true`.
+  const [pendingFinalize, setPendingFinalize] = useState<
+    { consent: boolean; acceptMarketingMessenger: boolean } | null
+  >(null);
 
   async function callFinalize(accept: boolean) {
+    const finalize = pendingFinalize ?? { consent: false, acceptMarketingMessenger: false };
     setSubmitting(true);
     setSubmitStep("finalizing");
     setError(null);
@@ -116,7 +123,7 @@ export function ReviewClient({ data, finalizeBody, orderPayload, cartToken }: Pr
       const orderRes = await fetch("/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...orderPayload, cartToken }),
+        body: JSON.stringify({ ...orderPayload, cartToken, consent: finalize.consent }),
       });
       if (!orderRes.ok) {
         const body = (await orderRes.json().catch(() => ({}))) as { message?: string };
@@ -187,7 +194,10 @@ export function ReviewClient({ data, finalizeBody, orderPayload, cartToken }: Pr
         data={data}
         submitting={submitting}
         errorMessage={error ? `${error}${submittingLabel ? ` (${submittingLabel})` : ""}` : null}
-        onFinalize={() => callFinalize(false)}
+        onFinalize={({ consent, acceptMarketingMessenger }) => {
+          setPendingFinalize({ consent, acceptMarketingMessenger });
+          void callFinalize(false);
+        }}
         onEditDelivery={() => router.push("/cart/checkout/physical/")}
         onEditAddress={() => router.push("/cart/checkout/physical/")}
         onEditCustomer={() => router.push("/cart/checkout/physical/")}

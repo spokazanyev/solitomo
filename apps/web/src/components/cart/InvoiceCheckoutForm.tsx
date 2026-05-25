@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import { ConsentCheckbox } from "@/components/consent/ConsentCheckbox";
 import { clearCartItems, getCartTotal, useRfqCartItems } from "@/components/rfq/RfqCart";
 import { pushEvent } from "@/lib/analytics/data-layer";
 
@@ -43,6 +44,7 @@ export function InvoiceCheckoutForm() {
 
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [consent, setConsent] = useState(false);
 
   useEffect(() => {
     if (items.length === 0) return;
@@ -99,6 +101,10 @@ export function InvoiceCheckoutForm() {
             city: deliveryCity,
           },
           sourcePage: typeof window !== "undefined" ? window.location.pathname : undefined,
+          // 057 FR-5735: send the actual checkbox state (not a literal true)
+          // so the server-side 152-ФЗ gate can reject the request when the
+          // box was never ticked.
+          consent,
         }),
       });
 
@@ -300,9 +306,10 @@ export function InvoiceCheckoutForm() {
         {error ? (
           <p className="mt-3 rounded-md bg-rose-50 px-3 py-2 text-xs leading-5 text-rose-900">{error}</p>
         ) : null}
+        <ConsentCheckbox className="mt-4" onChange={setConsent} value={consent} />
         <button
           className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-sky-700 px-4 py-3 text-sm font-semibold text-white hover:bg-sky-800 disabled:opacity-60"
-          disabled={submitting}
+          disabled={submitting || !consent}
           type="submit"
         >
           {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Receipt className="h-4 w-4" />}

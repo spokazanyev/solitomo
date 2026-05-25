@@ -29,8 +29,10 @@ interface Body {
 
 const REVIEW_HISTORY_NOTE_PREFIX = "[review]";
 
-export async function POST(req: NextRequest, ctx: { params: Promise<{ token: string }> }) {
-  const { token } = await ctx.params;
+// 056: dynamic segment renamed [token] → [id] for Next.js consistency.
+// Param value still semantically == Order.publicToken (lookup unchanged).
+export async function POST(req: NextRequest, ctx: { params: Promise<{ id: string }> }) {
+  const { id: token } = await ctx.params;
   let body: Body;
   try {
     body = (await req.json()) as Body;

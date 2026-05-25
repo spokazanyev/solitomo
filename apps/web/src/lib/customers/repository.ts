@@ -161,6 +161,9 @@ export async function findByResetToken(
 export async function getOrCreateEmailOnlyCustomer(
   payload: Payload,
   email: string,
+  // 057 US4: optional embedded consent record (152-ФЗ Art. 9). Persisted only
+  // when a NEW row is created — existing customers keep their original consent.
+  consent?: import("../consent/consent-types").ConsentRecord,
 ): Promise<CustomerRecord> {
   const norm = normalizeEmail(email);
   const existing = await findByEmail(payload, norm);
@@ -179,6 +182,7 @@ export async function getOrCreateEmailOnlyCustomer(
       customerType: "individual",
       role: "contact",
       gdprConsentAt: new Date().toISOString(),
+      ...(consent ? { consent } : {}),
     } as never,
     overrideAccess: true,
   })) as unknown as Record<string, unknown>;

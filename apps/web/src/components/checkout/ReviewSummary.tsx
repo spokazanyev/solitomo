@@ -3,6 +3,8 @@
 import { ArrowRight, Loader2 } from "lucide-react";
 import { useState } from "react";
 
+import { ConsentCheckbox } from "@/components/consent/ConsentCheckbox";
+
 export interface ReviewSummaryItem {
   sku: string;
   name: string;
@@ -39,7 +41,9 @@ interface Props {
   data: ReviewSummaryData;
   submitting?: boolean;
   errorMessage?: string | null;
-  onFinalize: (params: { acceptMarketingMessenger: boolean }) => void;
+  // 057 FR-5735: pass the consent state up to the parent so the server-side
+  // gate sees the same value the user toggled — see ReviewClient.callFinalize.
+  onFinalize: (params: { acceptMarketingMessenger: boolean; consent: boolean }) => void;
   onEditDelivery: () => void;
   onEditAddress?: () => void;
   onEditCustomer?: () => void;
@@ -177,25 +181,7 @@ export function ReviewSummary({
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-6">
-        <label className="flex items-start gap-3 text-sm text-slate-700">
-          <input
-            type="checkbox"
-            className="mt-1 h-4 w-4 rounded border-slate-300 text-sky-700 focus:ring-sky-600"
-            checked={acceptedTerms}
-            onChange={(e) => setAcceptedTerms(e.target.checked)}
-          />
-          <span>
-            Согласен с{" "}
-            <a className="text-sky-700 hover:underline" href="/policy/offer/" target="_blank" rel="noreferrer">
-              офертой
-            </a>{" "}
-            и{" "}
-            <a className="text-sky-700 hover:underline" href="/policy/privacy/" target="_blank" rel="noreferrer">
-              обработкой персональных данных
-            </a>
-            .
-          </span>
-        </label>
+        <ConsentCheckbox onChange={setAcceptedTerms} value={acceptedTerms} />
         <label className="mt-3 flex items-start gap-3 text-sm text-slate-700">
           <input
             type="checkbox"
@@ -222,7 +208,9 @@ export function ReviewSummary({
             type="button"
             className="inline-flex items-center gap-2 rounded-md bg-sky-700 px-5 py-3 text-sm font-semibold text-white hover:bg-sky-800 disabled:opacity-60"
             disabled={disabled}
-            onClick={() => onFinalize({ acceptMarketingMessenger: acceptMessenger })}
+            onClick={() =>
+              onFinalize({ acceptMarketingMessenger: acceptMessenger, consent: acceptedTerms })
+            }
           >
             {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
             {submitting ? "Готовим оплату…" : "Перейти к оплате"}

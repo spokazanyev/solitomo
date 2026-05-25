@@ -86,6 +86,7 @@ export interface Config {
     'filter-presets': FilterPreset;
     media: Media;
     documents: Document;
+    'static-pages': StaticPage;
     'admin-change-log': AdminChangeLog;
     'shipping-calculations': ShippingCalculation;
     'shipping-logs': ShippingLog;
@@ -117,6 +118,7 @@ export interface Config {
     'filter-presets': FilterPresetsSelect<false> | FilterPresetsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     documents: DocumentsSelect<false> | DocumentsSelect<true>;
+    'static-pages': StaticPagesSelect<false> | StaticPagesSelect<true>;
     'admin-change-log': AdminChangeLogSelect<false> | AdminChangeLogSelect<true>;
     'shipping-calculations': ShippingCalculationsSelect<false> | ShippingCalculationsSelect<true>;
     'shipping-logs': ShippingLogsSelect<false> | ShippingLogsSelect<true>;
@@ -246,6 +248,16 @@ export interface Customer {
    */
   companyId?: (number | null) | Company;
   role?: ('owner' | 'accountant' | 'purchaser' | 'contact') | null;
+  /**
+   * Auto-filled on creation. Compliance with Federal Law 152-FZ Art. 9.
+   */
+  consent?: {
+    consentedAt?: string | null;
+    policyVersionPrivacy?: string | null;
+    policyVersionOffer?: string | null;
+    ipHash?: string | null;
+    userAgent?: string | null;
+  };
   magicLinkToken?: string | null;
   magicLinkExpiresAt?: string | null;
   magicLinkConsumedAt?: string | null;
@@ -639,6 +651,16 @@ export interface Order {
    * Checkout toggle (FR-5437): personal company-contact order, owner doesn't see.
    */
   isPersonalOrder?: boolean | null;
+  /**
+   * Auto-filled on creation. Compliance with Federal Law 152-FZ Art. 9.
+   */
+  consent?: {
+    consentedAt?: string | null;
+    policyVersionPrivacy?: string | null;
+    policyVersionOffer?: string | null;
+    ipHash?: string | null;
+    userAgent?: string | null;
+  };
   /**
    * Format SO-YYYY-NNNN. Auto-generated via PG SEQUENCE (051, FR-5101).
    */
@@ -1061,6 +1083,16 @@ export interface Cart {
    */
   companyId?: (number | null) | Company;
   /**
+   * Auto-filled on creation. Compliance with Federal Law 152-FZ Art. 9.
+   */
+  consent?: {
+    consentedAt?: string | null;
+    policyVersionPrivacy?: string | null;
+    policyVersionOffer?: string | null;
+    ipHash?: string | null;
+    userAgent?: string | null;
+  };
+  /**
    * GDPR/Russian PD law consent. Sources: checkout S04 checkbox OR restore-page banner.
    */
   marketingOptIn?: boolean | null;
@@ -1246,6 +1278,16 @@ export interface RfqRequest {
   email?: string | null;
   phone?: string | null;
   city?: string | null;
+  /**
+   * Auto-filled on creation. Compliance with Federal Law 152-FZ Art. 9.
+   */
+  consent?: {
+    consentedAt?: string | null;
+    policyVersionPrivacy?: string | null;
+    policyVersionOffer?: string | null;
+    ipHash?: string | null;
+    userAgent?: string | null;
+  };
   deadline?: string | null;
   /**
    * Legacy JSON with SKU, name, and quantity from the form.
@@ -1364,6 +1406,62 @@ export interface FilterPreset {
   revisionNote?: string | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * Buyer-info pages content (/info/*). Policy documents (category=policy) require version and effectiveFrom.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "static-pages".
+ */
+export interface StaticPage {
+  id: number;
+  /**
+   * Unique URL identifier (lowercase, digits, hyphens). Example: payment, pd-policy.
+   */
+  slug: string;
+  section: 'info' | 'company' | 'other';
+  /**
+   * Used as <h1> and in <title> when seoTitle is empty.
+   */
+  title: string;
+  subtitle?: string | null;
+  /**
+   * Main content. Headings H2-H4, lists, links, tables.
+   */
+  body: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  category?: ('policy' | 'info' | 'faq') | null;
+  /**
+   * Policy version in YYYY-MM-DD-vN format (e.g. 2026-05-25-v1). Required when category=policy.
+   */
+  version?: string | null;
+  /**
+   * Date the policy becomes effective. Required when category=policy.
+   */
+  effectiveFrom?: string | null;
+  /**
+   * Overrides <title>. Falls back to title if empty.
+   */
+  seoTitle?: string | null;
+  seoDescription?: string | null;
+  indexingPolicy?: ('index' | 'noindex') | null;
+  status: 'draft' | 'published';
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1702,6 +1800,10 @@ export interface PayloadLockedDocument {
         value: number | Document;
       } | null)
     | ({
+        relationTo: 'static-pages';
+        value: number | StaticPage;
+      } | null)
+    | ({
         relationTo: 'admin-change-log';
         value: number | AdminChangeLog;
       } | null)
@@ -1815,6 +1917,15 @@ export interface CustomersSelect<T extends boolean = true> {
   customerType?: T;
   companyId?: T;
   role?: T;
+  consent?:
+    | T
+    | {
+        consentedAt?: T;
+        policyVersionPrivacy?: T;
+        policyVersionOffer?: T;
+        ipHash?: T;
+        userAgent?: T;
+      };
   magicLinkToken?: T;
   magicLinkExpiresAt?: T;
   magicLinkConsumedAt?: T;
@@ -2093,6 +2204,15 @@ export interface OrdersSelect<T extends boolean = true> {
   customerId?: T;
   companyId?: T;
   isPersonalOrder?: T;
+  consent?:
+    | T
+    | {
+        consentedAt?: T;
+        policyVersionPrivacy?: T;
+        policyVersionOffer?: T;
+        ipHash?: T;
+        userAgent?: T;
+      };
   clientNumber?: T;
   clientNumberReissueReason?: T;
   clientNumberHistory?:
@@ -2144,6 +2264,15 @@ export interface CartsSelect<T extends boolean = true> {
   customerEmail?: T;
   customerId?: T;
   companyId?: T;
+  consent?:
+    | T
+    | {
+        consentedAt?: T;
+        policyVersionPrivacy?: T;
+        policyVersionOffer?: T;
+        ipHash?: T;
+        userAgent?: T;
+      };
   marketingOptIn?: T;
   synthetic?: T;
   items?:
@@ -2280,6 +2409,15 @@ export interface RfqRequestsSelect<T extends boolean = true> {
   email?: T;
   phone?: T;
   city?: T;
+  consent?:
+    | T
+    | {
+        consentedAt?: T;
+        policyVersionPrivacy?: T;
+        policyVersionOffer?: T;
+        ipHash?: T;
+        userAgent?: T;
+      };
   deadline?: T;
   items?: T;
   requestedItems?:
@@ -2651,6 +2789,27 @@ export interface DocumentsSelect<T extends boolean = true> {
   revisionNote?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "static-pages_select".
+ */
+export interface StaticPagesSelect<T extends boolean = true> {
+  slug?: T;
+  section?: T;
+  title?: T;
+  subtitle?: T;
+  body?: T;
+  category?: T;
+  version?: T;
+  effectiveFrom?: T;
+  seoTitle?: T;
+  seoDescription?: T;
+  indexingPolicy?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
