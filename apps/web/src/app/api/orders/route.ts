@@ -2,6 +2,17 @@ import { NextResponse, type NextRequest } from "next/server";
 import configPromise from "@payload-config";
 import { getPayload } from "payload";
 
+import { getCartTokenFromCookie } from "@/lib/cart/cookie";
+import {
+  CartAlreadyConvertedError,
+  createCart,
+  findByToken,
+  markConverted,
+} from "@/lib/cart/repository";
+import { generateCartToken } from "@/lib/cart/token";
+// 056 FR-5609: customer_session-binding for authenticated checkout
+import { loadCustomerFromRequest } from "@/lib/customers/session";
+
 type IncomingItem = {
   sku?: string;
   name?: string;
@@ -30,6 +41,7 @@ type IncomingPayload = {
     cost?: number;
   };
   sourcePage?: string;
+  cartToken?: string;
 };
 
 const VAT_RATE = 0.2;
@@ -84,8 +96,80 @@ export async function POST(request: NextRequest) {
 
   try {
     const payload = await getPayload({ config: configPromise });
+
+    // 052: Resolve cart for funnel linking (FR-5220, FR-5223)
+    // Priority: body.cartToken → cookie. If neither → synthetic cart for legacy.
+    const cartTokenFromCookie = await getCartTokenFromCookie();
+    const cartToken = body.cartToken ?? cartTokenFromCookie ?? null;
+
+    let cartId: string | null = null;
+    if (cartToken) {
+      const existing = await findByToken(payload, cartToken);
+      if (existing) {
+        if (existing.status === "converted") {
+          // Already converted to a previous order — block double-conversion
+          return NextResponse.json(
+            {
+              error: "cart_already_converted",
+              orderId: existing.convertedToOrderId,
+              message: "Cart was already converted to an order",
+            },
+            { status: 409 },
+          );
+        }
+        if (existing.status === "expired" || existing.status === "merged") {
+          return NextResponse.json(
+            { error: existing.status === "expired" ? "cart_expired" : "cart_merged" },
+            { status: 409 },
+          );
+        }
+        cartId = existing.id;
+      }
+    }
+
+    // FR-5223 + H6: if no cart at all, create synthetic cart marked with `synthetic: true`
+    // so funnel analytics can exclude these (createdAt==convertedAt, no add_to_cart events).
+    if (!cartId) {
+      const synthetic = await createCart(payload, {
+        cartToken: generateCartToken(),
+        items: items.map((it) => ({
+          sku: it.sku,
+          name: it.name,
+          qty: it.quantity,
+          priceAtAdd: it.price ?? null,
+          addedAt: new Date().toISOString(),
+          slug: it.slug,
+          warning: "none",
+        })),
+        customerEmail: body.customer?.email,
+        sourcePage: body.sourcePage,
+        synthetic: true,
+      });
+      cartId = synthetic.id;
+    }
+
+    // 056 FR-5609: customer_session-binding. If a valid customer_session cookie
+    // is present, link Order.customerId so authenticated buyers can see their
+    // history in /me/orders. Guest checkout continues to work unchanged.
+    let resolvedCustomerId: string | number | undefined;
+    try {
+      const session = await loadCustomerFromRequest(request);
+      const sessionId = session?.customer?.id;
+      if (sessionId != null) resolvedCustomerId = sessionId;
+    } catch {
+      // Session lookup failed — proceed as guest (additive enhancement)
+    }
+
     const order = await payload.create({
       collection: "orders",
+      // 054 H6: mark this as a trusted source so the FR-5421 customerId backfill
+      // can proceed. The cart-token resolution above already proved possession.
+      // 056: customerSessionVerified flag lets 054 hooks know binding came from
+      // a verified JWT session (separate from cart-token-based backfill).
+      context: {
+        fromCartConversion: true,
+        customerSessionVerified: Boolean(resolvedCustomerId),
+      } as never,
       data: {
         type,
         status: initialStatus,
@@ -107,8 +191,37 @@ export async function POST(request: NextRequest) {
           providerStatus: "none",
         },
         sourcePage: body.sourcePage,
+        // cartId is a relationship; runtime accepts the Payload-internal id (string
+        // for UUID-id setups, number for serial). Cast to any here to bypass the
+        // generated narrow type while keeping the call site readable.
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ...((cartId ? { cartId } : {}) as any),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ...((resolvedCustomerId ? { customerId: resolvedCustomerId } : {}) as any),
       },
     });
+
+    // FR-5220a: Mark cart as converted only on transition to pending_payment.
+    // Currently `type === "physical"` lands directly in pending_payment, so we convert here.
+    // For "legal" (awaiting_payment) and "quote" (new) — keep cart as active for further edits.
+    if (cartId && initialStatus === "pending_payment") {
+      try {
+        await markConverted(payload, cartId, String(order.id));
+      } catch (err) {
+        // C3: if cart was concurrently converted by another request, this Order is a duplicate.
+        // The unique constraint on Orders.cartId should have prevented this, but as a defense
+        // in depth: log the race so it can be reconciled manually.
+        if (err instanceof CartAlreadyConvertedError) {
+          payload.logger.error(
+            `[orders] DUPLICATE conversion race for cart=${cartId}: this order=${order.id}, existing=${err.existingOrderId}`,
+          );
+        } else {
+          payload.logger.error(
+            `[orders] markConverted failed for cart=${cartId}: ${(err as Error)?.message ?? String(err)}`,
+          );
+        }
+      }
+    }
 
     return NextResponse.json(
       {
@@ -116,6 +229,7 @@ export async function POST(request: NextRequest) {
         publicToken: order.publicToken,
         status: order.status,
         type: order.type,
+        cartId,
       },
       { status: 201 },
     );

@@ -64,11 +64,16 @@ export type SupportedTimezones =
 export interface Config {
   auth: {
     users: UserAuthOperations;
+    customers: CustomerAuthOperations;
   };
   blocks: {};
   collections: {
     users: User;
+    customers: Customer;
+    companies: Company;
     orders: Order;
+    carts: Cart;
+    returns: Return;
     'rfq-requests': RfqRequest;
     products: Product;
     categories: Category;
@@ -82,6 +87,11 @@ export interface Config {
     media: Media;
     documents: Document;
     'admin-change-log': AdminChangeLog;
+    'shipping-calculations': ShippingCalculation;
+    'shipping-logs': ShippingLog;
+    'crm-sync-jobs': CrmSyncJob;
+    'notification-jobs': NotificationJob;
+    paymentEvents: PaymentEvent;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -90,7 +100,11 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
+    customers: CustomersSelect<false> | CustomersSelect<true>;
+    companies: CompaniesSelect<false> | CompaniesSelect<true>;
     orders: OrdersSelect<false> | OrdersSelect<true>;
+    carts: CartsSelect<false> | CartsSelect<true>;
+    returns: ReturnsSelect<false> | ReturnsSelect<true>;
     'rfq-requests': RfqRequestsSelect<false> | RfqRequestsSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
@@ -104,6 +118,11 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     documents: DocumentsSelect<false> | DocumentsSelect<true>;
     'admin-change-log': AdminChangeLogSelect<false> | AdminChangeLogSelect<true>;
+    'shipping-calculations': ShippingCalculationsSelect<false> | ShippingCalculationsSelect<true>;
+    'shipping-logs': ShippingLogsSelect<false> | ShippingLogsSelect<true>;
+    'crm-sync-jobs': CrmSyncJobsSelect<false> | CrmSyncJobsSelect<true>;
+    'notification-jobs': NotificationJobsSelect<false> | NotificationJobsSelect<true>;
+    paymentEvents: PaymentEventsSelect<false> | PaymentEventsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -113,19 +132,47 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    'apiship-settings': ApishipSetting;
+    'crm-settings': CrmSetting;
+    'notifications-settings': NotificationsSetting;
+    'payment-settings': PaymentSetting;
+  };
+  globalsSelect: {
+    'apiship-settings': ApishipSettingsSelect<false> | ApishipSettingsSelect<true>;
+    'crm-settings': CrmSettingsSelect<false> | CrmSettingsSelect<true>;
+    'notifications-settings': NotificationsSettingsSelect<false> | NotificationsSettingsSelect<true>;
+    'payment-settings': PaymentSettingsSelect<false> | PaymentSettingsSelect<true>;
+  };
   locale: null;
   widgets: {
     collections: CollectionsWidget;
   };
-  user: User;
+  user: User | Customer;
   jobs: {
     tasks: unknown;
     workflows: unknown;
   };
 }
 export interface UserAuthOperations {
+  forgotPassword: {
+    email: string;
+    password: string;
+  };
+  login: {
+    email: string;
+    password: string;
+  };
+  registerFirstUser: {
+    email: string;
+    password: string;
+  };
+  unlock: {
+    email: string;
+    password: string;
+  };
+}
+export interface CustomerAuthOperations {
   forgotPassword: {
     email: string;
     password: string;
@@ -170,6 +217,138 @@ export interface User {
   collection: 'users';
 }
 /**
+ * Customer-facing auth collection, separate from admin Users.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "customers".
+ */
+export interface Customer {
+  id: number;
+  /**
+   * Flipped false after 3 hard bounces (049).
+   */
+  emailValid?: boolean | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  /**
+   * Computed from firstName + lastName.
+   */
+  fullName?: string | null;
+  phone?: string | null;
+  /**
+   * E.164 format (+7XXXXXXXXXX).
+   */
+  phoneNormalized?: string | null;
+  accountState: 'email-only' | 'password-set' | 'invited-stub' | 'deleted';
+  customerType: 'individual' | 'company-contact';
+  /**
+   * Required if customerType=company-contact.
+   */
+  companyId?: (number | null) | Company;
+  role?: ('owner' | 'accountant' | 'purchaser' | 'contact') | null;
+  magicLinkToken?: string | null;
+  magicLinkExpiresAt?: string | null;
+  magicLinkConsumedAt?: string | null;
+  magicLinkRequestedFromIp?: string | null;
+  resetPasswordExpiresAt?: string | null;
+  addresses?:
+    | {
+        label: string;
+        city: string;
+        fullAddress: string;
+        postalCode?: string | null;
+        addressNormalized?:
+          | {
+              [k: string]: unknown;
+            }
+          | unknown[]
+          | string
+          | number
+          | boolean
+          | null;
+        isDefault?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  marketingOptIn?: boolean | null;
+  messengerOptIn?: boolean | null;
+  languagePreference?: ('ru' | 'en') | null;
+  crmPersonId?: string | null;
+  crmLastSyncedAt?: string | null;
+  crmLastSyncStatus?: ('queued' | 'in_progress' | 'success' | 'failed') | null;
+  /**
+   * Consent timestamp.
+   */
+  gdprConsentAt?: string | null;
+  /**
+   * Privacy policy version.
+   */
+  gdprConsentVersion?: string | null;
+  /**
+   * Soft delete. PII anonymized. Order.customer.* snapshot retained.
+   */
+  deletedAt?: string | null;
+  lastLoginAt?: string | null;
+  lastLoginIp?: string | null;
+  lastLoginUserAgent?: string | null;
+  loginCount?: number | null;
+  invitedBy?: (number | null) | Customer;
+  inviteToken?: string | null;
+  inviteExpiresAt?: string | null;
+  inviteAcceptedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+  collection: 'customers';
+}
+/**
+ * Legal-entity buyers. Deduped by tax ID. Synced to Twenty Company via 048.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "companies".
+ */
+export interface Company {
+  id: number;
+  name: string;
+  /**
+   * Tax ID (10 or 12 digits). Unique. Used for dedup with Twenty Company.
+   */
+  taxId: string;
+  kpp?: string | null;
+  ogrn?: string | null;
+  legalAddress?: string | null;
+  /**
+   * If different from legal address.
+   */
+  billingAddress?: string | null;
+  contactEmail?: string | null;
+  contactPhone?: string | null;
+  /**
+   * Forward-compat field for US7. Not enforced in MVP.
+   */
+  approvalLimit?: number | null;
+  crmCompanyId?: string | null;
+  crmLastSyncedAt?: string | null;
+  crmLastSyncStatus?: ('queued' | 'in_progress' | 'success' | 'failed') | null;
+  deletedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "orders".
  */
@@ -178,6 +357,7 @@ export interface Order {
   type: 'physical' | 'legal' | 'quote';
   status:
     | 'new'
+    | 'draft'
     | 'pending_payment'
     | 'awaiting_payment'
     | 'paid'
@@ -185,7 +365,9 @@ export interface Order {
     | 'shipped'
     | 'delivered'
     | 'cancelled'
-    | 'expired';
+    | 'expired'
+    | 'completed'
+    | 'returned';
   /**
    * Auto-filled from contact/company.
    */
@@ -215,6 +397,10 @@ export interface Order {
     kpp?: string | null;
     ogrn?: string | null;
     legalAddress?: string | null;
+    /**
+     * Flipped false after 3 hard bounces (049, edge case).
+     */
+    emailValid?: boolean | null;
   };
   delivery?: {
     method?: ('pickup' | 'cdek' | 'boxberry' | 'russian-post' | 'tc') | null;
@@ -223,13 +409,205 @@ export interface Order {
     cost?: number | null;
     trackNumber?: string | null;
     shippedAt?: string | null;
+    provider?: ('apiship' | 'fallback') | null;
+    providerKey?: string | null;
+    tariffId?: number | null;
+    deliveryType?: ('1' | '2') | null;
+    pickupType?: ('1' | '2') | null;
+    pointId?: string | null;
+    pointAddress?: string | null;
+    etaMinDays?: number | null;
+    etaMaxDays?: number | null;
+    selectedAt?: string | null;
+    addressNormalized?:
+      | {
+          [k: string]: unknown;
+        }
+      | unknown[]
+      | string
+      | number
+      | boolean
+      | null;
+    /**
+     * Captured on Review step.
+     */
+    priceSnapshot?: {
+      cost?: number | null;
+      currency?: string | null;
+      capturedAt?: string | null;
+      sourceCacheKey?: string | null;
+      refreshCheckAt?: string | null;
+    };
+    pickupExpiresAt?: string | null;
   };
+  /**
+   * Filled after ApiShip order creation.
+   */
+  shipment?: {
+    providerOrderId?: string | null;
+    trackingNumber?: string | null;
+    trackingUrl?: string | null;
+    labelUrl?: string | null;
+    waybillUrl?: string | null;
+    status?:
+      | (
+          | 'none'
+          | 'pending'
+          | 'created'
+          | 'pending_label'
+          | 'in_transit'
+          | 'at_point'
+          | 'delivered'
+          | 'returned'
+          | 'cancelled'
+          | 'error'
+        )
+      | null;
+    events?:
+      | {
+          eventId: string;
+          providerStatus?: string | null;
+          internalStatus?: string | null;
+          at: string;
+          receivedAt?: string | null;
+          message?: string | null;
+          raw?:
+            | {
+                [k: string]: unknown;
+              }
+            | unknown[]
+            | string
+            | number
+            | boolean
+            | null;
+          id?: string | null;
+        }[]
+      | null;
+    createdAt?: string | null;
+    cancelledAt?: string | null;
+    errorMessage?: string | null;
+    lastSyncedAt?: string | null;
+  };
+  /**
+   * Filled by 048-twenty-crm-sync.
+   */
+  crmRefs?: {
+    opportunityId?: string | null;
+    personId?: string | null;
+    companyId?: string | null;
+    lastSyncedAt?: string | null;
+    lastSyncStatus?: ('queued' | 'in_progress' | 'success' | 'failed' | 'quarantined') | null;
+    lastSyncError?: string | null;
+    pendingCancellationFromCrm?: boolean | null;
+  };
+  deliveredAt?: string | null;
+  closedAt?: string | null;
+  /**
+   * Derived: true iff active Return exists. Synced from returns.afterChange (053).
+   */
+  disputeFlag?: boolean | null;
+  paymentRetryUntil?: string | null;
+  /**
+   * Computed from returns collection.
+   */
+  hasReturns?: boolean | null;
+  returnsCount?: number | null;
+  /**
+   * In kopecks. Computed from returns.
+   */
+  totalRefunded?: number | null;
   payment?: {
     method?: ('card' | 'invoice') | null;
-    providerStatus?: ('none' | 'pending' | 'succeeded' | 'canceled') | null;
+    providerStatus?: ('none' | 'pending' | 'authorized' | 'succeeded' | 'canceled') | null;
     providerRef?: string | null;
     paidAt?: string | null;
     amount?: number | null;
+    /**
+     * Two-stage: capture timestamp (FR-5524).
+     */
+    capturedAt?: string | null;
+    /**
+     * UUID, generated on first create-payment (FR-5510).
+     */
+    idempotenceKey?: string | null;
+    confirmationUrl?: string | null;
+    /**
+     * FR-5508. Payment session created.
+     */
+    createdAt?: string | null;
+    confirmationType?: ('redirect' | 'qr' | 'embedded') | null;
+    /**
+     * FR-5545. ЮKassa auto-mode receipt registration.
+     */
+    receiptStatus?: ('pending' | 'succeeded' | 'canceled') | null;
+    /**
+     * FR-5544c. Rate snapshot for refunds.
+     */
+    vatCodeApplied?: number | null;
+    /**
+     * OQ-6. Filled by webhook handler.
+     */
+    paymentMethodSnapshot?: {
+      type?: ('bank_card' | 'sbp' | 'yoo_money' | 'sberbank') | null;
+      title?: string | null;
+      card?: {
+        first6?: string | null;
+        last4?: string | null;
+        expiryMonth?: string | null;
+        expiryYear?: string | null;
+        cardType?: string | null;
+        issuerCountry?: string | null;
+        issuerName?: string | null;
+      };
+      sbp?: {
+        bankId?: string | null;
+        bankName?: string | null;
+      };
+      yooMoney?: {
+        accountNumber?: string | null;
+      };
+      sberbank?: {
+        phone?: string | null;
+      };
+    };
+    /**
+     * FR-5523a. Exponential backoff for capture retry.
+     */
+    captureAttempts?:
+      | {
+          attemptedAt: string;
+          error: string;
+          errorCode?: string | null;
+          nextRetryAt?: string | null;
+          exhausted?: boolean | null;
+          id?: string | null;
+        }[]
+      | null;
+    /**
+     * Auto-filled on refund (053).
+     */
+    refunds?:
+      | {
+          providerRefundId: string;
+          returnId?: string | null;
+          /**
+           * In kopecks.
+           */
+          amount: number;
+          refundedAt: string;
+          providerStatus?: ('pending' | 'succeeded' | 'failed' | 'canceled') | null;
+          id?: string | null;
+        }[]
+      | null;
+    /**
+     * Payer bank details snapshot for bank-transfer refunds (legal entity, 053).
+     */
+    payerBankDetails?: {
+      bankAccount?: string | null;
+      bik?: string | null;
+      recipientName?: string | null;
+      bankName?: string | null;
+    };
   };
   /**
    * Filled for legal orders.
@@ -245,6 +623,39 @@ export interface Order {
    * Used for public order page /cart/order/[token]/.
    */
   publicToken?: string | null;
+  /**
+   * Source cart for funnel analytics. Unique. May be empty for legacy orders.
+   */
+  cartId?: (number | null) | Cart;
+  /**
+   * FK to customers. Null for guest orders before merge.
+   */
+  customerId?: (number | null) | Customer;
+  /**
+   * FK to companies. Null for individuals and personal company-contact orders.
+   */
+  companyId?: (number | null) | Company;
+  /**
+   * Checkout toggle (FR-5437): personal company-contact order, owner doesn't see.
+   */
+  isPersonalOrder?: boolean | null;
+  /**
+   * Format SO-YYYY-NNNN. Auto-generated via PG SEQUENCE (051, FR-5101).
+   */
+  clientNumber?: string | null;
+  /**
+   * Filled when reissuing number via admin route. ≥10 chars.
+   */
+  clientNumberReissueReason?: string | null;
+  clientNumberHistory?:
+    | {
+        oldNumber: string;
+        reissuedAt: string;
+        reason?: string | null;
+        actorEmail?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   internalComment?: string | null;
   /**
    * Auto-collected status history.
@@ -255,6 +666,33 @@ export interface Order {
         from?: string | null;
         to?: string | null;
         note?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Controlled via /preferences/[token]/.
+   */
+  marketingOptIn?: boolean | null;
+  /**
+   * Messenger consent placeholder for spec 050 (Telegram).
+   */
+  messengerOptIn?: boolean | null;
+  /**
+   * Mirror of notification-jobs for quick lookup.
+   */
+  notifications?:
+    | {
+        notificationId: string;
+        event: string;
+        channel: 'email' | 'messenger' | 'crm' | 'admin_ui' | 'dataLayer';
+        template?: string | null;
+        recipient?: string | null;
+        scheduledAt?: string | null;
+        sentAt?: string | null;
+        status: 'queued' | 'sent' | 'failed' | 'skipped';
+        errorMessage?: string | null;
+        externalRef?: string | null;
+        skipReason?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -599,6 +1037,196 @@ export interface Document {
   createdAt: string;
 }
 /**
+ * Customer carts. After 30 days idle → expired, 90 days later → hard delete (GDPR).
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "carts".
+ */
+export interface Cart {
+  id: number;
+  /**
+   * URL-safe 128-bit random; HTTP-only cookie on client.
+   */
+  cartToken: string;
+  /**
+   * Linked email from checkout (if provided).
+   */
+  customerEmail?: string | null;
+  /**
+   * FK to customers. Null for guest carts before merge on login.
+   */
+  customerId?: (number | null) | Customer;
+  /**
+   * FK to companies. Nullable.
+   */
+  companyId?: (number | null) | Company;
+  /**
+   * GDPR/Russian PD law consent. Sources: checkout S04 checkbox OR restore-page banner.
+   */
+  marketingOptIn?: boolean | null;
+  /**
+   * Auto-created by /api/orders for legacy flow (no cartToken). Exclude from funnel analytics.
+   */
+  synthetic?: boolean | null;
+  items?:
+    | {
+        sku: string;
+        name: string;
+        qty: number;
+        /**
+         * Snapshot of price at add time; null for RFQ-only.
+         */
+        priceAtAdd?: number | null;
+        addedAt: string;
+        productId?: (number | null) | Product;
+        slug?: string | null;
+        image?: string | null;
+        /**
+         * Set on GET if catalog has changed. FR-5232.
+         */
+        warning?: ('none' | 'removed' | 'price_changed' | 'stock_low') | null;
+        id?: string | null;
+      }[]
+    | null;
+  totals?: {
+    itemCount?: number | null;
+    subtotal?: number | null;
+    knownPriceCount?: number | null;
+    unknownPriceCount?: number | null;
+  };
+  status: 'active' | 'abandoned' | 'converted' | 'expired' | 'merged';
+  /**
+   * Set when status=converted.
+   */
+  convertedToOrderId?: (number | null) | Order;
+  /**
+   * US6 (054): merge target.
+   */
+  mergedIntoId?: (number | null) | Cart;
+  lastActivityAt: string;
+  abandonedAt?: string | null;
+  convertedAt?: string | null;
+  /**
+   * Computed as lastActivityAt + 30d.
+   */
+  expiresAt: string;
+  /**
+   * Pathname of first add_to_cart.
+   */
+  sourcePage?: string | null;
+  utm?: {
+    source?: string | null;
+    medium?: string | null;
+    campaign?: string | null;
+    term?: string | null;
+    content?: string | null;
+  };
+  /**
+   * Masked UA of first add.
+   */
+  userAgent?: string | null;
+  /**
+   * SHA-256 of IP — GDPR-friendly.
+   */
+  ipHash?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Returns and refunds. Lifecycle and integrations per spec 053.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "returns".
+ */
+export interface Return {
+  id: number;
+  /**
+   * Format RT-YYYY-NNNN, auto-generated via PG SEQUENCE.
+   */
+  returnNumber?: string | null;
+  orderId: number | Order;
+  /**
+   * Snapshot of Order.customerId at creation. Null for guest returns.
+   */
+  customerId?: (number | null) | Customer;
+  /**
+   * Order.clientNumber snapshot at creation time (immutable).
+   */
+  orderNumberSnapshot?: string | null;
+  items: {
+    orderItemSku: string;
+    productName?: string | null;
+    qty: number;
+    /**
+     * Per-unit price in kopecks, snapshot from Order.
+     */
+    priceSnapshot: number;
+    /**
+     * Snapshot ('20', '10', '0', '-1' no VAT).
+     */
+    vatRate?: string | null;
+    reason?: string | null;
+    condition?: ('unopened' | 'opened_unused' | 'used' | 'defective') | null;
+    photos?: (number | Media)[] | null;
+    id?: string | null;
+  }[];
+  reasonCategory: 'defect' | 'wrong-item' | 'not-needed' | 'other';
+  customerNotes?: string | null;
+  managerNotes?: string | null;
+  /**
+   * In kopecks.
+   */
+  refundAmount: number;
+  refundMethod: 'card-original' | 'bank-transfer' | 'other';
+  refundProviderRef?: string | null;
+  manualRefundConfirmation?: {
+    byUser?: (number | null) | User;
+    at?: string | null;
+    paymentDoc?: string | null;
+    bankAccount?: string | null;
+    bik?: string | null;
+    recipientName?: string | null;
+    purpose?: string | null;
+  };
+  returnMethod?: ('self_post' | 'pickup_via_courier' | 'drop_off') | null;
+  apiShipReturnOrderId?: string | null;
+  returnLabelUrl?: string | null;
+  creditMemoNumber?: string | null;
+  creditMemoPdfUrl?: string | null;
+  creditMemoIssuedAt?: string | null;
+  documentsError?: string | null;
+  correctionReceiptStatus?: ('pending' | 'issued' | 'not_required' | 'error') | null;
+  correctionReceiptRef?: string | null;
+  status: 'requested' | 'approved' | 'received' | 'refunded' | 'rejected' | 'cancelled';
+  /**
+   * Required for rejected; for approved may contain markers (e.g. outside_short_window).
+   */
+  statusReason?: string | null;
+  requestedAt: string;
+  approvedAt?: string | null;
+  receivedAt?: string | null;
+  refundedAt?: string | null;
+  rejectedAt?: string | null;
+  cancelledAt?: string | null;
+  /**
+   * Client-side UUID — 10 min deduplication window. DB-unique.
+   */
+  clientRequestId?: string | null;
+  createdVia?: ('customer-public' | 'manager-manual' | 'api') | null;
+  history?:
+    | {
+        at?: string | null;
+        fromStatus?: string | null;
+        toStatus?: string | null;
+        byUser?: (number | null) | User;
+        reason?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "rfq-requests".
  */
@@ -776,6 +1404,209 @@ export interface AdminChangeLog {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "shipping-calculations".
+ */
+export interface ShippingCalculation {
+  id: number;
+  /**
+   * apiship:calc:{cartId}:{shippingOptionId}
+   */
+  key: string;
+  data:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  expiresAt: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "shipping-logs".
+ */
+export interface ShippingLog {
+  id: number;
+  direction: 'out' | 'in';
+  endpoint: string;
+  method?: string | null;
+  status?: number | null;
+  requestId?: string | null;
+  orderId?: string | null;
+  durationMs?: number | null;
+  request?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  response?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  error?: string | null;
+  at: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "crm-sync-jobs".
+ */
+export interface CrmSyncJob {
+  id: number;
+  jobId: string;
+  orderId: string;
+  event: string;
+  payload?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  attempt?: number | null;
+  status: 'queued' | 'in_progress' | 'success' | 'failed' | 'quarantined';
+  lastAttemptAt?: string | null;
+  nextAttemptAt?: string | null;
+  errorMessage?: string | null;
+  errorCode?: string | null;
+  twentyRef?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "notification-jobs".
+ */
+export interface NotificationJob {
+  id: number;
+  notificationId: string;
+  orderId?: (number | null) | Order;
+  /**
+   * Entity collection this job refers to (for cart.* /return.* events).
+   */
+  entityCollection?: ('orders' | 'carts' | 'returns') | null;
+  /**
+   * Record ID in entityCollection.
+   */
+  entityId?: string | null;
+  event: string;
+  channel: 'email' | 'messenger' | 'admin_ui' | 'dataLayer';
+  template: string;
+  recipient: string;
+  scheduledAt: string;
+  sentAt?: string | null;
+  status: 'queued' | 'in_progress' | 'sent' | 'failed' | 'skipped';
+  attempt?: number | null;
+  nextAttemptAt?: string | null;
+  errorMessage?: string | null;
+  errorCode?: string | null;
+  externalRef?: string | null;
+  payload?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * opt_out | duplicate | invalid_recipient | no_sender_registered | sandbox | disabled
+   */
+  skipReason?: string | null;
+  dedupKey?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Append-only journal of ЮKassa webhooks. Written before Order/Return mutations (FR-5555). 90-day retention.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "paymentEvents".
+ */
+export interface PaymentEvent {
+  id: number;
+  /**
+   * Composite: `${object.id}:${event_type}`. See composeEventId().
+   */
+  eventId: string;
+  eventType:
+    | 'payment.waiting_for_capture'
+    | 'payment.succeeded'
+    | 'payment.canceled'
+    | 'refund.succeeded'
+    | 'refund.canceled'
+    | 'payment.refunded'
+    | 'other';
+  providerRef: string;
+  order?: (number | null) | Order;
+  return?: (number | null) | Return;
+  /**
+   * Raw payload. Truncated to 16KB with truncatedAt indicator.
+   */
+  payload?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Original bytes if truncated.
+   */
+  truncatedAt?: number | null;
+  receivedAt: string;
+  processedAt?: string | null;
+  result: 'success' | 'rejected' | 'duplicate';
+  rejectedReason?:
+    | (
+        | 'ip_not_allowed'
+        | 'unknown_payment'
+        | 'unknown_refund'
+        | 'amount_mismatch'
+        | 'currency_mismatch'
+        | 'signature_invalid'
+        | 'settings_disabled'
+        | 'internal_error'
+        | 'parse_error'
+      )
+    | null;
+  sourceIp?: string | null;
+  duplicateCount?: number | null;
+  source?: ('webhook' | 'cron_reconciliation') | null;
+  notificationJobId?: string | null;
+  domainEventId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -803,8 +1634,24 @@ export interface PayloadLockedDocument {
         value: number | User;
       } | null)
     | ({
+        relationTo: 'customers';
+        value: number | Customer;
+      } | null)
+    | ({
+        relationTo: 'companies';
+        value: number | Company;
+      } | null)
+    | ({
         relationTo: 'orders';
         value: number | Order;
+      } | null)
+    | ({
+        relationTo: 'carts';
+        value: number | Cart;
+      } | null)
+    | ({
+        relationTo: 'returns';
+        value: number | Return;
       } | null)
     | ({
         relationTo: 'rfq-requests';
@@ -857,12 +1704,37 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'admin-change-log';
         value: number | AdminChangeLog;
+      } | null)
+    | ({
+        relationTo: 'shipping-calculations';
+        value: number | ShippingCalculation;
+      } | null)
+    | ({
+        relationTo: 'shipping-logs';
+        value: number | ShippingLog;
+      } | null)
+    | ({
+        relationTo: 'crm-sync-jobs';
+        value: number | CrmSyncJob;
+      } | null)
+    | ({
+        relationTo: 'notification-jobs';
+        value: number | NotificationJob;
+      } | null)
+    | ({
+        relationTo: 'paymentEvents';
+        value: number | PaymentEvent;
       } | null);
   globalSlug?: string | null;
-  user: {
-    relationTo: 'users';
-    value: number | User;
-  };
+  user:
+    | {
+        relationTo: 'users';
+        value: number | User;
+      }
+    | {
+        relationTo: 'customers';
+        value: number | Customer;
+      };
   updatedAt: string;
   createdAt: string;
 }
@@ -872,10 +1744,15 @@ export interface PayloadLockedDocument {
  */
 export interface PayloadPreference {
   id: number;
-  user: {
-    relationTo: 'users';
-    value: number | User;
-  };
+  user:
+    | {
+        relationTo: 'users';
+        value: number | User;
+      }
+    | {
+        relationTo: 'customers';
+        value: number | Customer;
+      };
   key?: string | null;
   value?:
     | {
@@ -925,6 +1802,92 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "customers_select".
+ */
+export interface CustomersSelect<T extends boolean = true> {
+  emailValid?: T;
+  firstName?: T;
+  lastName?: T;
+  fullName?: T;
+  phone?: T;
+  phoneNormalized?: T;
+  accountState?: T;
+  customerType?: T;
+  companyId?: T;
+  role?: T;
+  magicLinkToken?: T;
+  magicLinkExpiresAt?: T;
+  magicLinkConsumedAt?: T;
+  magicLinkRequestedFromIp?: T;
+  resetPasswordExpiresAt?: T;
+  addresses?:
+    | T
+    | {
+        label?: T;
+        city?: T;
+        fullAddress?: T;
+        postalCode?: T;
+        addressNormalized?: T;
+        isDefault?: T;
+        id?: T;
+      };
+  marketingOptIn?: T;
+  messengerOptIn?: T;
+  languagePreference?: T;
+  crmPersonId?: T;
+  crmLastSyncedAt?: T;
+  crmLastSyncStatus?: T;
+  gdprConsentAt?: T;
+  gdprConsentVersion?: T;
+  deletedAt?: T;
+  lastLoginAt?: T;
+  lastLoginIp?: T;
+  lastLoginUserAgent?: T;
+  loginCount?: T;
+  invitedBy?: T;
+  inviteToken?: T;
+  inviteExpiresAt?: T;
+  inviteAcceptedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "companies_select".
+ */
+export interface CompaniesSelect<T extends boolean = true> {
+  name?: T;
+  taxId?: T;
+  kpp?: T;
+  ogrn?: T;
+  legalAddress?: T;
+  billingAddress?: T;
+  contactEmail?: T;
+  contactPhone?: T;
+  approvalLimit?: T;
+  crmCompanyId?: T;
+  crmLastSyncedAt?: T;
+  crmLastSyncStatus?: T;
+  deletedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "orders_select".
  */
 export interface OrdersSelect<T extends boolean = true> {
@@ -962,6 +1925,7 @@ export interface OrdersSelect<T extends boolean = true> {
         kpp?: T;
         ogrn?: T;
         legalAddress?: T;
+        emailValid?: T;
       };
   delivery?:
     | T
@@ -972,7 +1936,72 @@ export interface OrdersSelect<T extends boolean = true> {
         cost?: T;
         trackNumber?: T;
         shippedAt?: T;
+        provider?: T;
+        providerKey?: T;
+        tariffId?: T;
+        deliveryType?: T;
+        pickupType?: T;
+        pointId?: T;
+        pointAddress?: T;
+        etaMinDays?: T;
+        etaMaxDays?: T;
+        selectedAt?: T;
+        addressNormalized?: T;
+        priceSnapshot?:
+          | T
+          | {
+              cost?: T;
+              currency?: T;
+              capturedAt?: T;
+              sourceCacheKey?: T;
+              refreshCheckAt?: T;
+            };
+        pickupExpiresAt?: T;
       };
+  shipment?:
+    | T
+    | {
+        providerOrderId?: T;
+        trackingNumber?: T;
+        trackingUrl?: T;
+        labelUrl?: T;
+        waybillUrl?: T;
+        status?: T;
+        events?:
+          | T
+          | {
+              eventId?: T;
+              providerStatus?: T;
+              internalStatus?: T;
+              at?: T;
+              receivedAt?: T;
+              message?: T;
+              raw?: T;
+              id?: T;
+            };
+        createdAt?: T;
+        cancelledAt?: T;
+        errorMessage?: T;
+        lastSyncedAt?: T;
+      };
+  crmRefs?:
+    | T
+    | {
+        opportunityId?: T;
+        personId?: T;
+        companyId?: T;
+        lastSyncedAt?: T;
+        lastSyncStatus?: T;
+        lastSyncError?: T;
+        pendingCancellationFromCrm?: T;
+      };
+  deliveredAt?: T;
+  closedAt?: T;
+  disputeFlag?: T;
+  paymentRetryUntil?: T;
+  hasReturns?: T;
+  returnsCount?: T;
+  totalRefunded?: T;
   payment?:
     | T
     | {
@@ -981,6 +2010,74 @@ export interface OrdersSelect<T extends boolean = true> {
         providerRef?: T;
         paidAt?: T;
         amount?: T;
+        capturedAt?: T;
+        idempotenceKey?: T;
+        confirmationUrl?: T;
+        createdAt?: T;
+        confirmationType?: T;
+        receiptStatus?: T;
+        vatCodeApplied?: T;
+        paymentMethodSnapshot?:
+          | T
+          | {
+              type?: T;
+              title?: T;
+              card?:
+                | T
+                | {
+                    first6?: T;
+                    last4?: T;
+                    expiryMonth?: T;
+                    expiryYear?: T;
+                    cardType?: T;
+                    issuerCountry?: T;
+                    issuerName?: T;
+                  };
+              sbp?:
+                | T
+                | {
+                    bankId?: T;
+                    bankName?: T;
+                  };
+              yooMoney?:
+                | T
+                | {
+                    accountNumber?: T;
+                  };
+              sberbank?:
+                | T
+                | {
+                    phone?: T;
+                  };
+            };
+        captureAttempts?:
+          | T
+          | {
+              attemptedAt?: T;
+              error?: T;
+              errorCode?: T;
+              nextRetryAt?: T;
+              exhausted?: T;
+              id?: T;
+            };
+        refunds?:
+          | T
+          | {
+              providerRefundId?: T;
+              returnId?: T;
+              amount?: T;
+              refundedAt?: T;
+              providerStatus?: T;
+              id?: T;
+            };
+        payerBankDetails?:
+          | T
+          | {
+              bankAccount?: T;
+              bik?: T;
+              recipientName?: T;
+              bankName?: T;
+            };
       };
   invoice?:
     | T
@@ -992,6 +2089,21 @@ export interface OrdersSelect<T extends boolean = true> {
       };
   sourcePage?: T;
   publicToken?: T;
+  cartId?: T;
+  customerId?: T;
+  companyId?: T;
+  isPersonalOrder?: T;
+  clientNumber?: T;
+  clientNumberReissueReason?: T;
+  clientNumberHistory?:
+    | T
+    | {
+        oldNumber?: T;
+        reissuedAt?: T;
+        reason?: T;
+        actorEmail?: T;
+        id?: T;
+      };
   internalComment?: T;
   history?:
     | T
@@ -1000,6 +2112,150 @@ export interface OrdersSelect<T extends boolean = true> {
         from?: T;
         to?: T;
         note?: T;
+        id?: T;
+      };
+  marketingOptIn?: T;
+  messengerOptIn?: T;
+  notifications?:
+    | T
+    | {
+        notificationId?: T;
+        event?: T;
+        channel?: T;
+        template?: T;
+        recipient?: T;
+        scheduledAt?: T;
+        sentAt?: T;
+        status?: T;
+        errorMessage?: T;
+        externalRef?: T;
+        skipReason?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "carts_select".
+ */
+export interface CartsSelect<T extends boolean = true> {
+  cartToken?: T;
+  customerEmail?: T;
+  customerId?: T;
+  companyId?: T;
+  marketingOptIn?: T;
+  synthetic?: T;
+  items?:
+    | T
+    | {
+        sku?: T;
+        name?: T;
+        qty?: T;
+        priceAtAdd?: T;
+        addedAt?: T;
+        productId?: T;
+        slug?: T;
+        image?: T;
+        warning?: T;
+        id?: T;
+      };
+  totals?:
+    | T
+    | {
+        itemCount?: T;
+        subtotal?: T;
+        knownPriceCount?: T;
+        unknownPriceCount?: T;
+      };
+  status?: T;
+  convertedToOrderId?: T;
+  mergedIntoId?: T;
+  lastActivityAt?: T;
+  abandonedAt?: T;
+  convertedAt?: T;
+  expiresAt?: T;
+  sourcePage?: T;
+  utm?:
+    | T
+    | {
+        source?: T;
+        medium?: T;
+        campaign?: T;
+        term?: T;
+        content?: T;
+      };
+  userAgent?: T;
+  ipHash?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "returns_select".
+ */
+export interface ReturnsSelect<T extends boolean = true> {
+  returnNumber?: T;
+  orderId?: T;
+  customerId?: T;
+  orderNumberSnapshot?: T;
+  items?:
+    | T
+    | {
+        orderItemSku?: T;
+        productName?: T;
+        qty?: T;
+        priceSnapshot?: T;
+        vatRate?: T;
+        reason?: T;
+        condition?: T;
+        photos?: T;
+        id?: T;
+      };
+  reasonCategory?: T;
+  customerNotes?: T;
+  managerNotes?: T;
+  refundAmount?: T;
+  refundMethod?: T;
+  refundProviderRef?: T;
+  manualRefundConfirmation?:
+    | T
+    | {
+        byUser?: T;
+        at?: T;
+        paymentDoc?: T;
+        bankAccount?: T;
+        bik?: T;
+        recipientName?: T;
+        purpose?: T;
+      };
+  returnMethod?: T;
+  apiShipReturnOrderId?: T;
+  returnLabelUrl?: T;
+  creditMemoNumber?: T;
+  creditMemoPdfUrl?: T;
+  creditMemoIssuedAt?: T;
+  documentsError?: T;
+  correctionReceiptStatus?: T;
+  correctionReceiptRef?: T;
+  status?: T;
+  statusReason?: T;
+  requestedAt?: T;
+  approvedAt?: T;
+  receivedAt?: T;
+  refundedAt?: T;
+  rejectedAt?: T;
+  cancelledAt?: T;
+  clientRequestId?: T;
+  createdVia?: T;
+  history?:
+    | T
+    | {
+        at?: T;
+        fromStatus?: T;
+        toStatus?: T;
+        byUser?: T;
+        reason?: T;
         id?: T;
       };
   updatedAt?: T;
@@ -1418,6 +2674,106 @@ export interface AdminChangeLogSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "shipping-calculations_select".
+ */
+export interface ShippingCalculationsSelect<T extends boolean = true> {
+  key?: T;
+  data?: T;
+  expiresAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "shipping-logs_select".
+ */
+export interface ShippingLogsSelect<T extends boolean = true> {
+  direction?: T;
+  endpoint?: T;
+  method?: T;
+  status?: T;
+  requestId?: T;
+  orderId?: T;
+  durationMs?: T;
+  request?: T;
+  response?: T;
+  error?: T;
+  at?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "crm-sync-jobs_select".
+ */
+export interface CrmSyncJobsSelect<T extends boolean = true> {
+  jobId?: T;
+  orderId?: T;
+  event?: T;
+  payload?: T;
+  attempt?: T;
+  status?: T;
+  lastAttemptAt?: T;
+  nextAttemptAt?: T;
+  errorMessage?: T;
+  errorCode?: T;
+  twentyRef?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "notification-jobs_select".
+ */
+export interface NotificationJobsSelect<T extends boolean = true> {
+  notificationId?: T;
+  orderId?: T;
+  entityCollection?: T;
+  entityId?: T;
+  event?: T;
+  channel?: T;
+  template?: T;
+  recipient?: T;
+  scheduledAt?: T;
+  sentAt?: T;
+  status?: T;
+  attempt?: T;
+  nextAttemptAt?: T;
+  errorMessage?: T;
+  errorCode?: T;
+  externalRef?: T;
+  payload?: T;
+  skipReason?: T;
+  dedupKey?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "paymentEvents_select".
+ */
+export interface PaymentEventsSelect<T extends boolean = true> {
+  eventId?: T;
+  eventType?: T;
+  providerRef?: T;
+  order?: T;
+  return?: T;
+  payload?: T;
+  truncatedAt?: T;
+  receivedAt?: T;
+  processedAt?: T;
+  result?: T;
+  rejectedReason?: T;
+  sourceIp?: T;
+  duplicateCount?: T;
+  source?: T;
+  notificationJobId?: T;
+  domainEventId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -1455,6 +2811,493 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "apiship-settings".
+ */
+export interface ApishipSetting {
+  id: number;
+  enabled?: boolean | null;
+  isTest?: boolean | null;
+  /**
+   * Server-side only. If empty — falls back to APISHIP_TOKEN env.
+   */
+  token?: string | null;
+  /**
+   * For HMAC validation of incoming webhooks.
+   */
+  webhookSecret?: string | null;
+  sender?: {
+    countryCode?: string | null;
+    addressString?: string | null;
+    contactName?: string | null;
+    phone?: string | null;
+  };
+  defaults?: {
+    length?: number | null;
+    width?: number | null;
+    height?: number | null;
+    /**
+     * Grams
+     */
+    weight?: number | null;
+    deliveryCostVat?: ('-1' | '0' | '5' | '7' | '10' | '20' | '22') | null;
+    isCod?: boolean | null;
+  };
+  disabledProviders?:
+    | {
+        providerKey?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  allowedDeliveryTypes?: ('doortodoor' | 'doortopoint' | 'pointtodoor' | 'pointtopoint')[] | null;
+  yandexMaps?: {
+    apiKey?: string | null;
+    tariffPlan?: ('free' | 'basic' | 'commercial') | null;
+  };
+  dadata?: {
+    apiKey?: string | null;
+    secret?: string | null;
+    tariffPlan?: ('free' | 'starter' | 'business') | null;
+    cacheTtlDays?: number | null;
+  };
+  lifecycle?: {
+    closureWindowDays?: number | null;
+    paymentRetryWindowMin?: number | null;
+    invoiceExpiresDays?: number | null;
+    stuckThresholdHours?: {
+      paid?: number | null;
+      fulfilling?: number | null;
+      shipped?: number | null;
+      atPoint?: number | null;
+    };
+    priceMismatchTolerance?: {
+      percent?: number | null;
+      absoluteR?: number | null;
+    };
+  };
+  connectionStatus?: {
+    lastCheckedAt?: string | null;
+    ok?: boolean | null;
+    message?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "crm-settings".
+ */
+export interface CrmSetting {
+  id: number;
+  enabled?: boolean | null;
+  /**
+   * Self-host URL.
+   */
+  baseUrl: string;
+  apiKey?: string | null;
+  workspaceId?: string | null;
+  defaultAssignee?: string | null;
+  webhookSecret?: string | null;
+  mapping?: {
+    createCompanyForB2B?: boolean | null;
+    linkPersonByEmail?: boolean | null;
+    linkCompanyByTaxId?: boolean | null;
+  };
+  stageMap?: {
+    draft?: string | null;
+    pending_payment?: string | null;
+    awaiting_payment?: string | null;
+    paid?: string | null;
+    fulfilling?: string | null;
+    shipped?: string | null;
+    delivered?: string | null;
+    completed?: string | null;
+    cancelled?: string | null;
+    returned?: string | null;
+    expired?: string | null;
+  };
+  retry?: {
+    maxAttempts?: number | null;
+    baseDelaySec?: number | null;
+    rateLimitRpm?: number | null;
+  };
+  connectionStatus?: {
+    lastCheckedAt?: string | null;
+    ok?: boolean | null;
+    message?: string | null;
+    schemaCheckOk?: boolean | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "notifications-settings".
+ */
+export interface NotificationsSetting {
+  id: number;
+  /**
+   * If disabled — jobs are enqueued but not delivered (dry-run).
+   */
+  enabled?: boolean | null;
+  email: {
+    provider: 'postmark' | 'mailgun' | 'sendpulse';
+    /**
+     * Server-side only; masked in UI.
+     */
+    apiKey?: string | null;
+    /**
+     * Used only for Mailgun, e.g. mg.soliton.ru.
+     */
+    domain?: string | null;
+    from: string;
+    replyTo?: string | null;
+    /**
+     * Emails are not really sent — only logged.
+     */
+    sandbox?: boolean | null;
+  };
+  /**
+   * Architectural placeholder for spec 050. No sender registered in 049.
+   */
+  messenger?: {
+    /**
+     * Always false in 049; flipped on after 050.
+     */
+    enabled?: boolean | null;
+    provider?: ('telegram' | 'max' | 'vk_messages') | null;
+  };
+  /**
+   * Recipients of T-101..T-105 admin templates.
+   */
+  managers?:
+    | {
+        email: string;
+        name?: string | null;
+        events?:
+          | (
+              | 'order.paid'
+              | 'order.invoice_issued'
+              | 'shipment.error'
+              | 'order.stuck'
+              | 'order.cancelled'
+              | 'everything'
+            )[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  marketing?: {
+    cartAbandonmentEnabled?: boolean | null;
+    cartAbandonmentDelayMin?: number | null;
+    npsEnabled?: boolean | null;
+  };
+  retry?: {
+    maxAttempts?: number | null;
+    baseDelaySec?: number | null;
+    stuckQueueThreshold?: number | null;
+  };
+  connectionStatus?: {
+    lastCheckedAt?: string | null;
+    emailOk?: boolean | null;
+    message?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payment-settings".
+ */
+export interface PaymentSetting {
+  id: number;
+  /**
+   * FR-5563. When disabled, all ЮKassa API calls and webhooks are refused.
+   */
+  enabled?: boolean | null;
+  /**
+   * Q2 / FR-5503. Two-stage holds funds for 7 days, captured after fulfillment.
+   */
+  captureMode?: ('two_stage' | 'one_stage') | null;
+  /**
+   * Q3 / FR-5505. Whitelist sent to ЮKassa. If empty, ЮKassa shows all merchant methods.
+   */
+  paymentMethods?: ('bank_card' | 'sbp' | 'yoo_money' | 'sberbank')[] | null;
+  /**
+   * OQ-4 / FR-5552. After this window Order transitions to expired on canceled webhook.
+   */
+  paymentRetryWindowMin?: number | null;
+  /**
+   * FR-5535. MVP: off. Switch to enforce when ЮKassa publishes signature format.
+   */
+  webhookSignatureMode?: ('off' | 'enforce') | null;
+  /**
+   * ≥32 chars. Used only when webhookSignatureMode=enforce.
+   */
+  webhookSecret?: string | null;
+  /**
+   * OQ-1 / FR-5543. 1=ОСН, 2=УСН-income, 3=УСН-profit, 4=ЕНВД, 5=ЕСХН, 6=ПСН.
+   */
+  taxSystemCode?: number | null;
+  /**
+   * OQ-3a / FR-5544. Default 12 = 22/122 calc (Federal Law-425 since 2026-01-01). Legacy: 4 = 20/120.
+   */
+  defaultVatCode?: number | null;
+  /**
+   * FR-5544d. VAT codes accepted in refund correction receipts for legacy orders (20% VAT). NOT used for new payments.
+   */
+  allowedLegacyVatCodes?:
+    | {
+        code: number;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * ЮKassa SBP transaction limit. Orders above this skip SBP in availableMethods.
+   */
+  sbpMaxAmount?: number | null;
+  senderCompanyInfo: {
+    /**
+     * 10 digits (LLC) or 12 (sole proprietor)
+     */
+    inn: string;
+    legalName: string;
+    address: string;
+    kpp?: string | null;
+  };
+  audit?: {
+    lastChangedBy?: (number | null) | User;
+    lastChangedAt?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "apiship-settings_select".
+ */
+export interface ApishipSettingsSelect<T extends boolean = true> {
+  enabled?: T;
+  isTest?: T;
+  token?: T;
+  webhookSecret?: T;
+  sender?:
+    | T
+    | {
+        countryCode?: T;
+        addressString?: T;
+        contactName?: T;
+        phone?: T;
+      };
+  defaults?:
+    | T
+    | {
+        length?: T;
+        width?: T;
+        height?: T;
+        weight?: T;
+        deliveryCostVat?: T;
+        isCod?: T;
+      };
+  disabledProviders?:
+    | T
+    | {
+        providerKey?: T;
+        id?: T;
+      };
+  allowedDeliveryTypes?: T;
+  yandexMaps?:
+    | T
+    | {
+        apiKey?: T;
+        tariffPlan?: T;
+      };
+  dadata?:
+    | T
+    | {
+        apiKey?: T;
+        secret?: T;
+        tariffPlan?: T;
+        cacheTtlDays?: T;
+      };
+  lifecycle?:
+    | T
+    | {
+        closureWindowDays?: T;
+        paymentRetryWindowMin?: T;
+        invoiceExpiresDays?: T;
+        stuckThresholdHours?:
+          | T
+          | {
+              paid?: T;
+              fulfilling?: T;
+              shipped?: T;
+              atPoint?: T;
+            };
+        priceMismatchTolerance?:
+          | T
+          | {
+              percent?: T;
+              absoluteR?: T;
+            };
+      };
+  connectionStatus?:
+    | T
+    | {
+        lastCheckedAt?: T;
+        ok?: T;
+        message?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "crm-settings_select".
+ */
+export interface CrmSettingsSelect<T extends boolean = true> {
+  enabled?: T;
+  baseUrl?: T;
+  apiKey?: T;
+  workspaceId?: T;
+  defaultAssignee?: T;
+  webhookSecret?: T;
+  mapping?:
+    | T
+    | {
+        createCompanyForB2B?: T;
+        linkPersonByEmail?: T;
+        linkCompanyByTaxId?: T;
+      };
+  stageMap?:
+    | T
+    | {
+        draft?: T;
+        pending_payment?: T;
+        awaiting_payment?: T;
+        paid?: T;
+        fulfilling?: T;
+        shipped?: T;
+        delivered?: T;
+        completed?: T;
+        cancelled?: T;
+        returned?: T;
+        expired?: T;
+      };
+  retry?:
+    | T
+    | {
+        maxAttempts?: T;
+        baseDelaySec?: T;
+        rateLimitRpm?: T;
+      };
+  connectionStatus?:
+    | T
+    | {
+        lastCheckedAt?: T;
+        ok?: T;
+        message?: T;
+        schemaCheckOk?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "notifications-settings_select".
+ */
+export interface NotificationsSettingsSelect<T extends boolean = true> {
+  enabled?: T;
+  email?:
+    | T
+    | {
+        provider?: T;
+        apiKey?: T;
+        domain?: T;
+        from?: T;
+        replyTo?: T;
+        sandbox?: T;
+      };
+  messenger?:
+    | T
+    | {
+        enabled?: T;
+        provider?: T;
+      };
+  managers?:
+    | T
+    | {
+        email?: T;
+        name?: T;
+        events?: T;
+        id?: T;
+      };
+  marketing?:
+    | T
+    | {
+        cartAbandonmentEnabled?: T;
+        cartAbandonmentDelayMin?: T;
+        npsEnabled?: T;
+      };
+  retry?:
+    | T
+    | {
+        maxAttempts?: T;
+        baseDelaySec?: T;
+        stuckQueueThreshold?: T;
+      };
+  connectionStatus?:
+    | T
+    | {
+        lastCheckedAt?: T;
+        emailOk?: T;
+        message?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payment-settings_select".
+ */
+export interface PaymentSettingsSelect<T extends boolean = true> {
+  enabled?: T;
+  captureMode?: T;
+  paymentMethods?: T;
+  paymentRetryWindowMin?: T;
+  webhookSignatureMode?: T;
+  webhookSecret?: T;
+  taxSystemCode?: T;
+  defaultVatCode?: T;
+  allowedLegacyVatCodes?:
+    | T
+    | {
+        code?: T;
+        id?: T;
+      };
+  sbpMaxAmount?: T;
+  senderCompanyInfo?:
+    | T
+    | {
+        inn?: T;
+        legalName?: T;
+        address?: T;
+        kpp?: T;
+      };
+  audit?:
+    | T
+    | {
+        lastChangedBy?: T;
+        lastChangedAt?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

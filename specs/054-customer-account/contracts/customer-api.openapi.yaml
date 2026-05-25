@@ -1,0 +1,1011 @@
+openapi: 3.1.0
+info:
+  title: Soliton Customer Account API
+  version: 0.1.0
+  description: |
+    REST-контракты модуля личного кабинета и идентификации клиента
+    (054-customer-account).
+
+    Аутентификация:
+    - Public endpoints (`/api/customers/login`, `/register`, `/magic-request`,
+      `/magic-consume`) — без сессии, защищены rate-limit.
+    - Authenticated endpoints (`/api/customers/me/*`, `/api/customers/company/*`) —
+      требуют HTTP-only cookie `customer_session` (выдаётся при login / register /
+      magic-consume).
+    - Admin endpoints (`/api/admin/customers/*`) — требуют Payload admin-сессии
+      (cookie `payload-token`).
+
+    Customer-сессия и admin-сессия независимы: один пользователь может быть
+    одновременно залогинен и как admin (в `/admin/*`), и как customer (в `/account/*`).
+servers:
+  - url: https://pdumarket.ru
+  - url: http://localhost:3000
+tags:
+  - name: customer-auth
+    description: Public auth endpoints (login, register, magic-link)
+  - name: customer-self
+    description: Self-service endpoints (требуется customer-сессия)
+  - name: customer-company
+    description: B2B / company management (owner / accountant / purchaser)
+  - name: customer-admin
+    description: Admin-only customer management (требуется admin-сессия)
+  - name: customer-gdpr
+    description: GDPR / 152-ФЗ endpoints
+paths:
+
+  # --------------------------------------------------------------------
+  # AUTH
+  # --------------------------------------------------------------------
+
+  /api/customers/register:
+    post:
+      tags: [customer-auth]
+      summary: Регистрация нового клиента
+      description: |
+        FR-5416a: Всегда возвращает 200 с message «check your email» (anti-enumeration).
+        При duplicate email — отправляет на этот email «вы уже зарегистрированы, войдите»
+        вместо 409. Клиент не может определить, зарегистрирован ли email.
+      operationId: registerCustomer
+      parameters:
+        - $ref: "#/components/parameters/XCsrfToken"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterRequest"
+      responses:
+        "200":
+          description: |
+            Запрос принят. Если email новый — Customer создан, session-cookie выдана.
+            Если email уже зарегистрирован — email-уведомление отправлено,
+            ответ идентичен (anti-enumeration).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok: { type: boolean, example: true }
+                  message: { type: string, example: "Проверьте email для завершения регистрации." }
+          headers:
+            Set-Cookie:
+              schema: { type: string }
+              description: customer_session=...; HttpOnly; Secure; SameSite=Lax (только для новых)
+        "400": { $ref: "#/components/responses/BadRequest" }
+        "429": { $ref: "#/components/responses/TooManyRequests" }
+
+  /api/customers/login:
+    post:
+      tags: [customer-auth]
+      summary: Вход по email + password
+      operationId: loginCustomer
+      parameters:
+        - $ref: "#/components/parameters/XCsrfToken"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        "200":
+          description: Сессия выдана
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/CustomerMe" }
+        "401":
+          description: Неверный email или password
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiError" }
+        "423":
+          description: Аккаунт заблокирован (5 неудачных попыток за 15 мин)
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiError" }
+        "429": { $ref: "#/components/responses/TooManyRequests" }
+
+  /api/customers/logout:
+    post:
+      tags: [customer-auth]
+      summary: Выход
+      description: |
+        FR-5418: Очищается cookie customer_session. Сохраняется soliton_cart_token (052).
+        localStorage cleanup — UI responsibility.
+      operationId: logoutCustomer
+      parameters:
+        - $ref: "#/components/parameters/XCsrfToken"
+      responses:
+        "204":
+          description: Cookie очищен
+
+  /api/customers/forgot-password:
+    post:
+      tags: [customer-auth]
+      summary: Запрос сброса пароля (US2a)
+      description: |
+        Отправляет email с reset-link (opaque token, TTL 30 мин).
+        Всегда возвращает 200 независимо от существования email (anti-enumeration).
+      operationId: forgotPassword
+      parameters:
+        - $ref: "#/components/parameters/XCsrfToken"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email]
+              properties:
+                email: { type: string, format: email }
+      responses:
+        "200":
+          description: Если email зарегистрирован — письмо отправлено (или в очереди).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok: { type: boolean, example: true }
+                  message: { type: string, example: "Если такой email зарегистрирован, мы отправили ссылку для сброса пароля." }
+        "429": { $ref: "#/components/responses/TooManyRequests" }
+
+  /api/customers/reset-password:
+    post:
+      tags: [customer-auth]
+      summary: Сброс пароля по token (US2a)
+      description: |
+        Обновляет passwordHash. Все sessions кроме текущей инвалидируются.
+        Token одноразовый, TTL 30 мин.
+      operationId: resetPassword
+      parameters:
+        - $ref: "#/components/parameters/XCsrfToken"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [token, newPassword]
+              properties:
+                token: { type: string }
+                newPassword: { type: string, minLength: 8 }
+      responses:
+        "200":
+          description: Пароль обновлён, session выдана
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/CustomerMe" }
+          headers:
+            Set-Cookie:
+              schema: { type: string }
+              description: customer_session=...; HttpOnly; Secure; SameSite=Lax
+        "400": { $ref: "#/components/responses/BadRequest" }
+        "410":
+          description: Token истёк или уже использован
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiError" }
+
+  /api/customers/magic-request:
+    post:
+      tags: [customer-auth]
+      summary: Запросить magic-link на email
+      description: |
+        Создаёт одноразовый magic-link и отправляет на email клиента.
+        Rate-limited: 3 запроса / 15 мин / email; 3 / 15 мин / IP.
+
+        Для предотвращения email enumeration возвращает 200 OK независимо
+        от того, существует ли клиент с таким email.
+      operationId: requestMagicLink
+      parameters:
+        - $ref: "#/components/parameters/XCsrfToken"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email]
+              properties:
+                email: { type: string, format: email }
+                returnTo:
+                  type: string
+                  description: Относительный URL для редиректа после consumption (default /account/orders/).
+      responses:
+        "200":
+          description: Если email валиден — письмо отправлено (или будет в очереди).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok: { type: boolean, example: true }
+                  message: { type: string, example: "Если такой email зарегистрирован, мы отправили ссылку." }
+        "400": { $ref: "#/components/responses/BadRequest" }
+        "429": { $ref: "#/components/responses/TooManyRequests" }
+
+  /api/customers/magic-consume:
+    get:
+      tags: [customer-auth]
+      summary: Использовать magic-link токен и получить сессию
+      operationId: consumeMagicLink
+      parameters:
+        - in: query
+          name: token
+          required: true
+          schema: { type: string }
+        - in: query
+          name: next
+          schema: { type: string, default: "/account/orders/" }
+      responses:
+        "302":
+          description: Сессия выдана, redirect на `next`
+          headers:
+            Location: { schema: { type: string } }
+            Set-Cookie: { schema: { type: string } }
+        "400":
+          description: Токен невалидный
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiError" }
+        "410":
+          description: Токен истёк (>30 мин)
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiError" }
+
+  # --------------------------------------------------------------------
+  # SELF-SERVICE (customer_session required)
+  # --------------------------------------------------------------------
+
+  /api/customers/me:
+    get:
+      tags: [customer-self]
+      summary: Профиль текущего клиента
+      operationId: getCurrentCustomer
+      security: [{ customerSession: [] }]
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/CustomerMe" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+
+  /api/customers/me/profile:
+    patch:
+      tags: [customer-self]
+      summary: Обновить профиль (firstName, lastName, phone, languagePreference)
+      operationId: updateProfile
+      security: [{ customerSession: [] }]
+      parameters:
+        - $ref: "#/components/parameters/XCsrfToken"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ProfilePatch" }
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/CustomerMe" }
+        "400": { $ref: "#/components/responses/BadRequest" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+
+  /api/customers/me/change-email:
+    post:
+      tags: [customer-self]
+      summary: Инициировать смену email
+      description: |
+        FR-5433a: Двухшаговое подтверждение:
+        (1) confirm-link на новый email,
+        (2) notification с undo-link на старый email.
+        Окно 72 часа. После change — все sessions кроме текущей закрыты.
+        Запись `customers.email` обновляется только после consumption confirm-ссылки.
+      operationId: requestEmailChange
+      security: [{ customerSession: [] }]
+      parameters:
+        - $ref: "#/components/parameters/XCsrfToken"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [newEmail, currentPassword]
+              properties:
+                newEmail: { type: string, format: email }
+                currentPassword: { type: string }
+      responses:
+        "200":
+          description: Confirm-email отправлен
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "409":
+          description: Новый email уже зарегистрирован
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiError" }
+
+  /api/customers/me/preferences:
+    patch:
+      tags: [customer-self]
+      summary: Обновить opt-in / opt-out
+      operationId: updatePreferences
+      security: [{ customerSession: [] }]
+      parameters:
+        - $ref: "#/components/parameters/XCsrfToken"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                marketingOptIn: { type: boolean }
+                messengerOptIn: { type: boolean }
+                smsOptIn: { type: boolean }
+                languagePreference: { type: string, enum: [ru, en] }
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/CustomerMe" }
+
+  /api/customers/me/addresses:
+    get:
+      tags: [customer-self]
+      summary: Список адресов
+      operationId: listAddresses
+      security: [{ customerSession: [] }]
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Address" }
+    post:
+      tags: [customer-self]
+      summary: Добавить адрес
+      operationId: addAddress
+      security: [{ customerSession: [] }]
+      parameters:
+        - $ref: "#/components/parameters/XCsrfToken"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/AddressInput" }
+      responses:
+        "201":
+          description: created
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Address" }
+
+  /api/customers/me/addresses/{addressId}:
+    patch:
+      tags: [customer-self]
+      summary: Обновить адрес
+      operationId: updateAddress
+      security: [{ customerSession: [] }]
+      parameters:
+        - $ref: "#/components/parameters/XCsrfToken"
+        - in: path
+          name: addressId
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/AddressInput" }
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Address" }
+        "404": { $ref: "#/components/responses/NotFound" }
+    delete:
+      tags: [customer-self]
+      summary: Удалить адрес
+      operationId: deleteAddress
+      security: [{ customerSession: [] }]
+      parameters:
+        - $ref: "#/components/parameters/XCsrfToken"
+        - in: path
+          name: addressId
+          required: true
+          schema: { type: string }
+      responses:
+        "204":
+          description: deleted
+
+  /api/customers/me/orders:
+    get:
+      tags: [customer-self]
+      summary: История заказов (с privacy-фильтром по роли)
+      operationId: listMyOrders
+      security: [{ customerSession: [] }]
+      parameters:
+        - in: query
+          name: limit
+          schema: { type: integer, default: 50, maximum: 100 }
+        - in: query
+          name: page
+          schema: { type: integer, default: 1 }
+        - in: query
+          name: status
+          schema:
+            type: array
+            items: { type: string }
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  docs:
+                    type: array
+                    items: { $ref: "#/components/schemas/OrderSummary" }
+                  totalDocs: { type: integer }
+                  totalPages: { type: integer }
+                  page: { type: integer }
+
+  /api/customers/me/orders/{orderId}:
+    get:
+      tags: [customer-self]
+      summary: Карточка заказа (read-only, с privacy-фильтром)
+      operationId: getMyOrder
+      security: [{ customerSession: [] }]
+      parameters:
+        - in: path
+          name: orderId
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: |
+            ok. В зависимости от роли клиента поля могут быть отфильтрованы
+            (см. data-model.md §9 privacy-matrix).
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/OrderDetail" }
+        "403":
+          description: Privacy — заказ не для этого клиента
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  /api/customers/me/merge-cart:
+    post:
+      tags: [customer-self]
+      summary: Привязать anonymous-корзину (cartId из localStorage) к Customer
+      operationId: mergeCart
+      security: [{ customerSession: [] }]
+      parameters:
+        - $ref: "#/components/parameters/XCsrfToken"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [anonymousCartId]
+              properties:
+                anonymousCartId: { type: string }
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cartId: { type: string }
+                  customerId: { type: string }
+
+  # --------------------------------------------------------------------
+  # COMPANY (B2B-роли)
+  # --------------------------------------------------------------------
+
+  /api/customers/company/{companyId}:
+    get:
+      tags: [customer-company]
+      summary: Получить данные компании (доступно всем member'ам)
+      operationId: getCompany
+      security: [{ customerSession: [] }]
+      parameters:
+        - in: path
+          name: companyId
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Company" }
+    patch:
+      tags: [customer-company]
+      summary: Обновить компанию (только owner)
+      operationId: updateCompany
+      security: [{ customerSession: [] }]
+      parameters:
+        - $ref: "#/components/parameters/XCsrfToken"
+        - in: path
+          name: companyId
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CompanyPatch" }
+      responses:
+        "200":
+          description: ok
+        "403":
+          description: Не owner
+
+  /api/customers/company/team:
+    get:
+      tags: [customer-company]
+      summary: Список Person компании (owner + accountant видят, остальные — нет)
+      operationId: listTeam
+      security: [{ customerSession: [] }]
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/TeamMember" }
+    post:
+      tags: [customer-company]
+      summary: Пригласить нового Person (только owner)
+      operationId: inviteTeamMember
+      security: [{ customerSession: [] }]
+      parameters:
+        - $ref: "#/components/parameters/XCsrfToken"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, role]
+              properties:
+                email: { type: string, format: email }
+                role:
+                  type: string
+                  enum: [accountant, purchaser, contact]
+                firstName: { type: string }
+                lastName: { type: string }
+      responses:
+        "201":
+          description: Invite отправлен (email с magic-link)
+        "403":
+          description: Не owner
+
+  /api/customers/company/team/{customerId}:
+    delete:
+      tags: [customer-company]
+      summary: Деактивировать Person (soft delete, только owner)
+      operationId: removeTeamMember
+      security: [{ customerSession: [] }]
+      parameters:
+        - $ref: "#/components/parameters/XCsrfToken"
+        - in: path
+          name: customerId
+          required: true
+          schema: { type: string }
+      responses:
+        "204":
+          description: ok
+
+  # --------------------------------------------------------------------
+  # GDPR / 152-ФЗ
+  # --------------------------------------------------------------------
+
+  /api/customers/me/export:
+    get:
+      tags: [customer-gdpr]
+      summary: Экспортировать все мои ПДн (152-ФЗ)
+      operationId: exportMyData
+      security: [{ customerSession: [] }]
+      responses:
+        "200":
+          description: |
+            JSON со всеми ПДн клиента: customer-record, addresses[],
+            orders[] (metadata), returns[], carts[], notifications log.
+            Имя файла: `soliton-export-{customerId}-{YYYY-MM-DD}.json`.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/GdprExport" }
+
+  /api/customers/me/delete:
+    post:
+      tags: [customer-gdpr]
+      summary: Удалить меня (soft delete, 152-ФЗ)
+      description: |
+        ПДн обнуляются (см. data-model.md §11 GDPR Anonymization Table).
+        Order.customer.* остаётся как immutable snapshot (бухучёт ФЗ-402).
+        В Twenty Person удаляется каскадно (через 048).
+        Блокируется, если есть активные заказы.
+        После удаления — redirect на homepage, email подтверждения на old email.
+      operationId: deleteMyAccount
+      security: [{ customerSession: [] }]
+      parameters:
+        - $ref: "#/components/parameters/XCsrfToken"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [confirmation]
+              properties:
+                confirmation:
+                  type: string
+                  enum: [DELETE_MY_ACCOUNT]
+                currentPassword: { type: string }
+      responses:
+        "200":
+          description: Аккаунт удалён, сессия инвалидирована
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "409":
+          description: |
+            Есть активные заказы (pending_payment | paid | fulfilling | shipped).
+            Удаление невозможно до их завершения.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiError" }
+
+  # --------------------------------------------------------------------
+  # ADMIN
+  # --------------------------------------------------------------------
+
+  /api/admin/customers/merge:
+    post:
+      tags: [customer-admin]
+      summary: Слить двух Customer (только admin)
+      operationId: mergeCustomersAdmin
+      security: [{ adminSession: [] }]
+      parameters:
+        - $ref: "#/components/parameters/XCsrfToken"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [sourceId, targetId]
+              properties:
+                sourceId: { type: string }
+                targetId: { type: string }
+                reason: { type: string }
+      responses:
+        "200":
+          description: Merge выполнен, source.deletedAt = now
+
+  /api/admin/customers/export/{customerId}:
+    get:
+      tags: [customer-admin]
+      summary: Admin-экспорт ПДн клиента
+      operationId: exportCustomerDataAdmin
+      security: [{ adminSession: [] }]
+      parameters:
+        - in: path
+          name: customerId
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/GdprExport" }
+
+  /api/admin/customers/delete/{customerId}:
+    post:
+      tags: [customer-admin]
+      summary: Admin-удаление клиента (по запросу субъекта)
+      operationId: deleteCustomerAdmin
+      security: [{ adminSession: [] }]
+      parameters:
+        - $ref: "#/components/parameters/XCsrfToken"
+        - in: path
+          name: customerId
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [reason]
+              properties:
+                reason: { type: string }
+      responses:
+        "200":
+          description: ok
+        "409":
+          description: Есть активные заказы
+
+components:
+  securitySchemes:
+    customerSession:
+      type: apiKey
+      in: cookie
+      name: customer_session
+    adminSession:
+      type: apiKey
+      in: cookie
+      name: payload-token
+
+  responses:
+    BadRequest:
+      description: Невалидный запрос
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/ApiError" }
+    Unauthorized:
+      description: Требуется customer-сессия
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/ApiError" }
+    NotFound:
+      description: Ресурс не найден
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/ApiError" }
+    TooManyRequests:
+      description: Rate-limit
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/ApiError" }
+
+  parameters:
+    XCsrfToken:
+      name: X-CSRF-Token
+      in: header
+      required: true
+      schema: { type: string }
+      description: |
+        FR-5417: CSRF token обязателен для всех POST/PATCH/DELETE на /api/customers/*.
+        Получается через Payload-native CSRF mechanism или custom double-submit cookie.
+
+  schemas:
+    ApiError:
+      type: object
+      required: [code, message]
+      properties:
+        code: { type: string, example: MAGIC_LINK_EXPIRED }
+        message: { type: string }
+        details: { type: object }
+
+    RegisterRequest:
+      type: object
+      required: [email, password, gdprConsent]
+      properties:
+        email: { type: string, format: email }
+        password: { type: string, minLength: 8 }
+        firstName: { type: string }
+        lastName: { type: string }
+        phone: { type: string }
+        customerType:
+          type: string
+          enum: [individual, company-contact]
+          default: individual
+        companyId:
+          type: string
+          description: Required, если customerType=company-contact (наследуется из invite-токена).
+        inviteToken:
+          type: string
+          description: Если регистрация через приглашение.
+        gdprConsent:
+          type: boolean
+          description: Должно быть true (152-ФЗ).
+        marketingOptIn:
+          type: boolean
+          default: false
+
+    LoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email: { type: string, format: email }
+        password: { type: string }
+        rememberMe: { type: boolean, default: true }
+
+    CustomerMe:
+      type: object
+      required: [id, email, customerType, role, accountState]
+      properties:
+        id: { type: string }
+        email: { type: string, format: email }
+        firstName: { type: string }
+        lastName: { type: string }
+        fullName: { type: string }
+        phone: { type: string }
+        customerType:
+          type: string
+          enum: [individual, company-contact]
+        accountState:
+          type: string
+          enum: [email-only, password-set, invited-stub, deleted]
+          description: |
+            email-only: created via magic-link, no password set.
+            password-set: password established (US1.AS5 or US2).
+            invited-stub: B2B invite sent, not yet accepted.
+            deleted: GDPR soft-deleted.
+        companyId: { type: string, nullable: true }
+        role:
+          type: string
+          enum: [owner, accountant, purchaser, contact]
+        marketingOptIn: { type: boolean }
+        messengerOptIn: { type: boolean }
+        languagePreference: { type: string, enum: [ru, en] }
+        defaultAddressId: { type: string, nullable: true }
+        crmPersonId: { type: string, nullable: true }
+        gdprConsentAt: { type: string, format: date-time }
+        lastLoginAt: { type: string, format: date-time, nullable: true }
+
+    ProfilePatch:
+      type: object
+      properties:
+        firstName: { type: string }
+        lastName: { type: string }
+        phone: { type: string }
+        languagePreference: { type: string, enum: [ru, en] }
+
+    Address:
+      type: object
+      required: [id, label, city, fullAddress]
+      properties:
+        id: { type: string }
+        label: { type: string }
+        city: { type: string }
+        fullAddress: { type: string }
+        postalCode: { type: string }
+        addressNormalized: { type: object }
+        isDefault: { type: boolean }
+
+    AddressInput:
+      type: object
+      required: [label, city, fullAddress]
+      properties:
+        label: { type: string }
+        city: { type: string }
+        fullAddress: { type: string }
+        postalCode: { type: string }
+        isDefault: { type: boolean }
+
+    Company:
+      type: object
+      required: [id, name, taxId]
+      properties:
+        id: { type: string }
+        name: { type: string }
+        taxId: { type: string }
+        kpp: { type: string }
+        ogrn: { type: string }
+        legalAddress: { type: string }
+        billingAddress: { type: string }
+        contactEmail: { type: string, format: email }
+        contactPhone: { type: string }
+        approvalLimit: { type: number }
+        crmCompanyId: { type: string, nullable: true }
+
+    CompanyPatch:
+      type: object
+      properties:
+        name: { type: string }
+        kpp: { type: string }
+        ogrn: { type: string }
+        legalAddress: { type: string }
+        billingAddress: { type: string }
+        contactEmail: { type: string, format: email }
+        contactPhone: { type: string }
+        approvalLimit: { type: number }
+
+    TeamMember:
+      type: object
+      required: [id, email, role]
+      properties:
+        id: { type: string }
+        email: { type: string, format: email }
+        fullName: { type: string }
+        role:
+          type: string
+          enum: [owner, accountant, purchaser, contact]
+        invitedBy: { type: string, nullable: true }
+        inviteAcceptedAt: { type: string, format: date-time, nullable: true }
+        lastLoginAt: { type: string, format: date-time, nullable: true }
+        deletedAt: { type: string, format: date-time, nullable: true }
+
+    OrderSummary:
+      type: object
+      properties:
+        id: { type: string }
+        orderNumber:
+          type: string
+          description: Из 051 (SO-YYYY-NNNN), либо id если 051 ещё не релизнут.
+        status: { type: string }
+        total: { type: number }
+        currency: { type: string, default: RUB }
+        createdAt: { type: string, format: date-time }
+        deliveryProvider: { type: string }
+        trackingUrl: { type: string, nullable: true }
+        isPersonalOrder: { type: boolean }
+
+    OrderDetail:
+      allOf:
+        - $ref: "#/components/schemas/OrderSummary"
+        - type: object
+          properties:
+            items:
+              type: array
+              description: Может быть пустым для accountant'а
+              items:
+                type: object
+                properties:
+                  sku: { type: string }
+                  name: { type: string }
+                  quantity: { type: integer }
+                  price: { type: number }
+                  total: { type: number }
+            delivery:
+              type: object
+              description: Может быть отсутствующим для accountant'а
+              properties:
+                method: { type: string }
+                city: { type: string }
+                address: { type: string }
+                trackingNumber: { type: string }
+                trackingUrl: { type: string }
+            documents:
+              type: array
+              items:
+                type: object
+                properties:
+                  type: { type: string, enum: [invoice, receipt, upd, label] }
+                  url: { type: string, format: uri }
+
+    GdprExport:
+      type: object
+      properties:
+        exportedAt: { type: string, format: date-time }
+        customer:
+          $ref: "#/components/schemas/CustomerMe"
+        addresses:
+          type: array
+          items: { $ref: "#/components/schemas/Address" }
+        orders:
+          type: array
+          items: { $ref: "#/components/schemas/OrderDetail" }
+        returns:
+          type: array
+          items: { type: object }
+        carts:
+          type: array
+          items: { type: object }
+        notificationsLog:
+          type: array
+          items:
+            type: object
+            properties:
+              notificationId: { type: string }
+              event: { type: string }
+              channel: { type: string }
+              status: { type: string }
+              sentAt: { type: string, format: date-time }
