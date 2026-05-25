@@ -48,12 +48,29 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
-      # Apex + www + legacy test host обслуживаются одним роутером (canonical = pdumarket.ru).
-      # Traefik v3: для нескольких хостов используется OR-комбинация, не запятая.
+      # Three host-routers, all pointing at the same `soliton` service. Apex
+      # + www + legacy test host. Traefik v3 requires OR-combinations, not
+      # commas inside `Host()`.
+      # ─── Main router: applies secure-headers to every request ───
       - "traefik.http.routers.soliton.rule=Host(`pdumarket.ru`) || Host(`www.pdumarket.ru`) || Host(`soliton.${DOMAIN}`)"
       - "traefik.http.routers.soliton.entrypoints=websecure"
       - "traefik.http.routers.soliton.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.soliton.middlewares=secure-headers@file"
       - "traefik.http.services.soliton.loadbalancer.server.port=3000"
+      # ─── API router: stricter rate-limit on POST endpoints ───
+      # Higher specificity (PathPrefix) → Traefik routes /api/* through
+      # this router first, falls through to `soliton` for everything else.
+      - "traefik.http.routers.soliton-api.rule=(Host(`pdumarket.ru`) || Host(`www.pdumarket.ru`) || Host(`soliton.${DOMAIN}`)) && PathPrefix(`/api/`)"
+      - "traefik.http.routers.soliton-api.entrypoints=websecure"
+      - "traefik.http.routers.soliton-api.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.soliton-api.middlewares=secure-headers@file,api-rate-limit@file"
+      - "traefik.http.routers.soliton-api.service=soliton"
+      # ─── Admin login: brute-force throttle (5 attempts / minute / IP) ───
+      - "traefik.http.routers.soliton-admin.rule=(Host(`pdumarket.ru`) || Host(`www.pdumarket.ru`) || Host(`soliton.${DOMAIN}`)) && (PathPrefix(`/admin/login`) || PathPrefix(`/admin/forgot`) || PathPrefix(`/admin/create-first-user`))"
+      - "traefik.http.routers.soliton-admin.entrypoints=websecure"
+      - "traefik.http.routers.soliton-admin.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.soliton-admin.middlewares=secure-headers@file,admin-rate-limit@file"
+      - "traefik.http.routers.soliton-admin.service=soliton"
     networks:
       - proxy
       - soliton-internal
