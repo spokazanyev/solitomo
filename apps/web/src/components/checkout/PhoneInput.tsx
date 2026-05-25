@@ -46,10 +46,32 @@ export function PhoneInput({
   const inputId = useId();
   const [touched, setTouched] = useState(false);
 
+  /**
+   * Normalise RU national input shapes before handing to AsYouType:
+   *  - "9XXXXXXXXX"      → "+79XXXXXXXXX"
+   *  - "89XXXXXXXXX"     → "+79XXXXXXXXX"
+   *  - "79XXXXXXXXX"     → "+79XXXXXXXXX"
+   *  - "+79XXXXXXXXX"    → unchanged
+   * For other countries we leave the raw input alone — AsYouType will
+   * do its best with what's there.
+   */
+  function normaliseRu(raw: string): string {
+    const digits = raw.replace(/\D/g, "");
+    if (defaultCountry !== "RU") return raw;
+    if (!digits) return raw;
+    if (raw.trim().startsWith("+")) return raw; // user explicitly provided country code
+    if (digits.length >= 10 && digits.startsWith("9")) {
+      return `+7${digits}`;
+    }
+    if (digits.length >= 11 && (digits.startsWith("8") || digits.startsWith("7"))) {
+      return `+7${digits.slice(1)}`;
+    }
+    return raw;
+  }
+
   function format(input: string): string {
-    // AsYouType handles partial input gracefully and adds spaces/parens.
     const formatter = new AsYouType(defaultCountry);
-    return formatter.input(input);
+    return formatter.input(normaliseRu(input));
   }
 
   function handleChange(raw: string) {
