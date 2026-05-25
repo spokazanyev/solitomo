@@ -58,7 +58,12 @@ export function SiteHeader() {
                   </button>
                   <ul
                     aria-label="Покупателям"
-                    className="invisible absolute right-0 top-full z-40 mt-1 min-w-[200px] rounded-md border border-slate-200 bg-white py-2 opacity-0 shadow-lg transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
+                    // No `mt-*` gap between button and dropdown — even 4px of
+                    // empty space breaks the CSS-only hover (mouse exits the
+                    // group hit-area while crossing). The visual "breathing
+                    // room" is recreated via `pt-2` *inside* the ul, which
+                    // belongs to the hover hit-area.
+                    className="invisible absolute right-0 top-full z-40 min-w-[200px] rounded-md border border-slate-200 bg-white pb-2 pt-2 opacity-0 shadow-lg transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
                   >
                     {buyerInfoLinks.map((l) => (
                       <li key={l.href}>
