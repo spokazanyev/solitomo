@@ -57,7 +57,7 @@ export function DadataSuggestInput(props: Props) {
     required,
     placeholder,
     className = "",
-    inputClassName = "rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 focus:border-sky-600 focus:outline-none",
+    inputClassName: inputClassNameFromProps,
     autoComplete,
     type = "text",
   } = props;
@@ -72,6 +72,16 @@ export function DadataSuggestInput(props: Props) {
   // once, so we don't yell at users while they're still typing.
   const showEmailHint =
     props.kind === "email" && touched && value.length > 0 && !EMAIL_LIKE.test(value);
+
+  // Border colour reflects validity so the field itself signals an issue,
+  // not just the hint line below it.
+  const inputClassName =
+    inputClassNameFromProps ??
+    `rounded-md border ${
+      showEmailHint
+        ? "border-rose-500 focus:border-rose-500"
+        : "border-slate-300 focus:border-sky-600"
+    } px-3 py-2 text-sm text-slate-800 focus:outline-none`;
 
   useEffect(() => {
     if (!value || value.trim().length < 1) {
@@ -192,8 +202,12 @@ export function DadataSuggestInput(props: Props) {
         </ul>
       ) : null}
       {showEmailHint ? (
-        <p className="mt-1 text-xs text-amber-700">
-          Похоже, не email — нужен формат <code>имя@домен.ру</code>
+        <p
+          role="alert"
+          className="mt-1 flex items-center gap-1.5 text-xs font-medium text-rose-700"
+        >
+          <span aria-hidden="true">⚠</span>
+          Похоже, не email — нужен формат <code className="font-mono">имя@домен.ру</code>
         </p>
       ) : null}
     </div>
