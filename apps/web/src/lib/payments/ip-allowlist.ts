@@ -152,20 +152,38 @@ function parseCidrV6(cidr: string): ParsedCidrV6 {
 
 /**
  * Извлекает реальный IP клиента из webhook-запроса.
- * Учитывает proxy headers (Cloudflare → Vercel → upstream).
  *
- * Никогда не возвращает значения из `x-forwarded-for` без проверки `TRUST_PROXY_HEADERS`
- * (паттерн 054 trusted-proxy).
+ * **Security note (H-01, code-review)**: trusted-proxy headers (`cf-connecting-ip`,
+ * `x-vercel-forwarded-for`) считаются доверенными **ТОЛЬКО** если deployment
+ * фактически за этими провайдерами:
+ *   - Cloudflare: устанавливает `cf-connecting-ip` сам, игнорируя input от клиента.
+ *   - Vercel: устанавливает `x-vercel-forwarded-for` сам.
+ * На raw-VPS без таких прокси атакующий мог бы spoof'нуть header и обойти
+ * IP-allowlist. Поэтому используем env-флаг `WEBHOOK_TRUSTED_PROXY` для явного
+ * opt-in: `cloudflare`, `vercel`, `both`, либо `none` (default).
+ *
+ * Recommended values per deployment:
+ *   - Vercel prod: `WEBHOOK_TRUSTED_PROXY=vercel`
+ *   - Cloudflare + Vercel: `both`
+ *   - Local dev / staging via ngrok: `none` → используем remote socket address
+ *     (см. NextRequest.ip / x-real-ip от ngrok).
  */
 export function extractClientIp(headers: Headers): string | null {
-  // Cloudflare и Vercel — trusted unconditionally (FR-5530)
-  const cfIp = headers.get("cf-connecting-ip");
-  if (cfIp && cfIp.trim()) return cfIp.trim();
+  const trustMode = (process.env.WEBHOOK_TRUSTED_PROXY ?? "").toLowerCase();
+  const trustCf = trustMode === "cloudflare" || trustMode === "both";
+  const trustVercel = trustMode === "vercel" || trustMode === "both";
 
-  const vercelIp = headers.get("x-vercel-forwarded-for");
-  if (vercelIp && vercelIp.trim()) return vercelIp.split(",")[0]?.trim() ?? null;
+  if (trustCf) {
+    const cfIp = headers.get("cf-connecting-ip");
+    if (cfIp && cfIp.trim()) return cfIp.trim();
+  }
 
-  // x-real-ip — обычно от nginx/Vercel
+  if (trustVercel) {
+    const vercelIp = headers.get("x-vercel-forwarded-for");
+    if (vercelIp && vercelIp.trim()) return vercelIp.split(",")[0]?.trim() ?? null;
+  }
+
+  // x-real-ip — обычно от nginx/Vercel/ngrok edge proxy
   const realIp = headers.get("x-real-ip");
   if (realIp && realIp.trim()) return realIp.trim();
 

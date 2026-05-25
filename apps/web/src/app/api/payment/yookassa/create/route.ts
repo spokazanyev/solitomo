@@ -211,7 +211,20 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   const confirmation = (ykPayment as unknown as {
     confirmation?: { type?: string; confirmation_url?: string; confirmation_data?: string };
   }).confirmation;
-  const confirmationUrl = confirmation?.confirmation_url ?? `${origin}/payment/error/${order.id}`;
+
+  // L-01 (code-review): fail-fast if ЮKassa response missing confirmation_url.
+  // Этот кейс невозможен в нормальной operation (ЮKassa всегда отдаёт URL для
+  // redirect-/qr-flow). Но если случится — лучше отбить с явной ошибкой, чем
+  // сохранить fake URL и оставить Order навечно в pending_payment.
+  if (!confirmation?.confirmation_url && !ykResult.stub) {
+    return jsonError(
+      "YOOKASSA_REJECTED",
+      "ЮKassa response missing confirmation_url — cannot redirect customer",
+      502,
+      { providerRef: ykPayment.id },
+    );
+  }
+  const confirmationUrl = confirmation?.confirmation_url ?? `${origin}/payment/stub/${order.id}`;
   const confirmationType: "redirect" | "qr" | "embedded" =
     confirmation?.type === "qr" ? "qr" : confirmation?.type === "embedded" ? "embedded" : "redirect";
 

@@ -408,6 +408,29 @@ async function handlePaymentSucceeded(
   const order = await findOrderByProviderRef(ctx.payload, obj.id);
   if (!order) return;
 
+  // C-01 (code-review): idempotent guard for terminal-state Orders.
+  // If Order is already paid / cancelled / expired / refunded — webhook is duplicate
+  // or out-of-band (e.g. cron-reconciliation already applied). Don't re-mutate.
+  // 051 immutability hook would block frozen-field changes anyway, but exiting
+  // early avoids wasted DB writes + duplicate domain events.
+  const currentStatus = (order as { status?: string }).status;
+  if (
+    currentStatus === "paid" ||
+    currentStatus === "cancelled" ||
+    currentStatus === "expired" ||
+    currentStatus === "refunded" ||
+    currentStatus === "fulfilling" ||
+    currentStatus === "shipped" ||
+    currentStatus === "delivered" ||
+    currentStatus === "completed"
+  ) {
+    // eslint-disable-next-line no-console
+    console.info(
+      `[yookassa-webhook] payment.succeeded idempotent skip: orderId=${String(order.id)} already in status=${currentStatus}`,
+    );
+    return;
+  }
+
   const settings = await loadPaymentSettings();
   const amountRub = Number(obj.amount.value);
   const snapshot = extractPaymentMethodSnapshot(obj);
@@ -498,6 +521,20 @@ async function handlePaymentCanceled(
   const obj = event.object;
   const order = await findOrderByProviderRef(ctx.payload, obj.id);
   if (!order) return;
+
+  // C-02 (code-review): idempotency + business-logic guard.
+  // payment.canceled должен прилетать ТОЛЬКО для pending_payment Orders.
+  // Если Order уже terminal (paid/cancelled/expired/refunded) — это либо replay,
+  // либо out-of-band событие. 051 immutability hook all равно заблокирует
+  // status-mutation после paid; явный guard избавляет от лога errors.
+  const currentStatus = (order as { status?: string }).status;
+  if (currentStatus !== "pending_payment" && currentStatus !== "awaiting_payment") {
+    // eslint-disable-next-line no-console
+    console.info(
+      `[yookassa-webhook] payment.canceled idempotent skip: orderId=${String(order.id)} status=${currentStatus}`,
+    );
+    return;
+  }
 
   const settings = await loadPaymentSettings();
   const orderTyped = order as {
@@ -711,7 +748,14 @@ async function loadUtmFromCart(
       term: utm.term ?? null,
       content: utm.content ?? null,
     };
-  } catch {
+  } catch (err) {
+    // M-03 (code-review): log instead of silent swallow — UTM is for analytics,
+    // non-critical but debug-helpful when payments lose attribution.
+    // eslint-disable-next-line no-console
+    console.warn(
+      `[yookassa-webhook] loadUtmFromCart failed for cart=${String(cartId)}:`,
+      err instanceof Error ? err.message : err,
+    );
     return undefined;
   }
 }
