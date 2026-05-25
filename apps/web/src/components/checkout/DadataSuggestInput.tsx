@@ -7,6 +7,11 @@ interface Suggestion {
   data?: Record<string, unknown>;
 }
 
+// Minimal email shape check used both to gate the suggest call (DaData returns
+// noise for queries without "@" — see /api/dadata/email response for "svp" or
+// "svpredbc.ru") and to drive the live validity hint.
+const EMAIL_LIKE = /.+@.+\..+/;
+
 interface BaseProps {
   value: string;
   onChange: (next: string, data?: Record<string, unknown>) => void;
@@ -60,10 +65,24 @@ export function DadataSuggestInput(props: Props) {
   const inputId = useId();
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [open, setOpen] = useState(false);
+  const [touched, setTouched] = useState(false);
   const blurTimer = useRef<number | null>(null);
+
+  // Live invalidity hint — only shown after the field has been blurred at least
+  // once, so we don't yell at users while they're still typing.
+  const showEmailHint =
+    props.kind === "email" && touched && value.length > 0 && !EMAIL_LIKE.test(value);
 
   useEffect(() => {
     if (!value || value.trim().length < 1) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setSuggestions([]);
+      return;
+    }
+    // For email, skip the suggest call until there's an "@" — DaData returns
+    // unhelpful local-part-only matches otherwise (e.g. "svpredbc.ru" gets
+    // suggestions "svpredbc.rus / svpredbc.ruslan / svpredbc.russia").
+    if (props.kind === "email" && !value.includes("@")) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setSuggestions([]);
       return;
@@ -125,6 +144,7 @@ export function DadataSuggestInput(props: Props) {
               // Delay closing so a click on a suggestion (mousedown→blur→click)
               // can fire before the dropdown disappears.
               blurTimer.current = window.setTimeout(() => setOpen(false), 150);
+              setTouched(true);
             }}
           />
         </label>
@@ -144,6 +164,7 @@ export function DadataSuggestInput(props: Props) {
           onFocus={() => setOpen(true)}
           onBlur={() => {
             blurTimer.current = window.setTimeout(() => setOpen(false), 150);
+            setTouched(true);
           }}
         />
       )}
@@ -169,6 +190,11 @@ export function DadataSuggestInput(props: Props) {
             </li>
           ))}
         </ul>
+      ) : null}
+      {showEmailHint ? (
+        <p className="mt-1 text-xs text-amber-700">
+          Похоже, не email — нужен формат <code>имя@домен.ру</code>
+        </p>
       ) : null}
     </div>
   );
