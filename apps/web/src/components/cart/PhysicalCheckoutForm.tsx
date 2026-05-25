@@ -302,9 +302,19 @@ export function PhysicalCheckoutForm() {
           {items.slice(0, 5).map((item) => {
             const qty = Number.parseInt(item.quantity, 10) || 1;
             return (
-              <li className="flex justify-between gap-3" key={item.sku || item.name}>
-                <span className="min-w-0 truncate">{item.name}</span>
-                <span className="text-xs text-slate-500">× {qty}</span>
+              // grid + min-w-0 is the reliable truncate pattern. With plain
+              // flex, an item with no min-width set refuses to shrink below
+              // its content width, so a long SKU title pushes the qty span
+              // out of the card. `grid-cols-[1fr_auto]` gives the name column
+              // an explicit shrink-friendly width.
+              <li
+                className="grid grid-cols-[1fr_auto] items-baseline gap-3"
+                key={item.sku || item.name}
+              >
+                <span className="min-w-0 truncate" title={item.name}>
+                  {item.name}
+                </span>
+                <span className="whitespace-nowrap text-xs text-slate-500">× {qty}</span>
               </li>
             );
           })}

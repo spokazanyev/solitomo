@@ -289,12 +289,21 @@ export function InvoiceCheckoutForm() {
           {items.map((item) => {
             const qty = Number.parseInt(item.quantity, 10) || 1;
             return (
-              <li className="flex justify-between gap-3" key={item.sku || item.name}>
+              // grid + min-w-0 — see PhysicalCheckoutForm comment for the
+              // flex-truncate pitfall. Same fix applied here.
+              <li
+                className="grid grid-cols-[1fr_auto] items-baseline gap-3"
+                key={item.sku || item.name}
+              >
                 <span className="min-w-0">
-                  <span className="block truncate text-slate-950">{item.name}</span>
-                  <span className="text-xs text-slate-500">{item.sku} · {qty} шт</span>
+                  <span className="block truncate text-slate-950" title={item.name}>
+                    {item.name}
+                  </span>
+                  <span className="text-xs text-slate-500">
+                    {item.sku} · {qty} шт
+                  </span>
                 </span>
-                <span className="font-semibold text-slate-950">
+                <span className="whitespace-nowrap font-semibold text-slate-950">
                   {typeof item.price === "number" ? formatPrice(item.price * qty) : "По запросу"}
                 </span>
               </li>
