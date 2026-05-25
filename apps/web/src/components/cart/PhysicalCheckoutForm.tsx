@@ -6,8 +6,11 @@ import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
 import { AddressForm, type AddressFormValue } from "@/components/checkout/AddressForm";
+import { DadataSuggestInput } from "@/components/checkout/DadataSuggestInput";
 import { DeliveryBlock, type SelectedRate } from "@/components/checkout/DeliveryBlock";
+import { PhoneInput } from "@/components/checkout/PhoneInput";
 import { ConsentCheckbox } from "@/components/consent/ConsentCheckbox";
+import { isValidPhoneNumber } from "libphonenumber-js";
 import { clearCartItems, getCartTotal, useRfqCartItems } from "@/components/rfq/RfqCart";
 import { pushEvent } from "@/lib/analytics/data-layer";
 
@@ -38,8 +41,12 @@ export function PhysicalCheckoutForm() {
   // the button look clickable as soon as the checkbox was ticked, even with
   // empty contact fields / no shipping rate. handleSubmit still rejected such
   // attempts, but the UX was misleading.
+  // Email needs an `@` to be sensible; phone is validated through
+  // libphonenumber-js so partial numbers don't enable the button.
   const isContactComplete =
-    fullName.trim().length > 0 && email.trim().length > 0 && phone.trim().length > 0;
+    fullName.trim().length > 0 &&
+    /.+@.+\..+/.test(email.trim()) &&
+    isValidPhoneNumber(phone, "RU");
   const isReadyToPay =
     isContactComplete &&
     address.isValid === true &&
@@ -220,36 +227,24 @@ export function PhysicalCheckoutForm() {
         <div className="rounded-lg border border-slate-200 bg-white p-6">
           <p className="text-sm font-semibold text-slate-950">Контактные данные</p>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
-            <label className="grid gap-1 text-xs font-medium text-slate-600">
-              ФИО *
-              <input
-                className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 focus:border-sky-600 focus:outline-none"
-                onChange={(event) => setFullName(event.target.value)}
-                required
-                type="text"
-                value={fullName}
-              />
-            </label>
-            <label className="grid gap-1 text-xs font-medium text-slate-600">
-              Email *
-              <input
-                className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 focus:border-sky-600 focus:outline-none"
-                onChange={(event) => setEmail(event.target.value)}
-                required
-                type="email"
-                value={email}
-              />
-            </label>
-            <label className="grid gap-1 text-xs font-medium text-slate-600">
-              Телефон *
-              <input
-                className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 focus:border-sky-600 focus:outline-none"
-                onChange={(event) => setPhone(event.target.value)}
-                required
-                type="tel"
-                value={phone}
-              />
-            </label>
+            <DadataSuggestInput
+              kind="fio"
+              label="ФИО"
+              required
+              autoComplete="name"
+              value={fullName}
+              onChange={(next) => setFullName(next)}
+            />
+            <DadataSuggestInput
+              kind="email"
+              label="Email"
+              type="email"
+              required
+              autoComplete="email"
+              value={email}
+              onChange={(next) => setEmail(next)}
+            />
+            <PhoneInput label="Телефон" required value={phone} onChange={setPhone} />
           </div>
         </div>
 
