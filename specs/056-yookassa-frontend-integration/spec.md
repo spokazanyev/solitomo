@@ -34,6 +34,8 @@
 
 ## 0.1. Clarifications
 
+### Initial round (при /specify)
+
 | # | Решение | Источник |
 |---|---|---|
 | Q1 | UI redirects на `confirmationUrl` от ЮKassa (для всех методов, включая СБП — ЮKassa сама показывает QR). Embed QR — Phase 2. | 055 §10 #4 |
@@ -41,6 +43,32 @@
 | Q3 | SO-номер показываем покупателю только после `status=paid` (он генерируется только при первой оплате, 051). До оплаты — фронт-локальный ref. | 051 client-number-generator |
 | Q4 | Failure UI: 3 разные ветви по severity — retry-возможный (`pending_payment` < window), expired (показываем «закажите снова»), error (ЮKassa unavailable). | 055 FR-5511 |
 | Q5 | Существующие checkout-страницы (`/cart/checkout/physical/review`, `/cart/order/[token]/retry-payment`) трогаем минимально — только API-contract fix. Никаких redesign'ов в этой спеке. | scope guard |
+
+### /clarify round (2026-05-25)
+
+#### Resolved via code research (no user question needed):
+
+| # | Question | Resolution |
+|---|---|---|
+| OQ-1 | Создаёт ли `/api/checkout/finalize-shipping` Order, или нужен отдельный endpoint? | **Существующий `POST /api/orders/route.ts` создаёт Order** через `payload.create({collection:"orders",...})` после Cart→Order конверсии (через 052 `markConverted`). `finalize-shipping` только фиксирует price snapshot. Frontend flow: (1) POST `/api/orders` → Order created in `pending_payment`, (2) POST `/api/payment/yookassa/create` с этим orderId. **Никаких новых endpoint'ов 056 не создаёт.** |
+| OQ-2 | Существует ли `Order.publicToken` и заполняется автоматически? | **Да.** `Orders.js` line 666 содержит beforeChange hook: `if (operation === "create" && !data.publicToken) data.publicToken = randomBytes(16).toString("base64url")` — 128-bit entropy. Поле present, auto-generated при create. Готово для guest-fallback на `/payment/return`. |
+| OQ-3 | Существует ли `/me/orders` UI? | **Нет.** Поиск `apps/web/src/app/*me*/*.tsx` нашёл только admin + documents + cart pages. 054 customer account — backend-only. → **US5 → отложено в Phase 2** (либо отдельную 057-спеку). `/me/orders` UI вне scope 056. |
+
+#### Resolved interactively:
+
+| # | Question | Resolution |
+|---|---|---|
+| OQ-4 | Откуда брать тексты ошибок в UI failure-state? | **Мапинг code→UI-string в UI**. UI имеет dictionary: `YOOKASSA_UNAVAILABLE`/`CONFIG_INVALID`/`INVALID_ORDER_STATUS`/`AMOUNT_MISMATCH` → conversion-oriented русский текст. Backend `body.message` — fallback для unknown codes. См. FR-5605/5606/5625. |
+| OQ-5 | Polling-интервал настраиваемый? | **Hardcode 2 сек × 30 = 60 сек.** Webhook ЮKassa обычно срабатывает за 3-5 сек — 60 сек большой запас. Mobile detection и `paymentSettings.pollingIntervalSec` — Phase 2. См. FR-5622. |
+| OQ-6 | T-015 email CTA для recovery? | **Оба CTA** — «Вернуться к вашему заказу» (primary, использует 052 cart-recovery через `Order.cartId` link) + «Начать заново» (secondary, ведёт на `/cart/`). Maximum conversion + flexibility. См. FR-5640. |
+| OQ-NEW | Existing `POST /api/orders` нужен customer-session-binding? | **Да, добавить.** Если `customer_session` cookie present при create — link Order.customerId к Customer. Guest-checkout продолжает работать через cart-token. Это не breaking change — additive enhancement. **Влияет на flow US1**: `POST /api/orders` должен распознать customer_session и заполнить `customerId` автоматически. Нужно мини-патч в существующий route или middleware. |
+
+#### Remaining OQ — Deferred:
+
+| # | Question | Decision |
+|---|---|---|
+| OQ-7 | Admin US6 related-list — tabs / custom component? | **Defer на /plan-фазу** — определится при design phase. Минорно, не блокирует /tasks. |
+| OQ-8 | RetryPaymentButton — inline error vs toast? | **Defer** — текущий inline-error в RetryPaymentButton.tsx остаётся, toast-system — Phase 2 если будет toast-инфраструктура. |
 
 ---
 
@@ -161,7 +189,9 @@ Customer закрыл вкладку ЮKassa без оплаты. Через 10 
 
 ---
 
-### User Story 5 — Customer видит `paymentMethodSnapshot` в `/me/orders` (Priority: P2)
+### User Story 5 — Customer видит `paymentMethodSnapshot` в `/me/orders` (Priority: P2) — DEFERRED (см. OQ-3)
+
+> **Note (post-/clarify)**: `/me/orders` UI не существует. US5 отложен — реализуется когда появится UI (вероятно spec 057). Backend данные (`paymentMethodSnapshot`) уже сохраняются 055 webhook handler, готовы к consumption.
 
 После 054 (Customer account) customer может посмотреть свои заказы в `/me/orders` — но **UI этой страницы пока не существует** (054 backend-only). Для 056 — задача узкая: при создании UI (либо в отдельной 057) отображать:
 - «Оплачено картой Visa •••• 1234» (для card)
@@ -221,10 +251,11 @@ Admin Payload в стандартной конфигурации показыв�
 - **FR-5605**: При HTTP 503 / network error из `/api/payment/yookassa/create` System MUST показать failure-UI с конкретным error code (`YOOKASSA_UNAVAILABLE` / `YOOKASSA_REJECTED` / `CONFIG_INVALID`) и CTA «Назад в корзину».
 - **FR-5606**: При HTTP 409 (`INVALID_ORDER_STATUS`) System MUST не показывать ошибку, а перенаправлять на `/cart/order/{token}/` (Order уже paid / expired).
 
-**Order conversion (US1)**
+**Order conversion (US1) — Refined post-/clarify**
 
-- **FR-5607**: System MUST использовать существующий `finalize-shipping` endpoint для создания Order'а в `pending_payment` ДО вызова `create-payment`. Если flow не создаёт Order — добавить explicit `POST /api/cart/{token}/convert-to-order` (decision в /clarify).
+- **FR-5607** *(resolved OQ-1)*: System MUST использовать существующий `POST /api/orders` endpoint для создания Order'а ДО вызова `/api/payment/yookassa/create`. Flow клиента: (1) собрал customer/items/delivery → `POST /api/orders` → response `{order: {id, publicToken, ...}}`, (2) `POST /api/payment/yookassa/create` с этим `orderId`. Никаких новых endpoint'ов 056 не создаёт.
 - **FR-5608**: System MUST атомарно: либо Order создан + платёжный URL получен, либо ничего не сохранено. Если create-payment падает — Order остаётся в `pending_payment` без `providerRef` → retry-button может пересоздать платёж.
+- **FR-5609** *(NEW, OQ-NEW)*: System MUST расширить `POST /api/orders/route.ts` — если `customer_session` cookie present + валидна → парсить JWT, извлекать `customerId`, заполнять `Order.customerId` при создании. Guest-checkout (без customer_session) продолжает работать через cart-token. Additive enhancement, не breaking change для существующего guest-flow.
 
 **Polling page (US3)**
 
@@ -337,9 +368,9 @@ UI-level state-machine простая, без edge case'ов уровня backen
 
 - **Backend 055 merged в main** ДО implementation 056. (Сейчас 055 на feature-branch; нужен merge перед стартом implement 056. Либо 056 implement'ится поверх 055 branch до общего merge.)
 - **Existing checkout pages** (`/cart/checkout/physical/`, `/cart/checkout/physical/review/`) сейчас работают и не требуют пересборки — только API-contract fix.
-- **`finalize-shipping` endpoint** создаёт Order ДО `create-payment`. Если не создаёт — нужно добавить explicit conversion (см. FR-5607).
-- **Order.publicToken** field существует в Orders.js (paid-token для guest access). Если нет — придётся добавить (но это похоже на 047/054-era работа уже сделана).
-- **/me/orders UI** возможно не существует, US5 conditional (Implement только если страница есть).
+- **`POST /api/orders` endpoint** создаёт Order (verified в /clarify, OQ-1). Frontend вызывает его перед `/api/payment/yookassa/create`. `finalize-shipping` параллельно фиксирует price snapshot.
+- **Order.publicToken** field существует и автогенерируется (verified в /clarify, OQ-2). 128-bit entropy.
+- **/me/orders UI** не существует (verified в /clarify, OQ-3). US5 deferred к 057-спеке или Phase 2.
 - **Unisender Go** (049) рендерит email-шаблоны через REGISTRY — нужно только добавить 4 новых; emitter уже находит template по `event.kind` через matrix (055 уже добавила matrix entries).
 
 ---
@@ -353,7 +384,7 @@ UI-level state-machine простая, без edge case'ов уровня backen
 | 049 notifications/templates/ pattern | Existing T-001 как образец | ✅ Готов |
 | 049 NotificationsSettings.senderEmail | senderName для emails | ✅ Готов |
 | 054 customer_session JWT | Для auth на /payment/return | ✅ Готов |
-| 047 Order.publicToken | Для guest fallback на /payment/return | ⚠️ Verify |
+| 047 Order.publicToken | Для guest fallback на /payment/return | ✅ Verified в /clarify (OQ-2) |
 | 052 cart_session cookie | Для guest fallback | ✅ Готов |
 
 ---
@@ -369,18 +400,23 @@ UI-level state-machine простая, без edge case'ов уровня backen
 
 ---
 
-## 11. Open Questions (для /clarify перед /plan)
+## 11. Open Questions — все обработаны в /clarify
 
-| # | Вопрос |
+См. §0.1 Clarifications.
+
+| # | Status |
 |---|---|
-| OQ-1 | Создаёт ли `/api/checkout/finalize-shipping` Order в `pending_payment`, или нужен отдельный `POST /api/cart/{token}/convert-to-order` endpoint? |
-| OQ-2 | Существует ли `Order.publicToken` поле и заполняется ли оно при Order creation? (требуется для FR-5621 guest-fallback) |
-| OQ-3 | Существует ли `/me/orders` UI или это часть будущей 057-спеки? Влияет на US5 scope. |
-| OQ-4 | Текст error-сообщений: использовать backend `body.message` напрямую (часто на русском) или mapped через UI strings? |
-| OQ-5 | Polling-interval 2 сек ↔ 30 attempts: настраиваемо или hardcode? Если customer на мобильном с медленной сетью — полезно увеличить до 3 сек? |
-| OQ-6 | Email T-015 (customer payment_expired) — добавлять «Восстановить корзину через link» CTA (использует 052 cart-recovery)? Или просто «Оформить новый заказ»? |
-| OQ-7 | Admin US6 related-list — встроить в Order page через `tabs` в Orders.js admin config, либо custom React component? |
-| OQ-8 | RetryPaymentButton.tsx — оставить error UI как сейчас (inline) или поднять до toast? |
+| OQ-1 (Order conversion endpoint) | ✅ Resolved by research: existing `POST /api/orders` |
+| OQ-2 (Order.publicToken) | ✅ Resolved by research: exists, auto-generated (128-bit) |
+| OQ-3 (/me/orders UI) | ✅ Resolved by research: не существует → US5 deferred |
+| OQ-4 (error messages source) | ✅ Resolved interactively: code→UI-string mapping |
+| OQ-5 (polling-interval) | ✅ Resolved interactively: hardcode 2 sec × 30 attempts |
+| OQ-6 (T-015 CTA) | ✅ Resolved interactively: оба CTA в email |
+| OQ-NEW (Order create customer-session) | ✅ Resolved interactively: добавить binding (FR-5609) |
+| OQ-7 (Admin US6 component pattern) | ⏭️ Deferred to /plan |
+| OQ-8 (RetryPayment error UI) | ⏭️ Deferred — оставляем inline |
+
+**Готовность к /plan**: 100% бизнес-решений принято; design choices (OQ-7, OQ-8) делаются в /plan-фазе.
 
 ---
 
