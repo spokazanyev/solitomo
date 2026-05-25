@@ -295,6 +295,10 @@ Admin Payload в стандартной конфигурации показыв�
 
 - **FR-5660**: System MUST добавить related-list «События ЮKassa» на странице Order в Payload admin — показывает 5 последних PaymentEvents с фильтром `where: { order: { equals: doc.id } }`.
 
+**Analytics (Constitution V) — added post-/plan**
+
+- **FR-5630** *(NEW)*: System MUST эмитить dataLayer event `purchase` на `/payment/return/[orderId]` success-state с GA4-совместимой структурой `{event:"purchase", transaction_id:clientNumber, value, currency:"RUB", payment_type, items[]}`. Fire-once гарантировано через `useRef` flag + sessionStorage marker. Никаких PII в payload (см. `contracts/ui-events.md` §4). Опционально: `payment_intent` event при click «Оплатить» для funnel tracking.
+
 ### 3.2. Non-Functional Requirements
 
 - **NFR-5601**: Polling-page first-render ≤500 мс (SSR + skeleton).

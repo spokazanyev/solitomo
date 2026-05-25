@@ -1,8 +1,10 @@
 # solitomo-organic-site Development Guidelines
 
-Auto-generated from all feature plans. Last updated: 2026-05-24
+Auto-generated from all feature plans. Last updated: 2026-05-25
 
 ## Active Technologies
+- TypeScript 5.x (strict mode), Next.js 16 (App Router, RSC), React 19. (056-yookassa-frontend-integration)
+- N/A — frontend читает Payload через `/api/orders/[id]/payment-status` endpoint + Server Component через Local API. (056-yookassa-frontend-integration)
 
 - TypeScript 5.x (strict mode), Node.js (Next.js 16 runtime). (055-yookassa-payments-integration)
 
@@ -23,6 +25,7 @@ npm test && npm run lint
 TypeScript 5.x (strict mode), Node.js (Next.js 16 runtime).: Follow standard conventions
 
 ## Recent Changes
+- 056-yookassa-frontend-integration: Added TypeScript 5.x (strict mode), Next.js 16 (App Router, RSC), React 19.
 
 - 055-yookassa-payments-integration: Added TypeScript 5.x (strict mode), Node.js (Next.js 16 runtime).
 
