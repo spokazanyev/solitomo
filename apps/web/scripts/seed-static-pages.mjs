@@ -268,10 +268,21 @@ function markdownToLexicalSimple(markdown) {
 
 // ─── Payload bin entrypoint ─────────────────────────────────────────
 
+/**
+ * Args parsing (Payload bin forwards `process.argv` from the npm script):
+ *   default          — idempotent: skip slugs that already exist
+ *   --force          — re-seed: update body/title/version/etc. of existing
+ *                      rows in place (id + versions are preserved)
+ *
+ * The `--force` flag is the right tool after editing content-templates/*.md —
+ * idempotent skip would otherwise hide those changes forever.
+ */
 export async function script(config) {
   const payload = await getPayload({ config });
+  const force = process.argv.includes("--force");
 
   let created = 0;
+  let updated = 0;
   let skipped = 0;
 
   for (const p of PAGES) {
@@ -281,11 +292,6 @@ export async function script(config) {
       limit: 1,
       depth: 0,
     });
-    if (existing.docs.length > 0) {
-      console.log(`[seed:static-pages] ${p.slug} already exists, skipping`);
-      skipped += 1;
-      continue;
-    }
 
     const templatePath = path.join(TEMPLATES_DIR, p.template);
     const markdown = readFileSync(templatePath, "utf8");
@@ -306,6 +312,23 @@ export async function script(config) {
       data.effectiveFrom = POLICY_EFFECTIVE_FROM;
     }
 
+    if (existing.docs.length > 0) {
+      if (!force) {
+        console.log(`[seed:static-pages] ${p.slug} already exists, skipping (pass --force to overwrite)`);
+        skipped += 1;
+        continue;
+      }
+      const existingId = existing.docs[0].id;
+      await payload.update({
+        collection: "static-pages",
+        id: existingId,
+        data,
+      });
+      console.log(`[seed:static-pages] updated ${p.slug}`);
+      updated += 1;
+      continue;
+    }
+
     await payload.create({
       collection: "static-pages",
       data,
@@ -315,6 +338,6 @@ export async function script(config) {
   }
 
   console.log(
-    `[seed:static-pages] done — created=${created}, skipped=${skipped}, total=${PAGES.length}`,
+    `[seed:static-pages] done — created=${created}, updated=${updated}, skipped=${skipped}, total=${PAGES.length}`,
   );
 }
