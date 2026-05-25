@@ -120,6 +120,19 @@ fi
 echo "[push] step 5b — waiting for soliton-web container..."
 ssh "$HOST" "cd $APP_DIR && timeout 60 sh -c 'until docker ps --format \"{{.Names}}\" | grep -qx soliton-web; do sleep 2; done'"
 
+# ─── 5c. Payload migrations ────────────────────────────────────────
+# In NODE_ENV=production Drizzle does not auto-push schema — formal
+# migrations are required. We run `payload migrate` which applies any
+# pending migration in src/migrations/ to the live database. Safe to
+# run on every deploy: already-applied migrations are skipped.
+echo "[push] step 5c — running payload migrations..."
+sleep 5
+if ! ssh "$HOST" "cd $APP_DIR && docker compose exec -T soliton-web sh -c 'cd apps/web && pnpm exec payload migrate'"; then
+  echo "ERROR: payload migrate failed. Inspect logs:" >&2
+  ssh "$HOST" "cd $APP_DIR && docker compose logs --tail=80 soliton-web" >&2
+  exit 4
+fi
+
 # ─── 6. Optional seed ──────────────────────────────────────────────
 if [[ "$RUN_SEED" -eq 1 ]]; then
   echo "[push] step 6/7 — seeding catalog + static-pages..."

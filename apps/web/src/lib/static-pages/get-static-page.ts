@@ -45,21 +45,35 @@ export async function getStaticPage(slug: string): Promise<StaticPageDoc | null>
   if (cached && Date.now() - cached.cachedAt < CACHE_TTL_MS) {
     return cached.doc;
   }
-  const payload = await getPayload({ config: configPromise });
-  const result = await payload.find({
-    collection: "static-pages" as never,
-    where: {
-      and: [
-        { slug: { equals: slug } },
-        { status: { equals: "published" } },
-      ],
-    },
-    limit: 1,
-    depth: 0,
-  });
-  const doc = (result.docs[0] as unknown as StaticPageDoc | undefined) ?? null;
-  if (doc) cache.set(slug, { doc, cachedAt: Date.now() });
-  return doc;
+
+  // Graceful fallback: during `next build` (docker builder stage) Postgres is
+  // unreachable. Match the pattern used by `lib/catalog.ts` for /catalog/* —
+  // log and return null so the page renders `notFound()` instead of crashing
+  // the whole build. At runtime the database is always up.
+  try {
+    const payload = await getPayload({ config: configPromise });
+    const result = await payload.find({
+      collection: "static-pages" as never,
+      where: {
+        and: [
+          { slug: { equals: slug } },
+          { status: { equals: "published" } },
+        ],
+      },
+      limit: 1,
+      depth: 0,
+    });
+    const doc = (result.docs[0] as unknown as StaticPageDoc | undefined) ?? null;
+    if (doc) cache.set(slug, { doc, cachedAt: Date.now() });
+    return doc;
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      `[static-pages] Payload load failed for slug "${slug}"; rendering as notFound. Reason:`,
+      err instanceof Error ? err.message : err,
+    );
+    return null;
+  }
 }
 
 /**

@@ -18,9 +18,17 @@ const ALLOWED_SLUGS = [
 ] as const;
 type AllowedSlug = (typeof ALLOWED_SLUGS)[number];
 
-export const dynamic = "force-static";
-export const revalidate = 300; // 5 min ISR
+// 057 → repo pattern: DB-backed pages are `force-dynamic` so the docker build
+// step (where Postgres is unreachable) doesn't try to prerender them and
+// crash. Runtime caching is handled by `getStaticPage` itself (60 s in-process
+// LRU + afterChange-hook invalidation), so dynamic-rendering is cheap.
+// See Dockerfile note: "catalog.ts graceful-fallback'ит на пустой каталог.
+// /catalog/[...slug]/ и /product/[slug]/ помечены dynamic = 'force-dynamic'".
+export const dynamic = "force-dynamic";
 
+// `generateStaticParams` kept as a hint to Next about the closed set of slugs.
+// With force-dynamic it's not prerendered at build, but it keeps the static
+// type-narrowing for tooling and lets future migration to ISR be one-line.
 export function generateStaticParams() {
   return ALLOWED_SLUGS.map((slug) => ({ slug }));
 }

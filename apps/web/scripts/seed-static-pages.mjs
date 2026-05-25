@@ -16,10 +16,12 @@ import { getPayload } from "payload";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const TEMPLATES_DIR = path.resolve(
-  __dirname,
-  "../../../specs/057-yookassa-buyer-info-compliance/contracts/content-templates",
-);
+// Templates live next to this script (apps/web/scripts/content-templates/) so
+// the seed works inside the Docker runner without needing the full /specs/
+// tree (which is excluded from production rsync). Authoritative spec copy
+// lives at specs/057-yookassa-buyer-info-compliance/contracts/content-
+// templates/ — keep both in sync when editing.
+const TEMPLATES_DIR = path.resolve(__dirname, "content-templates");
 
 const POLICY_EFFECTIVE_FROM = "2026-05-25";
 
