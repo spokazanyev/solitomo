@@ -3058,6 +3058,9 @@ export interface PaymentSetting {
    * ЮKassa SBP transaction limit. Orders above this skip SBP in availableMethods.
    */
   sbpMaxAmount?: number | null;
+  /**
+   * Defaults from 00-source-data/company/contacts.json. Owner may adjust.
+   */
   senderCompanyInfo: {
     /**
      * 10 digits (LLC) or 12 (sole proprietor)

@@ -1,43 +1,82 @@
 {
-  "$comment": "Source of truth for company contacts. Replace TODO(owner) fields with verified data before public release. Used by apps/web/src/lib/company/get-company-contacts.ts.",
+  "$comment": "Source of truth для реквизитов компании. Заполнен из PDF 'Наши реквизиты' (24.06.2021) + rusprofile.ru/id/2753855. Used by apps/web/src/lib/company/get-company-contacts.ts и apps/web/src/app/api/invoice/[orderId]/route.ts.",
   "brandName": "Солитон",
-  "legalName": "TODO(owner): ООО «Солитон» / точное юридическое название",
-  "inn": "TODO(owner)",
-  "kpp": "TODO(owner)",
-  "ogrn": "TODO(owner)",
-  "foundingDate": "TODO(owner): YYYY",
-  "legalAddress": "TODO(owner): полный юридический адрес",
-  "actualAddress": "TODO(owner): фактический адрес или 'совпадает с юридическим'",
-  "workingHours": "Пн–Пт, 09:00–18:00 (МСК)",
+  "legalName": "ООО «НПП Солитон-1»",
+  "legalNameFull": "Общество с ограниченной ответственностью «Научно-производственное предприятие Солитон-1»",
+  "inn": "6659009140",
+  "kpp": "667801001",
+  "ogrn": "1026602965850",
+  "okpo": "25939942",
+  "okonh": "95120",
+  "foundingDate": "1992",
+  "registrationDate": "1992-12-07",
+  "legalAddress": "620034, г. Екатеринбург, ул. Колмогорова, д. 54а, кв. 54",
+  "actualAddress": "г. Екатеринбург, ул. Щорса, д. 7, корпус Р",
+  "director": {
+    "fullName": "Показаньев Виктор Григорьевич",
+    "position": "Директор",
+    "since": "2002-11-29"
+  },
+  "okvedMain": {
+    "code": "72.19.9",
+    "description": "Научные исследования и разработки в области естественных и технических наук прочие"
+  },
+  "form": "ООО",
+  "vatPolicy": "НДС обязателен",
+  "workingHours": "Пн–Пт, 09:00–18:00 (МСК+2, Екатеринбург)",
   "phones": [
     {
-      "label": "Отдел продаж",
-      "value": "+7 000 000-00-00",
-      "tel": "+70000000000",
+      "label": "Офис (Екатеринбург)",
+      "value": "+7 (343) 370-33-42",
+      "tel": "+73433703342",
       "isPrimary": true
     },
     {
-      "label": "Техническая поддержка",
-      "value": "+7 000 000-00-01",
-      "tel": "+70000000001",
+      "label": "Директор",
+      "value": "+7 (922) 148-30-45",
+      "tel": "+79221483045",
+      "isPrimary": false
+    },
+    {
+      "label": "Технический директор",
+      "value": "+7 (922) 203-42-95",
+      "tel": "+79222034295",
       "isPrimary": false
     }
   ],
   "emails": [
     {
-      "label": "Отдел продаж",
-      "value": "sales@soliton.example",
+      "label": "Общий",
+      "value": "soliton@soliton1.ru",
       "isPrimary": true
-    },
-    {
-      "label": "Техническая поддержка",
-      "value": "support@soliton.example",
-      "isPrimary": false
     }
   ],
+  "responsiblePersons": [
+    {
+      "fullName": "Показаньев Виктор Григорьевич",
+      "position": "Директор",
+      "phone": "+7 (922) 148-30-45",
+      "email": "soliton@soliton1.ru"
+    },
+    {
+      "fullName": "Жеберляев Игорь Феликсович",
+      "position": "Технический директор",
+      "phone": "+7 (922) 203-42-95",
+      "email": "soliton@soliton1.ru"
+    }
+  ],
+  "banking": {
+    "bankName": "Филиал «Екатеринбургский» АО «АЛЬФА-БАНК», г. Екатеринбург",
+    "bik": "046577964",
+    "correspondentAccount": "30101810100000000964",
+    "settlementAccount": "40702810638030009466"
+  },
+  "website": "https://www.soliton1.ru",
   "socials": [],
   "supportPolicy": "Заявки на КП обрабатываются в течение 1 рабочего дня. По срочным проектам — звонок в рабочие часы.",
-  "publishLocalBusiness": false,
+  "publishLocalBusiness": true,
   "geo": null,
-  "openingHours": []
+  "openingHours": [
+    "Mo-Fr 09:00-18:00"
+  ]
 }

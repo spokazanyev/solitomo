@@ -65,8 +65,15 @@ export async function GET(_request: NextRequest, context: RouteContext) {
   if (contacts.inn) doc.text(`ИНН: ${contacts.inn}`);
   if (contacts.kpp) doc.text(`КПП: ${contacts.kpp}`);
   if (contacts.ogrn) doc.text(`ОГРН: ${contacts.ogrn}`);
-  if (contacts.legalAddress && !contacts.legalAddress.startsWith("TODO")) doc.text(`Адрес: ${contacts.legalAddress}`);
-  doc.text(`TODO(owner): расчётный счёт, банк, БИК, корр. счёт`);
+  if (contacts.okpo) doc.text(`ОКПО: ${contacts.okpo}`);
+  if (contacts.legalAddress && !contacts.legalAddress.startsWith("TODO")) doc.text(`Юр. адрес: ${contacts.legalAddress}`);
+  if (contacts.actualAddress && !contacts.actualAddress.startsWith("TODO")) doc.text(`Факт. адрес: ${contacts.actualAddress}`);
+  if (contacts.banking) {
+    doc.text(`Банк: ${contacts.banking.bankName}`);
+    doc.text(`БИК: ${contacts.banking.bik}`);
+    doc.text(`Р/с: ${contacts.banking.settlementAccount}`);
+    doc.text(`К/с: ${contacts.banking.correspondentAccount}`);
+  }
   doc.moveDown(0.8);
 
   // Buyer
@@ -111,7 +118,13 @@ export async function GET(_request: NextRequest, context: RouteContext) {
   doc.fontSize(9).fillColor("#64748b");
   doc.text("Оплата производится по реквизитам поставщика. Заказ начинает движение после поступления оплаты.");
   doc.moveDown(0.4);
-  doc.text("TODO(owner): подпись и печать.", { align: "left" });
+  if (contacts.vatPolicy) doc.text(contacts.vatPolicy);
+  doc.moveDown(0.4);
+  if (contacts.director) {
+    doc.text(`${contacts.director.position}: ___________________ / ${contacts.director.fullName} /`, { align: "left" });
+  }
+  doc.moveDown(0.4);
+  doc.text("М.П.", { align: "left" });
 
   doc.end();
   const buffer = await finished;

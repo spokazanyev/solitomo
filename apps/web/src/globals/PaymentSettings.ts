@@ -167,21 +167,31 @@ export const PaymentSettings: GlobalConfig = {
       type: "group",
       name: "senderCompanyInfo",
       label: adminLabel("Реквизиты отправителя", "Sender company info"),
+      admin: {
+        description: adminLabel(
+          "Defaults подставлены из 00-source-data/company/contacts.json (rusprofile.ru/id/2753855 + PDF реквизитов). Owner может скорректировать.",
+          "Defaults from 00-source-data/company/contacts.json. Owner may adjust.",
+        ),
+      },
       fields: [
         {
           name: "inn",
           type: "text",
           required: true,
+          defaultValue: "6659009140",
           label: "ИНН",
           admin: {
             description: adminLabel("10 цифр (юрлицо) или 12 (ИП)", "10 digits (LLC) or 12 (sole proprietor)"),
           },
         },
         { name: "legalName", type: "text", required: true,
+          defaultValue: "ООО «НПП Солитон-1»",
           label: adminLabel("Юридическое наименование", "Legal name") },
         { name: "address", type: "text", required: true,
+          defaultValue: "620034, г. Екатеринбург, ул. Колмогорова, д. 54а, кв. 54",
           label: adminLabel("Юр.адрес", "Legal address") },
         { name: "kpp", type: "text",
+          defaultValue: "667801001",
           label: adminLabel("КПП (только для ООО)", "KPP (LLC only)") },
       ],
     },
