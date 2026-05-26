@@ -132,14 +132,33 @@ export class ApiShipProvider implements ShippingProvider {
   }
 
   async getPickupPoints(input: PointsInput): Promise<PickupPoint[]> {
+    // ApiShip /v1/lists/points does NOT support city/geo server-side filters —
+    // every filter format (JSON, query-string, FIAS GUID, bounding box) is
+    // silently ignored; the API always returns the full sorted list.
+    // The only working server-side filter is `providerKey`.
+    //
+    // Strategy: cache the city-specific PointObject[] in Payload for 12 h.
+    //   • Cache miss → fetch all provider points (limit=5000, 1 request),
+    //     filter by city in-process, persist filtered rows to cache.
+    //   • Cache hit  → return cached rows instantly (≈ DB lookup time).
+    // Dimension/weight filtering from `input` is applied after cache lookup
+    // so per-request constraints still take effect.
+
+    const POINTS_TTL_MS = 12 * 60 * 60 * 1000; // 12 h
+    const normalCity = input.city?.trim().toLowerCase() ?? "";
+    const cacheKey = `apiship:points:${input.providerKey}:${normalCity}`;
+
     try {
-      // ApiShip /v1/lists/points does NOT support a compound `filter` query param —
-      // city/postIndex filters sent that way are silently ignored (return total: 0).
-      // The only working server-side filter is `providerKey` as a direct query param.
-      // City filtering must be done client-side after fetching the full provider list.
-      //
-      // With limit=5000 we get all CDEK points in one request (total ~6824 → ~5000 fit
-      // in a single page that covers all major Russian cities).
+      // ── Cache read ────────────────────────────────────────────────────────
+      const cached = await getCalculation(cacheKey);
+      if (Array.isArray(cached)) {
+        return toPickupPoints(
+          cached as Parameters<typeof toPickupPoints>[0],
+          input,
+        );
+      }
+
+      // ── Cache miss: fetch from ApiShip ────────────────────────────────────
       const { data } = await this.apis.lists.getListPoints({
         limit: 5000,
         offset: 0,
@@ -148,13 +167,15 @@ export class ApiShipProvider implements ShippingProvider {
           "id,providerKey,name,address,city,postIndex,lat,lng,timetable,phone,cashPayment,cardPayment,maxLength,maxWidth,maxHeight,maxWeight",
       });
 
-      // Filter by city client-side (case-insensitive, trim-safe)
-      const targetCity = input.city?.trim().toLowerCase();
-      const rows = targetCity
+      // City filter client-side (the only viable approach given the API limitations)
+      const rows = normalCity
         ? (data.rows ?? []).filter(
-            (r) => r.city?.trim().toLowerCase() === targetCity,
+            (r) => r.city?.trim().toLowerCase() === normalCity,
           )
         : (data.rows ?? []);
+
+      // Persist filtered rows — next request for the same city is instant
+      await saveCalculation(cacheKey, rows, POINTS_TTL_MS);
 
       return toPickupPoints(rows, input);
     } catch (err) {
