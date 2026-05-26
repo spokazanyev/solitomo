@@ -37,6 +37,7 @@ description: "Task list for v1 (MVP-Lite) of Behavior & Ad Analytics"
 - [ ] T002 Добавить в `apps/web/.env.example` новые переменные (см. quickstart.md §«ENV-переменные»): `YM_API_TOKEN`, `YM_COUNTER_ID` (дополнение к существующему `NEXT_PUBLIC_YANDEX_METRIKA_ID`), оставить заглушку для будущего `ADMIN_ALERT_CHANNEL`.
 - [ ] T003 [P] Добавить npm-скрипты в `apps/web/package.json`: `test:analytics:unit` → `vitest run apps/web/src/lib/analytics/tests`, `test:analytics:smoke` → alias на `test:analytics:unit`, `report:analytics:weekly` → `node scripts/report-analytics-weekly.mjs`, `seed:analytics-settings` → `payload seed:analytics-settings`.
 - [ ] T004 [P] Создать пустые placeholder-файлы для будущих артефактов: `06-reports/analytics/.gitkeep`.
+- [ ] T088 Provenить инвентаризацию форм для FR-014 conditional-cut: проверить наличие в `apps/web/src/components/**/*Form.tsx` пяти форм (RfqForm, PhysicalCheckoutForm, LegalCheckoutForm, callback-форма, invoice-request, quick-order, file-upload); результат записать в `06-reports/analytics/forms-inventory.md` со столбцами `form_name | exists (yes/no/partial) | file_path | events_to_implement`. Этот файл — ground truth для conditional-задач (T031, T063, T065) и для FR-014 семантики «реализовать события только для существующих форм». [Resolves F5, added 2026-05-26]
 
 ---
 
@@ -122,6 +123,8 @@ description: "Task list for v1 (MVP-Lite) of Behavior & Ad Analytics"
 - [ ] T038 [US2] Расширить Payload Cart-hook `afterChange` (`apps/web/src/collections/Carts.ts`): при создании корзины (operation='create') — копировать `_solitomo_attribution` cookie value в `cart.attributionFirstTouch`; копировать `_ym_uid` в `cart.ymClientId`; копировать `_solitomo_first_seen` в `cart.firstSeenAt`; вычислять `cart.userTypeAtCreation` через `getVisitContext()`-helper.
 - [ ] T039 [US2] Расширить Payload Order-hook `afterChange` (`apps/web/src/collections/Orders.js`): при создании Order — копировать `attributionFirstTouch`, `ymClientId`, `firstSeenAt`, `userTypeAtConversion` из связанной Cart.
 - [ ] T040 [US2] Расширить Payload Order-hook `afterChange` (`apps/web/src/collections/Orders.js`): при переходе статуса в `paid` — вызвать internal `POST /api/analytics/server-hit` (через Payload local fetch) с body согласно contract; обновить `Order.serverHitStatus`.
+- [ ] T089 [P] [US2] Создать `apps/web/src/lib/analytics/offline-conversions.ts` с функцией `sendOfflineConversion(order)` (FR-033, FR-034). Использует Yandex.Metrika Offline Conversions API endpoint `POST https://api-metrika.yandex.net/management/v1/counter/<id>/offline_conversions/upload` с auth по `YM_API_TOKEN` (env). Payload CSV-формат с колонками `UserId,Target,DateTime,Price,Currency,yclid` (или `ClientId` если yclid отсутствует — FR-034). Idempotency через `transaction_id` (Метрика дедуплицирует). Respects consent (FR-043) и kill-switch `AnalyticsSettings.activation.serverHitsEnabled`. Это **дополняет** server-hit (FR-040, T036) — server-hit для adblock-resilience, offline-conversion для Я.Директ оптимизации ставок post-факт. [Resolves F4, added 2026-05-26]
+- [ ] T090 [US2] Расширить Payload Order-hook `afterChange` (расширение T040): после успешной отправки server-hit ИЛИ независимо при переходе статуса в `paid` — вызвать `sendOfflineConversion(order)` (T089). Записать результат в новый sub-field `Order.serverHitStatus.offlineConversionStatus` (enum: `pending`/`sent`/`failed`/`skipped_no_yclid`/`skipped_no_consent`) и `offlineConversionSentAt`. Если у Order ни `yclid`, ни `client_id` — статус `skipped_no_yclid`, не error. [Resolves F4, added 2026-05-26]
 
 ### Configuration
 
@@ -393,7 +396,7 @@ Phase 1 (Setup) — нет зависимостей
 
 ### Альтернатива: «всё-в-один-релиз»
 
-Все 87 задач за ~4 недели подряд, релиз один. Минус: длинный feedback-loop, дольше до production-launch. Плюс: меньше regression-risk при coordinated rollout.
+Все 90 задач за ~4 недели подряд, релиз один. Минус: длинный feedback-loop, дольше до production-launch. Плюс: меньше regression-risk при coordinated rollout.
 
 **Рекомендую первый вариант (incremental)** — спека 058 спроектирована именно под него (см. `## Scope Phases` в spec.md).
 
@@ -401,12 +404,12 @@ Phase 1 (Setup) — нет зависимостей
 
 ## Summary
 
-- **Total tasks**: 87 (T001-T087)
+- **Total tasks**: **90** (T001-T087 + T088-T090 добавлены при post-analyze remediation 2026-05-26)
 - **By phase**:
-  - Phase 1 (Setup): 4 tasks
+  - Phase 1 (Setup): 5 tasks (включая T088 forms-inventory)
   - Phase 2 (Foundational): 21 tasks
   - Phase 3 (US1 Funnel): 10 tasks
-  - Phase 4 (US2 Attribution): 8 tasks
+  - Phase 4 (US2 Attribution): 10 tasks (включая T089, T090 offline-conversion)
   - Phase 5 (US8 SEO): 4 tasks
   - Phase 6 (US5 Weekly report): 8 tasks
   - Phase 7 (US3 Micro-conversions): 11 tasks
@@ -414,8 +417,9 @@ Phase 1 (Setup) — нет зависимостей
   - Phase 9 (US7 Cohort): 5 tasks
   - Phase 10 (US6 Privacy): 3 tasks
   - Phase 11 (Polish): 11 tasks
-- **Parallel opportunities**: ~25 [P] tasks (могут идти попарно/параллельно)
-- **Suggested MVP-α scope**: T001-T035 (Phase 1+2+3) — воронка покупки работает end-to-end
+- **Parallel opportunities**: ~26 [P] tasks (могут идти попарно/параллельно)
+- **Suggested MVP-α scope**: T001-T035 + T088 (Phase 1+2+3 + forms-inventory) — воронка покупки работает end-to-end
 - **Manual setup tasks**: T041, T080-T083 (UI Метрики + DNS) — НЕ автоматизируются
-- **Format validation**: ✅ все 87 задач имеют checkbox `- [ ]`, ID, Story-label (где применимо), file path
-- **NOT in this tasks.md (v1.1/v1.2)**: Webmaster/GSC API integration, retry-очередь, HTML admin-rendering, Playwright e2e, auto-deploy annotations, scroll_depth, print/copy, Я.Директ ROAS auto-import, goal webhook, custom crawl-error logging, ecommerce.impressions, search_refinement, Web Vitals параметры, выходные сегменты (5 из 8).
+- **Format validation**: ✅ все 90 задач имеют checkbox `- [ ]`, ID, Story-label (где применимо), file path
+- **Post-analyze remediation (2026-05-26)**: добавлены T088 (forms inventory для FR-014 conditional, F5), T089-T090 (Yandex Metrika offline-conversion FR-033/FR-034 для US2, F4). См. Clarifications «Session 2026-05-26» в spec.md.
+- **NOT in this tasks.md (v1.1/v1.2)**: Webmaster/GSC API integration, retry-очередь, HTML admin-rendering, Playwright e2e, auto-deploy annotations, scroll_depth, print/copy, Я.Директ ROAS auto-import (отличается от offline-conversion!), goal webhook, custom crawl-error logging, ecommerce.impressions, search_refinement, Web Vitals параметры, выходные сегменты (5 из 8).

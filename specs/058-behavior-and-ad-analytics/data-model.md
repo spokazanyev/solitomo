@@ -59,9 +59,13 @@
 | `serverHitStatus.purchaseHitSentAt` | `date?` | server | Момент отправки. |
 | `serverHitStatus.purchaseHitStatus` | `enum: 'pending', 'sent', 'failed', 'skipped_no_consent'` | server | Состояние. |
 | `serverHitStatus.purchaseHitError` | `string?` | server | Текст ошибки если failed. |
+| `serverHitStatus.offlineConversionStatus` | `enum: 'pending', 'sent', 'failed', 'skipped_no_yclid', 'skipped_no_consent'` | заполняется после отправки offline-conversion в Я.Метрику (FR-033, FR-034) | Аудит offline-conversion для Я.Директ оптимизации. Дополняет purchaseHitStatus — это разные механизмы. |
+| `serverHitStatus.offlineConversionSentAt` | `date?` | server | Момент отправки offline-conversion. |
+| `serverHitStatus.offlineConversionError` | `string?` | server | Текст ошибки если failed. |
 
 **Hooks**:
-- `afterChange` (status `paid`): trigger server-side hit (если consent на момент создания Order был `accepted`).
+- `afterChange` (status `paid`): trigger server-side hit (если consent на момент создания Order был `accepted`) — FR-040.
+- `afterChange` (status `paid`): trigger offline-conversion в Я.Метрику если есть `yclid` или `client_id` (FR-033, FR-034); запускается параллельно с server-hit, независимо.
 - `afterChange` (status `paid`): вычислить `timeToPurchaseDays`.
 
 **Состояния/переходы**: state-machine 051 сохраняется. Поля аналитики — read-once при transitions.

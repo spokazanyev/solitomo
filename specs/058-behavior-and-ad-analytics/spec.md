@@ -22,6 +22,11 @@
 - Q: Чем исполнять pre-deploy smoke-test событий? → A: Гибрид — jsdom (vitest) прогоняет 80% событий за секунды на каждом PR (event-helpers, структура `dataLayer`, отсутствие ПДн); Playwright прогоняет в реальном headless-браузере критичные конверсионные пути (PDP→cart→checkout-steps→purchase, RFQ-submit, scroll_depth через Intersection Observer, `beforeprint`) перед production-деплоем. Регрессия любого слоя блокирует CI.
 - Q: Источник `first_seen_at` для когортного анализа? → A: Гибрид — cookie `_solitomo_first_seen` (TTL 365 дней) как primary для анонимов; для авторизованных Customer-ов значение хранится в поле `customer.firstSeenAt` (Payload) и используется как min(cookie, customer.firstSeenAt) для устойчивости к чистке cookie. При первом логине backend записывает min из существующих значений; при последующих визитах с того же `customer_id` используется backend-value, даже если cookie стёрто.
 
+### Session 2026-05-26 (post-analyze remediation)
+
+- Q: Статус FR-013 (`view_promotion`/`select_promotion`)? → A: **CUT** из v1. Промо-баннеров на сайте сегодня нет; событие реализуется одновременно с появлением промо-механики как отдельной продуктовой фичей (не v1.1/v1.2, а feature-trigger). FR-013 остаётся в спеке как target-state, но `## Scope Phases` явно маркирует его как `cut-until-feature-exists`.
+- Q: FR-033/FR-034 (offline-conversion в Я.Метрику с `yclid`/`client_id`) — это отдельная фича или эквивалент server-hit (FR-040)? → A: **Отдельная фича в v1, не эквивалент**. Server-hit (FR-040) дублирует `purchase` event с тем же `transaction_id` для adblock-resilience (Метрика дедуплицирует). Offline-conversion (FR-033/034) использует Yandex.Metrika Offline Conversions API (`POST /management/v1/counter/<id>/offline_conversions/upload`) для передачи исторического `yclid` в Я.Директ — это нужно Директу для оптимизации ставок post-факт (особенно если конверсия далеко по времени от клика). **Оба механизма MUST в v1** — они комплементарны.
+
 ## Scope Phases (MVP-Lite Breakdown)
 
 Спека описывает полную целевую разметку аналитики. Для launch — поэтапная реализация: **v1 (MVP-Lite)** — то, что нужно с первого дня, чтобы недельный отчёт отвечал на 4 главных вопроса бизнеса. **v1.1** — расширения, которые имеют смысл после первого месяца накопления данных. **v1.2** — функционал, который оправдан только при существенном трафике/каталоге.
@@ -35,10 +40,12 @@
 
 **Цель**: на запуске недельный MD-отчёт отвечает на «где провалы в воронке», «какая реклама окупается», «что чинить в SEO» (через ссылки в Webmaster/GSC), «не нарушаем ли закон».
 
+**Правило раскрытия групповых маркеров** (post-analyze remediation, 2026-05-26): все маркеры вида «FR-X…FR-Y» включают **все промежуточные номера inclusive** (FR-X, FR-X+1, …, FR-Y), без пропусков. Например, «FR-001…FR-007» — это FR-001, FR-002, FR-003, FR-004, FR-005, FR-006, FR-007. Если конкретный FR должен быть исключён, он явно перечислен как exception в этой секции.
+
 Группы FR, входящие целиком:
-- Базовая разметка событий: FR-001…FR-007, FR-009, FR-010…FR-012, FR-015…FR-017 (FR-014 — только реально существующие формы; см. условный cut ниже).
+- Базовая разметка событий: FR-001…FR-007, FR-009, FR-010…FR-012, FR-015…FR-017 (FR-014 — только реально существующие формы; см. условный cut ниже; FR-013 — CUT, см. exceptions).
 - Параметры событий: FR-020…FR-024.
-- Атрибуция и UTM: FR-030…FR-035.
+- Атрибуция и UTM: FR-030…FR-035 (включает FR-033 и FR-034 — offline-conversion, см. Clarification 2026-05-26).
 - Цели Метрики и воронки: FR-050…FR-052.
 - Webvisor и приватность: FR-060…FR-063.
 - Weekly-отчёт (MD): FR-090…FR-093.
@@ -68,6 +75,9 @@
 - FR-040 (server-side `purchase`) — **в v1**.
 - FR-042, FR-043, FR-044 — **в v1**.
 - FR-041 (server-side `rfq_submit`) — **defer до v1.1**.
+
+**Exceptions / явные CUT'ы из v1** (post-analyze remediation, 2026-05-26):
+- **FR-013** (`view_promotion`/`select_promotion`) — **CUT-until-feature-exists**. Промо-баннеров на сайте сегодня нет; событие реализуется одновременно с появлением промо-механики (отдельной продуктовой фичей), не приурочено к v1.1/v1.2 датам. См. Clarification 2026-05-26.
 
 Условные cut'ы / упрощения внутри v1:
 - **FR-014**: реализуются только события для форм, которые **уже существуют на сайте сегодня** (точно — RFQ; остальные — `quick_order_submit`, `company_form_submit`, `invoice_request_submit`, `callback_request_submit`, `file_upload` — реализовать вместе с появлением форм).
