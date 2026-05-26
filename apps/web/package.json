@@ -26,7 +26,9 @@
     "download:legacy-assets": "node scripts/download-legacy-assets.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "metrika:apply-config": "node --experimental-strip-types --no-warnings=ExperimentalWarning scripts/metrika-apply-config.ts",
+    "metrika:validate-config": "node --experimental-strip-types --no-warnings=ExperimentalWarning scripts/metrika-validate-config.ts"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.84.1",
