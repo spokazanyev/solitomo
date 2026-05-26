@@ -8,6 +8,8 @@ import { ru } from "@payloadcms/translations/languages/ru";
 import { buildConfig } from "payload";
 
 import { AdminChangeLog } from "./collections/AdminChangeLog.js";
+import { AgentExecutionLog } from "./collections/AgentExecutionLog";
+import { AgentProposals } from "./collections/AgentProposals";
 import { AttributeGroups, AttributeOptions, Attributes } from "./collections/Attributes.js";
 import { Categories, Documents, MediaAssets, Products } from "./collections/Catalog.js";
 import { Carts } from "./collections/Carts";
@@ -24,6 +26,7 @@ import { ShippingCalculations } from "./collections/ShippingCalculations";
 import { ShippingLogs } from "./collections/ShippingLogs";
 import { StaticPages } from "./collections/StaticPages";
 import { Users } from "./collections/Users.js";
+import { AnalyticsSettings } from "./globals/AnalyticsSettings";
 import { ApiShipSettings } from "./globals/ApiShipSettings";
 import { CrmSettings } from "./globals/CrmSettings";
 import { NotificationsSettings } from "./globals/NotificationsSettings";
@@ -89,8 +92,10 @@ export default buildConfig({
     CrmSyncJobs,
     NotificationJobs,
     PaymentEvents,
+    AgentProposals,
+    AgentExecutionLog,
   ],
-  globals: [ApiShipSettings, CrmSettings, NotificationsSettings, PaymentSettings],
+  globals: [AnalyticsSettings, ApiShipSettings, CrmSettings, NotificationsSettings, PaymentSettings],
   onInit: async () => {
     try {
       const { registerCoreSubscribers } = await import("./lib/lifecycle/events");
