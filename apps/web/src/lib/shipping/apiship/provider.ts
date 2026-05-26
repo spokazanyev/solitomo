@@ -86,16 +86,31 @@ export class ApiShipProvider implements ShippingProvider {
       // legacy-форма (`tariffs[]`) поддерживается на всякий случай.
       const { flattenCalculatorTariffs } = await import("./client");
       const tariffs = flattenCalculatorTariffs(raw as Parameters<typeof flattenCalculatorTariffs>[0]);
-      for (const tariff of tariffs as Array<Record<string, unknown>>) {
-        if (tariff.isError) continue;
-        const providerKey = String(tariff.providerKey ?? "");
-        if (disabled.has(providerKey)) continue;
-        rates.push(toShippingRate(tariff as never, type));
+      // Выбираем только дешевейший тариф для каждого delivery-type кода —
+      // показывать все 25+ тарифов покупателю не нужно.
+      const best = pickCheapestTariff(tariffs, type);
+      if (best) {
+        const providerKey = String(best.providerKey ?? "");
+        if (!disabled.has(providerKey)) {
+          rates.push(toShippingRate(best, type));
+        }
       }
     }
 
-    annotateBadges(rates);
-    return { cachedAt: new Date().toISOString(), rates, warnings };
+    // Дедупликация по способу доставки (1=курьером, 2=ПВЗ): оставляем дешевейший.
+    // Это схлопывает doortodoor+pointtodoor → 1 вариант «курьером до двери»
+    // и doortopoint+pointtopoint → 1 вариант «до пункта выдачи».
+    const byDeliveryType = new Map<number, ShippingRate>();
+    for (const rate of rates) {
+      const existing = byDeliveryType.get(rate.deliveryType);
+      if (!existing || rate.cost < existing.cost) {
+        byDeliveryType.set(rate.deliveryType, rate);
+      }
+    }
+    const deduped = [...byDeliveryType.values()];
+
+    annotateBadges(deduped);
+    return { cachedAt: new Date().toISOString(), rates: deduped, warnings };
   }
 
   async getPickupPoints(input: PointsInput): Promise<PickupPoint[]> {

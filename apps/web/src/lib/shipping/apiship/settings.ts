@@ -45,7 +45,7 @@ const FALLBACK_SETTINGS: ApiShipSettings = {
   sender: { countryCode: "RU", addressString: "", contactName: "", phone: "" },
   defaults: { length: 30, width: 20, height: 15, weight: 1500, deliveryCostVat: "20", isCod: false },
   disabledProviders: [],
-  allowedDeliveryTypes: ["doortodoor", "doortopoint", "pointtodoor", "pointtopoint"],
+  allowedDeliveryTypes: ["doortodoor", "doortopoint"],
   yandexMaps: { apiKey: "", tariffPlan: "free" },
   dadata: { apiKey: "", secret: "", tariffPlan: "free", cacheTtlDays: 30 },
   lifecycle: {

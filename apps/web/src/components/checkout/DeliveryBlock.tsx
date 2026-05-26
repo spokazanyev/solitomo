@@ -194,7 +194,6 @@ export function DeliveryBlock({
                   <div className="min-w-0 flex-1">
                     <div className="font-medium text-slate-950">
                       {r.providerName ?? r.providerKey}
-                      {r.tariffName ? ` · ${r.tariffName}` : ""}
                     </div>
                     <div className="mt-0.5 flex flex-wrap items-center gap-2 text-xs text-slate-500">
                       <span className="inline-flex items-center gap-1 rounded bg-slate-100 px-2 py-0.5 font-medium text-slate-700">
