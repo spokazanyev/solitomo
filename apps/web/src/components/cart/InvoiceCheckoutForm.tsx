@@ -3,13 +3,14 @@
 import { ArrowRight, Loader2, Receipt } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { DadataSuggestInput } from "@/components/checkout/DadataSuggestInput";
 import { PhoneInput } from "@/components/checkout/PhoneInput";
 import { ConsentCheckbox } from "@/components/consent/ConsentCheckbox";
 import { clearCartItems, getCartTotal, useRfqCartItems } from "@/components/rfq/RfqCart";
 import { pushEvent } from "@/lib/analytics/data-layer";
+import { trackInnValidationFailed, trackInnValidationSuccess } from "@/lib/analytics/events";
 
 const DELIVERY_OPTIONS = [
   { value: "cdek", label: "СДЭК" },
@@ -64,7 +65,39 @@ export function InvoiceCheckoutForm() {
   useEffect(() => {
     if (items.length === 0) return;
     pushEvent("add_shipping_info", { checkout_type: "legal" });
+    // 058 T031: явные checkout-step-events (FR-121, FR-122) — single-page форма,
+    // блоки видны сразу при render не-пустой корзины.
+    pushEvent("checkout_step_shipping", { step_index: 2, checkout_type: "legal" });
+    pushEvent("checkout_step_payment_method", { step_index: 3, checkout_type: "legal" });
   }, [items.length]);
+
+  // 058 T031: checkout_step_contact (FR-120) при первом focus в блок контактов
+  const contactStepFiredRef = useRef(false);
+  const handleContactFocus = () => {
+    if (contactStepFiredRef.current) return;
+    contactStepFiredRef.current = true;
+    pushEvent("checkout_step_contact", { step_index: 1, checkout_type: "legal" });
+  };
+
+  // 058 T031: inn_validation_success/failed (FR-192) на blur или при валидном паттерне.
+  // ИНН — 10 или 12 цифр. Валидируем при изменении: при достижении 10/12 — success,
+  // если ввод НЕ-цифровой OR частичный — пропускаем (не спамим failure до blur).
+  const innValidationFiredRef = useRef<"success" | "failed" | null>(null);
+  const handleInnBlur = () => {
+    const trimmed = inn.trim();
+    if (trimmed.length === 0) return; // пустой — не отслеживаем
+    const isValid = /^[0-9]{10,12}$/.test(trimmed);
+    const result = isValid ? "success" : "failed";
+    // Anti-double-fire — повторяем только при смене результата
+    if (innValidationFiredRef.current === result) return;
+    innValidationFiredRef.current = result;
+    if (isValid) {
+      trackInnValidationSuccess({ formType: "checkout_legal" });
+    } else {
+      const errorCode = /^[0-9]+$/.test(trimmed) ? "inn_wrong_length" : "inn_non_numeric";
+      trackInnValidationFailed({ formType: "checkout_legal", errorCode });
+    }
+  };
 
   if (items.length === 0) {
     return (
@@ -84,6 +117,13 @@ export function InvoiceCheckoutForm() {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (submitting) return;
+    // 058 T031: checkout_cta_pay_clicked (FR-124) — фиксируем намерение перед validation
+    pushEvent("checkout_cta_pay_clicked", {
+      step_index: 5,
+      checkout_type: "legal",
+      value: total,
+      currency: "RUB",
+    });
     setError(null);
     setSubmitting(true);
 
@@ -174,6 +214,7 @@ export function InvoiceCheckoutForm() {
               <input
                 className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 focus:border-sky-600 focus:outline-none"
                 inputMode="numeric"
+                onBlur={handleInnBlur}
                 onChange={(event) => setInn(event.target.value)}
                 pattern="[0-9]{10,12}"
                 required
@@ -213,7 +254,7 @@ export function InvoiceCheckoutForm() {
           </div>
         </div>
 
-        <div className="rounded-lg border border-slate-200 bg-white p-6">
+        <div className="rounded-lg border border-slate-200 bg-white p-6" onFocus={handleContactFocus}>
           <p className="text-sm font-semibold text-slate-950">Контактное лицо</p>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             <DadataSuggestInput
