@@ -70,6 +70,10 @@ export default buildConfig({
       key: "seed:analytics-settings",
       scriptPath: path.resolve(dirname, "../scripts/seed-analytics-settings.mjs"),
     },
+    {
+      key: "seed:soliton-certs",
+      scriptPath: path.resolve(dirname, "../scripts/seed-soliton-certs.mjs"),
+    },
   ],
   collections: [
     Users,
