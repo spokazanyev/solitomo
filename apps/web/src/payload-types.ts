@@ -809,6 +809,15 @@ export interface Product {
     status?: ('request' | 'published' | 'hidden') | null;
   };
   availabilityStatus?: ('request' | 'in_stock' | 'preorder' | 'unavailable') | null;
+  /**
+   * Fill for accurate shipping cost calculation. Empty = uses ApiShip defaults.
+   */
+  physicalPackaging?: {
+    weightGrams?: number | null;
+    lengthMm?: number | null;
+    widthMm?: number | null;
+    heightMm?: number | null;
+  };
   technicalAttributes?:
     | {
         attribute: number | Attribute;
@@ -2790,6 +2799,14 @@ export interface ProductsSelect<T extends boolean = true> {
         status?: T;
       };
   availabilityStatus?: T;
+  physicalPackaging?:
+    | T
+    | {
+        weightGrams?: T;
+        lengthMm?: T;
+        widthMm?: T;
+        heightMm?: T;
+      };
   technicalAttributes?:
     | T
     | {

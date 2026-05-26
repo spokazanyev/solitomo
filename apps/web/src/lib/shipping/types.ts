@@ -56,10 +56,18 @@ export interface CartItemForShipping {
   name?: string;
   quantity: number;
   price: number;
-  weight?: number;
-  length?: number;
-  width?: number;
-  height?: number;
+  /**
+   * 060: Масса единицы товара в граммах. Если undefined — в mapper используется
+   * `apiship-settings.defaults.weight` как fallback. Заполняется на сервере
+   * через lookup продукта по sku в /api/shipping/calculate route.
+   */
+  weightGrams?: number;
+  /** 060: Длина упаковки в миллиметрах. Конвертируется в см при отправке в ApiShip. */
+  lengthMm?: number;
+  /** 060: Ширина упаковки в миллиметрах. */
+  widthMm?: number;
+  /** 060: Высота упаковки в миллиметрах. */
+  heightMm?: number;
 }
 
 export interface CalculationInput {
