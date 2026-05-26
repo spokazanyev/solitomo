@@ -9,6 +9,11 @@ import {
   readCookieConsent,
   setCookieConsent,
 } from "@/lib/analytics/cookie-consent";
+import {
+  trackConsentAccepted,
+  trackConsentBannerShown,
+  trackConsentDeclined,
+} from "@/lib/analytics/events";
 
 /**
  * Cookies consent banner (US6 / FR-5750..5755).
@@ -50,16 +55,26 @@ export function CookieConsentBanner() {
     };
   }, []);
 
+  // 058 FR-280: consent_banner_shown — push в dataLayer при первом показе.
+  // Buffered: даже без consent, события идут в dataLayer; они НЕ попадут в
+  // Metrika до accept, но сохранятся для post-accept retroactive sync (Метрика
+  // полностью читает dataLayer при init).
+  useEffect(() => {
+    if (visible) trackConsentBannerShown();
+  }, [visible]);
+
   if (!visible) return null;
 
   const handleAccept = () => {
     setCookieConsent("accepted");
+    trackConsentAccepted(); // 058 FR-281
     loadAnalyticsFromConsent();
     setVisible(false);
   };
 
   const handleDecline = () => {
     setCookieConsent("declined");
+    trackConsentDeclined(); // 058 FR-281
     setVisible(false);
   };
 
