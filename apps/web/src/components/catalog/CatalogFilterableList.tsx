@@ -7,7 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 import { MobileDrawer } from "@/components/site/MobileDrawer";
 import { AddToRfqButton } from "@/components/rfq/RfqCart";
 import { ProductImageZoom } from "@/components/product/ProductImageZoom";
-import { trackSelectItem, trackViewItemList } from "@/lib/analytics/events";
+import { trackCategoryView, trackSelectItem, trackViewItemList } from "@/lib/analytics/events";
 import { getListingAttributeRows } from "@/lib/products/product-attributes";
 import type { Product } from "@/lib/products/catalog";
 
@@ -305,6 +305,17 @@ export function CatalogFilterableList({
     () => sortProducts(filteredProducts, sortMode),
     [filteredProducts, sortMode],
   );
+
+  // 058 T056 + FR-001: category_view event при первом рендере на category-page
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const match = window.location.pathname.match(/\/catalog\/([^/]+)\/?/);
+    if (match?.[1]) {
+      trackCategoryView({ categorySlug: match[1], itemsCount: sortedProducts.length });
+    }
+    // run only once on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // 058 T026 + FR-002: view_item_list event при отображении (или изменении filter/sort)
   // Limit first 20 items в payload — для коротких HTTP-request'ов и Webvisor.

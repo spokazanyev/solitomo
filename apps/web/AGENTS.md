@@ -41,7 +41,16 @@ pnpm --filter @soliton/web test
 - `src/lib/customers/` — Magic-link/reset tokens, session loader, repository, CSRF helpers, api-utils (054).
 - `src/lib/consent/` — 057: ConsentRecord type, `consentField()` (Payload group), `makeConsentRecord(req)` (server-side helper для API endpoints), policy-version cache.
 - `src/lib/static-pages/` — 057: `getStaticPage(slug)` + cache invalidation, для `/info/*` страниц.
-- `src/lib/analytics/` — 057: `cookie-consent` (read/write cookie), `analytics-loader` (программная загрузка GA/Metrika).
+- `src/lib/analytics/` — 057+058: `cookie-consent` + `analytics-loader` (canonical Yandex snippet с `ecommerce: "dataLayer"` для FR-110-115); `events.ts` (35+ typed event-helpers); `data-layer.ts` (ecommerce dual-push); `pii-filter.ts` (FR-062 scrubPII); `attribution.ts` (UTM/yclid + referrer classification); `env-marker.ts`; `visit-context.ts`; `server-tracker.ts` (FR-040); `offline-conversions.ts` (FR-033/034); `agent/` (Phase 12 — Metrika Management API client, safety, audit).
+- `src/middleware.ts` — 058: env-marker header + first-party attribution cookies + first_seen cookie capture.
+- `apps/web/config/metrika.config.ts` — 058: source-of-truth для Metrika config (apply через `pnpm metrika:apply-config`).
+- `apps/web/scripts/metrika-{apply,validate,export}-config.ts` — 058 CLI scripts.
+- `apps/web/scripts/seed-analytics-settings.mjs` — 058: `pnpm seed:analytics-settings`.
+- `src/collections/{AgentProposals,AgentExecutionLog,Annotations}.ts` — 058 коллекции.
+- `src/globals/AnalyticsSettings.ts` — 058: runtime-config.
+- `src/components/phone/TrackedPhone.tsx` + `TrackedEmail.tsx` — 058: call-tracking ready обёртки.
+- `src/components/product/ProductDetailAnalytics.tsx` — 058 T028: view_item + ecommerce.detail wrapper.
+- `src/components/analytics/AnalyticsContextProvider.tsx` — 058 T020.
 - `src/components/consent/` — 057: `ConsentCheckbox` (общий для 5 форм), `CookieConsentBanner` (opt-in аналитика).
 - `src/components/static-pages/` — 057: `StaticPageRenderer` + `BuyerInfoNav` + `LexicalRenderer` для `/info/*`.
 - `src/components/company/BankingDetails.tsx` — 057: банковские реквизиты + директор для `/company/contacts/`.

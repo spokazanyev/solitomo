@@ -214,6 +214,7 @@ export function InvoiceCheckoutForm() {
               <input
                 className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 focus:border-sky-600 focus:outline-none"
                 inputMode="numeric"
+                data-yandex-metrika-mask="true"
                 onBlur={handleInnBlur}
                 onChange={(event) => setInn(event.target.value)}
                 pattern="[0-9]{10,12}"

@@ -12,7 +12,7 @@ import {
   writeRfqCartItems,
   type RfqCartItem,
 } from "@/components/rfq/RfqCart";
-import { trackAnalyticsEvent } from "@/lib/analytics/events";
+import { trackAnalyticsEvent, trackFormFieldError } from "@/lib/analytics/events";
 
 type RfqItem = RfqCartItem;
 
@@ -210,7 +210,24 @@ export function RfqForm() {
   }
 
   return (
-    <form className="grid min-w-0 gap-8" onSubmit={handleSubmit}>
+    <form
+      className="grid min-w-0 gap-8"
+      onSubmit={handleSubmit}
+      onInvalid={(event) => {
+        // 058 T065 + FR-015: form_field_error на browser HTML5 validation fail.
+        // Capture phase — event.target — invalid field.
+        const target = event.target as HTMLInputElement | HTMLTextAreaElement | null;
+        if (!target?.name) return;
+        const validityState = target.validity;
+        let errorCode = "invalid";
+        if (validityState.valueMissing) errorCode = "required";
+        else if (validityState.typeMismatch) errorCode = "type_mismatch";
+        else if (validityState.patternMismatch) errorCode = "pattern_mismatch";
+        else if (validityState.tooShort) errorCode = "too_short";
+        else if (validityState.tooLong) errorCode = "too_long";
+        trackFormFieldError({ formType: "rfq", fieldName: target.name, errorCode });
+      }}
+    >
       <section className="min-w-0 overflow-hidden rounded-lg border border-slate-200 bg-white p-4 sm:p-5">
         <div className="flex min-w-0 flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="min-w-0">

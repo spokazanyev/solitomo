@@ -280,10 +280,61 @@ export const Carts: CollectionConfig = {
       label: adminLabel("IP hash", "IP hash"),
       admin: { description: adminLabel("SHA-256 от IP — GDPR-friendly.", "SHA-256 of IP — GDPR-friendly.") },
     },
+    // 058 T005: attribution + cohort data (FR-031, FR-180, FR-022)
+    {
+      type: "group",
+      name: "attributionFirstTouch",
+      label: adminLabel("Атрибуция: первое касание", "Attribution: first touch"),
+      admin: {
+        description: adminLabel(
+          "FR-031: копируется из cookie _solitomo_attribution при создании корзины. Не перезаписывается.",
+          "FR-031: copied from _solitomo_attribution cookie on cart creation.",
+        ),
+      },
+      fields: [
+        { name: "utmSource", type: "text" },
+        { name: "utmMedium", type: "text" },
+        { name: "utmCampaign", type: "text" },
+        { name: "utmContent", type: "text" },
+        { name: "utmTerm", type: "text" },
+        { name: "yclid", type: "text" },
+        { name: "gclid", type: "text" },
+        { name: "openstat", type: "text" },
+        { name: "from", type: "text" },
+        { name: "refererHost", type: "text" },
+        { name: "acquisitionChannel", type: "text" },
+        { name: "acquisitionQuery", type: "text", maxLength: 200 },
+        { name: "capturedAt", type: "date" },
+      ],
+    },
+    {
+      name: "ymClientId",
+      type: "text",
+      label: adminLabel("Yandex.Metrika _ym_uid", "Yandex.Metrika _ym_uid"),
+    },
+    {
+      name: "gaClientId",
+      type: "text",
+      label: adminLabel("GA _ga client id", "GA _ga client id"),
+    },
+    {
+      name: "firstSeenAt",
+      type: "date",
+      label: adminLabel("Первое касание (cookie)", "First seen (cookie)"),
+    },
+    {
+      name: "userTypeAtCreation",
+      type: "select",
+      options: [
+        { label: "anonymous", value: "anonymous" },
+        { label: "customer", value: "customer" },
+        { label: "legal_entity", value: "legal_entity" },
+      ],
+    },
   ],
   hooks: {
     beforeChange: [
-      ({ data, operation }) => {
+      async ({ data, operation, req }) => {
         // Recompute totals from items (server-side authoritative)
         if (Array.isArray(data.items)) {
           let itemCount = 0;
@@ -316,6 +367,55 @@ export const Carts: CollectionConfig = {
         if (operation === "create") {
           if (!data.lastActivityAt) data.lastActivityAt = new Date().toISOString();
           if (!data.status) data.status = "active";
+
+          // 058 T038: copy attribution from cookies (FR-031) — first-touch фиксируется при создании корзины.
+          // PayloadRequest не имеет .cookies, читаем через headers.get('cookie') и парсим.
+          if (!data.attributionFirstTouch && req?.headers?.get) {
+            try {
+              const cookieHeader = req.headers.get("cookie") ?? "";
+              const getCookie = (name: string): string | null => {
+                const m = cookieHeader.match(new RegExp(`(?:^|;\\s*)${name}=([^;]+)`));
+                return m && m[1] ? m[1] : null;
+              };
+              const attrVal = getCookie("_solitomo_attribution");
+              if (attrVal) {
+                const { decodeAttributionCookie } = await import(
+                  "../lib/analytics/attribution.ts"
+                );
+                const touchpoint = decodeAttributionCookie(attrVal);
+                if (touchpoint) {
+                  data.attributionFirstTouch = {
+                    ...(touchpoint.utmSource ? { utmSource: touchpoint.utmSource } : {}),
+                    ...(touchpoint.utmMedium ? { utmMedium: touchpoint.utmMedium } : {}),
+                    ...(touchpoint.utmCampaign ? { utmCampaign: touchpoint.utmCampaign } : {}),
+                    ...(touchpoint.utmContent ? { utmContent: touchpoint.utmContent } : {}),
+                    ...(touchpoint.utmTerm ? { utmTerm: touchpoint.utmTerm } : {}),
+                    ...(touchpoint.yclid ? { yclid: touchpoint.yclid } : {}),
+                    ...(touchpoint.gclid ? { gclid: touchpoint.gclid } : {}),
+                    ...(touchpoint.openstat ? { openstat: touchpoint.openstat } : {}),
+                    ...(touchpoint.from ? { from: touchpoint.from } : {}),
+                    ...(touchpoint.refererHost ? { refererHost: touchpoint.refererHost } : {}),
+                    ...(touchpoint.acquisitionChannel
+                      ? { acquisitionChannel: touchpoint.acquisitionChannel }
+                      : {}),
+                    ...(touchpoint.acquisitionQuery
+                      ? { acquisitionQuery: touchpoint.acquisitionQuery }
+                      : {}),
+                    capturedAt: touchpoint.capturedAt,
+                  };
+                }
+              }
+              const firstSeenVal = getCookie("_solitomo_first_seen");
+              if (firstSeenVal && !data.firstSeenAt) {
+                data.firstSeenAt = decodeURIComponent(firstSeenVal);
+              }
+              if (getCookie("_solitomo_legal_entity_flag") && !data.userTypeAtCreation) {
+                data.userTypeAtCreation = "legal_entity";
+              }
+            } catch {
+              // ignore — не блокируем создание корзины
+            }
+          }
         }
 
         return data;

@@ -95,6 +95,7 @@ export interface Config {
     paymentEvents: PaymentEvent;
     'agent-proposals': AgentProposal;
     'agent-execution-log': AgentExecutionLog;
+    annotations: Annotation;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -129,6 +130,7 @@ export interface Config {
     paymentEvents: PaymentEventsSelect<false> | PaymentEventsSelect<true>;
     'agent-proposals': AgentProposalsSelect<false> | AgentProposalsSelect<true>;
     'agent-execution-log': AgentExecutionLogSelect<false> | AgentExecutionLogSelect<true>;
+    annotations: AnnotationsSelect<false> | AnnotationsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -314,6 +316,25 @@ export interface Customer {
   inviteToken?: string | null;
   inviteExpiresAt?: string | null;
   inviteAcceptedAt?: string | null;
+  /**
+   * FR-180: first touch min(cookie, existing) on first login.
+   */
+  firstSeenAt?: string | null;
+  /**
+   * FR-150: _ym_uid linked to customer for cross-device tracking.
+   */
+  ymClientId?: string | null;
+  dsarLog?:
+    | {
+        requestedAt: string;
+        type: 'access' | 'delete';
+        status: 'pending' | 'completed' | 'rejected';
+        completedAt?: string | null;
+        completedBy?: (number | null) | User;
+        notes?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -724,6 +745,43 @@ export interface Order {
         id?: string | null;
       }[]
     | null;
+  /**
+   * FR-032: copied from Cart.attributionFirstTouch on conversion.
+   */
+  attributionFirstTouch?: {
+    utmSource?: string | null;
+    utmMedium?: string | null;
+    utmCampaign?: string | null;
+    utmContent?: string | null;
+    utmTerm?: string | null;
+    yclid?: string | null;
+    gclid?: string | null;
+    openstat?: string | null;
+    from?: string | null;
+    refererHost?: string | null;
+    acquisitionChannel?: string | null;
+    acquisitionQuery?: string | null;
+    capturedAt?: string | null;
+  };
+  ymClientId?: string | null;
+  firstSeenAt?: string | null;
+  /**
+   * FR-182: cohort metric.
+   */
+  timeToPurchaseDays?: number | null;
+  visitCountToPurchase?: number | null;
+  userTypeAtConversion?: ('anonymous' | 'customer' | 'legal_entity') | null;
+  /**
+   * FR-040 + FR-033/034 audit
+   */
+  serverHitStatus?: {
+    purchaseHitSentAt?: string | null;
+    purchaseHitStatus?: ('pending' | 'sent' | 'failed' | 'skipped_no_consent' | 'skipped_kill_switch') | null;
+    purchaseHitError?: string | null;
+    offlineConversionSentAt?: string | null;
+    offlineConversionStatus?: ('pending' | 'sent' | 'failed' | 'skipped_no_yclid' | 'skipped_no_consent') | null;
+    offlineConversionError?: string | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -1167,6 +1225,28 @@ export interface Cart {
    * SHA-256 of IP — GDPR-friendly.
    */
   ipHash?: string | null;
+  /**
+   * FR-031: copied from _solitomo_attribution cookie on cart creation.
+   */
+  attributionFirstTouch?: {
+    utmSource?: string | null;
+    utmMedium?: string | null;
+    utmCampaign?: string | null;
+    utmContent?: string | null;
+    utmTerm?: string | null;
+    yclid?: string | null;
+    gclid?: string | null;
+    openstat?: string | null;
+    from?: string | null;
+    refererHost?: string | null;
+    acquisitionChannel?: string | null;
+    acquisitionQuery?: string | null;
+    capturedAt?: string | null;
+  };
+  ymClientId?: string | null;
+  gaClientId?: string | null;
+  firstSeenAt?: string | null;
+  userTypeAtCreation?: ('anonymous' | 'customer' | 'legal_entity') | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1847,6 +1927,28 @@ export interface AgentExecutionLog {
   createdAt: string;
 }
 /**
+ * FR-161-162. Timeline markers: deploys, campaigns, incidents. Only production goes to weekly report.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "annotations".
+ */
+export interface Annotation {
+  id: number;
+  type: 'deploy' | 'campaign' | 'incident' | 'manual';
+  occurredAt: string;
+  title: string;
+  description?: string | null;
+  /**
+   * Required for type='deploy'.
+   */
+  gitRef?: string | null;
+  prUrl?: string | null;
+  environment: 'production' | 'staging';
+  createdBy?: (number | null) | User;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
@@ -1977,6 +2079,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'agent-execution-log';
         value: number | AgentExecutionLog;
+      } | null)
+    | ({
+        relationTo: 'annotations';
+        value: number | Annotation;
       } | null);
   globalSlug?: string | null;
   user:
@@ -2110,6 +2216,19 @@ export interface CustomersSelect<T extends boolean = true> {
   inviteToken?: T;
   inviteExpiresAt?: T;
   inviteAcceptedAt?: T;
+  firstSeenAt?: T;
+  ymClientId?: T;
+  dsarLog?:
+    | T
+    | {
+        requestedAt?: T;
+        type?: T;
+        status?: T;
+        completedAt?: T;
+        completedBy?: T;
+        notes?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -2403,6 +2522,38 @@ export interface OrdersSelect<T extends boolean = true> {
         skipReason?: T;
         id?: T;
       };
+  attributionFirstTouch?:
+    | T
+    | {
+        utmSource?: T;
+        utmMedium?: T;
+        utmCampaign?: T;
+        utmContent?: T;
+        utmTerm?: T;
+        yclid?: T;
+        gclid?: T;
+        openstat?: T;
+        from?: T;
+        refererHost?: T;
+        acquisitionChannel?: T;
+        acquisitionQuery?: T;
+        capturedAt?: T;
+      };
+  ymClientId?: T;
+  firstSeenAt?: T;
+  timeToPurchaseDays?: T;
+  visitCountToPurchase?: T;
+  userTypeAtConversion?: T;
+  serverHitStatus?:
+    | T
+    | {
+        purchaseHitSentAt?: T;
+        purchaseHitStatus?: T;
+        purchaseHitError?: T;
+        offlineConversionSentAt?: T;
+        offlineConversionStatus?: T;
+        offlineConversionError?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -2467,6 +2618,27 @@ export interface CartsSelect<T extends boolean = true> {
       };
   userAgent?: T;
   ipHash?: T;
+  attributionFirstTouch?:
+    | T
+    | {
+        utmSource?: T;
+        utmMedium?: T;
+        utmCampaign?: T;
+        utmContent?: T;
+        utmTerm?: T;
+        yclid?: T;
+        gclid?: T;
+        openstat?: T;
+        from?: T;
+        refererHost?: T;
+        acquisitionChannel?: T;
+        acquisitionQuery?: T;
+        capturedAt?: T;
+      };
+  ymClientId?: T;
+  gaClientId?: T;
+  firstSeenAt?: T;
+  userTypeAtCreation?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -3125,6 +3297,22 @@ export interface AgentExecutionLogSelect<T extends boolean = true> {
   manualAdminUserId?: T;
   evaluatorName?: T;
   userAgent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "annotations_select".
+ */
+export interface AnnotationsSelect<T extends boolean = true> {
+  type?: T;
+  occurredAt?: T;
+  title?: T;
+  description?: T;
+  gitRef?: T;
+  prUrl?: T;
+  environment?: T;
+  createdBy?: T;
   updatedAt?: T;
   createdAt?: T;
 }

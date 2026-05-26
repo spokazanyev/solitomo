@@ -1,6 +1,33 @@
 # Спецификация Аналитики И Измерений
 
-Дата: 2026-05-13.
+Дата: 2026-05-13. **Обновлено: 2026-05-26 после реализации спеки 058 v1.**
+
+> **СТАТУС (2026-05-26)**: текущая канонической спекой является
+> `specs/058-behavior-and-ad-analytics/spec.md` (v3, Level C-Full + Agent-Driven
+> Model). Этот документ оставлен как high-level summary; детали — в 058.
+>
+> **Реализованная разметка v1**:
+> - 14 целей создано на counter 109422539 (pdumarket.ru) через
+>   `pnpm metrika:apply-config` (agent-driven). См. `06-reports/analytics/goal-mapping.md`.
+> - События frontend: view_item / view_item_list / select_item / add_to_cart /
+>   view_cart / remove_from_cart / begin_checkout / checkout_step_* /
+>   payment_intent / payment_failed / payment_retry / purchase + ecommerce
+>   dual-push.
+> - Контент-сигналы: phone_click / email_click (через TrackedPhone/TrackedEmail) /
+>   category_view / outbound_click.
+> - B2B-сигналы: price_view / price_request_click / stock_status_view /
+>   inn_validation_success/failed.
+> - Воронка checkout: 5 step-events + cta_pay_clicked.
+> - Server-side hit purchase (FR-040) для adblock-resilience.
+> - Offline-conversion в Я.Директ (FR-033/034) для post-факт оптимизации.
+> - PII-фильтр (FR-062) на всех events; Webvisor data-mask на PII-полях.
+> - Consent banner events (shown/accepted/declined).
+> - Cookie attribution: UTM/yclid/gclid + first_seen + legal_entity_flag.
+> - Middleware-уровень классификация реферера (acquisition_channel).
+> - Agent-driven config-as-code: `apps/web/config/metrika.config.ts` +
+>   `pnpm metrika:apply-config` + `pnpm metrika:validate-config` CI-gate.
+>
+> **Operator guide**: `06-reports/analytics/operator-guide.md`
 
 ## Цель
 

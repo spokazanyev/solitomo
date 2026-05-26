@@ -10,6 +10,7 @@ import { buildConfig } from "payload";
 import { AdminChangeLog } from "./collections/AdminChangeLog.js";
 import { AgentExecutionLog } from "./collections/AgentExecutionLog";
 import { AgentProposals } from "./collections/AgentProposals";
+import { Annotations } from "./collections/Annotations";
 import { AttributeGroups, AttributeOptions, Attributes } from "./collections/Attributes.js";
 import { Categories, Documents, MediaAssets, Products } from "./collections/Catalog.js";
 import { Carts } from "./collections/Carts";
@@ -65,6 +66,10 @@ export default buildConfig({
       key: "seed:static-pages",
       scriptPath: path.resolve(dirname, "../scripts/seed-static-pages.mjs"),
     },
+    {
+      key: "seed:analytics-settings",
+      scriptPath: path.resolve(dirname, "../scripts/seed-analytics-settings.mjs"),
+    },
   ],
   collections: [
     Users,
@@ -94,6 +99,7 @@ export default buildConfig({
     PaymentEvents,
     AgentProposals,
     AgentExecutionLog,
+    Annotations,
   ],
   globals: [AnalyticsSettings, ApiShipSettings, CrmSettings, NotificationsSettings, PaymentSettings],
   onInit: async () => {
