@@ -45,8 +45,8 @@ const CERTIFICATES = [
   },
 ];
 
-async function run() {
-  const payload = await getPayload({ config: (await import("../src/payload.config.js")).default });
+export async function script(config) {
+  const payload = await getPayload({ config });
   payload.logger.info("Seeding soliton certificates");
 
   // Все опубликованные товары — сертификаты охватывают всю линейку S-*.
@@ -92,11 +92,4 @@ async function run() {
   }
 
   payload.logger.info("Seed complete");
-  process.exit(0);
 }
-
-run().catch((err) => {
-  // eslint-disable-next-line no-console
-  console.error("Seed failed:", err);
-  process.exit(1);
-});
