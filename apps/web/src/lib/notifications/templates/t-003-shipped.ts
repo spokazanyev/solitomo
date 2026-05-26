@@ -1,5 +1,5 @@
 import type { NotificationJobPayload, RenderedMessage } from "../types";
-import { customerName, escapeHtml, orderPageUrl, renderHtmlShell, styles } from "./helpers";
+import { customerName, escapeHtml, orderPageUrl, preferencesPageUrl, renderHtmlShell, styles } from "./helpers";
 
 export function renderT003Shipped(payload: NotificationJobPayload): RenderedMessage {
   const order = payload.order;
@@ -10,6 +10,7 @@ export function renderT003Shipped(payload: NotificationJobPayload): RenderedMess
   const trackingUrl = typeof shipment.trackingUrl === "string" ? shipment.trackingUrl : "";
   const providerName = typeof delivery.providerName === "string" ? delivery.providerName : "перевозчику";
   const url = orderPageUrl(order);
+  const unsubscribe = preferencesPageUrl(order);
   const subject = trackingNumber
     ? `Заказ ${order.id} отправлен. Трек: ${trackingNumber}`
     : `Заказ ${order.id} отправлен`;
@@ -47,6 +48,10 @@ export function renderT003Shipped(payload: NotificationJobPayload): RenderedMess
   return {
     subject,
     text,
-    html: renderHtmlShell(bodyHtml, { preheader: trackingNumber ? `Трек: ${trackingNumber}` : "В пути" }),
+    html: renderHtmlShell(bodyHtml, {
+      preheader: trackingNumber ? `Трек: ${trackingNumber}` : "В пути",
+      unsubscribeUrl: unsubscribe || undefined,
+    }),
+    listUnsubscribeUrl: unsubscribe || undefined,
   };
 }

@@ -54,7 +54,7 @@ export function createUnisenderGoSender(apiKey: string, baseUrl: string): EmailS
   return {
     channel: "email",
     providerName: "unisender_go",
-    async sendEmail({ to, from, replyTo, subject, text, html }): Promise<SendResult> {
+    async sendEmail({ to, from, replyTo, subject, text, html, listUnsubscribeUrl }): Promise<SendResult> {
       const sender = parseFrom(from);
       const message: Record<string, unknown> = {
         recipients: [{ email: to }],
@@ -66,6 +66,8 @@ export function createUnisenderGoSender(apiKey: string, baseUrl: string): EmailS
         from_email: sender.email,
         ...(sender.name ? { from_name: sender.name } : {}),
         ...(replyTo ? { reply_to: replyTo } : {}),
+        // list_unsubscribe подавляет авто-footer Unisender и ставит List-Unsubscribe header.
+        ...(listUnsubscribeUrl ? { list_unsubscribe: listUnsubscribeUrl } : {}),
         track_links: 0,
         track_read: 0,
       };

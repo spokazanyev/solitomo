@@ -87,7 +87,7 @@ interface HtmlOptions {
 export function renderHtmlShell(bodyHtml: string, opts: HtmlOptions = {}): string {
   const preheader = opts.preheader ? escapeHtml(opts.preheader) : "";
   const unsubscribe = opts.unsubscribeUrl
-    ? `<p style="${BASE_STYLES.muted}">Если вы не хотите получать маркетинговые письма, <a href="${escapeHtml(opts.unsubscribeUrl)}">отпишитесь здесь</a>.</p>`
+    ? `<p style="${BASE_STYLES.muted}"><a href="${escapeHtml(opts.unsubscribeUrl)}" style="color:#6b6b5e;">Управление уведомлениями</a></p>`
     : "";
   return [
     `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>`,
