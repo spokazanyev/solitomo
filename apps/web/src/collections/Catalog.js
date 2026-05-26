@@ -219,7 +219,15 @@ export const Products = {
     singular: adminLabel("Товар", "Product"),
   },
   admin: withDiscardChangesControl({
-    defaultColumns: ["sku", "title", "status", "primaryCategory", "updatedAt"],
+    // 060: physicalPackaging — индикатор ✓/⚠ заполненности физпараметров.
+    defaultColumns: [
+      "sku",
+      "title",
+      "status",
+      "physicalPackaging",
+      "primaryCategory",
+      "updatedAt",
+    ],
     group: adminGroups.catalog,
     useAsTitle: "title",
   }),
@@ -293,6 +301,59 @@ export const Products = {
         { label: adminLabel("В наличии", "In stock"), value: "in_stock" },
         { label: adminLabel("Под заказ", "Preorder"), value: "preorder" },
         { label: adminLabel("Недоступен", "Unavailable"), value: "unavailable" },
+      ],
+    },
+    // 060: Физические параметры упаковки — используются при расчёте стоимости
+    // доставки и при создании реальной отправки у перевозчика. Все 4 поля
+    // опциональные: если хотя бы одно пустое, для этого товара используются
+    // дефолтные значения из apiship-settings.defaults.
+    {
+      name: "physicalPackaging",
+      type: "group",
+      label: adminLabel("Физические параметры упаковки", "Physical packaging"),
+      admin: {
+        description: adminLabel(
+          "Заполните для точного расчёта стоимости доставки. Если пусто — используются дефолтные значения из настроек ApiShip.",
+          "Fill for accurate shipping cost calculation. Empty = uses ApiShip defaults.",
+        ),
+        components: {
+          // 060: emoji-индикатор заполненности (✓/⚠) в admin list-view коллекции products
+          Cell: "@/admin/cells/PhysicalPackagingStatus",
+        },
+      },
+      fields: [
+        {
+          name: "weightGrams",
+          type: "number",
+          label: adminLabel("Масса, г", "Weight, g"),
+          min: 1,
+          max: 200000,
+          admin: { step: 1, placeholder: "например, 8000" },
+        },
+        {
+          name: "lengthMm",
+          type: "number",
+          label: adminLabel("Длина, мм", "Length, mm"),
+          min: 1,
+          max: 2000,
+          admin: { step: 1, placeholder: "например, 1500" },
+        },
+        {
+          name: "widthMm",
+          type: "number",
+          label: adminLabel("Ширина, мм", "Width, mm"),
+          min: 1,
+          max: 2000,
+          admin: { step: 1, placeholder: "например, 100" },
+        },
+        {
+          name: "heightMm",
+          type: "number",
+          label: adminLabel("Высота, мм", "Height, mm"),
+          min: 1,
+          max: 2000,
+          admin: { step: 1, placeholder: "например, 100" },
+        },
       ],
     },
     {

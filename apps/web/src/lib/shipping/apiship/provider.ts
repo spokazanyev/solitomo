@@ -43,10 +43,10 @@ function calcInputFingerprint(input: CalculationInput): string {
     i: input.items.map((it) => ({
       p: it.price,
       q: it.quantity,
-      w: it.weight ?? null,
-      l: it.length ?? null,
-      wd: it.width ?? null,
-      h: it.height ?? null,
+      w: it.weightGrams ?? null,
+      l: it.lengthMm ?? null,
+      wd: it.widthMm ?? null,
+      h: it.heightMm ?? null,
     })),
   });
   return createHash("sha256").update(payload).digest("hex").slice(0, 16);
@@ -219,7 +219,11 @@ export class ApiShipProvider implements ShippingProvider {
   }
 
   async createShipment(order: OrderForShipment): Promise<ShipmentInfo> {
-    const req = toOrderRequest(order, this.settings);
+    // 060: симметрично с /api/shipping/calculate — обогащаем order.items
+    // физическими параметрами из products каталога, чтобы waybill использовал
+    // те же значения, что и расчёт цены, показанной клиенту (FR-008).
+    const enrichedOrder = await enrichOrderWithPhysical(order);
+    const req = toOrderRequest(enrichedOrder, this.settings);
     let providerOrderId: number;
     try {
       const { data } = await this.apis.orders.addOrder({ orderRequest: req });
@@ -363,5 +367,73 @@ function annotateBadges(rates: ShippingRate[]): void {
       cheapest.badges = [...(cheapest.badges ?? []), "cheapest"];
       fastest.badges  = [...(fastest.badges  ?? []), "fastest"];
     }
+  }
+}
+
+/**
+ * 060: подмешать physical-параметры товаров из products каталога в order.items
+ * перед формированием waybill. Симметрично с enrichItemsWithPhysical в
+ * /api/shipping/calculate route — обеспечивает consistency расчёта показанной
+ * клиенту цены и реальной отправки (FR-008).
+ *
+ * Если товар удалён между оплатой и созданием waybill, lookup вернёт пустоту →
+ * fallback на defaults в mapper'е. Логируем для диагностики, но не блокируем.
+ */
+async function enrichOrderWithPhysical(order: OrderForShipment): Promise<OrderForShipment> {
+  const skus = order.items.map((i) => i.sku).filter(Boolean);
+  if (skus.length === 0) return order;
+
+  try {
+    const { getPayload } = await import("payload");
+    const configPromise = (await import("@payload-config")).default;
+    const payload = await getPayload({ config: configPromise });
+    const products = await payload.find({
+      collection: "products",
+      where: { sku: { in: skus } },
+      depth: 0,
+      limit: 100,
+      pagination: false,
+    });
+
+    type PhysGroup = {
+      weightGrams?: number | null;
+      lengthMm?: number | null;
+      widthMm?: number | null;
+      heightMm?: number | null;
+    } | null;
+    const bySku = new Map<string, PhysGroup>();
+    for (const p of products.docs) {
+      const phys = (p as { physicalPackaging?: PhysGroup }).physicalPackaging ?? null;
+      const key = (p as { sku?: string }).sku;
+      if (typeof key === "string") bySku.set(key, phys);
+    }
+
+    const missing: string[] = [];
+    const enrichedItems = order.items.map((item) => {
+      const phys = bySku.get(item.sku);
+      if (!phys) {
+        if (!bySku.has(item.sku)) missing.push(item.sku);
+        return item;
+      }
+      return {
+        ...item,
+        weightGrams: item.weightGrams ?? (typeof phys.weightGrams === "number" ? phys.weightGrams : undefined),
+        lengthMm: item.lengthMm ?? (typeof phys.lengthMm === "number" ? phys.lengthMm : undefined),
+        widthMm: item.widthMm ?? (typeof phys.widthMm === "number" ? phys.widthMm : undefined),
+        heightMm: item.heightMm ?? (typeof phys.heightMm === "number" ? phys.heightMm : undefined),
+      };
+    });
+
+    if (missing.length > 0) {
+      await logRequest("createShipment.lookup-miss", {
+        orderId: order.id,
+        output: { missingSkus: missing },
+      });
+    }
+
+    return { ...order, items: enrichedItems };
+  } catch (err) {
+    await logError("createShipment.enrich", err);
+    return order; // fallback — продолжаем с тем что было, mapper использует defaults
   }
 }

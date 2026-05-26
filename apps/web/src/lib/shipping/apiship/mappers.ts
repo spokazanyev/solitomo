@@ -42,7 +42,7 @@ export function toCalculatorRequest(
   type: DeliveryTypeCode,
   settings: ApiShipSettings,
 ): CalculatorRequest {
-  const { deliveryType, pickupType } = DELIVERY_TYPE_MAP[type];
+  const { deliveryType } = DELIVERY_TYPE_MAP[type];
 
   // ApiShip calculator требует структурированный адрес отправителя (city или postIndex),
   // а не сырую строку — иначе возвращает 400. Парсим из addressString.
@@ -53,6 +53,14 @@ export function toCalculatorRequest(
     ...(extractCity(senderAddr) ? { city: extractCity(senderAddr) } : {}),
   };
 
+  // 060: формируем массив places через flatMap c экспансией по quantity.
+  // Каждая единица товара = отдельное место (FR-007). Физические параметры
+  // берутся per-axis из item (если заполнены в каталоге), иначе fallback на
+  // settings.defaults. Размеры конвертируются из мм (хранение) в см (ApiShip).
+  const places = input.items.flatMap((item) =>
+    Array.from({ length: item.quantity }, () => buildCalculatorPlace(item, settings)),
+  );
+
   return {
     from: fromPlace,
     to: {
@@ -61,19 +69,37 @@ export function toCalculatorRequest(
       postIndex: input.address.postalCode,
       address: input.address.addressString,
     },
-    places: input.items.map((item) => ({
-      cost: item.price * item.quantity,
-      weight: item.weight ?? settings.defaults.weight,
-      length: item.length ?? settings.defaults.length,
-      width: item.width ?? settings.defaults.width,
-      height: item.height ?? settings.defaults.height,
-    })),
+    places,
     // senderPickupType из настроек admin-панели:
     //   "courier"  → СДЭК приезжает к отправителю (pickupType=1, тарифы «дверь→»)
     //   "dropoff"  → отправитель сам везёт в офис СДЭК (pickupType=2, тарифы «склад→»)
     pickupTypes: [settings.senderPickupType === "courier" ? 1 : 2],
     deliveryTypes: [deliveryType],
     includeFees: 1,
+  };
+}
+
+/**
+ * 060: построить одно «место» для запроса в ApiShip /calculator.
+ *
+ * - cost = item.price (per-place, не price*quantity — quantity отражается
+ *   через количество вызовов).
+ * - weight в граммах: item.weightGrams ?? settings.defaults.weight.
+ * - length/width/height: item.{length,width,height}Mm / 10 → см, clamp ≥1 см.
+ *   Если поле не задано — берётся defaults.* (которые уже хранятся в см).
+ */
+function buildCalculatorPlace(
+  item: CalculationInput["items"][number],
+  settings: ApiShipSettings,
+) {
+  const toCm = (mm: number | undefined, fallbackCm: number): number =>
+    mm != null ? Math.max(1, Math.round(mm / 10)) : fallbackCm;
+  return {
+    cost: item.price,
+    weight: item.weightGrams ?? settings.defaults.weight,
+    length: toCm(item.lengthMm, settings.defaults.length),
+    width: toCm(item.widthMm, settings.defaults.width),
+    height: toCm(item.heightMm, settings.defaults.height),
   };
 }
 
@@ -152,25 +178,39 @@ export function toOrderRequest(
   settings: ApiShipSettings,
 ): OrderRequest {
   const totalCost = order.totals.total;
-  const weight = order.items.reduce(
-    (sum, item) => sum + (item.weight ?? settings.defaults.weight) * item.quantity,
-    0,
-  );
-  const places: OrderRequest["places"] = order.items.map((item) => ({
-    description: item.name ?? item.sku,
-    height: item.height ?? settings.defaults.height,
-    length: item.length ?? settings.defaults.length,
-    width: item.width ?? settings.defaults.width,
-    weight: item.weight ?? settings.defaults.weight,
-    items: [
-      {
-        description: item.name ?? item.sku,
-        quantity: item.quantity,
-        cost: item.price,
-        weight: item.weight ?? settings.defaults.weight,
-      },
-    ],
-  }));
+
+  // 060: формируем places через flatMap — каждая единица товара = отдельное
+  // место (FR-007). Симметрично с toCalculatorRequest, чтобы расчёт показанной
+  // клиенту цены и реальная отправка использовали одни и те же физпараметры
+  // (FR-008). Конверсия мм → см для размеров.
+  const toCm = (mm: number | undefined, fallbackCm: number): number =>
+    mm != null ? Math.max(1, Math.round(mm / 10)) : fallbackCm;
+
+  const places: OrderRequest["places"] = order.items.flatMap((item) => {
+    const weight = item.weightGrams ?? settings.defaults.weight;
+    const length = toCm(item.lengthMm, settings.defaults.length);
+    const width = toCm(item.widthMm, settings.defaults.width);
+    const height = toCm(item.heightMm, settings.defaults.height);
+    const description = item.name ?? item.sku;
+    return Array.from({ length: item.quantity }, () => ({
+      description,
+      height,
+      length,
+      width,
+      weight,
+      items: [
+        {
+          description,
+          quantity: 1, // каждое место содержит одну единицу
+          cost: item.price,
+          weight,
+        },
+      ],
+    }));
+  });
+
+  // Total order.weight — сумма веса всех мест.
+  const weight = places.reduce((sum, p) => sum + (p.weight ?? 0), 0);
 
   const receiverAddress =
     order.delivery.address?.addressString ??
