@@ -1,5 +1,6 @@
 import { randomBytes } from "node:crypto";
 
+import { consentField } from "../lib/consent/consent-field";
 import { withDiscardChangesControl } from "./admin-components.js";
 import { adminGroups, adminLabel, commonLabels } from "./admin-i18n.js";
 // 051: Order numbering + immutability hooks (lazy-imported to avoid startup cost)
@@ -526,6 +527,8 @@ export const Orders = {
         ),
       },
     },
+    // 057: Embedded consent record (152-ФЗ Art. 9)
+    consentField(),
     // 051: Human-readable order number
     {
       name: "clientNumber",

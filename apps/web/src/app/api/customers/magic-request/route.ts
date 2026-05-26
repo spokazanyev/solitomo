@@ -18,6 +18,12 @@ import {
   customerRateLimit,
   getCustomerClientIp,
 } from "@/lib/customers/api-utils";
+// 057 US4: PDPA + offer consent validation + recording
+import type { ConsentRecord } from "@/lib/consent/consent-types";
+import {
+  ConsentPolicyMissingError,
+  makeConsentRecord,
+} from "@/lib/consent/make-consent-record";
 import {
   findByEmail,
   getOrCreateEmailOnlyCustomer,
@@ -30,6 +36,8 @@ export const dynamic = "force-dynamic";
 
 interface Body {
   email: string;
+  // 057 US4: explicit PDPA + offer consent (true required)
+  consent?: boolean;
 }
 
 const GENERIC_RESPONSE = { ok: true, message: "If the email is valid, we sent a magic-link." };
@@ -45,6 +53,30 @@ export async function POST(req: NextRequest) {
     body = (await req.json()) as Body;
   } catch {
     return NextResponse.json(GENERIC_RESPONSE, { status: 200 });
+  }
+
+  // 057 US4: PDPA + offer consent gate (FR-5712). Returns 400 explicitly —
+  // anti-enum applies only to email existence; missing consent is a client error.
+  if (body.consent !== true) {
+    return NextResponse.json(
+      { error: "CONSENT_REQUIRED", message: "Consent to PDPA and offer is required" },
+      { status: 400 },
+    );
+  }
+  let consentRecord: ConsentRecord;
+  try {
+    consentRecord = await makeConsentRecord(req);
+  } catch (e) {
+    if (e instanceof ConsentPolicyMissingError) {
+      return NextResponse.json(
+        {
+          error: "POLICY_NOT_READY",
+          message: "Policy documents are not yet published. Contact support.",
+        },
+        { status: 503 },
+      );
+    }
+    throw e;
   }
 
   const email = body.email ? normalizeEmail(body.email) : "";
@@ -66,8 +98,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(GENERIC_RESPONSE, { status: 200 });
     }
 
-    // Create-or-get email-only customer
-    const customer = existing ?? (await getOrCreateEmailOnlyCustomer(payload, email));
+    // Create-or-get email-only customer.
+    // 057 US4: when a NEW customer row is created, persist the consent record.
+    // For existing customers we keep the original consent untouched.
+    const customer =
+      existing ?? (await getOrCreateEmailOnlyCustomer(payload, email, consentRecord));
 
     // Issue magic-link token
     const { token } = await issueMagicLink(payload, customer.id, ip);

@@ -12,6 +12,7 @@ import type { Payload } from "payload";
 import type { CartItem } from "./merge";
 import { canTransition, type CartStatus, type TransitionContext } from "./state-machine";
 import { computeTotals, type CartTotals } from "./totals";
+import type { ConsentRecord } from "../consent/consent-types";
 
 import { isValidTokenFormat } from "./token";
 
@@ -61,6 +62,8 @@ export interface CreateCartInput {
   /** Pre-set status (e.g. "converted" for synthetic carts) */
   status?: CartStatus;
   convertedToOrderId?: string;
+  /** 057 US4: embedded PDPA + offer consent record (152-ФЗ Art. 9). Optional — synthetic carts created internally may omit. */
+  consent?: ConsentRecord;
 }
 
 export const CART_EXPIRY_DAYS = Number(process.env.CART_EXPIRY_DAYS ?? 30);
@@ -174,6 +177,8 @@ export async function createCart(payload: Payload, input: CreateCartInput): Prom
       utm: input.utm,
       ipHash: input.ipHash,
       userAgent: input.userAgent?.slice(0, 200),
+      // 057 US4: pass through embedded consent record when provided.
+      ...(input.consent ? { consent: input.consent } : {}),
     } as never,
   })) as unknown as Record<string, unknown>;
 
@@ -238,13 +243,22 @@ export async function updateCart(
     data.items = input.items;
     data.totals = computeTotals(input.items);
   }
+  // Coerce string-ID relationship values to numbers — Payload v3 + PG adapter
+  // mishandles string IDs for serial-id relationships in its validator (issue
+  // surfaced as "invalid relationships: N 0" errors).
+  const toRelId = (v: string | number | null | undefined): number | null | undefined => {
+    if (v === undefined) return undefined;
+    if (v === null) return null;
+    const n = Number(v);
+    return Number.isFinite(n) ? n : undefined;
+  };
   if (input.customerEmail !== undefined) data.customerEmail = input.customerEmail;
-  if (input.customerId !== undefined) data.customerId = input.customerId;
-  if (input.companyId !== undefined) data.companyId = input.companyId;
+  if (input.customerId !== undefined) data.customerId = toRelId(input.customerId);
+  if (input.companyId !== undefined) data.companyId = toRelId(input.companyId);
   if (input.marketingOptIn !== undefined) data.marketingOptIn = input.marketingOptIn;
   if (input.status !== undefined) data.status = input.status;
-  if (input.convertedToOrderId !== undefined) data.convertedToOrderId = input.convertedToOrderId;
-  if (input.mergedIntoId !== undefined) data.mergedIntoId = input.mergedIntoId;
+  if (input.convertedToOrderId !== undefined) data.convertedToOrderId = toRelId(input.convertedToOrderId);
+  if (input.mergedIntoId !== undefined) data.mergedIntoId = toRelId(input.mergedIntoId);
   if (input.abandonedAt !== undefined) data.abandonedAt = input.abandonedAt;
   if (input.convertedAt !== undefined) data.convertedAt = input.convertedAt;
 

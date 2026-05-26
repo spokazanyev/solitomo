@@ -5,6 +5,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import { DadataSuggestInput } from "@/components/checkout/DadataSuggestInput";
+import { PhoneInput } from "@/components/checkout/PhoneInput";
+import { ConsentCheckbox } from "@/components/consent/ConsentCheckbox";
 import { clearCartItems, getCartTotal, useRfqCartItems } from "@/components/rfq/RfqCart";
 import { pushEvent } from "@/lib/analytics/data-layer";
 
@@ -43,6 +46,20 @@ export function InvoiceCheckoutForm() {
 
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [consent, setConsent] = useState(false);
+
+  // 057 follow-up: the submit button must reflect actual readiness, not just
+  // the consent checkbox. Required fields per the markup (`required` attr):
+  // companyName, inn (10-12 digits), fullName, email.
+  // Phone is optional on the invoice form; only validate when present.
+  const phoneOk = phone.trim().length === 0 || /^[+0-9\s()-]{6,}$/.test(phone);
+  const isLegalReady =
+    companyName.trim().length > 0 &&
+    /^[0-9]{10,12}$/.test(inn.trim()) &&
+    fullName.trim().length > 0 &&
+    /.+@.+\..+/.test(email.trim()) &&
+    phoneOk &&
+    consent;
 
   useEffect(() => {
     if (items.length === 0) return;
@@ -99,6 +116,10 @@ export function InvoiceCheckoutForm() {
             city: deliveryCity,
           },
           sourcePage: typeof window !== "undefined" ? window.location.pathname : undefined,
+          // 057 FR-5735: send the actual checkbox state (not a literal true)
+          // so the server-side 152-ФЗ gate can reject the request when the
+          // box was never ticked.
+          consent,
         }),
       });
 
@@ -195,35 +216,24 @@ export function InvoiceCheckoutForm() {
         <div className="rounded-lg border border-slate-200 bg-white p-6">
           <p className="text-sm font-semibold text-slate-950">Контактное лицо</p>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
-            <label className="grid gap-1 text-xs font-medium text-slate-600">
-              ФИО *
-              <input
-                className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 focus:border-sky-600 focus:outline-none"
-                onChange={(event) => setFullName(event.target.value)}
-                required
-                type="text"
-                value={fullName}
-              />
-            </label>
-            <label className="grid gap-1 text-xs font-medium text-slate-600">
-              Email *
-              <input
-                className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 focus:border-sky-600 focus:outline-none"
-                onChange={(event) => setEmail(event.target.value)}
-                required
-                type="email"
-                value={email}
-              />
-            </label>
-            <label className="grid gap-1 text-xs font-medium text-slate-600">
-              Телефон
-              <input
-                className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 focus:border-sky-600 focus:outline-none"
-                onChange={(event) => setPhone(event.target.value)}
-                type="tel"
-                value={phone}
-              />
-            </label>
+            <DadataSuggestInput
+              kind="fio"
+              label="ФИО"
+              required
+              autoComplete="name"
+              value={fullName}
+              onChange={(next) => setFullName(next)}
+            />
+            <DadataSuggestInput
+              kind="email"
+              label="Email"
+              type="email"
+              required
+              autoComplete="email"
+              value={email}
+              onChange={(next) => setEmail(next)}
+            />
+            <PhoneInput label="Телефон" value={phone} onChange={setPhone} />
           </div>
         </div>
 
@@ -273,12 +283,21 @@ export function InvoiceCheckoutForm() {
           {items.map((item) => {
             const qty = Number.parseInt(item.quantity, 10) || 1;
             return (
-              <li className="flex justify-between gap-3" key={item.sku || item.name}>
+              // grid + min-w-0 — see PhysicalCheckoutForm comment for the
+              // flex-truncate pitfall. Same fix applied here.
+              <li
+                className="grid grid-cols-[1fr_auto] items-baseline gap-3"
+                key={item.sku || item.name}
+              >
                 <span className="min-w-0">
-                  <span className="block truncate text-slate-950">{item.name}</span>
-                  <span className="text-xs text-slate-500">{item.sku} · {qty} шт</span>
+                  <span className="block truncate text-slate-950" title={item.name}>
+                    {item.name}
+                  </span>
+                  <span className="text-xs text-slate-500">
+                    {item.sku} · {qty} шт
+                  </span>
                 </span>
-                <span className="font-semibold text-slate-950">
+                <span className="whitespace-nowrap font-semibold text-slate-950">
                   {typeof item.price === "number" ? formatPrice(item.price * qty) : "По запросу"}
                 </span>
               </li>
@@ -300,9 +319,10 @@ export function InvoiceCheckoutForm() {
         {error ? (
           <p className="mt-3 rounded-md bg-rose-50 px-3 py-2 text-xs leading-5 text-rose-900">{error}</p>
         ) : null}
+        <ConsentCheckbox className="mt-4" onChange={setConsent} value={consent} />
         <button
           className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-sky-700 px-4 py-3 text-sm font-semibold text-white hover:bg-sky-800 disabled:opacity-60"
-          disabled={submitting}
+          disabled={submitting || !isLegalReady}
           type="submit"
         >
           {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Receipt className="h-4 w-4" />}

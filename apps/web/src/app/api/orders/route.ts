@@ -10,6 +10,12 @@ import {
   markConverted,
 } from "@/lib/cart/repository";
 import { generateCartToken } from "@/lib/cart/token";
+// 057 US4: PDPA + offer consent validation + recording
+import type { ConsentRecord } from "@/lib/consent/consent-types";
+import {
+  ConsentPolicyMissingError,
+  makeConsentRecord,
+} from "@/lib/consent/make-consent-record";
 // 056 FR-5609: customer_session-binding for authenticated checkout
 import { loadCustomerFromRequest } from "@/lib/customers/session";
 
@@ -42,6 +48,8 @@ type IncomingPayload = {
   };
   sourcePage?: string;
   cartToken?: string;
+  // 057 US4: explicit PDPA + offer consent (true required)
+  consent?: boolean;
 };
 
 const VAT_RATE = 0.2;
@@ -81,6 +89,29 @@ export async function POST(request: NextRequest) {
     body = (await request.json()) as IncomingPayload;
   } catch {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
+  }
+
+  // 057 US4: PDPA + offer consent gate (FR-5712). Must precede side-effects.
+  if (body.consent !== true) {
+    return NextResponse.json(
+      { error: "CONSENT_REQUIRED", message: "Consent to PDPA and offer is required" },
+      { status: 400 },
+    );
+  }
+  let consentRecord: ConsentRecord;
+  try {
+    consentRecord = await makeConsentRecord(request);
+  } catch (e) {
+    if (e instanceof ConsentPolicyMissingError) {
+      return NextResponse.json(
+        {
+          error: "POLICY_NOT_READY",
+          message: "Policy documents are not yet published. Contact support.",
+        },
+        { status: 503 },
+      );
+    }
+    throw e;
   }
 
   const type = body.type === "legal" || body.type === "quote" ? body.type : "physical";
@@ -160,6 +191,16 @@ export async function POST(request: NextRequest) {
       // Session lookup failed — proceed as guest (additive enhancement)
     }
 
+    // Payload v3 + @payloadcms/db-postgres validates relationship IDs differently
+    // for string vs number: passing a string for a serial-id relation produced
+    // a spurious extra "0" in the validation list (e.g. "3 0"), failing creation.
+    // Coerce to number so the PG adapter sees the canonical integer ID.
+    // Same coercion applied to customerId below (also a serial-id relationship).
+    const cartIdNum = cartId != null ? Number(cartId) : null;
+    const customerIdNum =
+      resolvedCustomerId != null && Number.isFinite(Number(resolvedCustomerId))
+        ? Number(resolvedCustomerId)
+        : null;
     const order = await payload.create({
       collection: "orders",
       // 054 H6: mark this as a trusted source so the FR-5421 customerId backfill
@@ -191,13 +232,15 @@ export async function POST(request: NextRequest) {
           providerStatus: "none",
         },
         sourcePage: body.sourcePage,
+        // 057 US4: persist PDPA + offer consent record (152-ФЗ Art. 9)
+        consent: consentRecord,
         // cartId is a relationship; runtime accepts the Payload-internal id (string
         // for UUID-id setups, number for serial). Cast to any here to bypass the
         // generated narrow type while keeping the call site readable.
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ...((cartId ? { cartId } : {}) as any),
+        ...((cartIdNum && Number.isFinite(cartIdNum) ? { cartId: cartIdNum } : {}) as any),
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ...((resolvedCustomerId ? { customerId: resolvedCustomerId } : {}) as any),
+        ...((customerIdNum != null ? { customerId: customerIdNum } : {}) as any),
       },
     });
 
@@ -234,7 +277,17 @@ export async function POST(request: NextRequest) {
       { status: 201 },
     );
   } catch (error) {
-    console.error("[orders] create failed:", error);
+    const err = error as { data?: { errors?: unknown[] }; message?: string };
+    if (err?.data?.errors) {
+      // Surface validation details — these point at the field whose value failed
+      try {
+        console.error("[orders] create failed:", err.message, "errors:", JSON.stringify(err.data.errors));
+      } catch {
+        console.error("[orders] create failed:", err.message, "errors (raw):", err.data.errors);
+      }
+    } else {
+      console.error("[orders] create failed:", error);
+    }
     return NextResponse.json({ error: "Failed to create order" }, { status: 500 });
   }
 }

@@ -35,15 +35,49 @@ services:
       NODE_ENV: production
       PORT: "3000"
       HOSTNAME: "0.0.0.0"
+      # 057 P0: salt for sha256(IP) in consent records (152-ФЗ).
+      IP_HASH_SALT: ${IP_HASH_SALT:-}
+      # 057 US6: programmatic GA4 / Yandex Metrika (загружаются ТОЛЬКО после opt-in).
+      NEXT_PUBLIC_GA_MEASUREMENT_ID: ${NEXT_PUBLIC_GA_MEASUREMENT_ID:-}
+      NEXT_PUBLIC_YANDEX_METRIKA_ID: ${NEXT_PUBLIC_YANDEX_METRIKA_ID:-}
+      # 057 follow-up: DaData suggest API (FIO + email autocomplete + address).
+      # Free tier 10 000 req/day on suggest, ample for checkout traffic.
+      # Empty value → form falls back to plain text input (graceful degradation).
+      DADATA_API_KEY: ${DADATA_API_KEY:-}
+      DADATA_SECRET: ${DADATA_SECRET:-}
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
-      # Apex + www + legacy test host обслуживаются одним роутером (canonical = pdumarket.ru).
-      # Traefik v3: для нескольких хостов используется OR-комбинация, не запятая.
-      - "traefik.http.routers.soliton.rule=Host(`pdumarket.ru`) || Host(`www.pdumarket.ru`) || Host(`soliton.${DOMAIN}`)"
+      # Single canonical host: pdumarket.ru. www.pdumarket.ru gets a
+      # dedicated router whose only job is to 301-redirect to apex
+      # (consolidates SEO equity, avoids duplicate-content penalties).
+      # The legacy soliton.heado.tech host was dropped — it never pointed
+      # at this VPS, so Let's Encrypt ACME failed repeatedly and spammed
+      # the Traefik log.
+      # ─── Main router: serves apex (pdumarket.ru), applies secure-headers ───
+      - "traefik.http.routers.soliton.rule=Host(`pdumarket.ru`)"
       - "traefik.http.routers.soliton.entrypoints=websecure"
       - "traefik.http.routers.soliton.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.soliton.middlewares=secure-headers@file"
       - "traefik.http.services.soliton.loadbalancer.server.port=3000"
+      # ─── API router: stricter rate-limit on POST endpoints ───
+      - "traefik.http.routers.soliton-api.rule=Host(`pdumarket.ru`) && PathPrefix(`/api/`)"
+      - "traefik.http.routers.soliton-api.entrypoints=websecure"
+      - "traefik.http.routers.soliton-api.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.soliton-api.middlewares=secure-headers@file,api-rate-limit@file"
+      - "traefik.http.routers.soliton-api.service=soliton"
+      # ─── Admin login: brute-force throttle (5 attempts / minute / IP) ───
+      - "traefik.http.routers.soliton-admin.rule=Host(`pdumarket.ru`) && (PathPrefix(`/admin/login`) || PathPrefix(`/admin/forgot`) || PathPrefix(`/admin/create-first-user`))"
+      - "traefik.http.routers.soliton-admin.entrypoints=websecure"
+      - "traefik.http.routers.soliton-admin.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.soliton-admin.middlewares=secure-headers@file,admin-rate-limit@file"
+      - "traefik.http.routers.soliton-admin.service=soliton"
+      # ─── WWW → apex 301 redirect (canonical host consolidation) ───
+      - "traefik.http.routers.soliton-www.rule=Host(`www.pdumarket.ru`)"
+      - "traefik.http.routers.soliton-www.entrypoints=websecure"
+      - "traefik.http.routers.soliton-www.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.soliton-www.middlewares=www-to-apex@file"
+      - "traefik.http.routers.soliton-www.service=soliton"
     networks:
       - proxy
       - soliton-internal

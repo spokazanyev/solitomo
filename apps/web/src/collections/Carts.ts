@@ -1,5 +1,6 @@
 import type { CollectionConfig } from "payload";
 
+import { consentField } from "../lib/consent/consent-field";
 import { adminGroups, adminLabel } from "./admin-i18n.js";
 
 /**
@@ -94,6 +95,9 @@ export const Carts: CollectionConfig = {
         ),
       },
     },
+
+    // 057: Embedded consent record (152-ФЗ Art. 9)
+    consentField(),
 
     // -------- Consent --------
     {

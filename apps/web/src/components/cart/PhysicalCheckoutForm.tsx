@@ -6,7 +6,11 @@ import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
 import { AddressForm, type AddressFormValue } from "@/components/checkout/AddressForm";
+import { DadataSuggestInput } from "@/components/checkout/DadataSuggestInput";
 import { DeliveryBlock, type SelectedRate } from "@/components/checkout/DeliveryBlock";
+import { PhoneInput } from "@/components/checkout/PhoneInput";
+import { ConsentCheckbox } from "@/components/consent/ConsentCheckbox";
+import { isValidPhoneNumber } from "libphonenumber-js";
 import { clearCartItems, getCartTotal, useRfqCartItems } from "@/components/rfq/RfqCart";
 import { pushEvent } from "@/lib/analytics/data-layer";
 
@@ -30,16 +34,39 @@ export function PhysicalCheckoutForm() {
   const [selectedRate, setSelectedRate] = useState<SelectedRate | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [consent, setConsent] = useState(false);
 
-  const cartId = useMemo(() => {
+  // 057 follow-up: the submit button must reflect actual readiness — not just
+  // the consent checkbox. Previously `disabled={submitting || !consent}` made
+  // the button look clickable as soon as the checkbox was ticked, even with
+  // empty contact fields / no shipping rate. handleSubmit still rejected such
+  // attempts, but the UX was misleading.
+  // Email needs an `@` to be sensible; phone is validated through
+  // libphonenumber-js so partial numbers don't enable the button.
+  const isContactComplete =
+    fullName.trim().length > 0 &&
+    /.+@.+\..+/.test(email.trim()) &&
+    isValidPhoneNumber(phone, "RU");
+  const isReadyToPay =
+    isContactComplete &&
+    address.isValid === true &&
+    selectedRate !== null &&
+    knownCount > 0 &&
+    consent;
+
+  // SSR-safe lazy initialization: read or mint a stable cart id on first client render.
+  // The Date.now/Math.random calls are impure but only run once via useState's initializer
+  // function — they don't recur on rerenders, so the React Compiler purity rule is OK here.
+  const [cartId] = useState<string>(() => {
     if (typeof window === "undefined") return "anon";
     let id = window.localStorage.getItem("soliton-cart-id");
     if (!id) {
+      // eslint-disable-next-line react-hooks/purity
       id = `cart_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
       window.localStorage.setItem("soliton-cart-id", id);
     }
     return id;
-  }, []);
+  });
 
   const itemsForShipping = useMemo(
     () =>
@@ -131,6 +158,12 @@ export function PhysicalCheckoutForm() {
             },
           },
           sourcePage: typeof window !== "undefined" ? window.location.pathname : undefined,
+          // 057 FR-5735: forward the actual checkbox state, not a literal
+          // `true`. The server-side gate must see the same value the user
+          // toggled — otherwise the UI disable is the *only* enforcement
+          // (trivially bypassed via devtools), and 152-ФЗ recording becomes
+          // a sham.
+          consent,
         }),
       });
 
@@ -194,36 +227,24 @@ export function PhysicalCheckoutForm() {
         <div className="rounded-lg border border-slate-200 bg-white p-6">
           <p className="text-sm font-semibold text-slate-950">Контактные данные</p>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
-            <label className="grid gap-1 text-xs font-medium text-slate-600">
-              ФИО *
-              <input
-                className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 focus:border-sky-600 focus:outline-none"
-                onChange={(event) => setFullName(event.target.value)}
-                required
-                type="text"
-                value={fullName}
-              />
-            </label>
-            <label className="grid gap-1 text-xs font-medium text-slate-600">
-              Email *
-              <input
-                className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 focus:border-sky-600 focus:outline-none"
-                onChange={(event) => setEmail(event.target.value)}
-                required
-                type="email"
-                value={email}
-              />
-            </label>
-            <label className="grid gap-1 text-xs font-medium text-slate-600">
-              Телефон *
-              <input
-                className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 focus:border-sky-600 focus:outline-none"
-                onChange={(event) => setPhone(event.target.value)}
-                required
-                type="tel"
-                value={phone}
-              />
-            </label>
+            <DadataSuggestInput
+              kind="fio"
+              label="ФИО"
+              required
+              autoComplete="name"
+              value={fullName}
+              onChange={(next) => setFullName(next)}
+            />
+            <DadataSuggestInput
+              kind="email"
+              label="Email"
+              type="email"
+              required
+              autoComplete="email"
+              value={email}
+              onChange={(next) => setEmail(next)}
+            />
+            <PhoneInput label="Телефон" required value={phone} onChange={setPhone} />
           </div>
         </div>
 
@@ -276,9 +297,19 @@ export function PhysicalCheckoutForm() {
           {items.slice(0, 5).map((item) => {
             const qty = Number.parseInt(item.quantity, 10) || 1;
             return (
-              <li className="flex justify-between gap-3" key={item.sku || item.name}>
-                <span className="min-w-0 truncate">{item.name}</span>
-                <span className="text-xs text-slate-500">× {qty}</span>
+              // grid + min-w-0 is the reliable truncate pattern. With plain
+              // flex, an item with no min-width set refuses to shrink below
+              // its content width, so a long SKU title pushes the qty span
+              // out of the card. `grid-cols-[1fr_auto]` gives the name column
+              // an explicit shrink-friendly width.
+              <li
+                className="grid grid-cols-[1fr_auto] items-baseline gap-3"
+                key={item.sku || item.name}
+              >
+                <span className="min-w-0 truncate" title={item.name}>
+                  {item.name}
+                </span>
+                <span className="whitespace-nowrap text-xs text-slate-500">× {qty}</span>
               </li>
             );
           })}
@@ -289,9 +320,10 @@ export function PhysicalCheckoutForm() {
         {error ? (
           <p className="mt-3 rounded-md bg-rose-50 px-3 py-2 text-xs leading-5 text-rose-900">{error}</p>
         ) : null}
+        <ConsentCheckbox className="mt-4" onChange={setConsent} value={consent} />
         <button
           className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-sky-700 px-4 py-3 text-sm font-semibold text-white hover:bg-sky-800 disabled:opacity-60"
-          disabled={submitting}
+          disabled={submitting || !isReadyToPay}
           type="submit"
         >
           {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <CreditCard className="h-4 w-4" />}

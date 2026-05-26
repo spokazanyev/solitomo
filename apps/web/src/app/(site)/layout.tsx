@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { AnalyticsScripts } from "@/components/analytics/AnalyticsScripts";
+import { CookieConsentBanner } from "@/components/consent/CookieConsentBanner";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { getSiteUrl } from "@/lib/seo/seo-registry";
@@ -61,6 +62,7 @@ export default function RootLayout({
           </main>
           <SiteFooter />
         </div>
+        <CookieConsentBanner />
       </body>
     </html>
   );

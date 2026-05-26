@@ -17,6 +17,12 @@ import { setCartTokenCookie } from "@/lib/cart/cookie";
 import type { CartItem } from "@/lib/cart/merge";
 import { createCart } from "@/lib/cart/repository";
 import { generateCartToken } from "@/lib/cart/token";
+// 057 US4: PDPA + offer consent validation + recording
+import type { ConsentRecord } from "@/lib/consent/consent-types";
+import {
+  ConsentPolicyMissingError,
+  makeConsentRecord,
+} from "@/lib/consent/make-consent-record";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -33,6 +39,8 @@ interface CreateCartBody {
   };
   customerEmail?: string;
   marketingOptIn?: boolean;
+  // 057 US4: explicit PDPA + offer consent (true required)
+  consent?: boolean;
 }
 
 export async function POST(req: NextRequest) {
@@ -51,6 +59,29 @@ export async function POST(req: NextRequest) {
     if (text.trim().length > 0) body = JSON.parse(text);
   } catch {
     return cartError(400, "validation_failed", "Invalid JSON");
+  }
+
+  // 057 US4: PDPA + offer consent gate (FR-5712).
+  if (body.consent !== true) {
+    return NextResponse.json(
+      { error: "CONSENT_REQUIRED", message: "Consent to PDPA and offer is required" },
+      { status: 400 },
+    );
+  }
+  let consentRecord: ConsentRecord;
+  try {
+    consentRecord = await makeConsentRecord(req);
+  } catch (e) {
+    if (e instanceof ConsentPolicyMissingError) {
+      return NextResponse.json(
+        {
+          error: "POLICY_NOT_READY",
+          message: "Policy documents are not yet published. Contact support.",
+        },
+        { status: 503 },
+      );
+    }
+    throw e;
   }
 
   // Validate items (if provided)
@@ -101,6 +132,8 @@ export async function POST(req: NextRequest) {
       marketingOptIn: body.marketingOptIn ?? false,
       ipHash: hashIp(ip),
       userAgent,
+      // 057 US4: persist PDPA + offer consent record (152-ФЗ Art. 9)
+      consent: consentRecord,
     });
 
     await setCartTokenCookie(cartToken);

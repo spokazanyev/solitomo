@@ -21,6 +21,12 @@ import {
   getCustomerClientIp,
   hashIpForCustomer,
 } from "@/lib/customers/api-utils";
+// 057 US4: PDPA + offer consent validation + recording
+import type { ConsentRecord } from "@/lib/consent/consent-types";
+import {
+  ConsentPolicyMissingError,
+  makeConsentRecord,
+} from "@/lib/consent/make-consent-record";
 import { findByEmail, normalizeEmail } from "@/lib/customers/repository";
 
 export const runtime = "nodejs";
@@ -35,6 +41,8 @@ interface Body {
   customerType?: "individual" | "company-contact";
   companyId?: string;
   marketingOptIn?: boolean;
+  // 057 US4: explicit PDPA + offer consent (true required)
+  consent?: boolean;
 }
 
 const GENERIC_RESPONSE = {
@@ -54,6 +62,30 @@ export async function POST(req: NextRequest) {
     body = (await req.json()) as Body;
   } catch {
     return NextResponse.json(GENERIC_RESPONSE, { status: 200 });
+  }
+
+  // 057 US4: PDPA + offer consent gate (FR-5712). Returns 400 explicitly —
+  // anti-enum applies only to email existence; missing consent is a client error.
+  if (body.consent !== true) {
+    return NextResponse.json(
+      { error: "CONSENT_REQUIRED", message: "Consent to PDPA and offer is required" },
+      { status: 400 },
+    );
+  }
+  let consentRecord: ConsentRecord;
+  try {
+    consentRecord = await makeConsentRecord(req);
+  } catch (e) {
+    if (e instanceof ConsentPolicyMissingError) {
+      return NextResponse.json(
+        {
+          error: "POLICY_NOT_READY",
+          message: "Policy documents are not yet published. Contact support.",
+        },
+        { status: 503 },
+      );
+    }
+    throw e;
   }
 
   const email = body.email ? normalizeEmail(body.email) : "";
@@ -101,6 +133,8 @@ export async function POST(req: NextRequest) {
         accountState: hasPassword ? "password-set" : "email-only",
         marketingOptIn: Boolean(body.marketingOptIn),
         gdprConsentAt: new Date().toISOString(),
+        // 057 US4: persist PDPA + offer consent record (152-ФЗ Art. 9)
+        consent: consentRecord,
       } as never,
       overrideAccess: true,
     });
