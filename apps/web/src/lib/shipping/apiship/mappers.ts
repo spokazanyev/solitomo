@@ -8,6 +8,7 @@ import type {
 } from "../types";
 import type {
   CalculatorRequest,
+  CalculatorRequestPlace,
   OrderRequest,
   PointObject,
   TariffObject,
@@ -24,17 +25,36 @@ const DELIVERY_TYPE_MAP: Record<
   pointtopoint: { deliveryType: 2, pickupType: 2 },
 };
 
+/** Извлечь 6-значный почтовый индекс из произвольной строки адреса. */
+function extractPostIndex(address: string): string | undefined {
+  const m = address.match(/\b(\d{6})\b/);
+  return m ? m[1] : undefined;
+}
+
+/** Извлечь название города после «г.» / «г » из строки адреса. */
+function extractCity(address: string): string | undefined {
+  const m = address.match(/г\.?\s+([А-ЯЁа-яё-]+)/u);
+  return m ? m[1] : undefined;
+}
+
 export function toCalculatorRequest(
   input: CalculationInput,
   type: DeliveryTypeCode,
   settings: ApiShipSettings,
 ): CalculatorRequest {
   const { deliveryType, pickupType } = DELIVERY_TYPE_MAP[type];
+
+  // ApiShip calculator требует структурированный адрес отправителя (city или postIndex),
+  // а не сырую строку — иначе возвращает 400. Парсим из addressString.
+  const senderAddr = settings.sender.addressString ?? "";
+  const fromPlace: CalculatorRequestPlace = {
+    countryCode: settings.sender.countryCode || "RU",
+    ...(extractPostIndex(senderAddr) ? { postIndex: extractPostIndex(senderAddr) } : {}),
+    ...(extractCity(senderAddr) ? { city: extractCity(senderAddr) } : {}),
+  };
+
   return {
-    from: {
-      countryCode: settings.sender.countryCode,
-      address: settings.sender.addressString,
-    },
+    from: fromPlace,
     to: {
       countryCode: input.address.countryCode || "RU",
       city: input.address.city,
