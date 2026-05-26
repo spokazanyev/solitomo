@@ -15,6 +15,12 @@ type DocumentsPageProps = {
   }>;
 };
 
+// ISR: страница использует данные из коллекций products/documents (Payload).
+// Контент-менеджер добавляет документы через админку — без revalidate
+// статика заморозилась бы на build-time, и новые сертификаты не появились бы
+// до следующего деплоя. 60s — компромисс между свежестью и нагрузкой.
+export const revalidate = 60;
+
 export function generateStaticParams() {
   return [{ slug: undefined }, ...getStaticParamsForSection("document")];
 }
