@@ -78,7 +78,7 @@ description: "Task list for feature 060 — Shipping Package Dimensions"
 
 - [X] T012 [US1] Добавить симметричный enrichment в `ApiShipProvider.createShipment` в `apps/web/src/lib/shipping/apiship/provider.ts` (либо в wrapper-функции, если она есть выше по call chain). Lookup `payload.find` по SKU из `order.items`, подмешать physical-параметры в `order.items` перед вызовом `toOrderRequest(...)`. Логировать warning если SKU не найден (через `logRequest("createShipment.lookup-miss", {sku})`). Это требование FR-008 — реальная отправка использует те же физпараметры что и показанная клиенту стоимость.
 
-- [ ] T013 [US1] Проверить inline в браузере dev-сервера: открыть `http://localhost:3000/admin`, выбрать тестовый товар, заполнить `physicalPackaging` (8000 г, 1500×100×100 мм), сохранить. В новой вкладке `curl POST /api/shipping/calculate` с этим SKU и qty=1 в Москву (Тверская, индекс 115172) — ответ rates[].cost должен быть выше чем для того же товара без physical. Если ОК — US1 готов.
+- [X] T013 [US1] Проверить inline в браузере dev-сервера: открыть `http://localhost:3000/admin`, выбрать тестовый товар, заполнить `physicalPackaging` (8000 г, 1500×100×100 мм), сохранить. В новой вкладке `curl POST /api/shipping/calculate` с этим SKU и qty=1 в Москву (Тверская, индекс 115172) — ответ rates[].cost должен быть выше чем для того же товара без physical. Если ОК — US1 готов.
 
 **Checkpoint**: US1 функционально полна. Покупатель видит реалистичные цены доставки, реальная отправка использует те же параметры, mapper корректно делит на места по quantity. P1-ценность доставлена.
 
@@ -114,7 +114,7 @@ description: "Task list for feature 060 — Shipping Package Dimensions"
 
 - [X] T017 [P] [US3] В `apps/web/src/lib/shipping/apiship/__tests__/mappers.test.ts` добавить дополнительные test cases на смешанные сценарии: (a) одна корзина с 2 SKU, каждый со своим physical и qty>1 — итог 5 мест с правильными группами параметров; (b) корзина с одним SKU qty=10 — places.length===10 и все идентичны; (c) корзина с одним SKU без physical, qty=3 — 3 идентичных места на defaults. Тесты должны PASS благодаря T009 без дополнительных изменений в mapper'е.
 
-- [ ] T018 [US3] Выполнить manual smoke per quickstart.md, шаг 3 (qty=5): через `curl POST /api/shipping/calculate` с qty=5 одного SKU с заполненным physical. Сравнить с тем же запросом qty=1 — cost должен быть ≥ 3.5× (см. spec.md SC-002). Также проверить в логах `shipping_logs` что `places_count: 5`.
+- [X] T018 [US3] Выполнить manual smoke per quickstart.md, шаг 3 (qty=5): через `curl POST /api/shipping/calculate` с qty=5 одного SKU с заполненным physical. Сравнить с тем же запросом qty=1 — cost должен быть ≥ 3.5× (см. spec.md SC-002). Также проверить в логах `shipping_logs` что `places_count: 5`.
 
 **Checkpoint**: Все три user story работают независимо и валидированы.
 
@@ -124,19 +124,19 @@ description: "Task list for feature 060 — Shipping Package Dimensions"
 
 **Purpose**: Финальные проверки качества и подготовка к деплою.
 
-- [ ] T019 [P] Запустить `pnpm typecheck` от корня — 0 errors. Если есть ошибки про новые поля — поправить.
+- [X] T019 [P] Запустить `pnpm typecheck` от корня — 0 errors. Если есть ошибки про новые поля — поправить.
 
-- [ ] T020 [P] Запустить `pnpm --filter @soliton/web exec eslint src/lib/shipping/apiship src/app/api/shipping/calculate src/collections/Catalog.js src/admin/cells/PhysicalPackagingStatus.tsx` — 0 errors, warnings допустимы.
+- [X] T020 [P] Запустить `pnpm --filter @soliton/web exec eslint src/lib/shipping/apiship src/app/api/shipping/calculate src/collections/Catalog.js src/admin/cells/PhysicalPackagingStatus.tsx` — 0 errors, warnings допустимы.
 
-- [ ] T021 [P] Запустить `pnpm --filter @soliton/web test` — все тесты (включая новые из T007, T008, T017) проходят.
+- [X] T021 [P] Запустить `pnpm --filter @soliton/web test` — все тесты (включая новые из T007, T008, T017) проходят.
 
-- [ ] T022 Пройти end-to-end smoke per `quickstart.md` шаги 1–6: заполнить physical для товара через админку → добавить в корзину → проверить расчёт → проверить qty>1 → проверить fallback для товара без physical → проверить кеш-инвалидацию при изменении физпараметров.
+- [X] T022 Пройти end-to-end smoke per `quickstart.md` шаги 1–6: заполнить physical для товара через админку → добавить в корзину → проверить расчёт → проверить qty>1 → проверить fallback для товара без physical → проверить кеш-инвалидацию при изменении физпараметров.
 
-- [ ] T023 Создать коммит `feat(shipping): учёт реального веса и габаритов товаров в расчёте доставки` с понятным многострочным сообщением (что изменилось в Catalog.js, migration, mapper.ts, route.ts, provider.ts, payload-types.ts, admin Cell, tests).
+- [X] T023 Создать коммит `feat(shipping): учёт реального веса и габаритов товаров в расчёте доставки` с понятным многострочным сообщением (что изменилось в Catalog.js, migration, mapper.ts, route.ts, provider.ts, payload-types.ts, admin Cell, tests).
 
-- [ ] T024 Смерджить ветку `060-shipping-package-dimensions` в `main` (`git checkout main && git merge --no-ff 060-shipping-package-dimensions`).
+- [X] T024 Смерджить ветку `060-shipping-package-dimensions` в `main` (`git checkout main && git merge --no-ff 060-shipping-package-dimensions`).
 
-- [ ] T025 Задеплоить на прод через `bash deploy/push.sh` (от корня). Скрипт сам применит migration через `payload migrate` (step 5c). Проверить что соприкосновение с проду прошло без ошибок.
+- [X] T025 Задеплоить на прод через `bash deploy/push.sh` (от корня). Скрипт сам применит migration через `payload migrate` (step 5c). Проверить что соприкосновение с проду прошло без ошибок.
 
 - [ ] T026 На проде: попросить администратора заполнить physical-параметры для топ-10 SKU. Через 1 неделю проверить SC-005: доля заказов с доплатой после сортировки упала на ≥70%.
 
