@@ -65,14 +65,14 @@ describe("ConsentCheckbox", () => {
     expect(spy).toHaveBeenCalledWith(false);
   });
 
-  it("default label includes links to /info/offer/ and /info/pd-policy/", () => {
+  it("default label includes links to /legal/offer/ and /legal/pd-policy/", () => {
     const html = renderToStaticMarkup(
       <ConsentCheckbox value={false} onChange={() => {}} />,
     );
     expect(html).toContain("офертой");
     expect(html).toContain("политикой обработки персональных данных");
-    expect(html).toMatch(/href="\/info\/offer\/"/);
-    expect(html).toMatch(/href="\/info\/pd-policy\/"/);
+    expect(html).toMatch(/href="\/legal\/offer\/"/);
+    expect(html).toMatch(/href="\/legal\/pd-policy\/"/);
   });
 
   it("aria-required is set to true when required=true (default)", () => {

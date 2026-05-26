@@ -73,7 +73,7 @@ export function CookieConsentBanner() {
       <p className="text-sm leading-relaxed">
         Мы используем cookies для аналитики посещаемости. Подробнее — в{" "}
         <Link
-          href="/info/pd-policy/"
+          href="/legal/privacy/"
           className="underline underline-offset-2 hover:text-emerald-300"
         >
           политике конфиденциальности

@@ -2,6 +2,7 @@ import { Mail, MapPin, Phone, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 
 import { ManageCookiesButton } from "@/components/site/ManageCookiesButton";
+import { legalDocLinks } from "@/components/site/document-links";
 import {
   getCompanyContacts,
   getPrimaryEmail,
@@ -9,12 +10,8 @@ import {
 } from "@/lib/company/get-company-contacts";
 import { SITE_NAME, seoRoutes, type SeoRouteType } from "@/lib/seo/seo-registry";
 
-const POLICY_LINKS = [
-  { href: "/info/offer/", label: "Публичная оферта" },
-  { href: "/info/privacy/", label: "Политика конфиденциальности" },
-  { href: "/info/pd-policy/", label: "Политика обработки ПДн" },
-  { href: "/info/terms/", label: "Пользовательское соглашение" },
-];
+// Source of truth for legal links is document-links.ts (shared with header dropdown).
+const POLICY_LINKS = legalDocLinks;
 
 function findRoute(path: string) {
   return seoRoutes.find((route) => route.path === path);

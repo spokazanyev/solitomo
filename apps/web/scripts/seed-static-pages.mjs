@@ -23,17 +23,20 @@ const __dirname = path.dirname(__filename);
 // templates/ — keep both in sync when editing.
 const TEMPLATES_DIR = path.resolve(__dirname, "content-templates");
 
-const POLICY_EFFECTIVE_FROM = "2026-05-25";
+const POLICY_EFFECTIVE_FROM = "2026-05-26";
 
+// Version bump 2026-05-25-v1 → 2026-05-26-v1: compliance-fix перед модерацией
+// ЮKassa — указан юр.субъект ООО «ЮKassa» (ИНН 7750005725), формулировки
+// согласия приведены к ст. 9 152-ФЗ, расширён блок «срок возврата».
 const PAGES = [
   { slug: "payment", section: "info", category: "info", title: "Способы оплаты", template: "payment.md" },
   { slug: "delivery", section: "info", category: "info", title: "Доставка", template: "delivery.md" },
   { slug: "return", section: "info", category: "info", title: "Возврат товара", template: "return.md" },
   { slug: "warranty", section: "info", category: "info", title: "Гарантийное обслуживание", template: "warranty.md" },
-  { slug: "offer", section: "info", category: "policy", title: "Публичная оферта", template: "offer.md", version: "2026-05-25-v1" },
-  { slug: "privacy", section: "info", category: "policy", title: "Политика конфиденциальности", template: "privacy.md", version: "2026-05-25-v1" },
-  { slug: "pd-policy", section: "info", category: "policy", title: "Политика обработки персональных данных", template: "pd-policy.md", version: "2026-05-25-v1" },
-  { slug: "terms", section: "info", category: "policy", title: "Пользовательское соглашение", template: "terms.md", version: "2026-05-25-v1" },
+  { slug: "offer", section: "info", category: "policy", title: "Публичная оферта", template: "offer.md", version: "2026-05-26-v1" },
+  { slug: "privacy", section: "info", category: "policy", title: "Политика конфиденциальности", template: "privacy.md", version: "2026-05-26-v1" },
+  { slug: "pd-policy", section: "info", category: "policy", title: "Политика обработки персональных данных", template: "pd-policy.md", version: "2026-05-26-v1" },
+  { slug: "terms", section: "info", category: "policy", title: "Пользовательское соглашение", template: "terms.md", version: "2026-05-26-v1" },
   { slug: "faq", section: "info", category: "faq", title: "Вопросы и ответы", template: "faq.md" },
 ];
 
