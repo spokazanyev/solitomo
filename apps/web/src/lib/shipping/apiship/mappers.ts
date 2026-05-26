@@ -84,7 +84,7 @@ export function toShippingRate(
     providerKey: tariff.providerKey ?? "unknown",
     providerName: providerNameFromKey(tariff.providerKey),
     tariffId: tariff.tariffId ?? tariff.id,
-    tariffName: tariff.name,
+    tariffName: tariff.name ?? tariff.tariffName,
     deliveryType,
     pickupType,
     cost: Number(tariff.deliveryCost ?? 0),
