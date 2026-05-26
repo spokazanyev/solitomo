@@ -2,11 +2,12 @@
 
 import { ChevronDown, SlidersHorizontal, X } from "lucide-react";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { MobileDrawer } from "@/components/site/MobileDrawer";
 import { AddToRfqButton } from "@/components/rfq/RfqCart";
 import { ProductImageZoom } from "@/components/product/ProductImageZoom";
+import { trackSelectItem, trackViewItemList } from "@/lib/analytics/events";
 import { getListingAttributeRows } from "@/lib/products/product-attributes";
 import type { Product } from "@/lib/products/catalog";
 
@@ -139,11 +140,29 @@ function sortProducts(products: Product[], sortMode: SortMode) {
   });
 }
 
-function ProductCard({ product }: { product: Product }) {
+function ProductCard({
+  product,
+  listId,
+  position,
+}: {
+  product: Product;
+  listId: string;
+  position: number;
+}) {
   const image = product.images[0];
   const imageAlt = `${product.h1}, ${product.sku}`;
   const parameters = getListingAttributeRows(product.attributes);
   const [paramsOpen, setParamsOpen] = useState(false);
+
+  // 058 T027 + FR-003: select_item event при клике по карточке (link to PDP)
+  const handleSelect = () => {
+    trackSelectItem({
+      listId,
+      position,
+      itemId: product.sku,
+      itemName: product.h1,
+    });
+  };
 
   return (
     <article className="grid grid-cols-[112px_1fr] gap-x-4 gap-y-3 rounded-lg border border-slate-200 bg-white p-4 transition hover:border-sky-400 md:grid-cols-[112px_minmax(0,1fr)_150px] md:items-start md:gap-4 xl:grid-cols-[128px_minmax(0,1fr)_180px]">
@@ -156,7 +175,7 @@ function ProductCard({ product }: { product: Product }) {
       />
       <div className="col-start-2 row-start-1 min-w-0">
         <p className="font-mono text-xs text-slate-500">{product.sku}</p>
-        <Link href={`/product/${product.slug}/`}>
+        <Link href={`/product/${product.slug}/`} onClick={handleSelect}>
           <h3 className="mt-1 text-base font-semibold leading-6 text-slate-950 hover:text-sky-800">
             {product.h1}
           </h3>
@@ -250,8 +269,13 @@ function CatalogProductList({ products }: { products: Product[] }) {
 
   return (
     <div className="grid gap-3">
-      {products.map((product) => (
-        <ProductCard key={product.slug} product={product} />
+      {products.map((product, idx) => (
+        <ProductCard
+          key={product.slug}
+          listId="catalog_main"
+          position={idx + 1}
+          product={product}
+        />
       ))}
     </div>
   );
@@ -281,6 +305,39 @@ export function CatalogFilterableList({
     () => sortProducts(filteredProducts, sortMode),
     [filteredProducts, sortMode],
   );
+
+  // 058 T026 + FR-002: view_item_list event при отображении (или изменении filter/sort)
+  // Limit first 20 items в payload — для коротких HTTP-request'ов и Webvisor.
+  useEffect(() => {
+    if (sortedProducts.length === 0) return;
+    const itemsForEvent = sortedProducts.slice(0, 20).map((p, idx) => {
+      const item: {
+        itemId: string;
+        itemName: string;
+        position: number;
+        category?: string;
+        price?: number;
+      } = {
+        itemId: p.sku,
+        itemName: p.h1,
+        position: idx + 1,
+      };
+      const firstCategoryUrl = p.categories[0]?.url;
+      if (firstCategoryUrl) {
+        const slugMatch = firstCategoryUrl.match(/\/catalog\/([^/]+)\/?$/);
+        if (slugMatch?.[1]) item.category = slugMatch[1];
+      }
+      if (typeof p.price.amount === "number") item.price = p.price.amount;
+      return item;
+    });
+    trackViewItemList({
+      listId: "catalog_main",
+      listName: "Catalog",
+      items: itemsForEvent,
+    });
+    // Зависимость на длину + sortMode (не на full array, чтобы не повторно стрелять при equal reorder)
+  }, [sortedProducts.length, sortMode]);
+
   const selectedOptions = facetGroups.flatMap((group) =>
     group.options
       .filter((option) => selectedPathSet.has(option.path))

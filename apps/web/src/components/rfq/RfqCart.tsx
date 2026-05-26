@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
 import { trackAnalyticsEvent } from "@/lib/analytics/events";
-import { trackAddToRfq } from "@/lib/analytics/data-layer";
+import { trackAddToRfq, trackRemoveFromCart } from "@/lib/analytics/data-layer";
 
 export type RfqCartItem = {
   name: string;
@@ -139,8 +139,22 @@ export function setItemQuantity(sku: string, quantity: number) {
 }
 
 export function removeCartItem(sku: string) {
-  const items = readRfqCartItems().filter((item) => item.sku !== sku);
+  const allItems = readRfqCartItems();
+  const removedItem = allItems.find((item) => item.sku === sku);
+  const items = allItems.filter((item) => item.sku !== sku);
   writeRfqCartItems(items);
+
+  // 058 T029 + FR-010 + FR-110: remove_from_cart event + ecommerce.remove dual-push
+  if (removedItem) {
+    const quantity = Number.parseInt(removedItem.quantity, 10);
+    trackRemoveFromCart({
+      sku: removedItem.sku,
+      name: removedItem.name,
+      quantity: Number.isFinite(quantity) && quantity > 0 ? quantity : 1,
+      ...(typeof removedItem.price === "number" ? { price: removedItem.price } : {}),
+    });
+  }
+
   return items;
 }
 
