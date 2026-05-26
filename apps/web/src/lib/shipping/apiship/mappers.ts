@@ -68,7 +68,10 @@ export function toCalculatorRequest(
       width: item.width ?? settings.defaults.width,
       height: item.height ?? settings.defaults.height,
     })),
-    pickupTypes: [pickupType],
+    // senderPickupType из настроек admin-панели:
+    //   "courier"  → СДЭК приезжает к отправителю (pickupType=1, тарифы «дверь→»)
+    //   "dropoff"  → отправитель сам везёт в офис СДЭК (pickupType=2, тарифы «склад→»)
+    pickupTypes: [settings.senderPickupType === "courier" ? 1 : 2],
     deliveryTypes: [deliveryType],
     includeFees: 1,
   };
@@ -77,10 +80,11 @@ export function toCalculatorRequest(
 export function toShippingRate(
   tariff: TariffObject,
   type: DeliveryTypeCode,
+  variant: "cheapest" | "fastest" = "cheapest",
 ): ShippingRate {
   const { deliveryType, pickupType } = DELIVERY_TYPE_MAP[type];
   return {
-    shippingOptionId: `apiship_${type}`,
+    shippingOptionId: `apiship_${type}_${variant}`,
     providerKey: tariff.providerKey ?? "unknown",
     providerName: providerNameFromKey(tariff.providerKey),
     tariffId: tariff.tariffId ?? tariff.id,
@@ -93,6 +97,35 @@ export function toShippingRate(
     etaMaxDays: Number(tariff.daysMax ?? 5),
     rawTariff: tariff,
   };
+}
+
+/**
+ * Выбрать из массива тарифов два лучших для заданного типа доставки:
+ * - cheapest: наименьшая стоимость
+ * - fastest:  наименьшее время (daysMin)
+ *
+ * Если cheapest === fastest (один и тот же тарифId), fastest будет совпадать с cheapest —
+ * вызывающий код должен отдедуплицировать по tariffId.
+ */
+export function pickBestTariffs(
+  tariffs: TariffObject[],
+  type: DeliveryTypeCode,
+): { cheapest?: TariffObject; fastest?: TariffObject } {
+  const { deliveryType, pickupType } = DELIVERY_TYPE_MAP[type];
+  const candidates = tariffs
+    .filter((t) => !t.isError)
+    .filter((t) => (t.deliveryType ?? deliveryType) === deliveryType)
+    .filter((t) => (t.pickupType ?? pickupType) === pickupType);
+
+  if (!candidates.length) return {};
+
+  const cheapest = candidates.reduce((best, t) =>
+    Number(t.deliveryCost ?? Infinity) < Number(best.deliveryCost ?? Infinity) ? t : best,
+  );
+  const fastest = candidates.reduce((best, t) =>
+    Number(t.daysMin ?? Infinity) < Number(best.daysMin ?? Infinity) ? t : best,
+  );
+  return { cheapest, fastest };
 }
 
 function providerNameFromKey(key?: string): string | undefined {
@@ -113,17 +146,6 @@ function providerNameFromKey(key?: string): string | undefined {
   return map[key] ?? key;
 }
 
-export function pickCheapestTariff(
-  tariffs: TariffObject[],
-  type: DeliveryTypeCode,
-): TariffObject | undefined {
-  const { deliveryType, pickupType } = DELIVERY_TYPE_MAP[type];
-  return [...tariffs]
-    .filter((t) => !t.isError)
-    .filter((t) => (t.deliveryType ?? deliveryType) === deliveryType)
-    .filter((t) => (t.pickupType ?? pickupType) === pickupType)
-    .sort((a, b) => Number(a.deliveryCost ?? Infinity) - Number(b.deliveryCost ?? Infinity))[0];
-}
 
 export function toOrderRequest(
   order: OrderForShipment,

@@ -23,6 +23,10 @@ export interface ApiShipSettings {
     deliveryCostVat: string;
     isCod: boolean;
   };
+  /** Кто забирает посылку у отправителя: "courier" = СДЭК едет к нам, "dropoff" = мы везём сами. */
+  senderPickupType: "courier" | "dropoff";
+  /** Адрес офиса СДЭК для самовывоза — только как памятка в админке. */
+  senderDropoffAddress: string;
   disabledProviders: string[];
   allowedDeliveryTypes: Array<"doortodoor" | "doortopoint" | "pointtodoor" | "pointtopoint">;
   yandexMaps: { apiKey: string; tariffPlan: string };
@@ -44,6 +48,8 @@ const FALLBACK_SETTINGS: ApiShipSettings = {
   baseUrl: "http://api.dev.apiship.ru/v1",
   sender: { countryCode: "RU", addressString: "", contactName: "", phone: "" },
   defaults: { length: 30, width: 20, height: 15, weight: 1500, deliveryCostVat: "20", isCod: false },
+  senderPickupType: "dropoff",
+  senderDropoffAddress: "",
   disabledProviders: [],
   allowedDeliveryTypes: ["doortodoor", "doortopoint"],
   yandexMaps: { apiKey: "", tariffPlan: "free" },
@@ -95,6 +101,10 @@ function mergeWithFallback(raw: Record<string, unknown> | null): ApiShipSettings
   if (sender) Object.assign(merged.sender, sender);
   const defaults = raw.defaults as Record<string, number | string | boolean> | undefined;
   if (defaults) Object.assign(merged.defaults, defaults);
+  if (raw.senderPickupType === "courier" || raw.senderPickupType === "dropoff")
+    merged.senderPickupType = raw.senderPickupType;
+  if (typeof raw.senderDropoffAddress === "string")
+    merged.senderDropoffAddress = raw.senderDropoffAddress;
   if (Array.isArray(raw.disabledProviders)) {
     merged.disabledProviders = (raw.disabledProviders as Array<{ providerKey?: string }>)
       .map((p) => String(p.providerKey ?? ""))

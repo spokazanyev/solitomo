@@ -3,7 +3,7 @@ import "server-only";
 import { CalculatorApi, Configuration, ListsApi, OrderDocsApi, OrdersApi } from "./client";
 import { getCalculation, saveCalculation } from "./cache";
 import { logError, logRequest } from "./logger";
-import { pickCheapestTariff, toCalculatorRequest, toOrderRequest, toPickupPoints, toShippingRate } from "./mappers";
+import { pickBestTariffs, toCalculatorRequest, toOrderRequest, toPickupPoints, toShippingRate } from "./mappers";
 import { executeWithRetry } from "./retry";
 import { type ApiShipSettings, loadSettings } from "./settings";
 import { mapApiShipStatus } from "./status-map";
@@ -86,28 +86,46 @@ export class ApiShipProvider implements ShippingProvider {
       // legacy-форма (`tariffs[]`) поддерживается на всякий случай.
       const { flattenCalculatorTariffs } = await import("./client");
       const tariffs = flattenCalculatorTariffs(raw as Parameters<typeof flattenCalculatorTariffs>[0]);
-      // Выбираем только дешевейший тариф для каждого delivery-type кода —
-      // показывать все 25+ тарифов покупателю не нужно.
-      const best = pickCheapestTariff(tariffs, type);
-      if (best) {
-        const providerKey = String(best.providerKey ?? "");
-        if (!disabled.has(providerKey)) {
-          rates.push(toShippingRate(best, type));
-        }
+
+      // Для каждого delivery-type кода выбираем два лучших тарифа:
+      // cheapest (дешевле) и fastest (быстрее).
+      const { cheapest, fastest } = pickBestTariffs(tariffs, type);
+      if (cheapest) {
+        const pk = String(cheapest.providerKey ?? "");
+        if (!disabled.has(pk)) rates.push(toShippingRate(cheapest, type, "cheapest"));
+      }
+      // Добавляем fastest только если это другой тариф.
+      if (fastest && fastest !== cheapest) {
+        const pk = String(fastest.providerKey ?? "");
+        if (!disabled.has(pk)) rates.push(toShippingRate(fastest, type, "fastest"));
       }
     }
 
-    // Дедупликация по способу доставки (1=курьером, 2=ПВЗ): оставляем дешевейший.
-    // Это схлопывает doortodoor+pointtodoor → 1 вариант «курьером до двери»
-    // и doortopoint+pointtopoint → 1 вариант «до пункта выдачи».
-    const byDeliveryType = new Map<number, ShippingRate>();
+    // Дедупликация: для каждой пары (deliveryType, variant) оставляем лучший.
+    // Это схлопывает doortodoor+pointtodoor → 1 «курьером» (дешевле) + 1 «курьером» (быстрее).
+    const cheapestByType = new Map<number, ShippingRate>();
+    const fastestByType  = new Map<number, ShippingRate>();
     for (const rate of rates) {
-      const existing = byDeliveryType.get(rate.deliveryType);
-      if (!existing || rate.cost < existing.cost) {
-        byDeliveryType.set(rate.deliveryType, rate);
+      const isFastest = rate.shippingOptionId.includes("_fastest");
+      if (isFastest) {
+        const ex = fastestByType.get(rate.deliveryType);
+        if (!ex || rate.etaMinDays < ex.etaMinDays) fastestByType.set(rate.deliveryType, rate);
+      } else {
+        const ex = cheapestByType.get(rate.deliveryType);
+        if (!ex || rate.cost < ex.cost) cheapestByType.set(rate.deliveryType, rate);
       }
     }
-    const deduped = [...byDeliveryType.values()];
+
+    // Финальный список: сначала курьер (deliveryType=1), потом ПВЗ (deliveryType=2).
+    // Внутри группы: сначала cheapest, потом fastest (только если другой тарифId).
+    const deduped: ShippingRate[] = [];
+    for (const [dt, cheapest] of [...cheapestByType.entries()].sort(([a], [b]) => a - b)) {
+      deduped.push(cheapest);
+      const fastest = fastestByType.get(dt);
+      if (fastest && fastest.tariffId !== cheapest.tariffId) {
+        deduped.push(fastest);
+      }
+    }
 
     annotateBadges(deduped);
     return { cachedAt: new Date().toISOString(), rates: deduped, warnings };
@@ -262,10 +280,23 @@ export class ApiShipProvider implements ShippingProvider {
   }
 }
 
+/**
+ * Расставить значки "cheapest" / "fastest" внутри каждой группы по deliveryType.
+ * Значок ставится только если в группе есть хотя бы 2 разных тарифа.
+ */
 function annotateBadges(rates: ShippingRate[]): void {
-  if (!rates.length) return;
-  const cheapest = rates.reduce((a, b) => (a.cost <= b.cost ? a : b));
-  const fastest = rates.reduce((a, b) => (a.etaMinDays <= b.etaMinDays ? a : b));
-  cheapest.badges = [...(cheapest.badges ?? []), "cheapest"];
-  fastest.badges = [...(fastest.badges ?? []), "fastest"];
+  const byType = new Map<number, ShippingRate[]>();
+  for (const r of rates) {
+    if (!byType.has(r.deliveryType)) byType.set(r.deliveryType, []);
+    byType.get(r.deliveryType)!.push(r);
+  }
+  for (const group of byType.values()) {
+    if (group.length < 2) continue;
+    const cheapest = group.reduce((a, b) => (a.cost <= b.cost ? a : b));
+    const fastest  = group.reduce((a, b) => (a.etaMinDays <= b.etaMinDays ? a : b));
+    if (cheapest !== fastest) {
+      cheapest.badges = [...(cheapest.badges ?? []), "cheapest"];
+      fastest.badges  = [...(fastest.badges  ?? []), "fastest"];
+    }
+  }
 }

@@ -107,16 +107,30 @@ export function flattenCalculatorTariffs(resp: CalculatorResponse | null | undef
       if ("tariffs" in item && Array.isArray((item as TariffGroup).tariffs)) {
         const group = item as TariffGroup;
         for (const t of group.tariffs!) {
+          // ApiShip returns pickupTypes/deliveryTypes as arrays; extract first element.
+          const raw = t as unknown as Record<string, unknown>;
+          const pickupType = t.pickupType
+            ?? (Array.isArray(raw.pickupTypes) ? (raw.pickupTypes[0] as number) : undefined);
+          const deliveryType = t.deliveryType
+            ?? (Array.isArray(raw.deliveryTypes) ? (raw.deliveryTypes[0] as number) : undefined)
+            ?? defaultDeliveryType;
           result.push({
             ...t,
             providerKey: t.providerKey ?? group.providerKey,
-            deliveryType: t.deliveryType ?? defaultDeliveryType,
+            pickupType,
+            deliveryType,
           });
         }
       } else {
         // Flat form: item is already a TariffObject
         const t = item as TariffObject;
-        result.push({ ...t, deliveryType: t.deliveryType ?? defaultDeliveryType });
+        const raw = t as unknown as Record<string, unknown>;
+        const pickupType = t.pickupType
+          ?? (Array.isArray(raw.pickupTypes) ? (raw.pickupTypes[0] as number) : undefined);
+        const deliveryType = t.deliveryType
+          ?? (Array.isArray(raw.deliveryTypes) ? (raw.deliveryTypes[0] as number) : undefined)
+          ?? defaultDeliveryType;
+        result.push({ ...t, pickupType, deliveryType });
       }
     }
   }

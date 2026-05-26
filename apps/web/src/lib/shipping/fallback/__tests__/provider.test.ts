@@ -29,9 +29,9 @@ describe("FallbackShippingProvider", () => {
     };
     const result = await provider.calculate(input);
 
-    expect(result.rates).toHaveLength(4);
+    expect(result.rates).toHaveLength(3);
     expect(result.rates.map((r) => r.providerKey).sort()).toEqual(
-      ["boxberry", "cdek", "pickup", "russian-post"],
+      ["manager-courier", "manager-point", "pickup"],
     );
     for (const r of result.rates) {
       expect(r.cost).toBe(0);

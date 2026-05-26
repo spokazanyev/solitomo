@@ -202,12 +202,12 @@ export function DeliveryBlock({
                       <span>{r.etaMinDays}–{r.etaMaxDays} рабочих дн.</span>
                       {r.badges?.includes("cheapest") && (
                         <span className="rounded bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold text-emerald-700">
-                          Дешевле всех
+                          💰 Выгоднее
                         </span>
                       )}
                       {r.badges?.includes("fastest") && (
                         <span className="rounded bg-sky-100 px-2 py-0.5 text-[10px] font-semibold text-sky-700">
-                          Быстрее всех
+                          ⚡ Быстрее
                         </span>
                       )}
                     </div>
