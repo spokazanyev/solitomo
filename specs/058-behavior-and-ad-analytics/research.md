@@ -314,3 +314,129 @@ CI pipeline (GitHub Actions / Vercel build):
 - GSC API service-account JSON format и rotation policy.
 - Playwright e2e selectors + happy-path automation.
 - Retry-queue backoff timing tuning (по реальным failed-hit метрикам).
+
+---
+
+## R17. Yandex.Metrika Management API — endpoints для agent-управления
+
+**Decision**: Использовать Yandex.Metrika Management API v1 для всех CRUD-операций над счётчиком. Base URL: `https://api-metrika.yandex.net/management/v1/counter/<counterId>/`. Auth через `Authorization: OAuth <YM_AGENT_TOKEN>`.
+
+**Endpoints (v1 scope)**:
+- **Goals**: `GET /goals`, `POST /goals`, `GET /goal/{id}`, `PUT /goal/{id}`, `DELETE /goal/{id}` (только через FR-391 explicit-flag). Schema: `{ goal: { name, type, conditions[], is_retargeting? } }`.
+- **Filters (segments)**: `GET /filters`, `POST /filters`, `PUT /filter/{id}`. Используется для retargeting-сегментов (FR-200).
+- **Counter Settings**: `GET /` (returns full counter object), `PATCH /` (partial update). Settings под `counter.code_options` и `counter.webvisor` keys.
+- **Offline Conversions**: `POST /offline_conversions/upload` (CSV body). FR-033/FR-034 + T089.
+- **Permissions Validation**: `GET /` с проверкой `counter.permission` — должен быть `edit` для mutating-операций.
+
+**Rate limits**: ~5000 req/day, ~10 req/s burst. FR-393 встроенный rate-limiter защищает.
+
+**Rationale**:
+- Официально документировано Яндексом.
+- Token-based auth — простой supply chain (FR-100 env).
+- Все нужные CRUD-операции покрыты для v1.
+
+**Alternatives considered**:
+- Custom scraping UI — fragile, прямо запрещено TOS.
+- Прямой DB-access — не существует для cloud-Метрики.
+
+---
+
+## R18. Approval workflow design
+
+**Decision**: Workflow «agent proposes → operator approves → agent executes» через Payload-коллекцию `AgentProposals` (см. data-model.md §2.0). Critical design choices:
+
+1. **Async execution**: на approve agent **не** делает sync API-call внутри admin-request. Вместо этого: `afterChange` hook → enqueue execution job → fast UI response. Job выполняется в background (in-process queue в v1, Payload-jobs в v1.1 при росте volume).
+2. **Idempotency**: каждый proposal имеет уникальный `id`; execution-job проверяет `status === 'approved'` перед вызовом API. Двойной approve → ровно один API-вызов.
+3. **Cooldown** (FR-383): каждый `(evaluator, targetPath)` пара → 7 дней default. Cooldown в `proposal.cooldownUntil`. Evaluator проверяет перед созданием нового proposal.
+4. **Audit-immutability**: после `executed`/`failed` — терминальные состояния. `failed` можно retry через создание **нового** proposal.
+5. **UI presentation**: admin-view с filter status (default pending); badge severity; diff-view; reasoning expanded; кнопки Approve/Reject. Reject требует обязательный reason ≤1000 chars; Approve может без.
+
+**Rationale**:
+- Async — исключает UI-timeouts.
+- Cooldown — anti-spam (без него agent создаст 50 proposals за неделю).
+- Immutability — для compliance.
+
+**Alternatives considered**:
+- Auto-execute для «low-risk» types — опасно, нарушает FR-384 invariant.
+- Sync API-call внутри admin-request — risk of timeouts.
+
+---
+
+## R19. Evaluator algorithms — v1 baseline (threshold-based)
+
+**Decision**: v1 evaluators используют **threshold-based heuristics**, не ML. Простота важнее «умности» на первом этапе. ML-based — defer до v1.2+.
+
+### Evaluator-suite (FR-371, scheduled v1.1 / on-demand v1)
+
+1. **`funnel_drop_off`**: `conversion_rate(day) - conversion_rate(7-day-avg)`. Если `abs(delta) > 20%` AND step has ≥10 entries → `propose_investigate_drop`.
+2. **`qualified_visit_rate`**: `qualified_count / total_visits`. Если `<5%` или `>90%` → `propose_adjust_threshold` с конкретными значениями.
+3. **`source_quality`**: топ-10 source-каналов вчера vs 7-day-avg. Новый канал >10% или потерянный >50% → `propose_investigate_source_change`.
+4. **`zero_result_searches`**: топ-10 запросов с `search_no_results`. Запрос повторяется >5 раз → `propose_consider_new_content_or_redirect`.
+5. **`roas_deviation`**: ROAS = revenue/cost per Я.Директ-кампания. Если ROAS<1 за 7 дней (cost data есть) → `propose_review_campaign` (не auto-pause).
+6. **`data_quality`**: rate `js_error`/`page_404`/`consent_decline`. Резкое (>50% vs 7-day-avg) изменение → `propose_investigate`.
+
+### Structural evaluators (FR-374, weekly)
+
+7. **`drift_detector`** (см. R20): сравнение Metrika current vs config.
+8. **`missing_goal`**: события через `events.ts` vs goals в config. Event >20/неделя без goal → `propose_create_missing_goal`.
+9. **`unused_segment`**: filter с visit-count=0 за 4 недели → `propose_remove_unused_segment` (soft-disable).
+10. **`correlated_events`**: pairs-detection (наивный chi-square). High correlation без composite-goal → `propose_consider_composite_goal`.
+
+**Rationale**:
+- Threshold-based: predictable, debuggable, нет training-data.
+- 10 evaluators покрывают 80% useful signals.
+
+**Alternatives considered**:
+- Изоляционный лес / autoencoders — overkill, требует accumulated history.
+- DSL для rules — over-engineering для 10 rules.
+
+---
+
+## R20. Drift detection strategy
+
+**Decision**: Drift = расхождение между `metrika.config.ts` (git-tracked) и реальным state Метрика-счётчика (через Management API GET).
+
+**Algorithm**:
+1. Daily-review (FR-370): agent делает `GET /goals`, `GET /filters`, `GET /` (counter settings).
+2. Match by `name` field с `metrika.config.ts`.
+3. Сравнение полей: `name`, `type`, `conditions`, `is_retargeting`, `enabled`; для settings — каждое поле.
+4. Если расхождение found → **один** `AgentProposal` type=`drift_detected` со всем diff'ом (не отдельный proposal на каждое расхождение — anti-spam).
+5. **Two operator-actions** (FR-401):
+   - **(a) restore-from-config**: API-call приводит Метрику в config-state.
+   - **(b) accept-and-update-config**: agent генерирует patch для `metrika.config.ts`, создаёт PR-suggestion в git.
+
+**Edge case**: object в config but not in Metrika (manual hard-delete) → special case `orphan_in_config` proposal с двумя alternatives: recreate via API или remove from config.
+
+**Rationale**:
+- Continuous quality-gate (Constitution VII).
+- Two-action design — гибкость: иногда manual-изменение legitimate.
+
+**Alternatives considered**:
+- Auto-restore без approve — нарушает FR-384.
+- Skip drift detection — допускает silent skew code↔runtime.
+
+---
+
+## R21. MCP-server design (v1.2 defer)
+
+**Decision (v1.2)**: Локальный MCP-server `apps/web/mcp-server/analytics-mcp/` (Node.js, stdio для Claude Desktop / SSE для Claude Code). Auth через env `MCP_TOKEN`.
+
+**Tools (v1.2)**:
+- **Read-only**: `metrika_get_funnel(date_range)`, `metrika_get_top_queries(period)`, `metrika_list_goals()`, `metrika_get_segments()`, `metrika_get_anomaly_report()`.
+- **Propose** (создают `AgentProposal`, **не** mutating): `metrika_propose_goal(goal_spec, reasoning)`, `metrika_propose_filter(spec, reasoning)`, `metrika_propose_setting_change(path, value, reasoning)`.
+
+**Workflow с MCP**:
+1. Оператор в Claude Desktop: «Покажи воронку покупки за 7 дней с разбивкой по source».
+2. Claude через `metrika_get_funnel` → данные.
+3. Видит провал в `organic_yandex` → предлагает: «Создать сегмент для drilldown?».
+4. Соглашается → `metrika_propose_filter` → AgentProposal создан.
+5. Оператор переходит в `/admin/agent-proposals`, видит, approve.
+6. Agent через FR-382 flow выполняет API-mutation.
+
+**Rationale**:
+- Естественное расширение agent-driven model.
+- Сохранение FR-384 invariant — критично.
+
+**Alternatives considered**:
+- Direct API-mutation из MCP — нарушает FR-384.
+- Claude Code без MCP — менее удобно для ad-hoc.

@@ -95,6 +95,86 @@
 
 ## 2. Новые коллекции
 
+### 2.0 `AgentProposals` (collections/AgentProposals.ts) — NEW (Agent-driven model, v1)
+
+Используется для FR-380…FR-386 (propose-approve workflow). Центральная коллекция agent-driven model: каждое предложенное изменение Метрика-конфигурации создаётся здесь, ждёт approve оператора.
+
+| Поле | Тип | Required | Назначение |
+|---|---|---|---|
+| `id` | `string` | auto | Payload primary key. |
+| `createdAt` | `date` | auto | Когда создан proposal. |
+| `createdBy` | `string` enum (`agent`/`mcp_tool`/`manual`) | yes | Источник создания. `manual` — для оператор-инициированных proposals. |
+| `evaluator` | `string` | yes | Имя evaluator'а (e.g. `funnel_drop_off`, `drift_detector`, `missing_goal`). Для filtering и cooldown logic. |
+| `type` | `string` enum | yes | `create_goal` / `update_goal` / `soft_disable_goal` / `hard_delete` / `create_filter` / `update_filter` / `update_setting` / `drift_detected` / `create_missing_goal` / `remove_unused_segment` / `adjust_qualified_visit_threshold` / `investigate_funnel_drop` / `update_config_from_drift` / `auto_approve_request` |
+| `action` | `string` enum (`create`/`update`/`delete`/`soft-disable`) | yes | Семантическое действие. |
+| `targetPath` | `string` | yes | Где в конфигурации/API применяется (e.g. `goals[id=12345].name` или `counterSettings.qualified_visit.min_duration_seconds`). |
+| `payload` | `json` | yes | Фактический change (для create — полный object; для update — partial). |
+| `reasoning` | `textarea` (≤2000) | yes | LLM-generated human-readable обоснование. |
+| `expectedImpact` | `textarea` (≤500) | no | Какие KPI и как изменятся. |
+| `evidence` | `json` | yes | Data snapshot, на основании которого создан proposal (например, недельный funnel-data + week-over-week delta). |
+| `severity` | `string` enum (`info`/`warning`/`critical`) | yes | UI-presentation hint. |
+| `status` | `string` enum | yes | `pending` (default) → `approved`/`rejected` → `executed`/`failed`. |
+| `reviewedBy` | `relationship to Users` | no | Кто approve/reject. |
+| `reviewedAt` | `date` | no | Когда. |
+| `reviewerReason` | `textarea` (≤1000) | no | Optional reason от оператора при reject (или comment при approve). |
+| `executedAt` | `date` | no | Когда API-вызов выполнен. |
+| `executionResult` | `json` | no | Response от Yandex.Metrika API (для audit). Без секретов. |
+| `cooldownUntil` | `date` | no | До какого момента этот evaluator не создаёт повторный proposal по тому же targetPath (anti-spam, default 7 days). |
+
+**Индексы**: `(status, createdAt DESC)` — для admin-страницы; `(evaluator, targetPath, cooldownUntil)` — для cooldown-check; `(executedAt)` — для audit.
+
+**Validation**:
+- `payload` must match `type`-specific schema (валидируется через zod в Payload field-validate hook).
+- `status` transitions enforced: pending → approved/rejected; approved → executed/failed; rejected — terminal; executed — terminal; failed может вернуться в pending через retry.
+- `hard_delete` type требует `payload.confirmation_flag === true` (двойное подтверждение через UI).
+
+**Hooks**:
+- `afterChange` (status → approved): trigger `executeProposal(proposal)` через job-queue / immediate fetch.
+- `afterChange` (status → any): запись в `AdminChangeLog`.
+
+**Access**:
+- `read`: admin + analytics-operator роли.
+- `create`: system (agent через service-token); admin (для manual proposals).
+- `update`: только status + reviewedBy + reviewedAt + reviewerReason + executedAt + executionResult — никакие другие поля не редактируются.
+- `delete`: admin only (для cleanup; обычно — soft).
+
+---
+
+### 2.0a `AgentExecutionLog` (collections/AgentExecutionLog.ts) — NEW (Agent-driven model, v1)
+
+Audit-log всех API-вызовов агента (FR-375). Compliance, debugging, smoke-test invariant (FR-396).
+
+| Поле | Тип | Required | Назначение |
+|---|---|---|---|
+| `id` | `string` | auto | |
+| `timestamp` | `date` | yes | Точное время вызова. |
+| `endpoint` | `string` | yes | URL-path Метрика API (без host). |
+| `method` | `string` enum (`GET`/`POST`/`PUT`/`PATCH`/`DELETE`) | yes | HTTP-method. |
+| `requestParams` | `json` | no | Query/body без секретов и без значений PII. |
+| `responseStatus` | `number` | yes | HTTP status. |
+| `responseBodySummary` | `textarea` (≤1000) | no | Truncated/summarized response для audit (полное body НЕ хранится — too verbose). |
+| `durationMs` | `number` | yes | Длительность вызова. |
+| `errorMessage` | `string?` | no | Если non-2xx. |
+| `proposalId` | `relationship to AgentProposals` | no | Если вызов сделан в результате approved-proposal. |
+| `configApplyRunId` | `string?` | no | UUID, общий для всех вызовов одного `apply-config`-прогона. |
+| `evaluatorName` | `string?` | no | Если вызов в рамках evaluator (read-only). |
+| `userAgent` | `string` | yes | Должен начинаться с `Soliton-AnalyticsAgent/`. |
+
+**Индексы**: `(timestamp DESC)` — chronological view; `(method, proposalId, configApplyRunId)` — для FR-396 smoke-test invariant; `(evaluatorName, timestamp)` — для performance analytics.
+
+**Retention**: 90 дней (cron-job очищает старше). Compliance с 152-ФЗ — audit-данные не содержат PII.
+
+**Validation**:
+- `userAgent` MUST match regex `^Soliton-AnalyticsAgent/`.
+- При `method ∈ {POST, PUT, PATCH, DELETE}` обязательно один из: `proposalId` или `configApplyRunId` или `evaluatorName='manual_admin'`. Иначе validation fail (это и есть FR-396 enforcement на schema-уровне).
+
+**Access**:
+- `read`: admin only.
+- `create`: system (agent). Admin создавать запрещено.
+- `update`/`delete`: запрещено (immutable audit-log).
+
+---
+
 ### 2.1 `Annotations` (collections/Annotations.ts) — NEW
 
 Используется для FR-160…FR-162 и в weekly-report. v1 — все аннотации ручные через Payload Admin.
@@ -191,13 +271,134 @@
 **Access**:
 - `read`/`update`: admin only.
 
+**Дополнение для Agent-driven model (v1)**:
+
+```typescript
+{
+  // ... все поля выше +
+
+  // Agent runtime config
+  agentReview: {
+    schedule: string,              // cron-expression; default '0 9 * * *' (09:00 МСК)
+    timezone: string,              // default 'Europe/Moscow'
+    enabledEvaluators: string[],   // имена evaluator'ов; по умолчанию все 6
+    cooldownDays: number,          // default 7
+    rateLimit: {
+      maxApiCallsPerMinute: number,  // default 100
+      backoffOnRateLimit: boolean    // default true
+    }
+  },
+
+  // Agent kill-switch (расширение activation)
+  activation: {
+    serverHitsEnabled: boolean,
+    webvisorEnabled: boolean,
+    qualifiedVisitGoalEnabled: boolean,
+    agentEnabled: boolean,           // NEW — kill-switch для всех agent-операций
+    agentSchedulerEnabled: boolean   // NEW (v1.1) — отключает только scheduled cron, manual CLI продолжает работать
+  }
+}
+```
+
 **Seed**:
 - Default `referrerPatterns` (см. R4).
 - Default `qualifiedVisit`: `{ minDurationSeconds: 30, minPageDepth: 2, excludeBounce: true }`.
 - Default `brandKeywords`: `['soliton', 'солитон']`.
-- Default `goals`: пустой (заполняется после создания целей в Метрика UI).
-- Default `retargetingSegments`: пустой (заполняется после создания сегментов в Метрика UI).
-- Default `activation`: `{ serverHitsEnabled: true, webvisorEnabled: true, qualifiedVisitGoalEnabled: true }`.
+- Default `goals`: пустой (заполняется ПО ИТОГАМ `metrika:apply-config` агентом, не редактируется руками — см. FR-363).
+- Default `retargetingSegments`: пустой (заполняется по итогам `apply-config`).
+- Default `activation`: `{ serverHitsEnabled: true, webvisorEnabled: true, qualifiedVisitGoalEnabled: true, agentEnabled: true, agentSchedulerEnabled: false }` (scheduler off в v1, on в v1.1).
+- Default `agentReview`: `{ schedule: '0 9 * * *', timezone: 'Europe/Moscow', enabledEvaluators: ['funnel_drop_off','qualified_visit_rate','source_quality','zero_result_searches','roas_deviation','data_quality'], cooldownDays: 7, rateLimit: { maxApiCallsPerMinute: 100, backoffOnRateLimit: true } }`.
+
+---
+
+## 3.2 MetrikaConfigFile (config-as-code) — NEW (Agent-driven model, v1)
+
+Файл `apps/web/config/metrika.config.ts` — single source of truth для Метрика-конфигурации (FR-360). Не Payload-сущность, а **git-tracked TypeScript-объект**, который agent применяет через `metrika:apply-config`.
+
+```typescript
+// apps/web/config/metrika.config.ts
+export const metrikaConfig: MetrikaConfig = {
+  counterId: process.env.YM_COUNTER_ID!,   // attached for clarity, не часть hash-сравнения
+
+  // FR-050: цели Метрики
+  goals: [
+    {
+      name: 'Purchase',                    // unique key для upsert-by-name
+      type: 'event',                       // Metrika goal types
+      conditions: [{ type: 'event_target', value: 'purchase' }],
+      isRetargeting: true,                 // для аудиторий Я.Директа
+      enabled: true,
+      businessMeaning: 'Успешная оплата заказа',  // sync to goal-mapping.md
+      owner: 'svp@heado.ru'
+    },
+    {
+      name: 'RFQ Submit',
+      type: 'event',
+      conditions: [{ type: 'event_target', value: 'rfq_submit' }],
+      enabled: true,
+      businessMeaning: 'B2B запрос КП отправлен',
+      owner: 'svp@heado.ru'
+    },
+    // ... все остальные goals из FR-050
+  ],
+
+  // FR-051: составные цели (funnel)
+  compositeGoals: [
+    {
+      name: 'Purchase funnel',
+      type: 'step',
+      steps: [
+        { name: 'PDP view', conditions: [...] },
+        { name: 'Add to cart', conditions: [...] },
+        { name: 'Begin checkout', conditions: [...] },
+        // ...
+      ],
+      enabled: true
+    }
+  ],
+
+  // FR-200: ретаргетинговые сегменты как Metrika filters
+  filters: [
+    {
+      name: 'Added to cart, not bought, 7d',
+      attribution: 'ym:s:lastTrafficSource',
+      conditions: [/* фильтр-логика */],
+      enabled: true
+    }
+  ],
+
+  // FR-340, FR-061-063: counter settings
+  counterSettings: {
+    firstPartyCookies: true,               // FR-340
+    webvisor: {
+      enabled: true,                       // FR-061
+      enabledV2: true,
+      formCapturing: 'enabled_with_masks', // FR-060
+      urlFilter: '...'
+    },
+    accurateTrackBounce: true,
+    trackLinks: true,
+    clickmap: true,
+    informer: false                        // не используем
+  }
+}
+
+// Type-definitions для validation
+export type MetrikaConfig = { /* ... */ }
+export type MetrikaGoal = { /* ... */ }
+// ...
+```
+
+**Принципы**:
+- **Идентичность объектов через `name`** (не Metrika-ID, который assignется только после create). Это позволяет idempotent upsert: agent ищет goal с name='Purchase' → если есть, update; если нет, create.
+- **Запрещено хранить `metrika_id` в config.** ID — output, не input. Они появляются в `goal-mapping.md` после apply.
+- **Поле `enabled: false`** = soft-disable (агент при apply вызовет update с `enabled: false`, не hard-delete).
+- **Удалить goal из config** = НЕ означает hard-delete в Метрике. Agent при apply сохранит orphan-goal со предупреждением (FR-391: only soft-disable). Hard-delete — через AgentProposal type=`hard_delete`.
+
+**Связь с `goal-mapping.md`**:
+- `metrika.config.ts` — input для apply.
+- `goal-mapping.md` — output после apply (содержит фактические Metrika-ID, заполняется агентом).
+- Они **синхронизируются автоматически** через FR-363; ручное редактирование `goal-mapping.md` оператором ведёт к drift, который detect'ит daily-review (FR-400).
 
 ---
 
@@ -351,7 +552,9 @@ Annotations (collection)
 - `orders`: ADD COLUMN attribution_first_touch_* (10 nullable columns), ym_client_id, first_seen_at, time_to_purchase_days, visit_count_to_purchase, user_type_at_conversion, server_hit_status_* (3 columns).
 - `customers`: ADD COLUMN first_seen_at, ym_client_id, dsar_log JSONB.
 - `annotations`: CREATE TABLE (новая).
-- `analytics_settings`: CREATE TABLE (singleton, Payload Global pattern).
+- `analytics_settings`: CREATE TABLE (singleton, Payload Global pattern). Включая поля `agent_review` JSONB и `activation.agent_enabled`/`activation.agent_scheduler_enabled`.
+- `agent_proposals`: CREATE TABLE (новая, Agent-driven model).
+- `agent_execution_log`: CREATE TABLE (новая, Agent-driven model audit-log).
 
 **Стратегия**: одна миграция Payload-generate-types, без data backfill (новые поля nullable). Существующие Cart/Order/Customer останутся с null-значениями новых полей — это допустимо (когорта и атрибуция работают только для записей, созданных после миграции).
 

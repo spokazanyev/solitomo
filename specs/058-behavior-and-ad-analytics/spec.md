@@ -27,6 +27,12 @@
 - Q: Статус FR-013 (`view_promotion`/`select_promotion`)? → A: **CUT** из v1. Промо-баннеров на сайте сегодня нет; событие реализуется одновременно с появлением промо-механики как отдельной продуктовой фичей (не v1.1/v1.2, а feature-trigger). FR-013 остаётся в спеке как target-state, но `## Scope Phases` явно маркирует его как `cut-until-feature-exists`.
 - Q: FR-033/FR-034 (offline-conversion в Я.Метрику с `yclid`/`client_id`) — это отдельная фича или эквивалент server-hit (FR-040)? → A: **Отдельная фича в v1, не эквивалент**. Server-hit (FR-040) дублирует `purchase` event с тем же `transaction_id` для adblock-resilience (Метрика дедуплицирует). Offline-conversion (FR-033/034) использует Yandex.Metrika Offline Conversions API (`POST /management/v1/counter/<id>/offline_conversions/upload`) для передачи исторического `yclid` в Я.Директ — это нужно Директу для оптимизации ставок post-факт (особенно если конверсия далеко по времени от клика). **Оба механизма MUST в v1** — они комплементарны.
 
+### Session 2026-05-26 (Agent-Driven Analytics Model)
+
+- Q: Кто настраивает Метрику и поддерживает её конфигурацию? → A: **Agent (Claude-instance)** через Yandex.Metrika Management API. Человек (operator) НЕ настраивает Метрику через UI; источник истины — `apps/web/config/metrika.config.ts` в git. Manual UI допустим только для (a) DNS CNAME, (b) OAuth-prompt для Метрика↔Директ связки, (c) создания самого счётчика, (d) ротации API-токена, (e) escalation в Yandex Support для DSAR. Все остальные настройки (goals, filters, counter settings, webvisor, audiences) — через API.
+- Q: Когда agent выполняет mutating-операции против Метрики? → A: **Двумя путями**: (1) initial/reconcile config-apply из `metrika.config.ts` — git-tracked, одобрено через PR-review; (2) per-action approved `AgentProposal` для ad-hoc изменений (создан агентом по результатам анализа, approved оператором в admin UI). Никаких других путей mutating-операций нет; audit-log в `AgentExecutionLog` всегда содержит trace.
+- Q: Как часто agent автоматически читает Метрика-данные и формирует предложения? → A: **Daily 09:00 МСК** (cron-эндпоинт `/api/cron/agent-daily-review`) + **on-demand** через CLI или admin-button «Run review now». Расписание конфигурируется в `AnalyticsSettings.agentReview`. v1: read-only через CLI запускаемое оператором. v1.1: scheduled cron с автоматическим созданием proposals.
+
 ## Scope Phases (MVP-Lite Breakdown)
 
 Спека описывает полную целевую разметку аналитики. Для launch — поэтапная реализация: **v1 (MVP-Lite)** — то, что нужно с первого дня, чтобы недельный отчёт отвечал на 4 главных вопроса бизнеса. **v1.1** — расширения, которые имеют смысл после первого месяца накопления данных. **v1.2** — функционал, который оправдан только при существенном трафике/каталоге.
@@ -70,6 +76,10 @@
 - Базовое page_view: FR-320.
 - Safari/ITP first-party cookies: FR-340, FR-341.
 - 152-ФЗ DSAR runbook: FR-350…FR-352.
+- **Agent: Config-as-code Метрика (full)**: FR-360, FR-361, FR-362, FR-363, FR-364, FR-365, FR-366. Включает CLI `pnpm metrika:apply-config|export-config|validate-config`, auto-update goal-mapping.md.
+- **Agent: Propose-approve workflow (full)**: FR-380, FR-381, FR-382, FR-383, FR-384, FR-385, FR-386. Включает `AgentProposals` collection + admin-страницу `/admin/agent-proposals`.
+- **Agent: Authentication & safety**: FR-390, FR-391, FR-392, FR-393, FR-394, FR-395, FR-396. Включает `YM_AGENT_TOKEN`, smoke-test invariant.
+- **Agent: On-demand review (manual CLI)**: FR-376 в v1; **scheduled daily/weekly cron** — defer до v1.1.
 
 Серверные хиты — частично:
 - FR-040 (server-side `purchase`) — **в v1**.
@@ -115,6 +125,8 @@ Weekly-отчёт в v1 (FR-091) включает все секции **кром
 - **B2B-сигналы print/copy**: FR-018, FR-019, FR-193, FR-194.
 - **Web Vitals как параметры визита**: FR-070, FR-071 — внедряется, только если встроенного отчёта «Скорость загрузки» Метрики окажется недостаточно для acceptance-критериев SEO/UX.
 - **Scroll-depth разметка**: FR-008 — внедряется, если встроенного отчёта «Активность пользователей» Метрики не хватит для CRO.
+- **Agent: scheduled daily-review + evaluators**: FR-370, FR-371, FR-372, FR-373, FR-374, FR-375. Включает cron-эндпоинт `/api/cron/agent-daily-review`, evaluator-suite (6 evaluators), audit-log retention.
+- **Agent: drift detection**: FR-400, FR-401, FR-402. Включает `drift_detected` AgentProposal с двумя operator-actions.
 
 ### v1.2 (+3 месяца) — оптимизация при существенном трафике/каталоге
 
@@ -127,10 +139,11 @@ Weekly-отчёт в v1 (FR-091) включает все секции **кром
 - **Custom crawl-error logging**: FR-250, FR-251, FR-252, FR-253 — внедряется только если штатный отчёт Webmaster/GSC «Ошибки обхода» окажется недостаточно детальным.
 - **Deploy-readiness UI**: FR-104.
 - **Daily prod-isolation check**: FR-272.
+- **Agent: MCP-interface для interactive analysis**: FR-410, FR-411 — Claude Desktop / Claude Code подключается к локальному MCP-server'у и интерактивно ведёт ad-hoc analysis; mutating-tools создают AgentProposals (не выполняют сразу).
 
 ### Knock-on в Success Criteria
 
-Все SC из секции «Measurable Outcomes» применимы к итоговому состоянию системы (после v1.2). Для launch-приёмки (v1) применимы **SC-001…SC-006, SC-008, SC-010, SC-012, SC-014, SC-015 (3 из 8 сегментов), SC-017, SC-019, SC-022 (через ручной выгрузку), SC-023, SC-024 (через jsdom-cлой), SC-025, SC-027, SC-028, SC-029, SC-030**. Остальные SC переходят в v1.1/v1.2 вместе с FR, от которых зависят.
+Все SC из секции «Measurable Outcomes» применимы к итоговому состоянию системы (после v1.2). Для launch-приёмки (v1) применимы **SC-001…SC-006, SC-008, SC-010, SC-012, SC-014, SC-015 (3 из 8 сегментов), SC-017, SC-019, SC-022 (через ручной выгрузку), SC-023, SC-024 (через jsdom-cлой), SC-025, SC-027, SC-028, SC-029, SC-030, SC-031, SC-032, SC-034, SC-036**. v1.1: добавляются SC-033, SC-035 (scheduled daily-review + drift detection). Остальные SC переходят в v1.1/v1.2 вместе с FR, от которых зависят.
 
 ### Knock-on в User Stories
 
@@ -139,6 +152,25 @@ Weekly-отчёт в v1 (FR-091) включает все секции **кром
 - **US4** (adblock-resilience) — реализуема в v1 только для `purchase`; для `rfq_submit` — v1.1.
 - **US5** (weekly-отчёт) — реализуема в v1 как MD-only; HTML-страница — v1.1.
 - **US8** (SEO-команда видит органику) — частично в v1 (ручные ссылки в Webmaster/GSC + base-классификация реферера + base-классификация brand/non-brand); auto-import API — v1.1.
+- **US9** (agent setup Метрики через API) — полностью v1: `metrika.config.ts` + `apply-config` CLI + auto-update goal-mapping.md.
+- **US10** (agent daily-review и предложения правок) — в v1: on-demand CLI `pnpm analytics:agent-review`; в v1.1: scheduled cron 09:00 МСК + полный evaluator-suite (6 evaluators).
+- **US11** (agent weekly-обзор и structural-предложения) — в v1: ручной запуск рядом с weekly-report (`pnpm analytics:agent-review --period=week`); в v1.1: автозапуск после weekly-report cron.
+
+## Personas / Actors
+
+В спеке участвуют **четыре актора**, с явным разграничением обязанностей и permissions:
+
+1. **Owner** (владелец сайта, бизнес-стейкхолдер) — потребитель аналитики. Читает weekly-отчёты, approve'ит AgentProposals, принимает бизнес-решения «что чинить». **Не** настраивает Метрику руками.
+
+2. **Marketing/SEO Operator** (маркетолог-аналитик) — в малой команде совпадает с Owner. Запускает ad-hoc analysis, видит органический канал, реагирует на anomaly alerts. **Не** настраивает Метрику руками.
+
+3. **Admin** (DevOps / разработчик) — менеджит env-переменные (включая `YM_API_TOKEN`, `YM_AGENT_TOKEN`), DNS-настройку, ротацию токенов, escalation в Yandex Support. **Не** настраивает goals/filters Метрики (это — Agent + git).
+
+4. **Analytics Agent** (Claude-instance в режиме scheduled cron, CLI, или MCP-server) — **основной субъект всех действий с Метрикой**:
+    - **Может**: вызывать Yandex.Metrika Management API (Goals/Filters/Counter Settings CRUD), Stat API (read), Offline Conversions API (upload). Анализировать данные. Формулировать proposals. Записывать audit-log. Перезаписывать `06-reports/analytics/goal-mapping.md` фактическими ID после `apply-config`.
+    - **Не может без approve**: hard-delete'ить goals/filters/segments (потеря истории); менять `first_party_cookies`, `webvisor`, `accurate_track_bounce` (data-quality settings); выполнять mutating-операции против Метрика API без либо (a) git-tracked `metrika.config.ts` config-apply, либо (b) approved `AgentProposal`.
+    - **Идентифицирует себя**: через выделенный API-token `YM_AGENT_TOKEN` с scope-ограничением «counter management» на один production-счётчик; в HTTP-headers `User-Agent: Soliton-AnalyticsAgent/1.0`.
+    - **Audit**: каждый API-вызов записывается в `AgentExecutionLog` (Payload-коллекция); каждый proposal — в `AgentProposals`.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -173,6 +205,59 @@ Weekly-отчёт в v1 (FR-091) включает все секции **кром
 2. **Given** заказ переходит в статус «оплачен», **When** срабатывает серверный хук офлайн-конверсии, **Then** в Метрике через её API регистрируется офлайн-конверсия с этим `yclid` и суммой заказа.
 3. **Given** недельный отчёт по источникам, **When** владелец сортирует по выручке, **Then** видит топ-кампаний с числом заказов, средним чеком и стоимостью клика (если задана).
 4. **Given** пользователь зашёл из органики (`utm_source` пустой), **When** проверяется визит, **Then** Метрика классифицирует источник как «Поисковые системы», а в Order сохраняется фактический referrer.
+
+---
+
+### User Story 9 — Agent настраивает Метрику через API (Priority: P1)
+
+На launch новой среды (test/staging/prod) admin запускает `pnpm metrika:apply-config --counter-id=<id>`. Agent через Yandex.Metrika Management API: (a) создаёт все goals из `metrika.config.ts`, (b) создаёт все filters, (c) применяет counter settings (first_party_cookies, webvisor с masks-config, accurateTrackBounce, trackLinks, clickmap), (d) синхронизирует фактические Goal-ID в `06-reports/analytics/goal-mapping.md`, (e) логирует каждую операцию в `AgentExecutionLog`. Owner вмешивается только если apply-config возвращает ошибку.
+
+**Why this priority**: без config-as-code никакая конфигурация Метрики не воспроизводима между окружениями; goal-mapping.md drift'ится; новый разработчик не может понять, что должно быть настроено. Это **базовый принцип Constitution VI** в применении к аналитике.
+
+**Independent Test**: на пустом тестовом счётчике запустить `pnpm metrika:apply-config --counter-id=<test> --dry-run` — выводит план («create 12 goals, 8 filters, update 4 counter settings») без mutations. Затем без `--dry-run` — все объекты создаются за один прогон; повторный запуск (idempotency) — ноль изменений. Файл `goal-mapping.md` перезаписан с фактическими Goal-ID из API.
+
+**Acceptance Scenarios**:
+
+1. **Given** пустой Метрика-счётчик, **When** запускается `pnpm metrika:apply-config --counter-id=<id>`, **Then** все goals/filters/settings из `metrika.config.ts` создаются; ни одна mutating-операция не происходит без явной строки в config.
+2. **Given** уже настроенный счётчик и идентичный config, **When** запускается `apply-config` повторно, **Then** агент логирует «no changes needed» и не делает mutating-вызовов.
+3. **Given** apply-config выполнен, **When** проверяется `goal-mapping.md`, **Then** в нём появились реальные numeric Goal-ID, синхронные с API.
+4. **Given** существующий счётчик с goals, **When** запускается `pnpm metrika:export-config`, **Then** в `metrika.config.ts` записывается текущее состояние (полезно при первом подключении к unmanaged-счётчику).
+5. **Given** apply-config упал на mid-pipeline (ошибка API на goal #5), **When** оператор перезапускает команду, **Then** уже созданные goals не дублируются (idempotent upsert-by-name).
+
+---
+
+### User Story 10 — Agent ежедневно анализирует данные и предлагает правки (Priority: P2)
+
+Ежедневно в 09:00 МСК (или по on-demand `pnpm analytics:agent-review`) Agent тащит вчерашние Метрика-данные через Stat API, прогоняет evaluator-suite (funnel drop-off, qualified_visit rate, source quality, zero-result queries, ROAS deviation, JS-error/404/consent-decline rate), формирует `EvaluatorResult[]`. Если evaluator считает, что текущая конфигурация неоптимальна (например, qualified_visit=92% → порог слишком мягкий), agent создаёт `AgentProposal` в Payload-коллекции. Оператор открывает `/admin/agent-proposals`, видит список pending proposals с reasoning и evidence, approve/reject.
+
+**Why this priority**: основная **проактивная** функция агента. Без неё спека сводится к «человек смотрит, человек чинит» — а это тяжёлая привычка, которая «забывается» через 2-3 недели после launch.
+
+**Independent Test**: создать искусственный сценарий «вчера qualified_visit=92% вместо ожидаемых 10-30%» (модификация AnalyticsSettings.qualifiedVisit пороги); запустить `pnpm analytics:agent-review --date=yesterday`. В админке `/admin/agent-proposals` появится pending proposal с type=`adjust_qualified_visit_threshold`, evidence (фактические данные), reasoning, proposed_action (увеличить порог до 60s/3 страниц). Approve через UI → API-вызов меняет настройку → proposal status=`executed`.
+
+**Acceptance Scenarios**:
+
+1. **Given** daily-review с нормальными показателями, **When** все evaluators возвращают severity=`info`, **Then** ни одного proposal не создаётся; в `AgentExecutionLog` есть запись о completed review с длительностью.
+2. **Given** drop-off на checkout_step_payment_method вырос на 40% week-over-week, **When** agent прогоняет funnel evaluator, **Then** создаётся proposal type=`investigate_funnel_drop` с evidence + предложением «создать сегмент для drilldown».
+3. **Given** AgentProposal в статусе `pending`, **When** оператор approve'ит через UI, **Then** в течение 30 секунд agent вызывает соответствующий Метрика-endpoint, status становится `executed`; результат в `executionResult`.
+4. **Given** approved AgentProposal с failed-API call (например, 503 от Метрики), **When** проверяется status, **Then** status=`failed`, error в `executionResult`, proposal остаётся в списке для retry; оператор получает admin-alert.
+5. **Given** оператор rejects proposal с причиной «не согласен с эвристикой», **When** запись сохраняется, **Then** в `AgentProposals.reviewerReason` записан текст; этот же evaluator на следующий день НЕ создаёт повторный proposal по тому же сигналу в течение 7 дней (cooldown).
+
+---
+
+### User Story 11 — Agent после weekly-обзора предлагает структурные правки (Priority: P2)
+
+После генерации weekly-отчёта (US5, понедельник 10:00 МСК) Agent дополнительно прогоняет «structural» evaluators недельного уровня: «найди частые события без соответствующей цели», «найди пустые сегменты», «найди landing-pages без events на них», «детектируй drift между текущей Метрика-конфигурацией и `metrika.config.ts`», «найди пары событий, которые подозрительно коррелируют и могут быть склеены в новую составную цель». Все результаты → `AgentProposals`.
+
+**Why this priority**: дополняет US10 еженедельным «structural review» — более глубокий анализ, требующий большего временного окна (7 дней).
+
+**Independent Test**: за неделю накопить событие `price_request_click` 50 раз, но цель по нему не создана. Запустить `pnpm analytics:agent-review --period=week`. Agent создаст proposal type=`create_missing_goal` с reasoning «За неделю 50 раз отправлено событие X, цели нет — невозможно построить воронку и сегмент». Approve → API создаёт goal → goal-mapping.md обновляется.
+
+**Acceptance Scenarios**:
+
+1. **Given** Метрика-конфигурация совпадает с `metrika.config.ts`, **When** weekly review запущен, **Then** drift-evaluator возвращает `severity=info`; proposals НЕ создаются для drift.
+2. **Given** оператор переименовал goal в UI Метрики (создан drift), **When** weekly review запущен, **Then** создаётся proposal type=`drift_detected` с конкретным diff («goal #12345: name in UI = 'Покупка', name in config = 'Purchase'»), reasoning, и **двумя вариантами** action: «restore-from-config» или «accept-and-update-config».
+3. **Given** новое событие массово отправляется (>20 раз/неделя), **When** weekly review запущен, **Then** создаётся proposal type=`create_missing_goal` с предложенным name/conditions.
+4. **Given** segment в `metrika.config.ts` существует, но его visit-count за 4 недели = 0, **When** weekly review запущен, **Then** создаётся proposal type=`remove_unused_segment` (с явным required-approve, без auto-execute).
 
 ---
 
@@ -569,6 +654,57 @@ B2B-байер с корпоративным ноутбуком и включё�
 - **FR-220**: В составе деливерабла этой спеки MUST быть создан текстовый артефакт `06-reports/analytics/operator-guide.md` с: глоссарием всех событий (имя → бизнес-смысл → где смотреть), описанием каждой воронки и сегмента, инструкцией «как читать недельный отчёт за 30 минут», списком обязательных проверок при запуске новой рекламной кампании (UTM-чек-лист, минимальный набор сегментов, окно атрибуции).
 - **FR-221**: При изменении состава событий, сегментов или целей operator-guide MUST обновляться синхронно с кодовыми изменениями (это часть definition-of-done для любого PR, меняющего аналитику).
 
+### Functional Requirements — Agent: Config-as-code Метрика-конфигурации
+
+- **FR-360**: Канонический источник истины конфигурации Метрика-счётчика MUST быть TypeScript-объект в `apps/web/config/metrika.config.ts`, содержащий `goals[]`, `compositeGoals[]`, `filters[]`, `counterSettings`, `retargetingSegments[]`. Git-tracked, code-reviewable.
+- **FR-361**: Agent MUST уметь применять `metrika.config.ts` к счётчику через Yandex.Metrika Management API командой `pnpm metrika:apply-config --counter-id=<id>`. Алгоритм: list current state → diff → idempotent upsert-by-name. Hard-delete объектов НЕ выполняется (только soft-disable через `enabled: false`).
+- **FR-362**: Команда `apply-config` MUST поддерживать `--dry-run` (показывает план без mutating-операций), `--counter-id=<id>` (target counter override), `--scope=goals|filters|settings|all` (партиционная применение).
+- **FR-363**: После успешного `apply-config` agent MUST автоматически перезаписать `06-reports/analytics/goal-mapping.md` фактическими Goal-ID из API-response, без потери `business_meaning` / `owner` / `last_updated` колонок (merge by event_name).
+- **FR-364**: Reverse-direction команда `pnpm metrika:export-config --counter-id=<id>` MUST тащить текущее состояние счётчика и записывать в `metrika.config.ts` (полезно при первом подключении к existing counter); генерирует diff против текущего файла для review.
+- **FR-365**: CI-валидация `pnpm metrika:validate-config` MUST проверять, что текущее состояние счётчика соответствует `metrika.config.ts` (drift detection); CI fail при drift с явным diff. Запускается в pre-deploy.
+- **FR-366**: При необходимости hard-delete объекта (например, ошибочно созданная цель) — это происходит только через approved AgentProposal type=`hard_delete` с explicit-flag в operator-action.
+
+### Functional Requirements — Agent: Daily/weekly autonomous review
+
+- **FR-370**: Agent MUST иметь scheduled-режим работы через cron-эндпоинт `/api/cron/agent-daily-review` (защищён `CRON_SECRET`), запускающийся ежедневно в 09:00 МСК (расписание конфигурируется в `AnalyticsSettings.agentReview.schedule`).
+- **FR-371**: Daily-review MUST прогонять evaluator-suite: (a) **funnel drop-off evaluator** — детектит провал >20% week-over-week на любом шаге checkout-funnel; (b) **qualified_visit rate evaluator** — если share <5% или >90%, порог нужно подстроить; (c) **source quality evaluator** — новые/потерянные источники >10% трафика; (d) **zero-result search evaluator** — топ-10 запросов без результатов; (e) **ROAS evaluator** — кампании Я.Директа с ROAS<1 или с резким изменением; (f) **data-quality evaluator** — JS-error rate, 404 rate, consent-decline rate.
+- **FR-372**: Каждый evaluator MUST возвращать структуру `EvaluatorResult { evaluator_name, severity (info|warning|critical), summary, evidence, proposed_action?, cooldown_days }`. Severity влияет на UI-presentation (critical = badge red).
+- **FR-373**: Если evaluator-result содержит `proposed_action`, agent MUST создать запись в Payload-коллекции `AgentProposals` со статусом `pending`. Cooldown: если в течение `cooldown_days` (default 7) уже создан proposal от того же evaluator по той же сущности — новый НЕ создаётся (анти-спам).
+- **FR-374**: По итогам weekly-report (US5) agent дополнительно прогоняет **structural evaluators**: (a) **missing-goal evaluator** — массовые события без цели (>20/неделя); (b) **unused-segment evaluator** — сегменты с visit-count=0 за 4 недели; (c) **drift evaluator** — расхождение между актуальным состоянием Метрики и `metrika.config.ts`; (d) **correlated-events evaluator** — пары событий, которые могут стать составной целью.
+- **FR-375**: Все API-вызовы агента (read и mutating) MUST логироваться в Payload-коллекцию `AgentExecutionLog` с полями `{ timestamp, endpoint, method, request_params (без секретов), response_status, duration_ms, proposal_id? }`. Retention: 90 дней.
+- **FR-376**: On-demand запуск daily-review доступен через CLI `pnpm analytics:agent-review [--period=day|week] [--date=YYYY-MM-DD]` и admin-button «Run agent review now» на странице `/admin/agent-proposals`.
+
+### Functional Requirements — Agent: Propose-approve workflow
+
+- **FR-380**: Новая Payload-коллекция `AgentProposals` со схемой: `{ id, createdAt, createdBy='agent', evaluator (name), type (enum: create_goal/update_goal/create_filter/update_filter/update_setting/drift_detected/create_missing_goal/remove_unused_segment/adjust_qualified_visit_threshold/investigate_funnel_drop/hard_delete/...), action (create|update|delete|soft-disable), targetPath (e.g. 'goals[].id=12345' или 'counterSettings.first_party_cookies'), payload (the actual change as JSON), reasoning (LLM-generated human-readable), expectedImpact, evidence (data snapshot), status (pending|approved|rejected|executed|failed), reviewedBy (User), reviewedAt, reviewerReason?, executedAt?, executionResult? }`.
+- **FR-381**: Admin-страница `/admin/agent-proposals` (Payload Custom View) MUST показывать список proposals с фильтром по status. По умолчанию открыт `pending`. Каждая строка имеет: type badge, evaluator name, summary, severity, created date; клик в строку открывает detail-view с full reasoning, evidence (data snapshot), diff (current vs proposed), кнопки Approve / Reject.
+- **FR-382**: На Approve agent MUST в течение 30 секунд вызвать соответствующий Метрика Management API endpoint, обновить status на `executed`, записать `executedAt` и `executionResult`; при ошибке — status `failed` + error в `executionResult`. Audit-log в `AgentExecutionLog` обязателен.
+- **FR-383**: На Reject оператор может ввести reason (optional). Status становится `rejected`, `reviewerReason` сохраняется. Этот же evaluator на эту же entity не повторяет proposal в течение `cooldown_days` (default 7).
+- **FR-384**: Mutating-операция Метрика API MUST вызываться agent'ом ТОЛЬКО через одно из: (a) approved AgentProposal (через FR-382), (b) initial config-apply (FR-361). Прямые mutating вызовы из любого другого кода — запрещены архитектурно. Smoke-test FR-396 проверяет.
+- **FR-385**: Все state-changes AgentProposal MUST логироваться в существующий audit-log `AdminChangeLog` (как и другие admin-actions).
+- **FR-386**: При accumulated 5+ approved proposals подряд того же типа от того же evaluator — agent создаёт «meta-proposal» type=`auto_approve_request`: «Можно ли автоматически approve'ить такие proposals в будущем?». Без ответа — продолжает работать в manual-mode.
+
+### Functional Requirements — Agent: Authentication, permissions, safety
+
+- **FR-390**: Agent использует выделенный Yandex.Metrika API token (env `YM_AGENT_TOKEN`) с правами «counter management» — scope ограничен одним production-счётчиком (`YM_COUNTER_ID`). НЕ совмещать с `YM_API_TOKEN` (если есть отдельный read-only token для weekly-отчётов).
+- **FR-391**: Agent NEVER не делает hard-delete goals/filters/segments — только soft-disable (`enabled: false`), потому что hard-delete теряет историю данных. Hard-delete возможна только через AgentProposal type=`hard_delete` с explicit-flag, который оператор подтверждает второй кнопкой «Я понимаю, что это удалит историю».
+- **FR-392**: Agent NEVER не меняет следующие critical-settings без approved AgentProposal: `first_party_cookies`, `webvisor.enabled`, `accurate_track_bounce`, `track_links`, `clickmap`, любые webvisor-mask-конфигурации. Эти настройки влияют на качество ВСЕХ данных в Метрике.
+- **FR-393**: Все cron-эндпоинты агента MUST иметь rate-limiting (max 100 API-calls/min к Метрике); встроенный backoff с jitter при 429 ответах; circuit-breaker при 5xx ошибках.
+- **FR-394**: Agent НЕ обращается к Метрике, если в env отсутствует `YM_AGENT_TOKEN` ИЛИ `YM_COUNTER_ID` ИЛИ если `AnalyticsSettings.activation.agentEnabled = false` (kill-switch).
+- **FR-395**: При недоступности Метрика API (5xx, timeout) на >5 минут — agent останавливает текущий review, записывает partial-result + причину в `AgentExecutionLog`, **не** создаёт incomplete proposals. Оператор получает admin-alert «Agent paused: Метрика unavailable».
+- **FR-396**: Smoke-test invariant: в `AgentExecutionLog` не должно быть mutating-вызовов (POST/PUT/PATCH/DELETE) без либо `proposal_id`, либо `config_apply_run_id`. CI проверяет периодически.
+
+### Functional Requirements — Agent: Drift detection
+
+- **FR-400**: При каждом запуске daily-review (FR-370) agent MUST сравнивать текущее состояние Метрика-счётчика с `metrika.config.ts`. Detected drift → создаётся `AgentProposal` type=`drift_detected` с конкретным diff (что изменилось, кем (если можно определить из API), когда).
+- **FR-401**: Drift-proposal содержит **две альтернативы operator-action** в UI: (a) **restore-from-config** — agent откатывает изменение через API; (b) **accept-and-update-config** — agent читает текущее состояние и обновляет `metrika.config.ts`, создаёт PR-suggestion в git. Оператор выбирает одно из.
+- **FR-402**: Drift-detection НЕ блокирует daily-review (другие evaluators продолжают работать). Drift логируется как `severity=warning`, не `critical`.
+
+### Functional Requirements — Agent: MCP-interface (v1.2 defer)
+
+- **FR-410**: (v1.2) MCP-server `apps/web/mcp-server/analytics-mcp/` экспортирует tools для подключения из Claude Desktop / Claude Code: `metrika_get_funnel(date_range)`, `metrika_list_goals()`, `metrika_get_anomaly_report()`, `metrika_get_top_queries(period)`, `metrika_propose_goal(goal_spec, reasoning)`, `metrika_propose_segment(segment_spec, reasoning)`. Auth через MCP-server-token.
+- **FR-411**: (v1.2) MCP-tools для mutating-операций (`metrika_propose_*`) **только создают AgentProposal** в Payload, **не** выполняют API-mutation. Approve через стандартный admin-UI (FR-381). Это сохраняет invariant FR-384.
+
 ### Functional Requirements — Конфигурация и эксплуатация
 
 - **FR-100**: **Все runtime-секреты MUST храниться в env-переменных** (production env / `.env` для локальной разработки); никогда не коммитятся в git. Это включает: ID счётчика Я.Метрики и GA4 (`NEXT_PUBLIC_*` — публичные, но всё равно через env), token API Я.Метрики, OAuth-token Я.Вебмастера, service-account JSON для Google Search Console (хранится как base64-string или путь к файлу секрета на сервере), token Я.Директа (если потребуется явный), token Telegram-bot для admin-alerting, IP-allowlist для Метрика-webhook (если фиксированный). Ротация любого секрета требует redeploy (это сознательный trade-off в пользу простоты и устранения единого SPOF в БД).
@@ -600,6 +736,12 @@ B2B-байер с корпоративным ноутбуком и включё�
 - **MetrikaCounterEnvironment** — связка «окружение → counter_id». Атрибуты: env (`production`/`staging`/`development`), counter_id, enabled, последняя проверка корректности.
 - **ConsentBannerInteraction** — событие/факт взаимодействия с cookie-баннером. Атрибуты: тип (`shown`/`accepted`/`declined`/`no_action`), категории (для granular consent), время.
 - **DSARRequest** — запрос на доступ к или удаление аналитических данных. Атрибуты: инициатор (customer_id или `_ym_uid`), тип (`access`/`delete`), дата запроса, дата выполнения, статус, кто исполнил.
+- **AnalyticsAgent** — субъект (Claude-instance), выполняющий config-as-code-apply, daily-review, weekly-structural-review. Идентифицируется через `YM_AGENT_TOKEN` + `User-Agent: Soliton-AnalyticsAgent/1.0`. Не персистируется как entity — это runtime-актор.
+- **MetrikaConfigFile** — TypeScript-объект в `apps/web/config/metrika.config.ts`. Содержит `goals[]`, `compositeGoals[]`, `filters[]`, `counterSettings`, `retargetingSegments[]`. Source of truth для Метрика-конфигурации; git-tracked.
+- **AgentProposal** — Payload-коллекция. Запись о предложенном агентом изменении конфигурации Метрики или новой настройке. Атрибуты см. FR-380. Workflow: pending → approved/rejected → executed/failed.
+- **AgentExecutionLog** — Payload-коллекция. Audit-log всех агентских вызовов Метрика API (read + mutating). Атрибуты см. FR-375. Retention 90 дней.
+- **EvaluatorResult** — транзитивная структура результата одного evaluator'а в daily/weekly review. Не персистируется отдельно; частично попадает в `AgentProposal.evidence`.
+- **DriftRecord** — подтип `AgentProposal` с `type='drift_detected'`. Содержит конкретный diff между `metrika.config.ts` и фактическим состоянием Метрики, две альтернативы operator-action.
 
 ## Success Criteria *(mandatory)*
 
@@ -635,6 +777,12 @@ B2B-байер с корпоративным ноутбуком и включё�
 - **SC-028**: Artifact `06-reports/analytics/goal-mapping.md` существует, версионируется, содержит маппинг для всех целей из FR-050; обновляется в том же PR, что меняет события или цели.
 - **SC-029**: За 7 дней работы dev-сборок production-счётчик НЕ получает визитов с параметром `env != production`; суточная проверка зелёная.
 - **SC-030**: На тестовый запрос «удалите мои аналитические данные» админ выполняет шаги runbook `dsar-runbook.md` менее чем за 30 минут; DSAR-запрос логируется в audit log.
+- **SC-031**: На пустом Метрика-счётчике `pnpm metrika:apply-config --counter-id=<test>` создаёт все объекты (goals/filters/settings) из `metrika.config.ts` за один прогон без ошибок; `goal-mapping.md` перезаписан с фактическими Goal-ID; повторный запуск (idempotency) делает 0 mutating-вызовов.
+- **SC-032**: `pnpm metrika:apply-config --dry-run` выводит план изменений (create N goals, update M filters, ...) без mutating-операций; через 5 минут запуск без `--dry-run` применяет ровно тот же план.
+- **SC-033**: (v1.1) После production-деплоя cron-эндпоинт `/api/cron/agent-daily-review` запускается ежедневно в 09:00 МСК (или конфигурируемое); за первые 14 дней работы создаётся ≥1 proposal от любого из 6 evaluator'ов (FR-371).
+- **SC-034**: На admin-странице `/admin/agent-proposals` оператор approve'ит proposal → в течение 30 секунд соответствующее изменение применено в Метрика-счётчике через API; status proposal = `executed`; запись в `AgentExecutionLog` имеет `proposal_id`.
+- **SC-035**: (v1.1) При manual-изменении в UI Метрики (тестовый сценарий: переименование goal) следующий daily-review создаёт `drift_detected` proposal с конкретным diff; оператор выбирает одно из двух operator-actions; agent выполняет.
+- **SC-036**: Smoke-test invariant: запрос к `AgentExecutionLog` фильтром «mutating-method AND proposal_id IS NULL AND config_apply_run_id IS NULL» возвращает **0 записей** (никаких mutating-вызовов без legitimate source).
 
 ## Assumptions
 
@@ -662,6 +810,20 @@ B2B-байер с корпоративным ноутбуком и включё�
 - **Поисковый запрос пользователя сам по себе не считается ПДн** по 152-ФЗ (если не содержит явных идентификаторов). Тем не менее перед сохранением `acquisition_query` система проверяет, нет ли в нём email/телефонной маски — если есть, не сохраняется.
 - **Smoke-test событий не гарантирует корректность бизнес-логики.** Он проверяет факт push'а и набор параметров, но не их семантику; ручное тестирование сохраняется как back-stop.
 - **Retry-очередь требует фоновой обработки.** Это означает необходимость cron-эндпоинта (по образцу существующих в проекте `/api/cron/*`).
+
+### Forever-Manual operations (вне scope автоматизации agent'ом)
+
+Несмотря на принцип «agent делает всё через API», следующие операции **навсегда** требуют человеческого вмешательства и не автоматизируются:
+
+1. **DNS CNAME** `mc.<домен>` → `mc.yandex.ru` для first-party cookies — registrar-уровень, не Метрика API.
+2. **OAuth-prompt связки Метрика↔Я.Директ** — двусторонняя authentication-flow, требует browser-session с обоих кабинетов. Agent может сгенерировать ссылку, но click — на operator-е.
+3. **Создание Метрика-счётчика** — нужно из Yandex-аккаунта владельца, не из service-token.
+4. **Получение и ротация API-токена** (`YM_AGENT_TOKEN`, `YM_API_TOKEN`) — interactive OAuth-flow один раз; ротация — manual.
+5. **Webvisor records selective deletion для DSAR** — Метрика API не предоставляет CRUD на отдельные webvisor-записи; только escalation в Yandex Support.
+6. **Подтверждение прав на домен** в Я.Вебмастере и Google Search Console — manual через UI (HTML-meta или DNS-TXT).
+7. **Approve/reject AgentProposal** — целевая ручная операция, основа propose-approve workflow.
+
+Эти 7 операций перечислены в `06-reports/analytics/operator-guide.md` как «interactive checklist» для setup и maintenance.
 - **Стандарт безопасности.** Токены API Метрики и идентификаторы счётчиков хранятся в env / зашифрованных полях; не коммитятся.
 
 ## Dependencies

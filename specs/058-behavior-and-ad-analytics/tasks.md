@@ -2,7 +2,7 @@
 description: "Task list for v1 (MVP-Lite) of Behavior & Ad Analytics"
 ---
 
-# Tasks: Behavior & Ad Analytics — v1 (MVP-Lite)
+# Tasks: Behavior & Ad Analytics — v1 (MVP-Lite + Agent-Driven Model)
 
 **Input**: Design documents from `/specs/058-behavior-and-ad-analytics/`
 
@@ -278,10 +278,10 @@ description: "Task list for v1 (MVP-Lite) of Behavior & Ad Analytics"
 
 ### Manual Setup (post-implementation)
 
-- [ ] T080 **Manual**: в UI Метрики создать цели согласно списку в spec.md FR-050 (rfq_submit, add_to_cart, begin_checkout, purchase, document_download, phone_click, email_click, filter_apply, search, qualified_visit, price_request_click + остальные v1-релевантные); записать Goal-ID в `goal-mapping.md` (T078).
-- [ ] T081 **Manual**: в UI Метрики настроить составные цели (FR-051): «Покупка детальная», «RFQ», «Документы», «B2B запрос цены».
-- [ ] T082 **Manual**: в UI Метрики создать 3 обязательных сегмента из FR-200 для v1: «Добавил в корзину, не купил», «Юрлицо» (`user_type=legal_entity`), «Совершил ≥1 покупку за 90 дней»; записать Metrika-Segment-ID в `AnalyticsSettings.retargetingSegments`.
-- [ ] T083 **Manual**: в UI Метрики включить опцию «первичные cookie» (Counter Settings → Privacy → First-party cookies — R7); настроить DNS CNAME `mc.<домен>` → `mc.yandex.ru` (если домен подключён); валидировать на Safari.
+- [ ] T080 ~~Manual~~ **Заменено T091-T093**: agent выполняет создание целей через Yandex.Metrika Management API командой `pnpm metrika:apply-config` из `metrika.config.ts`. Manual UI-steps НЕ требуются. См. T091-T095.
+- [ ] T081 ~~Manual~~ **Заменено T091-T093**: составные цели также через `apply-config` (из `metrika.config.ts compositeGoals`).
+- [ ] T082 ~~Manual~~ **Заменено T091-T093**: сегменты-filters также через `apply-config`. Note: для v1 — 3 базовых (см. FR-200); остальные 5 — v1.1 через accumulated proposals.
+- [ ] T083 **Manual (split)**: (a) opt-«первичные cookie» теперь применяется через `apply-config` (counter.firstPartyCookies в config); (b) **DNS CNAME** `mc.<домен>` → `mc.yandex.ru` остаётся manual у registrar'а — это не Метрика API, это infra. Задокументировать в operator-guide.md.
 
 ### Validation
 
@@ -290,7 +290,75 @@ description: "Task list for v1 (MVP-Lite) of Behavior & Ad Analytics"
 - [ ] T086 Запустить `pnpm --filter @soliton/web report:analytics:weekly --week=<текущая> --dry-run` — MD-output корректный (все секции, нет undefined/NaN); затем без `--dry-run` — файл создан в `06-reports/analytics/`.
 - [ ] T087 [P] Обновить root `CLAUDE.md` и `apps/web/AGENTS.md`: добавить карту новых модулей `lib/analytics/{attribution,server-tracker,visit-context,pii-filter,env-marker,customer-link,consent-banner-events}.ts`, новой коллекции `Annotations`, нового Global `AnalyticsSettings`. Указать команды `pnpm test:analytics:unit` и `pnpm report:analytics:weekly`.
 
-**Checkpoint v1 launch**: все 87 задач завершены, smoke-test зелёный, quickstart end-to-end проходит, weekly-отчёт генерируется. Готово к production-deploy.
+---
+
+## Phase 12: Agent-Driven Analytics Model (v1) — Config-as-code + Propose/Approve workflow
+
+**Purpose**: Реализация agent-driven model для setup и поддержки Метрика-конфигурации через API. На v1 — config-apply + propose/approve workflow + on-demand review. Scheduled cron + полный evaluator-suite — v1.1.
+
+**Why this phase**: spec.md Personas/Actors определяет Analytics Agent как primary субъект всех Метрика-операций. Без этой фазы остаются manual UI-steps (T080-T083), что нарушает Constitution VI.
+
+### Schema & Configuration
+
+- [ ] T091 [P] Создать `apps/web/config/metrika.config.ts`: TypeScript-объект MetrikaConfig с initial set goals/filters/counterSettings (см. data-model.md §3.2). Включить zod-schema validation в `apps/web/config/metrika.config.schema.ts`. [FR-360, US9]
+- [ ] T092 [P] Расширить Payload `AnalyticsSettings` Global (data-model.md §3.1): добавить группу `agentReview` (schedule, timezone, enabledEvaluators, cooldownDays, rateLimit) и поля activation.agentEnabled / agentSchedulerEnabled. Обновить seed-скрипт (T011) с defaults. [FR-370, FR-394]
+- [ ] T093 [P] Создать Payload-коллекцию `AgentProposals` (data-model.md §2.0) с полным schema, access-rules (admin/operator read; system create), hooks (afterChange → enqueue execution), индексами (status+createdAt, evaluator+targetPath+cooldownUntil). [FR-380, US10]
+- [ ] T094 [P] Создать Payload-коллекцию `AgentExecutionLog` (data-model.md §2.0a): immutable audit-log с indexed retention 90 дней. Validation: при mutating method обязателен один из proposalId/configApplyRunId/manual-admin source. [FR-375, FR-396]
+- [ ] T095 [P] Сгенерировать TypeScript-типы Payload после schema-изменений (повторный запуск T010): `pnpm --filter @soliton/web generate:types`.
+
+### Metrika Management API Client
+
+- [ ] T096 Создать `apps/web/src/lib/analytics/agent/metrika-management-client.ts` — типизированный клиент по контракту `contracts/metrika-management-api.md`. Read-only методы (listGoals/listFilters/getCounterSettings/getStatData) + mutating с обязательным `source: MutationSource` параметром. Каждый вызов синхронно пишет в AgentExecutionLog. Rate-limiter + exponential backoff + circuit-breaker. [FR-361, FR-375, FR-393, FR-395]
+- [ ] T097 [P] Создать `apps/web/src/lib/analytics/agent/safety.ts`: invariant-проверки (FR-391 hard-delete только с confirmationFlag, FR-392 critical-settings блокированы без proposal). Кастомные error-классы (MetrikaSafetyError, MetrikaCircuitBreakerError, MetrikaAuthError). [FR-391, FR-392, FR-396]
+- [ ] T098 [P] Создать `apps/web/src/lib/analytics/agent/audit-logger.ts`: общая логика записи в AgentExecutionLog с автоматическим source-attribution и retention-cleanup cron. [FR-375]
+
+### CLI scripts
+
+- [ ] T099 [US9] Создать `apps/web/scripts/metrika-apply-config.mjs` — CLI `pnpm metrika:apply-config [--counter-id=<id>] [--dry-run] [--scope=goals|filters|settings|all] [--force]`. Workflow по `contracts/metrika-management-api.md §«Apply-config protocol»`: validate config → diff → execute upsert-by-name → update goal-mapping.md (через merge сохраняя business_meaning/owner). [FR-361, FR-362, FR-363]
+- [ ] T100 [P] [US9] Создать `apps/web/scripts/metrika-export-config.mjs` — CLI `pnpm metrika:export-config --counter-id=<id> [--output=<path>] [--force]`. Reverse-direction: тащит state из API → генерирует TypeScript source → diff vs текущий config или overwrite. [FR-364]
+- [ ] T101 [P] [US9] Создать `apps/web/scripts/metrika-validate-config.mjs` — CLI `pnpm metrika:validate-config` для CI-валидации. Read-only diff, exit 1 при drift. Подключить в CI как pre-deploy gate. [FR-365]
+- [ ] T102 [US10] Создать `apps/web/scripts/analytics-agent-review.mjs` — CLI `pnpm analytics:agent-review [--period=day|week] [--date=YYYY-MM-DD] [--dry-run]`. В v1 запускается on-demand оператором, не scheduled. Использует evaluator-registry (T103). [FR-371, FR-374, FR-376]
+
+### Evaluator suite (v1 baseline — на on-demand запуск)
+
+- [ ] T103 Создать `apps/web/src/lib/analytics/agent/evaluators/index.ts` — registry с интерфейсом Evaluator. См. `contracts/evaluator-contracts.md`. [FR-371]
+- [ ] T104 [P] [US10] Создать evaluator `funnel-drop-off.ts` (FR-371-a) с тестом fixture-based.
+- [ ] T105 [P] [US10] Создать evaluator `qualified-visit-rate.ts` (FR-371-b).
+- [ ] T106 [P] [US10] Создать evaluator `source-quality.ts` (FR-371-c).
+- [ ] T107 [P] [US10] Создать evaluator `zero-result-searches.ts` (FR-371-d).
+- [ ] T108 [P] [US10] Создать evaluator `roas-deviation.ts` (FR-371-e).
+- [ ] T109 [P] [US10] Создать evaluator `data-quality.ts` (FR-371-f).
+- [ ] T110 [P] [US11] Создать weekly-evaluator `drift-detector.ts` (FR-374-a, FR-400, FR-401).
+- [ ] T111 [P] [US11] Создать weekly-evaluator `missing-goal.ts` (FR-374-b).
+- [ ] T112 [P] [US11] Создать weekly-evaluator `unused-segment.ts` (FR-374-c).
+- [ ] T113 [P] [US11] Создать weekly-evaluator `correlated-events.ts` (FR-374-d).
+
+### Admin UI: AgentProposals
+
+- [ ] T114 [US10] Создать Payload Custom View `/admin/agent-proposals/page.tsx` (list view + filter по status). См. `contracts/agent-proposals-api.md §«Admin UI»`. Badges severity, action-buttons. [FR-381]
+- [ ] T115 [US10] Создать AgentProposal detail-view (Payload field-level component): reasoning + evidence + diff + Approve/Reject buttons. Для drift_detected — два action-button'а («Restore from config» / «Accept and update config»). Для hard_delete — confirmation-modal. [FR-381, FR-401]
+- [ ] T116 [US10] Создать Payload `afterChange` hook на AgentProposal: на status approve → enqueue execution; status changes → AdminChangeLog. [FR-382, FR-385]
+- [ ] T117 [US10] Создать execution-worker `apps/web/src/lib/analytics/agent/execute-proposal.ts`: dispatcher по type, async execution, idempotency check. На failure → status=failed + admin-alert. [FR-382, FR-384]
+- [ ] T118 [P] Создать API endpoints `POST /api/agent-proposals/{id}/approve`, `/reject`, `/retry`, `POST /api/agent-proposals/run-review` (см. `contracts/agent-proposals-api.md`). [FR-381, FR-376]
+
+### Tests
+
+- [ ] T119 [P] [US9] Создать `apps/web/src/lib/analytics/agent/tests/metrika-client.test.ts`: mock HTTP layer, тесты safety/rate-limit/backoff/idempotency (см. contract §«Smoke-tests»).
+- [ ] T120 [P] [US9] Создать `apps/web/src/lib/analytics/agent/tests/apply-config.test.ts`: dry-run, empty-counter, idempotent re-run, orphan-handling, partial-failure recovery.
+- [ ] T121 [P] [US10] Создать `apps/web/src/lib/analytics/agent/tests/proposals-workflow.test.ts`: create → approve → execute happy path; reject → cooldown; failed → retry creates new; duplicate evaluator+target → cooldown blocks.
+- [ ] T122 [P] [US10] Создать tests для каждого evaluator'а (`evaluators/<name>.test.ts`): fixture-based positive + negative.
+- [ ] T123 [P] [US9] Создать smoke-test FR-396 invariant: SQL-запрос к AgentExecutionLog «mutating method AND no source» возвращает 0 записей. Запускается в `pnpm test:analytics:smoke`.
+
+### Documentation
+
+- [ ] T124 Расширить `06-reports/analytics/operator-guide.md` (T077) разделом «Agent-driven model»: что делает agent, как читать AgentProposals, как approve/reject, что делать с drift, когда вмешиваться. + checklist «forever-manual operations» (см. spec.md Assumptions).
+- [ ] T125 Создать `06-reports/analytics/metrika-config-readme.md`: how-to для `metrika.config.ts` (формат, validation, apply, validate, export).
+
+**Checkpoint Phase 12**: agent умеет (a) applying config from git, (b) detecting drift, (c) running on-demand review, (d) создавать proposals, (e) на approve выполнять API-вызовы безопасно с audit-log. **Manual setup steps eliminated** (кроме DNS + OAuth + token).
+
+---
+
+**Checkpoint v1 launch**: все ~125 задач завершены (87 original + 3 post-analyze + ~35 Phase 12), smoke-test зелёный (включая FR-396 invariant), quickstart end-to-end проходит, weekly-отчёт генерируется, `pnpm metrika:apply-config --dry-run` показывает корректный план. Готово к production-deploy.
 
 ---
 
@@ -404,7 +472,7 @@ Phase 1 (Setup) — нет зависимостей
 
 ## Summary
 
-- **Total tasks**: **90** (T001-T087 + T088-T090 добавлены при post-analyze remediation 2026-05-26)
+- **Total tasks**: **125** (T001-T087 original + T088-T090 post-analyze + T091-T125 agent-driven model)
 - **By phase**:
   - Phase 1 (Setup): 5 tasks (включая T088 forms-inventory)
   - Phase 2 (Foundational): 21 tasks
@@ -413,13 +481,15 @@ Phase 1 (Setup) — нет зависимостей
   - Phase 5 (US8 SEO): 4 tasks
   - Phase 6 (US5 Weekly report): 8 tasks
   - Phase 7 (US3 Micro-conversions): 11 tasks
-  - Phase 8 (US4 Adblock): 2 tasks (basis в US2)
+  - Phase 8 (US4 Adblock): 2 tasks
   - Phase 9 (US7 Cohort): 5 tasks
   - Phase 10 (US6 Privacy): 3 tasks
-  - Phase 11 (Polish): 11 tasks
-- **Parallel opportunities**: ~26 [P] tasks (могут идти попарно/параллельно)
+  - Phase 11 (Polish): 11 tasks (T080-T083 заменены/упрощены)
+  - **Phase 12 (Agent-Driven Model, NEW): 35 tasks** — config-as-code + propose/approve + evaluators + admin UI + tests
+- **Parallel opportunities**: ~50 [P] tasks (Phase 12 особенно высоко параллелизируется — evaluators изолированы)
 - **Suggested MVP-α scope**: T001-T035 + T088 (Phase 1+2+3 + forms-inventory) — воронка покупки работает end-to-end
-- **Manual setup tasks**: T041, T080-T083 (UI Метрики + DNS) — НЕ автоматизируются
-- **Format validation**: ✅ все 90 задач имеют checkbox `- [ ]`, ID, Story-label (где применимо), file path
-- **Post-analyze remediation (2026-05-26)**: добавлены T088 (forms inventory для FR-014 conditional, F5), T089-T090 (Yandex Metrika offline-conversion FR-033/FR-034 для US2, F4). См. Clarifications «Session 2026-05-26» в spec.md.
-- **NOT in this tasks.md (v1.1/v1.2)**: Webmaster/GSC API integration, retry-очередь, HTML admin-rendering, Playwright e2e, auto-deploy annotations, scroll_depth, print/copy, Я.Директ ROAS auto-import (отличается от offline-conversion!), goal webhook, custom crawl-error logging, ecommerce.impressions, search_refinement, Web Vitals параметры, выходные сегменты (5 из 8).
+- **Suggested MVP-β scope**: + Phase 12 schema + apply-config (T091-T101) — config-as-code работает
+- **Manual setup tasks** (после Phase 12): только T041 (OAuth-prompt) + DNS-часть T083 (split) — всё остальное автоматизировано через Management API
+- **Format validation**: ✅ все 125 задач имеют checkbox `- [ ]`, ID, Story-label (где применимо), file path
+- **Agent-driven remediation (2026-05-26)**: вся Phase 12 (T091-T125) — реализация Personas/Actors агента и FR-360…FR-411 (config-as-code, AgentProposals workflow, evaluator-suite на on-demand). Scheduled cron — defer до v1.1.
+- **NOT in this tasks.md (v1.1/v1.2)**: Webmaster/GSC API integration, retry-очередь, HTML admin-rendering, Playwright e2e, auto-deploy annotations, scroll_depth, print/copy, Я.Директ ROAS auto-import (отличается от offline-conversion!), goal webhook, custom crawl-error logging, ecommerce.impressions, search_refinement, Web Vitals параметры, оставшиеся 5 ретаргетинг-сегментов. **Agent v1.1**: scheduled daily-review cron + drift автоматизация. **Agent v1.2**: MCP-server interface.

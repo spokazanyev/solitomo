@@ -27,6 +27,9 @@ YM_API_TOKEN=AQAAAAxxxxxxx                       # Метрика API token (т�
 YM_COUNTER_ID=12345678                           # дублирует NEXT_PUBLIC_, нужен в server-tracker
 CRON_SECRET=<random-256-bit>                     # уже существует от других cron-эндпоинтов
 ADMIN_ALERT_CHANNEL=                             # пусто в v1 (defer goal-webhook)
+
+# Agent-driven model (v1)
+YM_AGENT_TOKEN=AQAAxxxxxxxxxxx                   # отдельный OAuth-token с counter-management scope (FR-390)
 ```
 
 ### Seed Payload Globals (FR-101)
@@ -34,6 +37,18 @@ ADMIN_ALERT_CHANNEL=                             # пусто в v1 (defer goal-
 ```bash
 pnpm --filter @soliton/web seed:analytics-settings
 ```
+
+### Apply config to Метрика-счётчик (FR-361, T099) — заменяет ручной UI-setup
+
+```bash
+# Dry-run preview
+pnpm --filter @soliton/web metrika:apply-config --counter-id=<test-counter> --dry-run
+
+# Apply
+pnpm --filter @soliton/web metrika:apply-config --counter-id=<test-counter>
+```
+
+Agent создаст все goals/filters/counter-settings из `apps/web/config/metrika.config.ts`, после чего перезапишет `06-reports/analytics/goal-mapping.md` с фактическими Metrika-Goal-ID. Manual UI-step «зайти в Метрику и создать цели руками» **не требуется**.
 
 Создаёт `AnalyticsSettings` Global со значениями по умолчанию (см. data-model.md §3.1).
 
@@ -234,6 +249,47 @@ pnpm --filter @soliton/web report:analytics:weekly --week=2026-21
 - SC-026 (retry-очередь resilience) — defer до v1.1.
 
 ---
+
+## Шаг 10: Agent on-demand review + AgentProposals workflow (5-10 минут)
+
+```bash
+# Запустить on-demand review (имитируем daily-review без cron)
+pnpm --filter @soliton/web analytics:agent-review --period=day --date=yesterday
+```
+
+**Ожидается**:
+- В stdout — summary: «Run 5 evaluators, 1 proposal created (qualified_visit_rate=92% — propose adjust threshold)».
+- В Payload Admin → `/admin/agent-proposals` появилась запись со status=`pending`, severity=`warning`, evaluator=`qualified_visit_rate`.
+
+**Approve flow**:
+1. Открыть proposal в admin.
+2. Прочитать reasoning + evidence.
+3. Кликнуть **Approve**.
+4. Через 30 секунд status = `executed`; в Метрика-UI (на верификацию) видна настройка изменилась через API.
+5. В Payload `AgentExecutionLog` — запись с `proposalId` + 200 OK от Метрики.
+
+**Reject flow**:
+1. Кликнуть **Reject** на другом тестовом proposal.
+2. Указать reason «threshold нужен жёсткий».
+3. Status = `rejected`; в следующие 7 дней этот же evaluator не создаст proposal по этому же сигналу (cooldown).
+
+**Drift detection (v1.1 — для тестирования в v1 запускается вручную)**:
+```bash
+pnpm --filter @soliton/web metrika:validate-config --counter-id=<test-counter>
+```
+Если в Метрика-UI кто-то изменил goal руками — exit 1 с printable diff.
+
+→ **SC-031, SC-032, SC-034, SC-036** выполнены.
+
+## Шаг 11: Smoke-test invariant FR-396 (1 минута)
+
+```bash
+pnpm --filter @soliton/web test:analytics:smoke
+```
+
+Включает SQL-проверку invariant: `AgentExecutionLog` не содержит mutating-вызовов без legitimate source. Должен быть зелёным.
+
+→ **SC-036** выполнен.
 
 ## Rollback procedure
 
