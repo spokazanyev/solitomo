@@ -1,5 +1,7 @@
 import "server-only";
 
+import { createHash } from "node:crypto";
+
 import { CalculatorApi, Configuration, ListsApi, OrderDocsApi, OrdersApi } from "./client";
 import { getCalculation, saveCalculation } from "./cache";
 import { logError, logRequest } from "./logger";
@@ -20,6 +22,35 @@ import type {
 } from "../types";
 
 const CACHE_TTL_MS = 30 * 60 * 1000;
+
+/**
+ * Стабильный 16-hex-символьный fingerprint от полей, влияющих на стоимость доставки:
+ * адрес получателя + items (вес/габариты/цена/кол-во). Используется в cache key,
+ * чтобы при смене адреса или состава корзины не возвращался устаревший расчёт.
+ *
+ * До этого ключ был `apiship:calc:{cartId}:{type}` — при смене адреса в той же
+ * корзине отдавалась старая цена (баг — Москва-цена вместо Екатеринбург-цены).
+ */
+function calcInputFingerprint(input: CalculationInput): string {
+  const payload = JSON.stringify({
+    a: {
+      cc: input.address.countryCode ?? "",
+      pc: input.address.postalCode ?? "",
+      ct: input.address.city ?? "",
+      rg: input.address.region ?? "",
+      ad: input.address.addressString ?? "",
+    },
+    i: input.items.map((it) => ({
+      p: it.price,
+      q: it.quantity,
+      w: it.weight ?? null,
+      l: it.length ?? null,
+      wd: it.width ?? null,
+      h: it.height ?? null,
+    })),
+  });
+  return createHash("sha256").update(payload).digest("hex").slice(0, 16);
+}
 
 export class ApiShipProvider implements ShippingProvider {
   public readonly code = "apiship" as const;
@@ -64,8 +95,11 @@ export class ApiShipProvider implements ShippingProvider {
     const warnings: string[] = [];
     const disabled = new Set(this.settings.disabledProviders);
 
+    // Fingerprint всего input — чтобы кеш инвалидировался при смене адреса / товаров.
+    const fp = calcInputFingerprint(input);
+
     for (const type of types) {
-      const cacheKey = `apiship:calc:${input.cartId}:apiship_${type}`;
+      const cacheKey = `apiship:calc:${input.cartId}:${type}:${fp}`;
       let raw = (await getCalculation(cacheKey)) as
         | { deliveryToDoor?: unknown[]; deliveryToPoint?: unknown[]; tariffs?: unknown[] }
         | null;

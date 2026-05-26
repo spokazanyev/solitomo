@@ -69,13 +69,17 @@ export function DeliveryBlock({
     if (!address.isValid || !address.city) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setRates([]);
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedId(null);
+      // ВАЖНО: сбрасываем выбранные ПВЗ при изменении адреса.
+      // Без этого pointByRate[tariffId] остаётся от прошлого города:
+      // СДЭК даёт один tariffId по всей стране, поэтому Москва-ПВЗ
+      // визуально «прилипает» к екатеринбургскому расчёту и
+      // ушёл бы в createShipment как pointId из другого города.
+      setPointByRate({});
       onSelect(null);
       return;
     }
     let cancelled = false;
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLoading(true);
     const timer = setTimeout(async () => {
       try {
@@ -106,6 +110,7 @@ export function DeliveryBlock({
         setRates(data.rates);
         setWarnings(data.warnings ?? []);
         setSelectedId(null);
+        setPointByRate({});
         onSelect(null);
       } catch {
         if (!cancelled) {
@@ -260,6 +265,7 @@ export function DeliveryBlock({
           shippingOptionId={pointSelectorFor.shippingOptionId}
           providerKey={pointSelectorFor.providerKey}
           city={address.city ?? ""}
+          initialPointId={pointByRate[rateId(pointSelectorFor)]?.pointId}
           onSelect={(p) => handlePointSelected({ pointId: p.pointId, address: p.address })}
           onClose={() => setPointSelectorFor(null)}
         />

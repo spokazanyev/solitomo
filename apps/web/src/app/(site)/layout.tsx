@@ -1,11 +1,20 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import { AnalyticsScripts } from "@/components/analytics/AnalyticsScripts";
 import { CookieConsentBanner } from "@/components/consent/CookieConsentBanner";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { getSiteUrl } from "@/lib/seo/seo-registry";
 import "../globals.css";
+
+// Yandex Maps v3 JS API — loaded site-wide so it is available before the
+// PointSelector modal opens. NEXT_PUBLIC_* vars are baked in at build time.
+// Using afterInteractive: loads as soon as the page hydrates, non-blocking.
+const YMAPS_KEY = process.env.NEXT_PUBLIC_YANDEX_MAPS_API_KEY;
+const YMAPS_SRC = YMAPS_KEY
+  ? `https://api-maps.yandex.ru/v3/?apikey=${YMAPS_KEY}&lang=ru_RU`
+  : "";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -63,6 +72,11 @@ export default function RootLayout({
           <SiteFooter />
         </div>
         <CookieConsentBanner />
+        {/* Yandex Maps v3 — preloaded here so PointSelector finds window.ymaps3
+            ready as soon as the user reaches the checkout map step. */}
+        {YMAPS_SRC && (
+          <Script src={YMAPS_SRC} strategy="afterInteractive" />
+        )}
       </body>
     </html>
   );

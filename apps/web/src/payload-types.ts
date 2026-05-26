@@ -3520,6 +3520,14 @@ export interface ApishipSetting {
     deliveryCostVat?: ('-1' | '0' | '5' | '7' | '10' | '20' | '22') | null;
     isCod?: boolean | null;
   };
+  /**
+   * Courier = CDEK comes to you (more expensive). Dropoff = you bring to CDEK office (cheaper).
+   */
+  senderPickupType?: ('courier' | 'dropoff') | null;
+  /**
+   * Memo only — where to bring packages. Does not affect tariff calculation.
+   */
+  senderDropoffAddress?: string | null;
   disabledProviders?:
     | {
         providerKey?: string | null;
@@ -3865,6 +3873,8 @@ export interface ApishipSettingsSelect<T extends boolean = true> {
         deliveryCostVat?: T;
         isCod?: T;
       };
+  senderPickupType?: T;
+  senderDropoffAddress?: T;
   disabledProviders?:
     | T
     | {
