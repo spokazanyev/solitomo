@@ -71,7 +71,7 @@ export function escapeHtml(input: string): string {
 const BASE_STYLES = {
   body: "background:#f5f5f0;margin:0;padding:32px 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#1a1a1a;",
   container:
-    "max-width:560px;margin:0 auto;background:#ffffff;border:1px solid #e6e6dd;border-radius:8px;padding:32px;",
+    "max-width:560px;margin:0 auto 32px;background:#ffffff;border:1px solid #e6e6dd;border-radius:8px;padding:32px;",
   h1: "font-size:20px;font-weight:600;margin:0 0 16px 0;color:#1a1a1a;",
   p: "font-size:15px;line-height:1.55;margin:0 0 12px 0;color:#333;",
   cta: "display:inline-block;padding:10px 18px;margin:16px 0;background:#3f6212;color:#ffffff;text-decoration:none;border-radius:6px;font-weight:500;",
