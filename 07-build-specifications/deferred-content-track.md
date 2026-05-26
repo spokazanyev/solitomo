@@ -1,6 +1,6 @@
 # Единый реестр отложенных работ
 
-Дата создания: 2026-05-16. Последнее обновление: 2026-05-24 (вечер: добавлен п.26 о DNS-cutover и первом деплое на pdumarket-prod).
+Дата создания: 2026-05-16. Последнее обновление: 2026-05-26 (вечер: добавлена Часть Д — отложенные работы спеки 058 после боевого деплоя v1 на pdumarket.ru).
 
 **Это единственное место**, где фиксируются отложенные задачи по проекту Солитон. Сюда стекаются все «пока не делаем» / «требует данных от владельца» / «отложено до приоритизации» из всех этапов разработки. Не дублировать в issue-tracker, в комментариях кода или личных списках.
 
@@ -10,6 +10,8 @@
 - [Часть Б. Cart and checkout (037)](#часть-б-cart-and-checkout-037) — пункты 15, 25, 26
 - [Часть В. AEO / AI-агенты (038–044, отложены целиком)](#часть-в-aeo--ai-агенты-038044-отложены-целиком) — пункты 16–23
 - [Часть Г. CRM-интеграция (047, ресёрч завершён, реализация отложена)](#часть-г-crm-интеграция-047-ресёрч-завершён-реализация-отложена) — пункт 24
+- [Часть Д. Behavior & ad analytics (058, v1 задеплоено, follow-up отложен)](#часть-д-behavior--ad-analytics-058-v1-задеплоено-follow-up-отложен) — пункты 27–29
+- [Часть Е. Доставка — доработки после v1 (047+)](#часть-е-доставка--доработки-после-v1-047) — пункт 30
 
 ---
 
@@ -356,3 +358,111 @@ Owner-actions: получить npm namespace `@soliton`, согласовать
 4. ERPNext — отвергнуто (резерв на случай ERP-сценария).
 
 **Условие старта реализации.** После прохождения основного публичного запуска сайта и стабилизации Cart/checkout (пункт 15). Альтернатива — параллельно с Cart-фичей, если RFQ начнёт идти потоком до завершения checkout.
+
+---
+
+## Часть Д. Behavior & ad analytics (058, v1 задеплоено, follow-up отложен)
+
+Спека `specs/058-behavior-and-ad-analytics/` (v3, Level C-Full + Agent-Driven Model) реализована в объёме **v1 MVP** и **успешно задеплоена в production** 2026-05-26 (commit на ветке `058-behavior-and-ad-analytics`, migration `20260526_130918_058_v1_analytics_attribution` применена, Yandex Metrika Stat API подтверждает поток данных). Ниже — задачи, которые сознательно отложены либо требуют ручного действия владельца.
+
+### 27. Боевой PR-merge и smoke-test ecommerce-воронки (058 v1, операционные финалы)
+
+**Контекст.** v1 MVP задеплоено напрямую с ветки `058-behavior-and-ad-analytics`, чтобы успеть проверить поток данных в Метрику. PR в `main` пока не открыт, ecommerce-воронка не прошла end-to-end smoke в production. Это два последних шага «формального закрытия v1».
+
+**Что нужно сделать:**
+
+1. **PR merge `058-behavior-and-ad-analytics` → `main`** — открыть PR, дождаться зелёного CI (`pnpm typecheck`, `pnpm lint`, `pnpm --filter @soliton/web test`), мерж squash-коммитом с конвенциональным сообщением. После мержа удалить локальную и remote-ветку, проверить что production по-прежнему собирается из `main` (повторный `./deploy/push.sh` опционально).
+2. **Production smoke-test ecommerce-воронки** — пройти full path: `/catalog/<category>/` → клик на товар → PDP (должен зафайриться `view_item` + `ecommerce.detail`) → «Добавить в заявку» (`add_to_cart`) → `/cart/` (`view_cart`) → `/checkout/physical/` (5 step-events) → mock-оплата (success) → `payment_success` + server-side hit + dataLayer `purchase`. Проверить в Метрике, что все события долетели с правильным `order_id`, `revenue`, `items[]`. Особенно проверить, что server-hit отрабатывает даже с включённым AdBlock (FR-040).
+3. **Verify dual-push коммерции (FR-110-115)** — открыть Метрику → Стандартные отчёты → E-commerce. Если данные не появились через 30 минут, проверить, что `ecommerce: "dataLayer"` init в `analytics-loader.ts` действительно работает в продакшене (DevTools → `window.dataLayer` должно содержать `ecommerce`-объекты, не только flat events).
+4. **Verify call-tracking ready** — `TrackedPhone` / `TrackedEmail` должны фиксировать `phone_click` / `email_click` события на каждой странице. Smoke на homepage + `/company/contacts/` + footer.
+
+**Условие старта.** Сейчас. Реальный покупатель в любой момент может пройти этот путь и заметить отсутствие конверсий в Метрике — лучше отстреляться руками первыми.
+
+**Не блокирует:** ничего критического, v1 в production уже работает.
+
+### 28. v1.1 — Audience API filters, Qualified Visit goal mapper, Annotations admin UI
+
+**Контекст.** В v1 сознательно отложены три фичи спеки 058, которые требуют либо отдельной OAuth-области, либо нестабильного API, либо доп UI-работы. Все три собраны в v1.1 (см. `specs/058-behavior-and-ad-analytics/spec.md` MVP-Lite breakdown).
+
+**Что отложено:**
+
+1. **Audience API filters** (FR-072 — FR-080). Нужно для серверной сегментации: «posetiteli s payment_success», «brand-search visitors», «B2B-формы заполнили». Требует:
+   - отдельной OAuth-области `audience:write` (текущий токен агента её не покрывает — получить через `https://oauth.yandex.ru/`);
+   - дополнительного `metrika-management-client.ts` метода `createSegment(definition, source)` с FR-396 MutationSource;
+   - расширения `apps/web/config/metrika.config.ts` блоком `audienceSegments[]`;
+   - расширения `pnpm metrika:apply-config` для apply сегментов с idempotency по `name`.
+2. **Qualified Visit goal mapper.** Yandex Management API для `type: 'number'` целей (глубина просмотра) ожидает поле `depth: <int>`, а не `conditions: []`, как у `type: 'action'`. В v1 эта цель **не создана** — нужно расширить `metrika-management-client.ts` discriminated-union TypeScript-типом и добавить отдельный mapper в `apply-config`. После создания цели — обновить `06-reports/analytics/goal-mapping.md`.
+3. **Annotations admin UI**. Payload-коллекция `Annotations` создана и принимает записи через `POST /api/annotations` (deploy/campaign/incident-маркеры — для последующей корреляции в недельных отчётах). UI в админке работает базовый — не хватает: фильтра по `kind`, кнопки «push to Metrika annotation» (требует Annotations API в Yandex Management), кнопки «attach to weekly report». Сейчас аннотации остаются локальными, в Метрику не отправляются.
+
+**Условие старта.** После того, как накопится первый месяц данных в v1 и появится потребность во «вглубь-копать» отчётах. v1.1 — это не блокер, а enhancement.
+
+**Не блокирует:** ничего. v1 без этих трёх фич полностью функционален.
+
+### 29. Forever-Manual ops + критическая ротация OAuth-токена (058 ops-runbook)
+
+**Контекст.** Ряд операций по Метрике сознательно вынесены в **Forever-Manual** — их либо не покрывает Management API стабильно, либо они требуют live OAuth-prompt, либо это селективное удаление данных по 152-ФЗ (DSAR), которое не должно автоматизироваться по соображениям безопасности.
+
+**Постоянные ручные операции (operator-guide):**
+
+1. **Counter-settings (Webvisor 100%, IP-anonymization, in_one_line code-flag)** — Yandex Management API схема нестабильна (POST на counter возвращает 400 на `code_options.in_one_line`). Эти три флага зашиты руками через UI кабинета Метрики на counter `109422539` и проверяются глазами 1 раз / месяц. Документировать чек-лист в `06-reports/analytics/operator-guide.md`.
+2. **DNS CNAME для first-party** — `mc.pdumarket.ru → mc.yandex.ru` (для tag-firstparty). На 2026-05-26 CNAME **ещё не создан** в TimeWeb DNS. После создания обновить `analytics-loader.ts` константу `FIRST_PARTY_HOST` и передеплоить. Без этого Safari ITP режет cookie через 7 дней.
+3. **OAuth re-prompt раз в год** — токен Yandex.OAuth протухает по политике, нужен ручной refresh через `https://oauth.yandex.ru/authorize?response_type=token&client_id=...`. Документировать в operator-guide на дату `expires_at`.
+4. **Selective Webvisor delete (152-ФЗ DSAR)** — при запросе субъекта ПДн на удаление, поиск записи Webvisor в кабинете → удаление руками. Управление API не покрывает фильтрацию по `ymClientId` для Webvisor.
+5. **Я.Директ offline-conversion активация** — `YM_AGENT_TOKEN` уже задеплоен в env, endpoint `/api/analytics/server-hit` подключает offline API при `payment_success`. Но до первого реального purchase в production проверить нечего. После первой реальной оплаты:
+   - проверить, что offline-conversion долетел в Метрику (Целевые действия → Источники → Я.Директ) с правильным `yclid`;
+   - проверить, что Я.Директ-кампания (когда будет запущена) получает данные для post-click оптимизации.
+
+**⚠️ Критическая разовая задача — ротация утёкшего OAuth-токена:**
+
+Live OAuth-токен Yandex.Metrika (`y0__wgBEKvJthAYlbBCII6wn9UXtmS5lnPK8f30GWQE3fsY5gQK80g` — указан здесь намеренно для трекинга, токен уже скомпрометирован) был вставлен в чат-историю и попал в Anthropic conversation logs. **Не сохранён в git**, но всё равно требуется немедленная ротация:
+
+1. Зайти в `https://oauth.yandex.ru/client/<client-id>` под аккаунтом владельца.
+2. **Revoke** текущий токен.
+3. Создать новый OAuth-приложение или новый токен в существующем приложении с теми же scope: `metrika:read`, `metrika:write`.
+4. Обновить `.env.local` → `YM_AGENT_TOKEN=<новый>`.
+5. Обновить `deploy/.secrets/production-env` через тот же Python-скрипт, что и при первом деплое (без вывода значения в stdout).
+6. Передеплоить через `./deploy/push.sh` без флага `--seed`.
+7. Smoke-проверка: `pnpm metrika:validate-config` (должен вернуть `OK: 14 goals match config`).
+
+**Условие старта.** Ротация — **немедленно**, остальное — после первого реального purchase / при первом OAuth-протуханье / при first-DSAR-запросе.
+
+**Не блокирует:** работу v1 (Stat API уже подтвердил поток данных), но скомпрометированный токен — потенциальная брешь до момента отзыва.
+
+---
+
+## Часть Е. Доставка — доработки после v1 (047+)
+
+### 30. Per-provider настройки схемы вывоза (senderPickupType)
+
+**Контекст.** В текущей реализации (ветка `058`, май 2026) `senderPickupType` — глобальная настройка: один флаг `"courier" | "dropoff"` применяется ко всем провайдерам ApiShip одновременно. В запросе к калькулятору ApiShip передаётся единое `pickupTypes: [1]` или `pickupTypes: [2]`.
+
+Это работает корректно **только при одном активном провайдере (СДЭК)**. При подключении второго провайдера возникает системная проблема:
+
+| Провайдер | Курьерский вывоз (`pickupType=1`) | Самовывоз в офис (`pickupType=2`) |
+|---|---|---|
+| СДЭК | ✅ есть | ✅ есть |
+| Boxberry | ❌ нет | ✅ есть |
+| Почта России | ❌ нет | ✅ есть |
+
+Если выставить глобальный `senderPickupType = "courier"` → запрос уходит с `pickupTypes=[1]` → Boxberry и Почта России не возвращают ни одного тарифа, хотя у них есть варианты через самовывоз. Покупатель не увидит их дешёвые тарифы вообще.
+
+**Что нужно сделать при добавлении второго провайдера:**
+
+1. **Добавить per-provider конфигурацию в `ApiShipSettings`** — поле `providerSettings: Array<{ providerKey: string; senderPickupType: "courier" | "dropoff"; dropoffAddress?: string }>` в Payload Global `ApiShipSettings` вместо (или рядом с) глобального `senderPickupType`.
+
+2. **Рефакторинг `toCalculatorRequest`** — принимать `pickupType: 1 | 2` напрямую, а не брать из глобального settings. Вызывающий код (`provider.ts` `calculate()`) должен делать отдельный вызов для каждого провайдера с его `pickupType`.
+
+3. **Рефакторинг `calculate()` в `provider.ts`** — вместо одного запроса с `providerKeys` = все провайдеры: итерировать по per-provider конфигурации, для каждого провайдера делать отдельный API-запрос с `providerKeys: [key]` и нужным `pickupTypes`. Результаты объединять.
+
+4. **Миграция DB** — добавить массив `providerSettings` в таблицу `apiship_settings`, перенести текущий глобальный `senderPickupType` как значение для `providerKey: "cdek"`.
+
+**Текущий workaround.** Глобальный `senderPickupType = "dropoff"` (самовывоз в офис СДЭК) — корректен для СДЭК и будет корректен для Boxberry/Почты России тоже (они оба поддерживают только dropoff). Проблема возникнет только если СДЭК настраивается на `"courier"` (курьерский вывоз), а остальные провайдеры — нет.
+
+**Условие старта.** При подключении второго провайдера доставки через ApiShip. До тех пор текущая архитектура достаточна.
+
+**Файлы, которые затрагивает рефакторинг:**
+- `apps/web/src/globals/ApiShipSettings.ts`
+- `apps/web/src/lib/shipping/apiship/settings.ts`
+- `apps/web/src/lib/shipping/apiship/mappers.ts` (`toCalculatorRequest`)
+- `apps/web/src/lib/shipping/apiship/provider.ts` (`calculate()`)
+- Новый файл миграции в `apps/web/src/migrations/`
