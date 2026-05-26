@@ -133,20 +133,30 @@ export class ApiShipProvider implements ShippingProvider {
 
   async getPickupPoints(input: PointsInput): Promise<PickupPoint[]> {
     try {
-      const filter = [
-        input.city ? `city=${encodeURIComponent(input.city)}` : "",
-        input.providerKey ? `providerKey=${input.providerKey}` : "",
-      ]
-        .filter(Boolean)
-        .join("&");
+      // ApiShip /v1/lists/points does NOT support a compound `filter` query param —
+      // city/postIndex filters sent that way are silently ignored (return total: 0).
+      // The only working server-side filter is `providerKey` as a direct query param.
+      // City filtering must be done client-side after fetching the full provider list.
+      //
+      // With limit=5000 we get all CDEK points in one request (total ~6824 → ~5000 fit
+      // in a single page that covers all major Russian cities).
       const { data } = await this.apis.lists.getListPoints({
-        limit: 500,
+        limit: 5000,
         offset: 0,
-        filter,
+        providerKey: input.providerKey || undefined,
         fields:
           "id,providerKey,name,address,city,postIndex,lat,lng,timetable,phone,cashPayment,cardPayment,maxLength,maxWidth,maxHeight,maxWeight",
       });
-      return toPickupPoints(data.rows ?? [], input);
+
+      // Filter by city client-side (case-insensitive, trim-safe)
+      const targetCity = input.city?.trim().toLowerCase();
+      const rows = targetCity
+        ? (data.rows ?? []).filter(
+            (r) => r.city?.trim().toLowerCase() === targetCity,
+          )
+        : (data.rows ?? []);
+
+      return toPickupPoints(rows, input);
     } catch (err) {
       await logError("lists.getPoints", err);
       return [];

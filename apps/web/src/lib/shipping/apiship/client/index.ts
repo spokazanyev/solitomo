@@ -318,7 +318,9 @@ export class ListsApi extends HttpClient {
   async getListPoints(req: {
     limit?: number;
     offset?: number;
-    filter?: string;
+    /** Direct query params — ApiShip /v1/lists/points ignores a compound `filter` string.
+     *  Pass providerKey / city etc. as top-level params, not inside filter. */
+    providerKey?: string;
     fields?: string;
   }): Promise<{ data: ListPointsResponse }> {
     const res = await this.http.get<ListPointsResponse>("/lists/points", { params: req });
