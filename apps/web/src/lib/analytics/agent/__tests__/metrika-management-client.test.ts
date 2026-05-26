@@ -77,7 +77,7 @@ describe("MetrikaManagementClient — read-only operations", () => {
       ok: true,
       text: async () =>
         JSON.stringify({
-          goals: [{ id: 1, name: "Purchase", type: "event_target", conditions: [] }],
+          goals: [{ id: 1, name: "Purchase", type: "action", conditions: [] }],
         }),
     })) as unknown as typeof fetch;
 
@@ -104,7 +104,7 @@ describe("MetrikaManagementClient — mutating operations", () => {
 
     await expect(
       // @ts-expect-error — намеренно вызываем без source для тестирования runtime-check
-      client.createGoal({ name: "x", type: "event_target", businessMeaning: "", owner: "" }, undefined),
+      client.createGoal({ name: "x", type: "action", businessMeaning: "", owner: "" }, undefined),
     ).rejects.toBeInstanceOf(MetrikaSafetyError);
 
     expect(fetchImpl).not.toHaveBeenCalled();
@@ -124,8 +124,8 @@ describe("MetrikaManagementClient — mutating operations", () => {
     const result = await client.createGoal(
       {
         name: "Test",
-        type: "event_target",
-        conditions: [{ type: "event", url: "test" }],
+        type: "action",
+        conditions: [{ type: "exact", url: "test" }],
         businessMeaning: "",
         owner: "",
       },
@@ -191,7 +191,7 @@ describe("MetrikaManagementClient — dry-run mode", () => {
     cleanup = () => rmSync(tmpDir, { recursive: true, force: true });
 
     await client.createGoal(
-      { name: "X", type: "event_target", businessMeaning: "", owner: "" },
+      { name: "X", type: "action", businessMeaning: "", owner: "" },
       VALID_SOURCE,
     );
 
@@ -285,7 +285,7 @@ describe("MetrikaManagementClient — FR-396 invariant via audit", () => {
     cleanup = () => rmSync(tmpDir, { recursive: true, force: true });
 
     // 3 mutating + 1 read
-    await client.createGoal({ name: "G1", type: "event_target", businessMeaning: "", owner: "" }, VALID_SOURCE);
+    await client.createGoal({ name: "G1", type: "action", businessMeaning: "", owner: "" }, VALID_SOURCE);
     await client.updateGoal(1, { name: "G1-new" }, VALID_SOURCE);
     await client.createFilter(
       { name: "F1", attr: "x", type: "equal", value: "y", businessMeaning: "" },

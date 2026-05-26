@@ -101,7 +101,11 @@ export function computeConfigDiff(args: {
 
 function goalNeedsUpdate(existing: ExistingGoal, target: MetrikaGoal): boolean {
   if (existing.type !== target.type) return true;
-  if (Boolean(existing.is_retargeting) !== Boolean(target.isRetargeting)) return true;
+
+  // NOTE: is_retargeting НЕ сравнивается — это API read-only поле (Metrika возвращает
+  // 400 при попытке передать его в POST/PUT body). Сравнение приводило к infinite-loop
+  // idempotency: diff каждый раз показывал «нужно update». Установка retargeting-флага —
+  // через отдельный endpoint /counter/{id}/segments или UI (forever-manual op).
 
   const existingConditions = JSON.stringify(existing.conditions ?? []);
   const targetConditions = JSON.stringify(target.conditions ?? []);
@@ -118,48 +122,26 @@ function filterNeedsUpdate(existing: ExistingFilter, target: MetrikaFilter): boo
 }
 
 function computeCounterSettingsPatch(
-  target: MetrikaCounterSettings,
-  existing?: { code_options?: Record<string, unknown>; webvisor?: Record<string, unknown> },
+  _target: MetrikaCounterSettings,
+  _existing?: { code_options?: Record<string, unknown>; webvisor?: Record<string, unknown> },
 ): Partial<MetrikaCounterSettings> | null {
-  if (!existing) return target; // нет данных → применяем всё
-
-  const patch: Partial<MetrikaCounterSettings> = {};
-  const codeOpts = existing.code_options ?? {};
-  const webvisor = existing.webvisor ?? {};
-
-  // Metrika API: counter.code_options.in_one_line — first-party cookies
-  const liveFPC = Boolean((codeOpts as { in_one_line?: boolean }).in_one_line);
-  if (liveFPC !== target.firstPartyCookies) {
-    patch.firstPartyCookies = target.firstPartyCookies;
-  }
-
-  const liveATB = Boolean((codeOpts as { accurate_track_bounce?: boolean }).accurate_track_bounce);
-  if (liveATB !== target.accurateTrackBounce) {
-    patch.accurateTrackBounce = target.accurateTrackBounce;
-  }
-
-  const liveTL = Boolean((codeOpts as { track_links?: boolean }).track_links);
-  if (liveTL !== target.trackLinks) {
-    patch.trackLinks = target.trackLinks;
-  }
-
-  const liveCM = Boolean((codeOpts as { clickmap?: boolean }).clickmap);
-  if (liveCM !== target.clickmap) {
-    patch.clickmap = target.clickmap;
-  }
-
-  // Webvisor: API возвращает webvisor.urls — '' значит включён на всех URL
-  const wvLive = webvisor as { urls?: string; forms?: boolean };
-  const liveWVEnabled = wvLive.urls !== "off";
-  if (liveWVEnabled !== target.webvisor.enabled) {
-    if (!patch.webvisor) patch.webvisor = { ...target.webvisor };
-  }
-  const liveFormsEnabled = Boolean(wvLive.forms);
-  if (liveFormsEnabled !== (target.webvisor.formCapturing !== "disabled")) {
-    if (!patch.webvisor) patch.webvisor = { ...target.webvisor };
-  }
-
-  return Object.keys(patch).length > 0 ? patch : null;
+  // v1: Counter Settings DEFERRED → Forever-Manual ops через UI Я.Метрики.
+  //
+  // Причины (выявлены в первом apply-config на live counter pdumarket):
+  // 1. `firstPartyCookies` (mapping в `code_options.in_one_line`) — Metrika API
+  //    отвечает 400 "wrong value, path: counter.code_options.in_one_line".
+  // 2. `accurateTrackBounce`/`trackLinks`/`clickmap` — PUT возвращает 200 OK,
+  //    но GET после этого НЕ содержит этих полей в response. Metrika скорее
+  //    всего использует другие имена (или PATCH-семантика заменяет всё
+  //    `code_options`, что unsafe).
+  // 3. `webvisor.formCapturing` — поле API/structure требует отдельной research.
+  //
+  // TODO(v1.1): провести research через GET сравнение и Yandex Support; либо
+  // переключиться на read-modify-write pattern (GET full → merge → PUT full).
+  //
+  // В v1 эти настройки устанавливаются вручную через UI Я.Метрики (Forever-Manual
+  // ops в spec.md Assumptions). apply-config их не трогает.
+  return null;
 }
 
 /**

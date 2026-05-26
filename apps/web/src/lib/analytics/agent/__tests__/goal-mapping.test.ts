@@ -12,8 +12,8 @@ import type { MetrikaGoal } from "../types.ts";
 
 const SAMPLE_GOAL: MetrikaGoal = {
   name: "Purchase",
-  type: "event_target",
-  conditions: [{ type: "event", url: "purchase" }],
+  type: "action",
+  conditions: [{ type: "exact", url: "purchase" }],
   isRetargeting: true,
   enabled: true,
   businessMeaning: "Оплата успешна",

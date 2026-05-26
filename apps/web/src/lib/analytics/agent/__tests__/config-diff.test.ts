@@ -11,8 +11,8 @@ const minimalConfig: MetrikaConfig = {
   goals: [
     {
       name: "Purchase",
-      type: "event_target",
-      conditions: [{ type: "event", url: "purchase" }],
+      type: "action",
+      conditions: [{ type: "exact", url: "purchase" }],
       isRetargeting: true,
       enabled: true,
       businessMeaning: "Оплата успешна",
@@ -57,8 +57,8 @@ describe("computeConfigDiff — goals", () => {
       {
         id: 42,
         name: "Purchase",
-        type: "event_target",
-        conditions: [{ type: "event", url: "purchase" }],
+        type: "action",
+        conditions: [{ type: "exact", url: "purchase" }],
         is_retargeting: true,
       },
     ];
@@ -85,7 +85,7 @@ describe("computeConfigDiff — goals", () => {
 
   it("detects orphan goal (в Metrika, нет в config)", () => {
     const existing: ExistingGoal[] = [
-      { id: 42, name: "Purchase", type: "event_target", conditions: [{ type: "event", url: "purchase" }], is_retargeting: true },
+      { id: 42, name: "Purchase", type: "action", conditions: [{ type: "exact", url: "purchase" }], is_retargeting: true },
       { id: 99, name: "Random Old Goal", type: "url", conditions: [] },
     ];
 
@@ -97,7 +97,7 @@ describe("computeConfigDiff — goals", () => {
 
   it("ignores [DISABLED]-prefixed goals в orphan list (это soft-disabled)", () => {
     const existing: ExistingGoal[] = [
-      { id: 42, name: "Purchase", type: "event_target", conditions: [{ type: "event", url: "purchase" }], is_retargeting: true },
+      { id: 42, name: "Purchase", type: "action", conditions: [{ type: "exact", url: "purchase" }], is_retargeting: true },
       { id: 99, name: "[DISABLED] Old Goal", type: "url", conditions: [] },
     ];
 
@@ -140,8 +140,10 @@ describe("computeConfigDiff — filters", () => {
   });
 });
 
-describe("computeConfigDiff — counter settings", () => {
-  it("produces patch when settings differ", () => {
+describe("computeConfigDiff — counter settings (v1: всегда null, Forever-Manual ops)", () => {
+  it("ВСЕГДА возвращает null — counter-settings managed manually через UI Я.Метрики (v1)", () => {
+    // Даже если фактическое состояние сильно отличается от target — patch=null.
+    // Counter-settings deferred до v1.1 (research correct API field names).
     const diff = computeConfigDiff({
       config: minimalConfig,
       existingGoals: [],
@@ -151,31 +153,12 @@ describe("computeConfigDiff — counter settings", () => {
         webvisor: { urls: "off" },
       },
     });
-    expect(diff.counterSettingsPatch).not.toBeNull();
-    expect(diff.counterSettingsPatch?.firstPartyCookies).toBe(true);
-  });
-
-  it("returns null patch when settings already match", () => {
-    const diff = computeConfigDiff({
-      config: minimalConfig,
-      existingGoals: [],
-      existingFilters: [],
-      existingCounter: {
-        code_options: {
-          in_one_line: true,
-          accurate_track_bounce: true,
-          track_links: true,
-          clickmap: true,
-        },
-        webvisor: { urls: "", forms: true },
-      },
-    });
     expect(diff.counterSettingsPatch).toBeNull();
   });
 
-  it("falls back to applying all when no existingCounter provided", () => {
+  it("возвращает null даже без existingCounter (v1: всё manual)", () => {
     const diff = computeConfigDiff({ config: minimalConfig, existingGoals: [], existingFilters: [] });
-    expect(diff.counterSettingsPatch).not.toBeNull();
+    expect(diff.counterSettingsPatch).toBeNull();
   });
 });
 

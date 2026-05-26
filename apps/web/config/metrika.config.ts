@@ -30,8 +30,8 @@ export const metrikaConfig: MetrikaConfig = {
     // === Основные конверсии (Покупка) ===
     {
       name: "Purchase",
-      type: "event_target",
-      conditions: [{ type: "event", url: "purchase" }],
+      type: "action",
+      conditions: [{ type: "exact", url: "purchase" }],
       isRetargeting: true,
       enabled: true,
       businessMeaning: "Успешная оплата заказа (главная цель для оптимизации Я.Директа)",
@@ -39,8 +39,8 @@ export const metrikaConfig: MetrikaConfig = {
     },
     {
       name: "Begin Checkout",
-      type: "event_target",
-      conditions: [{ type: "event", url: "begin_checkout" }],
+      type: "action",
+      conditions: [{ type: "exact", url: "begin_checkout" }],
       isRetargeting: true,
       enabled: true,
       businessMeaning: "Пользователь начал оформление заказа",
@@ -48,8 +48,8 @@ export const metrikaConfig: MetrikaConfig = {
     },
     {
       name: "Add to Cart",
-      type: "event_target",
-      conditions: [{ type: "event", url: "add_to_cart" }],
+      type: "action",
+      conditions: [{ type: "exact", url: "add_to_cart" }],
       isRetargeting: true,
       enabled: true,
       businessMeaning: "Товар добавлен в корзину",
@@ -57,16 +57,16 @@ export const metrikaConfig: MetrikaConfig = {
     },
     {
       name: "Payment Intent",
-      type: "event_target",
-      conditions: [{ type: "event", url: "payment_intent" }],
+      type: "action",
+      conditions: [{ type: "exact", url: "payment_intent" }],
       enabled: true,
       businessMeaning: "Платёж инициирован (клик 'Оплатить', до редиректа)",
       owner: "svp@heado.ru",
     },
     {
       name: "Payment Failed",
-      type: "event_target",
-      conditions: [{ type: "event", url: "payment_failed" }],
+      type: "action",
+      conditions: [{ type: "exact", url: "payment_failed" }],
       enabled: true,
       businessMeaning: "Оплата провалилась (по любой причине)",
       owner: "svp@heado.ru",
@@ -75,8 +75,8 @@ export const metrikaConfig: MetrikaConfig = {
     // === B2B / RFQ ===
     {
       name: "RFQ Submit",
-      type: "event_target",
-      conditions: [{ type: "event", url: "rfq_submit" }],
+      type: "action",
+      conditions: [{ type: "exact", url: "rfq_submit" }],
       isRetargeting: true,
       enabled: true,
       businessMeaning: "B2B запрос на КП отправлен",
@@ -84,16 +84,16 @@ export const metrikaConfig: MetrikaConfig = {
     },
     {
       name: "RFQ Open",
-      type: "event_target",
-      conditions: [{ type: "event", url: "rfq_open" }],
+      type: "action",
+      conditions: [{ type: "exact", url: "rfq_open" }],
       enabled: true,
       businessMeaning: "Пользователь открыл форму RFQ (начал заполнять)",
       owner: "svp@heado.ru",
     },
     {
       name: "Price Request Click",
-      type: "event_target",
-      conditions: [{ type: "event", url: "price_request_click" }],
+      type: "action",
+      conditions: [{ type: "exact", url: "price_request_click" }],
       isRetargeting: true,
       enabled: true,
       businessMeaning: "B2B-сигнал: клик 'Запросить цену' на товаре без публичной цены",
@@ -103,8 +103,8 @@ export const metrikaConfig: MetrikaConfig = {
     // === Контент-сигналы ===
     {
       name: "Document Download",
-      type: "event_target",
-      conditions: [{ type: "event", url: "document_download" }],
+      type: "action",
+      conditions: [{ type: "exact", url: "document_download" }],
       isRetargeting: true,
       enabled: true,
       businessMeaning: "Скачан PDF (документация / паспорт / сертификат)",
@@ -112,16 +112,16 @@ export const metrikaConfig: MetrikaConfig = {
     },
     {
       name: "Phone Click",
-      type: "event_target",
-      conditions: [{ type: "event", url: "phone_click" }],
+      type: "action",
+      conditions: [{ type: "exact", url: "phone_click" }],
       enabled: true,
       businessMeaning: "Клик по номеру телефона",
       owner: "svp@heado.ru",
     },
     {
       name: "Email Click",
-      type: "event_target",
-      conditions: [{ type: "event", url: "email_click" }],
+      type: "action",
+      conditions: [{ type: "exact", url: "email_click" }],
       enabled: true,
       businessMeaning: "Клик по email-ссылке",
       owner: "svp@heado.ru",
@@ -130,38 +130,42 @@ export const metrikaConfig: MetrikaConfig = {
     // === Поиск ===
     {
       name: "Search",
-      type: "event_target",
-      conditions: [{ type: "event", url: "search" }],
+      type: "action",
+      conditions: [{ type: "exact", url: "search" }],
       enabled: true,
       businessMeaning: "Использован внутренний поиск по сайту",
       owner: "svp@heado.ru",
     },
     {
       name: "Search No Results",
-      type: "event_target",
-      conditions: [{ type: "event", url: "search_no_results" }],
+      type: "action",
+      conditions: [{ type: "exact", url: "search_no_results" }],
       enabled: true,
       businessMeaning: "Поиск дал 0 результатов (контент-сигнал)",
       owner: "svp@heado.ru",
     },
     {
       name: "Filter Apply",
-      type: "event_target",
-      conditions: [{ type: "event", url: "filter_apply" }],
+      type: "action",
+      conditions: [{ type: "exact", url: "filter_apply" }],
       enabled: true,
       businessMeaning: "Применён фильтр в каталоге",
       owner: "svp@heado.ru",
     },
 
-    // === Quality micro-goal (FR-210) ===
-    {
-      name: "Qualified Visit",
-      type: "number", // depth goal: ≥2 страниц за визит
-      conditions: [{ type: "exact", url: "2" }], // depth ≥ 2
-      enabled: true,
-      businessMeaning: "Качественный визит: ≥30 сек И ≥2 страниц И не bounce — micro-goal для Я.Директ оптимизации (FR-210)",
-      owner: "svp@heado.ru",
-    },
+    // === Quality micro-goal (FR-210) — DEFERRED ===
+    // TODO(v1.1): Yandex Metrika type='number' goal требует поле `depth`, а не `conditions`.
+    // Нужно расширить toApiGoal mapper в metrika-management-client.ts для number-type:
+    //   `{ goal: { name, type: "number", depth: 2 } }`
+    // После починки — раскомментировать ниже:
+    // {
+    //   name: "Qualified Visit",
+    //   type: "number",
+    //   conditions: [{ type: "exact", url: "2" }], // pseudo — реальный API ждёт `depth: 2`
+    //   enabled: true,
+    //   businessMeaning: "≥2 страниц за визит — micro-goal для Я.Директ оптимизации (FR-210)",
+    //   owner: "svp@heado.ru",
+    // },
   ],
 
   /**
@@ -179,35 +183,18 @@ export const metrikaConfig: MetrikaConfig = {
   ],
 
   /**
-   * Retargeting-сегменты (filters) — FR-200.
-   * v1: 3 обязательных сегмента; остальные 5 — v1.1 через AgentProposals.
+   * Retargeting-сегменты — FR-200.
+   *
+   * DEFERRED: Yandex Metrika Filters API (`POST /counter/{id}/filters`) принимает
+   * только ограниченный whitelist `attr`-значений (URL-pattern matching). Для
+   * сегментации по `user_type=legal_entity` или по goal-completion (abandoned-cart,
+   * купивших) нужна Yandex Audience API (api-audience.yandex.ru) — отдельный
+   * продукт со своей авторизацией.
+   *
+   * v1.1: реализовать audience-client.ts + интегрировать в apply-config.
+   * В v1 — задаются вручную через UI Я.Метрики → "Сегменты".
    */
-  filters: [
-    {
-      name: "Юрлицо (legal_entity)",
-      attr: "ym:s:paramsLevel1", // user_type параметр (через ParamsLevelN)
-      type: "equal",
-      value: "legal_entity",
-      enabled: true,
-      businessMeaning: "B2B-сегмент для отдельного ретаргетинга и анализа конверсий",
-    },
-    {
-      name: "Добавил в корзину, не купил (7d)",
-      attr: "ym:s:goal", // через достижение goal
-      type: "equal",
-      value: "Add to Cart", // имя goal — будет заменено на ID после первого apply
-      enabled: true,
-      businessMeaning: "Abandoned-cart аудитория для ретаргетинга в Я.Директе (окно 7 дней)",
-    },
-    {
-      name: "Совершил покупку за 90 дней",
-      attr: "ym:s:goal",
-      type: "equal",
-      value: "Purchase",
-      enabled: true,
-      businessMeaning: "LTV-аудитория для upsell/cross-sell кампаний",
-    },
-  ],
+  filters: [],
 
   /**
    * Counter Settings — FR-340 (first-party cookies), FR-061-063 (webvisor + privacy).

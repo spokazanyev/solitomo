@@ -243,7 +243,11 @@ export class MetrikaManagementClient {
     const codeOptions: Record<string, unknown> = {};
     const webvisor: Record<string, unknown> = {};
 
-    if (patch.firstPartyCookies !== undefined) codeOptions.in_one_line = patch.firstPartyCookies;
+    // FR-340 (first-party cookies) — настраивается через UI Я.Метрики (Forever-Manual ops).
+    // Mapping firstPartyCookies → API-field неустойчив (Metrika возвращает 400 на in_one_line).
+    // TODO(v1.1): research точное имя field или escalate в Yandex Support.
+    // if (patch.firstPartyCookies !== undefined) codeOptions.in_one_line = patch.firstPartyCookies;
+
     if (patch.accurateTrackBounce !== undefined) {
       codeOptions.accurate_track_bounce = patch.accurateTrackBounce;
     }
@@ -251,11 +255,11 @@ export class MetrikaManagementClient {
     if (patch.clickmap !== undefined) codeOptions.clickmap = patch.clickmap;
     if (patch.informer !== undefined) codeOptions.informer = { enabled: patch.informer };
 
+    // Webvisor URL-фильтр работает через `counter.webvisor.urls`.
     if (patch.webvisor?.enabled !== undefined) webvisor.urls = patch.webvisor.enabled ? "" : "off";
-    if (patch.webvisor?.formCapturing !== undefined) {
-      webvisor.forms = patch.webvisor.formCapturing !== "disabled";
-      webvisor.load_player_type = patch.webvisor.formCapturing === "enabled_with_masks" ? "v2" : "v1";
-    }
+    // formCapturing требует separate field-mapping research — отложено до v1.1.
+    // TODO(v1.1): уточнить как через API установить webvisor.forms + form-masks.
+    // if (patch.webvisor?.formCapturing !== undefined) { ... }
 
     if (Object.keys(codeOptions).length > 0) apiPatch.code_options = codeOptions;
     if (Object.keys(webvisor).length > 0) apiPatch.webvisor = webvisor;
@@ -393,7 +397,10 @@ function toApiGoal(goal: Partial<MetrikaGoal>): Record<string, unknown> {
   if (goal.type !== undefined) api.type = goal.type;
   if (goal.conditions !== undefined) api.conditions = goal.conditions;
   if (goal.steps !== undefined) api.steps = goal.steps;
-  if (goal.isRetargeting !== undefined) api.is_retargeting = goal.isRetargeting;
+  // NOTE: `is_retargeting` НЕ передаётся в body POST/PUT — это read-only поле
+  // в API ответе (Yandex Metrika возвращает 400 «invalid_json, path: goal.is_retargeting»).
+  // Установка флага retargeting производится через отдельный endpoint
+  // /counter/{id}/segments или через UI Метрики. Это известное ограничение API v1.
   return api;
 }
 

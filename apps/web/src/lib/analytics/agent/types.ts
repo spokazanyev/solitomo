@@ -10,13 +10,15 @@
 /**
  * Goal в Yandex Metrika. См. R17 endpoints `/management/v1/counter/<id>/goals`.
  *
- * Цели имеют разные `type`:
- * - `number` — N просмотров за визит (depth goal)
+ * Допустимые `type` (по Management API):
+ * - `number` — N просмотров за визит (depth goal); condition `{type: "exact", url: "<N>"}`
  * - `step` — составная цель (funnel)
- * - `url` — URL match
- * - `action` (deprecated) → `event_target` — событие из dataLayer
+ * - `url` — URL match; condition `{type: "exact|contain|start|regexp", url: "<url>"}`
+ * - `action` — JavaScript-событие (от `ym(id, 'reachGoal', name)`);
+ *   condition `{type: "exact", url: "<eventName>"}`
+ * - `phone` / `email` — клик по tel:/mailto:
  *
- * В нашем v1 fokус на `event_target` (для events.ts) и `step` (для funnels).
+ * В v1 используем `action` (для всех событий из events.ts) и `number` (для qualified_visit).
  */
 export interface MetrikaGoal {
   /**
@@ -25,11 +27,12 @@ export interface MetrikaGoal {
    */
   name: string;
 
-  type: "event_target" | "step" | "url" | "number" | "phone" | "email";
+  type: "action" | "step" | "url" | "number" | "phone" | "email";
 
   /**
    * Conditions — массив условий, при выполнении которых цель срабатывает.
-   * Формат API: `[{ type: "event", url: "eventName" }]` для event_target.
+   * Для type='action': `[{ type: "exact", url: "<eventName>" }]`.
+   * Для type='number': `[{ type: "exact", url: "<depth>" }]`.
    */
   conditions?: MetrikaGoalCondition[];
 
@@ -60,7 +63,11 @@ export interface MetrikaGoal {
 }
 
 export interface MetrikaGoalCondition {
-  type: "exact" | "contain" | "start" | "regexp" | "action" | "event";
+  /**
+   * Тип условия в Metrika API (значения совпадают с допустимыми для условий goal-API).
+   * Для goal.type='action' и 'number' обычно используется 'exact'.
+   */
+  type: "exact" | "contain" | "start" | "regexp";
   url: string;
 }
 
