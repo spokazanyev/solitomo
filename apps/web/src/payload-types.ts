@@ -93,6 +93,9 @@ export interface Config {
     'crm-sync-jobs': CrmSyncJob;
     'notification-jobs': NotificationJob;
     paymentEvents: PaymentEvent;
+    'agent-proposals': AgentProposal;
+    'agent-execution-log': AgentExecutionLog;
+    annotations: Annotation;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -125,6 +128,9 @@ export interface Config {
     'crm-sync-jobs': CrmSyncJobsSelect<false> | CrmSyncJobsSelect<true>;
     'notification-jobs': NotificationJobsSelect<false> | NotificationJobsSelect<true>;
     paymentEvents: PaymentEventsSelect<false> | PaymentEventsSelect<true>;
+    'agent-proposals': AgentProposalsSelect<false> | AgentProposalsSelect<true>;
+    'agent-execution-log': AgentExecutionLogSelect<false> | AgentExecutionLogSelect<true>;
+    annotations: AnnotationsSelect<false> | AnnotationsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -135,12 +141,14 @@ export interface Config {
   };
   fallbackLocale: null;
   globals: {
+    'analytics-settings': AnalyticsSetting;
     'apiship-settings': ApishipSetting;
     'crm-settings': CrmSetting;
     'notifications-settings': NotificationsSetting;
     'payment-settings': PaymentSetting;
   };
   globalsSelect: {
+    'analytics-settings': AnalyticsSettingsSelect<false> | AnalyticsSettingsSelect<true>;
     'apiship-settings': ApishipSettingsSelect<false> | ApishipSettingsSelect<true>;
     'crm-settings': CrmSettingsSelect<false> | CrmSettingsSelect<true>;
     'notifications-settings': NotificationsSettingsSelect<false> | NotificationsSettingsSelect<true>;
@@ -308,6 +316,25 @@ export interface Customer {
   inviteToken?: string | null;
   inviteExpiresAt?: string | null;
   inviteAcceptedAt?: string | null;
+  /**
+   * FR-180: first touch min(cookie, existing) on first login.
+   */
+  firstSeenAt?: string | null;
+  /**
+   * FR-150: _ym_uid linked to customer for cross-device tracking.
+   */
+  ymClientId?: string | null;
+  dsarLog?:
+    | {
+        requestedAt: string;
+        type: 'access' | 'delete';
+        status: 'pending' | 'completed' | 'rejected';
+        completedAt?: string | null;
+        completedBy?: (number | null) | User;
+        notes?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -718,6 +745,43 @@ export interface Order {
         id?: string | null;
       }[]
     | null;
+  /**
+   * FR-032: copied from Cart.attributionFirstTouch on conversion.
+   */
+  attributionFirstTouch?: {
+    utmSource?: string | null;
+    utmMedium?: string | null;
+    utmCampaign?: string | null;
+    utmContent?: string | null;
+    utmTerm?: string | null;
+    yclid?: string | null;
+    gclid?: string | null;
+    openstat?: string | null;
+    from?: string | null;
+    refererHost?: string | null;
+    acquisitionChannel?: string | null;
+    acquisitionQuery?: string | null;
+    capturedAt?: string | null;
+  };
+  ymClientId?: string | null;
+  firstSeenAt?: string | null;
+  /**
+   * FR-182: cohort metric.
+   */
+  timeToPurchaseDays?: number | null;
+  visitCountToPurchase?: number | null;
+  userTypeAtConversion?: ('anonymous' | 'customer' | 'legal_entity') | null;
+  /**
+   * FR-040 + FR-033/034 audit
+   */
+  serverHitStatus?: {
+    purchaseHitSentAt?: string | null;
+    purchaseHitStatus?: ('pending' | 'sent' | 'failed' | 'skipped_no_consent' | 'skipped_kill_switch') | null;
+    purchaseHitError?: string | null;
+    offlineConversionSentAt?: string | null;
+    offlineConversionStatus?: ('pending' | 'sent' | 'failed' | 'skipped_no_yclid' | 'skipped_no_consent') | null;
+    offlineConversionError?: string | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -1161,6 +1225,28 @@ export interface Cart {
    * SHA-256 of IP — GDPR-friendly.
    */
   ipHash?: string | null;
+  /**
+   * FR-031: copied from _solitomo_attribution cookie on cart creation.
+   */
+  attributionFirstTouch?: {
+    utmSource?: string | null;
+    utmMedium?: string | null;
+    utmCampaign?: string | null;
+    utmContent?: string | null;
+    utmTerm?: string | null;
+    yclid?: string | null;
+    gclid?: string | null;
+    openstat?: string | null;
+    from?: string | null;
+    refererHost?: string | null;
+    acquisitionChannel?: string | null;
+    acquisitionQuery?: string | null;
+    capturedAt?: string | null;
+  };
+  ymClientId?: string | null;
+  gaClientId?: string | null;
+  firstSeenAt?: string | null;
+  userTypeAtCreation?: ('anonymous' | 'customer' | 'legal_entity') | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1704,6 +1790,165 @@ export interface PaymentEvent {
   createdAt: string;
 }
 /**
+ * FR-380. Proposals created by agent based on Metrika data analysis. On approve → agent executes via Management API. Hard-delete requires confirmationFlag (FR-391).
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "agent-proposals".
+ */
+export interface AgentProposal {
+  id: number;
+  createdBy: 'agent' | 'mcp_tool' | 'manual';
+  /**
+   * Evaluator name (funnel_drop_off, drift_detector, missing_goal, ...) — for cooldown logic.
+   */
+  evaluator: string;
+  type:
+    | 'create_goal'
+    | 'update_goal'
+    | 'soft_disable_goal'
+    | 'hard_delete'
+    | 'create_filter'
+    | 'update_filter'
+    | 'update_setting'
+    | 'drift_detected'
+    | 'create_missing_goal'
+    | 'remove_unused_segment'
+    | 'adjust_qualified_visit_threshold'
+    | 'investigate_funnel_drop'
+    | 'update_config_from_drift'
+    | 'auto_approve_request';
+  action: 'create' | 'update' | 'delete' | 'soft-disable';
+  /**
+   * E.g.: 'goals[name=Purchase].conditions' or 'counterSettings.firstPartyCookies'.
+   */
+  targetPath: string;
+  /**
+   * JSON structure of the change (full object for create; partial for update).
+   */
+  payload:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * LLM-generated explanation. Visible to operator in admin UI.
+   */
+  reasoning: string;
+  expectedImpact?: string | null;
+  /**
+   * Snapshot of Metrika data backing the proposal.
+   */
+  evidence:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  severity: 'info' | 'warning' | 'critical';
+  /**
+   * FR-380. Lifecycle: pending → approved/rejected → executed/failed. executed/rejected — terminal.
+   */
+  status: 'pending' | 'approved' | 'rejected' | 'executed' | 'failed';
+  reviewedBy?: (number | null) | User;
+  reviewedAt?: string | null;
+  /**
+   * Optional for approve, REQUIRED for reject — decision rationale.
+   */
+  reviewerReason?: string | null;
+  executedAt?: string | null;
+  /**
+   * Response from Yandex.Metrika API (sanitized). For failed — error+stack.
+   */
+  executionResult?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * FR-383. Evaluator+targetPath won't create duplicate proposal until this date (anti-spam, default 7 days).
+   */
+  cooldownUntil?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * FR-375. Immutable audit-log of Metrika API calls from agent. FR-396 invariant: every mutating record has proposalId, configApplyRunId or manualAdminUserId.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "agent-execution-log".
+ */
+export interface AgentExecutionLog {
+  id: number;
+  timestamp: string;
+  endpoint: string;
+  method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+  /**
+   * Query/body without secrets and PII.
+   */
+  requestParams?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  responseStatus: number;
+  responseBodySummary?: string | null;
+  durationMs: number;
+  errorMessage?: string | null;
+  /**
+   * FR-396. Set if call originates from approved proposal.
+   */
+  proposalId?: (number | null) | AgentProposal;
+  /**
+   * FR-396. UUID of single apply-config CLI run.
+   */
+  configApplyRunId?: string | null;
+  manualAdminUserId?: (number | null) | User;
+  evaluatorName?: string | null;
+  /**
+   * MUST start with 'Soliton-AnalyticsAgent/'.
+   */
+  userAgent: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * FR-161-162. Timeline markers: deploys, campaigns, incidents. Only production goes to weekly report.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "annotations".
+ */
+export interface Annotation {
+  id: number;
+  type: 'deploy' | 'campaign' | 'incident' | 'manual';
+  occurredAt: string;
+  title: string;
+  description?: string | null;
+  /**
+   * Required for type='deploy'.
+   */
+  gitRef?: string | null;
+  prUrl?: string | null;
+  environment: 'production' | 'staging';
+  createdBy?: (number | null) | User;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
@@ -1826,6 +2071,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'paymentEvents';
         value: number | PaymentEvent;
+      } | null)
+    | ({
+        relationTo: 'agent-proposals';
+        value: number | AgentProposal;
+      } | null)
+    | ({
+        relationTo: 'agent-execution-log';
+        value: number | AgentExecutionLog;
+      } | null)
+    | ({
+        relationTo: 'annotations';
+        value: number | Annotation;
       } | null);
   globalSlug?: string | null;
   user:
@@ -1959,6 +2216,19 @@ export interface CustomersSelect<T extends boolean = true> {
   inviteToken?: T;
   inviteExpiresAt?: T;
   inviteAcceptedAt?: T;
+  firstSeenAt?: T;
+  ymClientId?: T;
+  dsarLog?:
+    | T
+    | {
+        requestedAt?: T;
+        type?: T;
+        status?: T;
+        completedAt?: T;
+        completedBy?: T;
+        notes?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -2252,6 +2522,38 @@ export interface OrdersSelect<T extends boolean = true> {
         skipReason?: T;
         id?: T;
       };
+  attributionFirstTouch?:
+    | T
+    | {
+        utmSource?: T;
+        utmMedium?: T;
+        utmCampaign?: T;
+        utmContent?: T;
+        utmTerm?: T;
+        yclid?: T;
+        gclid?: T;
+        openstat?: T;
+        from?: T;
+        refererHost?: T;
+        acquisitionChannel?: T;
+        acquisitionQuery?: T;
+        capturedAt?: T;
+      };
+  ymClientId?: T;
+  firstSeenAt?: T;
+  timeToPurchaseDays?: T;
+  visitCountToPurchase?: T;
+  userTypeAtConversion?: T;
+  serverHitStatus?:
+    | T
+    | {
+        purchaseHitSentAt?: T;
+        purchaseHitStatus?: T;
+        purchaseHitError?: T;
+        offlineConversionSentAt?: T;
+        offlineConversionStatus?: T;
+        offlineConversionError?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -2316,6 +2618,27 @@ export interface CartsSelect<T extends boolean = true> {
       };
   userAgent?: T;
   ipHash?: T;
+  attributionFirstTouch?:
+    | T
+    | {
+        utmSource?: T;
+        utmMedium?: T;
+        utmCampaign?: T;
+        utmContent?: T;
+        utmTerm?: T;
+        yclid?: T;
+        gclid?: T;
+        openstat?: T;
+        from?: T;
+        refererHost?: T;
+        acquisitionChannel?: T;
+        acquisitionQuery?: T;
+        capturedAt?: T;
+      };
+  ymClientId?: T;
+  gaClientId?: T;
+  firstSeenAt?: T;
+  userTypeAtCreation?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -2933,6 +3256,68 @@ export interface PaymentEventsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "agent-proposals_select".
+ */
+export interface AgentProposalsSelect<T extends boolean = true> {
+  createdBy?: T;
+  evaluator?: T;
+  type?: T;
+  action?: T;
+  targetPath?: T;
+  payload?: T;
+  reasoning?: T;
+  expectedImpact?: T;
+  evidence?: T;
+  severity?: T;
+  status?: T;
+  reviewedBy?: T;
+  reviewedAt?: T;
+  reviewerReason?: T;
+  executedAt?: T;
+  executionResult?: T;
+  cooldownUntil?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "agent-execution-log_select".
+ */
+export interface AgentExecutionLogSelect<T extends boolean = true> {
+  timestamp?: T;
+  endpoint?: T;
+  method?: T;
+  requestParams?: T;
+  responseStatus?: T;
+  responseBodySummary?: T;
+  durationMs?: T;
+  errorMessage?: T;
+  proposalId?: T;
+  configApplyRunId?: T;
+  manualAdminUserId?: T;
+  evaluatorName?: T;
+  userAgent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "annotations_select".
+ */
+export interface AnnotationsSelect<T extends boolean = true> {
+  type?: T;
+  occurredAt?: T;
+  title?: T;
+  description?: T;
+  gitRef?: T;
+  prUrl?: T;
+  environment?: T;
+  createdBy?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -2973,6 +3358,137 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "analytics-settings".
+ */
+export interface AnalyticsSetting {
+  id: number;
+  /**
+   * FR-394. Kill-switches for emergency disabling. agentEnabled=false → agent makes no API calls.
+   */
+  activation?: {
+    /**
+     * FR-040. Server-side duplicate for adblock resilience.
+     */
+    serverHitsEnabled?: boolean | null;
+    webvisorEnabled?: boolean | null;
+    qualifiedVisitGoalEnabled?: boolean | null;
+    /**
+     * FR-394. When false, agent makes NO Metrika API calls.
+     */
+    agentEnabled?: boolean | null;
+    /**
+     * Default false in v1. v1.1 enables cron `/api/cron/agent-daily-review`.
+     */
+    agentSchedulerEnabled?: boolean | null;
+  };
+  agentReview?: {
+    /**
+     * Cron-expression. Default '0 9 * * *' = 09:00 daily.
+     */
+    schedule?: string | null;
+    timezone?: string | null;
+    enabledEvaluators?:
+      | (
+          | 'funnel_drop_off'
+          | 'qualified_visit_rate'
+          | 'source_quality'
+          | 'zero_result_searches'
+          | 'roas_deviation'
+          | 'data_quality'
+        )[]
+      | null;
+    /**
+     * FR-383. Period during which evaluator does not create duplicate proposal for same targetPath.
+     */
+    cooldownDays?: number | null;
+    rateLimit?: {
+      maxApiCallsPerMinute?: number | null;
+      backoffOnRateLimit?: boolean | null;
+    };
+  };
+  /**
+   * FR-211. qualified_visit goal parameters. If share <5% or >90% — evaluator proposes adjust.
+   */
+  qualifiedVisit?: {
+    minDurationSeconds?: number | null;
+    minPageDepth?: number | null;
+    excludeBounce?: boolean | null;
+  };
+  /**
+   * FR-232. Substrings for brand vs non-brand query classification.
+   */
+  brandKeywords?:
+    | {
+        keyword: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * FR-241. Glob-pattern list for referrer→channel classification.
+   */
+  referrerPatterns?:
+    | {
+        channel:
+          | 'organic_yandex'
+          | 'organic_google'
+          | 'organic_images_yandex'
+          | 'organic_images_google'
+          | 'organic_maps_yandex'
+          | 'organic_maps_google'
+          | 'organic_marketplace_yandex_market'
+          | 'organic_ai'
+          | 'paid_yandex_direct'
+          | 'paid_google_ads'
+          | 'social'
+          | 'marketplace_outbound'
+          | 'referral';
+        priority: number;
+        enabled?: boolean | null;
+        hostPatterns?:
+          | {
+              pattern: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * FR-080. Substrings for visitor_type=bot classification. v1 — fallback to Metrika built-in filter.
+   */
+  botUserAgentPatterns?:
+    | {
+        pattern: string;
+        id?: string | null;
+      }[]
+    | null;
+  soft404Markers?:
+    | {
+        marker: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * FR-292. Output of `pnpm metrika:apply-config`. Do not edit manually — synced automatically.
+   */
+  goalMapping?:
+    | {
+        eventName: string;
+        metrikaGoalId?: number | null;
+        businessMeaning?: string | null;
+        lastSyncAt?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  audit?: {
+    lastChangedBy?: (number | null) | User;
+    lastChangedAt?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "apiship-settings".
  */
 export interface ApishipSetting {
@@ -3004,6 +3520,14 @@ export interface ApishipSetting {
     deliveryCostVat?: ('-1' | '0' | '5' | '7' | '10' | '20' | '22') | null;
     isCod?: boolean | null;
   };
+  /**
+   * Courier = CDEK comes to you (more expensive). Dropoff = you bring to CDEK office (cheaper).
+   */
+  senderPickupType?: ('courier' | 'dropoff') | null;
+  /**
+   * Memo only — where to bring packages. Does not affect tariff calculation.
+   */
+  senderDropoffAddress?: string | null;
   disabledProviders?:
     | {
         providerKey?: string | null;
@@ -3238,6 +3762,92 @@ export interface PaymentSetting {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "analytics-settings_select".
+ */
+export interface AnalyticsSettingsSelect<T extends boolean = true> {
+  activation?:
+    | T
+    | {
+        serverHitsEnabled?: T;
+        webvisorEnabled?: T;
+        qualifiedVisitGoalEnabled?: T;
+        agentEnabled?: T;
+        agentSchedulerEnabled?: T;
+      };
+  agentReview?:
+    | T
+    | {
+        schedule?: T;
+        timezone?: T;
+        enabledEvaluators?: T;
+        cooldownDays?: T;
+        rateLimit?:
+          | T
+          | {
+              maxApiCallsPerMinute?: T;
+              backoffOnRateLimit?: T;
+            };
+      };
+  qualifiedVisit?:
+    | T
+    | {
+        minDurationSeconds?: T;
+        minPageDepth?: T;
+        excludeBounce?: T;
+      };
+  brandKeywords?:
+    | T
+    | {
+        keyword?: T;
+        id?: T;
+      };
+  referrerPatterns?:
+    | T
+    | {
+        channel?: T;
+        priority?: T;
+        enabled?: T;
+        hostPatterns?:
+          | T
+          | {
+              pattern?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  botUserAgentPatterns?:
+    | T
+    | {
+        pattern?: T;
+        id?: T;
+      };
+  soft404Markers?:
+    | T
+    | {
+        marker?: T;
+        id?: T;
+      };
+  goalMapping?:
+    | T
+    | {
+        eventName?: T;
+        metrikaGoalId?: T;
+        businessMeaning?: T;
+        lastSyncAt?: T;
+        id?: T;
+      };
+  audit?:
+    | T
+    | {
+        lastChangedBy?: T;
+        lastChangedAt?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "apiship-settings_select".
  */
 export interface ApishipSettingsSelect<T extends boolean = true> {
@@ -3263,6 +3873,8 @@ export interface ApishipSettingsSelect<T extends boolean = true> {
         deliveryCostVat?: T;
         isCod?: T;
       };
+  senderPickupType?: T;
+  senderDropoffAddress?: T;
   disabledProviders?:
     | T
     | {

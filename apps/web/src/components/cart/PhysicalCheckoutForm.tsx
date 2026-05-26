@@ -3,7 +3,7 @@
 import { ArrowRight, CreditCard, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { AddressForm, type AddressFormValue } from "@/components/checkout/AddressForm";
 import { DadataSuggestInput } from "@/components/checkout/DadataSuggestInput";
@@ -81,7 +81,30 @@ export function PhysicalCheckoutForm() {
   useEffect(() => {
     if (items.length === 0) return;
     pushEvent("add_payment_info", { checkout_type: "physical" });
+    // 058 T030: явный checkout_step_payment_method (FR-122). Триггер тот же, что
+    // и add_payment_info — пользователь увидел блок выбора оплаты.
+    pushEvent("checkout_step_payment_method", { step_index: 3, checkout_type: "physical" });
   }, [items.length]);
+
+  // 058 T030: checkout_step_contact (FR-120) — однократно при первом фокусе в
+  // блок контактов. Используем ref-flag для anti-double-fire в течение визита.
+  const contactStepFiredRef = useRef(false);
+  const handleContactFocus = () => {
+    if (contactStepFiredRef.current) return;
+    contactStepFiredRef.current = true;
+    pushEvent("checkout_step_contact", { step_index: 1, checkout_type: "physical" });
+  };
+
+  // 058 T030: checkout_step_shipping (FR-121) — при появлении валидного адреса
+  // ИЛИ выбранной доставки (first transition).
+  const shippingStepFiredRef = useRef(false);
+  useEffect(() => {
+    if (shippingStepFiredRef.current) return;
+    if (address.isValid || selectedRate !== null) {
+      shippingStepFiredRef.current = true;
+      pushEvent("checkout_step_shipping", { step_index: 2, checkout_type: "physical" });
+    }
+  }, [address.isValid, selectedRate]);
 
   if (items.length === 0) {
     return (
@@ -101,6 +124,14 @@ export function PhysicalCheckoutForm() {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (submitting) return;
+    // 058 T030: checkout_cta_pay_clicked (FR-124) — пользователь нажал «Оплатить»,
+    // до validation/redirect. Фиксируем намерение оплатить даже если validation fail.
+    pushEvent("checkout_cta_pay_clicked", {
+      step_index: 5,
+      checkout_type: "physical",
+      value: total,
+      currency: "RUB",
+    });
     if (knownCount === 0) {
       setError("В корзине только позиции без цены — оплата картой невозможна. Запросите КП.");
       return;
@@ -224,7 +255,7 @@ export function PhysicalCheckoutForm() {
   return (
     <form className="grid gap-8 lg:grid-cols-[1fr_360px]" onSubmit={handleSubmit}>
       <section className="grid gap-6">
-        <div className="rounded-lg border border-slate-200 bg-white p-6">
+        <div className="rounded-lg border border-slate-200 bg-white p-6" onFocus={handleContactFocus}>
           <p className="text-sm font-semibold text-slate-950">Контактные данные</p>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             <DadataSuggestInput

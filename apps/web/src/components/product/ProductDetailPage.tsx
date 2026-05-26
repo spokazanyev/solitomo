@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+import { ProductDetailAnalytics } from "@/components/product/ProductDetailAnalytics";
 import { ProductInfoTabs } from "@/components/product/ProductInfoTabs";
 import { ProductImageZoom } from "@/components/product/ProductImageZoom";
 import { ProductStickyCta } from "@/components/product/ProductStickyCta";
@@ -23,6 +24,12 @@ import {
 type ProductDetailPageProps = {
   product: Product;
 };
+
+/** Извлекает slug из URL вида '/catalog/setevye-filtry/' → 'setevye-filtry'. */
+function extractCategorySlug(url: string): string {
+  const match = url.match(/\/catalog\/([^/]+)\/?$/);
+  return match?.[1] ?? "";
+}
 
 function JsonLd({ data }: { data: object }) {
   return (
@@ -79,6 +86,15 @@ export async function ProductDetailPage({ product }: ProductDetailPageProps) {
     <div className="min-h-screen bg-[var(--background)] pb-24 text-[var(--foreground)] lg:pb-0">
       <JsonLd data={createProductBreadcrumbJsonLd(product)} />
       <JsonLd data={createProductJsonLd(product)} />
+      {/* 058 T028: view_item + ecommerce.detail + B2B-signals (price/stock) */}
+      <ProductDetailAnalytics
+        sku={product.sku}
+        name={product.h1}
+        priceAmount={product.price.amount}
+        {...(product.categories[0]?.url
+          ? { categorySlug: extractCategorySlug(product.categories[0].url) }
+          : {})}
+      />
       <ProductStickyCta product={product} rfqHref={rfqHref} />
 
       <section className="mx-auto w-full max-w-7xl px-6 py-8 md:px-10 lg:px-12">

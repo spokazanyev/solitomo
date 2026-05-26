@@ -1,9 +1,11 @@
 import "server-only";
 
+import { createHash } from "node:crypto";
+
 import { CalculatorApi, Configuration, ListsApi, OrderDocsApi, OrdersApi } from "./client";
 import { getCalculation, saveCalculation } from "./cache";
 import { logError, logRequest } from "./logger";
-import { pickCheapestTariff, toCalculatorRequest, toOrderRequest, toPickupPoints, toShippingRate } from "./mappers";
+import { pickBestTariffs, toCalculatorRequest, toOrderRequest, toPickupPoints, toShippingRate } from "./mappers";
 import { executeWithRetry } from "./retry";
 import { type ApiShipSettings, loadSettings } from "./settings";
 import { mapApiShipStatus } from "./status-map";
@@ -20,6 +22,35 @@ import type {
 } from "../types";
 
 const CACHE_TTL_MS = 30 * 60 * 1000;
+
+/**
+ * Стабильный 16-hex-символьный fingerprint от полей, влияющих на стоимость доставки:
+ * адрес получателя + items (вес/габариты/цена/кол-во). Используется в cache key,
+ * чтобы при смене адреса или состава корзины не возвращался устаревший расчёт.
+ *
+ * До этого ключ был `apiship:calc:{cartId}:{type}` — при смене адреса в той же
+ * корзине отдавалась старая цена (баг — Москва-цена вместо Екатеринбург-цены).
+ */
+function calcInputFingerprint(input: CalculationInput): string {
+  const payload = JSON.stringify({
+    a: {
+      cc: input.address.countryCode ?? "",
+      pc: input.address.postalCode ?? "",
+      ct: input.address.city ?? "",
+      rg: input.address.region ?? "",
+      ad: input.address.addressString ?? "",
+    },
+    i: input.items.map((it) => ({
+      p: it.price,
+      q: it.quantity,
+      w: it.weight ?? null,
+      l: it.length ?? null,
+      wd: it.width ?? null,
+      h: it.height ?? null,
+    })),
+  });
+  return createHash("sha256").update(payload).digest("hex").slice(0, 16);
+}
 
 export class ApiShipProvider implements ShippingProvider {
   public readonly code = "apiship" as const;
@@ -64,8 +95,11 @@ export class ApiShipProvider implements ShippingProvider {
     const warnings: string[] = [];
     const disabled = new Set(this.settings.disabledProviders);
 
+    // Fingerprint всего input — чтобы кеш инвалидировался при смене адреса / товаров.
+    const fp = calcInputFingerprint(input);
+
     for (const type of types) {
-      const cacheKey = `apiship:calc:${input.cartId}:apiship_${type}`;
+      const cacheKey = `apiship:calc:${input.cartId}:${type}:${fp}`;
       let raw = (await getCalculation(cacheKey)) as
         | { deliveryToDoor?: unknown[]; deliveryToPoint?: unknown[]; tariffs?: unknown[] }
         | null;
@@ -86,34 +120,98 @@ export class ApiShipProvider implements ShippingProvider {
       // legacy-форма (`tariffs[]`) поддерживается на всякий случай.
       const { flattenCalculatorTariffs } = await import("./client");
       const tariffs = flattenCalculatorTariffs(raw as Parameters<typeof flattenCalculatorTariffs>[0]);
-      for (const tariff of tariffs as Array<Record<string, unknown>>) {
-        if (tariff.isError) continue;
-        const providerKey = String(tariff.providerKey ?? "");
-        if (disabled.has(providerKey)) continue;
-        rates.push(toShippingRate(tariff as never, type));
+
+      // Для каждого delivery-type кода выбираем два лучших тарифа:
+      // cheapest (дешевле) и fastest (быстрее).
+      const { cheapest, fastest } = pickBestTariffs(tariffs, type);
+      if (cheapest) {
+        const pk = String(cheapest.providerKey ?? "");
+        if (!disabled.has(pk)) rates.push(toShippingRate(cheapest, type, "cheapest"));
+      }
+      // Добавляем fastest только если это другой тариф.
+      if (fastest && fastest !== cheapest) {
+        const pk = String(fastest.providerKey ?? "");
+        if (!disabled.has(pk)) rates.push(toShippingRate(fastest, type, "fastest"));
       }
     }
 
-    annotateBadges(rates);
-    return { cachedAt: new Date().toISOString(), rates, warnings };
+    // Дедупликация: для каждой пары (deliveryType, variant) оставляем лучший.
+    // Это схлопывает doortodoor+pointtodoor → 1 «курьером» (дешевле) + 1 «курьером» (быстрее).
+    const cheapestByType = new Map<number, ShippingRate>();
+    const fastestByType  = new Map<number, ShippingRate>();
+    for (const rate of rates) {
+      const isFastest = rate.shippingOptionId.includes("_fastest");
+      if (isFastest) {
+        const ex = fastestByType.get(rate.deliveryType);
+        if (!ex || rate.etaMinDays < ex.etaMinDays) fastestByType.set(rate.deliveryType, rate);
+      } else {
+        const ex = cheapestByType.get(rate.deliveryType);
+        if (!ex || rate.cost < ex.cost) cheapestByType.set(rate.deliveryType, rate);
+      }
+    }
+
+    // Финальный список: сначала курьер (deliveryType=1), потом ПВЗ (deliveryType=2).
+    // Внутри группы: сначала cheapest, потом fastest (только если другой тарифId).
+    const deduped: ShippingRate[] = [];
+    for (const [dt, cheapest] of [...cheapestByType.entries()].sort(([a], [b]) => a - b)) {
+      deduped.push(cheapest);
+      const fastest = fastestByType.get(dt);
+      if (fastest && fastest.tariffId !== cheapest.tariffId) {
+        deduped.push(fastest);
+      }
+    }
+
+    annotateBadges(deduped);
+    return { cachedAt: new Date().toISOString(), rates: deduped, warnings };
   }
 
   async getPickupPoints(input: PointsInput): Promise<PickupPoint[]> {
+    // ApiShip /v1/lists/points does NOT support city/geo server-side filters —
+    // every filter format (JSON, query-string, FIAS GUID, bounding box) is
+    // silently ignored; the API always returns the full sorted list.
+    // The only working server-side filter is `providerKey`.
+    //
+    // Strategy: cache the city-specific PointObject[] in Payload for 12 h.
+    //   • Cache miss → fetch all provider points (limit=5000, 1 request),
+    //     filter by city in-process, persist filtered rows to cache.
+    //   • Cache hit  → return cached rows instantly (≈ DB lookup time).
+    // Dimension/weight filtering from `input` is applied after cache lookup
+    // so per-request constraints still take effect.
+
+    const POINTS_TTL_MS = 12 * 60 * 60 * 1000; // 12 h
+    const normalCity = input.city?.trim().toLowerCase() ?? "";
+    const cacheKey = `apiship:points:${input.providerKey}:${normalCity}`;
+
     try {
-      const filter = [
-        input.city ? `city=${encodeURIComponent(input.city)}` : "",
-        input.providerKey ? `providerKey=${input.providerKey}` : "",
-      ]
-        .filter(Boolean)
-        .join("&");
+      // ── Cache read ────────────────────────────────────────────────────────
+      const cached = await getCalculation(cacheKey);
+      if (Array.isArray(cached)) {
+        return toPickupPoints(
+          cached as Parameters<typeof toPickupPoints>[0],
+          input,
+        );
+      }
+
+      // ── Cache miss: fetch from ApiShip ────────────────────────────────────
       const { data } = await this.apis.lists.getListPoints({
-        limit: 500,
+        limit: 5000,
         offset: 0,
-        filter,
+        providerKey: input.providerKey || undefined,
         fields:
           "id,providerKey,name,address,city,postIndex,lat,lng,timetable,phone,cashPayment,cardPayment,maxLength,maxWidth,maxHeight,maxWeight",
       });
-      return toPickupPoints(data.rows ?? [], input);
+
+      // City filter client-side (the only viable approach given the API limitations)
+      const rows = normalCity
+        ? (data.rows ?? []).filter(
+            (r) => r.city?.trim().toLowerCase() === normalCity,
+          )
+        : (data.rows ?? []);
+
+      // Persist filtered rows — next request for the same city is instant
+      await saveCalculation(cacheKey, rows, POINTS_TTL_MS);
+
+      return toPickupPoints(rows, input);
     } catch (err) {
       await logError("lists.getPoints", err);
       return [];
@@ -247,10 +345,23 @@ export class ApiShipProvider implements ShippingProvider {
   }
 }
 
+/**
+ * Расставить значки "cheapest" / "fastest" внутри каждой группы по deliveryType.
+ * Значок ставится только если в группе есть хотя бы 2 разных тарифа.
+ */
 function annotateBadges(rates: ShippingRate[]): void {
-  if (!rates.length) return;
-  const cheapest = rates.reduce((a, b) => (a.cost <= b.cost ? a : b));
-  const fastest = rates.reduce((a, b) => (a.etaMinDays <= b.etaMinDays ? a : b));
-  cheapest.badges = [...(cheapest.badges ?? []), "cheapest"];
-  fastest.badges = [...(fastest.badges ?? []), "fastest"];
+  const byType = new Map<number, ShippingRate[]>();
+  for (const r of rates) {
+    if (!byType.has(r.deliveryType)) byType.set(r.deliveryType, []);
+    byType.get(r.deliveryType)!.push(r);
+  }
+  for (const group of byType.values()) {
+    if (group.length < 2) continue;
+    const cheapest = group.reduce((a, b) => (a.cost <= b.cost ? a : b));
+    const fastest  = group.reduce((a, b) => (a.etaMinDays <= b.etaMinDays ? a : b));
+    if (cheapest !== fastest) {
+      cheapest.badges = [...(cheapest.badges ?? []), "cheapest"];
+      fastest.badges  = [...(fastest.badges  ?? []), "fastest"];
+    }
+  }
 }

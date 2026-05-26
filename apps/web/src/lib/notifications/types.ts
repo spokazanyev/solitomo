@@ -71,6 +71,8 @@ export interface RenderedMessage {
   subject: string;
   text: string;
   html?: string;
+  /** Передаётся в List-Unsubscribe header через Unisender Go API (подавляет авто-футер). */
+  listUnsubscribeUrl?: string;
 }
 
 export type SendStatus = "sent" | "failed" | "skipped";
@@ -96,6 +98,8 @@ export interface EmailSender {
     subject: string;
     text: string;
     html?: string;
+    /** Sets List-Unsubscribe header; suppresses provider auto-footer (Unisender Go). */
+    listUnsubscribeUrl?: string;
   }): Promise<SendResult>;
   ping(): Promise<SendResult>;
 }

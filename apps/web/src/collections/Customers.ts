@@ -264,6 +264,60 @@ export const Customers: CollectionConfig = {
     },
     { name: "inviteExpiresAt", type: "date", admin: { readOnly: true, hidden: true } },
     { name: "inviteAcceptedAt", type: "date", admin: { readOnly: true, hidden: true } },
+    // 058 T007: cohort + analytics-attribution для авторизованных
+    {
+      name: "firstSeenAt",
+      type: "date",
+      admin: {
+        readOnly: true,
+        description: adminLabel(
+          "FR-180 (Clarification Q5): первое касание клиента. min(cookie._solitomo_first_seen, existing) при первом логине.",
+          "FR-180: first touch min(cookie, existing) on first login.",
+        ),
+      },
+    },
+    {
+      name: "ymClientId",
+      type: "text",
+      admin: {
+        readOnly: true,
+        description: adminLabel(
+          "FR-150: Yandex.Metrika _ym_uid привязан к customer для cross-device.",
+          "FR-150: _ym_uid linked to customer for cross-device tracking.",
+        ),
+      },
+    },
+    {
+      name: "dsarLog",
+      type: "array",
+      label: adminLabel("DSAR audit (152-ФЗ)", "DSAR audit (152-FZ)"),
+      admin: { description: adminLabel("FR-352: audit log запросов на доступ/удаление.", "") },
+      fields: [
+        { name: "requestedAt", type: "date", required: true },
+        {
+          name: "type",
+          type: "select",
+          required: true,
+          options: [
+            { label: "access", value: "access" },
+            { label: "delete", value: "delete" },
+          ],
+        },
+        {
+          name: "status",
+          type: "select",
+          required: true,
+          options: [
+            { label: "pending", value: "pending" },
+            { label: "completed", value: "completed" },
+            { label: "rejected", value: "rejected" },
+          ],
+        },
+        { name: "completedAt", type: "date" },
+        { name: "completedBy", type: "relationship", relationTo: "users" },
+        { name: "notes", type: "textarea" },
+      ],
+    },
   ],
   hooks: {
     beforeChange: [

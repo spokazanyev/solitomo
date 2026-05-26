@@ -139,6 +139,7 @@ export async function processNotificationQueue(): Promise<SchedulerResult> {
           subject: rendered.subject,
           text: rendered.text,
           html: rendered.html,
+          listUnsubscribeUrl: rendered.listUnsubscribeUrl,
         });
       }
     } else if (channel === "messenger") {

@@ -8,7 +8,7 @@ import type {
 import type { ApiShipSettings } from "../settings";
 import type { PointObject, TariffObject } from "../client";
 import {
-  pickCheapestTariff,
+  pickBestTariffs,
   toCalculatorRequest,
   toOrderRequest,
   toPickupPoints,
@@ -21,9 +21,12 @@ const SETTINGS: ApiShipSettings = {
   token: "tok",
   webhookSecret: "secret",
   baseUrl: "http://api.dev.apiship.ru/v1",
+  senderPickupType: "dropoff",
+  senderDropoffAddress: "",
   sender: {
     countryCode: "RU",
-    addressString: "Москва, Тверская 1",
+    // Адрес с индексом — нужен для toCalculatorRequest (parses postIndex)
+    addressString: "620034, г. Екатеринбург, ул. Щорса, д. 7",
     contactName: "Иван Соликс",
     phone: "+7 999 000 00 00",
   },
@@ -36,7 +39,7 @@ const SETTINGS: ApiShipSettings = {
     isCod: false,
   },
   disabledProviders: [],
-  allowedDeliveryTypes: ["doortodoor", "doortopoint", "pointtodoor", "pointtopoint"],
+  allowedDeliveryTypes: ["doortodoor", "doortopoint"],
   yandexMaps: { apiKey: "", tariffPlan: "free" },
   dadata: { apiKey: "", secret: "", tariffPlan: "free", cacheTtlDays: 30 },
   lifecycle: {
@@ -49,7 +52,7 @@ const SETTINGS: ApiShipSettings = {
 };
 
 describe("toCalculatorRequest", () => {
-  it("maps doortodoor to deliveryType=1, pickupType=1", () => {
+  it("pickupTypes берётся из senderPickupType, не из delivery type code", () => {
     const input: CalculationInput = {
       cartId: "c1",
       address: {
@@ -61,32 +64,39 @@ describe("toCalculatorRequest", () => {
       items: [{ sku: "A", quantity: 2, price: 1000, weight: 500 }],
     };
 
+    // senderPickupType="dropoff" → всегда pickupTypes=[2], независимо от delivery type code
     const req = toCalculatorRequest(input, "doortodoor", SETTINGS);
 
-    expect(req.pickupTypes).toEqual([1]);
+    expect(req.pickupTypes).toEqual([2]);
     expect(req.deliveryTypes).toEqual([1]);
     expect(req.from?.countryCode).toBe("RU");
-    expect(req.from?.address).toBe(SETTINGS.sender.addressString);
+    expect(req.from?.postIndex).toBe("620034");
+    expect(req.from?.city).toBe("Екатеринбург");
     expect(req.to.city).toBe("Санкт-Петербург");
     expect(req.places).toHaveLength(1);
-    expect(req.places[0]).toMatchObject({
-      cost: 2000,
-      weight: 500,
-    });
+    expect(req.places[0]).toMatchObject({ cost: 2000, weight: 500 });
     expect(req.includeFees).toBe(1);
   });
 
-  it("falls back to settings.defaults when item lacks dims/weight", () => {
+  it("courier senderPickupType → pickupTypes=[1]", () => {
+    const courierSettings: ApiShipSettings = { ...SETTINGS, senderPickupType: "courier" };
     const input: CalculationInput = {
       cartId: "c2",
       address: { countryCode: "RU", city: "Москва" },
       items: [{ sku: "B", quantity: 1, price: 500 }],
     };
-
-    const req = toCalculatorRequest(input, "pointtopoint", SETTINGS);
-
-    expect(req.pickupTypes).toEqual([2]);
+    const req = toCalculatorRequest(input, "doortopoint", courierSettings);
+    expect(req.pickupTypes).toEqual([1]);
     expect(req.deliveryTypes).toEqual([2]);
+  });
+
+  it("falls back to settings.defaults when item lacks dims/weight", () => {
+    const input: CalculationInput = {
+      cartId: "c3",
+      address: { countryCode: "RU", city: "Москва" },
+      items: [{ sku: "B", quantity: 1, price: 500 }],
+    };
+    const req = toCalculatorRequest(input, "doortopoint", SETTINGS);
     expect(req.places[0]).toEqual({
       cost: 500,
       weight: SETTINGS.defaults.weight,
@@ -98,7 +108,7 @@ describe("toCalculatorRequest", () => {
 });
 
 describe("toShippingRate", () => {
-  it("uses delivery/pickup types from map when not on tariff", () => {
+  it("shippingOptionId включает variant (cheapest по умолчанию)", () => {
     const tariff: TariffObject = {
       tariffId: 101,
       providerKey: "cdek",
@@ -110,7 +120,7 @@ describe("toShippingRate", () => {
 
     const rate = toShippingRate(tariff, "pointtodoor");
 
-    expect(rate.shippingOptionId).toBe("apiship_pointtodoor");
+    expect(rate.shippingOptionId).toBe("apiship_pointtodoor_cheapest");
     expect(rate.providerKey).toBe("cdek");
     expect(rate.providerName).toBe("СДЭК");
     expect(rate.tariffId).toBe(101);
@@ -122,26 +132,42 @@ describe("toShippingRate", () => {
     expect(rate.etaMaxDays).toBe(5);
     expect(rate.rawTariff).toBe(tariff);
   });
+
+  it("shippingOptionId с вариантом fastest", () => {
+    const tariff: TariffObject = { tariffId: 200, providerKey: "cdek", deliveryCost: 600, daysMin: 1 };
+    const rate = toShippingRate(tariff, "doortodoor", "fastest");
+    expect(rate.shippingOptionId).toBe("apiship_doortodoor_fastest");
+  });
 });
 
-describe("pickCheapestTariff", () => {
-  it("returns the cheapest matching tariff for delivery/pickup type", () => {
-    const tariffs: TariffObject[] = [
-      { tariffId: 1, providerKey: "cdek", deliveryCost: 500, deliveryType: 1, pickupType: 1 },
-      { tariffId: 2, providerKey: "boxberry", deliveryCost: 350, deliveryType: 1, pickupType: 1 },
-      { tariffId: 3, providerKey: "cdek", deliveryCost: 100, deliveryType: 2, pickupType: 2 },
-      { tariffId: 4, providerKey: "dpd", deliveryCost: 250, deliveryType: 1, pickupType: 1, isError: true },
-    ];
+describe("pickBestTariffs", () => {
+  const tariffs: TariffObject[] = [
+    { tariffId: 1, providerKey: "cdek", deliveryCost: 500, deliveryType: 1, pickupType: 1, daysMin: 3 },
+    { tariffId: 2, providerKey: "cdek", deliveryCost: 350, deliveryType: 1, pickupType: 1, daysMin: 5 },
+    { tariffId: 3, providerKey: "cdek", deliveryCost: 420, deliveryType: 1, pickupType: 1, daysMin: 1 },
+    { tariffId: 4, providerKey: "cdek", deliveryCost: 100, deliveryType: 2, pickupType: 2, daysMin: 2 },
+    { tariffId: 5, providerKey: "dpd",  deliveryCost: 250, deliveryType: 1, pickupType: 1, isError: true },
+  ];
 
-    const cheap = pickCheapestTariff(tariffs, "doortodoor");
-    expect(cheap?.tariffId).toBe(2);
+  it("возвращает cheapest по стоимости и fastest по daysMin", () => {
+    const { cheapest, fastest } = pickBestTariffs(tariffs, "doortodoor");
+    expect(cheapest?.tariffId).toBe(2); // 350₽
+    expect(fastest?.tariffId).toBe(3);  // 1 день
   });
 
-  it("skips error tariffs and returns undefined when none match", () => {
-    const tariffs: TariffObject[] = [
-      { tariffId: 1, providerKey: "cdek", deliveryCost: 100, isError: true, deliveryType: 1, pickupType: 1 },
+  it("игнорирует ошибочные тарифы", () => {
+    const errTariffs: TariffObject[] = [
+      { tariffId: 1, deliveryCost: 100, deliveryType: 1, pickupType: 1, isError: true },
     ];
-    expect(pickCheapestTariff(tariffs, "doortodoor")).toBeUndefined();
+    const { cheapest, fastest } = pickBestTariffs(errTariffs, "doortodoor");
+    expect(cheapest).toBeUndefined();
+    expect(fastest).toBeUndefined();
+  });
+
+  it("возвращает {} если нет подходящих тарифов", () => {
+    // doortopoint = deliveryType=2, pickupType=1; в tariffs только tariff 4 = deliveryType=2, pickupType=2 — не совпадает
+    const { cheapest } = pickBestTariffs(tariffs, "doortopoint");
+    expect(cheapest).toBeUndefined();
   });
 });
 
@@ -195,22 +221,15 @@ describe("toOrderRequest", () => {
     expect(req.providerKey).toBe("cdek");
     expect(req.tariffId).toBe(99);
     expect(req.places).toHaveLength(2);
-    expect(req.places[0]).toMatchObject({
-      description: "Чай",
-      weight: 300,
-    });
-    expect(req.places[0].items?.[0]).toMatchObject({
-      description: "Чай",
-      quantity: 2,
-      cost: 500,
-    });
+    expect(req.places[0]).toMatchObject({ description: "Чай", weight: 300 });
+    expect(req.places[0].items?.[0]).toMatchObject({ description: "Чай", quantity: 2, cost: 500 });
   });
 });
 
 describe("toPickupPoints", () => {
   const input: PointsInput = {
     cartId: "c1",
-    shippingOptionId: "apiship_pointtopoint",
+    shippingOptionId: "apiship_doortopoint_cheapest",
     providerKey: "cdek",
     city: "Москва",
     maxDimensions: { length: 40, width: 30, height: 20 },
@@ -237,13 +256,13 @@ describe("toPickupPoints", () => {
         providerKey: "cdek",
         name: "Слишком маленький ПВЗ",
         address: "Москва, Малая 1",
-        maxLength: 10, // < 40
+        maxLength: 10,
         maxWidth: 10,
         maxHeight: 10,
         maxWeight: 1000,
       },
       {
-        // отсутствует address — должно быть отфильтровано на первом шаге
+        // отсутствует address — должно быть отфильтровано
         id: "p3",
         providerKey: "cdek",
         name: "Без адреса",
@@ -255,22 +274,17 @@ describe("toPickupPoints", () => {
     expect(points).toHaveLength(1);
     expect(points[0].pointId).toBe("p1");
     expect(points[0].paymentMethods).toEqual(["cash", "card"]);
-    expect(points[0].maxDimensions).toEqual({
-      length: 100,
-      width: 80,
-      height: 60,
-      weight: 20000,
-    });
+    expect(points[0].maxDimensions).toEqual({ length: 100, width: 80, height: 60, weight: 20000 });
   });
 
-  it("returns all points (still filtered for required fields) when no constraints", () => {
+  it("returns all points (filtered for required fields) when no constraints", () => {
     const rows: PointObject[] = [
       { id: "p1", providerKey: "cdek", address: "addr1" },
       { id: "p2", providerKey: "cdek", address: "" },
     ];
     const points = toPickupPoints(rows, {
       cartId: "c",
-      shippingOptionId: "apiship_pointtopoint",
+      shippingOptionId: "apiship_doortopoint_cheapest",
       providerKey: "cdek",
       city: "Москва",
     });

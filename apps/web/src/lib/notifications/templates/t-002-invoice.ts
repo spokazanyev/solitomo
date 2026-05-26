@@ -1,27 +1,61 @@
 import type { NotificationJobPayload, RenderedMessage } from "../types";
-import { customerName, formatPrice, orderPageUrl, siteUrl } from "./helpers";
+import {
+  customerName,
+  escapeHtml,
+  formatPrice,
+  orderPageUrl,
+  preferencesPageUrl,
+  renderHtmlShell,
+  siteUrl,
+  styles,
+} from "./helpers";
 
 export function renderT002InvoiceIssued(payload: NotificationJobPayload): RenderedMessage {
   const order = payload.order;
   const name = customerName(order);
   const total = formatPrice(order.totals?.total);
   const url = orderPageUrl(order);
-  const invoiceUrl = order.publicToken ? siteUrl(`/cart/order/${order.publicToken}/invoice.pdf`) : "";
+  const invoiceUrl = order.publicToken
+    ? siteUrl(`/cart/order/${order.publicToken}/invoice.pdf`)
+    : "";
+  const unsubscribe = preferencesPageUrl(order);
+  const subject = `Счёт по заказу ${order.id}`;
+
+  const text = [
+    `Здравствуйте, ${name}!`,
+    ``,
+    `Вам выставлен счёт по заказу ${order.id} на сумму ${total}.`,
+    invoiceUrl ? `Скачать счёт: ${invoiceUrl}` : "",
+    url ? `Страница заказа: ${url}` : "",
+    ``,
+    `Срок действия счёта — 5 рабочих дней.`,
+    ``,
+    `— Команда Soliton`,
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  const bodyHtml = [
+    `<h1 style="${styles.h1}">Счёт по заказу ${escapeHtml(order.id)}</h1>`,
+    `<p style="${styles.p}">Здравствуйте, ${escapeHtml(name)}!</p>`,
+    `<p style="${styles.p}">Вам выставлен счёт на сумму <b>${escapeHtml(total)}</b>. Срок действия — <b>5 рабочих дней</b>.</p>`,
+    invoiceUrl
+      ? `<p><a href="${escapeHtml(invoiceUrl)}" style="${styles.cta}">Скачать счёт (PDF)</a></p>`
+      : "",
+    url
+      ? `<p style="${styles.p}"><a href="${escapeHtml(url)}">Страница заказа</a></p>`
+      : "",
+  ]
+    .filter(Boolean)
+    .join("");
 
   return {
-    subject: `Счёт по заказу ${order.id}`,
-    text: [
-      `Здравствуйте, ${name}!`,
-      ``,
-      `Вам выставлен счёт по заказу ${order.id} на сумму ${total}.`,
-      invoiceUrl ? `Скачать счёт: ${invoiceUrl}` : "",
-      url ? `Страница заказа: ${url}` : "",
-      ``,
-      `Срок действия счёта — 5 рабочих дней.`,
-      ``,
-      `— Команда Soliton`,
-    ]
-      .filter(Boolean)
-      .join("\n"),
+    subject,
+    text,
+    html: renderHtmlShell(bodyHtml, {
+      preheader: `Счёт на ${total} — действует 5 рабочих дней`,
+      unsubscribeUrl: unsubscribe || undefined,
+    }),
+    listUnsubscribeUrl: unsubscribe || undefined,
   };
 }

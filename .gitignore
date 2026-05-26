@@ -19,3 +19,7 @@ apps/web/public/legacy/
 
 # Production credentials, SSH keys, server access notes — никогда не коммитим.
 deploy/.secrets/
+
+# 058 Agent execution log — local audit-log файл, может расти; git-tracked goal-mapping.md важнее.
+06-reports/analytics/agent-execution-log.jsonl
+06-reports/analytics/agent-execution-log.*.jsonl

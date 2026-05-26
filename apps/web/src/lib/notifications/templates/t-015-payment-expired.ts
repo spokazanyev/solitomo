@@ -13,6 +13,7 @@ import {
   customerName,
   escapeHtml,
   formatPrice,
+  preferencesPageUrl,
   renderHtmlShell,
   siteUrl,
   styles,
@@ -38,6 +39,7 @@ export function renderT015PaymentExpired(
     ? siteUrl(`/cart/?recover=${encodeURIComponent(String(cartId))}`)
     : siteUrl("/cart/");
   const newCartUrl = siteUrl("/cart/");
+  const unsubscribe = preferencesPageUrl(order);
 
   const subject = `Заказ ${clientNumber} аннулирован — оплата не получена`;
   const preheader = "Корзина сохранена, можно вернуться и оплатить.";
@@ -79,6 +81,10 @@ export function renderT015PaymentExpired(
   return {
     subject,
     text,
-    html: renderHtmlShell(bodyHtml, { preheader }),
+    html: renderHtmlShell(bodyHtml, {
+      preheader,
+      unsubscribeUrl: unsubscribe || undefined,
+    }),
+    listUnsubscribeUrl: unsubscribe || undefined,
   };
 }

@@ -42,11 +42,40 @@ function pushToDataLayer(event: CheckoutDataLayerEvent): void {
 /**
  * Fire `purchase` event on success-state of /payment/return.
  * Caller MUST guard against double-fire (useRef + sessionStorage marker).
+ *
+ * 058 enhancement: дополнительно отправляется ecommerce dual-push (FR-110-115,
+ * FR-114) — нативный объект Метрики `ecommerce.purchase` с тем же
+ * `transaction_id` для активации встроенного отчёта «Электронная коммерция».
+ *
+ * См. analytics-loader.ts — Метрика инициализирована с `ecommerce: "dataLayer"`,
+ * поэтому она автоматически читает наш push.
  */
 export function pushPurchaseEvent(
   payload: Omit<PurchaseDataLayerEvent, "event">,
 ): void {
   pushToDataLayer({ event: "purchase", ...payload });
+
+  // 058 FR-110-115: ecommerce native dual-push для Yandex.Metrika dashboard
+  if (typeof window === "undefined") return;
+  const w = window as Window & { dataLayer?: Record<string, unknown>[] };
+  w.dataLayer = w.dataLayer ?? [];
+  w.dataLayer.push({
+    ecommerce: {
+      currencyCode: "RUB",
+      purchase: {
+        actionField: {
+          id: payload.transaction_id,
+          revenue: payload.value,
+        },
+        products: payload.items.map((item) => ({
+          id: item.item_id,
+          name: item.item_name,
+          price: item.price,
+          quantity: item.quantity,
+        })),
+      },
+    },
+  });
 }
 
 /**
