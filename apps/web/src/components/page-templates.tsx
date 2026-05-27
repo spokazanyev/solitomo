@@ -1026,41 +1026,48 @@ type DocumentEntry = {
 async function getDocumentRegistry(routePath?: string): Promise<DocumentEntry[]> {
   const allowedTypes = routePath ? DOCUMENT_FILTERS[routePath] : undefined;
 
-  const payload = await getPayload({ config });
-  const baseWhere = { status: { equals: "published" } };
-  const where = allowedTypes
-    ? { and: [baseWhere, { documentType: { in: [...allowedTypes] } }] }
-    : baseWhere;
+  // Wrap in try/catch — на build-time БД недоступна (Dockerfile RUN pnpm build
+  // выполняется без DATABASE_URI), и без catch падает весь prerender. Пустой
+  // массив → ISR через 60s заполнит страницу при первом запросе с runtime.
+  try {
+    const payload = await getPayload({ config });
+    const baseWhere = { status: { equals: "published" } };
+    const where = allowedTypes
+      ? { and: [baseWhere, { documentType: { in: [...allowedTypes] } }] }
+      : baseWhere;
 
-  const result = await payload.find({
-    collection: "documents",
-    where,
-    depth: 0,
-    limit: 24,
-    pagination: false,
-    sort: "-updatedAt",
-    overrideAccess: true,
-  });
+    const result = await payload.find({
+      collection: "documents",
+      where,
+      depth: 0,
+      limit: 24,
+      pagination: false,
+      sort: "-updatedAt",
+      overrideAccess: true,
+    });
 
-  return result.docs
-    .map((doc): DocumentEntry | null => {
-      const externalUrl = (doc as { externalUrl?: string | null }).externalUrl;
-      const url = rewriteLegacyAssetUrl(externalUrl ?? undefined);
-      if (!url) return null;
-      const docType = (doc as { documentType?: DocumentTypeKey | null }).documentType;
-      return {
-        id: doc.id as number,
-        title: (doc as { title?: string }).title || "Документ",
-        url,
-        documentType: docType ?? undefined,
-        versionLabel: (doc as { versionLabel?: string | null }).versionLabel ?? undefined,
-        proofRole: (doc as { proofRole?: string | null }).proofRole ?? undefined,
-        downloadCtaLabel:
-          (doc as { downloadCtaLabel?: string | null }).downloadCtaLabel ?? undefined,
-      };
-    })
-    .filter((d): d is DocumentEntry => d !== null)
-    .slice(0, 12);
+    return result.docs
+      .map((doc): DocumentEntry | null => {
+        const externalUrl = (doc as { externalUrl?: string | null }).externalUrl;
+        const url = rewriteLegacyAssetUrl(externalUrl ?? undefined);
+        if (!url) return null;
+        const docType = (doc as { documentType?: DocumentTypeKey | null }).documentType;
+        return {
+          id: doc.id as number,
+          title: (doc as { title?: string }).title || "Документ",
+          url,
+          documentType: docType ?? undefined,
+          versionLabel: (doc as { versionLabel?: string | null }).versionLabel ?? undefined,
+          proofRole: (doc as { proofRole?: string | null }).proofRole ?? undefined,
+          downloadCtaLabel:
+            (doc as { downloadCtaLabel?: string | null }).downloadCtaLabel ?? undefined,
+        };
+      })
+      .filter((d): d is DocumentEntry => d !== null)
+      .slice(0, 12);
+  } catch {
+    return [];
+  }
 }
 
 /**
