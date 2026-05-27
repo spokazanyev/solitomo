@@ -963,7 +963,20 @@ export function B2BTemplate({ route }: TemplateProps) {
   );
 }
 
-async function getDocumentRegistry() {
+/**
+ * Какие типы документов показывать на каждой подсекции `/documents/<slug>/`.
+ * `undefined` (для корня и для незнакомых slug) = показывать всё.
+ *
+ * Соответствие documentType из коллекции Payload (см.
+ * apps/web/src/collections/Catalog.js → Documents.fields.documentType).
+ */
+const DOCUMENT_FILTERS: Record<string, ReadonlyArray<string>> = {
+  "/documents/certificates/": ["certificate", "declaration", "registry"],
+  "/documents/catalog/": ["datasheet", "drawing", "diagram"],
+  "/documents/manuals/": ["manual", "passport"],
+};
+
+async function getDocumentRegistry(routePath?: string) {
   const registry = new Map<
     string,
     {
@@ -973,9 +986,22 @@ async function getDocumentRegistry() {
     }
   >();
 
+  const allowedTypes = routePath ? DOCUMENT_FILTERS[routePath] : undefined;
+
   const products = await getProducts();
   products.forEach((product) => {
     product.documents.forEach((document) => {
+      // Фильтр по типу документа: для /documents/certificates/ покажем только
+      // certificate/declaration/registry, для /documents/catalog/ — datasheet/
+      // drawing/diagram, и т.д. Корень /documents/ показывает все типы.
+      if (allowedTypes && document.type && !allowedTypes.includes(document.type)) {
+        return;
+      }
+      // Документы без типа (legacy) показываем только на корне `/documents/`,
+      // чтобы они не «протекали» в специализированные подсекции.
+      if (allowedTypes && !document.type) {
+        return;
+      }
       if (!registry.has(document.url)) {
         registry.set(document.url, {
           product,
@@ -990,7 +1016,7 @@ async function getDocumentRegistry() {
 }
 
 export async function DocumentTemplate({ route }: TemplateProps) {
-  const documents = await getDocumentRegistry();
+  const documents = await getDocumentRegistry(route.path);
 
   return (
     <div className="grid gap-12">

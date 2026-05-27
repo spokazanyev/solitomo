@@ -21,9 +21,27 @@ type CategoryLink = {
   url: string;
 };
 
-type DocumentLink = {
+/**
+ * Тип документа — повторяет значения из Payload-коллекции `documents.documentType`
+ * (см. apps/web/src/collections/Catalog.js). Используется для фильтрации
+ * документов по секциям на странице `/documents/<section>/`.
+ */
+export type DocumentLinkType =
+  | "passport"
+  | "manual"
+  | "drawing"
+  | "diagram"
+  | "certificate"
+  | "declaration"
+  | "registry"
+  | "datasheet"
+  | "other";
+
+export type DocumentLink = {
   title: string;
   url: string;
+  /** Тип документа из Payload (для фильтра на /documents/<section>/). */
+  type?: DocumentLinkType;
 };
 
 export type Product = {
@@ -207,7 +225,11 @@ function documentLinksFromPayload(
     if (entry.status && entry.status !== "published") continue;
     const url = rewriteLegacyAssetUrl(entry.externalUrl);
     if (!url) continue;
-    links.push({ title: entry.title || "Документ", url });
+    links.push({
+      title: entry.title || "Документ",
+      url,
+      type: (entry.documentType ?? undefined) as DocumentLinkType | undefined,
+    });
   }
   return links;
 }
@@ -241,6 +263,7 @@ function mapPayloadProductToProduct(doc: PayloadProduct): Product {
           .map((entry) => ({
             title: entry.title || "",
             url: entry.externalUrl ?? "",
+            type: (entry.documentType ?? undefined) as DocumentLinkType | undefined,
           }))
       : undefined,
     shortDesc: doc.shortDescription ?? "",
