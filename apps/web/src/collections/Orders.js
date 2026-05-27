@@ -142,12 +142,28 @@ export const Orders = {
             { label: adminLabel("СДЭК", "CDEK"), value: "cdek" },
             { label: adminLabel("Boxberry", "Boxberry"), value: "boxberry" },
             { label: adminLabel("Почта России", "Russian Post"), value: "russian-post" },
-            { label: adminLabel("Транспортной компанией (по запросу)", "Logistics (by request)"), value: "tc" },
+            { label: adminLabel("Транспортной компанией покупателя", "Own carrier"), value: "own_carrier" },
+            { label: adminLabel("Транспортной компанией (legacy)", "Logistics (legacy)"), value: "tc" },
           ],
         },
         { name: "address", type: "textarea", label: adminLabel("Адрес доставки", "Delivery address") },
         { name: "city", type: "text", label: adminLabel("Город", "City") },
         { name: "cost", type: "number", label: adminLabel("Стоимость доставки, ₽", "Delivery cost, ₽") },
+        {
+          name: "handoverNote",
+          type: "textarea",
+          label: adminLabel("Примечание к отгрузке", "Handover note"),
+          admin: {
+            description: adminLabel(
+              "Для самовывоза — контактное лицо получателя. Для отправки ТК покупателя — реквизиты ТК и договора. До 1000 символов. Поле остаётся редактируемым после оплаты.",
+              "For pickup — receiver contact. For own carrier — carrier name, contract, contact. Up to 1000 chars. Stays editable after paid.",
+            ),
+          },
+          validate: (val) =>
+            val == null ||
+            (typeof val === "string" && val.length <= 1000) ||
+            "Maximum 1000 characters",
+        },
         { name: "trackNumber", type: "text", label: adminLabel("Трек-номер", "Track number") },
         { name: "shippedAt", type: "date", label: adminLabel("Отправлен", "Shipped at") },
         // 047: ApiShip integration
@@ -885,6 +901,28 @@ export const Orders = {
               note: "",
             },
           ];
+        }
+
+        // 062 T020: audit-log delivery.handoverNote edits (FR-062 audit trail)
+        if (operation === "update" && originalDoc) {
+          const prevNote = originalDoc?.delivery?.handoverNote;
+          const nextNote = data?.delivery?.handoverNote;
+          if (prevNote !== nextNote) {
+            const prevHistory = Array.isArray(data.history)
+              ? data.history
+              : Array.isArray(originalDoc?.history)
+                ? [...originalDoc.history]
+                : [];
+            data.history = [
+              ...prevHistory,
+              {
+                at: new Date().toISOString(),
+                status: "delivery_note_updated",
+                actorEmail: req?.user?.email || "system",
+                reason: "manual edit",
+              },
+            ];
+          }
         }
         return data;
       },

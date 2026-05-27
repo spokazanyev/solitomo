@@ -2,6 +2,7 @@ import * as migration_20260525_151746_initial_pdumarket_prod from './20260525_15
 import * as migration_20260526_130918_058_v1_analytics_attribution from './20260526_130918_058_v1_analytics_attribution';
 import * as migration_20260526_192423_add_product_physical_packaging from './20260526_192423_add_product_physical_packaging';
 import * as migration_20260526_shipping_sender_pickup_type from './20260526_shipping_sender_pickup_type';
+import * as migration_20260527_rename_method_tc_to_own_carrier from './20260527_rename_method_tc_to_own_carrier';
 
 export const migrations = [
   {
@@ -23,5 +24,10 @@ export const migrations = [
     up: migration_20260526_shipping_sender_pickup_type.up,
     down: migration_20260526_shipping_sender_pickup_type.down,
     name: '20260526_shipping_sender_pickup_type'
+  },
+  {
+    up: migration_20260527_rename_method_tc_to_own_carrier.up,
+    down: migration_20260527_rename_method_tc_to_own_carrier.down,
+    name: '20260527_rename_method_tc_to_own_carrier'
   },
 ];

@@ -42,6 +42,7 @@ import {
   trackSelectItem,
   trackShipmentRateRequested,
   trackShipmentSelected,
+  trackShippingModeChanged,
   trackStockStatusView,
   trackViewItemList,
 } from "../events";
@@ -324,6 +325,38 @@ describe("events.ts — Системные", () => {
     expect(getLastEvent()?.event).toBe("page_404");
     trackError5xx({ statusCode: 503, endpoint: "/api/orders" });
     expect(getLastEvent()?.event).toBe("error_5xx");
+  });
+});
+
+describe("trackShippingModeChanged (062)", () => {
+  it("включает previous_mode при наличии аргумента", () => {
+    trackShippingModeChanged({
+      mode: "own_carrier",
+      checkoutType: "legal",
+      previousMode: "apiship",
+    });
+    const evt = getLastEvent();
+    expect(evt?.event).toBe("shipping_mode_changed");
+    expect(evt?.mode).toBe("own_carrier");
+    expect(evt?.checkout_type).toBe("legal");
+    expect(evt?.previous_mode).toBe("apiship");
+  });
+
+  it("опускает previous_mode, если аргумент не передан", () => {
+    trackShippingModeChanged({ mode: "pickup", checkoutType: "legal" });
+    const evt = getLastEvent();
+    expect(evt?.event).toBe("shipping_mode_changed");
+    expect(evt?.mode).toBe("pickup");
+    expect(evt?.checkout_type).toBe("legal");
+    expect(evt).toBeDefined();
+    expect(Object.keys(evt!)).not.toContain("previous_mode");
+  });
+
+  it("поддерживает все три режима", () => {
+    for (const mode of ["pickup", "apiship", "own_carrier"] as const) {
+      trackShippingModeChanged({ mode, checkoutType: "legal" });
+      expect(getLastEvent()?.mode).toBe(mode);
+    }
   });
 });
 

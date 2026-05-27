@@ -39,6 +39,7 @@ export type AnalyticsEventName =
   | "add_shipping_info"
   | "shipment_rate_requested"
   | "shipment_selected"
+  | "shipping_mode_changed"
   | "checkout_step_contact"
   | "checkout_step_shipping"
   | "checkout_step_payment_method"
@@ -407,6 +408,30 @@ export function trackInnValidationFailed(params: { formType: string; errorCode: 
   trackAnalyticsEvent("inn_validation_failed", {
     form_type: params.formType,
     error_code: params.errorCode,
+  });
+}
+
+// 062: Тип режима доставки для unified shipping-mode-selection (юр-checkout).
+export type ShippingMode = "pickup" | "apiship" | "own_carrier";
+
+/**
+ * 062 FR-062-40: Срабатывает при смене режима доставки в чекауте юрлица.
+ * НЕ стреляет при первоначальном mount с дефолтным режимом — только на
+ * явный клик пользователя по radio.
+ *
+ * @param params.mode — текущий выбранный режим
+ * @param params.checkoutType — обычно "legal" (для physical mode-switch не вводится)
+ * @param params.previousMode — предыдущий mode, если был; отсутствует на первом переключении
+ */
+export function trackShippingModeChanged(params: {
+  mode: ShippingMode;
+  checkoutType: "legal" | "physical";
+  previousMode?: ShippingMode;
+}): void {
+  trackAnalyticsEvent("shipping_mode_changed", {
+    mode: params.mode,
+    checkout_type: params.checkoutType,
+    ...(params.previousMode ? { previous_mode: params.previousMode } : {}),
   });
 }
 
