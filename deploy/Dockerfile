@@ -24,7 +24,9 @@ RUN pnpm --filter @soliton/web build
 
 FROM node:22-alpine AS runner
 WORKDIR /app
-RUN apk add --no-cache libc6-compat tini \
+# font-dejavu — для embedded шрифта в PDF-счетах (pdfkit + кириллица).
+# Установлен в /usr/share/fonts/dejavu/ — путь жёстко прописан в /api/invoice route.
+RUN apk add --no-cache libc6-compat tini font-dejavu \
     && corepack enable \
     && corepack prepare pnpm@10.32.1 --activate
 ENV NODE_ENV=production

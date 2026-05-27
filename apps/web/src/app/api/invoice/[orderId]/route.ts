@@ -1,9 +1,35 @@
+import fs from "node:fs";
 import { NextResponse, type NextRequest } from "next/server";
 import configPromise from "@payload-config";
 import { getPayload } from "payload";
 import PDFDocument from "pdfkit";
 
 import { getCompanyContacts } from "@/lib/company/get-company-contacts";
+
+// 062 hot-fix: PDFkit built-in Helvetica поддерживает только latin-1. Для
+// кириллических счетов нужен Unicode-шрифт. На production-образе
+// (alpine) установлен пакет `font-dejavu` (см. deploy/Dockerfile), который
+// кладёт DejaVu Sans по этому пути. На dev/macOS файла нет — graceful
+// fallback на встроенный Helvetica (PDF получится «крокозябрами» на dev,
+// что приемлемо для разработки, при необходимости установите DejaVu
+// локально или укажите свой путь через env PDF_CYRILLIC_FONT_PATH).
+const CYRILLIC_FONT_CANDIDATES = [
+  process.env.PDF_CYRILLIC_FONT_PATH,
+  "/usr/share/fonts/dejavu/DejaVuSans.ttf",
+  "/usr/share/fonts/TTF/DejaVuSans.ttf",
+  "/Library/Fonts/Arial Unicode.ttf",
+].filter(Boolean) as string[];
+
+function resolveCyrillicFontPath(): string | null {
+  for (const candidate of CYRILLIC_FONT_CANDIDATES) {
+    try {
+      if (fs.existsSync(candidate)) return candidate;
+    } catch {
+      // ignore
+    }
+  }
+  return null;
+}
 
 type RouteContext = { params: Promise<{ orderId: string }> };
 
@@ -62,6 +88,15 @@ export async function GET(_request: NextRequest, context: RouteContext) {
   const finished = new Promise<Buffer>((resolve) => {
     doc.on("end", () => resolve(Buffer.concat(buffers)));
   });
+
+  // 062 hot-fix: регистрируем Unicode-шрифт для кириллицы. Без этого PDFkit
+  // использует встроенный Helvetica (latin-1), и весь русский текст выходит
+  // крокозябрами. См. resolveCyrillicFontPath выше.
+  const cyrillicFontPath = resolveCyrillicFontPath();
+  if (cyrillicFontPath) {
+    doc.registerFont("Cyrillic", cyrillicFontPath);
+    doc.font("Cyrillic");
+  }
 
   // Header
   doc.fontSize(18).text(`Счёт № ${invoiceNumber}`, { align: "left" });
