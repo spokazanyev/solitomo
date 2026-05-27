@@ -120,15 +120,15 @@ description: "Task list for feature 061 — Unified Checkout Summary"
 
 - [X] T016 [P] Запустить `pnpm --filter @soliton/web test` → все ~493 + новые ~12 = ~505 тестов PASS.
 
-- [ ] T017 Пройти end-to-end smoke per quickstart.md шаги 1–12: unit-тесты, юр-форма, физ-форма (пустая, без доставки, с СДЭК, самовывоз, по запросу, 20 позиций), mobile layout (375px), server validation (обход через DevTools), аналитика в GA Debug View, typecheck+lint.
+- [X] T017 Пройти end-to-end smoke per quickstart.md шаги 1–12: unit-тесты, юр-форма, физ-форма (пустая, без доставки, с СДЭК, самовывоз, по запросу, 20 позиций), mobile layout (375px), server validation (обход через DevTools), аналитика в GA Debug View, typecheck+lint.
 
-- [ ] T018 Создать коммит `feat(checkout): унифицированная сводка заказа OrderSummaryCard` с понятным многострочным сообщением (что было — две разные правые колонки; что стало — общий компонент; какие FR закрыты; ссылка на спеку 061; что НЕ менялось — API/БД/аналитика/левая колонка/RFQ-форма).
+- [X] T018 Создать коммит `feat(checkout): унифицированная сводка заказа OrderSummaryCard` с понятным многострочным сообщением (что было — две разные правые колонки; что стало — общий компонент; какие FR закрыты; ссылка на спеку 061; что НЕ менялось — API/БД/аналитика/левая колонка/RFQ-форма).
 
-- [ ] T019 Смерджить ветку `061-unified-checkout-summary` в `main` через `git checkout main && git merge --no-ff 061-unified-checkout-summary`. Если есть конфликты — разрешить (наиболее вероятные — `payload-types.ts` или `.specify/feature.json`, которые могли быть изменены параллельно).
+- [X] T019 Смерджить ветку `061-unified-checkout-summary` в `main` через `git checkout main && git merge --no-ff 061-unified-checkout-summary`. Если есть конфликты — разрешить (наиболее вероятные — `payload-types.ts` или `.specify/feature.json`, которые могли быть изменены параллельно).
 
-- [ ] T020 Задеплоить на прод через `bash deploy/push.sh`. Скрипт сделает rsync + docker build + payload migrate (миграций для 061 нет, но команда run-out безвредно). Smoke-test через curl — `/cart/checkout/physical/` и `/cart/checkout/invoice/` отдают HTTP 200.
+- [X] T020 Задеплоить на прод через `bash deploy/push.sh`. Скрипт сделает rsync + docker build + payload migrate (миграций для 061 нет, но команда run-out безвредно). Smoke-test через curl — `/cart/checkout/physical/` и `/cart/checkout/invoice/` отдают HTTP 200.
 
-- [ ] T021 На проде: открыть оба URL в браузере (hard-refresh `Cmd+Shift+R`), добавить через UI 2-3 товара в корзину, пройти до checkout, визуально подтвердить новые тексты и структуру стоимости. GA Debug View должен показать `checkout_step_*` события без регрессий.
+- [X] T021 На проде: открыть оба URL в браузере (hard-refresh `Cmd+Shift+R`), добавить через UI 2-3 товара в корзину, пройти до checkout, визуально подтвердить новые тексты и структуру стоимости. GA Debug View должен показать `checkout_step_*` события без регрессий.
 
 ---
 
