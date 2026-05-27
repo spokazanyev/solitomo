@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, CreditCard, Loader2 } from "lucide-react";
+import { CreditCard } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -9,18 +9,10 @@ import { AddressForm, type AddressFormValue } from "@/components/checkout/Addres
 import { DadataSuggestInput } from "@/components/checkout/DadataSuggestInput";
 import { DeliveryBlock, type SelectedRate } from "@/components/checkout/DeliveryBlock";
 import { PhoneInput } from "@/components/checkout/PhoneInput";
-import { ConsentCheckbox } from "@/components/consent/ConsentCheckbox";
+import { OrderSummaryCard } from "@/components/cart/OrderSummaryCard";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import { clearCartItems, getCartTotal, useRfqCartItems } from "@/components/rfq/RfqCart";
 import { pushEvent } from "@/lib/analytics/data-layer";
-
-function formatPrice(amount: number) {
-  return new Intl.NumberFormat("ru-RU", {
-    currency: "RUB",
-    maximumFractionDigits: 0,
-    style: "currency",
-  }).format(amount);
-}
 
 export function PhysicalCheckoutForm() {
   const items = useRfqCartItems();
@@ -61,7 +53,6 @@ export function PhysicalCheckoutForm() {
     if (typeof window === "undefined") return "anon";
     let id = window.localStorage.getItem("soliton-cart-id");
     if (!id) {
-      // eslint-disable-next-line react-hooks/purity
       id = `cart_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
       window.localStorage.setItem("soliton-cart-id", id);
     }
@@ -293,78 +284,41 @@ export function PhysicalCheckoutForm() {
         </div>
 
         <DeliveryBlock cartId={cartId} items={itemsForShipping} onSelect={setSelectedRate} address={address} />
-
-        <div className="rounded-lg border border-amber-200 bg-amber-50/70 p-5 text-sm leading-6 text-amber-900">
-          <strong className="font-semibold">Оплата в режиме mock.</strong> Интеграция с
-          платёжным шлюзом ЮKassa подключается отдельно (см. <code>deferred-content-track.md</code>,
-          раздел 15). Сейчас при отправке формы создаётся заказ и происходит переход на страницу
-          подтверждения, как если бы оплата уже прошла.
-        </div>
       </section>
 
-      <aside className="h-fit rounded-2xl border border-slate-200 bg-white p-6 lg:sticky lg:top-4">
-        <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">К оплате</p>
-        <p className="mt-2 text-3xl font-semibold text-slate-950">
-          {knownCount > 0 ? formatPrice(total + (selectedRate?.rate.cost ?? 0)) : "Цена по запросу"}
-        </p>
-        {selectedRate ? (
-          <p className="mt-1 text-xs text-slate-600">
-            Товары: {formatPrice(total)} ·{" "}
-            {selectedRate.rate.providerKey === "pickup"
-              ? "Самовывоз бесплатно"
-              : selectedRate.rate.cost > 0
-                ? `Доставка: ${formatPrice(selectedRate.rate.cost)}`
-                : "Доставка по запросу — уточнит менеджер"}
-          </p>
-        ) : (
-          <p className="mt-1 text-xs text-amber-700">Выберите способ доставки, чтобы увидеть итог.</p>
-        )}
-        {unknownCount > 0 && knownCount > 0 ? (
-          <p className="mt-1 text-xs leading-5 text-rose-700">
-            {unknownCount} {unknownCount === 1 ? "позиция" : "позиции"} без цены — оплата картой не сработает, нужен КП.
-          </p>
-        ) : null}
-        <ul className="mt-4 grid gap-2 text-sm text-slate-700">
-          {items.slice(0, 5).map((item) => {
-            const qty = Number.parseInt(item.quantity, 10) || 1;
-            return (
-              // grid + min-w-0 is the reliable truncate pattern. With plain
-              // flex, an item with no min-width set refuses to shrink below
-              // its content width, so a long SKU title pushes the qty span
-              // out of the card. `grid-cols-[1fr_auto]` gives the name column
-              // an explicit shrink-friendly width.
-              <li
-                className="grid grid-cols-[1fr_auto] items-baseline gap-3"
-                key={item.sku || item.name}
-              >
-                <span className="min-w-0 truncate" title={item.name}>
-                  {item.name}
-                </span>
-                <span className="whitespace-nowrap text-xs text-slate-500">× {qty}</span>
-              </li>
-            );
-          })}
-          {items.length > 5 ? (
-            <li className="text-xs text-slate-500">и ещё {items.length - 5} позиций...</li>
-          ) : null}
-        </ul>
-        {error ? (
-          <p className="mt-3 rounded-md bg-rose-50 px-3 py-2 text-xs leading-5 text-rose-900">{error}</p>
-        ) : null}
-        <ConsentCheckbox className="mt-4" onChange={setConsent} value={consent} />
-        <button
-          className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-sky-700 px-4 py-3 text-sm font-semibold text-white hover:bg-sky-800 disabled:opacity-60"
-          disabled={submitting || !isReadyToPay}
-          type="submit"
-        >
-          {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <CreditCard className="h-4 w-4" />}
-          {submitting ? "Создаём заказ..." : "Перейти к оплате"}
-          {!submitting ? <ArrowRight className="h-4 w-4" /> : null}
-        </button>
-        <p className="mt-3 text-xs leading-5 text-slate-500">
-          После реальной интеграции ЮKassa здесь будет переход на защищённую форму оплаты картой.
-        </p>
-      </aside>
+      {/* 061: унифицированная sidebar-сводка заказа. Физ-режим — со строкой доставки. */}
+      <OrderSummaryCard
+        items={items}
+        total={total}
+        knownCount={knownCount}
+        unknownCount={unknownCount}
+        showDeliveryLine
+        deliveryCost={
+          selectedRate
+            ? selectedRate.rate.providerKey === "pickup"
+              ? 0
+              : selectedRate.rate.cost
+            : null
+        }
+        deliveryLabel={
+          selectedRate?.rate.providerKey === "pickup"
+            ? "Самовывоз"
+            : selectedRate?.rate.providerName ?? selectedRate?.rate.providerKey
+        }
+        ctaIcon={CreditCard}
+        ctaLabel="Перейти к оплате"
+        ctaHint="После создания заказа перенаправим на защищённую форму оплаты ЮKassa."
+        loading={submitting}
+        disabled={!isReadyToPay}
+        error={error}
+        unknownPaymentWarning={
+          unknownCount > 0 && knownCount > 0
+            ? `${unknownCount} ${unknownCount === 1 ? "позиция" : "позиции"} без цены — оплата картой не сработает, нужен КП.`
+            : undefined
+        }
+        consent={consent}
+        onConsentChange={setConsent}
+      />
     </form>
   );
 }

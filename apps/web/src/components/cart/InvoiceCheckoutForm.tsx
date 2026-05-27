@@ -1,13 +1,13 @@
 "use client";
 
-import { ArrowRight, Loader2, Receipt } from "lucide-react";
+import { Receipt } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 import { DadataSuggestInput } from "@/components/checkout/DadataSuggestInput";
 import { PhoneInput } from "@/components/checkout/PhoneInput";
-import { ConsentCheckbox } from "@/components/consent/ConsentCheckbox";
+import { OrderSummaryCard } from "@/components/cart/OrderSummaryCard";
 import { clearCartItems, getCartTotal, useRfqCartItems } from "@/components/rfq/RfqCart";
 import { pushEvent } from "@/lib/analytics/data-layer";
 import { trackInnValidationFailed, trackInnValidationSuccess } from "@/lib/analytics/events";
@@ -19,14 +19,6 @@ const DELIVERY_OPTIONS = [
   { value: "tc", label: "Транспортной компанией" },
   { value: "pickup", label: "Самовывоз" },
 ];
-
-function formatPrice(amount: number) {
-  return new Intl.NumberFormat("ru-RU", {
-    currency: "RUB",
-    maximumFractionDigits: 0,
-    style: "currency",
-  }).format(amount);
-}
 
 export function InvoiceCheckoutForm() {
   const items = useRfqCartItems();
@@ -319,62 +311,24 @@ export function InvoiceCheckoutForm() {
         </div>
       </section>
 
-      <aside className="h-fit rounded-2xl border border-slate-200 bg-white p-6 lg:sticky lg:top-4">
-        <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">Заказ</p>
-        <ul className="mt-3 grid gap-2 text-sm text-slate-700">
-          {items.map((item) => {
-            const qty = Number.parseInt(item.quantity, 10) || 1;
-            return (
-              // grid + min-w-0 — see PhysicalCheckoutForm comment for the
-              // flex-truncate pitfall. Same fix applied here.
-              <li
-                className="grid grid-cols-[1fr_auto] items-baseline gap-3"
-                key={item.sku || item.name}
-              >
-                <span className="min-w-0">
-                  <span className="block truncate text-slate-950" title={item.name}>
-                    {item.name}
-                  </span>
-                  <span className="text-xs text-slate-500">
-                    {item.sku} · {qty} шт
-                  </span>
-                </span>
-                <span className="whitespace-nowrap font-semibold text-slate-950">
-                  {typeof item.price === "number" ? formatPrice(item.price * qty) : "По запросу"}
-                </span>
-              </li>
-            );
-          })}
-        </ul>
-        <hr className="my-4 border-slate-200" />
-        <div className="flex items-end justify-between">
-          <span className="text-sm text-slate-500">Итого:</span>
-          <span className="text-2xl font-semibold text-slate-950">
-            {knownCount > 0 ? formatPrice(total) : "По запросу"}
-          </span>
-        </div>
-        {unknownCount > 0 ? (
-          <p className="mt-2 text-xs leading-5 text-slate-500">
-            Часть позиций без цены — точная сумма будет в счёте.
-          </p>
-        ) : null}
-        {error ? (
-          <p className="mt-3 rounded-md bg-rose-50 px-3 py-2 text-xs leading-5 text-rose-900">{error}</p>
-        ) : null}
-        <ConsentCheckbox className="mt-4" onChange={setConsent} value={consent} />
-        <button
-          className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-sky-700 px-4 py-3 text-sm font-semibold text-white hover:bg-sky-800 disabled:opacity-60"
-          disabled={submitting || !isLegalReady}
-          type="submit"
-        >
-          {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Receipt className="h-4 w-4" />}
-          {submitting ? "Создаём заказ..." : "Выписать счёт"}
-          {!submitting ? <ArrowRight className="h-4 w-4" /> : null}
-        </button>
-        <p className="mt-3 text-xs leading-5 text-slate-500">
-          После создания заказа вы получите счёт по email. Заказ начнёт движение после поступления оплаты.
-        </p>
-      </aside>
+      {/* 061: унифицированная sidebar-сводка заказа. Юр-режим = без showDeliveryLine. */}
+      <OrderSummaryCard
+        items={items}
+        total={total}
+        knownCount={knownCount}
+        unknownCount={unknownCount}
+        ctaIcon={Receipt}
+        ctaLabel="Выписать счёт"
+        ctaHint="После создания заказа вы получите счёт по email. Заказ начнёт движение после поступления оплаты."
+        loading={submitting}
+        disabled={!isLegalReady}
+        error={error}
+        unknownPaymentWarning={
+          unknownCount > 0 ? "Часть позиций без цены — точная сумма будет в счёте." : undefined
+        }
+        consent={consent}
+        onConsentChange={setConsent}
+      />
     </form>
   );
 }
