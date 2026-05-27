@@ -3,6 +3,11 @@ import { withPayload } from "@payloadcms/next/withPayload";
 
 const nextConfig: NextConfig = {
   trailingSlash: true,
+  // 062 hot-fix: pdfkit ищет AFM-шрифты через __dirname/require.resolve относительно
+  // своих исходников. Next-bundler перемещает их в .next/server/chunks и относительные
+  // пути ломаются (ENOENT на /ROOT/node_modules/.../Helvetica.afm). Помечаем как
+  // external, чтобы pdfkit оставался обычным CommonJS-require из node_modules.
+  serverExternalPackages: ["pdfkit"],
   async redirects() {
     return [
       // 057 follow-up: 4 versioned legal docs moved from /info/ to /legal/.
