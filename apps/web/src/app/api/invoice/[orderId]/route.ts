@@ -12,6 +12,16 @@ function formatRub(amount: number | undefined | null) {
   return new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 2, minimumFractionDigits: 2 }).format(amount) + " ₽";
 }
 
+function resolveWarehouseAddress(contacts: ReturnType<typeof getCompanyContacts>): string {
+  const actual = contacts.actualAddress?.trim() ?? "";
+  if (actual && !actual.startsWith("TODO")) return actual;
+
+  const legal = contacts.legalAddress?.trim() ?? "";
+  if (legal && !legal.startsWith("TODO")) return legal;
+
+  return "адрес уточнит менеджер";
+}
+
 export async function GET(_request: NextRequest, context: RouteContext) {
   const { orderId } = await context.params;
   const payload = await getPayload({ config: configPromise });
@@ -38,6 +48,7 @@ export async function GET(_request: NextRequest, context: RouteContext) {
     totals?: { subtotal?: number; vat?: number; deliveryCost?: number; total?: number };
     customer?: { fullName?: string; email?: string; companyName?: string; inn?: string; kpp?: string; legalAddress?: string };
     invoice?: { number?: string; issuedAt?: string };
+    delivery?: { method?: string; handoverNote?: string };
     createdAt: string;
   };
 
@@ -108,9 +119,20 @@ export async function GET(_request: NextRequest, context: RouteContext) {
   const vat = o.totals?.vat ?? 0;
   const delivery = o.totals?.deliveryCost ?? 0;
   const total = o.totals?.total ?? 0;
+
+  // 062 FR-062-31: режимы доставки определяют отображение строки «Доставка»
+  // и наличие блока «Примечания» ниже по странице.
+  const deliveryMethod = (o.delivery as { method?: string } | undefined)?.method;
+  const handoverNote = (o.delivery as { handoverNote?: string } | undefined)?.handoverNote?.trim() ?? "";
+  const isPickup = deliveryMethod === "pickup";
+  const isOwnCarrier = deliveryMethod === "own_carrier" || deliveryMethod === "tc"; // legacy tc tolerance
+  const isApiShipMethod = !isPickup && !isOwnCarrier;
+
   doc.fontSize(10).text(`Сумма позиций: ${formatRub(subtotal)}`, { align: "right" });
   doc.text(`В т.ч. НДС 20%: ${formatRub(vat)}`, { align: "right" });
-  if (delivery > 0) doc.text(`Доставка: ${formatRub(delivery)}`, { align: "right" });
+  if (isApiShipMethod && delivery > 0) {
+    doc.text(`Доставка: ${formatRub(delivery)}`, { align: "right" });
+  }
   doc.fontSize(12).fillColor("#0f172a").text(`Итого к оплате: ${formatRub(total)}`, { align: "right" });
   doc.moveDown(2);
 
@@ -120,6 +142,33 @@ export async function GET(_request: NextRequest, context: RouteContext) {
   doc.moveDown(0.4);
   if (contacts.vatPolicy) doc.text(contacts.vatPolicy);
   doc.moveDown(0.4);
+
+  // 062 FR-062-32: блок «Примечания» для pickup и own_carrier (включая legacy tc).
+  // Для ApiShip-режимов блок не показывается.
+  if (isPickup || isOwnCarrier) {
+    doc.moveDown(0.4);
+    doc.fillColor("#0f172a").fontSize(11).text("Примечания", { underline: true });
+    doc.fontSize(10).fillColor("#334155");
+
+    if (isPickup) {
+      const warehouseAddress = resolveWarehouseAddress(contacts);
+      doc.text(`Самовывоз со склада: ${warehouseAddress}`);
+      if (handoverNote) {
+        doc.text(`Получатель: ${handoverNote}`);
+      }
+    }
+
+    if (isOwnCarrier) {
+      if (handoverNote) {
+        doc.text(`Отгрузка транспортной компанией покупателя: ${handoverNote}`);
+      } else {
+        // Legacy data path: order created before 062 without handoverNote
+        doc.text("Отгрузка транспортной компанией покупателя (по согласованию с менеджером).");
+      }
+    }
+    doc.moveDown(0.4);
+  }
+
   if (contacts.director) {
     doc.text(`${contacts.director.position}: ___________________ / ${contacts.director.fullName} /`, { align: "left" });
   }

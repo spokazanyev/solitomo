@@ -45,6 +45,18 @@ type IncomingPayload = {
     address?: string;
     city?: string;
     cost?: number;
+    handoverNote?: string;
+    // ApiShip-specific (sent for cdek/boxberry/russian-post)
+    provider?: string;
+    providerKey?: string;
+    tariffId?: number;
+    deliveryType?: string;
+    pickupType?: string;
+    pointId?: string;
+    pointAddress?: string;
+    etaMinDays?: number;
+    etaMaxDays?: number;
+    addressNormalized?: Record<string, unknown>;
   };
   sourcePage?: string;
   cartToken?: string;
@@ -120,7 +132,62 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Empty cart" }, { status: 400 });
   }
 
-  const deliveryCost = Number(body.delivery?.cost) || 0;
+  // 062 T013: Soft-mapping `tc` → `own_carrier` для legacy-клиентов (transitional).
+  // Удалить через 1-2 месяца после релиза (DEFERRED-062-B).
+  const rawMethod = body.delivery?.method === "tc" ? "own_carrier" : body.delivery?.method;
+  const METHOD_WHITELIST = ["pickup", "cdek", "boxberry", "russian-post", "own_carrier"] as const;
+  const method = METHOD_WHITELIST.includes(rawMethod as never)
+    ? (rawMethod as typeof METHOD_WHITELIST[number])
+    : undefined;
+
+  // 062 T014: handoverNote validation (server-side, R7).
+  // Required для pickup (≥5 chars) и own_carrier (≥10 chars); ≤1000 chars всегда.
+  const note = typeof body.delivery?.handoverNote === "string"
+    ? body.delivery.handoverNote.trim()
+    : "";
+
+  if (note.length > 1000) {
+    return NextResponse.json(
+      { error: "HANDOVER_NOTE_TOO_LONG", message: "handoverNote exceeds 1000 chars" },
+      { status: 400 },
+    );
+  }
+
+  if (method === "own_carrier") {
+    if (note.length === 0) {
+      return NextResponse.json(
+        { error: "MISSING_HANDOVER_NOTE", message: "handoverNote required for own_carrier" },
+        { status: 400 },
+      );
+    }
+    if (note.length < 10) {
+      return NextResponse.json(
+        { error: "HANDOVER_NOTE_TOO_SHORT", message: "handoverNote must be at least 10 chars for own_carrier" },
+        { status: 400 },
+      );
+    }
+  }
+
+  if (method === "pickup") {
+    if (note.length === 0) {
+      return NextResponse.json(
+        { error: "MISSING_HANDOVER_NOTE", message: "handoverNote required for pickup" },
+        { status: 400 },
+      );
+    }
+    if (note.length < 5) {
+      return NextResponse.json(
+        { error: "HANDOVER_NOTE_TOO_SHORT", message: "handoverNote must be at least 5 chars for pickup" },
+        { status: 400 },
+      );
+    }
+  }
+
+  // 062 T015: Normalize deliveryCost. Для pickup/own_carrier — всегда 0.
+  const isApiShipMethod = method === "cdek" || method === "boxberry" || method === "russian-post";
+  const deliveryCost = isApiShipMethod
+    ? Math.max(0, Number(body.delivery?.cost) || 0)
+    : 0;
   const totals = computeTotals(items, deliveryCost);
 
   const initialStatus = type === "physical" ? "pending_payment" : type === "legal" ? "awaiting_payment" : "new";
@@ -218,14 +285,25 @@ export async function POST(request: NextRequest) {
         totals,
         customer: body.customer ?? {},
         delivery: {
-          method: (["pickup", "cdek", "boxberry", "russian-post", "tc"].includes(
-            body.delivery?.method ?? "",
-          )
-            ? (body.delivery!.method as "pickup" | "cdek" | "boxberry" | "russian-post" | "tc")
-            : undefined),
+          method,
           address: body.delivery?.address,
           city: body.delivery?.city,
           cost: deliveryCost,
+          handoverNote: note.length > 0 ? note : undefined,
+          ...(isApiShipMethod
+            ? {
+                provider: body.delivery?.providerKey?.startsWith("fallback_") ? "fallback" : "apiship",
+                providerKey: body.delivery?.providerKey,
+                tariffId: body.delivery?.tariffId,
+                deliveryType: body.delivery?.deliveryType,
+                pickupType: body.delivery?.pickupType,
+                pointId: body.delivery?.pointId,
+                pointAddress: body.delivery?.pointAddress,
+                etaMinDays: body.delivery?.etaMinDays,
+                etaMaxDays: body.delivery?.etaMaxDays,
+                addressNormalized: body.delivery?.addressNormalized,
+              }
+            : {}),
         },
         payment: {
           method: type === "legal" ? "invoice" : "card",

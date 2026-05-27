@@ -12,6 +12,7 @@
 - [Часть Г. CRM-интеграция (047, ресёрч завершён, реализация отложена)](#часть-г-crm-интеграция-047-ресёрч-завершён-реализация-отложена) — пункт 24
 - [Часть Д. Behavior & ad analytics (058, v1 задеплоено, follow-up отложен)](#часть-д-behavior--ad-analytics-058-v1-задеплоено-follow-up-отложен) — пункты 27–29
 - [Часть Е. Доставка — доработки после v1 (047+)](#часть-е-доставка--доработки-после-v1-047) — пункт 30
+- [Часть Ж. Invoice & shipping unify (062, реализовано, follow-up отложен)](#часть-ж-invoice--shipping-unify-062-реализовано-follow-up-отложен) — пункты 31–34
 
 ---
 
@@ -466,3 +467,78 @@ Live OAuth-токен Yandex.Metrika (`y0__wgBEKvJthAYlbBCII6wn9UXtmS5lnPK8f30GW
 - `apps/web/src/lib/shipping/apiship/mappers.ts` (`toCalculatorRequest`)
 - `apps/web/src/lib/shipping/apiship/provider.ts` (`calculate()`)
 - Новый файл миграции в `apps/web/src/migrations/`
+
+---
+
+## Часть Ж. Invoice & shipping unify (062, реализовано, follow-up отложен)
+
+### 31. DEFERRED-062-A — Финальная очистка enum `delivery_method` от значения `'tc'`
+
+**Контекст.** В рамках спеки 062 enum `delivery_method` мигрирован: новые значения — `pickup` / `apiship` / `own_carrier`. Старое значение `'tc'` оставлено в enum как transitional compat для existing-записей (Postgres не поддерживает `DROP VALUE` для enum напрямую — нужен type-recreate).
+
+**Что нужно сделать (R3 step B из `specs/062-invoice-shipping-unify/research.md`):**
+
+1. Убедиться, что в таблице `orders` нет ни одной записи с `delivery.method = 'tc'` (запрос: `SELECT count(*) FROM orders WHERE delivery_method = 'tc';` должен вернуть 0).
+2. Выполнить type-recreate procedure:
+   - создать новый enum `delivery_method_new` со значениями `pickup | apiship | own_carrier`;
+   - `ALTER TABLE orders ALTER COLUMN delivery_method TYPE delivery_method_new USING delivery_method::text::delivery_method_new`;
+   - `DROP TYPE delivery_method`;
+   - `ALTER TYPE delivery_method_new RENAME TO delivery_method`.
+3. Отразить изменение в новом файле миграции `apps/web/src/migrations/`.
+
+**Условие старта.** 2–3 месяца наблюдения, что в новых записях `tc` не появляется (никто из legacy-клиентов больше не шлёт это значение).
+
+**Не блокирует:** работу 062 v1 — `'tc'` уже не принимается на write-path (см. пункт 32).
+
+**Owner:** TBD.
+
+### 32. DEFERRED-062-B — Удалить soft-mapping `tc → own_carrier` из `apps/web/src/app/api/orders/route.ts`
+
+**Контекст.** На POST-эндпоинте создания заказа сохранён transitional compat: если клиент шлёт `delivery.method = 'tc'`, бекенд молча мапит это на `'own_carrier'`. Это позволяет старым SPA-сборкам (закешированный JS) продолжать работать сразу после релиза 062.
+
+**Что нужно сделать:**
+
+1. Удалить блок soft-mapping в `apps/web/src/app/api/orders/route.ts`.
+2. Заменить на 400-ошибку валидации: «`delivery.method='tc'` deprecated, используйте `own_carrier`».
+3. Проверить, что у всех клиентов выкачан свежий SPA-bundle (по метрикам Метрики — нет старых ymClientId с устаревшим referer-bundle hash).
+
+**Условие старта.** 1–2 месяца после релиза 062, когда уверены, что все клиенты обновили SPA.
+
+**Не блокирует:** ничего — мапинг сейчас работает прозрачно для клиента.
+
+**Owner:** TBD.
+
+### 33. DEFERRED-062-C — Настроить goal `shipping_mode_changed` в Yandex.Метрика
+
+**Контекст.** Спека 062 добавила новое аналитическое событие `shipping_mode_changed` (срабатывает при переключении между режимами доставки в чекауте юрлица). Событие пушится в dataLayer через `apps/web/src/lib/analytics/events.ts`. Но в Метрике под него ещё не создана отдельная цель (goal) — поэтому в отчётах его пока нельзя сегментировать.
+
+**Что нужно сделать:**
+
+1. Добавить goal `shipping_mode_changed` (type `action`) в `apps/web/config/metrika.config.ts` (см. формат — рядом с существующими goals из 058).
+2. Запустить `pnpm metrika:apply-config` — apply создаст goal idempotent через Metrika Management API.
+3. Проверить через `pnpm metrika:validate-config` и в кабинете Метрики.
+4. Обновить `06-reports/analytics/goal-mapping.md` после успешного apply.
+
+**Условие старта.** Сразу после релиза 062 (можно в тот же спринт).
+
+**Не блокирует:** работу 062 — событие уже пушится в dataLayer, просто пока не агрегируется в отчётах Метрики.
+
+**Owner:** TBD.
+
+### 34. DEFERRED-062-D — Twenty CRM mapping для `delivery.handoverNote`
+
+**Контекст.** Спека 062 добавила поле `Order.delivery.handoverNote` (свободный комментарий покупателя ≤1000 символов — куда передать груз/контакты водителя для own_carrier, чьим транспортом самовывоз для pickup). Поле остаётся редактируемым после статуса `paid` (формальное exception из иммутабельности 051).
+
+При активации Twenty CRM (см. `../../specs/048-twenty-crm-sync/`, сейчас `crmSettings.enabled=false`) нужно пробросить `handoverNote` в Twenty.
+
+**Что нужно сделать:**
+
+1. Расширить sync-mapper в `apps/web/src/lib/crm/twenty/`: добавить `handoverNote` либо в `opportunity.description` (конкатенацией к существующему текстовому полю), либо отдельным custom-field в Twenty schema.
+2. Решить с владельцем: нужно ли отображать `handoverNote` в Twenty как отдельный визуальный блок (custom-field) или достаточно append к описанию.
+3. Покрыть subscriber тестом — что при `update Order.delivery.handoverNote` отправляется PATCH в Twenty.
+
+**Условие старта.** Момент активации Twenty CRM (на запуске Twenty-sync отключён, см. capability matrix `../crm-integration-pattern.md`).
+
+**Не блокирует:** работу 062 — `handoverNote` хранится в Payload и используется в PDF-счёте и в ApiShip note, Twenty просто не получает это поле до активации.
+
+**Owner:** TBD.

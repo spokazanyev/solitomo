@@ -442,10 +442,14 @@ export interface Order {
     emailValid?: boolean | null;
   };
   delivery?: {
-    method?: ('pickup' | 'cdek' | 'boxberry' | 'russian-post' | 'tc') | null;
+    method?: ('pickup' | 'cdek' | 'boxberry' | 'russian-post' | 'own_carrier' | 'tc') | null;
     address?: string | null;
     city?: string | null;
     cost?: number | null;
+    /**
+     * For pickup — receiver contact. For own carrier — carrier name, contract, contact. Up to 1000 chars. Stays editable after paid.
+     */
+    handoverNote?: string | null;
     trackNumber?: string | null;
     shippedAt?: string | null;
     provider?: ('apiship' | 'fallback') | null;
@@ -2324,6 +2328,7 @@ export interface OrdersSelect<T extends boolean = true> {
         address?: T;
         city?: T;
         cost?: T;
+        handoverNote?: T;
         trackNumber?: T;
         shippedAt?: T;
         provider?: T;
