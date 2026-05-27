@@ -178,11 +178,19 @@ export async function GET(_request: NextRequest, context: RouteContext) {
   doc.end();
   const buffer = await finished;
 
+  // 062 hot-fix: HTTP-заголовки требуют latin-1. invoiceNumber может содержать
+  // кириллицу (fallback `СОЛ-…` при отсутствии официального номера) — без
+  // экранирования NextResponse падает с ByteString TypeError. RFC 6266: даём
+  // ASCII-safe `filename=` для совместимости + `filename*=UTF-8''…` для
+  // корректного отображения в современных браузерах.
+  const pdfName = `${invoiceNumber}.pdf`;
+  const asciiName = pdfName.replace(/[^\x20-\x7E]/g, "_");
+  const utf8Name = encodeURIComponent(pdfName);
   return new NextResponse(buffer as unknown as BodyInit, {
     status: 200,
     headers: {
       "Content-Type": "application/pdf",
-      "Content-Disposition": `inline; filename="${invoiceNumber}.pdf"`,
+      "Content-Disposition": `inline; filename="${asciiName}"; filename*=UTF-8''${utf8Name}`,
       "Cache-Control": "private, max-age=300",
       "X-Robots-Tag": "noindex",
     },
