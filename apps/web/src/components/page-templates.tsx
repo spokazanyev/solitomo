@@ -14,7 +14,11 @@ import {
   SlidersHorizontal,
 } from "lucide-react";
 import Link from "next/link";
+import { getPayload } from "payload";
 import { Suspense } from "react";
+
+import config from "@/payload.config";
+import { rewriteLegacyAssetUrl } from "@/lib/legacy-assets/url";
 
 import { CatalogFilterableList } from "@/components/catalog/CatalogFilterableList";
 import { ComparisonPlaceholder } from "@/components/comparison/ComparisonPlaceholder";
@@ -970,90 +974,196 @@ export function B2BTemplate({ route }: TemplateProps) {
  * Соответствие documentType из коллекции Payload (см.
  * apps/web/src/collections/Catalog.js → Documents.fields.documentType).
  */
-const DOCUMENT_FILTERS: Record<string, ReadonlyArray<string>> = {
+const DOCUMENT_FILTERS: Record<string, ReadonlyArray<DocumentTypeKey>> = {
   "/documents/certificates/": ["certificate", "declaration", "registry"],
   "/documents/catalog/": ["datasheet", "drawing", "diagram"],
   "/documents/manuals/": ["manual", "passport"],
 };
 
-async function getDocumentRegistry(routePath?: string) {
-  const registry = new Map<
-    string,
-    {
-      product: Product;
-      title: string;
-      url: string;
-    }
-  >();
+/** Подзаголовок-бейдж для карточки документа — по типу из коллекции. */
+const DOCUMENT_TYPE_LABEL: Record<DocumentTypeKey, string> = {
+  certificate: "Сертификат соответствия",
+  declaration: "Декларация о соответствии",
+  registry: "Сведения о реестре",
+  passport: "Паспорт изделия",
+  manual: "Инструкция",
+  drawing: "Чертёж",
+  diagram: "Монтажная схема",
+  datasheet: "Datasheet",
+  other: "Документ",
+};
 
+type DocumentTypeKey =
+  | "passport"
+  | "manual"
+  | "drawing"
+  | "diagram"
+  | "certificate"
+  | "declaration"
+  | "registry"
+  | "datasheet"
+  | "other";
+
+type DocumentEntry = {
+  id: number;
+  title: string;
+  url: string;
+  documentType?: DocumentTypeKey;
+  versionLabel?: string;
+  proofRole?: string;
+  downloadCtaLabel?: string;
+};
+
+/**
+ * 060: для секций /documents/<slug>/ читаем документы напрямую из коллекции
+ * Payload — это даёт нам полные атрибуты (versionLabel, proofRole,
+ * documentType, downloadCtaLabel), которые мы используем в карточке. Раньше
+ * мы ходили через product.documents и могли отдать только title+url, плюс
+ * случайно прицеплялся SKU первого продукта, к которому документ был привязан
+ * (вводило в заблуждение: сертификат на всю линейку выглядел как «только
+ * для одного SKU»).
+ */
+async function getDocumentRegistry(routePath?: string): Promise<DocumentEntry[]> {
   const allowedTypes = routePath ? DOCUMENT_FILTERS[routePath] : undefined;
 
-  const products = await getProducts();
-  products.forEach((product) => {
-    product.documents.forEach((document) => {
-      // Фильтр по типу документа: для /documents/certificates/ покажем только
-      // certificate/declaration/registry, для /documents/catalog/ — datasheet/
-      // drawing/diagram, и т.д. Корень /documents/ показывает все типы.
-      if (allowedTypes && document.type && !allowedTypes.includes(document.type)) {
-        return;
-      }
-      // Документы без типа (legacy) показываем только на корне `/documents/`,
-      // чтобы они не «протекали» в специализированные подсекции.
-      if (allowedTypes && !document.type) {
-        return;
-      }
-      if (!registry.has(document.url)) {
-        registry.set(document.url, {
-          product,
-          title: document.title,
-          url: document.url,
-        });
-      }
-    });
+  const payload = await getPayload({ config });
+  const baseWhere = { status: { equals: "published" } };
+  const where = allowedTypes
+    ? { and: [baseWhere, { documentType: { in: [...allowedTypes] } }] }
+    : baseWhere;
+
+  const result = await payload.find({
+    collection: "documents",
+    where,
+    depth: 0,
+    limit: 24,
+    pagination: false,
+    sort: "-updatedAt",
+    overrideAccess: true,
   });
 
-  return Array.from(registry.values()).slice(0, 12);
+  return result.docs
+    .map((doc): DocumentEntry | null => {
+      const externalUrl = (doc as { externalUrl?: string | null }).externalUrl;
+      const url = rewriteLegacyAssetUrl(externalUrl ?? undefined);
+      if (!url) return null;
+      const docType = (doc as { documentType?: DocumentTypeKey | null }).documentType;
+      return {
+        id: doc.id as number,
+        title: (doc as { title?: string }).title || "Документ",
+        url,
+        documentType: docType ?? undefined,
+        versionLabel: (doc as { versionLabel?: string | null }).versionLabel ?? undefined,
+        proofRole: (doc as { proofRole?: string | null }).proofRole ?? undefined,
+        downloadCtaLabel:
+          (doc as { downloadCtaLabel?: string | null }).downloadCtaLabel ?? undefined,
+      };
+    })
+    .filter((d): d is DocumentEntry => d !== null)
+    .slice(0, 12);
+}
+
+/**
+ * Тексты заголовка секции «Документы» в зависимости от секции. Корень
+ * /documents/ показывает общую формулировку, подсекции — узкие тексты,
+ * полезные для соответствующей аудитории (тендер, инженер, закупщик).
+ */
+function getDocumentSectionCopy(routePath?: string): {
+  eyebrow: string;
+  title: string;
+  text: string;
+  empty: string;
+} {
+  switch (routePath) {
+    case "/documents/certificates/":
+      return {
+        eyebrow: "Действующие документы",
+        title: "Сертификаты и декларации соответствия",
+        text: "Сертификаты ТР ТС и декларации ЕАЭС на серийный выпуск модульных блоков розеток Солитон. Один документ покрывает всю линейку S-/SP-/SPF-/Amp, версии M&C и модели с УЗИП — подходит для тендерной заявки и согласования закупки.",
+        empty:
+          "Сертификаты пока не загружены. Запросите подтверждающие документы под конкретную закупку через форму КП — менеджер подготовит копии в течение рабочего дня.",
+      };
+    case "/documents/catalog/":
+      return {
+        eyebrow: "Технические файлы",
+        title: "Чертежи и datasheet",
+        text: "Технические чертежи блоков, монтажные схемы и datasheet — для проектирования размещения в стойке, согласования с заказчиком и проверки интерфейсов до закупки.",
+        empty:
+          "Технические файлы по конкретной модели готовятся индивидуально. Укажите артикул в запросе — приложим datasheet и чертёж вместе с КП.",
+      };
+    case "/documents/manuals/":
+      return {
+        eyebrow: "Эксплуатация",
+        title: "Паспорта и инструкции",
+        text: "Паспорта изделий и руководства по монтажу/эксплуатации. Поставляются в коробке с товаром; электронные копии доступны заранее — для согласования закупки и обучения персонала.",
+        empty:
+          "Паспорта и инструкции готовятся под конкретный артикул. Менеджер пришлёт PDF вместе с КП.",
+      };
+    default:
+      return {
+        eyebrow: "Документы по линейке",
+        title: "Документы Солитон",
+        text: "Сертификаты, паспорта, инструкции и технические материалы по PDU и блокам розеток Солитон. Используйте подразделы слева для перехода к нужному типу документов или скачайте конкретные файлы прямо отсюда.",
+        empty:
+          "Документы пока не привязаны к товарным карточкам. Запросите нужный паспорт или сертификат через форму КП.",
+      };
+  }
 }
 
 export async function DocumentTemplate({ route }: TemplateProps) {
   const documents = await getDocumentRegistry(route.path);
+  const copy = getDocumentSectionCopy(route.path);
 
   return (
     <div className="grid gap-12">
       <section>
-        <SectionHeader
-          eyebrow="Доступные файлы"
-          title="Документы из карточек товаров"
-          text="Ниже показаны файлы, уже привязанные к товарам Солитон. Недостающие паспорта, сертификаты или сведения по реестру можно запросить вместе с КП."
-        />
+        <SectionHeader eyebrow={copy.eyebrow} title={copy.title} text={copy.text} />
         <div className="mt-6 grid gap-3">
           {documents.length ? (
-            documents.map((document) => (
-              <a
-                className="grid gap-3 rounded-lg border border-slate-200 bg-white p-4 text-sm hover:border-sky-400 md:grid-cols-[1fr_180px]"
-                href={document.url}
-                key={document.url}
-                rel="noreferrer"
-                target="_blank"
-              >
-                <span>
-                  <span className="flex items-center gap-2 font-semibold text-slate-950">
-                    <FileText className="h-4 w-4 text-sky-700" />
-                    {document.title}
+            documents.map((document) => {
+              const typeLabel = document.documentType
+                ? DOCUMENT_TYPE_LABEL[document.documentType]
+                : null;
+              return (
+                <a
+                  className="grid gap-3 rounded-lg border border-slate-200 bg-white p-4 text-sm hover:border-sky-400 md:grid-cols-[1fr_auto]"
+                  href={document.url}
+                  key={document.id}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <span>
+                    <span className="flex items-start gap-2 font-semibold leading-snug text-slate-950">
+                      <FileText className="mt-0.5 h-4 w-4 shrink-0 text-sky-700" />
+                      <span>{document.title}</span>
+                    </span>
+                    {document.proofRole && (
+                      <span className="ml-6 mt-1 block text-slate-600">
+                        {document.proofRole}
+                      </span>
+                    )}
+                    {document.versionLabel && (
+                      <span className="ml-6 mt-1 block text-xs text-slate-500">
+                        Действует: {document.versionLabel}
+                      </span>
+                    )}
                   </span>
-                  <span className="mt-2 block text-slate-600">
-                    {document.product.h1}
+                  <span className="flex items-start justify-end gap-2 md:flex-col md:items-end">
+                    {typeLabel && (
+                      <span className="rounded bg-sky-50 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-sky-800">
+                        {typeLabel}
+                      </span>
+                    )}
+                    <span className="text-xs text-sky-700 underline-offset-2 hover:underline">
+                      {document.downloadCtaLabel ?? "Скачать"} →
+                    </span>
                   </span>
-                </span>
-                <span className="font-mono text-xs text-slate-500 md:text-right">
-                  {document.product.sku}
-                </span>
-              </a>
-            ))
+                </a>
+              );
+            })
           ) : (
             <div className="rounded-lg border border-slate-200 bg-white p-5 text-sm leading-6 text-slate-600">
-              Документы пока не привязаны к товарным карточкам. Запросите
-              нужный паспорт или сертификат через форму КП.
+              {copy.empty}
             </div>
           )}
         </div>
