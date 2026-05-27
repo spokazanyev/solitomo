@@ -4,6 +4,7 @@ import * as migration_20260526_192423_add_product_physical_packaging from './202
 import * as migration_20260526_shipping_sender_pickup_type from './20260526_shipping_sender_pickup_type';
 import * as migration_20260527_001_add_own_carrier_enum from './20260527_001_add_own_carrier_enum';
 import * as migration_20260527_002_rename_tc_to_own_carrier from './20260527_002_rename_tc_to_own_carrier';
+import * as migration_20260528_add_delivery_handover_note from './20260528_add_delivery_handover_note';
 
 export const migrations = [
   {
@@ -35,5 +36,10 @@ export const migrations = [
     up: migration_20260527_002_rename_tc_to_own_carrier.up,
     down: migration_20260527_002_rename_tc_to_own_carrier.down,
     name: '20260527_002_rename_tc_to_own_carrier'
+  },
+  {
+    up: migration_20260528_add_delivery_handover_note.up,
+    down: migration_20260528_add_delivery_handover_note.down,
+    name: '20260528_add_delivery_handover_note'
   },
 ];
