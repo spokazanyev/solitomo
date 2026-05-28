@@ -392,23 +392,28 @@ export async function GET(_request: NextRequest, context: RouteContext) {
   doc.text(`${dirPos} ${dirBrand}: __________________ / ${dirName} /`, pageLeft, y, {
     width: contentWidth,
   });
-  const signLineY = y;
+  const afterDirectorY = doc.y; // позиция ПОД строкой директора
 
-  // Печать + подпись (PNG, прозрачный фон) — накладывается на строку подписи,
-  // как на реальном счёте. Если файла нет — остаётся «М.П.».
+  // Печать + подпись (PNG, прозрачный фон) — размещается НИЖЕ строки подписи
+  // директора (не перекрывает текст). Если файла нет — остаётся «М.П.».
   const stampPath = firstExisting(STAMP_CANDIDATES);
   if (stampPath) {
     try {
-      // Ширина ~190pt; центр печати над линией подписи, ближе к ФИО директора.
       const stampW = 190;
-      const stampX = pageLeft + 150;
-      const stampY = signLineY - 70;
+      const stampH = stampW * (554 / 1122); // сохраняем пропорции PNG ≈ 93pt
+      let stampY = afterDirectorY + 10;
+      // если печать не влезает на страницу — переносим на новую
+      if (stampY + stampH > doc.page.height - MARGIN) {
+        doc.addPage();
+        stampY = MARGIN;
+      }
+      const stampX = pageLeft + 30;
       doc.image(stampPath, stampX, stampY, { width: stampW });
     } catch {
-      doc.fontSize(9).fillColor(muted).text("М.П.", pageLeft, signLineY + 18);
+      doc.fontSize(9).fillColor(muted).text("М.П.", pageLeft, afterDirectorY + 12);
     }
   } else {
-    doc.fontSize(9).fillColor(muted).text("М.П.", pageLeft, signLineY + 22);
+    doc.fontSize(9).fillColor(muted).text("М.П.", pageLeft, afterDirectorY + 12);
   }
 
   doc.end();
