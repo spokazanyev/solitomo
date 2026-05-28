@@ -21,6 +21,11 @@ services:
     build:
       context: ./source
       dockerfile: Dockerfile
+      # 059 Phase 0: домен нужен на СБОРКЕ (NEXT_PUBLIC_* инлайнятся в бандл +
+      # читаются статически генерируемыми страницами для canonical/OG).
+      # Дублирует значение из environment ниже (которое — для runtime).
+      args:
+        NEXT_PUBLIC_SITE_URL: https://pdumarket.ru
     image: soliton-web:latest
     container_name: soliton-web
     restart: unless-stopped
@@ -35,6 +40,11 @@ services:
       NODE_ENV: production
       PORT: "3000"
       HOSTNAME: "0.0.0.0"
+      # 059 FR-010: verification-токены поисковых панелей. Пусты до регистрации
+      # сайта в Яндекс.Вебмастере / Google Search Console; заполняются в
+      # deploy/.secrets/production-env после получения токенов (graceful absence).
+      YANDEX_VERIFICATION: ${YANDEX_VERIFICATION:-}
+      GOOGLE_VERIFICATION: ${GOOGLE_VERIFICATION:-}
       # 057 P0: salt for sha256(IP) in consent records (152-ФЗ).
       IP_HASH_SALT: ${IP_HASH_SALT:-}
       # 057 US6: programmatic GA4 / Yandex Metrika (загружаются ТОЛЬКО после opt-in).
