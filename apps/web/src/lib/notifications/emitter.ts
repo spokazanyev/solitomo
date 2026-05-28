@@ -260,7 +260,14 @@ async function enqueueJob(input: {
     });
     return true;
   } catch (err) {
-    logWarn("emitter", "enqueue failed", { err: (err as Error).message });
+    // Drizzle оборачивает PG-ошибку: реальная причина — в err.cause (а иногда
+    // err.cause.cause). Логируем всю цепочку, иначе видно только "Failed query".
+    const e = err as { message?: string; cause?: { message?: string; cause?: { message?: string } } };
+    logWarn("emitter", "enqueue failed", {
+      err: e.message,
+      cause: e.cause?.message,
+      rootCause: e.cause?.cause?.message,
+    });
     return false;
   }
 }
