@@ -36,6 +36,10 @@ services:
       DATABASE_URI: postgres://soliton:${SOLITON_DB_PASSWORD}@soliton-postgres:5432/soliton
       PAYLOAD_SECRET: ${SOLITON_PAYLOAD_SECRET}
       NEXT_PUBLIC_SITE_URL: https://pdumarket.ru
+      # 049: server-side base URL для ссылок в email (siteUrl() в шаблонах).
+      # Без явного значения siteUrl падает на дефолт (или dev SITE_URL=localhost
+      # при неаккуратной сборке) → ссылки на заказ в письме вели на localhost:3000.
+      SITE_URL: https://pdumarket.ru
       NEXT_TELEMETRY_DISABLED: "1"
       NODE_ENV: production
       PORT: "3000"
