@@ -77,6 +77,22 @@ function resolveWarehouseAddress(contacts: ReturnType<typeof getCompanyContacts>
   return "адрес уточнит менеджер";
 }
 
+// 063 fix: человекочитаемые названия служб доставки (delivery.method для ApiShip
+// ∈ {cdek, boxberry, russian-post}; см. api/orders/route.ts METHOD_WHITELIST).
+const CARRIER_LABELS: Record<string, string> = {
+  cdek: "СДЭК",
+  boxberry: "Boxberry",
+  "russian-post": "Почта России",
+};
+
+function carrierLabel(method: string | undefined, providerKey: string | undefined): string {
+  return (
+    (method ? CARRIER_LABELS[method] : undefined) ??
+    (providerKey ? CARRIER_LABELS[providerKey] : undefined) ??
+    (providerKey || method || "служба доставки")
+  );
+}
+
 const VAT_RATE = 22; // % — НДС по ФЗ-425 (с 2025). vat = gross * 22/122.
 
 export async function GET(_request: NextRequest, context: RouteContext) {
@@ -109,7 +125,17 @@ export async function GET(_request: NextRequest, context: RouteContext) {
     totals?: { subtotal?: number; vat?: number; deliveryCost?: number; total?: number };
     customer?: { fullName?: string; email?: string; companyName?: string; inn?: string; kpp?: string; legalAddress?: string };
     invoice?: { number?: string; issuedAt?: string };
-    delivery?: { method?: string; handoverNote?: string };
+    delivery?: {
+      method?: string;
+      handoverNote?: string;
+      address?: string;
+      city?: string;
+      providerKey?: string;
+      deliveryType?: string;
+      pointAddress?: string;
+      etaMinDays?: number;
+      etaMaxDays?: number;
+    };
     createdAt: string;
   };
 
@@ -146,6 +172,13 @@ export async function GET(_request: NextRequest, context: RouteContext) {
   const goodsGross = items.reduce((s, it) => s + grossOf(it), 0);
   const deliveryMethod = o.delivery?.method;
   const handoverNote = o.delivery?.handoverNote?.trim() ?? "";
+  const deliveryAddress = o.delivery?.address?.trim() ?? "";
+  const deliveryCity = o.delivery?.city?.trim() ?? "";
+  const providerKey = o.delivery?.providerKey ?? "";
+  const deliveryType = o.delivery?.deliveryType ?? "";
+  const pointAddress = o.delivery?.pointAddress?.trim() ?? "";
+  const etaMin = o.delivery?.etaMinDays;
+  const etaMax = o.delivery?.etaMaxDays;
   const isPickup = deliveryMethod === "pickup";
   const isOwnCarrier = deliveryMethod === "own_carrier" || deliveryMethod === "tc";
   const isApiShipMethod = !isPickup && !isOwnCarrier;
@@ -174,7 +207,7 @@ export async function GET(_request: NextRequest, context: RouteContext) {
     doc.registerFont(FONT_BOLD, cyrBold ?? cyr);
     doc.font(FONT);
   }
-  const useFont = (bold = false) => doc.font(cyr ? (bold ? FONT_BOLD : FONT) : "Helvetica");
+  const setFont = (bold = false) => doc.font(cyr ? (bold ? FONT_BOLD : FONT) : "Helvetica");
 
   const pageLeft = MARGIN;
   const pageRight = doc.page.width - MARGIN; // 595 - 40 = 555
@@ -183,11 +216,11 @@ export async function GET(_request: NextRequest, context: RouteContext) {
   const muted = "#475569";
 
   // ─── Заголовок: СЧЁТ № NNNN ... дата ─────────────────────────────────────
-  useFont(true);
+  setFont(true);
   doc.fontSize(20).fillColor(ink).text(`СЧЁТ № ${invoiceNumber}`, pageLeft, MARGIN, {
     continued: false,
   });
-  useFont(false);
+  setFont(false);
   doc
     .fontSize(11)
     .fillColor(muted)
@@ -212,7 +245,7 @@ export async function GET(_request: NextRequest, context: RouteContext) {
   doc.fontSize(9.5).fillColor(ink);
   let ly = headTop;
   const leftLine = (text: string, bold = false, gap = 13) => {
-    useFont(bold);
+    setFont(bold);
     doc.fillColor(ink).text(text, pageLeft, ly, { width: leftW });
     ly = doc.y + (gap - doc.currentLineHeight());
   };
@@ -236,7 +269,7 @@ export async function GET(_request: NextRequest, context: RouteContext) {
   doc.fontSize(9.5);
   let ry = headTop;
   const rightLine = (text: string, bold = false, gap = 13) => {
-    useFont(bold);
+    setFont(bold);
     doc.fillColor(ink).text(text, rightX, ry, { width: rightW });
     ry = doc.y + (gap - doc.currentLineHeight());
   };
@@ -277,7 +310,7 @@ export async function GET(_request: NextRequest, context: RouteContext) {
     cells: { num: string; sku: string; tovar: string; kol: string; cena: string; sum: string },
     opts: { bold?: boolean; header?: boolean } = {},
   ) => {
-    useFont(opts.bold || opts.header);
+    setFont(opts.bold || opts.header);
     doc.fontSize(9).fillColor(ink);
     // высота строки = по самой высокой ячейке (наименование или артикул)
     const nameH = doc.heightOfString(cells.tovar, { width: wTovar - 2 * PAD });
@@ -301,7 +334,7 @@ export async function GET(_request: NextRequest, context: RouteContext) {
       doc.rect(cCena, y, wCena, rowH).stroke();
       doc.rect(cSum, y, wSum, rowH).stroke();
     }
-    useFont(opts.bold || opts.header);
+    setFont(opts.bold || opts.header);
     doc.fillColor(ink);
     doc.text(cells.num, cNum + PAD, y + PAD, { width: wNum - 2 * PAD, align: "center" });
     doc.text(cells.sku, cSku + PAD, y + PAD, { width: wSku - 2 * PAD });
@@ -347,7 +380,7 @@ export async function GET(_request: NextRequest, context: RouteContext) {
   const totalsX = cSku;
   const totalsLabelW = cSum - totalsX - PAD;
   const totalLine = (label: string, value: string, bold = false, size = 10) => {
-    useFont(bold);
+    setFont(bold);
     doc.fontSize(size).fillColor(ink);
     const startY = y;
     doc.text(label, totalsX, startY, { width: totalsLabelW, align: "right" });
@@ -361,11 +394,11 @@ export async function GET(_request: NextRequest, context: RouteContext) {
 
   // ─── Сумма прописью ──────────────────────────────────────────────────────
   y += 10;
-  useFont(true);
+  setFont(true);
   doc.fontSize(10).fillColor(ink);
   doc.text(`Итого на сумму: ${amountInWords(totalGross)}.`, pageLeft, y, { width: contentWidth });
   y = doc.y + 2;
-  useFont(false);
+  setFont(false);
   doc.fontSize(9.5).fillColor(muted);
   doc.text(`В том числе НДС ${VAT_RATE}% — ${fmt(vat)} руб.`, pageLeft, y, { width: contentWidth });
   y = doc.y + 12;
@@ -375,12 +408,49 @@ export async function GET(_request: NextRequest, context: RouteContext) {
   doc.text(invoiceFooterNote, pageLeft, y, { width: contentWidth });
   y = doc.y + 8;
 
+  // ─── Доставка (063 fix): служба / тип (ПВЗ или курьер) / адрес ────────────
+  // Для ApiShip-доставки счёт раньше показывал только строку «Доставка» с ценой,
+  // без указания службы, типа и адреса/ПВЗ. Восстанавливаем эти данные из заказа.
+  if (
+    isApiShipMethod &&
+    (deliveryType || pointAddress || deliveryAddress || providerKey || deliveryGross > 0)
+  ) {
+    setFont(true);
+    doc.fontSize(10).fillColor(ink).text("Доставка:", pageLeft, y, { width: contentWidth });
+    y = doc.y + 2;
+    setFont(false);
+    doc.fontSize(9.5).fillColor("#334155");
+    const toPoint = deliveryType === "2";
+    const carrier = carrierLabel(deliveryMethod, providerKey);
+    doc.text(
+      `Служба: ${carrier} · ${toPoint ? "до пункта выдачи (ПВЗ)" : "курьером до двери"}.`,
+      pageLeft,
+      y,
+      { width: contentWidth },
+    );
+    y = doc.y + 1;
+    const addr = toPoint ? pointAddress || deliveryAddress : [deliveryCity, deliveryAddress].filter(Boolean).join(", ");
+    if (addr) {
+      doc.text(`${toPoint ? "Адрес ПВЗ" : "Адрес доставки"}: ${addr}`, pageLeft, y, { width: contentWidth });
+      y = doc.y + 1;
+    }
+    if (typeof etaMin === "number" || typeof etaMax === "number") {
+      const eta =
+        typeof etaMin === "number" && typeof etaMax === "number" && etaMin !== etaMax
+          ? `${etaMin}–${etaMax}`
+          : String(etaMax ?? etaMin);
+      doc.text(`Ориентировочный срок: ${eta} дн.`, pageLeft, y, { width: contentWidth });
+      y = doc.y + 1;
+    }
+    y += 12;
+  }
+
   // ─── Примечания (062): pickup / own_carrier ──────────────────────────────
   if (isPickup || isOwnCarrier) {
-    useFont(true);
+    setFont(true);
     doc.fontSize(10).fillColor(ink).text("Примечания:", pageLeft, y, { width: contentWidth });
     y = doc.y + 2;
-    useFont(false);
+    setFont(false);
     doc.fontSize(9.5).fillColor("#334155");
     if (isPickup) {
       doc.text(`Самовывоз со склада: ${resolveWarehouseAddress(contacts)}.`, pageLeft, y, { width: contentWidth });
@@ -412,7 +482,7 @@ export async function GET(_request: NextRequest, context: RouteContext) {
   y += 8;
   const issuer = contacts.responsiblePersons?.find((p) => /технич/i.test(p.position ?? ""));
   const issuerName = shortName(issuer?.fullName) || shortName(contacts.director?.fullName);
-  useFont(false);
+  setFont(false);
   doc.fontSize(10).fillColor(ink);
   doc.text(`Счёт оформил: ${issuerName}`, pageLeft, y, { width: contentWidth });
   y = doc.y + 14;
