@@ -1,10 +1,11 @@
 "use client";
 
 import { ArrowRight, CreditCard, Loader2 } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { pushPaymentIntentEvent } from "@/components/payment/datalayer-events";
 import { resolvePaymentError } from "@/components/payment/payment-error-strings";
+import { trackPaymentRetry } from "@/lib/analytics/events";
 
 interface Props {
   orderId: string;
@@ -24,6 +25,8 @@ interface Props {
 export function RetryPaymentButton({ orderId, orderPublicToken, amountRub }: Props) {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // 058 T034 + FR-016: счётчик повторных попыток оплаты в течение сессии
+  const attemptCountRef = useRef(0);
 
   async function handleClick() {
     setSubmitting(true);
@@ -33,6 +36,10 @@ export function RetryPaymentButton({ orderId, orderPublicToken, amountRub }: Pro
       if (typeof amountRub === "number") {
         pushPaymentIntentEvent({ order_id: orderId, value: amountRub, currency: "RUB" });
       }
+
+      // 058 T034: payment_retry event (FR-016). attempt_number начинается с 1.
+      attemptCountRef.current += 1;
+      trackPaymentRetry({ transactionId: orderId, attemptNumber: attemptCountRef.current });
 
       const res = await fetch("/api/payment/yookassa/create", {
         method: "POST",

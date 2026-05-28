@@ -1,26 +1,18 @@
 "use client";
 
-import { ArrowRight, CreditCard, Loader2 } from "lucide-react";
+import { CreditCard } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { AddressForm, type AddressFormValue } from "@/components/checkout/AddressForm";
 import { DadataSuggestInput } from "@/components/checkout/DadataSuggestInput";
 import { DeliveryBlock, type SelectedRate } from "@/components/checkout/DeliveryBlock";
 import { PhoneInput } from "@/components/checkout/PhoneInput";
-import { ConsentCheckbox } from "@/components/consent/ConsentCheckbox";
+import { OrderSummaryCard } from "@/components/cart/OrderSummaryCard";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import { clearCartItems, getCartTotal, useRfqCartItems } from "@/components/rfq/RfqCart";
 import { pushEvent } from "@/lib/analytics/data-layer";
-
-function formatPrice(amount: number) {
-  return new Intl.NumberFormat("ru-RU", {
-    currency: "RUB",
-    maximumFractionDigits: 0,
-    style: "currency",
-  }).format(amount);
-}
 
 export function PhysicalCheckoutForm() {
   const items = useRfqCartItems();
@@ -61,7 +53,6 @@ export function PhysicalCheckoutForm() {
     if (typeof window === "undefined") return "anon";
     let id = window.localStorage.getItem("soliton-cart-id");
     if (!id) {
-      // eslint-disable-next-line react-hooks/purity
       id = `cart_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
       window.localStorage.setItem("soliton-cart-id", id);
     }
@@ -81,7 +72,30 @@ export function PhysicalCheckoutForm() {
   useEffect(() => {
     if (items.length === 0) return;
     pushEvent("add_payment_info", { checkout_type: "physical" });
+    // 058 T030: явный checkout_step_payment_method (FR-122). Триггер тот же, что
+    // и add_payment_info — пользователь увидел блок выбора оплаты.
+    pushEvent("checkout_step_payment_method", { step_index: 3, checkout_type: "physical" });
   }, [items.length]);
+
+  // 058 T030: checkout_step_contact (FR-120) — однократно при первом фокусе в
+  // блок контактов. Используем ref-flag для anti-double-fire в течение визита.
+  const contactStepFiredRef = useRef(false);
+  const handleContactFocus = () => {
+    if (contactStepFiredRef.current) return;
+    contactStepFiredRef.current = true;
+    pushEvent("checkout_step_contact", { step_index: 1, checkout_type: "physical" });
+  };
+
+  // 058 T030: checkout_step_shipping (FR-121) — при появлении валидного адреса
+  // ИЛИ выбранной доставки (first transition).
+  const shippingStepFiredRef = useRef(false);
+  useEffect(() => {
+    if (shippingStepFiredRef.current) return;
+    if (address.isValid || selectedRate !== null) {
+      shippingStepFiredRef.current = true;
+      pushEvent("checkout_step_shipping", { step_index: 2, checkout_type: "physical" });
+    }
+  }, [address.isValid, selectedRate]);
 
   if (items.length === 0) {
     return (
@@ -101,6 +115,14 @@ export function PhysicalCheckoutForm() {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (submitting) return;
+    // 058 T030: checkout_cta_pay_clicked (FR-124) — пользователь нажал «Оплатить»,
+    // до validation/redirect. Фиксируем намерение оплатить даже если validation fail.
+    pushEvent("checkout_cta_pay_clicked", {
+      step_index: 5,
+      checkout_type: "physical",
+      value: total,
+      currency: "RUB",
+    });
     if (knownCount === 0) {
       setError("В корзине только позиции без цены — оплата картой невозможна. Запросите КП.");
       return;
@@ -224,7 +246,7 @@ export function PhysicalCheckoutForm() {
   return (
     <form className="grid gap-8 lg:grid-cols-[1fr_360px]" onSubmit={handleSubmit}>
       <section className="grid gap-6">
-        <div className="rounded-lg border border-slate-200 bg-white p-6">
+        <div className="rounded-lg border border-slate-200 bg-white p-6" onFocus={handleContactFocus}>
           <p className="text-sm font-semibold text-slate-950">Контактные данные</p>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             <DadataSuggestInput
@@ -262,78 +284,41 @@ export function PhysicalCheckoutForm() {
         </div>
 
         <DeliveryBlock cartId={cartId} items={itemsForShipping} onSelect={setSelectedRate} address={address} />
-
-        <div className="rounded-lg border border-amber-200 bg-amber-50/70 p-5 text-sm leading-6 text-amber-900">
-          <strong className="font-semibold">Оплата в режиме mock.</strong> Интеграция с
-          платёжным шлюзом ЮKassa подключается отдельно (см. <code>deferred-content-track.md</code>,
-          раздел 15). Сейчас при отправке формы создаётся заказ и происходит переход на страницу
-          подтверждения, как если бы оплата уже прошла.
-        </div>
       </section>
 
-      <aside className="h-fit rounded-2xl border border-slate-200 bg-white p-6 lg:sticky lg:top-4">
-        <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">К оплате</p>
-        <p className="mt-2 text-3xl font-semibold text-slate-950">
-          {knownCount > 0 ? formatPrice(total + (selectedRate?.rate.cost ?? 0)) : "Цена по запросу"}
-        </p>
-        {selectedRate ? (
-          <p className="mt-1 text-xs text-slate-600">
-            Товары: {formatPrice(total)} ·{" "}
-            {selectedRate.rate.providerKey === "pickup"
-              ? "Самовывоз бесплатно"
-              : selectedRate.rate.cost > 0
-                ? `Доставка: ${formatPrice(selectedRate.rate.cost)}`
-                : "Доставка по запросу — уточнит менеджер"}
-          </p>
-        ) : (
-          <p className="mt-1 text-xs text-amber-700">Выберите способ доставки, чтобы увидеть итог.</p>
-        )}
-        {unknownCount > 0 && knownCount > 0 ? (
-          <p className="mt-1 text-xs leading-5 text-rose-700">
-            {unknownCount} {unknownCount === 1 ? "позиция" : "позиции"} без цены — оплата картой не сработает, нужен КП.
-          </p>
-        ) : null}
-        <ul className="mt-4 grid gap-2 text-sm text-slate-700">
-          {items.slice(0, 5).map((item) => {
-            const qty = Number.parseInt(item.quantity, 10) || 1;
-            return (
-              // grid + min-w-0 is the reliable truncate pattern. With plain
-              // flex, an item with no min-width set refuses to shrink below
-              // its content width, so a long SKU title pushes the qty span
-              // out of the card. `grid-cols-[1fr_auto]` gives the name column
-              // an explicit shrink-friendly width.
-              <li
-                className="grid grid-cols-[1fr_auto] items-baseline gap-3"
-                key={item.sku || item.name}
-              >
-                <span className="min-w-0 truncate" title={item.name}>
-                  {item.name}
-                </span>
-                <span className="whitespace-nowrap text-xs text-slate-500">× {qty}</span>
-              </li>
-            );
-          })}
-          {items.length > 5 ? (
-            <li className="text-xs text-slate-500">и ещё {items.length - 5} позиций...</li>
-          ) : null}
-        </ul>
-        {error ? (
-          <p className="mt-3 rounded-md bg-rose-50 px-3 py-2 text-xs leading-5 text-rose-900">{error}</p>
-        ) : null}
-        <ConsentCheckbox className="mt-4" onChange={setConsent} value={consent} />
-        <button
-          className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-sky-700 px-4 py-3 text-sm font-semibold text-white hover:bg-sky-800 disabled:opacity-60"
-          disabled={submitting || !isReadyToPay}
-          type="submit"
-        >
-          {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <CreditCard className="h-4 w-4" />}
-          {submitting ? "Создаём заказ..." : "Перейти к оплате"}
-          {!submitting ? <ArrowRight className="h-4 w-4" /> : null}
-        </button>
-        <p className="mt-3 text-xs leading-5 text-slate-500">
-          После реальной интеграции ЮKassa здесь будет переход на защищённую форму оплаты картой.
-        </p>
-      </aside>
+      {/* 061: унифицированная sidebar-сводка заказа. Физ-режим — со строкой доставки. */}
+      <OrderSummaryCard
+        items={items}
+        total={total}
+        knownCount={knownCount}
+        unknownCount={unknownCount}
+        showDeliveryLine
+        deliveryCost={
+          selectedRate
+            ? selectedRate.rate.providerKey === "pickup"
+              ? 0
+              : selectedRate.rate.cost
+            : null
+        }
+        deliveryLabel={
+          selectedRate?.rate.providerKey === "pickup"
+            ? "Самовывоз"
+            : selectedRate?.rate.providerName ?? selectedRate?.rate.providerKey
+        }
+        ctaIcon={CreditCard}
+        ctaLabel="Перейти к оплате"
+        ctaHint="После создания заказа перенаправим на защищённую форму оплаты ЮKassa."
+        loading={submitting}
+        disabled={!isReadyToPay}
+        error={error}
+        unknownPaymentWarning={
+          unknownCount > 0 && knownCount > 0
+            ? `${unknownCount} ${unknownCount === 1 ? "позиция" : "позиции"} без цены — оплата картой не сработает, нужен КП.`
+            : undefined
+        }
+        consent={consent}
+        onConsentChange={setConsent}
+      />
     </form>
   );
 }

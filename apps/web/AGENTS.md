@@ -20,6 +20,7 @@ Current features (active implementation):
 - `../../specs/055-yookassa-payments-integration/` — Полная интеграция ЮKassa: create-payment + two-stage capture + webhook handler (IP-allowlist + idempotency + amount-match) + receipt 54-ФЗ (`vat_code=12`, НДС 22% по ФЗ-425) + cron expire/reconcile/capture-retry + refund-webhook (закрывает 053). **Status**: backend MVP implemented, 4 commits на ветке 055.
 - `../../specs/056-yookassa-frontend-integration/` — Frontend integration поверх 055: `/payment/return/[orderId]` polling page, ReviewClient/RetryPaymentButton/PhysicalCheckoutForm API contract fix, 4 новых email-template (T-015/T-109/T-110/T-111), POST /api/orders customer_session-binding (FR-5609), dataLayer `purchase` + `payment_intent` events. **Status**: `/specify` + `/clarify` + `/plan` + `/tasks` + `/implement` done — MVP shippable.
 - `../../specs/057-yookassa-buyer-info-compliance/` — Buyer-info compliance для модерации ЮKassa: новая Payload-коллекция `static-pages` (9 страниц `/info/*`: оплата/доставка/возврат/гарантия/оферта/конфиденциальность/ПДн/соглашение/FAQ) с версионированием юр-документов, embedded group `consent` в Orders/Carts/Customers/RfqRequests (152-ФЗ), `<ConsentCheckbox>` во всех 5 формах, server-side `makeConsentRecord(req)` с sha256-IP-hash + policy-version-cache, `<CookieConsentBanner>` с opt-in аналитикой (заменяет `AnalyticsScripts`), реквизиты + payment-logos + 4 policy-links в footer, dropdown «Покупателям» в header, banking details на `/company/contacts/`. **Status**: `/implement` done (multi-agent mode). Activation gate: seed `pnpm seed:static-pages` + Owner правит тексты в админке + manual `paymentSettings.enabled=true` после модерации ЮKassa.
+- `../../specs/062-invoice-shipping-unify/` — Унификация выбора доставки в чекауте юрлица: 3 режима (самовывоз / служба ApiShip / своя ТК покупателя), переиспользование AddressForm + DeliveryBlock от 047, новое поле `Order.delivery.handoverNote` (≤1000 символов, остаётся редактируемым после `paid` — exception из 051), миграция enum `tc → own_carrier`, новое событие `shipping_mode_changed`, расширенный PDF-счёт с блоком «Примечания» для pickup/own_carrier. **Status**: implemented (Phase 1-7 done), manual PDF visual smoke за владельцем перед merge.
 - Канонический документ жизненного цикла: `../../07-build-specifications/order-lifecycle-spec.md`.
 
 Useful commands from repo root:
@@ -41,7 +42,16 @@ pnpm --filter @soliton/web test
 - `src/lib/customers/` — Magic-link/reset tokens, session loader, repository, CSRF helpers, api-utils (054).
 - `src/lib/consent/` — 057: ConsentRecord type, `consentField()` (Payload group), `makeConsentRecord(req)` (server-side helper для API endpoints), policy-version cache.
 - `src/lib/static-pages/` — 057: `getStaticPage(slug)` + cache invalidation, для `/info/*` страниц.
-- `src/lib/analytics/` — 057: `cookie-consent` (read/write cookie), `analytics-loader` (программная загрузка GA/Metrika).
+- `src/lib/analytics/` — 057+058: `cookie-consent` + `analytics-loader` (canonical Yandex snippet с `ecommerce: "dataLayer"` для FR-110-115); `events.ts` (35+ typed event-helpers); `data-layer.ts` (ecommerce dual-push); `pii-filter.ts` (FR-062 scrubPII); `attribution.ts` (UTM/yclid + referrer classification); `env-marker.ts`; `visit-context.ts`; `server-tracker.ts` (FR-040); `offline-conversions.ts` (FR-033/034); `agent/` (Phase 12 — Metrika Management API client, safety, audit).
+- `src/middleware.ts` — 058: env-marker header + first-party attribution cookies + first_seen cookie capture.
+- `apps/web/config/metrika.config.ts` — 058: source-of-truth для Metrika config (apply через `pnpm metrika:apply-config`).
+- `apps/web/scripts/metrika-{apply,validate,export}-config.ts` — 058 CLI scripts.
+- `apps/web/scripts/seed-analytics-settings.mjs` — 058: `pnpm seed:analytics-settings`.
+- `src/collections/{AgentProposals,AgentExecutionLog,Annotations}.ts` — 058 коллекции.
+- `src/globals/AnalyticsSettings.ts` — 058: runtime-config.
+- `src/components/phone/TrackedPhone.tsx` + `TrackedEmail.tsx` — 058: call-tracking ready обёртки.
+- `src/components/product/ProductDetailAnalytics.tsx` — 058 T028: view_item + ecommerce.detail wrapper.
+- `src/components/analytics/AnalyticsContextProvider.tsx` — 058 T020.
 - `src/components/consent/` — 057: `ConsentCheckbox` (общий для 5 форм), `CookieConsentBanner` (opt-in аналитика).
 - `src/components/static-pages/` — 057: `StaticPageRenderer` + `BuyerInfoNav` + `LexicalRenderer` для `/info/*`.
 - `src/components/company/BankingDetails.tsx` — 057: банковские реквизиты + директор для `/company/contacts/`.

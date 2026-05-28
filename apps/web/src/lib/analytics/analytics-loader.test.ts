@@ -126,6 +126,30 @@ describe("loadYandexMetrika", () => {
     expect(init?.text).toContain("'init'");
   });
 
+  it("uses tag.js with ?id=<counterId> query (modern style)", () => {
+    loadYandexMetrika("109422539");
+    const init = docMock.appended.find((s) => s.text.length > 0);
+    expect(init?.text).toContain("https://mc.yandex.ru/metrika/tag.js?id=109422539");
+  });
+
+  it("init options match canonical Yandex.Metrika snippet (v1)", () => {
+    loadYandexMetrika("109422539");
+    const init = docMock.appended.find((s) => s.text.length > 0);
+    const text = init?.text ?? "";
+    // FR-110-115: ecommerce="dataLayer" — критично для встроенного e-commerce dashboard
+    expect(text).toContain('ecommerce: "dataLayer"');
+    // SSR-safe init (Next.js)
+    expect(text).toContain("ssr: true");
+    // FR-061-063
+    expect(text).toContain("webvisor: true");
+    expect(text).toContain("clickmap: true");
+    expect(text).toContain("accurateTrackBounce: true");
+    expect(text).toContain("trackLinks: true");
+    // Explicit URL/referrer (SPA-safe)
+    expect(text).toContain("referrer: document.referrer");
+    expect(text).toContain("url: location.href");
+  });
+
   it("is idempotent — second call with same counter id is a NOOP", () => {
     loadYandexMetrika("12345678");
     const firstCount = docMock.appended.length;

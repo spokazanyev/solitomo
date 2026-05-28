@@ -1,11 +1,12 @@
 import type { NotificationJobPayload, RenderedMessage } from "../types";
-import { customerName, escapeHtml, formatPrice, orderPageUrl, renderHtmlShell, styles } from "./helpers";
+import { customerName, escapeHtml, formatPrice, orderPageUrl, preferencesPageUrl, renderHtmlShell, styles } from "./helpers";
 
 export function renderT001Paid(payload: NotificationJobPayload): RenderedMessage {
   const order = payload.order;
   const name = customerName(order);
   const total = formatPrice(order.totals?.total);
   const url = orderPageUrl(order);
+  const unsubscribe = preferencesPageUrl(order);
   const subject = `Заказ ${order.id} оплачен`;
 
   const text = [
@@ -38,6 +39,10 @@ export function renderT001Paid(payload: NotificationJobPayload): RenderedMessage
   return {
     subject,
     text,
-    html: renderHtmlShell(bodyHtml, { preheader: `Оплата получена: ${total}` }),
+    html: renderHtmlShell(bodyHtml, {
+      preheader: `Оплата получена: ${total}`,
+      unsubscribeUrl: unsubscribe || undefined,
+    }),
+    listUnsubscribeUrl: unsubscribe || undefined,
   };
 }

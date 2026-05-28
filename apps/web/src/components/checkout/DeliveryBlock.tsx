@@ -69,13 +69,17 @@ export function DeliveryBlock({
     if (!address.isValid || !address.city) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setRates([]);
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedId(null);
+      // ВАЖНО: сбрасываем выбранные ПВЗ при изменении адреса.
+      // Без этого pointByRate[tariffId] остаётся от прошлого города:
+      // СДЭК даёт один tariffId по всей стране, поэтому Москва-ПВЗ
+      // визуально «прилипает» к екатеринбургскому расчёту и
+      // ушёл бы в createShipment как pointId из другого города.
+      setPointByRate({});
       onSelect(null);
       return;
     }
     let cancelled = false;
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLoading(true);
     const timer = setTimeout(async () => {
       try {
@@ -106,6 +110,7 @@ export function DeliveryBlock({
         setRates(data.rates);
         setWarnings(data.warnings ?? []);
         setSelectedId(null);
+        setPointByRate({});
         onSelect(null);
       } catch {
         if (!cancelled) {
@@ -194,7 +199,6 @@ export function DeliveryBlock({
                   <div className="min-w-0 flex-1">
                     <div className="font-medium text-slate-950">
                       {r.providerName ?? r.providerKey}
-                      {r.tariffName ? ` · ${r.tariffName}` : ""}
                     </div>
                     <div className="mt-0.5 flex flex-wrap items-center gap-2 text-xs text-slate-500">
                       <span className="inline-flex items-center gap-1 rounded bg-slate-100 px-2 py-0.5 font-medium text-slate-700">
@@ -203,12 +207,12 @@ export function DeliveryBlock({
                       <span>{r.etaMinDays}–{r.etaMaxDays} рабочих дн.</span>
                       {r.badges?.includes("cheapest") && (
                         <span className="rounded bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold text-emerald-700">
-                          Дешевле всех
+                          💰 Выгоднее
                         </span>
                       )}
                       {r.badges?.includes("fastest") && (
                         <span className="rounded bg-sky-100 px-2 py-0.5 text-[10px] font-semibold text-sky-700">
-                          Быстрее всех
+                          ⚡ Быстрее
                         </span>
                       )}
                     </div>
@@ -261,6 +265,7 @@ export function DeliveryBlock({
           shippingOptionId={pointSelectorFor.shippingOptionId}
           providerKey={pointSelectorFor.providerKey}
           city={address.city ?? ""}
+          initialPointId={pointByRate[rateId(pointSelectorFor)]?.pointId}
           onSelect={(p) => handlePointSelected({ pointId: p.pointId, address: p.address })}
           onClose={() => setPointSelectorFor(null)}
         />

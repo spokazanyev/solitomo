@@ -1,6 +1,6 @@
 # solitomo-organic-site Development Guidelines
 
-Auto-generated from all feature plans. Last updated: 2026-05-26
+Auto-generated from all feature plans. Last updated: 2026-05-27
 
 ## Active Technologies
 - TypeScript 5.x (strict mode), Next.js 16 (App Router, RSC), React 19. (056-yookassa-frontend-integration)
@@ -9,6 +9,12 @@ Auto-generated from all feature plans. Last updated: 2026-05-26
 - PostgreSQL через @payloadcms/db-postgres. Новая таблица `static_pages` + расширение `consent` embedded в 4 существующих коллекциях (Orders, Carts, Returns, Customers) — последняя через extension RFQ не требуется (RFQ-flow уже хранит согласие из 047, см. research.md R5) (057-yookassa-buyer-info-compliance)
 - TypeScript 5.x (strict), Node.js 20.x runtime (Next.js 16 default). (057-yookassa-buyer-info-compliance)
 - PostgreSQL через Payload v3. Новые поля на существующих коллекциях (`Carts`, `Orders`, `Customers`), новая коллекция `Annotations`, новая Global `AnalyticsSettings`. Никаких отдельных аналитических БД — Метрика хранит исторические данные у себя. (057-yookassa-buyer-info-compliance)
+- TypeScript 5.x (strict mode), Node.js 20.x (Next.js 16 runtime) + Next.js 16 (App Router + RSC), React 19, Payload CMS v3, Drizzle ORM, @payloadcms/db-postgres, Vitest для тестов (060-shipping-package-dimensions)
+- PostgreSQL через Payload v3 (Drizzle adapter). Новые опциональные колонки в существующей таблице `products` через formal migration в `apps/web/src/migrations/` — на проде используется `payload migrate` (autopush выключен в production). (060-shipping-package-dimensions)
+- TypeScript 5.x (strict mode), Node.js 20.x (Next.js 16 runtime) + Next.js 16 (App Router, RSC), React 19, Tailwind CSS, `lucide-react` (icons: Receipt, CreditCard, Loader2, ArrowRight), внутренний компонент `@/components/consent/ConsentCheckbox` (от спеки 057), `@/components/rfq/RfqCart` для `RfqCartItem`/`getCartTotal`. (061-unified-checkout-summary)
+- N/A — изменения чисто на UI-слое, ни в одну коллекцию Payload и ни в одну таблицу Postgres не пишем. (061-unified-checkout-summary)
+- TypeScript 5.x (strict mode), Node.js 20.x (Next.js 16 runtime) + Next.js 16 (App Router, RSC), React 19, Payload CMS v3, Drizzle ORM, `@payloadcms/db-postgres`, `pdfkit` (для PDF-генерации), `libphonenumber-js`, `lucide-react`. Уже существующие модули: `@/components/checkout/{AddressForm,DeliveryBlock,PointSelector,DadataSuggestInput,PhoneInput}`, `@/components/cart/OrderSummaryCard`, `@/lib/shipping/*` (ApiShip provider от 047), `@/lib/consent/make-consent-record` (от 057), `@/lib/analytics/{events,data-layer}` (от 058), `@/lib/company/get-company-contacts` (для адреса склада). (062-invoice-shipping-unify)
+- PostgreSQL через Payload v3 (Drizzle adapter). Существующая таблица `orders` — добавляется одно опциональное поле `delivery.handoverNote` (textarea, ≤1000 символов) + миграция значения enum `delivery.method`: `tc → own_carrier`. Никаких новых таблиц. (062-invoice-shipping-unify)
 
 - TypeScript 5.x (strict mode), Node.js (Next.js 16 runtime). (055-yookassa-payments-integration)
 
@@ -29,9 +35,9 @@ npm test && npm run lint
 TypeScript 5.x (strict mode), Node.js (Next.js 16 runtime).: Follow standard conventions
 
 ## Recent Changes
-- 057-yookassa-buyer-info-compliance: Added TypeScript 5.x (strict), Node.js 20.x runtime (Next.js 16 default).
-- 057-yookassa-buyer-info-compliance: Added TypeScript 5.x (strict), Next.js 16 App Router + RSC, React 19 + Payload CMS v3 (admin + collections + versioning), Drizzle ORM + PostgreSQL, Tailwind CSS, @payloadcms/richtext-lexical (rich-text rendering для юр-документов), schema.org JSON-LD utilities (существующие из 047+)
-- 056-yookassa-frontend-integration: Added TypeScript 5.x (strict mode), Next.js 16 (App Router, RSC), React 19.
+- 062-invoice-shipping-unify: Added TypeScript 5.x (strict mode), Node.js 20.x (Next.js 16 runtime) + Next.js 16 (App Router, RSC), React 19, Payload CMS v3, Drizzle ORM, `@payloadcms/db-postgres`, `pdfkit` (для PDF-генерации), `libphonenumber-js`, `lucide-react`. Уже существующие модули: `@/components/checkout/{AddressForm,DeliveryBlock,PointSelector,DadataSuggestInput,PhoneInput}`, `@/components/cart/OrderSummaryCard`, `@/lib/shipping/*` (ApiShip provider от 047), `@/lib/consent/make-consent-record` (от 057), `@/lib/analytics/{events,data-layer}` (от 058), `@/lib/company/get-company-contacts` (для адреса склада).
+- 061-unified-checkout-summary: Added TypeScript 5.x (strict mode), Node.js 20.x (Next.js 16 runtime) + Next.js 16 (App Router, RSC), React 19, Tailwind CSS, `lucide-react` (icons: Receipt, CreditCard, Loader2, ArrowRight), внутренний компонент `@/components/consent/ConsentCheckbox` (от спеки 057), `@/components/rfq/RfqCart` для `RfqCartItem`/`getCartTotal`.
+- 060-shipping-package-dimensions: Added TypeScript 5.x (strict mode), Node.js 20.x (Next.js 16 runtime) + Next.js 16 (App Router + RSC), React 19, Payload CMS v3, Drizzle ORM, @payloadcms/db-postgres, Vitest для тестов
 
 
 <!-- MANUAL ADDITIONS START -->

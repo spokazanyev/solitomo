@@ -46,7 +46,25 @@ gtag('config', ${JSON.stringify(measurementId)});`;
 }
 
 /**
- * Load Yandex.Metrika counter using the standard initialiser snippet.
+ * Load Yandex.Metrika counter using the canonical initialiser snippet from
+ * https://metrika.yandex.ru → Settings → Counter code.
+ *
+ * v1 init options (соответствуют официальному snippet'у для counter 109422539):
+ * - `ssr: true` — Next.js SSR/RSC compatibility (избегаем двойной инициализации
+ *   на client-mount после server-render).
+ * - `webvisor: true` — запись сеансов (FR-061; маски форм через FR-060 атрибуты).
+ * - `clickmap: true` — карта кликов (FR-063).
+ * - `ecommerce: "dataLayer"` — **критично для FR-110-115** — Метрика читает
+ *   `window.dataLayer.push({ ecommerce: {...} })` для встроенного отчёта
+ *   «Электронная коммерция». Без этого native e-commerce dashboard пустой.
+ * - `referrer: document.referrer` — явная передача (страховка для SPA-навигации).
+ * - `url: location.href` — явная передача (то же).
+ * - `accurateTrackBounce: true` — визит ≥15 сек НЕ считается отказом (FR-061).
+ * - `trackLinks: true` — карта ссылок (FR-063).
+ *
+ * Counter ID передаётся в tag.js URL как `?id=<counterId>` (modern style;
+ * улучшает кеширование Yandex CDN per-counter).
+ *
  * @see https://yandex.ru/support/metrica/code/counter-initialize.html
  */
 export function loadYandexMetrika(counterId: string): void {
@@ -56,6 +74,7 @@ export function loadYandexMetrika(counterId: string): void {
   loadedYmIds.add(counterId);
 
   const id = JSON.stringify(counterId);
+  const tagSrc = JSON.stringify(`https://mc.yandex.ru/metrika/tag.js?id=${counterId}`);
   const init = document.createElement("script");
   init.text = `(function(m,e,t,r,i,k,a){
   m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -64,8 +83,17 @@ export function loadYandexMetrika(counterId: string): void {
     if (document.scripts[j].src === r) { return; }
   }
   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-})(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
-ym(${id}, 'init', { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true });`;
+})(window, document, 'script', ${tagSrc}, 'ym');
+ym(${id}, 'init', {
+  ssr: true,
+  webvisor: true,
+  clickmap: true,
+  ecommerce: "dataLayer",
+  referrer: document.referrer,
+  url: location.href,
+  accurateTrackBounce: true,
+  trackLinks: true
+});`;
   document.head.appendChild(init);
 }
 

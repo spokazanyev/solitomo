@@ -18,6 +18,8 @@
     "seed:catalog": "payload seed:catalog",
     "seed:catalog:dry-run": "pnpm exec payload seed:catalog --dry-run",
     "seed:static-pages": "payload seed:static-pages",
+    "seed:analytics-settings": "payload seed:analytics-settings",
+    "seed:soliton-certs": "payload seed:soliton-certs",
     "validate:catalog": "node scripts/agent-operation-placeholder.mjs validate:catalog",
     "validate:seo": "node scripts/validate-seo.mjs",
     "validate:schema": "node scripts/validate-schema.mjs",
@@ -26,7 +28,9 @@
     "download:legacy-assets": "node scripts/download-legacy-assets.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "metrika:apply-config": "node --experimental-strip-types --no-warnings=ExperimentalWarning scripts/metrika-apply-config.ts",
+    "metrika:validate-config": "node --experimental-strip-types --no-warnings=ExperimentalWarning scripts/metrika-validate-config.ts"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.84.1",

@@ -52,6 +52,8 @@ export interface TariffObject {
   tariffId?: number;
   providerKey?: string;
   name?: string;
+  /** ApiShip production API v1 uses `tariffName` instead of `name` */
+  tariffName?: string;
   deliveryCost?: number;
   deliveryCostVat?: number;
   daysMin?: number;
@@ -63,29 +65,78 @@ export interface TariffObject {
 }
 
 /**
- * Реальный ответ ApiShip /v1/calculator (по факту PROD API 2026-05).
- * Структура: { deliveryToDoor: TariffObject[], deliveryToPoint: TariffObject[] }.
- *
- * Поле `tariffs` оставлено для обратной совместимости с устаревшей формой ответа
- * (которая использовалась в Medusa-плагине-источнике); фактический API возвращает
- * именно `deliveryToDoor` + `deliveryToPoint`.
+ * Группа тарифов одного провайдера — реальная форма ответа ApiShip /v1/calculator.
+ * Поле `providerKey` идёт здесь, а не в каждом тарифе.
  */
-export interface CalculatorResponse {
-  deliveryToDoor?: TariffObject[];
-  deliveryToPoint?: TariffObject[];
+export interface TariffGroup {
+  providerKey?: string;
   tariffs?: TariffObject[];
 }
 
-/** Собрать все тарифы из ответа в один массив с проставленным deliveryType. */
+/**
+ * Реальный ответ ApiShip /v1/calculator (по факту PROD API 2026-05).
+ *
+ * Фактическая структура:
+ *   { deliveryToDoor: TariffGroup[], deliveryToPoint: TariffGroup[] }
+ * где каждая группа = { providerKey, tariffs: TariffObject[] }.
+ *
+ * Для обратной совместимости с flat-формой (Medusa-плагин-источник) поля
+ * typed как `(TariffGroup | TariffObject)[]`; `flattenCalculatorTariffs`
+ * корректно обрабатывает обе формы.
+ */
+export interface CalculatorResponse {
+  deliveryToDoor?: Array<TariffGroup | TariffObject>;
+  deliveryToPoint?: Array<TariffGroup | TariffObject>;
+  tariffs?: TariffObject[];
+}
+
+/**
+ * Собрать все тарифы из ответа в один массив с проставленными deliveryType и providerKey.
+ *
+ * Поддерживает обе формы ответа:
+ *  - Grouped: deliveryToPoint[i] = { providerKey, tariffs: [...] }
+ *  - Flat:    deliveryToPoint[i] = TariffObject (устаревшая форма)
+ */
 export function flattenCalculatorTariffs(resp: CalculatorResponse | null | undefined): TariffObject[] {
   if (!resp) return [];
   const result: TariffObject[] = [];
-  for (const t of resp.deliveryToDoor ?? []) {
-    result.push({ ...t, deliveryType: t.deliveryType ?? 1 });
+
+  function pushGroup(items: Array<TariffGroup | TariffObject>, defaultDeliveryType: 1 | 2) {
+    for (const item of items) {
+      // Grouped form: has "tariffs" array
+      if ("tariffs" in item && Array.isArray((item as TariffGroup).tariffs)) {
+        const group = item as TariffGroup;
+        for (const t of group.tariffs!) {
+          // ApiShip returns pickupTypes/deliveryTypes as arrays; extract first element.
+          const raw = t as unknown as Record<string, unknown>;
+          const pickupType = t.pickupType
+            ?? (Array.isArray(raw.pickupTypes) ? (raw.pickupTypes[0] as number) : undefined);
+          const deliveryType = t.deliveryType
+            ?? (Array.isArray(raw.deliveryTypes) ? (raw.deliveryTypes[0] as number) : undefined)
+            ?? defaultDeliveryType;
+          result.push({
+            ...t,
+            providerKey: t.providerKey ?? group.providerKey,
+            pickupType,
+            deliveryType,
+          });
+        }
+      } else {
+        // Flat form: item is already a TariffObject
+        const t = item as TariffObject;
+        const raw = t as unknown as Record<string, unknown>;
+        const pickupType = t.pickupType
+          ?? (Array.isArray(raw.pickupTypes) ? (raw.pickupTypes[0] as number) : undefined);
+        const deliveryType = t.deliveryType
+          ?? (Array.isArray(raw.deliveryTypes) ? (raw.deliveryTypes[0] as number) : undefined)
+          ?? defaultDeliveryType;
+        result.push({ ...t, pickupType, deliveryType });
+      }
+    }
   }
-  for (const t of resp.deliveryToPoint ?? []) {
-    result.push({ ...t, deliveryType: t.deliveryType ?? 2 });
-  }
+
+  pushGroup(resp.deliveryToDoor ?? [], 1);
+  pushGroup(resp.deliveryToPoint ?? [], 2);
   for (const t of resp.tariffs ?? []) {
     result.push(t);
   }
@@ -267,7 +318,9 @@ export class ListsApi extends HttpClient {
   async getListPoints(req: {
     limit?: number;
     offset?: number;
-    filter?: string;
+    /** Direct query params — ApiShip /v1/lists/points ignores a compound `filter` string.
+     *  Pass providerKey / city etc. as top-level params, not inside filter. */
+    providerKey?: string;
     fields?: string;
   }): Promise<{ data: ListPointsResponse }> {
     const res = await this.http.get<ListPointsResponse>("/lists/points", { params: req });

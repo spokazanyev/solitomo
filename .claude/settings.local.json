@@ -52,7 +52,9 @@
       "WebFetch(domain:yandex.ru)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:business-online.su)",
-      "WebFetch(domain:profitads.ru)"
+      "WebFetch(domain:profitads.ru)",
+      "Bash(ssh pdumarket-prod *)",
+      "Bash(ssh -l root pdumarket-prod *)"
     ]
   }
 }

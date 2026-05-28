@@ -40,11 +40,36 @@ services:
       # 057 US6: programmatic GA4 / Yandex Metrika (загружаются ТОЛЬКО после opt-in).
       NEXT_PUBLIC_GA_MEASUREMENT_ID: ${NEXT_PUBLIC_GA_MEASUREMENT_ID:-}
       NEXT_PUBLIC_YANDEX_METRIKA_ID: ${NEXT_PUBLIC_YANDEX_METRIKA_ID:-}
+      # 058 v1: env-маркер для FR-271 (исключение dev/staging трафика из prod-стат)
+      NEXT_PUBLIC_DEPLOYMENT_ENV: production
+      # 058 v1: server-side hits (FR-040) + offline-conversions (FR-033/034).
+      # YM_COUNTER_ID — обязателен для /api/analytics/server-hit endpoint.
+      # YM_AGENT_TOKEN — нужен для offline-conversion в Yandex.Metrika Offline API
+      # (без него server-hit будет работать, но offline-conversion вернёт skipped).
+      YM_COUNTER_ID: ${YM_COUNTER_ID:-}
+      YM_AGENT_TOKEN: ${YM_AGENT_TOKEN:-}
       # 057 follow-up: DaData suggest API (FIO + email autocomplete + address).
       # Free tier 10 000 req/day on suggest, ample for checkout traffic.
       # Empty value → form falls back to plain text input (graceful degradation).
       DADATA_API_KEY: ${DADATA_API_KEY:-}
       DADATA_SECRET: ${DADATA_SECRET:-}
+      # 047: Яндекс.Карты v3 — публичный ключ клиентской карты ПВЗ в checkout.
+      # NEXT_PUBLIC_ vars are baked into the browser bundle at build time.
+      NEXT_PUBLIC_YANDEX_MAPS_API_KEY: ${NEXT_PUBLIC_YANDEX_MAPS_API_KEY:-}
+      # 049 email-уведомления (Unisender Go). Без проброса этих переменных
+      # buildEmailSender вернёт null → письма не отправляются.
+      EMAIL_PROVIDER: ${EMAIL_PROVIDER:-}
+      EMAIL_API_KEY: ${EMAIL_API_KEY:-}
+      EMAIL_FROM: ${EMAIL_FROM:-}
+      EMAIL_REPLY_TO: ${EMAIL_REPLY_TO:-}
+      EMAIL_SANDBOX: ${EMAIL_SANDBOX:-}
+      EMAIL_MAILGUN_DOMAIN: ${EMAIL_MAILGUN_DOMAIN:-}
+      UNISENDER_GO_BASE_URL: ${UNISENDER_GO_BASE_URL:-}
+      # 049 активация модуля + менеджерские получатели (env-override Payload Global).
+      NOTIFICATIONS_ENABLED: ${NOTIFICATIONS_ENABLED:-}
+      NOTIFICATION_MANAGER_EMAILS: ${NOTIFICATION_MANAGER_EMAILS:-}
+      # Cron-аутентификация для /api/cron/* (systemd-timer дёргает с Bearer).
+      CRON_SECRET: ${CRON_SECRET:-}
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"

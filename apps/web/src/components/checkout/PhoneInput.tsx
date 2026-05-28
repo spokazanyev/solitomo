@@ -101,6 +101,7 @@ export function PhoneInput({
             value={value}
             required={required}
             placeholder="+7 (___) ___-__-__"
+            data-yandex-metrika-mask="true"
             onChange={(e) => handleChange(e.target.value)}
             onBlur={() => setTouched(true)}
           />
@@ -115,6 +116,7 @@ export function PhoneInput({
           value={value}
           required={required}
           placeholder="+7 (___) ___-__-__"
+          data-yandex-metrika-mask="true"
           onChange={(e) => handleChange(e.target.value)}
           onBlur={() => setTouched(true)}
         />

@@ -142,12 +142,28 @@ export const Orders = {
             { label: adminLabel("СДЭК", "CDEK"), value: "cdek" },
             { label: adminLabel("Boxberry", "Boxberry"), value: "boxberry" },
             { label: adminLabel("Почта России", "Russian Post"), value: "russian-post" },
-            { label: adminLabel("Транспортной компанией (по запросу)", "Logistics (by request)"), value: "tc" },
+            { label: adminLabel("Транспортной компанией покупателя", "Own carrier"), value: "own_carrier" },
+            { label: adminLabel("Транспортной компанией (legacy)", "Logistics (legacy)"), value: "tc" },
           ],
         },
         { name: "address", type: "textarea", label: adminLabel("Адрес доставки", "Delivery address") },
         { name: "city", type: "text", label: adminLabel("Город", "City") },
         { name: "cost", type: "number", label: adminLabel("Стоимость доставки, ₽", "Delivery cost, ₽") },
+        {
+          name: "handoverNote",
+          type: "textarea",
+          label: adminLabel("Примечание к отгрузке", "Handover note"),
+          admin: {
+            description: adminLabel(
+              "Для самовывоза — контактное лицо получателя. Для отправки ТК покупателя — реквизиты ТК и договора. До 1000 символов. Поле остаётся редактируемым после оплаты.",
+              "For pickup — receiver contact. For own carrier — carrier name, contract, contact. Up to 1000 chars. Stays editable after paid.",
+            ),
+          },
+          validate: (val) =>
+            val == null ||
+            (typeof val === "string" && val.length <= 1000) ||
+            "Maximum 1000 characters",
+        },
         { name: "trackNumber", type: "text", label: adminLabel("Трек-номер", "Track number") },
         { name: "shippedAt", type: "date", label: adminLabel("Отправлен", "Shipped at") },
         // 047: ApiShip integration
@@ -657,6 +673,97 @@ export const Orders = {
         { name: "skipReason", type: "text" },
       ],
     },
+    // 058 T006: attribution + cohort + server-hit status
+    {
+      type: "group",
+      name: "attributionFirstTouch",
+      label: { ru: "Атрибуция: первое касание", en: "Attribution: first touch" },
+      admin: {
+        description: {
+          ru: "FR-032: копируется из Cart.attributionFirstTouch при конверсии. Не редактируется.",
+          en: "FR-032: copied from Cart.attributionFirstTouch on conversion.",
+        },
+      },
+      fields: [
+        { name: "utmSource", type: "text" },
+        { name: "utmMedium", type: "text" },
+        { name: "utmCampaign", type: "text" },
+        { name: "utmContent", type: "text" },
+        { name: "utmTerm", type: "text" },
+        { name: "yclid", type: "text" },
+        { name: "gclid", type: "text" },
+        { name: "openstat", type: "text" },
+        { name: "from", type: "text" },
+        { name: "refererHost", type: "text" },
+        { name: "acquisitionChannel", type: "text" },
+        { name: "acquisitionQuery", type: "text", maxLength: 200 },
+        { name: "capturedAt", type: "date" },
+      ],
+    },
+    {
+      name: "ymClientId",
+      type: "text",
+      label: { ru: "Yandex.Metrika _ym_uid", en: "Yandex.Metrika _ym_uid" },
+    },
+    {
+      name: "firstSeenAt",
+      type: "date",
+      label: { ru: "Первое касание (cookie)", en: "First seen (cookie)" },
+    },
+    {
+      name: "timeToPurchaseDays",
+      type: "number",
+      label: { ru: "Дней от первого визита до оплаты", en: "Days from first visit to purchase" },
+      admin: { description: { ru: "FR-182: cohort B2B-цикла.", en: "FR-182: cohort metric." } },
+    },
+    {
+      name: "visitCountToPurchase",
+      type: "number",
+      label: { ru: "Визитов до конверсии", en: "Visits to conversion" },
+    },
+    {
+      name: "userTypeAtConversion",
+      type: "select",
+      options: [
+        { label: "anonymous", value: "anonymous" },
+        { label: "customer", value: "customer" },
+        { label: "legal_entity", value: "legal_entity" },
+      ],
+    },
+    {
+      type: "group",
+      name: "serverHitStatus",
+      label: { ru: "Серверные analytics-хиты", en: "Server analytics hits" },
+      admin: { description: { ru: "FR-040 + FR-033/034 audit", en: "FR-040 + FR-033/034 audit" } },
+      fields: [
+        { name: "purchaseHitSentAt", type: "date" },
+        {
+          name: "purchaseHitStatus",
+          type: "select",
+          options: [
+            { label: "pending", value: "pending" },
+            { label: "sent", value: "sent" },
+            { label: "failed", value: "failed" },
+            { label: "skipped_no_consent", value: "skipped_no_consent" },
+            { label: "skipped_kill_switch", value: "skipped_kill_switch" },
+          ],
+        },
+        { name: "purchaseHitError", type: "text" },
+        { name: "offlineConversionSentAt", type: "date" },
+        {
+          name: "offlineConversionStatus",
+          type: "select",
+          options: [
+            { label: "pending", value: "pending" },
+            { label: "sent", value: "sent" },
+            { label: "failed", value: "failed" },
+            { label: "skipped_no_yclid", value: "skipped_no_yclid" },
+            { label: "skipped_no_consent", value: "skipped_no_consent" },
+          ],
+        },
+        { name: "offlineConversionError", type: "text" },
+      ],
+    },
   ],
   hooks: {
     beforeChange: [
@@ -671,6 +778,41 @@ export const Orders = {
           // 16 bytes → 22-char URL-safe base64 (~128 bits of entropy).
           // Replaces the prior Math.random+Date.now combo which was guessable.
           data.publicToken = randomBytes(16).toString("base64url");
+        }
+
+        // 058 T039: copy attribution + cohort data from related Cart on create (FR-032)
+        if (operation === "create" && data.cart && !data.attributionFirstTouch) {
+          try {
+            const cartId = typeof data.cart === "object" ? data.cart.id : data.cart;
+            if (cartId) {
+              const cart = await req.payload.findByID({ collection: "carts", id: cartId, depth: 0 });
+              if (cart) {
+                if (cart.attributionFirstTouch) data.attributionFirstTouch = cart.attributionFirstTouch;
+                if (cart.ymClientId) data.ymClientId = cart.ymClientId;
+                if (cart.firstSeenAt) data.firstSeenAt = cart.firstSeenAt;
+                if (cart.userTypeAtCreation) data.userTypeAtConversion = cart.userTypeAtCreation;
+              }
+            }
+          } catch (err) {
+            req.payload.logger?.warn?.("[orders] failed to copy analytics attribution from cart:", err);
+          }
+        }
+
+        // 058 T071: compute time_to_purchase_days when transitioning to paid (FR-182)
+        if (operation === "update" && data.status === "paid" && originalDoc?.status !== "paid") {
+          const paidAt = new Date();
+          const firstSeen = data.firstSeenAt || originalDoc?.firstSeenAt;
+          if (firstSeen && !data.timeToPurchaseDays) {
+            try {
+              const firstSeenMs = new Date(firstSeen).getTime();
+              if (Number.isFinite(firstSeenMs)) {
+                const days = Math.floor((paidAt.getTime() - firstSeenMs) / 86_400_000);
+                if (days >= 0 && days < 366 * 5) data.timeToPurchaseDays = days;
+              }
+            } catch {
+              // ignore
+            }
+          }
         }
 
         // 051: Generate clientNumber on create (if not already set)
@@ -760,16 +902,141 @@ export const Orders = {
             },
           ];
         }
+
+        // 062 T020: audit-log delivery.handoverNote edits (FR-062 audit trail)
+        if (operation === "update" && originalDoc) {
+          const prevNote = originalDoc?.delivery?.handoverNote;
+          const nextNote = data?.delivery?.handoverNote;
+          if (prevNote !== nextNote) {
+            const prevHistory = Array.isArray(data.history)
+              ? data.history
+              : Array.isArray(originalDoc?.history)
+                ? [...originalDoc.history]
+                : [];
+            data.history = [
+              ...prevHistory,
+              {
+                at: new Date().toISOString(),
+                status: "delivery_note_updated",
+                actorEmail: req?.user?.email || "system",
+                reason: "manual edit",
+              },
+            ];
+          }
+        }
         return data;
       },
     ],
     afterChange: [
       async ({ doc, previousDoc, operation, req }) => {
+        // 058 T040: trigger server-side hit + offline-conversion when transitioning to paid
+        try {
+          const transitionedToPaid =
+            operation === "update" && doc.status === "paid" && previousDoc?.status !== "paid";
+          if (
+            transitionedToPaid &&
+            doc.serverHitStatus?.purchaseHitStatus !== "sent" &&
+            !req.context?.skipAnalyticsServerHit
+          ) {
+            // Consent check — Order should have been created с consent=accepted (FR-043).
+            // We assume yes; if consent.acceptedAt absent, treat as no-consent.
+            const consentGiven = Boolean(doc.consent?.acceptedAt);
+            const totalRub = doc.totals?.total ?? doc.totals?.subtotal ?? 0;
+            const pageUrl = `${process.env.NEXT_PUBLIC_BASE_URL ?? ""}/payment/return/${doc.id}`;
+
+            // Fire-and-forget (FR-044) — don't await; не блокируем main flow
+            void (async () => {
+              try {
+                const requestBody = {
+                  hit_type: "purchase",
+                  transaction_id: doc.clientNumber ?? String(doc.id),
+                  value: totalRub,
+                  currency: "RUB",
+                  page_url: pageUrl,
+                  consent_was_given: consentGiven,
+                  paid_at: new Date().toISOString(),
+                  ...(doc.ymClientId ? { ym_client_id: doc.ymClientId } : {}),
+                  ...(doc.attributionFirstTouch?.yclid
+                    ? { yclid: doc.attributionFirstTouch.yclid }
+                    : {}),
+                  goal_id: "purchase",
+                };
+
+                const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000";
+                const response = await fetch(`${baseUrl}/api/analytics/server-hit`, {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(requestBody),
+                });
+
+                if (response.ok) {
+                  const result = await response.json();
+                  await req.payload.update({
+                    collection: "orders",
+                    id: doc.id,
+                    data: {
+                      serverHitStatus: {
+                        ...doc.serverHitStatus,
+                        purchaseHitSentAt: new Date().toISOString(),
+                        purchaseHitStatus: result.purchase?.status ?? "sent",
+                        ...(result.purchase?.error
+                          ? { purchaseHitError: result.purchase.error }
+                          : {}),
+                        ...(result.offline
+                          ? {
+                              offlineConversionSentAt: new Date().toISOString(),
+                              offlineConversionStatus: result.offline.status,
+                              ...(result.offline.error
+                                ? { offlineConversionError: result.offline.error }
+                                : {}),
+                            }
+                          : {}),
+                      },
+                    },
+                    context: { skipAnalyticsServerHit: true },
+                  });
+                }
+              } catch (err) {
+                req.payload.logger?.warn?.(
+                  `[orders] server-hit fire-and-forget failed: ${err?.message ?? err}`,
+                );
+              }
+            })();
+          }
+        } catch (err) {
+          // Hook не должен ломать main flow Order update
+          req.payload.logger?.warn?.("[orders] analytics afterChange wrapper failed:", err);
+        }
+
         try {
           if (operation === "create") {
             req.payload.logger.info(
               `[orders] new ${doc.type} order ${doc.id} for ${doc.customerLabel ?? "—"}`,
             );
+
+            // 062 follow-up: эмитим order.invoice_issued при создании legal-заказа,
+            // чтобы 049-подписчик поставил в очередь T-002 (счёт клиенту) + T-102
+            // (менеджеру). Раньше это событие нигде не эмитилось → юр-заказы не
+            // слали писем. Lazy-import (как 051 hooks). Fire-and-forget с catch:
+            // сбой уведомления не должен ломать создание заказа.
+            if (doc.type === "legal" && doc.status === "awaiting_payment") {
+              try {
+                const { emitDomainEvent } = await import("../lib/lifecycle/events");
+                const { buildOrderSnapshot } = await import("../lib/lifecycle/order-snapshot");
+                await emitDomainEvent({
+                  kind: "order.invoice_issued",
+                  order: buildOrderSnapshot(doc),
+                  context: { statusTo: "awaiting_payment" },
+                });
+                req.payload.logger.info(
+                  `[orders] emitted order.invoice_issued for ${doc.id}`,
+                );
+              } catch (emitErr) {
+                req.payload.logger.error(
+                  `[orders] emit order.invoice_issued failed: ${emitErr?.message ?? emitErr}`,
+                );
+              }
+            }
 
             // 054 FR-5421 + H6 fix: backfill customerId on guest-order create
             // when an existing Customer has the same email — but ONLY if the
@@ -829,6 +1096,33 @@ export const Orders = {
             req.payload.logger.info(
               `[orders] ${doc.id} status ${previousDoc.status} → ${doc.status}`,
             );
+
+            // 062 follow-up: для legal-заказов (оплата по счёту) order.paid НЕ
+            // эмитится ЮKassa-webhook'ом (тот только для физ-карт). Менеджер
+            // вручную ставит paid в админке после поступления оплаты по счёту —
+            // здесь эмитим order.paid, чтобы 049-подписчик отправил T-001
+            // (клиенту) + T-101 (менеджеру). Без этого legal-заказ не получал
+            // письма об оплате. Lazy-import + fire-and-forget с catch.
+            if (
+              doc.type === "legal" &&
+              doc.status === "paid" &&
+              previousDoc.status !== "paid"
+            ) {
+              try {
+                const { emitDomainEvent } = await import("../lib/lifecycle/events");
+                const { buildOrderSnapshot } = await import("../lib/lifecycle/order-snapshot");
+                await emitDomainEvent({
+                  kind: "order.paid",
+                  order: buildOrderSnapshot(doc),
+                  context: { statusFrom: previousDoc.status, statusTo: "paid" },
+                });
+                req.payload.logger.info(`[orders] emitted order.paid for legal ${doc.id}`);
+              } catch (emitErr) {
+                req.payload.logger.error(
+                  `[orders] emit order.paid (legal) failed: ${emitErr?.message ?? emitErr}`,
+                );
+              }
+            }
           }
         } catch (error) {
           req.payload.logger.error("[orders] afterChange notify failed:", error);

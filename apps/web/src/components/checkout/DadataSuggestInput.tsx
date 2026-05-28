@@ -139,6 +139,7 @@ export function DadataSuggestInput(props: Props) {
             required={required}
             placeholder={placeholder}
             autoComplete={autoComplete}
+            data-yandex-metrika-mask="true"
             onChange={(e) => {
               onChange(e.target.value);
               setOpen(true);
@@ -167,6 +168,7 @@ export function DadataSuggestInput(props: Props) {
           required={required}
           placeholder={placeholder}
           autoComplete={autoComplete}
+          data-yandex-metrika-mask="true"
           onChange={(e) => {
             onChange(e.target.value);
             setOpen(true);

@@ -1,0 +1,119 @@
+import { getPayload } from "payload";
+
+/**
+ * Seed script for «Сертификаты Солитон» — 2 документа:
+ *   1. Сертификат соответствия ЕАЭС KG417/039.RU.02.05188 (ТР ТС 004/2011 + 020/2011)
+ *   2. Декларация о соответствии ЕАЭС N RU Д-RU.PA06.B.59175/25 (ТР ЕАЭС 037/2016 / RoHS)
+ *
+ * Оба покрывают сетевые розетки модульного типа S, SP, SPF, Amp, S-УЗО,
+ * S-IEC320C13, S-IEC320C19, S-XC13+XC19, S-XC13+XC19 M&C — это вся линейка
+ * S-* в нашем каталоге. Файлы лежат в apps/web/public/documents/certificates/.
+ *
+ * Запуск:
+ *   pnpm seed:soliton-certs
+ *
+ * Idempotent: документ ищется по title; если найден — обновляются поля
+ * externalUrl/documentType/etc, привязка к продуктам пересобирается.
+ *
+ * На странице /documents/certificates/ документы попадают через
+ * `getDocumentRegistry()` (apps/web/src/components/page-templates.tsx) —
+ * он собирает product.documents для опубликованных товаров.
+ */
+
+const CERTIFICATES = [
+  {
+    title:
+      "Сертификат соответствия ЕАЭС KG417/039.RU.02.05188 — сетевые розетки",
+    documentType: "certificate",
+    externalUrl:
+      "/documents/certificates/sertifikat-sootvetstviya-EAEC-KG417-039-RU-02-05188.jpg",
+    versionLabel: "31.07.2025 — 30.07.2030",
+    proofRole:
+      "Соответствие ТР ТС 004/2011 «О безопасности низковольтного оборудования» и ТР ТС 020/2011 «Электромагнитная совместимость технических средств». Серийный выпуск, выдан 28.07.2025 ООО «Промышленная Безопасность».",
+    downloadCtaLabel: "Скачать сертификат",
+  },
+  {
+    title:
+      "Декларация о соответствии ЕАЭС N RU Д-RU.PA06.B.59175/25 — сетевые розетки",
+    documentType: "declaration",
+    externalUrl:
+      "/documents/certificates/deklaraciya-sootvetstviya-EAEC-RU-D-RU-PA06-B-59175-25.jpg",
+    versionLabel: "31.07.2025 — 30.07.2030",
+    proofRole:
+      "Соответствие ТР ЕАЭС 037/2016 «Об ограничении применения опасных веществ в изделиях электротехники и радиоэлектроники» (RoHS). Зарегистрирована 31.07.2025.",
+    downloadCtaLabel: "Скачать декларацию",
+  },
+];
+
+export async function script(config) {
+  const payload = await getPayload({ config });
+  payload.logger.info("Seeding soliton certificates");
+
+  // Шаг 1: upsert каждого документа (без products — обратная связь не используется
+  // на странице /documents/certificates/, она читает через product.documents).
+  const certIds = [];
+  for (const cert of CERTIFICATES) {
+    const existing = await payload.find({
+      collection: "documents",
+      where: { title: { equals: cert.title } },
+      depth: 0,
+      limit: 1,
+    });
+
+    const fields = {
+      title: cert.title,
+      status: "published",
+      documentType: cert.documentType,
+      externalUrl: cert.externalUrl,
+      versionLabel: cert.versionLabel,
+      proofRole: cert.proofRole,
+      downloadCtaLabel: cert.downloadCtaLabel,
+    };
+
+    if (existing.docs.length > 0) {
+      const id = existing.docs[0].id;
+      await payload.update({ collection: "documents", id, data: fields });
+      certIds.push(id);
+      payload.logger.info(`UPDATED: ${cert.title} (id=${id})`);
+    } else {
+      const created = await payload.create({ collection: "documents", data: fields });
+      certIds.push(created.id);
+      payload.logger.info(`CREATED: ${cert.title} (id=${created.id})`);
+    }
+  }
+
+  // Шаг 2: обновить каждый опубликованный продукт — добавить наши certIds
+  // в его поле `documents` (если ещё не там). Это создаёт записи в products_rels
+  // с documents_id — именно их читает loadCatalog с depth:1.
+  const productsResult = await payload.find({
+    collection: "products",
+    where: { status: { equals: "published" } },
+    depth: 0,
+    limit: 500,
+    pagination: false,
+  });
+  payload.logger.info(
+    `Attaching ${certIds.length} certs to ${productsResult.docs.length} published products`,
+  );
+
+  let updated = 0;
+  for (const product of productsResult.docs) {
+    // Существующие связи — это массив либо id, либо objects (depth=0 → id).
+    const current = Array.isArray(product.documents) ? product.documents : [];
+    const currentIds = current.map((v) => (typeof v === "object" ? v.id : v));
+    const merged = Array.from(new Set([...currentIds, ...certIds]));
+
+    // Если все certIds уже в массиве — не трогаем (idempotent + меньше нагрузка).
+    if (merged.length === currentIds.length) continue;
+
+    await payload.update({
+      collection: "products",
+      id: product.id,
+      data: { documents: merged },
+    });
+    updated++;
+  }
+  payload.logger.info(`Linked certs to ${updated} products`);
+
+  payload.logger.info("Seed complete");
+}

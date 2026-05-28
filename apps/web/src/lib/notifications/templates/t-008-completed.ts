@@ -58,5 +58,6 @@ export function renderT008Completed(payload: NotificationJobPayload): RenderedMe
       preheader: `Оцените заказ ${order.id}`,
       unsubscribeUrl: unsubscribe || undefined,
     }),
+    listUnsubscribeUrl: unsubscribe || undefined,
   };
 }

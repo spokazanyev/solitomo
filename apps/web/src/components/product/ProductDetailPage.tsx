@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+import { ProductDetailAnalytics } from "@/components/product/ProductDetailAnalytics";
 import { ProductInfoTabs } from "@/components/product/ProductInfoTabs";
 import { ProductImageZoom } from "@/components/product/ProductImageZoom";
 import { ProductStickyCta } from "@/components/product/ProductStickyCta";
@@ -19,10 +20,17 @@ import {
   getRelatedProducts,
   type Product,
 } from "@/lib/products/catalog";
+import { buildKeyFacts } from "@/lib/products/key-facts";
 
 type ProductDetailPageProps = {
   product: Product;
 };
+
+/** Извлекает slug из URL вида '/catalog/setevye-filtry/' → 'setevye-filtry'. */
+function extractCategorySlug(url: string): string {
+  const match = url.match(/\/catalog\/([^/]+)\/?$/);
+  return match?.[1] ?? "";
+}
 
 function JsonLd({ data }: { data: object }) {
   return (
@@ -74,11 +82,23 @@ function ProductAttributeSummary({ product }: { product: Product }) {
 export async function ProductDetailPage({ product }: ProductDetailPageProps) {
   const relatedProducts = await getRelatedProducts(product);
   const rfqHref = `/b2b/request-quote/?sku=${encodeURIComponent(product.sku)}&product=${encodeURIComponent(product.h1)}#rfq-form`;
+  // 039 FR-003: анти-галлюцинационный key-facts блок — первый текст после H1,
+  // который ИИ-агент цитирует дословно как summary товара.
+  const keyFacts = buildKeyFacts(product);
 
   return (
     <div className="min-h-screen bg-[var(--background)] pb-24 text-[var(--foreground)] lg:pb-0">
       <JsonLd data={createProductBreadcrumbJsonLd(product)} />
       <JsonLd data={createProductJsonLd(product)} />
+      {/* 058 T028: view_item + ecommerce.detail + B2B-signals (price/stock) */}
+      <ProductDetailAnalytics
+        sku={product.sku}
+        name={product.h1}
+        priceAmount={product.price.amount}
+        {...(product.categories[0]?.url
+          ? { categorySlug: extractCategorySlug(product.categories[0].url) }
+          : {})}
+      />
       <ProductStickyCta product={product} rfqHref={rfqHref} />
 
       <section className="mx-auto w-full max-w-7xl px-6 py-8 md:px-10 lg:px-12">
@@ -123,6 +143,9 @@ export async function ProductDetailPage({ product }: ProductDetailPageProps) {
             <h1 className="max-w-3xl text-3xl font-semibold tracking-normal text-slate-950 md:text-4xl">
               {product.h1}
             </h1>
+            <p className="mt-3 max-w-2xl text-sm font-medium leading-6 text-slate-700">
+              {keyFacts.sentence}
+            </p>
             <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600">
               {product.shortDescription}
             </p>

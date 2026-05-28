@@ -1,10 +1,11 @@
 import type { NotificationJobPayload, RenderedMessage } from "../types";
-import { customerName, escapeHtml, orderPageUrl, renderHtmlShell, styles } from "./helpers";
+import { customerName, escapeHtml, orderPageUrl, preferencesPageUrl, renderHtmlShell, styles } from "./helpers";
 
 export function renderT005Delivered(payload: NotificationJobPayload): RenderedMessage {
   const order = payload.order;
   const name = customerName(order);
   const url = orderPageUrl(order);
+  const unsubscribe = preferencesPageUrl(order);
   const subject = `Заказ ${order.id} доставлен`;
 
   const text = [
@@ -36,6 +37,10 @@ export function renderT005Delivered(payload: NotificationJobPayload): RenderedMe
   return {
     subject,
     text,
-    html: renderHtmlShell(bodyHtml, { preheader: "Заказ доставлен" }),
+    html: renderHtmlShell(bodyHtml, {
+      preheader: "Заказ доставлен",
+      unsubscribeUrl: unsubscribe || undefined,
+    }),
+    listUnsubscribeUrl: unsubscribe || undefined,
   };
 }

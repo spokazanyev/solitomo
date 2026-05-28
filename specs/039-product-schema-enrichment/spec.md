@@ -4,7 +4,7 @@
 
 **Created**: 2026-05-17
 
-**Status**: Deferred (отложено до приоритизации — см. `07-build-specifications/deferred-content-track.md`)
+**Status**: ✅ Done (2026-05-26 — реализовано на ветке `039-product-schema-enrichment`). `additionalProperty[]` + key-facts блок + `countryOfOrigin` + единицы UN/CEFACT + Organization `@id` на проде. См. `06-reports/seo/seo-aeo-audit-2026-05.md`.
 
 **Input**: Текущий `Product` JSON-LD на PDP содержит только `name`, `sku`, `description`, `image`, `offers`. AI-агенты подбирают товары по техническим характеристикам — у нас они есть в HTML-таблице, но **не в schema**. Нужно:
 1. Сделать `additionalProperty[]` со всей техспекой.

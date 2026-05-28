@@ -54,6 +54,50 @@ export const ApiShipSettings: GlobalConfig = {
         label: adminLabel("Использовать наложенный платёж", "Use COD") },
     ]},
 
+    {
+      name: "senderPickupType",
+      type: "radio",
+      defaultValue: "dropoff",
+      label: adminLabel("Схема отправки (откуда забирает СДЭК)", "Pickup scheme"),
+      options: [
+        {
+          label: adminLabel(
+            "Курьер СДЭК приезжает к нам (тарифы «дверь→»)",
+            "CDEK courier picks up from us (door→ tariffs)",
+          ),
+          value: "courier",
+        },
+        {
+          label: adminLabel(
+            "Мы привозим сами в офис СДЭК (тарифы «склад→»)",
+            "We drop off at CDEK office (warehouse→ tariffs)",
+          ),
+          value: "dropoff",
+        },
+      ],
+      admin: {
+        description: adminLabel(
+          "«Курьер» — СДЭК приедет к вам; обычно дороже. «Сами» — вы везёте в офис/склад СДЭК; дешевле.",
+          "Courier = CDEK comes to you (more expensive). Dropoff = you bring to CDEK office (cheaper).",
+        ),
+      },
+    },
+    {
+      name: "senderDropoffAddress",
+      type: "textarea",
+      label: adminLabel(
+        "Адрес офиса СДЭК для сдачи (памятка)",
+        "Nearest CDEK drop-off office (memo)",
+      ),
+      admin: {
+        condition: (data: Record<string, unknown>) => data.senderPickupType === "dropoff",
+        description: adminLabel(
+          "Только для вашего удобства — напоминание, куда везти посылки. На тарифы не влияет.",
+          "Memo only — where to bring packages. Does not affect tariff calculation.",
+        ),
+      },
+    },
+
     { name: "disabledProviders", type: "array",
       label: adminLabel("Отключённые провайдеры", "Disabled providers"),
       fields: [{ name: "providerKey", type: "text" }] },
