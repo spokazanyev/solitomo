@@ -1017,25 +1017,34 @@ export const Orders = {
             // 062 follow-up: эмитим order.invoice_issued при создании legal-заказа,
             // чтобы 049-подписчик поставил в очередь T-002 (счёт клиенту) + T-102
             // (менеджеру). Раньше это событие нигде не эмитилось → юр-заказы не
-            // слали писем. Lazy-import (как 051 hooks). Fire-and-forget с catch:
-            // сбой уведомления не должен ломать создание заказа.
+            // слали писем.
+            //
+            // ВАЖНО: emit отложен через setImmediate ПОСЛЕ коммита транзакции
+            // создания Order. Если эмитить синхронно здесь, вложенный
+            // payload.create(notification-jobs) идёт через отдельное соединение и
+            // не видит ещё-не-закоммиченный Order → FK violation
+            // (notification_jobs_order_id_id_orders_id_fk). После коммита заказ
+            // виден, FK проходит. Семантически верно: уведомление — side-effect,
+            // его сбой не должен откатывать создание заказа.
             if (doc.type === "legal" && doc.status === "awaiting_payment") {
-              try {
-                const { emitDomainEvent } = await import("../lib/lifecycle/events");
-                const { buildOrderSnapshot } = await import("../lib/lifecycle/order-snapshot");
-                await emitDomainEvent({
-                  kind: "order.invoice_issued",
-                  order: buildOrderSnapshot(doc),
-                  context: { statusTo: "awaiting_payment" },
-                });
-                req.payload.logger.info(
-                  `[orders] emitted order.invoice_issued for ${doc.id}`,
-                );
-              } catch (emitErr) {
-                req.payload.logger.error(
-                  `[orders] emit order.invoice_issued failed: ${emitErr?.message ?? emitErr}`,
-                );
-              }
+              const logger = req.payload.logger;
+              const snapshotDoc = doc;
+              setImmediate(async () => {
+                try {
+                  const { emitDomainEvent } = await import("../lib/lifecycle/events");
+                  const { buildOrderSnapshot } = await import("../lib/lifecycle/order-snapshot");
+                  await emitDomainEvent({
+                    kind: "order.invoice_issued",
+                    order: buildOrderSnapshot(snapshotDoc),
+                    context: { statusTo: "awaiting_payment" },
+                  });
+                  logger.info(`[orders] emitted order.invoice_issued for ${snapshotDoc.id}`);
+                } catch (emitErr) {
+                  logger.error(
+                    `[orders] emit order.invoice_issued failed: ${emitErr?.message ?? emitErr}`,
+                  );
+                }
+              });
             }
 
             // 054 FR-5421 + H6 fix: backfill customerId on guest-order create
@@ -1108,20 +1117,27 @@ export const Orders = {
               doc.status === "paid" &&
               previousDoc.status !== "paid"
             ) {
-              try {
-                const { emitDomainEvent } = await import("../lib/lifecycle/events");
-                const { buildOrderSnapshot } = await import("../lib/lifecycle/order-snapshot");
-                await emitDomainEvent({
-                  kind: "order.paid",
-                  order: buildOrderSnapshot(doc),
-                  context: { statusFrom: previousDoc.status, statusTo: "paid" },
-                });
-                req.payload.logger.info(`[orders] emitted order.paid for legal ${doc.id}`);
-              } catch (emitErr) {
-                req.payload.logger.error(
-                  `[orders] emit order.paid (legal) failed: ${emitErr?.message ?? emitErr}`,
-                );
-              }
+              // setImmediate — emit после коммита транзакции update (см. подробный
+              // комментарий выше про FK notification_jobs → orders).
+              const logger = req.payload.logger;
+              const snapshotDoc = doc;
+              const fromStatus = previousDoc.status;
+              setImmediate(async () => {
+                try {
+                  const { emitDomainEvent } = await import("../lib/lifecycle/events");
+                  const { buildOrderSnapshot } = await import("../lib/lifecycle/order-snapshot");
+                  await emitDomainEvent({
+                    kind: "order.paid",
+                    order: buildOrderSnapshot(snapshotDoc),
+                    context: { statusFrom: fromStatus, statusTo: "paid" },
+                  });
+                  logger.info(`[orders] emitted order.paid for legal ${snapshotDoc.id}`);
+                } catch (emitErr) {
+                  logger.error(
+                    `[orders] emit order.paid (legal) failed: ${emitErr?.message ?? emitErr}`,
+                  );
+                }
+              });
             }
           }
         } catch (error) {
