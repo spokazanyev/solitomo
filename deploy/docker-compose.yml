@@ -56,6 +56,20 @@ services:
       # 047: Яндекс.Карты v3 — публичный ключ клиентской карты ПВЗ в checkout.
       # NEXT_PUBLIC_ vars are baked into the browser bundle at build time.
       NEXT_PUBLIC_YANDEX_MAPS_API_KEY: ${NEXT_PUBLIC_YANDEX_MAPS_API_KEY:-}
+      # 049 email-уведомления (Unisender Go). Без проброса этих переменных
+      # buildEmailSender вернёт null → письма не отправляются.
+      EMAIL_PROVIDER: ${EMAIL_PROVIDER:-}
+      EMAIL_API_KEY: ${EMAIL_API_KEY:-}
+      EMAIL_FROM: ${EMAIL_FROM:-}
+      EMAIL_REPLY_TO: ${EMAIL_REPLY_TO:-}
+      EMAIL_SANDBOX: ${EMAIL_SANDBOX:-}
+      EMAIL_MAILGUN_DOMAIN: ${EMAIL_MAILGUN_DOMAIN:-}
+      UNISENDER_GO_BASE_URL: ${UNISENDER_GO_BASE_URL:-}
+      # 049 активация модуля + менеджерские получатели (env-override Payload Global).
+      NOTIFICATIONS_ENABLED: ${NOTIFICATIONS_ENABLED:-}
+      NOTIFICATION_MANAGER_EMAILS: ${NOTIFICATION_MANAGER_EMAILS:-}
+      # Cron-аутентификация для /api/cron/* (systemd-timer дёргает с Bearer).
+      CRON_SECRET: ${CRON_SECRET:-}
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
