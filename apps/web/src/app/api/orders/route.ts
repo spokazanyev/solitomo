@@ -18,6 +18,11 @@ import {
 } from "@/lib/consent/make-consent-record";
 // 056 FR-5609: customer_session-binding for authenticated checkout
 import { loadCustomerFromRequest } from "@/lib/customers/session";
+// 064: канал доставки (closed) vs перевозчик (open) — снятие хардкода 3 служб
+import {
+  normalizeDeliveryChannel,
+  resolveProviderName,
+} from "@/lib/shipping/delivery-channel";
 
 type IncomingItem = {
   sku?: string;
@@ -41,14 +46,17 @@ type IncomingPayload = {
     legalAddress?: string;
   };
   delivery?: {
+    // 064: закрытый канал доставки (pickup | service | own_carrier)
+    channel?: string;
     method?: string;
     address?: string;
     city?: string;
     cost?: number;
     handoverNote?: string;
-    // ApiShip-specific (sent for cdek/boxberry/russian-post)
+    // ApiShip-specific (sent for any service carrier)
     provider?: string;
     providerKey?: string;
+    providerName?: string;
     tariffId?: number;
     deliveryType?: string;
     pickupType?: string;
@@ -132,13 +140,15 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Empty cart" }, { status: 400 });
   }
 
-  // 062 T013: Soft-mapping `tc` → `own_carrier` для legacy-клиентов (transitional).
-  // Удалить через 1-2 месяца после релиза (DEFERRED-062-B).
-  const rawMethod = body.delivery?.method === "tc" ? "own_carrier" : body.delivery?.method;
-  const METHOD_WHITELIST = ["pickup", "cdek", "boxberry", "russian-post", "own_carrier"] as const;
-  const method = METHOD_WHITELIST.includes(rawMethod as never)
-    ? (rawMethod as typeof METHOD_WHITELIST[number])
-    : undefined;
+  // 064: канал доставки — закрытый набор, единственный драйвер поведения.
+  // Снимает хардкод трёх служб: любой перевозчик ApiShip = channel "service".
+  const channel = normalizeDeliveryChannel({
+    channel: body.delivery?.channel,
+    providerKey: body.delivery?.providerKey,
+    tariffId: body.delivery?.tariffId,
+    method: body.delivery?.method,
+  });
+  const isService = channel === "service";
 
   // 062 T014: handoverNote validation (server-side, R7).
   // Required для pickup (≥5 chars) и own_carrier (≥10 chars); ≤1000 chars всегда.
@@ -153,7 +163,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  if (method === "own_carrier") {
+  if (channel === "own_carrier") {
     if (note.length === 0) {
       return NextResponse.json(
         { error: "MISSING_HANDOVER_NOTE", message: "handoverNote required for own_carrier" },
@@ -168,7 +178,7 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  if (method === "pickup") {
+  if (channel === "pickup") {
     if (note.length === 0) {
       return NextResponse.json(
         { error: "MISSING_HANDOVER_NOTE", message: "handoverNote required for pickup" },
@@ -183,9 +193,9 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  // 062 T015: Normalize deliveryCost. Для pickup/own_carrier — всегда 0.
-  const isApiShipMethod = method === "cdek" || method === "boxberry" || method === "russian-post";
-  const deliveryCost = isApiShipMethod
+  // 064 (was 062 T015): стоимость доставки — для любого service-перевозчика
+  // (FR-004, не обнуляется вне прежних трёх). pickup/own_carrier — всегда 0.
+  const deliveryCost = isService
     ? Math.max(0, Number(body.delivery?.cost) || 0)
     : 0;
   const totals = computeTotals(items, deliveryCost);
@@ -285,15 +295,20 @@ export async function POST(request: NextRequest) {
         totals,
         customer: body.customer ?? {},
         delivery: {
-          method,
+          channel,
+          method: channel, // транзитный алиас канала (legacy-читатели)
           address: body.delivery?.address,
           city: body.delivery?.city,
           cost: deliveryCost,
           handoverNote: note.length > 0 ? note : undefined,
-          ...(isApiShipMethod
+          ...(isService
             ? {
                 provider: body.delivery?.providerKey?.startsWith("fallback_") ? "fallback" : "apiship",
                 providerKey: body.delivery?.providerKey,
+                providerName: resolveProviderName(
+                  body.delivery?.providerName,
+                  body.delivery?.providerKey,
+                ),
                 tariffId: body.delivery?.tariffId,
                 deliveryType: body.delivery?.deliveryType,
                 pickupType: body.delivery?.pickupType,

@@ -442,7 +442,8 @@ export interface Order {
     emailValid?: boolean | null;
   };
   delivery?: {
-    method?: ('pickup' | 'cdek' | 'boxberry' | 'russian-post' | 'own_carrier' | 'tc') | null;
+    channel?: ('pickup' | 'service' | 'own_carrier') | null;
+    method?: string | null;
     address?: string | null;
     city?: string | null;
     cost?: number | null;
@@ -454,6 +455,7 @@ export interface Order {
     shippedAt?: string | null;
     provider?: ('apiship' | 'fallback') | null;
     providerKey?: string | null;
+    providerName?: string | null;
     tariffId?: number | null;
     deliveryType?: ('1' | '2') | null;
     pickupType?: ('1' | '2') | null;
@@ -2324,6 +2326,7 @@ export interface OrdersSelect<T extends boolean = true> {
   delivery?:
     | T
     | {
+        channel?: T;
         method?: T;
         address?: T;
         city?: T;
@@ -2333,6 +2336,7 @@ export interface OrdersSelect<T extends boolean = true> {
         shippedAt?: T;
         provider?: T;
         providerKey?: T;
+        providerName?: T;
         tariffId?: T;
         deliveryType?: T;
         pickupType?: T;

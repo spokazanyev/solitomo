@@ -131,7 +131,7 @@ describe("POST /api/orders — handoverNote validation (062 T014)", () => {
     const res = await POST(
       makeRequest(
         makeBody({
-          delivery: { method: "own_carrier", cost: 0 },
+          delivery: { channel: "own_carrier", cost: 0 },
         }),
       ),
     );
@@ -147,7 +147,7 @@ describe("POST /api/orders — handoverNote validation (062 T014)", () => {
     const res = await POST(
       makeRequest(
         makeBody({
-          delivery: { method: "own_carrier", cost: 0, handoverNote: "short" },
+          delivery: { channel: "own_carrier", cost: 0, handoverNote: "short" },
         }),
       ),
     );
@@ -162,7 +162,7 @@ describe("POST /api/orders — handoverNote validation (062 T014)", () => {
     const res = await POST(
       makeRequest(
         makeBody({
-          delivery: { method: "pickup", cost: 0, handoverNote: "test" },
+          delivery: { channel: "pickup", cost: 0, handoverNote: "test" },
         }),
       ),
     );
@@ -177,7 +177,7 @@ describe("POST /api/orders — handoverNote validation (062 T014)", () => {
     const res = await POST(
       makeRequest(
         makeBody({
-          delivery: { method: "pickup", cost: 0 },
+          delivery: { channel: "pickup", cost: 0 },
         }),
       ),
     );
@@ -193,7 +193,7 @@ describe("POST /api/orders — handoverNote validation (062 T014)", () => {
     const res = await POST(
       makeRequest(
         makeBody({
-          delivery: { method: "own_carrier", cost: 0, handoverNote: validNote },
+          delivery: { channel: "own_carrier", cost: 0, handoverNote: validNote },
         }),
       ),
     );
@@ -203,8 +203,10 @@ describe("POST /api/orders — handoverNote validation (062 T014)", () => {
     // payload.create вызывался — guard'ы валидации не отрицали запрос.
     expect(mockPayload.create).toHaveBeenCalledTimes(1);
     const createArg = mockPayload.create.mock.calls[0]?.[0] as {
-      data?: { delivery?: { method?: string; handoverNote?: string; cost?: number } };
+      data?: { delivery?: { channel?: string; method?: string; handoverNote?: string; cost?: number } };
     };
+    // 064: channel сохранён; method = алиас канала.
+    expect(createArg.data?.delivery?.channel).toBe("own_carrier");
     expect(createArg.data?.delivery?.method).toBe("own_carrier");
     expect(createArg.data?.delivery?.handoverNote).toBe(validNote);
     // FR-062-15: own_carrier → cost=0
@@ -217,7 +219,7 @@ describe("POST /api/orders — handoverNote validation (062 T014)", () => {
     const res = await POST(
       makeRequest(
         makeBody({
-          delivery: { method: "own_carrier", cost: 0, handoverNote: tooLong },
+          delivery: { channel: "own_carrier", cost: 0, handoverNote: tooLong },
         }),
       ),
     );
@@ -225,5 +227,79 @@ describe("POST /api/orders — handoverNote validation (062 T014)", () => {
     const json = (await res.json()) as { error?: string };
     expect(json.error).toBe("HANDOVER_NOTE_TOO_LONG");
     expect(mockPayload.create).not.toHaveBeenCalled();
+  });
+});
+
+// ─── 064: любой service-перевозчик ───────────────────────────────────────────
+
+describe("POST /api/orders — any carrier (064)", () => {
+  it("service-перевозчик вне прежних трёх (Деловые Линии) → 201 со стоимостью и данными", async () => {
+    const POST = await importPOST();
+    const res = await POST(
+      makeRequest(
+        makeBody({
+          delivery: {
+            channel: "service",
+            providerKey: "dellin",
+            providerName: "Деловые Линии",
+            tariffId: 555,
+            deliveryType: "1",
+            pickupType: "1",
+            cost: 740,
+            city: "Москва",
+            address: "ул. Тверская, 1",
+            etaMinDays: 2,
+            etaMaxDays: 4,
+          },
+        }),
+      ),
+    );
+    expect(res.status).toBe(201);
+    expect(mockPayload.create).toHaveBeenCalledTimes(1);
+    const createArg = mockPayload.create.mock.calls[0]?.[0] as {
+      data?: {
+        delivery?: {
+          channel?: string;
+          method?: string;
+          cost?: number;
+          providerKey?: string;
+          providerName?: string;
+          deliveryType?: string;
+        };
+        totals?: { deliveryCost?: number };
+      };
+    };
+    expect(createArg.data?.delivery?.channel).toBe("service");
+    expect(createArg.data?.delivery?.method).toBe("service");
+    // FR-004/SC-002: стоимость НЕ обнуляется для перевозчика вне прежних трёх.
+    expect(createArg.data?.delivery?.cost).toBe(740);
+    expect(createArg.data?.totals?.deliveryCost).toBe(740);
+    expect(createArg.data?.delivery?.providerKey).toBe("dellin");
+    expect(createArg.data?.delivery?.providerName).toBe("Деловые Линии");
+    expect(createArg.data?.delivery?.deliveryType).toBe("1");
+  });
+
+  it("service с неизвестным кодом → providerName = код (FR-006)", async () => {
+    const POST = await importPOST();
+    const res = await POST(
+      makeRequest(
+        makeBody({
+          delivery: {
+            channel: "service",
+            providerKey: "some-new-carrier",
+            tariffId: 99,
+            cost: 300,
+            city: "Казань",
+            address: "ул. Баумана, 5",
+          },
+        }),
+      ),
+    );
+    expect(res.status).toBe(201);
+    const createArg = mockPayload.create.mock.calls[0]?.[0] as {
+      data?: { delivery?: { providerName?: string; cost?: number } };
+    };
+    expect(createArg.data?.delivery?.cost).toBe(300);
+    expect(createArg.data?.delivery?.providerName).toBe("some-new-carrier");
   });
 });

@@ -134,17 +134,24 @@ export const Orders = {
       label: adminLabel("Доставка", "Delivery"),
       fields: [
         {
-          name: "method",
+          // 064: закрытый канал доставки — единственный драйвер поведения
+          // (стоимость, примечания, блок перевозчика). Перевозчик хранится
+          // отдельно в providerKey/providerName (открытый набор от ApiShip).
+          name: "channel",
           type: "select",
-          label: adminLabel("Способ", "Method"),
+          label: adminLabel("Канал доставки", "Delivery channel"),
           options: [
             { label: adminLabel("Самовывоз", "Pickup"), value: "pickup" },
-            { label: adminLabel("СДЭК", "CDEK"), value: "cdek" },
-            { label: adminLabel("Boxberry", "Boxberry"), value: "boxberry" },
-            { label: adminLabel("Почта России", "Russian Post"), value: "russian-post" },
+            { label: adminLabel("Служба доставки (ApiShip)", "Delivery service (ApiShip)"), value: "service" },
             { label: adminLabel("Транспортной компанией покупателя", "Own carrier"), value: "own_carrier" },
-            { label: adminLabel("Транспортной компанией (legacy)", "Logistics (legacy)"), value: "tc" },
           ],
+        },
+        {
+          // 064: enum → text (открытое). Транзитный алиас канала; перевозчик
+          // больше не хранится тут — см. providerKey / providerName.
+          name: "method",
+          type: "text",
+          label: adminLabel("Способ (legacy-алиас канала)", "Method (legacy channel alias)"),
         },
         { name: "address", type: "textarea", label: adminLabel("Адрес доставки", "Delivery address") },
         { name: "city", type: "text", label: adminLabel("Город", "City") },
@@ -178,6 +185,8 @@ export const Orders = {
           ],
         },
         { name: "providerKey", type: "text", label: adminLabel("Код службы", "Provider key") },
+        // 064: человекочитаемое имя службы (fallback на код). Заполняется для channel=service.
+        { name: "providerName", type: "text", label: adminLabel("Название службы", "Provider name") },
         { name: "tariffId", type: "number" },
         {
           name: "deliveryType",

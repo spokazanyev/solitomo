@@ -6,6 +6,7 @@ import * as migration_20260527_001_add_own_carrier_enum from './20260527_001_add
 import * as migration_20260527_002_rename_tc_to_own_carrier from './20260527_002_rename_tc_to_own_carrier';
 import * as migration_20260528_add_delivery_handover_note from './20260528_add_delivery_handover_note';
 import * as migration_20260528_add_invoice_footer_note from './20260528_add_invoice_footer_note';
+import * as migration_20260528_064_delivery_channel from './20260528_064_delivery_channel';
 
 export const migrations = [
   {
@@ -47,5 +48,10 @@ export const migrations = [
     up: migration_20260528_add_invoice_footer_note.up,
     down: migration_20260528_add_invoice_footer_note.down,
     name: '20260528_add_invoice_footer_note'
+  },
+  {
+    up: migration_20260528_064_delivery_channel.up,
+    down: migration_20260528_064_delivery_channel.down,
+    name: '20260528_064_delivery_channel'
   },
 ];

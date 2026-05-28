@@ -7,6 +7,8 @@ import PDFDocument from "pdfkit";
 
 import { getCompanyContacts } from "@/lib/company/get-company-contacts";
 import { amountInWords } from "@/lib/documents/amount-in-words";
+// 064: канал доставки (closed) + имя перевозчика (open) — единый резолв с чекаутом
+import { normalizeDeliveryChannel, resolveProviderName } from "@/lib/shipping/delivery-channel";
 
 // 062 hot-fix: PDFkit built-in Helvetica поддерживает только latin-1. Для
 // кириллических счетов нужен Unicode-шрифт. На production-образе (alpine)
@@ -77,21 +79,8 @@ function resolveWarehouseAddress(contacts: ReturnType<typeof getCompanyContacts>
   return "адрес уточнит менеджер";
 }
 
-// 063 fix: человекочитаемые названия служб доставки (delivery.method для ApiShip
-// ∈ {cdek, boxberry, russian-post}; см. api/orders/route.ts METHOD_WHITELIST).
-const CARRIER_LABELS: Record<string, string> = {
-  cdek: "СДЭК",
-  boxberry: "Boxberry",
-  "russian-post": "Почта России",
-};
-
-function carrierLabel(method: string | undefined, providerKey: string | undefined): string {
-  return (
-    (method ? CARRIER_LABELS[method] : undefined) ??
-    (providerKey ? CARRIER_LABELS[providerKey] : undefined) ??
-    (providerKey || method || "служба доставки")
-  );
-}
+// 064: имя перевозчика резолвится через общий helper `resolveProviderName`
+// (providerName → код → «служба доставки»). Локальная карта CARRIER_LABELS удалена.
 
 const VAT_RATE = 22; // % — НДС по ФЗ-425 (с 2025). vat = gross * 22/122.
 
@@ -126,11 +115,13 @@ export async function GET(_request: NextRequest, context: RouteContext) {
     customer?: { fullName?: string; email?: string; companyName?: string; inn?: string; kpp?: string; legalAddress?: string };
     invoice?: { number?: string; issuedAt?: string };
     delivery?: {
+      channel?: string;
       method?: string;
       handoverNote?: string;
       address?: string;
       city?: string;
       providerKey?: string;
+      providerName?: string;
       deliveryType?: string;
       pointAddress?: string;
       etaMinDays?: number;
@@ -170,19 +161,25 @@ export async function GET(_request: NextRequest, context: RouteContext) {
   const netOf = (gross: number) => gross / (1 + VAT_RATE / 100);
 
   const goodsGross = items.reduce((s, it) => s + grossOf(it), 0);
-  const deliveryMethod = o.delivery?.method;
   const handoverNote = o.delivery?.handoverNote?.trim() ?? "";
   const deliveryAddress = o.delivery?.address?.trim() ?? "";
   const deliveryCity = o.delivery?.city?.trim() ?? "";
   const providerKey = o.delivery?.providerKey ?? "";
+  const providerName = o.delivery?.providerName ?? "";
   const deliveryType = o.delivery?.deliveryType ?? "";
   const pointAddress = o.delivery?.pointAddress?.trim() ?? "";
   const etaMin = o.delivery?.etaMinDays;
   const etaMax = o.delivery?.etaMaxDays;
-  const isPickup = deliveryMethod === "pickup";
-  const isOwnCarrier = deliveryMethod === "own_carrier" || deliveryMethod === "tc";
-  const isApiShipMethod = !isPickup && !isOwnCarrier;
-  const deliveryGross = isApiShipMethod ? o.totals?.deliveryCost ?? 0 : 0;
+  // 064: поведение по каналу (closed). Страховочный нормалайз, если channel пуст.
+  const channel = normalizeDeliveryChannel({
+    channel: o.delivery?.channel,
+    providerKey: o.delivery?.providerKey,
+    method: o.delivery?.method,
+  });
+  const isPickup = channel === "pickup";
+  const isOwnCarrier = channel === "own_carrier";
+  const isService = channel === "service";
+  const deliveryGross = isService ? o.totals?.deliveryCost ?? 0 : 0;
 
   const totalGross = goodsGross + deliveryGross;
   const vat = Math.round(((totalGross * VAT_RATE) / (100 + VAT_RATE)) * 100) / 100;
@@ -412,8 +409,8 @@ export async function GET(_request: NextRequest, context: RouteContext) {
   // Для ApiShip-доставки счёт раньше показывал только строку «Доставка» с ценой,
   // без указания службы, типа и адреса/ПВЗ. Восстанавливаем эти данные из заказа.
   if (
-    isApiShipMethod &&
-    (deliveryType || pointAddress || deliveryAddress || providerKey || deliveryGross > 0)
+    isService &&
+    (deliveryType || pointAddress || deliveryAddress || providerKey || providerName || deliveryGross > 0)
   ) {
     setFont(true);
     doc.fontSize(10).fillColor(ink).text("Доставка:", pageLeft, y, { width: contentWidth });
@@ -421,7 +418,7 @@ export async function GET(_request: NextRequest, context: RouteContext) {
     setFont(false);
     doc.fontSize(9.5).fillColor("#334155");
     const toPoint = deliveryType === "2";
-    const carrier = carrierLabel(deliveryMethod, providerKey);
+    const carrier = resolveProviderName(providerName, providerKey);
     doc.text(
       `Служба: ${carrier} · ${toPoint ? "до пункта выдачи (ПВЗ)" : "курьером до двери"}.`,
       pageLeft,

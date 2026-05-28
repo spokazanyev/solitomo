@@ -260,11 +260,13 @@ export function InvoiceCheckoutForm() {
         }
         const rate = selectedRate.rate;
         deliveryPayload = {
-          method: rate.providerKey,
+          // 064: явный канал (service) вместо method=providerKey
+          channel: "service",
           city: address.city,
           address: address.query,
           provider: rate.providerKey?.startsWith("fallback_") ? "fallback" : "apiship",
           providerKey: rate.providerKey,
+          providerName: rate.providerName,
           tariffId: rate.tariffId,
           deliveryType: String(rate.deliveryType),
           pickupType: String(rate.pickupType),
@@ -287,14 +289,14 @@ export function InvoiceCheckoutForm() {
         };
       } else if (shippingMode === "own_carrier") {
         deliveryPayload = {
-          method: "own_carrier",
+          channel: "own_carrier",
           cost: 0,
           handoverNote: ownCarrierNote.trim(),
         };
       } else {
         // pickup
         deliveryPayload = {
-          method: "pickup",
+          channel: "pickup",
           cost: 0,
           handoverNote: pickupNote.trim(),
         };

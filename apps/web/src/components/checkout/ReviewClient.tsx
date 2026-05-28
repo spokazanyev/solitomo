@@ -38,10 +38,23 @@ interface Props {
       kpp?: string;
     };
     delivery: {
+      // 064: канал доставки (closed) + открытый перевозчик + блок ApiShip
+      channel?: "pickup" | "service" | "own_carrier";
       method?: string;
       address?: string;
       city?: string;
       cost?: number;
+      provider?: string;
+      providerKey?: string;
+      providerName?: string;
+      tariffId?: number;
+      deliveryType?: string;
+      pickupType?: string;
+      pointId?: string;
+      pointAddress?: string;
+      etaMinDays?: number;
+      etaMaxDays?: number;
+      addressNormalized?: Record<string, unknown>;
     };
     sourcePage?: string;
   };

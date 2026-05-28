@@ -154,7 +154,7 @@ export function pickBestTariffs(
   return { cheapest, fastest };
 }
 
-function providerNameFromKey(key?: string): string | undefined {
+export function providerNameFromKey(key?: string): string | undefined {
   if (!key) return undefined;
   const map: Record<string, string> = {
     cdek: "СДЭК",

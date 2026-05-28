@@ -71,11 +71,18 @@ export default async function OrderPage({ params }: PageProps) {
     items?: Array<{ sku?: string; name?: string; quantity?: number; price?: number | null; lineTotal?: number | null }>;
     totals?: { subtotal?: number; vat?: number; deliveryCost?: number; total?: number };
     customer?: { fullName?: string; email?: string; phone?: string; companyName?: string; inn?: string };
-    delivery?: { method?: string; address?: string; city?: string };
+    delivery?: { channel?: string; method?: string; providerName?: string; address?: string; city?: string };
     invoice?: { number?: string; pdfUrl?: string };
     createdAt: string;
   };
   const statusInfo = STATUS_LABELS[o.status] ?? { label: o.status, tone: "bg-slate-100 text-slate-800" };
+  // 064: человекочитаемая подпись доставки по каналу (а не сырой method/код).
+  const deliveryLabel =
+    o.delivery?.channel === "pickup"
+      ? "Самовывоз"
+      : o.delivery?.channel === "own_carrier"
+        ? "Транспортной компанией покупателя"
+        : o.delivery?.providerName || o.delivery?.method || "Служба доставки";
 
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
@@ -135,7 +142,7 @@ export default async function OrderPage({ params }: PageProps) {
             <div className="rounded-lg border border-slate-200 bg-white p-5">
               <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">Доставка</h3>
               <div className="mt-3 text-sm leading-6 text-slate-700">
-                <p>{o.delivery?.method}</p>
+                <p>{deliveryLabel}</p>
                 {o.delivery?.city ? <p>{o.delivery.city}</p> : null}
                 {o.delivery?.address ? <p>{o.delivery.address}</p> : null}
               </div>

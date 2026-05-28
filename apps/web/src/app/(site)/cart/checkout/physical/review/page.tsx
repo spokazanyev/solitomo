@@ -107,15 +107,36 @@ export default async function PhysicalCheckoutReviewPage() {
     })),
     customer: draft.customer,
     delivery: {
-      // /api/orders ожидает method из {pickup,cdek,boxberry,russian-post,tc}
-      // — маппим providerKey, fallback на provider name
-      method: draft.rate.providerKey,
+      // 064: явный канал service + полный блок ApiShip. Раньше слался только
+      // method/address/city/cost, из-за чего тип/ПВЗ/сроки терялись даже для cdek.
+      channel: "service" as const,
       address:
         draft.rate.pickupType === 2 && draft.rate.pointAddress
           ? draft.rate.pointAddress
           : addressLabel,
       city: draft.address.city,
       cost: deliveryCost,
+      provider: draft.rate.providerKey?.startsWith("fallback_") ? "fallback" : "apiship",
+      providerKey: draft.rate.providerKey,
+      providerName: draft.rate.providerName,
+      tariffId: draft.rate.tariffId,
+      deliveryType: String(draft.rate.deliveryType),
+      pickupType: String(draft.rate.pickupType),
+      pointId: draft.rate.pointId,
+      pointAddress: draft.rate.pointAddress,
+      etaMinDays: draft.rate.etaMinDays,
+      etaMaxDays: draft.rate.etaMaxDays,
+      addressNormalized: {
+        postalCode: draft.address.postalCode,
+        city: draft.address.city,
+        region: draft.address.region,
+        street: draft.address.street,
+        house: draft.address.house,
+        flat: draft.address.flat,
+        kladrId: draft.address.kladrId,
+        fiasId: draft.address.fiasId,
+        isValid: true,
+      },
     },
     sourcePage: "/cart/checkout/physical/review/",
   };

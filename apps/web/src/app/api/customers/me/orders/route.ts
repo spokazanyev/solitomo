@@ -25,7 +25,7 @@ interface OrderSummary {
   customerEmail?: string;
   /** Stripped from accountant view (FR-5445a). */
   items?: Array<{ sku: string; name: string; quantity: number; price?: number | null }>;
-  delivery?: { method?: string; city?: string; address?: string };
+  delivery?: { channel?: string; method?: string; providerName?: string; city?: string; address?: string };
   shipment?: { trackingNumber?: string };
   isPersonalOrder?: boolean;
 }
@@ -97,7 +97,9 @@ export async function GET(req: NextRequest) {
     const customer = (doc.customer ?? {}) as { email?: string };
     const totals = (doc.totals ?? {}) as { total?: number };
     const delivery = (doc.delivery ?? {}) as {
+      channel?: string;
       method?: string;
+      providerName?: string;
       city?: string;
       address?: string;
     };
@@ -128,7 +130,9 @@ export async function GET(req: NextRequest) {
         }))
       : [];
     base.delivery = {
+      channel: delivery.channel,
       method: delivery.method,
+      providerName: delivery.providerName,
       city: delivery.city,
       address: delivery.address,
     };
