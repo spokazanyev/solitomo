@@ -243,42 +243,53 @@ export async function GET(_request: NextRequest, context: RouteContext) {
   // ─── Таблица позиций ─────────────────────────────────────────────────────
   let y = Math.max(leftEndY, rightEndY) + 16;
 
-  // Колонки: Товар | Кол | Цена | Стоимость
-  const cTovar = pageLeft;
-  const wTovar = Math.round(contentWidth * 0.56);
-  const cKol = cTovar + wTovar;
-  const wKol = 44;
-  const cCena = cKol + wKol;
-  const wCena = Math.round((contentWidth - wTovar - wKol) / 2);
-  const cSum = cCena + wCena;
-  const wSum = pageRight - cSum;
+  // Колонки: № | Артикул | Товар | Кол | Цена | Стоимость
   const PAD = 5;
+  const wNum = 26;
+  const wSku = 80;
+  const wKol = 38;
+  const wCena = 70;
+  const wSum = 80;
+  const wTovar = contentWidth - wNum - wSku - wKol - wCena - wSum;
+  const cNum = pageLeft;
+  const cSku = cNum + wNum;
+  const cTovar = cSku + wSku;
+  const cKol = cTovar + wTovar;
+  const cCena = cKol + wKol;
+  const cSum = cCena + wCena;
 
   const drawRow = (
-    cells: { tovar: string; kol: string; cena: string; sum: string },
+    cells: { num: string; sku: string; tovar: string; kol: string; cena: string; sum: string },
     opts: { bold?: boolean; header?: boolean } = {},
   ) => {
     useFont(opts.bold || opts.header);
     doc.fontSize(9).fillColor(ink);
+    // высота строки = по самой высокой ячейке (наименование или артикул)
     const nameH = doc.heightOfString(cells.tovar, { width: wTovar - 2 * PAD });
-    const rowH = Math.max(nameH, doc.currentLineHeight()) + 2 * PAD;
+    const skuH = doc.heightOfString(cells.sku, { width: wSku - 2 * PAD });
+    const rowH = Math.max(nameH, skuH, doc.currentLineHeight()) + 2 * PAD;
     // page-break
     if (y + rowH > doc.page.height - MARGIN - 120) {
       doc.addPage();
       y = MARGIN;
     }
     if (opts.header) {
-      doc.rect(cTovar, y, contentWidth, rowH).fillAndStroke("#f1f5f9", "#94a3b8");
+      doc.rect(cNum, y, contentWidth, rowH).fillAndStroke("#f1f5f9", "#94a3b8");
       doc.fillColor(ink);
     } else {
-      // cell borders
-      doc.rect(cTovar, y, wTovar, rowH).strokeColor("#cbd5e1").lineWidth(0.6).stroke();
+      // рамки ячеек
+      doc.strokeColor("#cbd5e1").lineWidth(0.6);
+      doc.rect(cNum, y, wNum, rowH).stroke();
+      doc.rect(cSku, y, wSku, rowH).stroke();
+      doc.rect(cTovar, y, wTovar, rowH).stroke();
       doc.rect(cKol, y, wKol, rowH).stroke();
       doc.rect(cCena, y, wCena, rowH).stroke();
       doc.rect(cSum, y, wSum, rowH).stroke();
     }
     useFont(opts.bold || opts.header);
     doc.fillColor(ink);
+    doc.text(cells.num, cNum + PAD, y + PAD, { width: wNum - 2 * PAD, align: "center" });
+    doc.text(cells.sku, cSku + PAD, y + PAD, { width: wSku - 2 * PAD });
     doc.text(cells.tovar, cTovar + PAD, y + PAD, { width: wTovar - 2 * PAD });
     doc.text(cells.kol, cKol + PAD, y + PAD, { width: wKol - 2 * PAD, align: "center" });
     doc.text(cells.cena, cCena + PAD, y + PAD, { width: wCena - 2 * PAD, align: "right" });
@@ -286,14 +297,19 @@ export async function GET(_request: NextRequest, context: RouteContext) {
     y += rowH;
   };
 
-  drawRow({ tovar: "Товар", kol: "Кол", cena: "Цена", sum: "Стоимость" }, { header: true });
-  items.forEach((it) => {
+  drawRow(
+    { num: "№", sku: "Артикул", tovar: "Товар", kol: "Кол", cena: "Цена", sum: "Стоимость" },
+    { header: true },
+  );
+  items.forEach((it, idx) => {
     const gross = grossOf(it);
     const qty = it.quantity ?? 1;
     const net = netOf(gross);
     const unitNet = qty > 0 ? net / qty : net;
     drawRow({
-      tovar: it.name ?? it.sku ?? "—",
+      num: String(idx + 1),
+      sku: it.sku ?? "—",
+      tovar: it.name ?? "—",
       kol: String(qty),
       cena: fmt(unitNet),
       sum: fmt(net),
@@ -301,6 +317,8 @@ export async function GET(_request: NextRequest, context: RouteContext) {
   });
   if (deliveryGross > 0) {
     drawRow({
+      num: String(items.length + 1),
+      sku: "—",
       tovar: "Доставка",
       kol: "1",
       cena: fmt(netOf(deliveryGross)),
