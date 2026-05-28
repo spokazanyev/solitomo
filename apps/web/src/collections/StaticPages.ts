@@ -232,6 +232,17 @@ export const StaticPages: CollectionConfig = {
             // Module may not exist yet during 057 build-out — fail soft.
           }
         }
+        // 059 Phase 5 (FR-021): IndexNow push для buyer-info страниц (/info/*).
+        // Только section=info → чёткий URL. Legal/policy и прочее покрываются
+        // bulk-ping'ом + sitemap. Fire-and-forget (FR-022).
+        if (doc?.section === "info" && typeof doc.slug === "string") {
+          try {
+            const mod = await import("../lib/seo/indexnow");
+            await mod.pingIndexNowPath(`/info/${doc.slug}/`);
+          } catch {
+            // IndexNow недоступен → sitemap/bulk-ping подберут URL позже.
+          }
+        }
       },
     ],
   },

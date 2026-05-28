@@ -485,6 +485,22 @@ export const Products = {
     ...seoFields,
     ...agentFields,
   ],
+  hooks: {
+    // 059 Phase 5 (FR-021): IndexNow push при публикации/обновлении товара.
+    // Fire-and-forget — никогда не блокирует сохранение (FR-022).
+    afterChange: [
+      async ({ doc, operation }) => {
+        if (operation !== "create" && operation !== "update") return;
+        if (doc?.status !== "published" || !doc?.slug) return;
+        try {
+          const mod = await import("../lib/seo/indexnow");
+          await mod.pingIndexNowPath(`/product/${doc.slug}/`);
+        } catch {
+          // IndexNow недоступен → bulk-ping/sitemap подберут URL позже.
+        }
+      },
+    ],
+  },
   timestamps: true,
   versions: true,
 };
