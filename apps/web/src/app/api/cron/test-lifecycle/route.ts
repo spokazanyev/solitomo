@@ -22,6 +22,7 @@ import { getPayload } from "payload";
 import { emitDomainEvent, registerCoreSubscribers } from "@/lib/lifecycle/events";
 import { buildOrderSnapshot } from "@/lib/lifecycle/order-snapshot";
 import { processNotificationQueue } from "@/lib/notifications/scheduler";
+import { invalidateNotificationsCache, loadNotificationsSettings } from "@/lib/notifications/settings";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -72,6 +73,21 @@ async function run(orderId: string) {
     emitted.push({ kind: step.kind, note: step.note });
   }
 
+  // Debug: реальные настройки, которые видит scheduler (для диагностики sandbox-skip).
+  invalidateNotificationsCache();
+  const s = await loadNotificationsSettings();
+  const settingsDebug = {
+    enabled: s.enabled,
+    provider: s.email.provider,
+    sandbox: s.email.sandbox,
+    hasApiKey: Boolean(s.email.apiKey),
+    apiKeyLen: s.email.apiKey.length,
+    from: s.email.from,
+    managers: s.managers.map((m) => m.email),
+    envSandbox: process.env.EMAIL_SANDBOX,
+    envEnabled: process.env.NOTIFICATIONS_ENABLED,
+  };
+
   // Обрабатываем очередь (отправка через Unisender Go).
   const queue = await processNotificationQueue();
 
@@ -94,6 +110,7 @@ async function run(orderId: string) {
   return {
     orderId: String(order.id),
     customerEmail: (order.customer as { email?: string } | undefined)?.email,
+    settingsDebug,
     emitted,
     queue,
     jobs: jobSummary,
