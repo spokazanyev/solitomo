@@ -239,13 +239,9 @@
 
 Условие старта: после публичного запуска сайта и подключения Yandex.Metrika.
 
-### 17. Spec `039-product-schema-enrichment` — целиком отложено
+### 17. Spec `039-product-schema-enrichment` — ✅ ВЫПОЛНЕНО (2026-05-26)
 
-Что отложено: `Product.additionalProperty[]` с полной техспекой, `mpn`, `brand`, `manufacturer`, `countryOfOrigin`, key-facts блок на PDP против галлюцинаций.
-
-Импакт: AI-агенты не получают структурированных характеристик товара — выбирают вслепую по описанию.
-
-Условие старта: высокий приоритет если стартуем AEO-направление.
+**Закрыто.** Реализовано на ветке `039-product-schema-enrichment`: `Product.additionalProperty[]` через единый источник `buildKeyFacts()` (`apps/web/src/lib/products/key-facts.ts`), `mpn`/`brand`/`manufacturer`/`model`/`countryOfOrigin`, единицы UN/CEFACT (`AMP`/`MTR`/`C62`), key-facts предложение после H1 на PDP (анти-галлюцинация), `offers.availability=InStock`, Organization `@id=#organization` для резолва manufacturer/seller ref. Покрыто unit-тестом `key-facts.test.ts` (6 тестов). Аудит-обоснование — `06-reports/seo/seo-aeo-audit-2026-05.md`. Осталось: post-deploy `pnpm validate:schema` (live-gate) после мёржа.
 
 ### 18. Spec `040-machine-readable-product-feeds` — целиком отложено
 

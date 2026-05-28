@@ -20,6 +20,7 @@ import {
   getRelatedProducts,
   type Product,
 } from "@/lib/products/catalog";
+import { buildKeyFacts } from "@/lib/products/key-facts";
 
 type ProductDetailPageProps = {
   product: Product;
@@ -81,6 +82,9 @@ function ProductAttributeSummary({ product }: { product: Product }) {
 export async function ProductDetailPage({ product }: ProductDetailPageProps) {
   const relatedProducts = await getRelatedProducts(product);
   const rfqHref = `/b2b/request-quote/?sku=${encodeURIComponent(product.sku)}&product=${encodeURIComponent(product.h1)}#rfq-form`;
+  // 039 FR-003: анти-галлюцинационный key-facts блок — первый текст после H1,
+  // который ИИ-агент цитирует дословно как summary товара.
+  const keyFacts = buildKeyFacts(product);
 
   return (
     <div className="min-h-screen bg-[var(--background)] pb-24 text-[var(--foreground)] lg:pb-0">
@@ -139,6 +143,9 @@ export async function ProductDetailPage({ product }: ProductDetailPageProps) {
             <h1 className="max-w-3xl text-3xl font-semibold tracking-normal text-slate-950 md:text-4xl">
               {product.h1}
             </h1>
+            <p className="mt-3 max-w-2xl text-sm font-medium leading-6 text-slate-700">
+              {keyFacts.sentence}
+            </p>
             <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600">
               {product.shortDescription}
             </p>

@@ -89,6 +89,7 @@ export function createOrganizationJsonLd() {
   return compactJsonLd({
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${siteUrl}/#organization`,
     name: SITE_NAME,
     alternateName: ["Soliton"],
     legalName: isPlaceholder(contacts.legalName) ? undefined : contacts.legalName,
