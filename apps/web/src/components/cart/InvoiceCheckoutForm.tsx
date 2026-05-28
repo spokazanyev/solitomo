@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { AddressForm, type AddressFormValue } from "@/components/checkout/AddressForm";
+import { CompanySuggestInput } from "@/components/checkout/CompanySuggestInput";
 import { DadataSuggestInput } from "@/components/checkout/DadataSuggestInput";
 import { DeliveryBlock, type SelectedRate } from "@/components/checkout/DeliveryBlock";
 import { PhoneInput } from "@/components/checkout/PhoneInput";
@@ -14,10 +15,20 @@ import { clearCartItems, getCartTotal, useRfqCartItems } from "@/components/rfq/
 import { pushEvent } from "@/lib/analytics/data-layer";
 import {
   type ShippingMode,
+  trackCompanySelected,
+  trackCompanyStatusWarning,
   trackInnValidationFailed,
   trackInnValidationSuccess,
   trackShippingModeChanged,
 } from "@/lib/analytics/events";
+import { isValidInn } from "@/lib/dadata/inn";
+import type { CompanyRequisites } from "@/lib/dadata/party-normalize";
+
+const RISKY_STATUS_TEXT: Record<"LIQUIDATING" | "LIQUIDATED" | "BANKRUPT", string> = {
+  LIQUIDATED: "Организация ликвидирована",
+  LIQUIDATING: "Организация в процессе ликвидации",
+  BANKRUPT: "В отношении организации введена процедура банкротства",
+};
 
 export function InvoiceCheckoutForm() {
   const items = useRfqCartItems();
@@ -29,6 +40,10 @@ export function InvoiceCheckoutForm() {
   const [kpp, setKpp] = useState("");
   const [ogrn, setOgrn] = useState("");
   const [legalAddress, setLegalAddress] = useState("");
+  // 063: отдельный state поля-поиска организации — независим от companyName,
+  // чтобы очистка поиска не затирала уже заполненные реквизиты (US3 AC3).
+  const [companyQuery, setCompanyQuery] = useState("");
+  const [companyStatus, setCompanyStatus] = useState<CompanyRequisites["status"]>(null);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -77,7 +92,7 @@ export function InvoiceCheckoutForm() {
   const phoneOk = phone.trim().length === 0 || /^[+0-9\s()-]{6,}$/.test(phone);
   const baseLegalReady =
     companyName.trim().length > 0 &&
-    /^[0-9]{10,12}$/.test(inn.trim()) &&
+    isValidInn(inn.trim()) &&
     fullName.trim().length > 0 &&
     /.+@.+\..+/.test(email.trim()) &&
     phoneOk &&
@@ -95,6 +110,12 @@ export function InvoiceCheckoutForm() {
   }
 
   const isLegalReady = baseLegalReady && modeReady;
+
+  // 063 T011: показываем ошибку контрольной суммы только при «завершённой» длине
+  // 10/12 (FR-008) — частичный ввод не «ругаем».
+  const innTrimmed = inn.trim();
+  const innChecksumError =
+    (innTrimmed.length === 10 || innTrimmed.length === 12) && !isValidInn(innTrimmed);
 
   useEffect(() => {
     if (items.length === 0) return;
@@ -143,7 +164,7 @@ export function InvoiceCheckoutForm() {
   const handleInnBlur = () => {
     const trimmed = inn.trim();
     if (trimmed.length === 0) return; // пустой — не отслеживаем
-    const isValid = /^[0-9]{10,12}$/.test(trimmed);
+    const isValid = isValidInn(trimmed);
     const result = isValid ? "success" : "failed";
     // Anti-double-fire — повторяем только при смене результата
     if (innValidationFiredRef.current === result) return;
@@ -151,8 +172,37 @@ export function InvoiceCheckoutForm() {
     if (isValid) {
       trackInnValidationSuccess({ formType: "checkout_legal" });
     } else {
-      const errorCode = /^[0-9]+$/.test(trimmed) ? "inn_wrong_length" : "inn_non_numeric";
+      let errorCode: string;
+      if (!/^[0-9]+$/.test(trimmed)) {
+        errorCode = "inn_non_numeric";
+      } else if (trimmed.length !== 10 && trimmed.length !== 12) {
+        errorCode = "inn_wrong_length";
+      } else {
+        errorCode = "inn_checksum";
+      }
       trackInnValidationFailed({ formType: "checkout_legal", errorCode });
+    }
+  };
+
+  // 063 T008/T012: выбор организации из подсказок DaData. Безусловно перезаписывает
+  // все 5 полей (overwrite-on-reselect, FR-005 exception / Q2), сбрасывает анти-дубль
+  // INN-события и эмитит company_selected (+ company_status_warning при риске).
+  const handleCompanySelect = (req: CompanyRequisites) => {
+    setCompanyName(req.companyName);
+    setInn(req.inn);
+    setKpp(req.kpp);
+    setOgrn(req.ogrn);
+    setLegalAddress(req.legalAddress);
+    setCompanyQuery(req.companyName);
+    setCompanyStatus(req.status);
+    innValidationFiredRef.current = null;
+    trackCompanySelected({
+      formType: "checkout_legal",
+      hasKpp: req.kpp.length > 0,
+      hasLegalAddress: req.legalAddress.length > 0,
+    });
+    if (req.isRisky && req.status) {
+      trackCompanyStatusWarning({ formType: "checkout_legal", status: req.status });
     }
   };
 
@@ -331,6 +381,15 @@ export function InvoiceCheckoutForm() {
             Реквизиты юрлица
           </div>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
+            <div className="md:col-span-2">
+              <CompanySuggestInput
+                label="Найти организацию по названию или ИНН"
+                placeholder="Например: Ромашка или 7707083893"
+                value={companyQuery}
+                onQueryChange={setCompanyQuery}
+                onSelect={handleCompanySelect}
+              />
+            </div>
             <label className="grid gap-1 text-xs font-medium text-slate-600">
               Наименование компании *
               <input
@@ -354,6 +413,11 @@ export function InvoiceCheckoutForm() {
                 type="text"
                 value={inn}
               />
+              {innChecksumError ? (
+                <span role="alert" className="text-xs font-medium text-rose-700">
+                  Проверьте ИНН — некорректная контрольная сумма
+                </span>
+              ) : null}
             </label>
             <label className="grid gap-1 text-xs font-medium text-slate-600">
               КПП
@@ -385,6 +449,16 @@ export function InvoiceCheckoutForm() {
               />
             </label>
           </div>
+          {companyStatus === "LIQUIDATING" ||
+          companyStatus === "LIQUIDATED" ||
+          companyStatus === "BANKRUPT" ? (
+            <p
+              role="alert"
+              className="mt-3 rounded-md border border-amber-300 bg-amber-50 px-3 py-2 text-xs font-medium text-amber-800"
+            >
+              ⚠ {RISKY_STATUS_TEXT[companyStatus]}. Проверьте контрагента перед оформлением.
+            </p>
+          ) : null}
         </div>
 
         <div className="rounded-lg border border-slate-200 bg-white p-6" onFocus={handleContactFocus}>

@@ -33,6 +33,7 @@ const CLEAN_URL = "https://cleaner.dadata.ru/api/v1/clean/address";
 // FIO + email use the same free `suggest` tier (no X-Secret needed).
 const SUGGEST_FIO_URL = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/fio";
 const SUGGEST_EMAIL_URL = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/email";
+const SUGGEST_PARTY_URL = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/party";
 
 async function getClient(useSecret: boolean): Promise<{ http: AxiosInstance; configured: boolean }> {
   const settings = await loadSettings();
@@ -171,6 +172,61 @@ export async function suggestEmail(
       { query, count },
     );
     return data.suggestions ?? [];
+  } catch {
+    return [];
+  }
+}
+
+// ─── Party (organization) suggestions (free tier) ───────────────────
+
+export interface DadataPartyData {
+  inn?: string;
+  kpp?: string;
+  ogrn?: string;
+  hid?: string;
+  type?: "LEGAL" | "INDIVIDUAL";
+  branch_type?: "MAIN" | "BRANCH";
+  branch_count?: number;
+  name?: {
+    full_with_opf?: string;
+    short_with_opf?: string;
+    full?: string;
+    short?: string;
+  };
+  address?: {
+    value?: string;
+    unrestricted_value?: string;
+  };
+  state?: {
+    status?: "ACTIVE" | "LIQUIDATING" | "LIQUIDATED" | "BANKRUPT" | "REORGANIZING";
+    actuality_date?: number;
+  };
+}
+
+export interface DadataPartySuggestion {
+  value: string;
+  unrestricted_value?: string;
+  data: DadataPartyData;
+}
+
+/**
+ * Suggest organizations (legal entities / sole proprietors) by name or INN.
+ * Only head organizations are returned — branches (`branch_type === "BRANCH"`)
+ * are filtered out (R4). The KPP of a branch is edited manually if needed.
+ */
+export async function suggestParty(
+  query: string,
+  count = 7,
+): Promise<DadataPartySuggestion[]> {
+  if (!query || query.trim().length < 1) return [];
+  const { http, configured } = await getClient(false);
+  if (!configured) return [];
+  try {
+    const { data } = await http.post<{ suggestions: DadataPartySuggestion[] }>(
+      SUGGEST_PARTY_URL,
+      { query, count },
+    );
+    return (data.suggestions ?? []).filter((s) => s.data.branch_type !== "BRANCH");
   } catch {
     return [];
   }

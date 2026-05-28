@@ -59,6 +59,9 @@ export type AnalyticsEventName =
   | "form_field_error"
   | "inn_validation_success"
   | "inn_validation_failed"
+  | "company_suggest_shown"
+  | "company_selected"
+  | "company_status_warning"
   | "consent_banner_shown"
   | "consent_accepted"
   | "consent_declined"
@@ -408,6 +411,33 @@ export function trackInnValidationFailed(params: { formType: string; errorCode: 
   trackAnalyticsEvent("inn_validation_failed", {
     form_type: params.formType,
     error_code: params.errorCode,
+  });
+}
+
+// 063: DaData party-autofill events (FR-015). Payload без сырых ИНН/наименования (R6).
+export function trackCompanySuggestShown(params: { formType: string; resultsCount: number }): void {
+  trackAnalyticsEvent("company_suggest_shown", {
+    form_type: params.formType,
+    results_count: params.resultsCount,
+  });
+}
+
+export function trackCompanySelected(params: {
+  formType: string;
+  hasKpp: boolean;
+  hasLegalAddress: boolean;
+}): void {
+  trackAnalyticsEvent("company_selected", {
+    form_type: params.formType,
+    has_kpp: params.hasKpp,
+    has_legal_address: params.hasLegalAddress,
+  });
+}
+
+export function trackCompanyStatusWarning(params: { formType: string; status: string }): void {
+  trackAnalyticsEvent("company_status_warning", {
+    form_type: params.formType,
+    status: params.status,
   });
 }
 
