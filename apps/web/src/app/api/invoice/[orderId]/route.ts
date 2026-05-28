@@ -389,31 +389,30 @@ export async function GET(_request: NextRequest, context: RouteContext) {
   const dirPos = contacts.director?.position ?? "Директор";
   const dirName = shortName(contacts.director?.fullName);
   const dirBrand = contacts.legalName?.startsWith("TODO") ? contacts.brandName : contacts.legalName;
-  doc.text(`${dirPos} ${dirBrand}: __________________ / ${dirName} /`, pageLeft, y, {
-    width: contentWidth,
-  });
-  const afterDirectorY = doc.y; // позиция ПОД строкой директора
+  const dirLineY = y;
+  // Строка директора без линии подписи и слешей — подпись ставит печать-PNG.
+  doc.text(`${dirPos} ${dirBrand} ${dirName}`, pageLeft, y, { width: contentWidth * 0.55 });
 
-  // Печать + подпись (PNG, прозрачный фон) — размещается НИЖЕ строки подписи
-  // директора (не перекрывает текст). Если файла нет — остаётся «М.П.».
+  // Печать + подпись (PNG, прозрачный фон) — СПРАВА от строки директора,
+  // по центру по вертикали относительно строки. Если файла нет — «М.П.».
   const stampPath = firstExisting(STAMP_CANDIDATES);
   if (stampPath) {
     try {
-      const stampW = 190;
-      const stampH = stampW * (554 / 1122); // сохраняем пропорции PNG ≈ 93pt
-      let stampY = afterDirectorY + 10;
-      // если печать не влезает на страницу — переносим на новую
+      const stampW = 185;
+      const stampH = stampW * (554 / 1122); // ≈ 91pt
+      const stampX = pageRight - stampW;
+      let stampY = dirLineY - stampH / 2 + 6;
+      if (stampY < MARGIN) stampY = MARGIN;
       if (stampY + stampH > doc.page.height - MARGIN) {
         doc.addPage();
         stampY = MARGIN;
       }
-      const stampX = pageLeft + 30;
       doc.image(stampPath, stampX, stampY, { width: stampW });
     } catch {
-      doc.fontSize(9).fillColor(muted).text("М.П.", pageLeft, afterDirectorY + 12);
+      doc.fontSize(9).fillColor(muted).text("М.П.", pageRight - 70, dirLineY);
     }
   } else {
-    doc.fontSize(9).fillColor(muted).text("М.П.", pageLeft, afterDirectorY + 12);
+    doc.fontSize(9).fillColor(muted).text("М.П.", pageRight - 70, dirLineY);
   }
 
   doc.end();
