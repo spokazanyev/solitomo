@@ -4,8 +4,8 @@ import { getPayload } from "payload";
 
 import config from "@/payload.config";
 import { rewriteLegacyAssetUrl } from "@/lib/legacy-assets/url";
+import { buildKeyFacts } from "@/lib/products/key-facts";
 import {
-  getProductAttributeRows,
   normalizeProductAttributes,
   type ProductAttributes,
 } from "@/lib/products/product-attributes";
@@ -744,13 +744,8 @@ export function createProductJsonLd(product: Product) {
     name: "Солитон",
     url: siteUrl,
   };
-  const additionalProperty = getProductAttributeRows(product.attributes)
-    .filter(([, value]) => value !== "Уточнить")
-    .map(([name, value]) => ({
-      "@type": "PropertyValue",
-      name,
-      value,
-    }));
+  // 039 FR-004/005: единый источник истины (key-facts) + единицы UN/CEFACT.
+  const { properties: additionalProperty } = buildKeyFacts(product);
   const documentEntities = product.documents.map((document) => ({
     "@type": "CreativeWork",
     name: document.title,
@@ -769,6 +764,10 @@ export function createProductJsonLd(product: Product) {
     category:
       product.categories.map((category) => category.name).join(" / ") ||
       product.attributes.productType.label,
+    countryOfOrigin: {
+      "@type": "Country",
+      name: "Россия",
+    },
     name: product.h1,
     description: product.shortDescription,
     image: product.images,
@@ -785,6 +784,7 @@ export function createProductJsonLd(product: Product) {
         ? {
             "@type": "Offer",
             "@id": `${productUrl}#offer`,
+            availability: "https://schema.org/InStock",
             itemCondition: "https://schema.org/NewCondition",
             price: product.price.amount,
             priceCurrency: product.price.currency,
