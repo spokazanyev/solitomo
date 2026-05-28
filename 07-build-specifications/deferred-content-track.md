@@ -13,6 +13,7 @@
 - [Часть Д. Behavior & ad analytics (058, v1 задеплоено, follow-up отложен)](#часть-д-behavior--ad-analytics-058-v1-задеплоено-follow-up-отложен) — пункты 27–29
 - [Часть Е. Доставка — доработки после v1 (047+)](#часть-е-доставка--доработки-после-v1-047) — пункт 30
 - [Часть Ж. Invoice & shipping unify (062, реализовано, follow-up отложен)](#часть-ж-invoice--shipping-unify-062-реализовано-follow-up-отложен) — пункты 31–34
+- [Часть З. Email-уведомления — активация и follow-up (049, активировано на проде)](#часть-з-email-уведомления--активация-и-follow-up-049-активировано-на-проде) — пункты 35–38
 
 ---
 
@@ -542,3 +543,37 @@ Live OAuth-токен Yandex.Metrika (`y0__wgBEKvJthAYlbBCII6wn9UXtmS5lnPK8f30GW
 **Не блокирует:** работу 062 — `handoverNote` хранится в Payload и используется в PDF-счёте и в ApiShip note, Twenty просто не получает это поле до активации.
 
 **Owner:** TBD.
+
+---
+
+## Часть З. Email-уведомления — активация и follow-up (049, активировано на проде)
+
+> Контекст: при тесте юр-чекаута (062) обнаружилось, что подсистема уведомлений 049 построена, но никогда не была активирована end-to-end на проде. В ходе 2026-05-28 активирована (Unisender Go, sandbox=false), прогнан полный happy-path цикл писем legal-заказа (T-002→T-001→T-003→T-005→T-008), 7/7 sent. Ниже — оставшийся follow-up.
+
+### 35. DEFERRED-049-A — Перенести email-конфиг в Payload Global (сейчас через .env)
+
+**Контекст.** Активация сделана через env-переменные (`EMAIL_PROVIDER/API_KEY/FROM/SANDBOX`, `NOTIFICATIONS_ENABLED`, `NOTIFICATION_MANAGER_EMAILS`) с env-приоритетом в `loadNotificationsSettings` (пустой Payload Global возвращал defaultValue, затирая .env — это и было причиной первых сбоев). Это работает, но конфиг живёт в `deploy/.secrets/production-env` + проброс в `docker-compose.yml`, а не в admin-UI.
+
+**Что нужно сделать:** один раз сохранить Global `notifications-settings` через admin (provider/apiKey/from/managers/enabled/sandbox=false), после чего env можно убрать. Решить с владельцем: оставить env-driven (12-factor, проще ротация) или admin-driven (Owner правит без деплоя). Env-приоритет в коде уважает Global, если env не задан — совместимо.
+
+**Условие старта:** когда Owner захочет править нотификации без передеплоя. **Не блокирует:** письма работают через env.
+
+### 36. DEFERRED-049-B — `enabled`/`managers`/`sandbox` берутся из env, не из Global
+
+**Контекст.** Связано с 35. В `settings.ts` добавлены env-override: `NOTIFICATIONS_ENABLED`, `NOTIFICATION_MANAGER_EMAILS`, `EMAIL_SANDBOX` имеют приоритет над Global. Это compromise для активации без admin-доступа.
+
+**Что нужно сделать:** при переходе на admin-driven (35) — пересмотреть приоритеты, чтобы Global был source-of-truth. Также мелочь: при первом прогоне менеджерские svp-копии не создались из-за stale settings-cache (60s TTL) в момент emit — клиентских не коснулось; кэш инвалидируется штатно, разовый артефакт.
+
+### 37. DEFERRED-049-C — systemd-timer вместо EnvironmentFile для CRON_SECRET
+
+**Контекст.** `soliton-notifications.timer` (каждые 3 мин → `/api/cron/notifications`) настроен на VPS, `CRON_SECRET` захардкожен в `.service` (root-only). См. `deploy/systemd/README.md`.
+
+**Что нужно сделать:** перейти на `EnvironmentFile=/home/server/apps/soliton/.env` + `${CRON_SECRET}` в ExecStart, чтобы не дублировать секрет и упростить ротацию. Также рассмотреть таймеры для остальных cron (`closure`, `pickup-reminder`, `stuck-alerts`, `carts-cleanup`, `returns-overdue`) — сейчас заведён только notifications.
+
+### 38. DEFERRED-049-D — order.completed для legal-заказов не автоэмитится
+
+**Контекст.** В 062 подключён emit `order.invoice_issued` (создание legal) и `order.paid` (ручной перевод legal в paid). Но `order.completed` (→ T-008) эмитится только из closure-cron (`lib/lifecycle/closure.ts`) по условию paid + closure-delay. В тесте T-008 эмитился искусственно через временный endpoint.
+
+**Что нужно сделать:** убедиться, что closure-cron реально доводит legal-заказы до `completed` на проде (нужен systemd-timer для `/api/cron/closure` — см. 37) ИЛИ подключить emit при ручном переводе менеджером в completed/delivered, по аналогии с order.paid. Проверить весь lifecycle на реальном (не emit-симулированном) заказе.
+
+**Условие старта:** перед массовым запуском B2B-продаж. **Не блокирует:** invoice + paid письма работают (основные для покупателя).
