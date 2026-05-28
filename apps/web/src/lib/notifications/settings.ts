@@ -32,8 +32,26 @@ export interface NotificationsSettings {
   };
 }
 
+/**
+ * 062 follow-up: парсит NOTIFICATION_MANAGER_EMAILS="a@x.ru,b@y.ru" в список
+ * менеджеров (все подписаны на "everything"). Позволяет активировать
+ * менеджерские письма (T-101/T-102/...) без admin-доступа к Payload Global.
+ */
+function parseEnvManagers(): NotificationsSettings["managers"] {
+  const raw = process.env.NOTIFICATION_MANAGER_EMAILS;
+  if (!raw) return [];
+  return raw
+    .split(",")
+    .map((e) => e.trim())
+    .filter(Boolean)
+    .map((email) => ({ email, events: ["everything"] }));
+}
+
 const FALLBACK: NotificationsSettings = {
-  enabled: false,
+  // 062: env-override активации. Payload Global enabled по-прежнему уважается
+  // (см. loadNotificationsSettings), но на проде без admin-доступа удобнее
+  // включить флагом NOTIFICATIONS_ENABLED=true в .env.
+  enabled: process.env.NOTIFICATIONS_ENABLED === "true",
   email: {
     provider: (process.env.EMAIL_PROVIDER as EmailProvider) ?? "postmark",
     apiKey: process.env.EMAIL_API_KEY ?? "",
@@ -46,7 +64,7 @@ const FALLBACK: NotificationsSettings = {
     enabled: false,
     provider: "telegram",
   },
-  managers: [],
+  managers: parseEnvManagers(),
   marketing: {
     cartAbandonmentEnabled: false,
     cartAbandonmentDelayMin: 60,
@@ -70,7 +88,11 @@ export async function loadNotificationsSettings(): Promise<NotificationsSettings
     const raw = (await p.findGlobal({ slug: "notifications-settings" })) as unknown as Record<string, unknown> | null;
     const merged: NotificationsSettings = JSON.parse(JSON.stringify(FALLBACK));
     if (raw) {
-      if (typeof raw.enabled === "boolean") merged.enabled = raw.enabled;
+      // 062: env-override NOTIFICATIONS_ENABLED=true имеет приоритет — позволяет
+      // включить отправку на проде без admin-доступа к Global. Если env не задан,
+      // уважаем значение из Payload Global (raw.enabled).
+      if (process.env.NOTIFICATIONS_ENABLED === "true") merged.enabled = true;
+      else if (typeof raw.enabled === "boolean") merged.enabled = raw.enabled;
       const email = raw.email as unknown as Record<string, unknown> | undefined;
       if (email) {
         if (typeof email.provider === "string") merged.email.provider = email.provider as EmailProvider;
@@ -89,7 +111,10 @@ export async function loadNotificationsSettings(): Promise<NotificationsSettings
         }
       }
       const managers = raw.managers as Array<Record<string, unknown>> | undefined;
-      if (Array.isArray(managers)) {
+      // 062: используем Global-список менеджеров только если он непустой.
+      // Иначе сохраняем env-managers из FALLBACK (NOTIFICATION_MANAGER_EMAILS),
+      // чтобы пустой Global не затирал env-конфиг.
+      if (Array.isArray(managers) && managers.length > 0) {
         merged.managers = managers
           .filter((m) => typeof m?.email === "string" && m.email)
           .map((m) => ({

@@ -1014,6 +1014,30 @@ export const Orders = {
               `[orders] new ${doc.type} order ${doc.id} for ${doc.customerLabel ?? "—"}`,
             );
 
+            // 062 follow-up: эмитим order.invoice_issued при создании legal-заказа,
+            // чтобы 049-подписчик поставил в очередь T-002 (счёт клиенту) + T-102
+            // (менеджеру). Раньше это событие нигде не эмитилось → юр-заказы не
+            // слали писем. Lazy-import (как 051 hooks). Fire-and-forget с catch:
+            // сбой уведомления не должен ломать создание заказа.
+            if (doc.type === "legal" && doc.status === "awaiting_payment") {
+              try {
+                const { emitDomainEvent } = await import("../lib/lifecycle/events");
+                const { buildOrderSnapshot } = await import("../lib/lifecycle/order-snapshot");
+                await emitDomainEvent({
+                  kind: "order.invoice_issued",
+                  order: buildOrderSnapshot(doc),
+                  context: { statusTo: "awaiting_payment" },
+                });
+                req.payload.logger.info(
+                  `[orders] emitted order.invoice_issued for ${doc.id}`,
+                );
+              } catch (emitErr) {
+                req.payload.logger.error(
+                  `[orders] emit order.invoice_issued failed: ${emitErr?.message ?? emitErr}`,
+                );
+              }
+            }
+
             // 054 FR-5421 + H6 fix: backfill customerId on guest-order create
             // when an existing Customer has the same email — but ONLY if the
             // creation came from a trusted source. Otherwise an anonymous POST
