@@ -328,14 +328,17 @@ export async function GET(_request: NextRequest, context: RouteContext) {
 
   // ─── Итоги (справа) ──────────────────────────────────────────────────────
   y += 8;
-  const totalsX = cCena - 60;
+  // Широкое поле под label, чтобы «Итого … без НДС:» помещался в одну строку.
+  const totalsX = cSku;
   const totalsLabelW = cSum - totalsX - PAD;
   const totalLine = (label: string, value: string, bold = false, size = 10) => {
     useFont(bold);
     doc.fontSize(size).fillColor(ink);
-    doc.text(label, totalsX, y, { width: totalsLabelW, align: "right" });
-    doc.text(value, cSum + PAD, y, { width: wSum - 2 * PAD, align: "right" });
-    y = doc.y + 3;
+    const startY = y;
+    doc.text(label, totalsX, startY, { width: totalsLabelW, align: "right" });
+    const afterLabel = doc.y;
+    doc.text(value, cSum + PAD, startY, { width: wSum - 2 * PAD, align: "right" });
+    y = Math.max(afterLabel, doc.y) + 3; // продвигаемся по самой высокой ячейке
   };
   totalLine(`Итого (${totalQty} поз.), без НДС:`, fmt(subtotalNet), true);
   totalLine(`НДС ${VAT_RATE}%:`, fmt(vat));
