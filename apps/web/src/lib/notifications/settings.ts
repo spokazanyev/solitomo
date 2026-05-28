@@ -101,7 +101,14 @@ export async function loadNotificationsSettings(): Promise<NotificationsSettings
         if (typeof email.domain === "string") merged.email.domain = email.domain;
         if (typeof email.from === "string" && email.from) merged.email.from = email.from;
         if (typeof email.replyTo === "string") merged.email.replyTo = email.replyTo;
-        if (typeof email.sandbox === "boolean") merged.email.sandbox = email.sandbox;
+        // 062: env EMAIL_SANDBOX имеет приоритет. Пустой Payload Global возвращает
+        // defaultValue:true для sandbox, что иначе перезатёрло бы прод
+        // EMAIL_SANDBOX=false и блокировало реальную отправку (dry-run).
+        if (process.env.EMAIL_SANDBOX !== undefined) {
+          merged.email.sandbox = process.env.EMAIL_SANDBOX === "true";
+        } else if (typeof email.sandbox === "boolean") {
+          merged.email.sandbox = email.sandbox;
+        }
       }
       const messenger = raw.messenger as unknown as Record<string, unknown> | undefined;
       if (messenger) {
