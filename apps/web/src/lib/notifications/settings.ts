@@ -95,15 +95,26 @@ export async function loadNotificationsSettings(): Promise<NotificationsSettings
       else if (typeof raw.enabled === "boolean") merged.enabled = raw.enabled;
       const email = raw.email as unknown as Record<string, unknown> | undefined;
       if (email) {
-        if (typeof email.provider === "string") merged.email.provider = email.provider as EmailProvider;
-        if (typeof email.apiKey === "string" && email.apiKey) merged.email.apiKey = email.apiKey;
-        else if (!merged.email.apiKey) merged.email.apiKey = process.env.EMAIL_API_KEY ?? "";
-        if (typeof email.domain === "string") merged.email.domain = email.domain;
-        if (typeof email.from === "string" && email.from) merged.email.from = email.from;
-        if (typeof email.replyTo === "string") merged.email.replyTo = email.replyTo;
-        // 062: env EMAIL_SANDBOX имеет приоритет. Пустой Payload Global возвращает
-        // defaultValue:true для sandbox, что иначе перезатёрло бы прод
-        // EMAIL_SANDBOX=false и блокировало реальную отправку (dry-run).
+        // 062: env-переменные имеют приоритет над Payload Global. Пустой Global
+        // (никогда не сохранялся через admin) возвращает defaultValue для каждого
+        // поля (provider:"postmark", sandbox:true, from:"Soliton <...soliton.ru>"),
+        // что иначе затирает реальный .env-конфиг на проде. Поэтому: env wins,
+        // Global — fallback, FALLBACK-default — последний резерв.
+        merged.email.provider =
+          (process.env.EMAIL_PROVIDER as EmailProvider | undefined) ||
+          (typeof email.provider === "string" ? (email.provider as EmailProvider) : merged.email.provider);
+        merged.email.apiKey =
+          process.env.EMAIL_API_KEY ||
+          (typeof email.apiKey === "string" && email.apiKey ? email.apiKey : merged.email.apiKey);
+        merged.email.domain =
+          process.env.EMAIL_MAILGUN_DOMAIN ||
+          (typeof email.domain === "string" ? email.domain : merged.email.domain);
+        merged.email.from =
+          process.env.EMAIL_FROM ||
+          (typeof email.from === "string" && email.from ? email.from : merged.email.from);
+        merged.email.replyTo =
+          process.env.EMAIL_REPLY_TO ||
+          (typeof email.replyTo === "string" ? email.replyTo : merged.email.replyTo);
         if (process.env.EMAIL_SANDBOX !== undefined) {
           merged.email.sandbox = process.env.EMAIL_SANDBOX === "true";
         } else if (typeof email.sandbox === "boolean") {
