@@ -1096,6 +1096,33 @@ export const Orders = {
             req.payload.logger.info(
               `[orders] ${doc.id} status ${previousDoc.status} → ${doc.status}`,
             );
+
+            // 062 follow-up: для legal-заказов (оплата по счёту) order.paid НЕ
+            // эмитится ЮKassa-webhook'ом (тот только для физ-карт). Менеджер
+            // вручную ставит paid в админке после поступления оплаты по счёту —
+            // здесь эмитим order.paid, чтобы 049-подписчик отправил T-001
+            // (клиенту) + T-101 (менеджеру). Без этого legal-заказ не получал
+            // письма об оплате. Lazy-import + fire-and-forget с catch.
+            if (
+              doc.type === "legal" &&
+              doc.status === "paid" &&
+              previousDoc.status !== "paid"
+            ) {
+              try {
+                const { emitDomainEvent } = await import("../lib/lifecycle/events");
+                const { buildOrderSnapshot } = await import("../lib/lifecycle/order-snapshot");
+                await emitDomainEvent({
+                  kind: "order.paid",
+                  order: buildOrderSnapshot(doc),
+                  context: { statusFrom: previousDoc.status, statusTo: "paid" },
+                });
+                req.payload.logger.info(`[orders] emitted order.paid for legal ${doc.id}`);
+              } catch (emitErr) {
+                req.payload.logger.error(
+                  `[orders] emit order.paid (legal) failed: ${emitErr?.message ?? emitErr}`,
+                );
+              }
+            }
           }
         } catch (error) {
           req.payload.logger.error("[orders] afterChange notify failed:", error);
