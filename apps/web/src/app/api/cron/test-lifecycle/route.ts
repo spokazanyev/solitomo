@@ -19,7 +19,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import configPromise from "@payload-config";
 import { getPayload } from "payload";
 
-import { emitDomainEvent } from "@/lib/lifecycle/events";
+import { emitDomainEvent, registerCoreSubscribers } from "@/lib/lifecycle/events";
 import { buildOrderSnapshot } from "@/lib/lifecycle/order-snapshot";
 import { processNotificationQueue } from "@/lib/notifications/scheduler";
 
@@ -44,6 +44,12 @@ const CYCLE = [
 
 async function run(orderId: string) {
   const payload = await getPayload({ config: configPromise });
+
+  // В route-контексте module-state подписчиков может быть изолирован от
+  // payload onInit (Next бандлит chunks отдельно). Регистрируем явно —
+  // идемпотентно (guard'ы в самих register*Subscriber).
+  await registerCoreSubscribers();
+
   const order = (await payload.findByID({
     collection: "orders",
     id: orderId,
