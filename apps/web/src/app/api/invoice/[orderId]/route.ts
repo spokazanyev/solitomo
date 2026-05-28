@@ -117,6 +117,21 @@ export async function GET(_request: NextRequest, context: RouteContext) {
   const invoiceNumber = o.invoice?.number ?? o.clientNumber ?? `${String(o.id)}`;
   const invoiceDate = new Date(o.invoice?.issuedAt ?? o.createdAt);
 
+  // Настраиваемый текст условий внизу счёта (Payload Global payment-settings,
+  // правится владельцем в admin без редеплоя). Fallback — дефолт.
+  let invoiceFooterNote =
+    "Оплата производится по реквизитам поставщика. Заказ начинает движение после поступления оплаты. Счёт действителен 5 банковских дней.";
+  try {
+    const ps = (await payload.findGlobal({ slug: "payment-settings" })) as {
+      invoiceFooterNote?: string;
+    } | null;
+    if (ps?.invoiceFooterNote && ps.invoiceFooterNote.trim()) {
+      invoiceFooterNote = ps.invoiceFooterNote.trim();
+    }
+  } catch {
+    // fallback на дефолт
+  }
+
   // ─── НДС-модель (по решению владельца) ───────────────────────────────────
   // Каталожные цены — С НДС (gross). В счёте выделяем цену без НДС (net =
   // gross / 1.22), начисляем НДС 22% на net; Итого (gross) = сумма каталожных
@@ -355,14 +370,9 @@ export async function GET(_request: NextRequest, context: RouteContext) {
   doc.text(`В том числе НДС ${VAT_RATE}% — ${fmt(vat)} руб.`, pageLeft, y, { width: contentWidth });
   y = doc.y + 12;
 
-  // ─── Условия оплаты ──────────────────────────────────────────────────────
+  // ─── Условия оплаты (из payment-settings, настраивается в admin) ─────────
   doc.fontSize(9).fillColor(muted);
-  doc.text(
-    "Оплата производится по реквизитам поставщика. Заказ начинает движение после поступления оплаты. Счёт действителен 5 банковских дней.",
-    pageLeft,
-    y,
-    { width: contentWidth },
-  );
+  doc.text(invoiceFooterNote, pageLeft, y, { width: contentWidth });
   y = doc.y + 8;
 
   // ─── Примечания (062): pickup / own_carrier ──────────────────────────────

@@ -3775,6 +3775,10 @@ export interface PaymentSetting {
     address: string;
     kpp?: string | null;
   };
+  /**
+   * Footer text on the PDF invoice (payment terms, validity, etc.). Editable without redeploy.
+   */
+  invoiceFooterNote?: string | null;
   audit?: {
     lastChangedBy?: (number | null) | User;
     lastChangedAt?: string | null;
@@ -4085,6 +4089,7 @@ export interface PaymentSettingsSelect<T extends boolean = true> {
         address?: T;
         kpp?: T;
       };
+  invoiceFooterNote?: T;
   audit?:
     | T
     | {

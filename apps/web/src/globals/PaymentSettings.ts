@@ -196,6 +196,19 @@ export const PaymentSettings: GlobalConfig = {
       ],
     },
     {
+      name: "invoiceFooterNote",
+      type: "textarea",
+      defaultValue:
+        "Оплата производится по реквизитам поставщика. Заказ начинает движение после поступления оплаты. Счёт действителен 5 банковских дней.",
+      label: adminLabel("Условия в PDF-счёте (примечание)", "Invoice footer note"),
+      admin: {
+        description: adminLabel(
+          "Текст условий внизу PDF-счёта (порядок оплаты, срок действия счёта и т.п.). Owner правит без редеплоя — изменения попадают в новые счета сразу.",
+          "Footer text on the PDF invoice (payment terms, validity, etc.). Editable without redeploy.",
+        ),
+      },
+    },
+    {
       type: "group",
       name: "audit",
       label: adminLabel("Аудит изменений", "Audit"),
