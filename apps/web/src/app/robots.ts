@@ -16,6 +16,7 @@ export default function robots(): MetadataRoute.Robots {
       // 059 Phase 2 (crawl-budget): закрываем технические/личные/транзакционные
       // разделы и URL с query-параметрами (UTM/фильтры → дубли). Бот тратит
       // лимит обхода только на товары, категории, knowledge и info.
+      // `/*?` — канонический паттерн (Google/Yandex) для любых URL с query.
       disallow: [
         "/admin/",
         "/api/",
@@ -24,10 +25,12 @@ export default function robots(): MetadataRoute.Robots {
         "/checkout/",
         "/payment/",
         "/me/",
-        "/*?*",
+        "/*?",
       ],
     },
     sitemap: `${siteUrl}/sitemap.xml`,
-    host: siteUrl,
+    // Директива Host НЕ указывается: Яндекс отказался от неё в 2018
+    // (канонический хост определяется 301-редиректами www→apex + http→https).
+    // Её наличие вызывало в анализаторе robots.txt «неправильное значение».
   };
 }
