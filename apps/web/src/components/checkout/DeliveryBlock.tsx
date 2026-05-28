@@ -80,12 +80,19 @@ export function DeliveryBlock({
       return;
     }
     let cancelled = false;
+    // 047 fix: AbortController отменяет предыдущий in-flight запрос при новом
+    // прогоне эффекта (DaData дозаполняет поля адреса по частям → эффект может
+    // сработать несколько раз; раньше уходили дубль-POST'ы, и финальным мог
+    // оказаться частичный/пустой ответ ApiShip). Теперь побеждает только
+    // последний запрос, дубли отменяются.
+    const controller = new AbortController();
     setLoading(true);
     const timer = setTimeout(async () => {
       try {
         const res = await fetch("/api/shipping/calculate", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
+          signal: controller.signal,
           body: JSON.stringify({
             cartId,
             address: {
@@ -112,7 +119,9 @@ export function DeliveryBlock({
         setSelectedId(null);
         setPointByRate({});
         onSelect(null);
-      } catch {
+      } catch (err) {
+        // AbortError при отмене дубля — не ошибка, игнорируем.
+        if ((err as { name?: string })?.name === "AbortError") return;
         if (!cancelled) {
           setRates([]);
           setWarnings(["Расчёт временно недоступен."]);
@@ -124,6 +133,7 @@ export function DeliveryBlock({
     return () => {
       cancelled = true;
       clearTimeout(timer);
+      controller.abort();
     };
   }, [address.isValid, address.city, address.postalCode, address.query, address.region, cartId, items, onSelect]);
 

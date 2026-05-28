@@ -98,6 +98,12 @@ export class ApiShipProvider implements ShippingProvider {
     // Fingerprint всего input — чтобы кеш инвалидировался при смене адреса / товаров.
     const fp = calcInputFingerprint(input);
 
+    // Реальный ApiShip API возвращает разделённые массивы по типу доставки,
+    // legacy-форма (`tariffs[]`) поддерживается на всякий случай.
+    const { flattenCalculatorTariffs } = await import("./client");
+    const countTariffs = (raw: unknown) =>
+      flattenCalculatorTariffs(raw as Parameters<typeof flattenCalculatorTariffs>[0]).length;
+
     for (const type of types) {
       const cacheKey = `apiship:calc:${input.cartId}:${type}:${fp}`;
       let raw = (await getCalculation(cacheKey)) as
@@ -106,19 +112,37 @@ export class ApiShipProvider implements ShippingProvider {
       if (!raw) {
         try {
           const req = toCalculatorRequest(input, type, this.settings);
-          const { data } = await this.apis.calculator.getCalculator({ calculatorRequest: req });
-          raw = data;
-          await saveCalculation(cacheKey, data, CACHE_TTL_MS);
+          let { data } = await this.apis.calculator.getCalculator({ calculatorRequest: req });
           await logRequest("calculator.get", { input: req, output: data });
+
+          // 047 fix: ApiShip/СДЭК недетерминированно возвращает ПУСТОЙ список
+          // тарифов (особенно для ПВЗ, deliveryType=2) — см. инцидент с заказом
+          // #12 (лог 168 вернул пункты, лог 170 — пустой `tariffs:[]`). Один
+          // retry почти всегда даёт полный список. Без этого DeliveryBlock
+          // показывает только курьера, теряя ПВЗ.
+          if (countTariffs(data) === 0) {
+            try {
+              const retry = await this.apis.calculator.getCalculator({ calculatorRequest: req });
+              await logRequest("calculator.get(retry-empty)", { input: req, output: retry.data });
+              if (countTariffs(retry.data) > 0) data = retry.data;
+            } catch (retryErr) {
+              await logError(`calculator.get(${type}) retry`, retryErr);
+            }
+          }
+
+          raw = data;
+          // 047 fix: НЕ кэшируем пустой ответ — иначе залипший пустой результат
+          // ApiShip держится весь CACHE_TTL и убивает ПВЗ для всех следующих
+          // расчётов с тем же fingerprint. Кэшируем только непустой.
+          if (countTariffs(data) > 0) {
+            await saveCalculation(cacheKey, data, CACHE_TTL_MS);
+          }
         } catch (err) {
           await logError(`calculator.get(${type})`, err);
           warnings.push(`Не удалось рассчитать «${type}»`);
           continue;
         }
       }
-      // Реальный ApiShip API возвращает разделённые массивы по типу доставки,
-      // legacy-форма (`tariffs[]`) поддерживается на всякий случай.
-      const { flattenCalculatorTariffs } = await import("./client");
       const tariffs = flattenCalculatorTariffs(raw as Parameters<typeof flattenCalculatorTariffs>[0]);
 
       // Для каждого delivery-type кода выбираем два лучших тарифа:
