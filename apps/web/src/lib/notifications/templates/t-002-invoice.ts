@@ -15,8 +15,11 @@ export function renderT002InvoiceIssued(payload: NotificationJobPayload): Render
   const name = customerName(order);
   const total = formatPrice(order.totals?.total);
   const url = orderPageUrl(order);
+  // 049 fix: реальный PDF-эндпоинт — /api/invoice/[orderId]/, который принимает
+  // и publicToken (см. apps/web/src/app/api/invoice/[orderId]/route.ts). Старая
+  // ссылка /cart/order/{token}/invoice.pdf указывала на несуществующий route → 404.
   const invoiceUrl = order.publicToken
-    ? siteUrl(`/cart/order/${order.publicToken}/invoice.pdf`)
+    ? siteUrl(`/api/invoice/${order.publicToken}/`)
     : "";
   const unsubscribe = preferencesPageUrl(order);
   const subject = `Счёт по заказу ${order.id}`;
