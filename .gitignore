@@ -16,6 +16,7 @@ apps/web/public/legacy/
 # Agent folders can contain local/session data. Keep only deliberate project docs.
 .agents/**/.cache/
 .agents/**/tmp/
+.claude/settings.local.json
 
 # Production credentials, SSH keys, server access notes — никогда не коммитим.
 deploy/.secrets/
