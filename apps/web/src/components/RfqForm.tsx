@@ -12,6 +12,10 @@ import {
   type RfqCartItem,
 } from "@/components/rfq/RfqCart";
 import { trackAnalyticsEvent } from "@/lib/analytics/events";
+import { isValidInn } from "@/lib/inn";
+
+const INN_WARNING =
+  "Похоже, в ИНН ошибка. Проверьте, пожалуйста, число цифр (10 или 12) и контрольную сумму.";
 
 type RfqItem = RfqCartItem;
 
@@ -71,6 +75,7 @@ export function RfqForm() {
     message: "",
     status: "idle",
   });
+  const [innWarning, setInnWarning] = useState<string | null>(null);
   const rfqOpenTracked = useRef(false);
   const shouldPersistItems = useRef(false);
 
@@ -135,6 +140,11 @@ export function RfqForm() {
     });
   }
 
+  function checkInn(value: string) {
+    const trimmed = value.trim();
+    setInnWarning(trimmed && !isValidInn(trimmed) ? INN_WARNING : null);
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -148,6 +158,8 @@ export function RfqForm() {
       });
       return;
     }
+
+    checkInn(String(formData.get("inn") ?? ""));
 
     setState({ message: "", status: "submitting" });
 
@@ -284,7 +296,18 @@ export function RfqForm() {
           </label>
           <label className="grid min-w-0 gap-2 text-sm font-medium text-slate-700">
             ИНН
-            <input className={fieldClass()} name="inn" placeholder="Для счета и проверки реквизитов" />
+            <input
+              aria-invalid={innWarning ? true : undefined}
+              className={fieldClass()}
+              name="inn"
+              onBlur={(event) => checkInn(event.target.value)}
+              placeholder="Для счета и проверки реквизитов"
+            />
+            {innWarning ? (
+              <p aria-live="polite" className="text-xs font-normal text-amber-700">
+                {innWarning}
+              </p>
+            ) : null}
           </label>
           <label className="grid min-w-0 gap-2 text-sm font-medium text-slate-700">
             Контактное лицо *
